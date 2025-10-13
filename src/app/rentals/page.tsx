@@ -14,6 +14,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { Product } from '@/types';
 import { categories, priceRanges, products, themes } from '@/data';
+import Link from 'next/link';
 
 export default function RentalsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -89,7 +90,7 @@ export default function RentalsPage() {
                 placeholder="Search rentals..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-whitesmoke text-dark-black font-secondary focus:border-primary w-full rounded-full border-2 border-gray-600/20 py-3 pr-4 pl-12 text-sm transition-all focus:outline-none"
+                className="bg-whitesmoke text-dark-black font-secondary focus:border-primary w-full border-2 border-gray-600/20 py-3 pr-4 pl-12 text-sm transition-all focus:outline-none"
               />
             </div>
 
@@ -97,12 +98,12 @@ export default function RentalsPage() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="bg-dark-black font-secondary text-whitesmoke hover:bg-primary hover:text-dark-black relative flex cursor-pointer items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all"
+                className="bg-dark-black font-secondary text-whitesmoke hover:bg-primary relative flex cursor-pointer items-center gap-2 px-6 py-3 text-sm font-semibold transition-all hover:text-white"
               >
                 <Filter className="h-4 w-4" />
                 Filters
                 {activeFiltersCount > 0 && (
-                  <span className="bg-primary text-dark-black ml-1 flex h-5 w-5 items-center justify-center rounded-full text-xs">
+                  <span className="bg-primary text-dark-black ml-1 flex h-5 w-5 items-center justify-center text-xs">
                     {activeFiltersCount}
                   </span>
                 )}
@@ -126,7 +127,7 @@ export default function RentalsPage() {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="grid gap-4 border-t border-gray-600/20 pt-4 md:grid-cols-3">
+                <div className="grid gap-4 pt-4 md:grid-cols-3">
                   {/* Theme Filter */}
                   <div>
                     <label className="font-secondary mb-2 block text-xs font-bold tracking-wider text-gray-600 uppercase">
@@ -135,7 +136,7 @@ export default function RentalsPage() {
                     <select
                       value={selectedTheme}
                       onChange={(e) => setSelectedTheme(e.target.value)}
-                      className="bg- text-dark-black font-secondary focus:border-primary w-full rounded-lg border-2 border-gray-600/20 px-4 py-2 text-sm transition-all focus:outline-none"
+                      className="text-dark-black font-secondary focus:border-primary w-full rounded-lg border-1 border-gray-600/20 px-4 py-2 text-sm transition-all focus:outline-none"
                     >
                       {themes.map((theme) => (
                         <option key={theme.id} value={theme.id}>
@@ -153,7 +154,7 @@ export default function RentalsPage() {
                     <select
                       value={priceRange}
                       onChange={(e) => setPriceRange(e.target.value)}
-                      className="bg-whitesmoke text-dark-black font-secondary focus:border-primary w-full rounded-lg border-2 border-gray-600/20 px-4 py-2 text-sm transition-all focus:outline-none"
+                      className="bg-whitesmoke text-dark-black font-secondary focus:border-primary w-full rounded-lg border-1 border-gray-600/20 px-4 py-2 text-sm transition-all focus:outline-none"
                     >
                       {priceRanges.map((range) => (
                         <option key={range.id} value={range.id}>
@@ -172,7 +173,7 @@ export default function RentalsPage() {
                         setPriceRange('all');
                         setSearchQuery('');
                       }}
-                      className="border-dark-black font-secondary text-dark-black hover:bg-dark-black hover:text-whitesmoke w-full rounded-lg border-2 px-4 py-2 text-sm font-semibold transition-all"
+                      className="border-dark-black font-secondary text-dark-black hover:bg-primary hover:text-whitesmoke w-full cursor-pointer rounded-lg border-1 px-4 py-2 text-sm font-semibold transition-all hover:border-none"
                     >
                       Clear All
                     </button>
@@ -194,10 +195,10 @@ export default function RentalsPage() {
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`group font-secondary flex cursor-pointer items-center gap-3 rounded-full px-6 py-3 text-sm font-semibold tracking-wider uppercase transition-all ${
+                  className={`group font-secondary hover:bg-primary flex cursor-pointer items-center gap-3 px-6 py-3 text-sm font-semibold tracking-wider uppercase transition-all ${
                     activeCategory === category.id
-                      ? 'bg-primary text-dark-black shadow-lg'
-                      : 'bg-whitesmoke hover:text-whitesmoke text-gray-600 hover:bg-gray-800'
+                      ? 'bg-primary text-white shadow-lg'
+                      : 'bg-whitesmoke hover:text-whitesmoke text-gray-600'
                   }`}
                 >
                   <Icon className="h-5 w-5" />
@@ -233,7 +234,7 @@ export default function RentalsPage() {
                 onHoverStart={() => setHoveredProduct(product.id)}
                 onHoverEnd={() => setHoveredProduct(null)}
                 onClick={() => setSelectedProduct(product)}
-                className="group relative cursor-pointer overflow-hidden rounded-3xl bg-white shadow-lg transition-all hover:shadow-2xl"
+                className="group relative cursor-pointer overflow-hidden bg-white shadow-lg transition-all hover:shadow-2xl"
               >
                 {/* Product Image */}
                 <div className="relative h-80 overflow-hidden">
@@ -251,7 +252,7 @@ export default function RentalsPage() {
                   {/* Badges */}
                   <div className="absolute top-4 left-4 flex gap-2">
                     {product.popular && (
-                      <span className="bg-primary font-secondary text-dark-black flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase">
+                      <span className="bg-primary font-secondary text-dark-black flex items-center gap-1 px-3 py-1 text-xs font-bold tracking-wider uppercase">
                         <Star className="h-3 w-3 fill-current" />
                         Popular
                       </span>
@@ -260,10 +261,10 @@ export default function RentalsPage() {
 
                   {/* Quick Actions */}
                   <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <button className="hover:bg-primary/70 bg-primary cursor-pointer rounded-full p-2 shadow-lg transition-all">
+                    <button className="hover:bg-primary/70 bg-primary cursor-pointer p-2 shadow-lg transition-all">
                       <Heart className="h-4 w-4" />
                     </button>
-                    <button className="hover:bg-primary/70 bg-primary cursor-pointer rounded-full p-2 shadow-lg transition-all">
+                    <button className="hover:bg-primary/70 bg-primary cursor-pointer p-2 shadow-lg transition-all">
                       <Eye className="h-4 w-4" />
                     </button>
                   </div>
@@ -313,7 +314,7 @@ export default function RentalsPage() {
                     {product.features.slice(0, 2).map((feature, i) => (
                       <span
                         key={i}
-                        className="bg-primary/10 font-secondary text-dark-black rounded-full px-3 py-1 text-xs"
+                        className="bg-primary/10 font-secondary text-dark-black px-3 py-1 text-xs"
                       >
                         {feature}
                       </span>
@@ -321,7 +322,7 @@ export default function RentalsPage() {
                   </div>
 
                   {/* Add to Cart */}
-                  <button className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 w-full cursor-pointer rounded-full py-3 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl">
+                  <button className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 w-full cursor-pointer py-3 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl">
                     Add to Cart
                   </button>
                 </div>
@@ -346,11 +347,11 @@ export default function RentalsPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-3xl bg-white"
+              className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto bg-white"
             >
               <button
                 onClick={() => setSelectedProduct(null)}
-                className="hover:bg-primary/80 bg-primary absolute top-4 right-4 z-10 cursor-pointer rounded-full p-2 shadow-lg transition-all hover:shadow-xl"
+                className="hover:bg-primary/80 bg-primary absolute top-4 right-4 z-10 cursor-pointer p-2 shadow-lg transition-all hover:shadow-xl"
               >
                 <X className="h-6 w-6" />
               </button>
@@ -369,7 +370,7 @@ export default function RentalsPage() {
                 <div className="p-8">
                   <div className="mb-4">
                     {selectedProduct.popular && (
-                      <span className="bg-primary font-secondary text-dark-black inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase">
+                      <span className="bg-primary font-secondary text-dark-black inline-flex items-center gap-1 px-3 py-1 text-xs font-bold tracking-wider uppercase">
                         <Star className="h-3 w-3 fill-current" />
                         Popular Choice
                       </span>
@@ -419,7 +420,7 @@ export default function RentalsPage() {
                     </div>
                   </div>
 
-                  <div className="bg-primary/10 mb-6 rounded-2xl p-6">
+                  <div className="bg-primary/10 mb-6 p-6">
                     <div className="mb-2 flex items-baseline gap-2">
                       <span className="font-primary text-primary text-4xl">
                         ${selectedProduct.price}
@@ -434,10 +435,10 @@ export default function RentalsPage() {
                   </div>
 
                   <div className="flex gap-3">
-                    <button className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 w-full cursor-pointer rounded-full py-3 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl">
+                    <button className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 w-full cursor-pointer py-3 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl">
                       Add to Cart
                     </button>
-                    <button className="border-dark-black hover:bg-dark-black bg-dark-black hover:text-whitesmoke cursor-pointer rounded-full border-2 p-4 transition-all">
+                    <button className="border-dark-black hover:bg-dark-black bg-dark-black hover:text-whitesmoke cursor-pointer border-2 p-4 transition-all">
                       <Heart className="h-5 w-5" />
                     </button>
                   </div>
@@ -464,9 +465,11 @@ export default function RentalsPage() {
             Our team can source custom rentals and create bespoke experiences
             for your event
           </p>
-          <button className="bg-primary font-secondary text-dark-black hover:bg-whitesmoke rounded-full px-10 py-5 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-2xl">
-            Request Custom Quote
-          </button>
+          <Link href="/contact">
+            <button className="bg-primary font-secondary text-dark-black hover:bg-whitesmoke cursor-pointer px-10 py-5 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-2xl">
+              Request Custom Quote
+            </button>
+          </Link>
         </motion.div>
       </section>
     </div>
