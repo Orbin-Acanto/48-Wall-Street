@@ -17,7 +17,7 @@ export default function ThreeD({
   furnishedModelPath,
   initialFurnished = false,
 }: FloorPlan3DViewerProps) {
-  const [isRotating, setIsRotating] = useState(true);
+  const [isRotating, setIsRotating] = useState(false);
   const [showFurnished, setShowFurnished] = useState(initialFurnished);
   const [isLoading, setIsLoading] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -271,7 +271,7 @@ export default function ThreeD({
   }, [isRotating]);
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl">
+    <div className="relative overflow-hidden bg-white shadow-2xl">
       <div className="relative aspect-[16/10]">
         <canvas ref={canvasRef} className="h-full w-full" />
 
@@ -289,7 +289,7 @@ export default function ThreeD({
         <div className="absolute top-4 left-4 flex flex-col gap-2">
           <button
             onClick={() => setIsRotating(!isRotating)}
-            className="flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg"
+            className="flex items-center gap-2 bg-white/90 px-4 py-2 backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg"
           >
             {isRotating ? (
               <Pause className="text-primary h-4 w-4" />
@@ -303,7 +303,7 @@ export default function ThreeD({
 
           <button
             onClick={() => setShowFurnished(!showFurnished)}
-            className="bg-primary hover:bg-primary/90 rounded-full px-4 py-2 transition-all hover:shadow-lg"
+            className="bg-primary hover:bg-primary/90 px-4 py-2 transition-all hover:shadow-lg"
           >
             <span className="font-secondary text-dark-black text-xs font-semibold tracking-wider uppercase">
               {showFurnished ? 'Show Empty' : 'Show Furnished'}
@@ -311,13 +311,13 @@ export default function ThreeD({
           </button>
         </div>
 
-        <div className="absolute top-4 right-4 rounded-full bg-white/90 px-4 py-2 backdrop-blur-sm">
+        <div className="absolute top-4 right-4 bg-white/90 px-4 py-2 backdrop-blur-sm">
           <span className="font-secondary text-xs text-gray-600">
             Drag to rotate • Scroll to zoom
           </span>
         </div>
 
-        <div className="bg-dark-black/80 absolute bottom-4 left-4 rounded-full px-4 py-2 backdrop-blur-sm">
+        <div className="bg-dark-black/80 absolute bottom-4 left-4 px-4 py-2 backdrop-blur-sm">
           <span className="font-secondary text-whitesmoke text-xs font-semibold tracking-wider uppercase">
             {showFurnished ? 'Furnished 3D View' : 'Empty 3D View'}
           </span>

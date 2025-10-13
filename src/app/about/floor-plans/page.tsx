@@ -1,6 +1,6 @@
 'use client';
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Users,
   Maximize2,
@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { floors, layouts } from '@/data';
 import ThreeD from '@/components/ThreeD';
+import CustomButton from '@/components/CustomButton';
 
 export default function FloorPlansPage() {
   const [activeFloor, setActiveFloor] = useState('second');
@@ -91,19 +92,19 @@ export default function FloorPlansPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-8 flex flex-wrap items-center justify-center gap-4"
           >
-            <div className="flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 backdrop-blur-md">
+            <div className="flex items-center gap-2 bg-white/10 px-6 py-3 backdrop-blur-md">
               <Users className="text-primary h-5 w-5" />
               <span className="font-secondary text-whitesmoke text-sm">
                 Up to 600 guests
               </span>
             </div>
-            <div className="flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 backdrop-blur-md">
+            <div className="flex items-center gap-2 bg-white/10 px-6 py-3 backdrop-blur-md">
               <Maximize2 className="text-primary h-5 w-5" />
               <span className="font-secondary text-whitesmoke text-sm">
                 14,500 total sq ft
               </span>
             </div>
-            <div className="flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 backdrop-blur-md">
+            <div className="flex items-center gap-2 bg-white/10 px-6 py-3 backdrop-blur-md">
               <Layers className="text-primary h-5 w-5" />
               <span className="font-secondary text-whitesmoke text-sm">
                 2 event floors
@@ -122,10 +123,10 @@ export default function FloorPlansPage() {
                 <button
                   key={floor.id}
                   onClick={() => setActiveFloor(floor.id)}
-                  className={`font-secondary cursor-pointer rounded-full px-6 py-3 text-sm font-semibold tracking-wider uppercase transition-all ${
+                  className={`font-secondary cursor-pointer px-6 py-3 text-sm font-semibold tracking-wider uppercase transition-all ${
                     activeFloor === floor.id
-                      ? 'bg-primary text-dark-black shadow-lg'
-                      : 'bg-whitesmoke hover:text-whitesmoke text-gray-600 hover:bg-gray-800'
+                      ? 'bg-primary hover:bg-primary/80 text-white shadow-lg'
+                      : 'bg-whitesmoke hover:text-whitesmoke hover:bg-primary text-gray-600'
                   }`}
                 >
                   {floor.name}
@@ -133,10 +134,10 @@ export default function FloorPlansPage() {
               ))}
             </div>
             {/* view mode  */}
-            <div className="bg-whitesmoke flex items-center gap-2 rounded-full p-1">
+            <div className="bg-whitesmoke flex items-center gap-2 p-1">
               <button
                 onClick={() => setViewMode('2d')}
-                className={`font-secondary cursor-pointer rounded-full px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all ${
+                className={`font-secondary cursor-pointer px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all ${
                   viewMode === '2d'
                     ? 'text-dark-black bg-white shadow'
                     : 'text-gray-600'
@@ -146,7 +147,7 @@ export default function FloorPlansPage() {
               </button>
               <button
                 onClick={() => setViewMode('3d')}
-                className={`font-secondary cursor-pointer rounded-full px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all ${
+                className={`font-secondary cursor-pointer px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all ${
                   viewMode === '3d'
                     ? 'text-dark-black bg-white shadow'
                     : 'text-gray-600'
@@ -186,7 +187,7 @@ export default function FloorPlansPage() {
                   Capacity
                 </h3>
                 <div className="grid gap-3">
-                  <div className="flex items-center justify-between rounded-xl bg-white p-4 shadow-md">
+                  <div className="flex items-center justify-between bg-white p-4 shadow-md">
                     <span className="font-secondary text-sm text-gray-600">
                       Theater Style
                     </span>
@@ -194,7 +195,7 @@ export default function FloorPlansPage() {
                       {currentFloor.capacity.max}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between rounded-xl bg-white p-4 shadow-md">
+                  <div className="flex items-center justify-between bg-white p-4 shadow-md">
                     <span className="font-secondary text-sm text-gray-600">
                       Banquet Seated
                     </span>
@@ -202,7 +203,7 @@ export default function FloorPlansPage() {
                       {currentFloor.capacity.seated}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between rounded-xl bg-white p-4 shadow-md">
+                  <div className="flex items-center justify-between bg-white p-4 shadow-md">
                     <span className="font-secondary text-sm text-gray-600">
                       Cocktail Reception
                     </span>
@@ -222,7 +223,7 @@ export default function FloorPlansPage() {
                   {currentFloor.features.map((feature, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-md"
+                      className="flex items-center gap-3 bg-white p-3 shadow-md"
                     >
                       <Check className="text-primary h-4 w-4 flex-shrink-0" />
                       <span className="font-secondary text-sm text-gray-600">
@@ -230,7 +231,7 @@ export default function FloorPlansPage() {
                       </span>
                     </div>
                   ))}
-                  <div className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-md">
+                  <div className="flex items-center gap-3 bg-white p-3 shadow-md">
                     <Check className="text-primary h-4 w-4 flex-shrink-0" />
                     <span className="font-secondary text-sm text-gray-600">
                       Ceiling Height: {currentFloor.ceiling}
@@ -241,14 +242,14 @@ export default function FloorPlansPage() {
 
               {/* Actions */}
               <div className="space-y-3">
-                <button className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full py-4 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl">
+                <CustomButton className="font-secondary flex w-full cursor-pointer items-center justify-center gap-2 py-4 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-xl">
                   <Download className="h-4 w-4" />
                   Download PDF
-                </button>
-                <button className="border-dark-black font-secondary text-dark-black hover:bg-dark-black hover:text-whitesmoke flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border-2 py-4 text-sm font-semibold tracking-wider uppercase transition-all">
+                </CustomButton>
+                <CustomButton className="bg- bg-whitesmoke font-secondary text-dark-black hover:bg-dark-black hover:text-whitesmoke flex w-full cursor-pointer items-center justify-center gap-2 border-none py-4 text-sm font-semibold tracking-wider uppercase transition-all">
                   <Calendar className="h-4 w-4" />
                   Schedule Tour
-                </button>
+                </CustomButton>
               </div>
             </motion.div>
 
@@ -263,7 +264,7 @@ export default function FloorPlansPage() {
               >
                 {/* Before/After Slider */}
                 {viewMode === '2d' && (
-                  <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl">
+                  <div className="relative overflow-hidden bg-white shadow-2xl">
                     <div className="relative aspect-[16/10]">
                       {/* Before Image (Blueprint) */}
                       <div className="absolute inset-0">
@@ -272,7 +273,7 @@ export default function FloorPlansPage() {
                           alt="Floor plan blueprint"
                           className="h-full w-full object-cover"
                         />
-                        <div className="bg-dark-black/80 absolute bottom-4 left-4 rounded-full px-4 py-2 backdrop-blur-sm">
+                        <div className="bg-dark-black/80 absolute bottom-4 left-4 px-4 py-2 backdrop-blur-sm">
                           <span className="font-secondary text-whitesmoke text-xs font-semibold tracking-wider uppercase">
                             Empty Floor Plan
                           </span>
@@ -291,7 +292,7 @@ export default function FloorPlansPage() {
                           alt="Furnished floor plan"
                           className="h-full w-full object-cover"
                         />
-                        <div className="bg-primary/90 absolute right-4 bottom-4 rounded-full px-4 py-2 backdrop-blur-sm">
+                        <div className="bg-primary/90 absolute right-4 bottom-4 px-4 py-2 backdrop-blur-sm">
                           <span className="font-secondary text-dark-black text-xs font-semibold tracking-wider uppercase">
                             Furnished Setup
                           </span>
@@ -311,7 +312,7 @@ export default function FloorPlansPage() {
                           className="bg-primary/70 absolute top-0 bottom-0 w-1 shadow-2xl"
                           style={{ left: `${sliderPosition}%` }}
                         >
-                          <div className="bg-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full p-3 shadow-2xl">
+                          <div className="bg-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 shadow-2xl">
                             <div className="flex items-center gap-1">
                               <ChevronLeft className="text-dark-black h-4 w-4" />
                               <ChevronRight className="text-dark-black h-4 w-4" />
@@ -322,7 +323,7 @@ export default function FloorPlansPage() {
                     </div>
 
                     {/* Instructions */}
-                    <div className="bg-primary absolute top-4 right-4 flex items-center gap-2 rounded-full px-4 py-2 backdrop-blur-sm">
+                    <div className="bg-primary absolute top-4 right-4 flex items-center gap-2 px-4 py-2 backdrop-blur-sm">
                       <Info className="h-4 w-4 text-white" />
                       <span className="font-secondary text-xs text-white">
                         Drag slider to compare
@@ -341,7 +342,7 @@ export default function FloorPlansPage() {
 
                 {/* Layout Options */}
                 <div>
-                  <h3 className="font-secondary text-dark-black mb-4 text-lg font-bold">
+                  <h3 className="font-secondary text-dark-black mb-4 text-lg font-semibold">
                     Popular Layouts
                   </h3>
                   <div className="grid gap-4 sm:grid-cols-2">
@@ -352,7 +353,7 @@ export default function FloorPlansPage() {
                           key={layout.id}
                           onClick={() => setActiveLayout(layout.id)}
                           whileHover={{ scale: 1.02 }}
-                          className={`group relative cursor-pointer overflow-hidden rounded-2xl p-6 text-left transition-all ${
+                          className={`group relative cursor-pointer overflow-hidden p-6 text-left transition-all ${
                             activeLayout === layout.id
                               ? 'bg-primary shadow-xl'
                               : 'bg-white shadow-lg hover:shadow-xl'
@@ -360,7 +361,7 @@ export default function FloorPlansPage() {
                         >
                           <div className="flex items-start gap-4">
                             <div
-                              className={`rounded-full p-3 ${
+                              className={`p-3 ${
                                 activeLayout === layout.id
                                   ? 'bg-white'
                                   : 'bg-primary/10'
@@ -448,7 +449,7 @@ export default function FloorPlansPage() {
               ].map((feature, i) => (
                 <div
                   key={i}
-                  className="flex flex-col items-center gap-2 rounded-2xl bg-white/5 p-6 backdrop-blur-sm"
+                  className="flex flex-col items-center gap-2 bg-white/5 p-6 backdrop-blur-sm"
                 >
                   <feature.icon className="text-primary h-8 w-8" />
                   <span className="font-secondary text-whitesmoke text-sm">
@@ -458,7 +459,7 @@ export default function FloorPlansPage() {
               ))}
             </div>
 
-            <button className="group bg-primary font-secondary text-dark-black hover:bg-whitesmoke inline-flex cursor-pointer items-center gap-3 rounded-full px-10 py-5 text-base font-semibold tracking-wider uppercase transition-all hover:shadow-2xl">
+            <button className="group bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black inline-flex cursor-pointer items-center gap-3 px-10 py-5 text-base font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
               Launch Designer Tool
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </button>
@@ -474,7 +475,7 @@ export default function FloorPlansPage() {
       <section className="bg-white px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 md:grid-cols-3">
-            <div className="bg-whitesmoke rounded-2xl p-8">
+            <div className="bg-whitesmoke p-8">
               <Clock className="text-primary mb-4 h-10 w-10" />
               <h3 className="font-secondary text-dark-black mb-2 text-xl font-bold">
                 Flexible Timing
@@ -484,7 +485,7 @@ export default function FloorPlansPage() {
                 flexible setup times
               </p>
             </div>
-            <div className="bg-whitesmoke rounded-2xl p-8">
+            <div className="bg-whitesmoke p-8">
               <Wifi className="text-primary mb-4 h-10 w-10" />
               <h3 className="font-secondary text-dark-black mb-2 text-xl font-bold">
                 Premium Amenities
@@ -494,7 +495,7 @@ export default function FloorPlansPage() {
                 support included
               </p>
             </div>
-            <div className="bg-whitesmoke rounded-2xl p-8">
+            <div className="bg-whitesmoke p-8">
               <Music className="text-primary mb-4 h-10 w-10" />
               <h3 className="font-secondary text-dark-black mb-2 text-xl font-bold">
                 Full Service Options
