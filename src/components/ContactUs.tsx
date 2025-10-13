@@ -37,9 +37,71 @@ const ContactUs: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    if (!formData.phone || !formData.email) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please fill in all required fields (Phone and Email)',
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/contact-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus({
+          type: 'success',
+          message:
+            result.message ||
+            'Thank you for your inquiry! We will get back to you shortly.',
+        });
+
+        setFormData({
+          firstName: '',
+          lastName: '',
+          company: '',
+          phone: '',
+          email: '',
+          eventStartDate: '',
+          eventStartHour: '01',
+          eventStartMinute: '00',
+          eventStartPeriod: 'AM',
+          eventType: '',
+          numberOfGuests: '',
+          howDidYouHear: '',
+          message: '',
+          robotCheck: false,
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.message || 'Failed to submit form. Please try again.',
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message:
+          'Failed to submit form. Please try again or contact us directly.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -48,8 +110,8 @@ const ContactUs: React.FC = () => {
         BOOKING INQUIRIES
       </h1>
       <p className="font-secondary mb-12 text-center text-base text-gray-400 lg:mb-16">
-        Please fill out the contact form, email inquiries@tribecarooftopnyc.com
-        or call 212.625.2600 to schedule a visit.
+        Please fill out the contact form, email inquiries@mmeink.com or call
+        212.625.2600 to schedule a visit.
       </p>
 
       {/* Status Message */}
