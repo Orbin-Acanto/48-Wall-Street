@@ -458,7 +458,7 @@ export default function RentalsPage() {
         >
           <Sparkles className="text-primary mx-auto mb-6 h-12 w-12" />
           <h2 className="font-primary text-whitesmoke mb-6 text-4xl tracking-wide md:text-5xl">
-            Can't Find What You Need?
+            Can&apos;t Find What You Need?
           </h2>
           <p className="font-secondary text-whitesmoke/80 mb-8 text-lg">
             Our team can source custom rentals and create bespoke experiences
