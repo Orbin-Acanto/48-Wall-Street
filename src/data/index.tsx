@@ -107,7 +107,7 @@ export const navItems = [
       { name: 'Virtual Tour', href: '/virtual-tour-request' },
       { name: 'Digital Brochure', href: '/48wall-brochure' },
       { name: 'Floor Plans', href: '/about/floor-plans' },
-      { name: 'Rules & Regulations', href: '/rules-regulations' },
+      { name: 'Rules & Regulations', href: '/about/rules-regulations' },
     ],
   },
   {
