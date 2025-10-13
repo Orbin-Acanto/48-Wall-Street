@@ -23,9 +23,9 @@ import {
 import CustomButton from '@/components/CustomButton';
 
 const RulesRegulations = () => {
-  const [openSection, setOpenSection] = useState(null);
+  const [openSection, setOpenSection] = useState<string | null>(null);
 
-  const toggleSection = (section: any) => {
+  const toggleSection = (section: string | null) => {
     setOpenSection(openSection === section ? null : section);
   };
 
