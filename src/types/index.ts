@@ -21,8 +21,7 @@ export interface Photo {
 }
 
 export interface FormDataType {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   company: string;
   phone: string;
   email: string;

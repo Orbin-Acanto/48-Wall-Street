@@ -1,12 +1,12 @@
 'use client';
 
+import { FormDataType } from '@/types';
 import React, { useState } from 'react';
 
 const ContactUsSlider: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+  const [formData, setFormData] = useState<FormDataType>({
+    fullName: '',
     company: '',
     phone: '',
     email: '',
@@ -21,6 +21,13 @@ const ContactUsSlider: React.FC = () => {
     robotCheck: false,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error';
+    message: string;
+  } | null>(null);
+
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -30,13 +37,70 @@ const ContactUsSlider: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ ...prev, robotCheck: e.target.checked }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    if (!formData.fullName || !formData.email) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please fill in all required fields (Name and Email)',
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/contact-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus({
+          type: 'success',
+          message:
+            result.message ||
+            'Thank you for your inquiry! We will get back to you shortly.',
+        });
+
+        setFormData({
+          fullName: '',
+          company: '',
+          phone: '',
+          email: '',
+          eventStartDate: '',
+          eventStartHour: '01',
+          eventStartMinute: '00',
+          eventStartPeriod: 'AM',
+          eventType: '',
+          numberOfGuests: '',
+          howDidYouHear: '',
+          message: '',
+          robotCheck: false,
+        });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.message || 'Failed to submit form. Please try again.',
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message:
+          'Failed to submit form. Please try again or contact us directly.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const toggleForm = () => {
@@ -100,6 +164,19 @@ const ContactUsSlider: React.FC = () => {
             visit.
           </p>
 
+          {submitStatus && (
+            <div
+              className={`mx-auto mb-6 max-w-7xl rounded-lg p-4 ${
+                submitStatus.type === 'success'
+                  ? 'border border-green-200 bg-green-50 text-green-800'
+                  : 'border border-red-200 bg-red-50 text-red-800'
+              }`}
+              role="alert"
+            >
+              {submitStatus.message}
+            </div>
+          )}
+
           <div className="mx-auto max-w-6xl">
             <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
               {/* Left Side - First Form Fields */}
@@ -107,10 +184,11 @@ const ContactUsSlider: React.FC = () => {
                 <div className="space-y-6">
                   <input
                     type="text"
-                    name="fullname"
-                    value={formData.firstName}
+                    name="fullName"
+                    required
+                    value={formData.fullName}
                     onChange={handleInputChange}
-                    placeholder="Your Full Name"
+                    placeholder="Your Full Name*"
                     className="focus:border-primary font-secondary text-dark-black w-full border-b border-gray-400 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
                   />
 
@@ -135,6 +213,7 @@ const ContactUsSlider: React.FC = () => {
                   <input
                     type="email"
                     name="email"
+                    required
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Email*"

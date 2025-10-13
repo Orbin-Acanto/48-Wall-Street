@@ -5,8 +5,7 @@ import React, { useState } from 'react';
 
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState<FormDataType>({
-    firstName: '',
-    lastName: '',
+    fullName: '',
     company: '',
     phone: '',
     email: '',
@@ -42,10 +41,10 @@ const ContactUs: React.FC = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    if (!formData.phone || !formData.email) {
+    if (!formData.fullName || !formData.email) {
       setSubmitStatus({
         type: 'error',
-        message: 'Please fill in all required fields (Phone and Email)',
+        message: 'Please fill in all required fields (Name and Email)',
       });
       setIsSubmitting(false);
       return;
@@ -71,8 +70,7 @@ const ContactUs: React.FC = () => {
         });
 
         setFormData({
-          firstName: '',
-          lastName: '',
+          fullName: '',
           company: '',
           phone: '',
           email: '',
@@ -138,8 +136,9 @@ const ContactUs: React.FC = () => {
             <div className="space-y-6">
               <input
                 type="text"
-                name="firstName"
-                value={formData.firstName}
+                name="fullName"
+                required
+                value={formData.fullName}
                 onChange={handleInputChange}
                 placeholder="Your Full Name"
                 className="text-dark-black focus:border-primary font-secondary w-full border-b border-gray-800 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
@@ -160,7 +159,6 @@ const ContactUs: React.FC = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="Phone*"
-                required
                 className="text-dark-black focus:border-primary font-secondary w-full border-b border-gray-800 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
               />
 

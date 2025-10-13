@@ -4,11 +4,11 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    if (!body.phone || !body.email) {
+    if (!body.fullName || !body.email) {
       return NextResponse.json(
         {
           success: false,
-          message: 'Phone and Email are required fields',
+          message: 'Name and Email are required fields',
         },
         { status: 400 }
       );
