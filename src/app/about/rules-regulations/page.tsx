@@ -106,7 +106,7 @@ const RulesRegulations = () => {
                   Door Opening
                 </p>
                 <p className="font-secondary text-dark-black font-semibold">
-                  83" H × 48" W
+                  83&quot; H × 48&quot; W
                 </p>
               </div>
               <div>
@@ -114,7 +114,7 @@ const RulesRegulations = () => {
                   Cab Floor
                 </p>
                 <p className="font-secondary text-dark-black font-semibold">
-                  70" W × 51" D
+                  70&quot; W × 51&quot; D
                 </p>
               </div>
               <div>
@@ -198,7 +198,9 @@ const RulesRegulations = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1">•</span>
-                <span>Built-in screens: 62"×100" with 4:3 aspect ratio</span>
+                <span>
+                  Built-in screens: 62&quot;×100&quot; with 4:3 aspect ratio
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1">•</span>
@@ -327,7 +329,7 @@ const RulesRegulations = () => {
             </p>
             <div className="border-l-4 border-amber-400 bg-amber-50 p-4">
               <p className="font-secondary text-dark-black font-medium">
-                ⚠️ Requires 3 weeks' notice
+                ⚠️ Requires 3 weeks&apos; notice
               </p>
             </div>
           </div>
@@ -355,7 +357,9 @@ const RulesRegulations = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                <span>48 Wall Street handles liquor licenses and COI's</span>
+                <span>
+                  48 Wall Street handles liquor licenses and COI&apos;s
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
