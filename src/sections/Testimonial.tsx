@@ -40,7 +40,7 @@ export default function Testimonial() {
             <div className="relative flex flex-col justify-center p-8 md:p-12">
               {/* Quote Mark */}
               <div className="font-primary text-dark-black/10 absolute top-4 left-4 text-8xl leading-none">
-                "
+                &quot;
               </div>
 
               {/* Main Quote */}

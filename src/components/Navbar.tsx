@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { navItems } from '@/data';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +49,7 @@ export default function Navbar() {
             <div className="hidden flex-1 items-center justify-end space-x-12 pr-16 lg:flex">
               {leftItems.map((item) => (
                 <div key={item.name} className="group relative">
-                  <a
+                  <Link
                     href={item.href}
                     className="font-primary text-dark-black/80 hover:text-dark-black relative flex items-center gap-1 py-2 text-[0.75rem] tracking-wide uppercase transition-colors duration-300"
                   >
@@ -58,12 +59,12 @@ export default function Navbar() {
                     )}
                     {/* Animated Underline */}
                     <span className="bg-primary absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 ease-out group-hover:w-full"></span>
-                  </a>
+                  </Link>
                   {item.dropdown && (
                     <div className="invisible absolute top-full left-1/2 mt-6 w-52 -translate-x-1/2 border border-gray-800/20 bg-white/98 opacity-0 shadow-2xl backdrop-blur-md transition-all duration-300 group-hover:visible group-hover:mt-3 group-hover:opacity-100">
                       <div className="py-3">
                         {item.dropdown.map((subItem, idx) => (
-                          <a
+                          <Link
                             key={subItem.name}
                             href={subItem.href}
                             className={`font-primary text-dark-black/70 hover:text-dark-black block px-6 py-3 text-[0.75rem] transition-all duration-200 hover:bg-gray-800/5 ${
@@ -71,7 +72,7 @@ export default function Navbar() {
                             } ${idx === item.dropdown.length - 1 ? 'rounded-none' : ''}`}
                           >
                             {subItem.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -82,7 +83,7 @@ export default function Navbar() {
 
             {/* Center Logo */}
             <div className="flex-shrink-0">
-              <a href="/" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <Image
                   src="/logo/48-wall-logo.svg"
                   alt="48 Wall Street"
@@ -91,14 +92,14 @@ export default function Navbar() {
                   priority
                   className="h-16 w-auto"
                 />
-              </a>
+              </Link>
             </div>
 
             {/* Desktop Right Nav Items */}
             <div className="hidden flex-1 items-center space-x-12 pl-16 lg:flex">
               {rightItems.map((item) => (
                 <div key={item.name} className="group relative">
-                  <a
+                  <Link
                     href={item.href}
                     className="font-primary text-dark-black/80 hover:text-dark-black relative flex items-center gap-1 py-2 text-[0.75rem] tracking-wide uppercase transition-colors duration-300"
                   >
@@ -108,12 +109,12 @@ export default function Navbar() {
                     )}
                     {/* Animated Underline */}
                     <span className="bg-primary absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 ease-out group-hover:w-full"></span>
-                  </a>
+                  </Link>
                   {item.dropdown && (
                     <div className="invisible absolute top-full left-1/2 mt-6 w-52 -translate-x-1/2 border border-gray-800/20 bg-white/98 opacity-0 shadow-2xl backdrop-blur-md transition-all duration-300 group-hover:visible group-hover:mt-3 group-hover:opacity-100">
                       <div className="py-3">
                         {item.dropdown.map((subItem, idx) => (
-                          <a
+                          <Link
                             key={subItem.name}
                             href={subItem.href}
                             className={`font-primary text-dark-black/70 hover:text-dark-black block px-6 py-3 text-[0.75rem] transition-all duration-200 hover:bg-gray-800/5 ${
@@ -121,7 +122,7 @@ export default function Navbar() {
                             } ${idx === item.dropdown.length - 1 ? 'rounded-none' : ''}`}
                           >
                             {subItem.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -178,13 +179,13 @@ export default function Navbar() {
             {navItems.map((item) => (
               <div key={item.name}>
                 <div className="flex items-center justify-between">
-                  <a
+                  <Link
                     href={item.href}
                     className="font-primary text-dark-black/80 hover:text-primary flex-1 py-3 text-[0.75rem] tracking-wide uppercase transition-colors duration-200"
                     onClick={() => !item.dropdown && setIsOpen(false)}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                   {item.dropdown && (
                     <button
                       onClick={() =>
@@ -212,14 +213,14 @@ export default function Navbar() {
                   >
                     <div className="border-primary/30 ml-2 space-y-1 border-l-2 pt-2 pl-4">
                       {item.dropdown.map((subItem) => (
-                        <a
+                        <Link
                           key={subItem.name}
                           href={subItem.href}
                           className="font-primary text-dark-black/60 hover:text-primary block py-2.5 text-[0.75rem] transition-colors duration-200"
                           onClick={() => setIsOpen(false)}
                         >
                           {subItem.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>

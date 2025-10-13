@@ -25,13 +25,13 @@ export default function AboutParralax() {
             </h2>
 
             <p className="font-secondary mx-auto mb-10 max-w-3xl text-base leading-relaxed text-gray-200 md:text-lg">
-              This space has retained much of its original 1920's architectural
-              detail; from the 30-foot ceilings to its beautiful Palladian
-              windows. The Grand Mezzanine can host and accommodate a variety of
-              events, which include seated dinners for 350 guests or a cocktail
-              reception for 500 guests. The space can also be divided to your
-              liking to create a more intimate setting for smaller events and
-              meetings.
+              This space has retained much of its original 1920&apos;s
+              architectural detail; from the 30-foot ceilings to its beautiful
+              Palladian windows. The Grand Mezzanine can host and accommodate a
+              variety of events, which include seated dinners for 350 guests or
+              a cocktail reception for 500 guests. The space can also be divided
+              to your liking to create a more intimate setting for smaller
+              events and meetings.
             </p>
 
             <button className="border-primary text-dark-black bg-primary cursor-pointer border px-8 py-3 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-black">

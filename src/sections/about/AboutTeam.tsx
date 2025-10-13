@@ -18,15 +18,15 @@ export default function AboutTeam() {
           <div className="mx-auto max-w-5xl">
             <p className="font-secondary text-dark-black/80 text-base leading-relaxed md:text-lg">
               Opened in 1999, 48 Wall Street has established itself as one of
-              New York City's premier event venues. Renowned for outstanding
-              culinary expertise, impeccable service, and warm hospitality, our
-              commitment to delivering unparalleled experiences ensures that
-              every event is truly unforgettable. With two distinct event
-              spaces, 48 Wall Street offers a sophisticated and contemporary
-              atmosphere complemented by stunning panoramic views of the
-              cityscape and riverside views. Discover limitless potential and
-              witness your vision unfold into reality with our exceptional team
-              and versatile event spaces.
+              New York City&apos;s premier event venues. Renowned for
+              outstanding culinary expertise, impeccable service, and warm
+              hospitality, our commitment to delivering unparalleled experiences
+              ensures that every event is truly unforgettable. With two distinct
+              event spaces, 48 Wall Street offers a sophisticated and
+              contemporary atmosphere complemented by stunning panoramic views
+              of the cityscape and riverside views. Discover limitless potential
+              and witness your vision unfold into reality with our exceptional
+              team and versatile event spaces.
             </p>
           </div>
         </div>
