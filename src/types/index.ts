@@ -20,6 +20,23 @@ export interface Photo {
   span?: 'small' | 'medium' | 'large' | 'wide' | 'tall';
 }
 
+export interface FormDataType {
+  firstName: string;
+  lastName: string;
+  company: string;
+  phone: string;
+  email: string;
+  eventStartDate: string;
+  eventStartHour: string;
+  eventStartMinute: string;
+  eventStartPeriod: string;
+  eventType: string;
+  numberOfGuests: string;
+  howDidYouHear: string;
+  message: string;
+  robotCheck: boolean;
+}
+
 export interface Product {
   id: number;
   name: string;

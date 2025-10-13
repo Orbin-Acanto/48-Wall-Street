@@ -1,9 +1,10 @@
 'use client';
 
+import { FormDataType } from '@/types';
 import React, { useState } from 'react';
 
 const ContactUs: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     firstName: '',
     lastName: '',
     company: '',
@@ -19,6 +20,13 @@ const ContactUs: React.FC = () => {
     message: '',
     robotCheck: false,
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error';
+    message: string;
+  } | null>(null);
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -47,14 +55,32 @@ const ContactUs: React.FC = () => {
         Please fill out the contact form, email inquiries@tribecarooftopnyc.com
         or call 212.625.2600 to schedule a visit.
       </p>
+
+      {/* Status Message */}
+      {submitStatus && (
+        <div
+          className={`mx-auto mb-6 max-w-7xl rounded-lg p-4 ${
+            submitStatus.type === 'success'
+              ? 'border border-green-200 bg-green-50 text-green-800'
+              : 'border border-red-200 bg-red-50 text-red-800'
+          }`}
+          role="alert"
+        >
+          {submitStatus.message}
+        </div>
+      )}
+
       <div className="flex items-center justify-center">
-        <div className="grid w-full max-w-7xl grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
+        <form
+          onSubmit={handleSubmit}
+          className="grid w-full max-w-7xl grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16"
+        >
           {/* Left Side - Title and First Form Fields */}
           <div className="text-dark-black">
             <div className="space-y-6">
               <input
                 type="text"
-                name="fullname"
+                name="firstName"
                 value={formData.firstName}
                 onChange={handleInputChange}
                 placeholder="Your Full Name"
@@ -76,6 +102,7 @@ const ContactUs: React.FC = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="Phone*"
+                required
                 className="text-dark-black focus:border-primary font-secondary w-full border-b border-gray-800 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
               />
 
@@ -85,6 +112,7 @@ const ContactUs: React.FC = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="Email*"
+                required
                 className="text-dark-black focus:border-primary font-secondary w-full border-b border-gray-800 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
               />
 
@@ -183,15 +211,16 @@ const ContactUs: React.FC = () => {
 
               <div className="flex justify-end pt-4">
                 <button
-                  onClick={handleSubmit}
-                  className="bg-primary font-secondary hover:bg-primary/70 cursor-pointer px-12 py-3 font-semibold tracking-wider text-white transition-colors"
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-primary font-secondary hover:bg-primary/70 cursor-pointer px-12 py-3 font-semibold tracking-wider text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  SUBMIT
+                  {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
                 </button>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
