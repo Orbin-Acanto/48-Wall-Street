@@ -19,15 +19,19 @@ export const useParallax = (offset: [string, string] = ['0%', '-20%']) => {
   return { ref, y };
 };
 
-export const SplitTitle = ({ text }: SplitTitleProps) => {
+export const SplitTitle = ({ text, immediate = false }: SplitTitleProps) => {
   return (
     <h1 className="font-secondary text-4xl leading-[1.1] tracking-tight md:text-6xl">
       {text.split(/(\s+)/).map((part, i) => (
         <motion.span
           key={i}
           initial={{ y: '100%', opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: '-10%' }}
+          {...(immediate
+            ? { animate: { y: 0, opacity: 1 } }
+            : {
+                whileInView: { y: 0, opacity: 1 },
+                viewport: { once: true, margin: '-10%' },
+              })}
           transition={{
             duration: 0.6,
             ease: [0.22, 1, 0.36, 1],
@@ -42,11 +46,19 @@ export const SplitTitle = ({ text }: SplitTitleProps) => {
   );
 };
 
-export const SoftFadeIn = ({ children, delay = 0 }: SoftFadeInProps) => (
+export const SoftFadeIn = ({
+  children,
+  delay = 0,
+  immediate = false,
+}: SoftFadeInProps) => (
   <motion.div
     initial={{ opacity: 0, y: 16 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: '-10%' }}
+    {...(immediate
+      ? { animate: { opacity: 1, y: 0 } }
+      : {
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true, margin: '-10%' },
+        })}
     transition={{ duration: 0.6, delay }}
   >
     {children}

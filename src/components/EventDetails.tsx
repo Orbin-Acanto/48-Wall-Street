@@ -52,21 +52,21 @@ export default function EventDetails({
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
             {/* LEFT SIDE - Content */}
             <div className="font-primary space-y-6">
-              <SplitTitle text={title} />
+              <SplitTitle text={title} immediate />
               {subtitle && (
-                <SoftFadeIn>
+                <SoftFadeIn immediate>
                   <p className="font-secondary text-primary text-sm tracking-widest uppercase md:text-sm">
                     {subtitle}
                   </p>
                 </SoftFadeIn>
               )}
-              <SoftFadeIn delay={0.1}>
+              <SoftFadeIn delay={0.1} immediate>
                 <p className="font-secondary text-base leading-relaxed text-gray-700 md:text-lg">
                   {description}
                 </p>
               </SoftFadeIn>
 
-              <SoftFadeIn delay={0.15}>
+              <SoftFadeIn delay={0.15} immediate>
                 <div className="flex flex-wrap gap-3 pt-2">
                   {primaryCta && (
                     <CustomButton className="text-white">
@@ -82,7 +82,7 @@ export default function EventDetails({
               </SoftFadeIn>
 
               {stats?.length > 0 && (
-                <SoftFadeIn delay={0.2}>
+                <SoftFadeIn delay={0.2} immediate>
                   <div className="grid grid-cols-3 gap-3 pt-6">
                     {stats.map((s, i) => (
                       <GlassCard key={i} className="p-4 text-center">

@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { JourneyEvent } from '@/types';
 import { EventCard } from '../EventCard';
 import Link from 'next/link';
+import ScrollIcon from '../ScrollIcon';
 
 interface Props {
   items: JourneyEvent[];
@@ -11,7 +12,6 @@ interface Props {
 
 export default function JourneyTimelineScroll({ items }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [showScrollHint, setShowScrollHint] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,87 +20,19 @@ export default function JourneyTimelineScroll({ items }: Props) {
 
   const pathHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on('change', (latest) => {
-      if (latest > 0.05) {
-        setShowScrollHint(false);
-      }
-    });
-    return () => unsubscribe();
-  }, [scrollYProgress]);
-
   return (
     <div
       ref={containerRef}
       className={`relative min-h-screen overflow-hidden bg-cover bg-fixed bg-center`}
       style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1519167758481-83f29b8f4e3c?q=80&w=2000&auto=format&fit=crop')",
+        backgroundImage: "url('/misc/journey.jpg')",
       }}
     >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showScrollHint ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 md:bottom-12"
-      >
-        <motion.div
-          animate={{
-            y: [0, 12, 0],
-          }}
-          transition={{
-            duration: 1.8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="pointer-events-auto flex flex-col items-center gap-3"
-        >
-          <span className="text-xs font-medium tracking-widest text-gray-600 uppercase">
-            Scroll to explore
-          </span>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => {
-              window.scrollBy({
-                top: window.innerHeight * 0.8,
-                behavior: 'smooth',
-              });
-            }}
-            className="group relative flex h-12 w-12 items-center justify-center rounded-full border-2 border-gray-900 bg-white transition-all hover:bg-gray-900"
-          >
-            {/* Pulse effect */}
-            <motion.div
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.3, 0, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeOut',
-              }}
-              className="bg-primary absolute inset-0 rounded-full"
-            />
-
-            {/* Icon */}
-            <svg
-              className="relative h-6 w-6 text-gray-900 transition-all group-hover:translate-y-1 group-hover:text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </motion.button>
-        </motion.div>
-      </motion.div>
-
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-white/15 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_30%,rgba(0,0,0,0.06)_0%,rgba(0,0,0,0)_65%)]" />
+      </div>
+      <ScrollIcon />
       {/* Content */}
       <div className="relative z-10 py-16 md:py-20 lg:py-24">
         {/* Header */}
@@ -124,10 +56,11 @@ export default function JourneyTimelineScroll({ items }: Props) {
               </span>
             </motion.div>
 
-            <h2 className="font-secondary mb-4 text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl">
+            <h2 className="font-primary mb-4 text-4xl font-bold text-gray-900 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
               Our Event Journey
             </h2>
-            <p className="mx-auto max-w-2xl text-base text-gray-700 md:text-lg lg:text-xl">
+
+            <p className="font-secondary mx-auto max-w-2xl text-base text-gray-200 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] md:text-lg lg:text-xl">
               Follow our path of creating unforgettable moments across the
               country
             </p>
@@ -254,7 +187,7 @@ export default function JourneyTimelineScroll({ items }: Props) {
               Ready to start your journey?
             </h3>
             <p className="mx-auto mb-8 max-w-xl text-base text-gray-700 md:text-lg">
-              Let's create an unforgettable event experience together
+              Let&apos;s create an unforgettable event experience together
             </p>
             <Link href="/contact">
               <motion.button

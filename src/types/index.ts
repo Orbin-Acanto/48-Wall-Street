@@ -89,10 +89,12 @@ export interface InfoItem {
 export interface SoftFadeInProps {
   children: React.ReactNode;
   delay?: number;
+  immediate?: boolean;
 }
 
 export interface SplitTitleProps {
   text: string;
+  immediate?: boolean;
 }
 
 export interface GlassCardProps {

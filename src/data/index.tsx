@@ -113,7 +113,7 @@ export const navItems = [
   },
   {
     name: 'Events',
-    href: '/events',
+    href: '/events/corporate',
     dropdown: [
       { name: 'Corporate Events', href: '/events/corporate' },
       { name: 'Conferences & Meetings', href: '/events/conferences' },
@@ -127,7 +127,7 @@ export const navItems = [
   },
   {
     name: 'Services',
-    href: '/services',
+    href: '/rentals',
     dropdown: [
       { name: 'Event Production', href: '/services-production' },
       { name: 'Event Catering', href: '/services-catering' },
@@ -172,7 +172,8 @@ export const navItems = [
   },
   {
     name: 'Vendors',
-    href: '/our-vendors',
+    href: 'https://www.mmeink.com/',
+    external: true,
     dropdown: [
       {
         name: 'MME Worldwide',
@@ -1125,7 +1126,7 @@ export const fashionData: EventShowcaseProps = {
     'Create unforgettable fashion experiences that captivate audiences and elevate brands. From intimate trunk shows to major runway productions, we deliver flawless execution with dramatic staging, perfect lighting, and impeccable timing that puts your collection center stage.',
   images: [
     {
-      src: 'https://images.unsplash.com/photo-1558769132-cb1aea684ce8?q=80&w=1600&auto=format&fit=crop',
+      src: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop',
       alt: 'Fashion runway show',
     },
     {
@@ -1137,7 +1138,7 @@ export const fashionData: EventShowcaseProps = {
       alt: 'Fashion show audience',
     },
     {
-      src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1600&auto=format&fit=crop',
+      src: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop',
       alt: 'Runway setup',
     },
     {
@@ -1269,8 +1270,8 @@ export const mitzvahData: EventShowcaseProps = {
     "Honor this sacred milestone with celebrations that blend tradition and personal style. We create unforgettable Bar and Bat Mitzvah experiences that reflect your family's values, your teen's personality, and the joy of this momentous occasion.",
   images: [
     {
-      src: 'https://images.unsplash.com/photo-1519167758481-83f29b8f4e3c?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Bar Mitzvah celebration',
+      src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1600&auto=format&fit=crop',
+      alt: 'Bar Mitzvah celebration at the Western Wall',
     },
     {
       src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1600&auto=format&fit=crop',
@@ -1353,15 +1354,15 @@ export const holidayData: EventShowcaseProps = {
       alt: 'Christmas celebration',
     },
     {
-      src: 'https://images.unsplash.com/photo-1545992933-b2c92245c5e4?q=80&w=1600&auto=format&fit=crop',
+      src: 'https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?q=80&w=1600&auto=format&fit=crop',
       alt: 'Holiday lights display',
     },
     {
-      src: 'https://images.unsplash.com/photo-1514832945-fa8e0d7d2e8f?q=80&w=1600&auto=format&fit=crop',
+      src: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=1600&auto=format&fit=crop',
       alt: 'Winter wonderland theme',
     },
     {
-      src: 'https://images.unsplash.com/photo-1544978876-02e21962baaa?q=80&w=1600&auto=format&fit=crop',
+      src: 'https://images.unsplash.com/photo-1482517967863-00e15c9b44be?q=80&w=1600&auto=format&fit=crop',
       alt: 'New Year celebration',
     },
   ],
