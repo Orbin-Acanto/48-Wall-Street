@@ -235,14 +235,14 @@ export default function EventDetails({
                 >
                   <GlassCard className="h-full p-6 md:p-8">
                     <div className="flex items-start gap-4">
-                      <div className="bg-primary/30 group-hover:bg-primary/40 h-10 w-10 rounded-full transition" />
+                      {/* <div className="bg-primary/30 group-hover:bg-primary/40 h-10 w-10 rounded-full transition" /> */}
                       <div>
                         <h3 className="font-secondary text-xl text-gray-900 md:text-2xl">
                           {t}
                         </h3>
                         <p className="mt-2 text-sm text-gray-700 md:text-base">
-                          Elevate your experience with end‑to‑end planning,
-                          premium vendor relations, and impeccable on‑site
+                          Elevate your experience with end-to-end planning,
+                          premium vendor relations, and impeccable on-site
                           execution.
                         </p>
                       </div>
@@ -418,7 +418,7 @@ export default function EventDetails({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:shadow-md"
+                    className="group border border-gray-200 bg-white p-6 shadow-sm transition-all hover:shadow-md"
                   >
                     <summary className="flex cursor-pointer list-none items-center justify-between">
                       <span className="font-secondary text-lg font-medium text-gray-900 md:text-xl">
