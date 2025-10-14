@@ -24,6 +24,7 @@ import {
 import { floors, layouts } from '@/data';
 import ThreeD from '@/components/ThreeD';
 import CustomButton from '@/components/CustomButton';
+import Image from 'next/image';
 
 export default function FloorPlansPage() {
   const [activeFloor, setActiveFloor] = useState('second');
@@ -268,10 +269,12 @@ export default function FloorPlansPage() {
                     <div className="relative aspect-[16/10]">
                       {/* Before Image (Blueprint) */}
                       <div className="absolute inset-0">
-                        <img
+                        <Image
                           src={currentFloor.blueprint}
                           alt="Floor plan blueprint"
-                          className="h-full w-full object-cover"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                         <div className="bg-dark-black/80 absolute bottom-4 left-4 px-4 py-2 backdrop-blur-sm">
                           <span className="font-secondary text-whitesmoke text-xs font-semibold tracking-wider uppercase">
@@ -287,10 +290,12 @@ export default function FloorPlansPage() {
                           clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
                         }}
                       >
-                        <img
+                        <Image
                           src={currentFloor.furnished}
                           alt="Furnished floor plan"
-                          className="h-full w-full object-cover"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                         <div className="bg-primary/90 absolute right-4 bottom-4 px-4 py-2 backdrop-blur-sm">
                           <span className="font-secondary text-dark-black text-xs font-semibold tracking-wider uppercase">

@@ -62,7 +62,7 @@ export default function GalleryPage() {
       window.addEventListener('keydown', handleKeyPress);
       return () => window.removeEventListener('keydown', handleKeyPress);
     }
-  }, [selectedIndex]);
+  }, [selectedIndex, goToNext, goToPrevious]);
 
   // Get height based on size prop for Pinterest-style layout
   const getImageHeight = (size: string) => {

@@ -84,7 +84,7 @@ export default function ChatbotWidget() {
         const reader = res.body?.getReader();
         if (!reader) throw new Error('No readable stream');
 
-        let assistantId = crypto.randomUUID();
+        const assistantId = crypto.randomUUID();
         let accum = '';
         setMessages((m) => [
           ...m,
@@ -233,9 +233,10 @@ export default function ChatbotWidget() {
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Type your message…"
                 className="flex-1 rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-900 transition-all duration-200 placeholder:text-gray-400 focus:outline-none"
-                onKeyDown={(e) => {
+                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
                   if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-                    handleSendMessage(e as any);
+                    e.preventDefault();
+                    handleSendMessage(e as unknown as React.FormEvent);
                   }
                 }}
               />

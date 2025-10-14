@@ -21,8 +21,6 @@ const ContactUsSlider: React.FC = () => {
     robotCheck: false,
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error';
     message: string;
@@ -39,7 +37,6 @@ const ContactUsSlider: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setSubmitStatus(null);
 
     if (!formData.fullName || !formData.email) {
@@ -47,7 +44,6 @@ const ContactUsSlider: React.FC = () => {
         type: 'error',
         message: 'Please fill in all required fields (Name and Email)',
       });
-      setIsSubmitting(false);
       return;
     }
 
@@ -98,8 +94,6 @@ const ContactUsSlider: React.FC = () => {
         message:
           'Failed to submit form. Please try again or contact us directly.',
       });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
