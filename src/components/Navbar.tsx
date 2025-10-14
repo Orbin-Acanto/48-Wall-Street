@@ -230,7 +230,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div className="bg-primary fixed top-[89px] right-0 left-0 z-10 h-0.5"></div>
+      <div className="bg-primary fixed top-[88px] right-0 left-0 z-10 h-0.5"></div>
     </>
   );
 }

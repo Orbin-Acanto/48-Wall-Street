@@ -67,3 +67,58 @@ export interface GPhoto {
   category: string;
   size: 'large' | 'wide' | 'medium' | 'small';
 }
+
+export interface ImageItem {
+  src: string;
+  alt?: string;
+}
+export interface CTA {
+  label: string;
+  href?: string;
+  onClick?: () => void;
+  variant?: 'primary' | 'ghost' | string;
+}
+export interface Stat {
+  label: string;
+  value: string;
+}
+export interface InfoItem {
+  heading: string;
+  body: string;
+}
+export interface SoftFadeInProps {
+  children: React.ReactNode;
+  delay?: number;
+}
+
+export interface SplitTitleProps {
+  text: string;
+}
+
+export interface GlassCardProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export interface Image {
+  src: string;
+  alt?: string;
+}
+
+export interface LightboxProps {
+  images: Image[];
+  index: number;
+  onClose: () => void;
+}
+
+export interface MarqueeProps {
+  items?: string[];
+}
+
+export interface JourneyEvent {
+  src: string;
+  title: string;
+  category: string;
+  location?: string;
+  href?: string;
+}
