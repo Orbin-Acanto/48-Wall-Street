@@ -38,6 +38,7 @@ export const SplitTitle = ({ text, immediate = false }: SplitTitleProps) => {
             delay: i * 0.04,
           }}
           className="inline-block will-change-transform"
+          style={{ whiteSpace: 'pre' }}
         >
           {part}
         </motion.span>
