@@ -208,7 +208,7 @@ export default function PortfolioVideoPage() {
               Ready to Create Your Event?
             </h2>
             <p className="font-secondary mb-8 text-lg text-white/90">
-              Let's make your next event unforgettable
+              Let&apos;s make your next event unforgettable
             </p>
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
