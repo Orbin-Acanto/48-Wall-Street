@@ -31,7 +31,7 @@ export default function DigitalBrochurePage() {
             >
               {/* Main Title */}
               <h1 className="font-primary text-whitesmoke mb-6 text-5xl tracking-wider uppercase md:text-6xl lg:text-7xl">
-                Lower Manhattan's Premier Event Venue
+                Lower Manhattan&apos;s Premier Event Venue
               </h1>
 
               {/* Decorative Line */}
@@ -125,8 +125,8 @@ export default function DigitalBrochurePage() {
               </h2>
 
               <p className="font-secondary mb-8 text-lg text-gray-700 md:text-xl">
-                Let's discuss how 48 Wall Street can be the perfect venue for
-                your next celebration or corporate gathering.
+                Let&apos;s discuss how 48 Wall Street can be the perfect venue
+                for your next celebration or corporate gathering.
               </p>
 
               {/* Single CTA Button */}
