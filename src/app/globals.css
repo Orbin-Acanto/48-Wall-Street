@@ -48,3 +48,27 @@
     font-family: var(--font-secondary);
   }
 }
+
+.flip-book-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.flip-book {
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .flip-book {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media print {
+  .flip-book-container {
+    display: none;
+  }
+}
