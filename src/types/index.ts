@@ -107,6 +107,15 @@ export interface Image {
   alt?: string;
 }
 
+export interface VideoItem {
+  id: number;
+  title: string;
+  category: string;
+  videoUrl: string;
+  thumbnail: string;
+  description: string;
+}
+
 export interface LightboxProps {
   images: Image[];
   index: number;

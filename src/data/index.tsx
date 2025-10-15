@@ -6,6 +6,7 @@ import {
   Product,
   TeamMember,
   Testimonial,
+  VideoItem,
 } from '@/types';
 import {
   Calendar,
@@ -98,6 +99,58 @@ export const photos: Photo[] = [
   { src: '/gallery/9.jpg', alt: 'Wedding celebration', span: 'small' },
 ];
 
+export const portfolioVideos: VideoItem[] = [
+  {
+    id: 1,
+    title: 'Elegant Corporate Gala 2024',
+    category: 'corporate',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    thumbnail: 'https://placehold.co/800x450',
+    description:
+      'A stunning corporate gala featuring 300+ guests in our Grand Mezzanine',
+  },
+  {
+    id: 2,
+    title: 'Sarah & Michael Wedding',
+    category: 'wedding',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    thumbnail: 'https://placehold.co/800x450',
+    description: 'An unforgettable wedding celebration at 48 Wall Street',
+  },
+  {
+    id: 3,
+    title: 'Tech Summit 2024',
+    category: 'corporate',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    thumbnail: 'https://placehold.co/800x450',
+    description: 'Leading technology conference with 500+ attendees',
+  },
+  {
+    id: 4,
+    title: 'Emily & James Reception',
+    category: 'wedding',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    thumbnail: 'https://placehold.co/800x450',
+    description: 'Romantic wedding reception in our historic venue',
+  },
+  {
+    id: 5,
+    title: 'Annual Charity Gala',
+    category: 'special',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    thumbnail: 'https://placehold.co/800x450',
+    description: 'Fundraising gala supporting local communities',
+  },
+  {
+    id: 6,
+    title: 'Product Launch Event',
+    category: 'corporate',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    thumbnail: 'https://placehold.co/800x450',
+    description: 'Exclusive product reveal and celebration',
+  },
+];
+
 export const navItems = [
   {
     name: 'About',
@@ -127,11 +180,11 @@ export const navItems = [
   },
   {
     name: 'Services',
-    href: '/rentals',
+    href: '/services',
     dropdown: [
-      { name: 'Event Production', href: '/services-production' },
-      { name: 'Event Catering', href: '/services-catering' },
-      { name: 'Event Rentals', href: '/rentals' },
+      { name: 'Event Production', href: '/services/production' },
+      { name: 'Event Catering', href: '/services/catering' },
+      { name: 'Event Rentals', href: '/services/rentals' },
     ],
   },
   {
@@ -1513,3 +1566,67 @@ export const brochurePages = [
   { id: 31, image: '/brochures/48Brochure-2025.v7_page-0031.jpg' },
   { id: 32, image: '/brochures/48Brochure-2025.v7_page-0032.jpg' },
 ];
+
+export const eventProductionData = {
+  title: 'Event Production in NYC',
+  subtitle: 'Spectacular Events at 48 Wall Street',
+  heroImage:
+    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000',
+  leadDescription:
+    'MME Worldwide has extensive experience in producing spectacular events at 48 Wall Street. Our expertise in producing events at 48 Wall Street provides our clients with a seasoned event partner who knows what it takes to successfully plan and deliver high-profile receptions and gala events. We encourage our clients to go above and beyond, confident that we can bring your wildest visions to fruition. While the incredible space is sure to help get the conversation started at your event, our team at MME Worldwide will make sure it continues throughout the evening by ensuring the very best in hospitality and event services.',
+  sections: [
+    {
+      id: 'design',
+      title: 'Design',
+      description:
+        "MME Worldwide's inspired designers specialize in providing creative floral accents and unique décor. Our team is able to fulfill your event's needs by providing you with a wide range of design services to choose from. Whether it's creating a vision, or helping bring one to light, we will help you develop an environment that is on message for your brand. Assisted by an in-house back-end production team, MME Worldwide maintains an exclusive inventory of décor that allows us to provide you with an original look for your next event.",
+      image: '/service/design.jpg',
+      imageAlt: 'Creative floral accents and unique event décor design',
+    },
+    {
+      id: 'audio-visual',
+      title: 'Audio Visual',
+      description:
+        "Our engineers provide a wide range of services that are designed to meet the communication needs of our clients. Based on your event's objectives, budget and parameters, we will develop a cost-effective plan that is effectively managed and delivered by our team.",
+      image: '/service/av.jpg',
+      imageAlt: 'Professional audio visual services and equipment',
+    },
+    {
+      id: 'lighting',
+      title: 'Lighting',
+      description:
+        "MME Worldwide's lighting professionals will help you select the right choice of lighting design to accompany your event's desired ambiance. Our services range from simple and sophisticated, to extravagant and bold, offering you the very best in event lighting services.",
+      image: '/service/lighting.jpg',
+      imageAlt: 'Professional event lighting design and services',
+    },
+    {
+      id: 'staging',
+      title: 'Staging',
+      description:
+        "We carry a complete line of professional staging products, that range from simple to custom installations. Our team's extensive knowledge provides you with the right guidance and resources needed to plan and execute your next event.",
+      image: '/service/staging.jpg',
+      imageAlt: 'Professional staging products and custom installations',
+    },
+    {
+      id: 'custom-fabrication',
+      title: 'Custom Fabrication',
+      description:
+        'Our creative team, accompanied by an in-house design shop, provides limitless state-of-the-art solutions for our event partners. Let our team take your next meeting from ordinary to extraordinary with our unique designs and flawless event execution.',
+      image: '/service/cf.jpg',
+      imageAlt: 'Custom Fabrication by MME Worldwide',
+      link: {
+        text: 'Learn More',
+        url: 'https://www.mmeink.com/meetings-and-events/custom-fabrication.html',
+      },
+    },
+    {
+      id: 'entertainment',
+      title: 'Entertainment',
+      description:
+        "Whether your preference is a lively dance band, jazz ensemble, or a combination of different styles of music, our team of planning professionals will help you select the perfect blend of music for your affair. From soloists to celebrity performances to world renowned DJ's, MMEink has proven to deliver the very best in exceptional musical talent. If you want to go the extra mile at your event, then providing top-notch entertainment for your guests is a must. Acquiring a celebrity speaker or performance is a powerful way you can deliver your message to an audience. Obtaining the right celebrity act for your company's special day is a great way to amplify your brand's message. As a leader in the event and hospitality industry for over the last two decades, we have established key relationships that make delivering these types of performances a reality.",
+      image: '/service/entertainment.png',
+      imageAlt:
+        'Entertainment services including bands, DJs, and celebrity performances',
+    },
+  ],
+};
