@@ -25,6 +25,13 @@ interface PageProps {
   isLastPage?: boolean;
 }
 
+interface FlipBookRef {
+  pageFlip: () => {
+    flipNext: () => void;
+    flipPrev: () => void;
+  };
+}
+
 const Page = React.forwardRef<HTMLDivElement, PageProps>(
   ({ image, alt, pageNumber, isFirstPage, isLastPage }, ref) => {
     return (
@@ -55,7 +62,7 @@ export default function BookReader({
   downloadUrl,
   className = '',
 }: BookReaderProps) {
-  const bookRef = useRef<any>(null);
+  const bookRef = useRef<FlipBookRef | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const totalPages = pages.length;
@@ -68,7 +75,7 @@ export default function BookReader({
     bookRef.current?.pageFlip()?.flipPrev();
   }, []);
 
-  const onFlip = useCallback((e: any) => {
+  const onFlip = useCallback((e: { data: number }) => {
     setCurrentPage(e.data);
   }, []);
 
