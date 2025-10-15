@@ -1570,8 +1570,7 @@ export const brochurePages = [
 export const eventProductionData = {
   title: 'Event Production in NYC',
   subtitle: 'Spectacular Events at 48 Wall Street',
-  heroImage:
-    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000',
+  heroImage: '/misc/ep.jpg',
   leadDescription:
     'MME Worldwide has extensive experience in producing spectacular events at 48 Wall Street. Our expertise in producing events at 48 Wall Street provides our clients with a seasoned event partner who knows what it takes to successfully plan and deliver high-profile receptions and gala events. We encourage our clients to go above and beyond, confident that we can bring your wildest visions to fruition. While the incredible space is sure to help get the conversation started at your event, our team at MME Worldwide will make sure it continues throughout the evening by ensuring the very best in hospitality and event services.',
   sections: [
@@ -1629,4 +1628,54 @@ export const eventProductionData = {
         'Entertainment services including bands, DJs, and celebrity performances',
     },
   ],
+};
+
+export const eventCateringData = {
+  title: 'Event Catering Services',
+  subtitle: 'Signature Dining Experience at 48 Wall Street',
+  heroImage:
+    'https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2000',
+  leadDescription:
+    "The on-premise catering team is passionate about delivering a signature dining experience for guests at 48 Wall Street. Through creative preparation and seamless on-site execution, our cuisine-inspired spirits, and first-class hospitality is what separates us from the rest. Providing you with everything you need, we make it easy to successfully plan the food and beverage portion of your next social or corporate event. Complementing the ambiance set by this incredible venue, our delicious cuisine will captivate and inspire your guests with its creative presentation. When Tardi's culinary team is put into action, they will ensure that the main course is savory, the dessert is sweet, for that global taste.",
+  sections: [
+    {
+      id: 'seated-dinner',
+      title: 'Seated Dinner',
+      description:
+        "When hosting your dinner party at 48 Wall Street you can expect to enjoy a delicious dining experience. The Tardi's executive chef and culinary team will help you create and design a custom menu for your event.",
+      image: '/service/moaf-seated-dinner.jpg',
+      imageAlt:
+        'Custom invitations and table setting event design at high end NYC event',
+    },
+    {
+      id: 'cocktail-events',
+      title: 'Cocktail Events',
+      description:
+        'Hosting a cocktail reception at 48 Wall Street is truly a remarkable experience. Allowing guests the opportunity to explore the extraordinary space of 48 Wall Street while drinking specialty cocktails and enjoying delicious and creative cuisine makes it the perfect social setting for your guests.',
+      image: '/service/cocktail-events.jpg',
+      imageAlt:
+        'Tailored Hospitality Services for upscale top tier event at 48 Wall Street in NYC',
+    },
+    {
+      id: 'lunch',
+      title: 'Lunch',
+      description:
+        "Having a luncheon at 48 Wall Street is a breeze with your trusted partner Tardi's. We provide a myriad of options for our clients including sit-down lunches, buffet style, or passed plates. Our creative culinary team provides the best ideas in food and beverage options when planning your event.",
+      image: '/service/lunch-body.jpg',
+      imageAlt: 'Professional lunch catering services at 48 Wall Street',
+    },
+    {
+      id: 'breakfast',
+      title: 'Breakfast',
+      description:
+        'Start your day right with our exceptional breakfast catering services. From continental spreads to full hot breakfast buffets, we provide morning dining solutions for your corporate meetings and events.',
+      image: '/service/breakfast-body.jpg',
+      imageAlt: 'Breakfast Catering Services NYC',
+    },
+  ],
+  videoSection: {
+    title: 'Sneak Peek Video',
+    embedUrl: 'https://player.vimeo.com/video/1066736672?h=044c19c168',
+    thumbnail: '/service/catering-video-screen-shot.jpg',
+  },
 };
