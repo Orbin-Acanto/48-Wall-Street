@@ -1570,7 +1570,8 @@ export const brochurePages = [
 export const eventProductionData = {
   title: 'Event Production in NYC',
   subtitle: 'Spectacular Events at 48 Wall Street',
-  heroImage: '/misc/ep.jpg',
+  // heroImage: '/misc/ep.jpg',
+  heroImage: '/videos/ep.mp4',
   leadDescription:
     'MME Worldwide has extensive experience in producing spectacular events at 48 Wall Street. Our expertise in producing events at 48 Wall Street provides our clients with a seasoned event partner who knows what it takes to successfully plan and deliver high-profile receptions and gala events. We encourage our clients to go above and beyond, confident that we can bring your wildest visions to fruition. While the incredible space is sure to help get the conversation started at your event, our team at MME Worldwide will make sure it continues throughout the evening by ensuring the very best in hospitality and event services.',
   sections: [
@@ -1633,8 +1634,9 @@ export const eventProductionData = {
 export const eventCateringData = {
   title: 'Event Catering Services',
   subtitle: 'Signature Dining Experience at 48 Wall Street',
-  heroImage:
-    'https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2000',
+  // heroImage:
+  //   'https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2000',
+  heroImage: '/videos/ec.mp4',
   leadDescription:
     "The on-premise catering team is passionate about delivering a signature dining experience for guests at 48 Wall Street. Through creative preparation and seamless on-site execution, our cuisine-inspired spirits, and first-class hospitality is what separates us from the rest. Providing you with everything you need, we make it easy to successfully plan the food and beverage portion of your next social or corporate event. Complementing the ambiance set by this incredible venue, our delicious cuisine will captivate and inspire your guests with its creative presentation. When Tardi's culinary team is put into action, they will ensure that the main course is savory, the dessert is sweet, for that global taste.",
   sections: [

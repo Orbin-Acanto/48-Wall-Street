@@ -34,18 +34,11 @@ export default function CinematicServicesShowcase({
   videoSection,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const heroBgRef = useRef<HTMLDivElement | null>(null);
-  const { scrollY } = useScroll({
-    container: typeof window === 'undefined' ? undefined : undefined,
-  });
-
-  const yHero = useTransform(scrollY, [0, 600], [0, -120]);
-  const scaleHero = useTransform(scrollY, [0, 600], [1.05, 1]);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const splitWords = (text: string) =>
     text.split(' ').map((w, i) => ({ word: w, i }));
 
-  // Variants
   const wordVariant: Variants = {
     hidden: { opacity: 0, y: 24 },
     show: (i: number) => ({
@@ -75,6 +68,13 @@ export default function CinematicServicesShowcase({
     };
   }, [videoOpen]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = 0.25;
+    }
+  }, []);
+
   return (
     <div
       ref={containerRef}
@@ -86,7 +86,7 @@ export default function CinematicServicesShowcase({
         className="relative flex h-screen max-h-[1100px] w-full items-center overflow-hidden"
       >
         {/* Background image (no parallax) */}
-        <div className="absolute inset-0 will-change-transform">
+        {/* <div className="absolute inset-0 will-change-transform">
           <Image
             src={heroImage}
             alt={title}
@@ -94,6 +94,44 @@ export default function CinematicServicesShowcase({
             priority
             className="object-cover object-center"
             sizes="100vw"
+          />
+        </div> */}
+
+        {/* <div className="absolute inset-0 overflow-hidden will-change-transform">
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          >
+            <source src={heroImage} type="video/mp4" />
+          </video>
+        </div> */}
+
+        <div className="absolute inset-0 overflow-hidden will-change-transform">
+          <video
+            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-in-out"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            loop={false}
+            onEnded={(e) => {
+              const vid = e.currentTarget;
+              vid.currentTime = 0;
+              vid.play();
+            }}
+          >
+            <source src={heroImage} type="video/mp4" />
+          </video>
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.6) 60%, rgba(10,10,10,0.9) 100%)',
+            }}
           />
         </div>
 
@@ -164,7 +202,7 @@ export default function CinematicServicesShowcase({
                   onClick={() => videoSection && setVideoOpen(true)}
                   className="border-dark-black/30 bg-dark-black hover:bg-dark-black/70 inline-flex cursor-pointer items-center gap-3 border-1 px-6 py-3 text-base text-white"
                 >
-                  Watch Film
+                  Watch Story
                 </button>
               </motion.div>
             </motion.div>
