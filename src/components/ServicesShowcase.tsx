@@ -198,12 +198,14 @@ export default function CinematicServicesShowcase({
                 >
                   Explore Services
                 </a>
-                <button
-                  onClick={() => videoSection && setVideoOpen(true)}
-                  className="border-dark-black/30 bg-dark-black hover:bg-dark-black/70 inline-flex cursor-pointer items-center gap-3 border-1 px-6 py-3 text-base text-white"
-                >
-                  Watch Story
-                </button>
+                {videoSection && (
+                  <button
+                    onClick={() => videoSection && setVideoOpen(true)}
+                    className="border-dark-black/30 bg-dark-black hover:bg-dark-black/70 inline-flex cursor-pointer items-center gap-3 border-1 px-6 py-3 text-base text-white"
+                  >
+                    Watch Story
+                  </button>
+                )}
               </motion.div>
             </motion.div>
           </div>
@@ -381,7 +383,7 @@ export default function CinematicServicesShowcase({
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.35 }}
                     transition={{ duration: 0.8 }}
-                    className="relative overflow-hidden shadow-2xl shadow-black/20"
+                    className="relative overflow-hidden rounded shadow-2xl shadow-black/20"
                     style={{
                       background:
                         'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))',

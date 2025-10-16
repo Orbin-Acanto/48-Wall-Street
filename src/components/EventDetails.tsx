@@ -11,6 +11,7 @@ import {
   SplitTitle,
   useParallax,
 } from '@/utils';
+import Link from 'next/link';
 
 export interface EventShowcaseProps {
   title: string;
@@ -69,14 +70,18 @@ export default function EventDetails({
               <SoftFadeIn delay={0.15} immediate>
                 <div className="flex flex-wrap gap-3 pt-2">
                   {primaryCta && (
-                    <CustomButton className="text-white">
-                      {primaryCta.label}
-                    </CustomButton>
+                    <Link href="/contact">
+                      <CustomButton className="text-white">
+                        {primaryCta.label}
+                      </CustomButton>
+                    </Link>
                   )}
                   {secondaryCta && (
-                    <CustomButton variant="secondary" className="border-none">
-                      {secondaryCta.label}
-                    </CustomButton>
+                    <Link href={secondaryCta.href || '/contact'}>
+                      <CustomButton variant="secondary" className="border-none">
+                        {secondaryCta.label}
+                      </CustomButton>
+                    </Link>
                   )}
                 </div>
               </SoftFadeIn>
@@ -384,7 +389,11 @@ export default function EventDetails({
             transition={{ delay: 0.16 }}
             className="mt-8"
           >
-            <CustomButton className="text-white">Start Your Event</CustomButton>
+            <Link href="/contact">
+              <CustomButton className="text-white">
+                Start Your Event
+              </CustomButton>
+            </Link>
           </motion.div>
         </div>
       </section>

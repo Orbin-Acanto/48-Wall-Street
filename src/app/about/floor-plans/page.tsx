@@ -464,14 +464,14 @@ export default function FloorPlansPage() {
               ))}
             </div>
 
-            <button className="group bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black inline-flex cursor-pointer items-center gap-3 px-10 py-5 text-base font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
+            {/* <button className="group bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black inline-flex cursor-pointer items-center gap-3 px-10 py-5 text-base font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
               Launch Designer Tool
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </button>
 
             <p className="font-secondary text-whitesmoke/60 mt-6 text-sm">
               No account required • Free to use • Save and share designs
-            </p>
+            </p> */}
           </motion.div>
         </div>
       </section>

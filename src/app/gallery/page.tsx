@@ -5,9 +5,32 @@ import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { galleryPhotos } from '@/data';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 export default function GalleryPage() {
-  const [activeTab, setActiveTab] = useState('holiday');
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const tabFromUrl = searchParams.get('tab');
+  const validTabs = [
+    'corporate',
+    'conference',
+    'wedding',
+    'fashion',
+    'bar',
+    'holiday',
+  ];
+
+  const [activeTab, setActiveTab] = useState(() => {
+    return validTabs.includes(tabFromUrl || '') ? tabFromUrl : 'holiday';
+  });
+
+  useEffect(() => {
+    if (tabFromUrl && validTabs.includes(tabFromUrl)) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [tabFromUrl]);
+
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const tabs = [
@@ -25,6 +48,7 @@ export default function GalleryPage() {
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
+    router.push('/gallery', { scroll: false });
   };
 
   const openLightbox = (index: number) => {

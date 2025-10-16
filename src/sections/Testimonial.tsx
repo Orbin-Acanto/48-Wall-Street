@@ -23,7 +23,10 @@ export default function Testimonial() {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="bg-whitesmoke relative overflow-hidden px-6 py-20">
+    <section
+      id="testimonial"
+      className="bg-whitesmoke relative overflow-hidden px-6 py-20"
+    >
       {/* Decorative Line */}
       <div className="absolute top-1/2 right-0 left-0 h-px -translate-y-1/2 bg-gray-800/20"></div>
 

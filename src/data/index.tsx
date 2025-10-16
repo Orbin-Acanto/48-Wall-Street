@@ -158,7 +158,6 @@ export const navItems = [
     dropdown: [
       { name: 'About 48 Wall St', href: '/about' },
       { name: 'Demo Reel', href: '/about/event-video' },
-      { name: 'Virtual Tour', href: '/about/virtual-tour-request' },
       { name: 'Digital Brochure', href: '/about/digital-brochure' },
       { name: 'Floor Plans', href: '/about/floor-plans' },
       { name: 'Rules & Regulations', href: '/about/rules-regulations' },
@@ -190,38 +189,10 @@ export const navItems = [
   {
     name: 'Rentals',
     href: '/rentals',
-    // dropdown: [
-    //   {
-    //     name: 'Event Decor Rentals',
-    //     href: 'https://www.eventdecorrentals.com/',
-    //     external: true,
-    //   },
-    //   {
-    //     name: 'Themed Prop Rentals',
-    //     href: 'https://www.eventproprentals.com/',
-    //     external: true,
-    //   },
-    //   {
-    //     name: 'Interactive Event Rentals',
-    //     href: 'https://www.interactiveeventrentals.com/',
-    //     external: true,
-    //   },
-    // ],
   },
   {
     name: 'Gallery',
     href: '/gallery',
-    // dropdown: [
-    //   { name: 'Corporate Events', href: '/corporate-gallery' },
-    //   {
-    //     name: 'Conferences & Meetings',
-    //     href: '/conferences-meetings-gallery',
-    //   },
-    //   { name: 'Fashion Shows', href: '/fashion-gallery' },
-    //   { name: 'Weddings', href: '/wedding-gallery' },
-    //   { name: 'Bar & Bat Mitzvahs', href: '/mitzvah-gallery' },
-    //   { name: 'Holiday Events', href: '/holiday-gallery' },
-    // ],
   },
   {
     name: 'Vendors',
@@ -251,25 +222,25 @@ export const navItems = [
 
 export const footerLinks = {
   about: [
-    { name: 'Our Story', href: '/our-story' },
-    { name: 'The Building', href: '/the-building' },
-    { name: 'The Vaults', href: '/the-vaults' },
-    { name: 'Amenities', href: '/amenities' },
-    { name: 'Location', href: '/location' },
+    { name: 'Our Story', href: '/about' },
+    { name: 'Demo Reel', href: '/about/event-video' },
+    { name: 'Digital Brochure', href: '/about/digital-brochure' },
+    { name: 'Floor Plans', href: '/about/floor-plans' },
+    { name: 'Rules & Regulations', href: '/about/rules-regulations' },
   ],
   events: [
-    { name: 'Corporate Events', href: '/events-corporate' },
-    { name: 'Fashion Shows', href: '/events-fashion-shows' },
-    { name: 'Weddings', href: '/weddings' },
-    { name: 'Bar & Bat Mitzvahs', href: '/bar-bat-mitzvahs' },
-    { name: 'Holiday Events', href: '/holiday-events' },
+    { name: 'Corporate Events', href: '/events/corporate' },
+    { name: 'Conferences & Meetings', href: '/events/conferences' },
+    { name: 'Fashion Shows', href: '/events/fashion-shows' },
+    { name: 'Non-Profit Events', href: '/events/non-profit' },
+    { name: 'Weddings', href: '/events/weddings' },
+    { name: 'Bar & Bat Mitzvahs', href: '/events/bar-bat-mitzvahs' },
   ],
   services: [
-    { name: 'Event Production', href: '/services-production' },
-    { name: 'Event Catering', href: '/services-catering' },
-    { name: 'Event Rentals', href: '/services-rentals' },
-    { name: 'Photo Gallery', href: '/photo-galleries' },
-    { name: 'Virtual Tour', href: '/virtual-tour-request' },
+    { name: 'Event Production', href: '/services/production' },
+    { name: 'Event Catering', href: '/services/catering' },
+    { name: 'Event Rentals', href: '/services/rentals' },
+    { name: 'Photo Gallery', href: '/gallery' },
   ],
 };
 
@@ -1025,6 +996,7 @@ export const weddingData: EventShowcaseProps = {
   },
   secondaryCta: {
     label: 'View Wedding Portfolio',
+    href: '/gallery?tab=wedding',
   },
 };
 
@@ -1097,6 +1069,7 @@ export const corporateData: EventShowcaseProps = {
   },
   secondaryCta: {
     label: 'Case Studies',
+    href: '/about#testimonial',
   },
 };
 
@@ -1169,6 +1142,7 @@ export const conferenceData: EventShowcaseProps = {
   },
   secondaryCta: {
     label: 'Download Brochure',
+    href: '/about/digital-brochure',
   },
 };
 
@@ -1241,6 +1215,7 @@ export const fashionData: EventShowcaseProps = {
   },
   secondaryCta: {
     label: 'View Past Shows',
+    href: '/gallery?tab=fashion',
   },
 };
 
@@ -1313,6 +1288,7 @@ export const nonprofitData: EventShowcaseProps = {
   },
   secondaryCta: {
     label: 'Success Stories',
+    href: '/about#testimonial',
   },
 };
 
@@ -1385,6 +1361,7 @@ export const mitzvahData: EventShowcaseProps = {
   },
   secondaryCta: {
     label: 'Theme Gallery',
+    href: '/rentals',
   },
 };
 
@@ -1456,7 +1433,8 @@ export const holidayData: EventShowcaseProps = {
     label: 'Plan Holiday Event',
   },
   secondaryCta: {
-    label: 'Seasonal Ideas',
+    label: 'Past Event',
+    href: '/gallery?tab=holiday',
   },
 };
 
@@ -1528,7 +1506,8 @@ export const filmtvData: EventShowcaseProps = {
     label: 'Discuss Your Project',
   },
   secondaryCta: {
-    label: 'Production Portfolio',
+    label: 'Production Rentals',
+    href: '/services/rentals',
   },
 };
 
@@ -1680,4 +1659,43 @@ export const eventCateringData = {
     embedUrl: 'https://player.vimeo.com/video/1066736672?h=044c19c168',
     thumbnail: '/service/catering-video-screen-shot.jpg',
   },
+};
+
+export const eventRentalsData = {
+  title: 'Rentals for your Event in NYC',
+  subtitle: 'Transform Your Event with Exclusive Furniture & Props',
+  // heroImage:
+  //   'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2000',
+  heroImage: '/videos/er.mp4',
+  leadDescription:
+    "MMEink is the event industry's leader for 26 years when it comes to exclusive furniture and prop rentals. We have THOUSANDS of unique props which can transform any event into a wonderland or a tropical location. MME has the ability to outfit your entire event to suit your personal style, whether it is vibrant and fun or sleek, chic, or simple but elegant, MME understands our clients' different styles and personalities. At 48 Wall Street, anything is possible. The space is as vast as our imaginations here at MMEink, which helps us when we transform 48 Wall Street with our wide arrange of luxurious furniture and unique props to set the stage for your next corporate or private event.",
+  sections: [
+    {
+      id: 'decor-rentals',
+      title: 'Decor Rentals',
+      description:
+        'When it comes to transforming the space at 48 Wall Street, our team knows how to deliver a breathtaking experience for your guests. With a variety of décor accents and life-like props, MMEink will help you customize the look for your event. MMEink maintains an elite line of scenic décor that allows us to take your event to the next level. Our exclusive inventory is composed of chic lounges and décor accents that offer a variety of exciting furnishings to choose from. With a complete line of luxury rentals our fashionable décor items make styling your next event stress-free.',
+      image: '/service/decor-rentals2.jpg',
+      imageAlt:
+        'Custom invitations and table setting event design at high end NYC event',
+    },
+    {
+      id: 'staging-rentals',
+      title: 'Staging Rentals',
+      description:
+        'We provide 48 Wall Street with a variety of staging services. Whether it is a basic stage for a valued speaker or an elaborate stage for a musical performer, our design team and in-house custom fabrication shop will hand craft the perfect staging for your event. Our design team will help you determine the perfect look for your next event, whether it be simple or extravagant.',
+      image: '/service/staging-rentals-pic-small3.jpg',
+      imageAlt:
+        'Tailored Hospitality Services for upscale top tier event at 48 Wall Street in NYC',
+    },
+    {
+      id: 'catering-rentals',
+      title: 'Catering Rentals',
+      description:
+        '48 Wall Street can accommodate all of your catering rental needs. We can provide a full line of event catering rentals which range from back of the house to the front of the house such as liquor needs and bar set up to kitchen rental items such as puffers and ovens. We also make sure your linens, tables, chairs, flat ware and stem ware exude the style of your event.',
+      image: '/service/catering-rental-page2.jpg',
+      imageAlt:
+        'Event catering rentals including linens, tables, chairs, and stemware',
+    },
+  ],
 };

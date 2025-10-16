@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { footerLinks, socialLinks } from '@/data';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -88,12 +89,12 @@ export default function Footer() {
                   Discover what options are available to you when planning your
                   next event.
                 </p>
-                <a
-                  href="/contact-us"
+                <Link
+                  href="/contact"
                   className="font-secondary text-primary inline-block text-sm underline transition-colors duration-300 hover:text-white"
                 >
                   Contact Us
-                </a>
+                </Link>
                 <div className="pt-4">
                   <p className="font-primary text-primary mb-6 text-xl uppercase">
                     Corporate Contact:

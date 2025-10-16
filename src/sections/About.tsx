@@ -2,6 +2,7 @@
 
 import CustomButton from '@/components/CustomButton';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function About() {
   return (
@@ -71,7 +72,9 @@ export default function About() {
         </div>
       </div>
       <div className="mt-18 flex items-center justify-center">
-        <CustomButton variant="primary">learn More</CustomButton>
+        <Link href="/about">
+          <CustomButton variant="primary">learn More</CustomButton>
+        </Link>
       </div>
     </section>
   );

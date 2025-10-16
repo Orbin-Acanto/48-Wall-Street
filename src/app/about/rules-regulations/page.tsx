@@ -21,6 +21,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import CustomButton from '@/components/CustomButton';
+import Link from 'next/link';
 
 const RulesRegulations = () => {
   const [openSection, setOpenSection] = useState<string | null>(null);
@@ -508,7 +509,15 @@ const RulesRegulations = () => {
           </div>
 
           <div className="mt-8">
-            <CustomButton className="group bg-primary hover:bg-whitesmoke hover:text-dark-black inline-flex cursor-pointer items-center gap-2 border-none px-8 py-4 text-sm font-semibold tracking-wider text-white uppercase shadow-lg transition-all">
+            <CustomButton
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/brochures/regulations.pdf';
+                link.download = 'regulations.pdf';
+                link.click();
+              }}
+              className="group bg-primary hover:bg-whitesmoke hover:text-dark-black inline-flex cursor-pointer items-center gap-2 border-none px-8 py-4 text-sm font-semibold tracking-wider text-white uppercase shadow-lg transition-all"
+            >
               <Download className="h-5 w-5" />
               Download PDF
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -693,9 +702,11 @@ const RulesRegulations = () => {
           </div>
 
           <div>
-            <button className="bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black cursor-pointer border-none px-10 py-5 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
-              Contact Event Team
-            </button>
+            <Link href="/contact">
+              <button className="bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black cursor-pointer border-none px-10 py-5 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
+                Contact Event Team
+              </button>
+            </Link>
           </div>
         </div>
       </section>

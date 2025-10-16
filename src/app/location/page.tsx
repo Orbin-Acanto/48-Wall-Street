@@ -14,6 +14,7 @@ import {
 import { motion } from 'framer-motion';
 import { locationAmenities, locations, venues } from '@/data';
 import CustomButton from '@/components/CustomButton';
+import Link from 'next/link';
 
 export default function LocationPage() {
   const [activeLocation, setActiveLocation] = useState(0);
@@ -56,10 +57,12 @@ export default function LocationPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-8"
           >
-            <CustomButton className="group inline-flex items-center gap-2 px-8 py-4 text-sm tracking-wider uppercase transition-all">
-              Explore Venues
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </CustomButton>
+            <Link href="#locations">
+              <CustomButton className="group inline-flex items-center gap-2 px-8 py-4 text-sm tracking-wider uppercase transition-all">
+                Explore Venues
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </CustomButton>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -204,12 +207,16 @@ export default function LocationPage() {
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <button className="bg-primary font-secondary hover:text-whitesmoke cursor-pointer px-8 py-4 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-xl">
-                  Schedule Tour
-                </button>
-                <button className="font-secondary text-dark-black hover:bg-primary hover:text-whitesmoke cursor-pointer border-2 border-none px-8 py-4 text-sm font-semibold tracking-wider uppercase shadow-lg transition-all">
-                  Get Pricing
-                </button>
+                <Link href="/contact">
+                  <button className="bg-primary font-secondary hover:text-whitesmoke cursor-pointer px-8 py-4 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-xl">
+                    Schedule Tour
+                  </button>
+                </Link>
+                <Link href="/contact">
+                  <button className="font-secondary text-dark-black hover:bg-primary hover:text-whitesmoke cursor-pointer border-2 border-none px-8 py-4 text-sm font-semibold tracking-wider uppercase shadow-lg transition-all">
+                    Get Pricing
+                  </button>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -291,9 +298,11 @@ export default function LocationPage() {
           </div>
 
           <div className="mt-10">
-            <CustomButton className="bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black border-none px-10 py-5 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
-              Book a Consultation
-            </CustomButton>
+            <Link href="/contact">
+              <CustomButton className="bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black border-none px-10 py-5 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
+                Book a Consultation
+              </CustomButton>
+            </Link>
           </div>
         </motion.div>
       </section>

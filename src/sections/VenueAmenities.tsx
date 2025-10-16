@@ -3,6 +3,7 @@
 import CustomButton from '@/components/CustomButton';
 import { amenities } from '@/data';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function VenueAmenities() {
   return (
@@ -71,7 +72,9 @@ export default function VenueAmenities() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <CustomButton variant="primary">Request Virtual Tour</CustomButton>
+          <Link href="/contact">
+            <CustomButton variant="primary">Request Virtual Tour</CustomButton>
+          </Link>
         </div>
       </div>
     </section>

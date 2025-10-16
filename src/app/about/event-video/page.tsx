@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { VideoItem } from '@/types';
 import { portfolioVideos } from '@/data';
+import Link from 'next/link';
 
 export default function PortfolioVideoPage() {
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
@@ -210,13 +211,15 @@ export default function PortfolioVideoPage() {
             <p className="font-secondary mb-8 text-lg text-white/90">
               Let&apos;s make your next event unforgettable
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="border-primary font-secondary bg-primary hover:bg-primary/90 border-2 px-10 py-4 text-lg tracking-wider text-white uppercase shadow-xl transition"
-            >
-              Contact Us
-            </motion.button>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="border-primary font-secondary bg-primary hover:bg-primary/90 border-2 px-10 py-4 text-lg tracking-wider text-white uppercase shadow-xl transition"
+              >
+                Contact Us
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>

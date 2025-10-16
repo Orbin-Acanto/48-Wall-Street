@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import ServicesShowcase from '@/components/ServicesShowcase';
-import { eventCateringData } from '@/data';
+import { eventRentalsData } from '@/data';
 
 export default function EventRentalPage() {
-  return <ServicesShowcase {...eventCateringData} />;
+  return <ServicesShowcase {...eventRentalsData} />;
 }

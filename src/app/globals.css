@@ -21,6 +21,10 @@
   --font-secondary: 'Montserrat', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   body {
     background-color: var(--color-background);

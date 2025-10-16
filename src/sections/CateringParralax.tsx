@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import CustomButton from '@/components/CustomButton';
+import Link from 'next/link';
 
 export default function CateringSection() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -81,7 +82,9 @@ export default function CateringSection() {
               detail, you can relax and enjoy every moment knowing that your
               event is in expert hands.
             </p>
-            <CustomButton variant="primary">VIEW SAMPLE MENU</CustomButton>
+            <Link href="/services/catering">
+              <CustomButton variant="primary">VIEW SAMPLE MENU</CustomButton>
+            </Link>
           </div>
 
           {/* Right Side - Floating Images with Parallax */}

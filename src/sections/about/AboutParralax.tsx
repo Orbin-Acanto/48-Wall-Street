@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutParralax() {
   return (
@@ -34,9 +35,11 @@ export default function AboutParralax() {
               events and meetings.
             </p>
 
-            <button className="border-primary text-dark-black bg-primary cursor-pointer border px-8 py-3 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-black">
-              Booking INQUIRES
-            </button>
+            <Link href="/contact">
+              <button className="border-primary text-dark-black bg-primary cursor-pointer border px-8 py-3 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-black">
+                Booking INQUIRES
+              </button>
+            </Link>
           </div>
         </div>
       </div>

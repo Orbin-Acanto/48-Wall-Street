@@ -13,7 +13,7 @@ interface CTASectionProps {
 export default function AboutPlan({
   title = 'PLAN YOUR EVENT AT 48 WALL STREET',
   buttonText = 'CONTACT US',
-  buttonLink = '/contact-us',
+  buttonLink = '/contact',
   imageSrc = '/about/aboutPlan.jpg',
 }: CTASectionProps) {
   return (
