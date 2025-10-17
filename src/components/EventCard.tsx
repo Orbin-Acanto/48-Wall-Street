@@ -58,12 +58,12 @@ export const EventCard: React.FC<EventCardProps> = ({
             }}
           />
 
-          {/* Card - Sharp corners */}
+          {/* Card  */}
           <motion.div
             whileHover={{ y: -8 }}
-            className="group-hover:border-primary relative overflow-hidden border-2 border-gray-200 bg-white/95 backdrop-blur-sm transition-all duration-300 group-hover:shadow-xl"
+            className="group-hover:border-primary bg-whitesmoke/95 relative overflow-hidden border-2 border-gray-200 backdrop-blur-sm transition-all duration-300 group-hover:shadow-xl"
           >
-            {/* Image - Slightly rounded */}
+            {/* Image  */}
             <div className="relative h-64 overflow-hidden md:h-80 lg:h-96">
               <motion.img
                 src={event.src}
@@ -74,8 +74,8 @@ export const EventCard: React.FC<EventCardProps> = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-              {/* Index number - rounded */}
-              <div className="absolute top-6 right-6 flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/80 bg-white/95 shadow-lg backdrop-blur-sm">
+              {/* Index number */}
+              <div className="absolute top-6 right-6 flex h-14 w-14 items-center justify-center border-2 border-white/80 bg-white/95 shadow-lg backdrop-blur-sm">
                 <span className="font-secondary text-primary text-3xl font-bold">
                   {String(index + 1).padStart(2, '0')}
                 </span>
@@ -84,16 +84,16 @@ export const EventCard: React.FC<EventCardProps> = ({
 
             {/* Content */}
             <div className="p-6 md:p-8 lg:p-10">
-              <span className="border-primary/20 bg-primary/10 text-primary mb-4 inline-block rounded-full border px-4 py-1.5 text-xs font-semibold tracking-wider uppercase">
+              <span className="bg-primary/15 text-primary font-secondary mb-4 inline-block px-4 py-1.5 text-xs tracking-wider uppercase">
                 {event.category}
               </span>
 
-              <h3 className="font-secondary group-hover:text-primary mb-4 text-2xl font-bold text-gray-900 transition-colors md:text-3xl lg:text-4xl">
+              <h3 className="font-primary group-hover:text-primary mb-4 text-2xl text-gray-900 transition-colors md:text-3xl lg:text-4xl">
                 {event.title}
               </h3>
 
               {event.location && (
-                <p className="mb-6 flex items-center gap-2 text-base text-gray-700 md:text-lg">
+                <p className="font-secondary mb-6 flex items-center gap-2 text-base text-gray-700 md:text-lg">
                   <svg
                     className="text-primary h-5 w-5"
                     fill="none"
@@ -121,7 +121,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                 <motion.a
                   href={event.href}
                   whileHover={{ x: 5 }}
-                  className="group/link text-primary inline-flex items-center gap-2 font-semibold transition-colors hover:text-gray-900"
+                  className="group/link text-primary inline-flex items-center gap-2 transition-colors hover:text-gray-900"
                 >
                   View Project
                   <svg

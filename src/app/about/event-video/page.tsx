@@ -33,20 +33,20 @@ export default function PortfolioVideoPage() {
   };
 
   return (
-    <div className="font-secondary bg-whitesmoke min-h-screen pt-32 pb-10">
+    <div className="font-secondary bg-whitesmoke min-h-screen pt-32">
       <div className="mx-auto px-6 md:px-12 lg:px-20">
         {/* Header */}
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-primary text-primary mb-10 text-center text-5xl tracking-wide md:text-6xl lg:text-7xl"
+          className="font-primary text-primary mb-6 text-center text-4xl tracking-wide uppercase md:text-5xl lg:text-7xl"
         >
           VIDEO PORTFOLIO
         </motion.h1>
 
         {/* Tabs */}
-        <div className="mb-12 flex flex-wrap justify-center border-b border-gray-700/30">
+        <div className="font-secondary mb-12 flex flex-wrap justify-center border-b border-gray-700/30">
           {tabs.map((tab) => (
             <motion.button
               key={tab.id}

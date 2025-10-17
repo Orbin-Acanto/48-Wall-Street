@@ -71,7 +71,7 @@ export default function CateringSection() {
               transform: `translateY(${scrollProgress * -30}px)`,
             }}
           >
-            <h2 className="font-primary text-primary mb-6 text-4xl tracking-wide md:text-5xl lg:text-6xl">
+            <h2 className="font-primary text-primary mb-6 text-3xl tracking-wide uppercase md:text-4xl lg:text-6xl">
               OUR CATERING SERVICES
             </h2>
             <p className="font-secondary text-dark-black/80 text-md mb-8 leading-relaxed md:text-base">
@@ -83,7 +83,9 @@ export default function CateringSection() {
               event is in expert hands.
             </p>
             <Link href="/services/catering">
-              <CustomButton variant="primary">VIEW SAMPLE MENU</CustomButton>
+              <CustomButton variant="primary" className="text-white">
+                VIEW SAMPLE MENU
+              </CustomButton>
             </Link>
           </div>
 

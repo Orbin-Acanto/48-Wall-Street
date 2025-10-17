@@ -58,7 +58,7 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 flex items-center justify-between">
-          <h2 className="font-primary text-primary text-4xl tracking-wide md:text-5xl lg:text-6xl">
+          <h2 className="font-primary text-primary mb-6 text-4xl tracking-wide uppercase md:text-5xl lg:text-7xl">
             PHOTO GALLERY
           </h2>
           <a

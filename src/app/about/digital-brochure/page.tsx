@@ -47,7 +47,7 @@ export default function DigitalBrochurePage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="font-primary mx-auto mb-10 max-w-3xl text-lg text-white/90 md:text-xl lg:text-2xl"
+                className="font-secondary mx-auto mb-10 max-w-3xl text-lg text-white/90 md:text-xl lg:text-2xl"
               >
                 Discover exceptional venues across New York, thoughtfully
                 curated for unforgettable events
@@ -60,7 +60,7 @@ export default function DigitalBrochurePage() {
                 transition={{ duration: 0.8, delay: 0.7 }}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary hover:bg-primary/90 inline-flex items-center gap-3 px-10 py-4 font-bold tracking-wider text-white uppercase shadow-2xl transition md:px-12 md:py-5"
+                className="bg-primary font-secondary hover:bg-primary/90 inline-flex items-center gap-3 px-10 py-4 tracking-wider text-white uppercase shadow-2xl transition md:px-12 md:py-5"
               >
                 <span>Explore Venues</span>
               </motion.a>

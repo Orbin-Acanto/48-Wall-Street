@@ -51,12 +51,12 @@ export default function JourneyTimelineScroll({ items }: Props) {
               className="border-primary/20 mb-6 inline-flex items-center gap-2 rounded-full border bg-white/90 px-5 py-2 backdrop-blur-sm"
             >
               <div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
-              <span className="text-primary text-xs font-semibold tracking-wider uppercase">
+              <span className="text-primary text-sm tracking-wider uppercase">
                 Our Portfolio
               </span>
             </motion.div>
 
-            <h2 className="font-primary mb-4 text-4xl font-bold text-gray-900 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] md:text-5xl lg:text-6xl">
+            <h2 className="font-primary mb-6 text-4xl tracking-wide uppercase md:text-5xl lg:text-7xl">
               Our Event Journey
             </h2>
 
@@ -183,17 +183,17 @@ export default function JourneyTimelineScroll({ items }: Props) {
           className="mt-20 text-center md:mt-24 lg:mt-32"
         >
           <div className="mx-auto max-w-3xl border-2 border-gray-200 bg-white/95 p-8 backdrop-blur-sm md:p-12 lg:p-16">
-            <h3 className="font-secondary mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
+            <h3 className="font-primary text-primary mb-6 text-2xl tracking-wide md:text-3xl lg:text-6xl">
               Ready to start your journey?
             </h3>
-            <p className="mx-auto mb-8 max-w-xl text-base text-gray-700 md:text-lg">
+            <p className="font-secondary mx-auto mb-8 max-w-xl text-base text-gray-700 md:text-lg">
               Let&apos;s create an unforgettable event experience together
             </p>
             <Link href="/contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border-primary bg-primary hover:border-primary/80 hover:bg-primary/80 cursor-pointer border-2 px-10 py-4 text-base font-semibold text-white transition-all md:px-12 md:text-lg"
+                className="border-primary font-secondary bg-primary hover:border-primary/80 hover:bg-primary/80 cursor-pointer border-2 px-10 py-4 text-base text-white transition-all md:px-12 md:text-lg"
               >
                 Begin Your Event
               </motion.button>
