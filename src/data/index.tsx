@@ -1547,7 +1547,7 @@ export const brochurePages = [
 ];
 
 export const eventProductionData = {
-  title: 'Event Production in NYC',
+  title: 'Event Production NYC',
   subtitle: 'Spectacular Events at 48 Wall Street',
   // heroImage: '/misc/ep.jpg',
   heroImage: '/videos/ep.mp4',

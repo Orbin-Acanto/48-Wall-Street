@@ -437,7 +437,7 @@ export default function FloorPlansPage() {
             transition={{ duration: 0.8 }}
           >
             <Sparkles className="text-primary mx-auto mb-6 h-16 w-16" />
-            <h2 className="font-primary text-whitesmoke mb-6 text-4xl tracking-wide md:text-6xl">
+            <h2 className="font-primary text-whitesmoke mb-6 text-4xl tracking-wide uppercase md:text-6xl">
               Visualize Your Event
             </h2>
             <p className="font-secondary text-whitesmoke/80 mb-8 text-lg leading-relaxed">

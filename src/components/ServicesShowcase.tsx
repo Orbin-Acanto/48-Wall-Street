@@ -212,7 +212,7 @@ export default function CinematicServicesShowcase({
         </div>
       </section>
 
-      {/* REFINED 2ND SECTION */}
+      {/* 2ND SECTION */}
       <section
         id="lead"
         className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-100 py-24 lg:py-32"
@@ -236,17 +236,11 @@ export default function CinematicServicesShowcase({
             transition={{ duration: 0.9 }}
             className="mx-auto max-w-4xl"
           >
-            <h2
-              className="font-primary mb-6 text-3xl text-gray-900 md:text-4xl"
-              style={{ fontFamily: 'var(--font-primary)' }}
-            >
+            <h2 className="font-primary text-primary mb-6 text-3xl uppercase md:text-4xl">
               Our Philosophy
             </h2>
 
-            <p
-              className="font-secondary text-lg leading-relaxed text-gray-700 md:text-xl"
-              style={{ fontFamily: 'var(--font-secondary)' }}
-            >
+            <p className="font-secondary text-lg leading-relaxed text-gray-700 md:text-xl">
               {leadDescription}
             </p>
 
