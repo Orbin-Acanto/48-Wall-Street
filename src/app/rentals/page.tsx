@@ -58,13 +58,6 @@ export default function RentalsPage() {
     alert(`${product.name} added to cart for ${days} day(s)!`);
   };
 
-  const handleRentalDaysChange = (productId: number, days: number) => {
-    setSelectedRentalDays((prev) => ({
-      ...prev,
-      [productId]: days,
-    }));
-  };
-
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* Hero Section */}

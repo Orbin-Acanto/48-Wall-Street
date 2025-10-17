@@ -62,7 +62,6 @@ export default function ChatbotWidget() {
     setIsTyping(true);
 
     try {
-      // Simplified payload - only sessionId and chatInput
       const payload = {
         sessionId: sessionId,
         chatInput: text,

@@ -61,23 +61,48 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
 
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const proposalData = {
+        items: cart,
+        summary,
+        appliedPromo,
+        timestamp: new Date().toISOString(),
+      };
 
-    const proposalData = {
-      items: cart,
-      summary,
-      appliedPromo,
-      timestamp: new Date().toISOString(),
-    };
+      const webhookUrl = '/api/rental';
 
-    console.log('Submitting proposal:', proposalData);
+      if (!webhookUrl) {
+        console.error('Webhook URL not configured');
+        alert('Configuration error. Please contact support.');
+        setIsSubmitting(false);
+        return;
+      }
 
-    alert(
-      'Proposal submitted successfully! Our team will contact you shortly.'
-    );
-    clearCart();
-    setIsSubmitting(false);
-    onClose();
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(proposalData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      alert(
+        'Proposal submitted successfully! Our team will contact you shortly.'
+      );
+      clearCart();
+      onClose();
+    } catch (error) {
+      console.error('Error submitting proposal:', error);
+      alert(
+        'There was an error submitting your proposal. Please try again or contact us directly.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
