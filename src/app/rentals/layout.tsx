@@ -1,3 +1,4 @@
+import { CartProvider } from '@/contexts/CartContext';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,5 +11,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <>
+      <CartProvider>{children}</CartProvider>
+    </>
+  );
 }

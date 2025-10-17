@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Product } from '@/types';
 import { categories, priceRanges, products, themes } from '@/data';
 import Link from 'next/link';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/CartContext';
 import CartModal from '@/components/CartModal';
 
 export default function RentalsPage() {

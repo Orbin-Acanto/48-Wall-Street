@@ -13,7 +13,7 @@ import {
   Send,
   AlertCircle,
 } from 'lucide-react';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/CartContext';
 import CustomButton from './CustomButton';
 
 interface CartModalProps {

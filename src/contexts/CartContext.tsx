@@ -9,12 +9,36 @@ import {
   PromoCode,
   TAX_RATE,
 } from '@/types';
-import { useState, useEffect, useCallback } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  ReactNode,
+} from 'react';
 
 const CART_STORAGE_KEY = 'rental_cart';
 const PROMO_STORAGE_KEY = 'applied_promo';
 
-export function useCart() {
+interface CartContextType {
+  cart: CartItem[];
+  itemCount: number;
+  summary: CartSummary;
+  appliedPromo: PromoCode | null;
+  isLoaded: boolean;
+  addToCart: (product: Product, rentalDays?: number) => void;
+  removeFromCart: (productId: number) => void;
+  updateQuantity: (productId: number, quantity: number) => void;
+  updateRentalDays: (productId: number, days: number) => void;
+  clearCart: () => void;
+  applyPromoCode: (code: string) => { success: boolean; message: string };
+  removePromoCode: () => void;
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [appliedPromo, setAppliedPromo] = useState<PromoCode | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -115,35 +139,6 @@ export function useCart() {
     setAppliedPromo(null);
   }, []);
 
-  const applyPromoCode = useCallback(
-    (code: string): { success: boolean; message: string } => {
-      const promo = PROMO_CODES.find(
-        (p) => p.code.toLowerCase() === code.toLowerCase()
-      );
-
-      if (!promo) {
-        return { success: false, message: 'Invalid promo code' };
-      }
-
-      const summary = calculateSummary(cart, null);
-
-      if (promo.minAmount && summary.subtotal < promo.minAmount) {
-        return {
-          success: false,
-          message: `Minimum order of $${promo.minAmount} required`,
-        };
-      }
-
-      setAppliedPromo(promo);
-      return { success: true, message: 'Promo code applied successfully!' };
-    },
-    [cart]
-  );
-
-  const removePromoCode = useCallback(() => {
-    setAppliedPromo(null);
-  }, []);
-
   const getMultiDayDiscount = (days: number): number => {
     const applicable = MULTI_DAY_DISCOUNTS.filter((d) => days >= d.days).sort(
       (a, b) => b.discount - a.discount
@@ -193,10 +188,39 @@ export function useCart() {
     []
   );
 
+  const applyPromoCode = useCallback(
+    (code: string): { success: boolean; message: string } => {
+      const promo = PROMO_CODES.find(
+        (p) => p.code.toLowerCase() === code.toLowerCase()
+      );
+
+      if (!promo) {
+        return { success: false, message: 'Invalid promo code' };
+      }
+
+      const summary = calculateSummary(cart, null);
+
+      if (promo.minAmount && summary.subtotal < promo.minAmount) {
+        return {
+          success: false,
+          message: `Minimum order of $${promo.minAmount} required`,
+        };
+      }
+
+      setAppliedPromo(promo);
+      return { success: true, message: 'Promo code applied successfully!' };
+    },
+    [cart, calculateSummary]
+  );
+
+  const removePromoCode = useCallback(() => {
+    setAppliedPromo(null);
+  }, []);
+
   const summary = calculateSummary(cart, appliedPromo);
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  return {
+  const value: CartContextType = {
     cart,
     itemCount,
     summary,
@@ -210,4 +234,14 @@ export function useCart() {
     applyPromoCode,
     removePromoCode,
   };
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+}
+
+export function useCart() {
+  const context = useContext(CartContext);
+  if (context === undefined) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
 }
