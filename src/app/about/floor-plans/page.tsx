@@ -7,7 +7,6 @@ import {
   Wifi,
   Music,
   Sparkles,
-  ArrowRight,
   Download,
   Eye,
   Layers,

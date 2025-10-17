@@ -901,8 +901,8 @@ export const floors = [
       'Premium A/V',
       'Private terrace',
     ],
-    blueprint: '/floor-plans/empty_gm.png',
-    furnished: '/floor-plans/furnished_gm.png',
+    blueprint: '/floor-plans/egm.jpg',
+    furnished: '/floor-plans/fgm.png',
     model3DEmpty: '/floor-plans/e.glb',
     model3DFurnished: '/floor-plans/f.glb',
   },
@@ -918,10 +918,8 @@ export const floors = [
       'Outdoor access',
       'VIP section',
     ],
-    blueprint:
-      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&auto=format&fit=crop',
-    furnished:
-      'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&auto=format&fit=crop',
+    blueprint: '/floor-plans/ecl.jpg',
+    furnished: '/floor-plans/fcl.png',
     model3DEmpty: '/floor-plans/e.glb',
     model3DFurnished: '/floor-plans/f.glb',
   },
