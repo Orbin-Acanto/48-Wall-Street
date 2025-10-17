@@ -15,6 +15,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Product } from '@/types';
 import { categories, priceRanges, products, themes } from '@/data';
 import Link from 'next/link';
+import { useCart } from '@/hooks/useCart';
+import CartModal from '@/components/CartModal';
 
 export default function RentalsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -24,6 +26,12 @@ export default function RentalsPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+
+  const { addToCart, itemCount } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedRentalDays, setSelectedRentalDays] = useState<{
+    [key: number]: number;
+  }>({});
 
   const filteredProducts = products.filter((product) => {
     const matchesCategory =
@@ -43,6 +51,19 @@ export default function RentalsPage() {
     selectedTheme !== 'all',
     priceRange !== 'all',
   ].filter(Boolean).length;
+
+  const handleAddToCart = (product: Product) => {
+    const days = selectedRentalDays[product.id] || 1;
+    addToCart(product, days);
+    alert(`${product.name} added to cart for ${days} day(s)!`);
+  };
+
+  const handleRentalDaysChange = (productId: number, days: number) => {
+    setSelectedRentalDays((prev) => ({
+      ...prev,
+      [productId]: days,
+    }));
+  };
 
   return (
     <div className="bg-whitesmoke min-h-screen">
@@ -108,11 +129,16 @@ export default function RentalsPage() {
                   </span>
                 )}
               </button>
-              <button className="bg-primary hover:shadow--xl relative cursor-pointer rounded-full p-3 transition-all">
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className="bg-primary relative cursor-pointer rounded-full p-3 transition-all hover:shadow-xl"
+              >
                 <ShoppingCart className="text-dark-black h-5 w-5" />
-                <span className="bg-dark-black text-whitesmoke absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold">
-                  0
-                </span>
+                {itemCount > 0 && (
+                  <span className="bg-dark-black text-whitesmoke absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold">
+                    {itemCount}
+                  </span>
+                )}
               </button>
             </div>
           </div>
@@ -320,9 +346,39 @@ export default function RentalsPage() {
                       </span>
                     ))}
                   </div>
+                  {/* RENTAL DAYS SELECTOR */}
+                  {/* <div className="mb-4">
+                    <label className="font-secondary mb-2 block text-xs font-bold text-gray-600 uppercase">
+                      Rental Days
+                    </label>
+                    <select
+                      value={selectedRentalDays[product.id] || 1}
+                      onChange={(e) =>
+                        handleRentalDaysChange(
+                          product.id,
+                          parseInt(e.target.value)
+                        )
+                      }
+                      className="font-secondary focus:ring-primary w-full border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:outline-none"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <option value={1}>1 Day</option>
+                      <option value={2}>2 Days</option>
+                      <option value={3}>3 Days (5% off)</option>
+                      <option value={7}>7 Days (10% off)</option>
+                      <option value={14}>14 Days (15% off)</option>
+                      <option value={30}>30 Days (15% off)</option>
+                    </select>
+                  </div> */}
 
                   {/* Add to Cart */}
-                  <button className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 w-full cursor-pointer py-3 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl">
+                  <button
+                    className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 w-full cursor-pointer py-3 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(product);
+                    }}
+                  >
                     Add to Cart
                   </button>
                 </div>
@@ -435,7 +491,10 @@ export default function RentalsPage() {
                   </div>
 
                   <div className="flex gap-3">
-                    <button className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 w-full cursor-pointer py-3 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl">
+                    <button
+                      onClick={() => handleAddToCart(selectedProduct)}
+                      className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 w-full cursor-pointer py-3 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl"
+                    >
                       Add to Cart
                     </button>
                     <button className="border-dark-black hover:bg-dark-black bg-dark-black hover:text-whitesmoke cursor-pointer border-2 p-4 transition-all">
@@ -472,6 +531,7 @@ export default function RentalsPage() {
           </Link>
         </motion.div>
       </section>
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }

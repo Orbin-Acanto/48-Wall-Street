@@ -133,3 +133,55 @@ export interface JourneyEvent {
   location?: string;
   href?: string;
 }
+
+export interface CartItem extends Product {
+  quantity: number;
+  rentalDays: number;
+  addedAt: number;
+}
+
+export interface PromoCode {
+  code: string;
+  discount: number;
+  type: 'percentage' | 'fixed';
+  minAmount?: number;
+  description: string;
+}
+
+export interface CartSummary {
+  subtotal: number;
+  multiDayDiscount: number;
+  promoDiscount: number;
+  tax: number;
+  total: number;
+}
+
+export const PROMO_CODES: PromoCode[] = [
+  {
+    code: 'FIRST10',
+    discount: 10,
+    type: 'percentage',
+    description: '10% off your first order',
+  },
+  {
+    code: 'WEEKEND20',
+    discount: 20,
+    type: 'percentage',
+    minAmount: 500,
+    description: '20% off orders over $500',
+  },
+  {
+    code: 'VIP50',
+    discount: 50,
+    type: 'fixed',
+    description: '$50 off any order',
+  },
+];
+
+export const MULTI_DAY_DISCOUNTS = [
+  { days: 3, discount: 5 },
+  { days: 7, discount: 10 },
+  { days: 14, discount: 15 },
+];
+
+export const TAX_RATE = 0.0875;
