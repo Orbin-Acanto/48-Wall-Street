@@ -260,7 +260,7 @@ export default function LocationPage() {
           </div>
         </div>
       </section>
-      <InteractiveMapSection />
+      {/* <InteractiveMapSection /> */}
       {/* Contact CTA */}
       <section className="bg-dark-black px-6 py-20 text-center md:px-12 lg:px-20">
         <motion.div
