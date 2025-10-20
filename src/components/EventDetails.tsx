@@ -398,7 +398,7 @@ export default function EventDetails({
         </div>
       </section>
 
-      {/* INFO / ACCORDION */}
+      {/* ACCORDION */}
       {info?.length > 0 && (
         <section className="bg-gradient-to-b from-gray-50 to-white py-16 md:py-24">
           <div className="container mx-auto px-4">
