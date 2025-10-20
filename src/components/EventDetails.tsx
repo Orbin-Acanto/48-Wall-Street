@@ -86,7 +86,7 @@ export default function EventDetails({
                 </div>
               </SoftFadeIn>
 
-              {stats?.length > 0 && (
+              {/* {stats?.length > 0 && (
                 <SoftFadeIn delay={0.2} immediate>
                   <div className="grid grid-cols-3 gap-3 pt-6">
                     {stats.map((s, i) => (
@@ -101,7 +101,7 @@ export default function EventDetails({
                     ))}
                   </div>
                 </SoftFadeIn>
-              )}
+              )} */}
             </div>
 
             {/* RIGHT SIDE - Mosaic Gallery */}
@@ -362,7 +362,7 @@ export default function EventDetails({
             viewport={{ once: true }}
             className="text-primary font-secondary text-base font-light tracking-[0.25em] uppercase shadow-2xl"
           >
-            Full‑Service • Anywhere • Any Scale
+            Full-Service • Anywhere • Any Scale
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
