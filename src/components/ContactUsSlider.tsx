@@ -106,10 +106,10 @@ const ContactUsSlider: React.FC = () => {
       {/* Trigger Button - Fixed on Left Side */}
       <button
         onClick={toggleForm}
-        className="bg-primary font-secondary text-dark-black hover:bg-primary/80 fixed top-1/2 right-0 z-50 -translate-y-1/2 cursor-pointer px-8 py-5 text-sm font-semibold tracking-widest shadow-lg transition-all"
+        className="bg-primary font-secondary hover:bg-primary/80 text-dark-black fixed top-1/2 right-0 z-50 -translate-y-1/2 cursor-pointer px-4 py-2.5 text-sm font-semibold tracking-widest uppercase shadow-lg transition-all"
         style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
       >
-        BOOKING INQUIRIES
+        Enquire
       </button>
 
       {/* Overlay */}
@@ -149,13 +149,12 @@ const ContactUsSlider: React.FC = () => {
 
         {/* Form Content */}
         <div className="min-h-full px-6 py-16 md:px-12 lg:px-16">
-          <h1 className="text-primary mb-4 text-center font-['Gilda_Display'] text-4xl tracking-wide md:text-5xl lg:text-6xl">
-            BOOKING INQUIRIES
+          <h1 className="text-primary mb-4 text-center font-['Gilda_Display'] text-4xl tracking-wide uppercase md:text-5xl lg:text-6xl">
+            Enquire
           </h1>
           <p className="font-secondary mb-12 text-center text-sm text-gray-600 md:text-base lg:mb-16">
-            Please fill out the contact form, email
-            inquiries@tribecarooftopnyc.com or call 212.625.2600 to schedule a
-            visit.
+            Please fill out the contact form, email info@48WallNYC.com or call
+            212-971-5353 to schedule a visit.
           </p>
 
           {submitStatus && (

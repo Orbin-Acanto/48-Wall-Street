@@ -69,9 +69,9 @@ export const amenities: Amenity[] = [
     description: 'pin spot lighting system',
   },
   {
-    icon: '/icons/door-icon.svg',
-    title: 'PRIVATE ENTRANCE',
-    description: 'w/ attended elevators',
+    icon: '/icons/additional-space.svg',
+    title: 'ADDITIONAL SPACE',
+    description: 'concourse level',
   },
   {
     icon: '/icons/coat-icon.svg',
@@ -79,14 +79,15 @@ export const amenities: Amenity[] = [
     description: 'attendants',
   },
   {
+    icon: '/icons/door-icon.svg',
+    title: 'PRIVATE ENTRANCE',
+    description: 'w/ attended elevators',
+  },
+
+  {
     icon: '/icons/people-icon.svg',
     title: 'EVENT MANAGER',
     description: 'on-site',
-  },
-  {
-    icon: '/icons/dance-icon.svg',
-    title: '2,000 SQFT.',
-    description: 'Dance Floor',
   },
 ];
 
