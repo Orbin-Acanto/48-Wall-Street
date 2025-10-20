@@ -32,7 +32,7 @@ export default function JourneyTimelineScroll({ items }: Props) {
         <div className="absolute inset-0 bg-white/15 backdrop-blur-[2px]" />
         <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_30%,rgba(0,0,0,0.06)_0%,rgba(0,0,0,0)_65%)]" />
       </div>
-      <ScrollIcon />
+      {/* <ScrollIcon /> */}
       {/* Content */}
       <div className="relative z-10 py-16 md:py-20 lg:py-24">
         {/* Header */}
