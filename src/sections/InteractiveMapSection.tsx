@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  MapPin,
-  Navigation,
-  Phone,
-  Mail,
-  Clock,
-  ExternalLink,
-} from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export default function InteractiveMapSection() {
   const [isFullscreen, setIsFullscreen] = useState(false);
