@@ -15,6 +15,7 @@ import { motion } from 'framer-motion';
 import { locationAmenities, locations, venues } from '@/data';
 import CustomButton from '@/components/CustomButton';
 import Link from 'next/link';
+import InteractiveMapSection from '@/sections/InteractiveMapSection';
 
 export default function LocationPage() {
   const [activeLocation, setActiveLocation] = useState(0);
@@ -259,7 +260,7 @@ export default function LocationPage() {
           </div>
         </div>
       </section>
-
+      <InteractiveMapSection />
       {/* Contact CTA */}
       <section className="bg-dark-black px-6 py-20 text-center md:px-12 lg:px-20">
         <motion.div
