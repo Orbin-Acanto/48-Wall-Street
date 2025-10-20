@@ -45,11 +45,6 @@ export default function SocialMediaSidebar() {
               height={24}
               className="h-6 w-6 transition-all duration-300 group-hover:scale-110"
             />
-
-            {/* Tooltip */}
-            {/* <span className="font-secondary invisible absolute left-full ml-3 rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-white opacity-0 shadow-lg transition-all duration-300 group-hover:visible group-hover:opacity-100">
-              {social.name}
-            </span> */}
           </a>
         ))}
       </div>
