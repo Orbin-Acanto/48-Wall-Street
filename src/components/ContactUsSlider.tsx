@@ -19,6 +19,7 @@ const ContactUsSlider: React.FC = () => {
     howDidYouHear: '',
     message: '',
     robotCheck: false,
+    attachments: [],
   });
 
   const [submitStatus, setSubmitStatus] = useState<{
@@ -35,6 +36,24 @@ const ContactUsSlider: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const fileArray = Array.from(files);
+      setFormData((prev) => ({
+        ...prev,
+        attachments: [...(prev.attachments || []), ...fileArray],
+      }));
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      attachments: prev.attachments?.filter((_, i) => i !== index) || [],
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitStatus(null);
@@ -48,12 +67,26 @@ const ContactUsSlider: React.FC = () => {
     }
 
     try {
+      const formDataToSend = new FormData();
+
+      Object.keys(formData).forEach((key) => {
+        if (key !== 'attachments') {
+          formDataToSend.append(
+            key,
+            formData[key as keyof FormDataType] as string
+          );
+        }
+      });
+
+      if (formData.attachments && formData.attachments.length > 0) {
+        formData.attachments.forEach((file) => {
+          formDataToSend.append('attachments', file);
+        });
+      }
+
       const response = await fetch('/api/contact-form', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
       });
 
       const result = await response.json();
@@ -80,6 +113,7 @@ const ContactUsSlider: React.FC = () => {
           howDidYouHear: '',
           message: '',
           robotCheck: false,
+          attachments: [],
         });
       } else {
         setSubmitStatus({
@@ -103,7 +137,6 @@ const ContactUsSlider: React.FC = () => {
 
   return (
     <>
-      {/* Trigger Button - Fixed on Left Side */}
       <button
         onClick={toggleForm}
         className="bg-primary font-secondary hover:bg-primary/80 text-dark-black fixed top-1/2 right-0 z-50 -translate-y-1/2 cursor-pointer px-4 py-2.5 text-sm font-semibold tracking-widest uppercase shadow-lg transition-all"
@@ -112,7 +145,6 @@ const ContactUsSlider: React.FC = () => {
         Enquire
       </button>
 
-      {/* Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm transition-opacity duration-300"
@@ -120,13 +152,11 @@ const ContactUsSlider: React.FC = () => {
         />
       )}
 
-      {/* Slide-out Contact Form Card */}
       <div
         className={`bg-whitesmoke fixed top-0 right-0 z-50 h-full w-full transform overflow-y-auto shadow-2xl transition-transform duration-500 ease-in-out md:w-[85vw] lg:w-[75vw] xl:w-[65vw] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        {/* Close Button */}
         <button
           onClick={toggleForm}
           className="text-primary hover:text-primary absolute top-6 right-6 z-10 transition-colors"
@@ -147,7 +177,6 @@ const ContactUsSlider: React.FC = () => {
           </svg>
         </button>
 
-        {/* Form Content */}
         <div className="min-h-full px-6 py-16 md:px-12 lg:px-16">
           <h1 className="text-primary mb-4 text-center font-['Gilda_Display'] text-4xl tracking-wide uppercase md:text-5xl lg:text-6xl">
             Enquire
@@ -172,7 +201,6 @@ const ContactUsSlider: React.FC = () => {
 
           <div className="mx-auto max-w-6xl">
             <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
-              {/* Left Side - First Form Fields */}
               <div className="text-dark-black">
                 <div className="space-y-6">
                   <input
@@ -274,7 +302,6 @@ const ContactUsSlider: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right Side - Remaining Form Fields */}
               <div className="text-dark-black">
                 <div className="space-y-6">
                   <input
@@ -312,6 +339,52 @@ const ContactUsSlider: React.FC = () => {
                     rows={4}
                     className="focus:border-primary font-secondary text-dark-black w-full resize-none border-b border-gray-400 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
                   />
+
+                  <div>
+                    <input
+                      type="file"
+                      multiple
+                      onChange={handleFileChange}
+                      className="font-secondary text-dark-black file:bg-primary file:text-dark-black hover:file:bg-primary/80 w-full text-sm file:mr-4 file:rounded file:border-0 file:px-4 file:py-2 file:text-sm file:font-semibold"
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                    />
+
+                    {formData.attachments &&
+                      formData.attachments.length > 0 && (
+                        <div className="mt-4 space-y-2">
+                          {formData.attachments.map((file, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center justify-between rounded bg-gray-100 px-3 py-2"
+                            >
+                              <span className="font-secondary text-sm text-gray-700">
+                                {file.name} ({(file.size / 1024).toFixed(1)} KB)
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => removeFile(index)}
+                                className="text-red-600 hover:text-red-800"
+                                aria-label="Remove file"
+                              >
+                                <svg
+                                  className="h-5 w-5"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                  </div>
 
                   <div className="flex justify-end pt-4">
                     <button

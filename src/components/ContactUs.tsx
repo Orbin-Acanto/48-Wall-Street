@@ -18,6 +18,7 @@ const ContactUs: React.FC = () => {
     howDidYouHear: '',
     message: '',
     robotCheck: false,
+    attachments: [],
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,6 +37,24 @@ const ContactUs: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const fileArray = Array.from(files);
+      setFormData((prev) => ({
+        ...prev,
+        attachments: [...(prev.attachments || []), ...fileArray],
+      }));
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      attachments: prev.attachments?.filter((_, i) => i !== index) || [],
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -51,12 +70,26 @@ const ContactUs: React.FC = () => {
     }
 
     try {
+      const formDataToSend = new FormData();
+
+      Object.keys(formData).forEach((key) => {
+        if (key !== 'attachments') {
+          formDataToSend.append(
+            key,
+            formData[key as keyof FormDataType] as string
+          );
+        }
+      });
+
+      if (formData.attachments && formData.attachments.length > 0) {
+        formData.attachments.forEach((file) => {
+          formDataToSend.append('attachments', file);
+        });
+      }
+
       const response = await fetch('/api/contact-form', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
       });
 
       const result = await response.json();
@@ -83,6 +116,7 @@ const ContactUs: React.FC = () => {
           howDidYouHear: '',
           message: '',
           robotCheck: false,
+          attachments: [],
         });
       } else {
         setSubmitStatus({
@@ -112,7 +146,6 @@ const ContactUs: React.FC = () => {
         212-971-5353 to schedule a visit.
       </p>
 
-      {/* Status Message */}
       {submitStatus && (
         <div
           className={`mx-auto mb-6 max-w-7xl rounded-lg p-4 ${
@@ -131,7 +164,6 @@ const ContactUs: React.FC = () => {
           onSubmit={handleSubmit}
           className="grid w-full max-w-7xl grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16"
         >
-          {/* Left Side - Title and First Form Fields */}
           <div className="text-dark-black">
             <div className="space-y-6">
               <input
@@ -226,7 +258,6 @@ const ContactUs: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side - Remaining Form Fields */}
           <div className="text-dark-black">
             <div className="space-y-6">
               <input
@@ -264,6 +295,51 @@ const ContactUs: React.FC = () => {
                 rows={4}
                 className="text-dark-black focus:border-primary font-secondary w-full resize-none border-b border-gray-800 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
               />
+
+              <div>
+                <input
+                  type="file"
+                  multiple
+                  onChange={handleFileChange}
+                  className="font-secondary text-dark-black file:bg-primary hover:file:bg-primary/80 w-full text-sm file:mr-4 file:rounded file:border-0 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white"
+                  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif"
+                />
+
+                {formData.attachments && formData.attachments.length > 0 && (
+                  <div className="mt-4 space-y-2">
+                    {formData.attachments.map((file, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between rounded bg-gray-100 px-3 py-2"
+                      >
+                        <span className="font-secondary text-sm text-gray-700">
+                          {file.name} ({(file.size / 1024).toFixed(1)} KB)
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => removeFile(index)}
+                          className="text-red-600 hover:text-red-800"
+                          aria-label="Remove file"
+                        >
+                          <svg
+                            className="h-5 w-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               <div className="flex justify-end pt-4">
                 <button

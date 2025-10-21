@@ -34,6 +34,7 @@ export interface FormDataType {
   howDidYouHear: string;
   message: string;
   robotCheck: boolean;
+  attachments?: File[];
 }
 
 export interface Product {
