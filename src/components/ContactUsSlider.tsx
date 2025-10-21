@@ -139,7 +139,7 @@ const ContactUsSlider: React.FC = () => {
     <>
       <button
         onClick={toggleForm}
-        className="bg-primary font-secondary hover:bg-primary/80 text-dark-black fixed top-1/2 right-0 z-50 -translate-y-1/2 cursor-pointer px-4 py-2.5 text-sm font-semibold tracking-widest uppercase shadow-lg transition-all"
+        className="bg-primary font-secondary hover:bg-primary/80 fixed top-1/2 right-0 z-50 -translate-y-1/2 cursor-pointer px-4 py-2.5 text-sm font-semibold tracking-widest text-white uppercase shadow-lg transition-all"
         style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
       >
         Enquire
