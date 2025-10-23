@@ -200,7 +200,7 @@ export default function CinematicServicesShowcase({
       {/* 2ND SECTION */}
       <section
         id="lead"
-        className="relative overflow-hidden bg-white py-16 lg:py-24"
+        className={`relative overflow-hidden ${menu ? 'bg-white' : 'bg-whitesmoke'} py-16 lg:py-24`}
       >
         <div className="relative z-10 container mx-auto px-6 text-center lg:px-20">
           <motion.div

@@ -1583,63 +1583,108 @@ export const menuPages = [
 export const eventProductionData = {
   title: 'Event Production NYC',
   subtitle: 'Spectacular Events at 48 Wall Street',
-  // heroImage: '/misc/ep.jpg',
   heroImage: '/videos/ep.mp4',
+  leadTitle: 'Bringing Your Vision to Life',
   leadDescription:
-    'MME Worldwide has extensive experience in producing spectacular events at 48 Wall Street. Our expertise in producing events at 48 Wall Street provides our clients with a seasoned event partner who knows what it takes to successfully plan and deliver high-profile receptions and gala events. We encourage our clients to go above and beyond, confident that we can bring your wildest visions to fruition. While the incredible space is sure to help get the conversation started at your event, our team at MME Worldwide will make sure it continues throughout the evening by ensuring the very best in hospitality and event services.',
+    'MMEink has the ability to deliver full event production services internally, making us your number one resource when planning your next special event in the NYC area. By providing our clients with a turn-key event solution, we have the ability to satisfy all your production needs. With just a phone call, we can assist you with all of your Audio Visual, Staging, Lighting, Decor, and Event Rentals. As a self-contained agency, our attention to detail and seamless orchestration of event services allows us to produce an event that will exceed your every expectation. Contact the number one NYC event production company today to get started right away!',
   sections: [
     {
       id: 'design',
       title: 'Design',
       description:
         "MME Worldwide's inspired designers specialize in providing creative floral accents and unique décor. Our team is able to fulfill your event's needs by providing you with a wide range of design services to choose from. Whether it's creating a vision, or helping bring one to light, we will help you develop an environment that is on message for your brand. Assisted by an in-house back-end production team, MME Worldwide maintains an exclusive inventory of décor that allows us to provide you with an original look for your next event.",
-      image: '/service/design.jpg',
-      imageAlt: 'Creative floral accents and unique event décor design',
+      images: [
+        '/service/design/20231212_155514.jpg',
+        '/service/design/20250821_162023.jpg',
+        '/service/design/IMG_2638.jpg',
+        '/service/design/IMG_2693.jpg',
+      ],
+      imageAlts: [
+        'Production display 1',
+        'Production display 2',
+        'Production display 3',
+        'Production display 4',
+      ],
     },
     {
       id: 'audio-visual',
       title: 'Audio Visual',
       description:
         "Our engineers provide a wide range of services that are designed to meet the communication needs of our clients. Based on your event's objectives, budget and parameters, we will develop a cost-effective plan that is effectively managed and delivered by our team.",
-      image: '/service/av.jpg',
-      imageAlt: 'Professional audio visual services and equipment',
+      images: [
+        '/service/av/20231027_185043.jpg',
+        '/service/av/AE2.jpg',
+        '/service/av/DJI_0323.jpg',
+      ],
+      imageAlts: [
+        'Production display 1',
+        'Production display 2',
+        'Production display 3',
+      ],
     },
     {
       id: 'lighting',
       title: 'Lighting',
       description:
         "MME Worldwide's lighting professionals will help you select the right choice of lighting design to accompany your event's desired ambiance. Our services range from simple and sophisticated, to extravagant and bold, offering you the very best in event lighting services.",
-      image: '/service/lighting.jpg',
-      imageAlt: 'Professional event lighting design and services',
+      images: [
+        '/service/light/20241115_155551.jpg',
+        '/service/light/20250522_170355.jpg',
+        '/service/light/DJI_20231212_162444_1529.jpg',
+      ],
+      imageAlts: [
+        'Production display 1',
+        'Production display 2',
+        'Production display 3',
+      ],
     },
     {
       id: 'staging',
       title: 'Staging',
       description:
         "We carry a complete line of professional staging products, that range from simple to custom installations. Our team's extensive knowledge provides you with the right guidance and resources needed to plan and execute your next event.",
-      image: '/service/staging.jpg',
-      imageAlt: 'Professional staging products and custom installations',
+      images: [
+        '/service/stage/20240910_072701.jpg',
+        '/service/stage/IMG_0116.jpg',
+        '/service/stage/IMG_5831.jpg',
+      ],
+      imageAlts: [
+        'Production display 1',
+        'Production display 2',
+        'Production display 3',
+      ],
     },
     {
       id: 'custom-fabrication',
       title: 'Custom Fabrication',
       description:
         'Our creative team, accompanied by an in-house design shop, provides limitless state-of-the-art solutions for our event partners. Let our team take your next meeting from ordinary to extraordinary with our unique designs and flawless event execution.',
-      image: '/service/cf.jpg',
-      imageAlt: 'Custom Fabrication by MME Worldwide',
-      link: {
-        text: 'Learn More',
-        url: 'https://www.mmeink.com/meetings-and-events/custom-fabrication.html',
-      },
+      images: [
+        '/service/cf/Green Canopy 2.jpg',
+        '/service/cf/IMG_2204.jpg',
+        '/service/cf/lenovo-stage.jpeg',
+      ],
+      imageAlts: [
+        'Production display 1',
+        'Production display 2',
+        'Production display 3',
+      ],
     },
     {
       id: 'entertainment',
       title: 'Entertainment',
       description:
-        "Whether your preference is a lively dance band, jazz ensemble, or a combination of different styles of music, our team of planning professionals will help you select the perfect blend of music for your affair. From soloists to celebrity performances to world renowned DJ's, MMEink has proven to deliver the very best in exceptional musical talent. If you want to go the extra mile at your event, then providing top-notch entertainment for your guests is a must. Acquiring a celebrity speaker or performance is a powerful way you can deliver your message to an audience. Obtaining the right celebrity act for your company's special day is a great way to amplify your brand's message. As a leader in the event and hospitality industry for over the last two decades, we have established key relationships that make delivering these types of performances a reality.",
-      image: '/service/entertainment.png',
-      imageAlt:
-        'Entertainment services including bands, DJs, and celebrity performances',
+        "Whether your preference is a lively dance band, jazz ensemble, or a combination of different styles of music, our team of planning professionals will help you select the perfect blend of music for your affair. From soloists to celebrity performances to world renowned DJ's, MMEink has proven to deliver the very best in exceptional musical talent. If you want to go the extra mile at your event, then providing top-notch entertainment for your guests is a must. Acquiring a celebrity speaker or performance is a powerful way you can deliver your message to an audience.",
+      images: [
+        '/service/entertainment/20250821_184731.jpg',
+        '/service/entertainment/entertainment.png',
+        '/service/entertainment/IMG_1278.jpg',
+      ],
+      imageAlts: [
+        'Production display 1',
+        'Production display 2',
+        'Production display 3',
+      ],
     },
   ],
 };
@@ -1736,27 +1781,48 @@ export const eventRentalsData = {
       title: 'Decor Rentals',
       description:
         'When it comes to transforming the space at 48 Wall Street, our team knows how to deliver a breathtaking experience for your guests. With a variety of décor accents and life-like props, MMEink will help you customize the look for your event. MMEink maintains an elite line of scenic décor that allows us to take your event to the next level. Our exclusive inventory is composed of chic lounges and décor accents that offer a variety of exciting furnishings to choose from. With a complete line of luxury rentals our fashionable décor items make styling your next event stress-free.',
-      image: '/service/decor-rentals2.jpg',
-      imageAlt:
-        'Custom invitations and table setting event design at high end NYC event',
+      images: [
+        '/service/entertainment/20250821_184731.jpg',
+        '/service/entertainment/entertainment.png',
+        '/service/entertainment/IMG_1278.jpg',
+      ],
+      imageAlts: [
+        'Rentals display 1',
+        'Rentals display 2',
+        'Rentals display 3',
+      ],
     },
     {
       id: 'staging-rentals',
       title: 'Staging Rentals',
       description:
         'We provide 48 Wall Street with a variety of staging services. Whether it is a basic stage for a valued speaker or an elaborate stage for a musical performer, our design team and in-house custom fabrication shop will hand craft the perfect staging for your event. Our design team will help you determine the perfect look for your next event, whether it be simple or extravagant.',
-      image: '/service/staging-rentals-pic-small3.jpg',
-      imageAlt:
-        'Tailored Hospitality Services for upscale top tier event at 48 Wall Street in NYC',
+      images: [
+        '/service/entertainment/20250821_184731.jpg',
+        '/service/entertainment/entertainment.png',
+        '/service/entertainment/IMG_1278.jpg',
+      ],
+      imageAlts: [
+        'Rentals display 1',
+        'Rentals display 2',
+        'Rentals display 3',
+      ],
     },
     {
       id: 'catering-rentals',
       title: 'Catering Rentals',
       description:
         '48 Wall Street can accommodate all of your catering rental needs. We can provide a full line of event catering rentals which range from back of the house to the front of the house such as liquor needs and bar set up to kitchen rental items such as puffers and ovens. We also make sure your linens, tables, chairs, flat ware and stem ware exude the style of your event.',
-      image: '/service/catering-rental-page2.jpg',
-      imageAlt:
-        'Event catering rentals including linens, tables, chairs, and stemware',
+      images: [
+        '/service/entertainment/20250821_184731.jpg',
+        '/service/entertainment/entertainment.png',
+        '/service/entertainment/IMG_1278.jpg',
+      ],
+      imageAlts: [
+        'Rentals display 1',
+        'Rentals display 2',
+        'Rentals display 3',
+      ],
     },
   ],
 };
