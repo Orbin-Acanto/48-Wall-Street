@@ -21,7 +21,7 @@ export const useParallax = (offset: [string, string] = ['0%', '-20%']) => {
 
 export const SplitTitle = ({ text, immediate = false }: SplitTitleProps) => {
   return (
-    <h1 className="font-secondary text-4xl leading-[1.1] tracking-tight md:text-6xl">
+    <h1 className="heading-hero">
       {text.split(/(\s+)/).map((part, i) => (
         <motion.span
           key={i}

@@ -12,6 +12,7 @@ import {
   useParallax,
 } from '@/utils';
 import Link from 'next/link';
+import { services } from '@/data';
 
 export interface EventShowcaseProps {
   title: string;
@@ -56,22 +57,20 @@ export default function EventDetails({
               <SplitTitle text={title} immediate />
               {subtitle && (
                 <SoftFadeIn immediate>
-                  <p className="font-secondary text-primary text-sm tracking-widest uppercase md:text-sm">
+                  <p className="font-secondary text-primary text-base font-bold tracking-widest uppercase md:text-sm">
                     {subtitle}
                   </p>
                 </SoftFadeIn>
               )}
               <SoftFadeIn delay={0.1} immediate>
-                <p className="font-secondary text-base leading-relaxed text-gray-700 md:text-lg">
-                  {description}
-                </p>
+                <p className="text-lead">{description}</p>
               </SoftFadeIn>
 
               <SoftFadeIn delay={0.15} immediate>
                 <div className="flex flex-wrap gap-3 pt-2">
                   {primaryCta && (
                     <Link href="/contact">
-                      <CustomButton className="text-white">
+                      <CustomButton className="text-dark-black">
                         {primaryCta.label}
                       </CustomButton>
                     </Link>
@@ -85,23 +84,6 @@ export default function EventDetails({
                   )}
                 </div>
               </SoftFadeIn>
-
-              {/* {stats?.length > 0 && (
-                <SoftFadeIn delay={0.2} immediate>
-                  <div className="grid grid-cols-3 gap-3 pt-6">
-                    {stats.map((s, i) => (
-                      <GlassCard key={i} className="p-4 text-center">
-                        <div className="font-secondary text-2xl text-gray-900 md:text-3xl">
-                          {s.value}
-                        </div>
-                        <div className="text-xs tracking-widest text-gray-600 uppercase md:text-sm">
-                          {s.label}
-                        </div>
-                      </GlassCard>
-                    ))}
-                  </div>
-                </SoftFadeIn>
-              )} */}
             </div>
 
             {/* RIGHT SIDE - Mosaic Gallery */}
@@ -215,6 +197,7 @@ export default function EventDetails({
           </div>
         </motion.div>
       </section>
+
       <div className="bg-white pb-8">
         {tags?.length > 0 && (
           <div className="border-y border-gray-800/20 bg-white py-3">
@@ -224,61 +207,46 @@ export default function EventDetails({
           </div>
         )}
       </div>
+
       {/* FEATURE STRIP */}
-      <section className="bg-white">
-        <div className="container mx-auto px-4 pt-4 pb-16 md:pt-10 md:pb-24">
-          <div className="grid gap-6 md:grid-cols-3">
-            {['Venue Sourcing', 'Culinary & Mixology', 'Production & AV'].map(
-              (t, i) => (
-                <motion.div
-                  key={t}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.05 * i }}
-                  className="group"
-                >
-                  <GlassCard className="h-full p-6 md:p-8">
-                    <div className="flex items-start gap-4">
-                      {/* <div className="bg-primary/30 group-hover:bg-primary/40 h-10 w-10 rounded-full transition" /> */}
-                      <div>
-                        <h3 className="font-secondary text-xl text-gray-900 md:text-2xl">
-                          {t}
-                        </h3>
-                        <p className="mt-2 text-sm text-gray-700 md:text-base">
-                          Elevate your experience with end-to-end planning,
-                          premium vendor relations, and impeccable on-site
-                          execution.
-                        </p>
-                      </div>
+      <section className="bg-whitesmoke">
+        <div className="container mx-auto px-4 pt-12 pb-12 md:pt-20 md:pb-20">
+          <div className="grid gap-6 lg:grid-cols-3">
+            {services.map((service, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.05 * i }}
+                className="group"
+              >
+                <GlassCard className="h-full p-6 md:p-8">
+                  <div className="flex items-start gap-4">
+                    <div>
+                      <h3 className="font-secondary text-xl text-gray-900 md:text-2xl">
+                        {service.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-gray-700 md:text-base">
+                        {service.body}
+                      </p>
                     </div>
-                  </GlassCard>
-                </motion.div>
-              )
-            )}
+                  </div>
+                </GlassCard>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* IMMERSIVE BANNER - Food Service Animation */}
+      {/* IMMERSIVE Food Service Section */}
       <section className="relative min-h-[500px] overflow-hidden md:min-h-[600px]">
         <div className="absolute inset-0 z-0">
-          {/* Static Fallback Background - Always visible */}
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1600&auto=format&fit=crop')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
-
-          {/* Animated Crossfade Images */}
           <div className="absolute inset-0">
             {[
-              'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1600&auto=format&fit=crop', // Food plating
-              'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop', // Dining ambiance
+              '/misc/events1.jpg',
+              '/misc/events2.jpg',
+              '/misc/events3.jpg',
             ].map((url, i) => (
               <motion.div
                 key={i}
@@ -288,20 +256,27 @@ export default function EventDetails({
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
+                initial={{ opacity: i === 0 ? 1 : 0 }}
                 animate={{
-                  opacity: i === 0 ? [0, 1, 1, 0, 0] : [0, 0, 1, 1, 0],
+                  opacity:
+                    i === 0
+                      ? [1, 1, 0, 0, 0, 0, 1]
+                      : i === 1
+                        ? [0, 0, 1, 1, 0, 0, 0]
+                        : [0, 0, 0, 0, 1, 1, 0],
                 }}
                 transition={{
-                  duration: 10,
+                  duration: 18,
                   repeat: Infinity,
                   ease: 'easeInOut',
+                  times: [0, 0.22, 0.33, 0.55, 0.66, 0.88, 1],
                 }}
               />
             ))}
           </div>
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/60 to-black/60" />
 
           {/* Animated Light Streaks */}
           <div className="absolute inset-0 overflow-hidden">
@@ -327,7 +302,6 @@ export default function EventDetails({
             ))}
           </div>
 
-          {/* Floating Elements (like steam or sparkles) */}
           <div className="absolute inset-0 opacity-40">
             {[...Array(8)].map((_, i) => (
               <motion.div
@@ -355,7 +329,7 @@ export default function EventDetails({
           </div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 py-20 text-center md:py-28">
+        <div className="relative z-10 container mx-auto flex flex-col items-center justify-center py-28 text-center">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -369,16 +343,16 @@ export default function EventDetails({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.08 }}
-            className="font-secondary mx-auto mt-4 max-w-4xl text-3xl leading-tight text-white md:text-5xl lg:text-6xl"
+            className="heading-hero my-8 text-white"
           >
-            From intimate vows to global premieres
+            Exceptional events for every occasion.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.12 }}
-            className="font-primary mx-auto mt-4 max-w-2xl text-base text-white/80 md:text-lg"
+            className="text-lead mb-4 text-gray-100"
           >
             Every detail perfected, every moment unforgettable
           </motion.p>
@@ -390,9 +364,7 @@ export default function EventDetails({
             className="mt-8"
           >
             <Link href="/contact">
-              <CustomButton className="text-white">
-                Start Your Event
-              </CustomButton>
+              <CustomButton>Start Your Event</CustomButton>
             </Link>
           </motion.div>
         </div>
@@ -400,7 +372,7 @@ export default function EventDetails({
 
       {/* ACCORDION */}
       {info?.length > 0 && (
-        <section className="bg-gradient-to-b from-gray-50 to-white py-16 md:py-24">
+        <section className="bg-gradient-to-b from-gray-50 to-white py-12 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl">
               {/* Section Header */}
@@ -410,10 +382,10 @@ export default function EventDetails({
                 viewport={{ once: true }}
                 className="mb-12 text-center"
               >
-                <h2 className="font-secondary text-3xl text-gray-900 md:text-4xl lg:text-5xl">
+                <h2 className="heading-hero text-primary">
                   Frequently Asked Questions
                 </h2>
-                <p className="font-primary mt-3 text-gray-600">
+                <p className="text-lead">
                   Everything you need to know about our services
                 </p>
               </motion.div>

@@ -2,6 +2,7 @@
 
 import { FormDataType } from '@/types';
 import React, { useState } from 'react';
+import CustomButton from './CustomButton';
 
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState<FormDataType>({
@@ -299,7 +300,7 @@ const ContactUs: React.FC = () => {
                   type="file"
                   multiple
                   onChange={handleFileChange}
-                  className="font-secondary text-dark-black file:bg-primary hover:file:bg-primary/80 w-full text-sm file:mr-4 file:rounded file:border-0 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white"
+                  className="font-secondary text-dark-black file:bg-primary hover:file:bg-primary/80 file:text-dark-black w-full text-sm file:mr-4 file:rounded file:border-0 file:px-4 file:py-2 file:text-sm file:font-semibold"
                   accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif"
                 />
 
@@ -340,13 +341,9 @@ const ContactUs: React.FC = () => {
               </div>
 
               <div className="flex justify-end pt-4">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-primary font-secondary hover:bg-primary/70 cursor-pointer px-12 py-3 font-semibold tracking-wider text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50"
-                >
+                <CustomButton type="submit" disabled={isSubmitting}>
                   {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
-                </button>
+                </CustomButton>
               </div>
             </div>
           </div>

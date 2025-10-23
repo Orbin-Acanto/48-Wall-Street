@@ -1828,3 +1828,18 @@ export const eventRentalsData = {
     },
   ],
 };
+
+export const services = [
+  {
+    title: 'Venue Sourcing',
+    body: 'From intimate gatherings to grand celebrations, we identify and secure the perfect venue that aligns with your vision, budget, and guest experience. Our extensive network and expert negotiation ensure you get the best locations at competitive rates.',
+  },
+  {
+    title: 'Culinary & Mixology',
+    body: 'Delight your guests with exceptional cuisine and handcrafted cocktails tailored to your event theme. Our culinary partners create memorable dining experiences, from elegant plated dinners to interactive food stations and signature drink menus.',
+  },
+  {
+    title: 'Production & AV',
+    body: 'Bring your event to life with cutting-edge audio-visual technology, professional lighting, and seamless production management. Our technical experts ensure flawless execution, from sound systems and LED displays to live streaming and immersive stage design.',
+  },
+];
