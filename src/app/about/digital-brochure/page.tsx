@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import BookReader from '@/components/BookReader';
 import { brochurePages } from '@/data';
+import CustomButton from '@/components/CustomButton';
 
 export default function DigitalBrochurePage() {
   return (
@@ -48,23 +49,15 @@ export default function DigitalBrochurePage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="font-secondary mx-auto mb-10 max-w-3xl text-lg text-white/90 md:text-xl lg:text-2xl"
+                className="tex-lead font-secondary mb-8"
               >
                 Discover exceptional venues across New York, thoughtfully
                 curated for unforgettable events
               </motion.p>
 
-              <motion.a
-                href="/location"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-primary font-secondary hover:bg-primary/90 text-dark-black inline-flex items-center gap-3 px-10 py-4 tracking-wider uppercase shadow-2xl transition md:px-12 md:py-5"
-              >
-                <span>Explore Venues</span>
-              </motion.a>
+              <Link href="/location">
+                <CustomButton variant="primary">Explore Venues</CustomButton>
+              </Link>
             </motion.div>
           </div>
         </div>

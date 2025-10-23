@@ -56,7 +56,7 @@ export default function ImageSection({
           priority
         />
         {/* Dark overlay for text contrast */}
-        <div className="from-dark-black/60 via-dark-black/40 to-dark-black/60 absolute inset-0 bg-gradient-to-b"></div>
+        <div className="from-dark-black/70 via-dark-black/70 to-dark-black/70 absolute inset-0 bg-gradient-to-b"></div>
       </div>
 
       {/* Text Content Overlay - Absolute positioned over image */}

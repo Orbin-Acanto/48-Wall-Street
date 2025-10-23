@@ -181,7 +181,9 @@ export default function JourneyTimelineScroll({ items }: Props) {
           className="mt-20 text-center md:mt-24 lg:mt-32"
         >
           <div className="mx-auto max-w-4xl bg-white/95 p-8 backdrop-blur-sm md:p-12 lg:p-16">
-            <h3 className="heading-hero text-primary">Ready to start?</h3>
+            <h3 className="font-primary text-primary mb-6 text-[24px] tracking-wide uppercase md:text-[42px] lg:text-[55px]">
+              Ready to start?
+            </h3>
             <p className="text-lead mb-8">
               Let&apos;s create an unforgettable event experience together
             </p>

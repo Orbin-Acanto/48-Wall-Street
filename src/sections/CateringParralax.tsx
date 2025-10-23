@@ -101,7 +101,7 @@ export default function CateringSection() {
             <h2 className="font-primary text-primary mb-6 text-3xl tracking-wide uppercase md:text-4xl lg:text-6xl">
               OUR CATERING SERVICES
             </h2>
-            <p className="font-secondary text-dark-black/80 text-md mb-8 leading-relaxed md:text-base">
+            <p className="text-lead mb-8">
               Experience culinary excellence with our in-house catering, led by
               Chef Orbin Acanto who has worked in the food industry for over
               four decades. Each menu is meticulously crafted to fit your unique
