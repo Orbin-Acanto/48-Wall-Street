@@ -1647,45 +1647,72 @@ export const eventProductionData = {
 export const eventCateringData = {
   title: 'Event Catering Services',
   subtitle: 'Signature Dining Experience at 48 Wall Street',
-  // heroImage:
-  //   'https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2000',
+  leadTitle: 'Inspired Gourmet Catering',
   heroImage: '/videos/ec.mp4',
   leadDescription:
-    "The on-premise catering team is passionate about delivering a signature dining experience for guests at 48 Wall Street. Through creative preparation and seamless on-site execution, our cuisine-inspired spirits, and first-class hospitality is what separates us from the rest. Providing you with everything you need, we make it easy to successfully plan the food and beverage portion of your next social or corporate event. Complementing the ambiance set by this incredible venue, our delicious cuisine will captivate and inspire your guests with its creative presentation. When Tardi's culinary team is put into action, they will ensure that the main course is savory, the dessert is sweet, for that global taste.",
+    'Tardi’s Catering is a creative food studio that delivers a first class dining experience for guests at both corporate and private events. With over 30 years of experience, Tardi’s Catering is designed to deliver the very best in hospitality and food and beverage services for your special event.',
+  leadDescription2:
+    'Developing an exciting food experience for your guests requires much more than just satisfying an appetite. The culinary team at Tardi’s Catering specializes in designing a menu that not only uses the freshest ingredients, but is also accompanied by a variety of fun props and décor accents.',
+  leadDescription3:
+    'Our catering services can accommodate any size, theme, or individual’s requirements, in virtually any location. Dining options include seated dining, buffet, small plates and globally inspired specialty stations. Whatever you need we will bring your creative visions to life!',
   sections: [
     {
       id: 'seated-dinner',
       title: 'Seated Dinner',
       description:
         "When hosting your dinner party at 48 Wall Street you can expect to enjoy a delicious dining experience. The Tardi's executive chef and culinary team will help you create and design a custom menu for your event.",
-      image: '/service/moaf-seated-dinner.jpg',
-      imageAlt:
-        'Custom invitations and table setting event design at high end NYC event',
+      images: ['/catering/cd1.jpg', '/catering/cd2.jpg', '/catering/cd3.jpg'],
+      imageAlts: [
+        'Catering display 1',
+        'Catering display 2',
+        'Catering display 3',
+      ],
     },
     {
       id: 'cocktail-events',
       title: 'Cocktail Events',
       description:
         'Hosting a cocktail reception at 48 Wall Street is truly a remarkable experience. Allowing guests the opportunity to explore the extraordinary space of 48 Wall Street while drinking specialty cocktails and enjoying delicious and creative cuisine makes it the perfect social setting for your guests.',
-      image: '/service/cocktail-events.jpg',
-      imageAlt:
-        'Tailored Hospitality Services for upscale top tier event at 48 Wall Street in NYC',
+      images: [
+        '/catering/cc1.jpg',
+        '/catering/catering1.jpg',
+        '/catering/_WWL8154.JPG',
+        '/catering/DSC_4304.jpg',
+      ],
+      imageAlts: [
+        'Catering display 1',
+        'Catering display 2',
+        'Catering display 3',
+        'Catering display 4',
+      ],
     },
     {
       id: 'lunch',
       title: 'Lunch',
       description:
         "Having a luncheon at 48 Wall Street is a breeze with your trusted partner Tardi's. We provide a myriad of options for our clients including sit-down lunches, buffet style, or passed plates. Our creative culinary team provides the best ideas in food and beverage options when planning your event.",
-      image: '/service/lunch-body.jpg',
-      imageAlt: 'Professional lunch catering services at 48 Wall Street',
+      images: ['/catering/cl1.jpg', '/catering/cl2.jpg', '/catering/cl3.JPG'],
+      imageAlts: [
+        'Catering display 1',
+        'Catering display 2',
+        'Catering display 3',
+      ],
     },
     {
       id: 'breakfast',
       title: 'Breakfast',
       description:
         'Start your day right with our exceptional breakfast catering services. From continental spreads to full hot breakfast buffets, we provide morning dining solutions for your corporate meetings and events.',
-      image: '/service/breakfast-body.jpg',
-      imageAlt: 'Breakfast Catering Services NYC',
+      images: [
+        '/catering/IMG_3248.jpg',
+        '/catering/20221020_093758.jpg',
+        '/catering/IMG_0242.JPG',
+      ],
+      imageAlts: [
+        'Catering display 1',
+        'Catering display 2',
+        'Catering display 3',
+      ],
     },
   ],
   videoSection: {

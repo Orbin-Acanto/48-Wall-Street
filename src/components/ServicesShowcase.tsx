@@ -1,16 +1,16 @@
 'use client';
-import React, { useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, Variants } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
-import BookReader from './BookReader';
 import { menuPages } from '@/data';
+import BookReader from './BookReader';
 
 type ServiceSection = {
   id: string;
   title: string;
   description: string;
-  image: string;
-  imageAlt: string;
+  images: string[];
+  imageAlts: string[];
   link?: { text: string; url: string };
 };
 
@@ -18,7 +18,10 @@ type Props = {
   title: string;
   subtitle: string;
   heroImage: string;
+  leadTitle: string;
   leadDescription: string;
+  leadDescription2?: string;
+  leadDescription3?: string;
   sections: ServiceSection[];
   logoImage?: string;
   logoLink?: string;
@@ -30,7 +33,10 @@ export default function CinematicServicesShowcase({
   title,
   subtitle,
   heroImage,
+  leadTitle,
   leadDescription,
+  leadDescription2,
+  leadDescription3,
   sections,
   logoImage,
   logoLink,
@@ -61,7 +67,7 @@ export default function CinematicServicesShowcase({
     },
   };
 
-  const [videoOpen, setVideoOpen] = React.useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -196,66 +202,72 @@ export default function CinematicServicesShowcase({
         id="lead"
         className="relative overflow-hidden bg-white py-16 lg:py-24"
       >
-        <div className="pointer-events-none absolute inset-0">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(circle at center, rgba(210,179,113,0.08) 0%, transparent 70%)',
-              filter: 'blur(60px)',
-            }}
-          />
-        </div>
-
         <div className="relative z-10 container mx-auto px-6 text-center lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="mx-auto max-w-4xl"
+            className="mx-auto max-w-5xl"
           >
-            <h2 className="font-primary text-primary mb-6 text-3xl uppercase md:text-4xl">
-              Our Philosophy
+            <h2 className="font-primary text-primary mb-8 text-[2.4rem] leading-snug uppercase md:text-[3rem]">
+              {leadTitle}
             </h2>
-
-            <p className="font-secondary text-lg leading-relaxed text-gray-700 md:text-xl">
+            <p className="font-secondary mx-auto max-w-5xl text-lg leading-relaxed text-gray-700">
               {leadDescription}
             </p>
-
-            {logoImage && (
-              <div className="mt-14 flex items-center justify-center">
-                {logoLink ? (
-                  <a
-                    href={logoLink}
-                    rel="noreferrer"
-                    target="_blank"
-                    className="inline-block"
-                  >
-                    <Image
-                      src={logoImage}
-                      alt="Partner logo"
-                      width={220}
-                      height={80}
-                      className="object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-                    />
-                  </a>
-                ) : (
-                  <Image
-                    src={logoImage}
-                    alt="Partner logo"
-                    width={220}
-                    height={80}
-                    className="object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-                  />
-                )}
-              </div>
+            {leadDescription2 && (
+              <p className="font-secondary mx-auto mt-8 max-w-5xl text-lg leading-relaxed text-gray-700">
+                {leadDescription2}
+              </p>
+            )}
+            {leadDescription3 && (
+              <p className="font-secondary mx-auto mt-8 max-w-5xl text-lg leading-relaxed text-gray-700">
+                {leadDescription3}
+              </p>
             )}
           </motion.div>
         </div>
       </section>
+
+      {/* LOGO SECTION */}
+      {logoImage && (
+        <section className="bg-whitesmoke relative overflow-hidden py-12">
+          <div className="container mx-auto px-6 lg:px-20">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9 }}
+              className="mx-auto max-w-4xl text-center"
+            >
+              {logoLink ? (
+                <a href={logoLink} className="inline-block">
+                  <Image
+                    src={logoImage}
+                    alt="Logo"
+                    width={200}
+                    height={100}
+                    className="mx-auto"
+                  />
+                </a>
+              ) : (
+                <Image
+                  src={logoImage}
+                  alt="Logo"
+                  width={200}
+                  height={100}
+                  className="mx-auto"
+                />
+              )}
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* MENU SECTION */}
       {menu && (
-        <section id="book">
+        <section>
           <BookReader
             pages={menuPages}
             title="Tardis Catering & Hospitality 2025"
@@ -266,35 +278,71 @@ export default function CinematicServicesShowcase({
         </section>
       )}
 
-      {/* Service Area  */}
+      {/* SERVICES SECTIONS*/}
       <main id="services" className="relative">
         {sections.map((section, idx) => {
-          const ref = React.createRef<HTMLDivElement>();
+          const ref = useRef<HTMLDivElement>(null);
+          const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+          const images =
+            section.images && section.images.length > 0
+              ? section.images
+              : ['/placeholder.jpg'];
+
+          const imageAlts =
+            section.imageAlts && section.imageAlts.length > 0
+              ? section.imageAlts
+              : images.map((_, i) => `${section.title} image ${i + 1}`);
+
+          useEffect(() => {
+            if (images.length <= 1) return;
+
+            const interval = setInterval(() => {
+              setCurrentImageIndex((prev) => (prev + 1) % images.length);
+            }, 7000);
+
+            return () => clearInterval(interval);
+          }, [images.length]);
+
           return (
             <section
               key={section.id}
               className="relative flex items-center py-12"
+              style={{
+                backgroundColor: idx % 2 === 0 ? 'white' : 'whitesmoke',
+              }}
               aria-labelledby={`panel-${section.id}`}
             >
-              {/* background image layer */}
               <div className="absolute inset-0 -z-20 overflow-hidden">
-                <div className="absolute inset-0">
-                  <Image
-                    src={section.image}
-                    alt={section.imageAlt}
-                    fill
-                    className="scale-105 object-cover object-center transition-transform duration-800"
-                    sizes="100vw"
-                  />
+                {images.map((image, imgIdx) => (
                   <div
-                    className="absolute inset-0"
+                    key={imgIdx}
+                    className="absolute inset-0 transition-opacity duration-1000"
                     style={{
-                      background:
-                        'linear-gradient(180deg, rgba(10,10,10,0.28) 0%, rgba(10,10,10,0.42) 50%, rgba(10,10,10,0.6) 100%)',
-                      mixBlendMode: 'multiply',
+                      opacity: currentImageIndex === imgIdx ? 1 : 0,
                     }}
-                  />
-                </div>
+                  >
+                    <Image
+                      src={image}
+                      alt={
+                        imageAlts[imgIdx] ||
+                        `${section.title} background ${imgIdx + 1}`
+                      }
+                      fill
+                      className="scale-105 object-cover object-center transition-transform duration-800"
+                      sizes="100vw"
+                      priority={imgIdx === 0}
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          'linear-gradient(180deg, rgba(10,10,10,0.28) 0%, rgba(10,10,10,0.42) 50%, rgba(10,10,10,0.6) 100%)',
+                        mixBlendMode: 'multiply',
+                      }}
+                    />
+                  </div>
+                ))}
 
                 {/* subtle vignette and ambient gold feather */}
                 <div className="pointer-events-none absolute inset-0">
@@ -344,7 +392,7 @@ export default function CinematicServicesShowcase({
                       {section.description}
                     </p>
 
-                    <div className="text-primary font-secondary flex items-center">
+                    <div className="text-primary font-secondary flex items-center gap-4">
                       <button
                         onClick={() => {
                           const next =
@@ -354,15 +402,24 @@ export default function CinematicServicesShowcase({
                               behavior: 'smooth',
                             });
                         }}
-                        className="text-primary text-sm font-medium underline underline-offset-4"
+                        className="text-primary text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-80"
                         aria-label={`Scroll to next section after ${section.title}`}
                       >
                         Explore next
                       </button>
+
+                      {section.link && (
+                        <a
+                          href={section.link.url}
+                          className="text-primary text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-80"
+                        >
+                          {section.link.text}
+                        </a>
+                      )}
                     </div>
                   </motion.div>
 
-                  {/* right visual card */}
+                  {/* right visual card with slideshow */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0.98, y: 24 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -375,13 +432,27 @@ export default function CinematicServicesShowcase({
                     }}
                   >
                     <div className="relative h-72 md:h-96">
-                      <Image
-                        src={section.image}
-                        alt={section.imageAlt}
-                        fill
-                        className="object-cover object-center"
-                        sizes="(max-width:1024px)100vw,50vw"
-                      />
+                      {images.map((image, imgIdx) => (
+                        <div
+                          key={imgIdx}
+                          className="absolute inset-0 transition-opacity duration-1000"
+                          style={{
+                            opacity: currentImageIndex === imgIdx ? 1 : 0,
+                          }}
+                        >
+                          <Image
+                            src={image}
+                            alt={
+                              imageAlts[imgIdx] ||
+                              `${section.title} ${imgIdx + 1}`
+                            }
+                            fill
+                            className="object-cover object-center"
+                            sizes="(max-width:1024px)100vw,50vw"
+                            priority={imgIdx === 0}
+                          />
+                        </div>
+                      ))}
 
                       {/* soft glass overlay */}
                       <div
@@ -392,6 +463,28 @@ export default function CinematicServicesShowcase({
                           mixBlendMode: 'overlay',
                         }}
                       />
+
+                      {/* Slideshow indicators */}
+                      {images.length > 1 && (
+                        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+                          {images.map((_, imgIdx) => (
+                            <button
+                              key={imgIdx}
+                              onClick={() => setCurrentImageIndex(imgIdx)}
+                              className="h-2 rounded-full transition-all duration-300 hover:scale-125"
+                              style={{
+                                backgroundColor:
+                                  currentImageIndex === imgIdx
+                                    ? 'rgba(210,179,113,0.9)'
+                                    : 'rgba(255,255,255,0.5)',
+                                width:
+                                  currentImageIndex === imgIdx ? '24px' : '8px',
+                              }}
+                              aria-label={`Go to slide ${imgIdx + 1}`}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 </div>
