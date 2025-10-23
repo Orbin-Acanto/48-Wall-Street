@@ -121,13 +121,14 @@ export default function DigitalBrochurePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="font-primary mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
+              <h2 className="font-primary mb-4 text-3xl font-bold text-gray-900 uppercase md:text-4xl lg:text-5xl">
                 Ready to Host Your Event?
               </h2>
 
-              <p className="font-secondary mb-8 text-lg text-gray-700 md:text-xl">
+              <p className="text-lead mb-8">
                 Let&apos;s discuss how 48 Wall Street can be the perfect venue
-                for your next celebration or corporate gathering.
+                for your next celebration
+                <br /> or corporate gathering.
               </p>
 
               {/* Single CTA Button */}
