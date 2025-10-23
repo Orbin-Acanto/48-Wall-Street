@@ -38,7 +38,7 @@ export default function AboutHero() {
           <div className="flex items-center justify-center">
             <div className="relative h-[500px] w-full max-w-md overflow-hidden rounded-sm shadow-2xl">
               <Image
-                src="/about/aboutHero.jpg"
+                src="/about/aboutHero.tif"
                 alt="Green architectural detail of Manhattan building"
                 fill
                 className="object-cover"

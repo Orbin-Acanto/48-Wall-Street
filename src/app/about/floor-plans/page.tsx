@@ -24,6 +24,7 @@ import { floors, layouts } from '@/data';
 import ThreeD from '@/components/ThreeD';
 import CustomButton from '@/components/CustomButton';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function FloorPlansPage() {
   const [activeFloor, setActiveFloor] = useState('second');
@@ -54,8 +55,7 @@ export default function FloorPlansPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600&auto=format&fit=crop')",
+            backgroundImage: "url('/misc/p3.jpg')",
           }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -72,15 +72,13 @@ export default function FloorPlansPage() {
           >
             <div className="text-primary mb-4 flex items-center justify-center gap-2">
               <MapPin className="h-5 w-5" />
-              <span className="font-secondary text-sm font-semibold tracking-widest uppercase">
+              <span className="font-secondary text-sm tracking-widest uppercase">
                 48 Wall Street, New York
               </span>
             </div>
-            <h1 className="font-primary text-whitesmoke mb-4 text-5xl tracking-wider md:text-7xl lg:text-8xl">
-              FLOOR PLANS
-            </h1>
+            <h2 className="heading-hero text-white">FLOOR PLANS</h2>
             <div className="bg-primary mx-auto mb-6 h-[2px] w-32" />
-            <p className="font-secondary text-whitesmoke/90 mx-auto max-w-2xl text-lg leading-relaxed md:text-xl">
+            <p className="text-lead max-w-3xl text-gray-200">
               Explore our versatile event spaces and visualize your perfect
               layout with our interactive floor plan designer
             </p>
@@ -115,7 +113,7 @@ export default function FloorPlansPage() {
       </section>
 
       {/* Floor Selector */}
-      <section className="sticky top-0 z-40 border-b border-gray-600/20 bg-white shadow-lg">
+      <section className="sticky top-0 z-40 bg-white shadow-lg">
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex gap-3">
@@ -161,7 +159,7 @@ export default function FloorPlansPage() {
       </section>
 
       {/* Main Floor Plan Viewer */}
-      <section className="px-6 py-12 md:px-12 lg:px-20">
+      <section className="px-6 pt-8 pb-12 md:px-12 md:pt-12 md:pb-20 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-3">
             {/* Floor Details */}
@@ -242,14 +240,15 @@ export default function FloorPlansPage() {
 
               {/* Actions */}
               <div className="space-y-3">
-                <CustomButton className="font-secondary flex w-full cursor-pointer items-center justify-center gap-2 py-4 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-xl">
-                  <Download className="h-4 w-4" />
-                  Download PDF
-                </CustomButton>
-                <CustomButton className="bg- bg-whitesmoke font-secondary text-dark-black hover:bg-dark-black hover:text-whitesmoke flex w-full cursor-pointer items-center justify-center gap-2 border-none py-4 text-sm font-semibold tracking-wider uppercase transition-all">
-                  <Calendar className="h-4 w-4" />
-                  Schedule Tour
-                </CustomButton>
+                <Link href="/about/virtual-tour">
+                  <CustomButton
+                    variant="primary"
+                    className="flex w-full items-center justify-center gap-2 border-none"
+                  >
+                    <Calendar className="h-4 w-4" />
+                    3D Tour
+                  </CustomButton>
+                </Link>
               </div>
             </motion.div>
 
@@ -436,10 +435,8 @@ export default function FloorPlansPage() {
             transition={{ duration: 0.8 }}
           >
             <Sparkles className="text-primary mx-auto mb-6 h-16 w-16" />
-            <h2 className="font-primary text-whitesmoke mb-6 text-4xl tracking-wide uppercase md:text-6xl">
-              Visualize Your Event
-            </h2>
-            <p className="font-secondary text-whitesmoke/80 mb-8 text-lg leading-relaxed">
+            <h2 className="heading-hero text-white">Visualize Your Event</h2>
+            <p className="text-lead mb-8 text-gray-200">
               Use our interactive 3D designer to place furniture, experiment
               with layouts, and see your vision come to life before your event
               day
@@ -462,26 +459,17 @@ export default function FloorPlansPage() {
                 </div>
               ))}
             </div>
-
-            {/* <button className="group bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black inline-flex cursor-pointer items-center gap-3 px-10 py-5 text-base font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
-              Launch Designer Tool
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </button>
-
-            <p className="font-secondary text-whitesmoke/60 mt-6 text-sm">
-              No account required • Free to use • Save and share designs
-            </p> */}
           </motion.div>
         </div>
       </section>
 
       {/* Additional Info */}
-      <section className="bg-white px-6 py-16">
+      <section className="bg-white px-6 py-12 md:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 md:grid-cols-3">
             <div className="bg-whitesmoke p-8">
               <Clock className="text-primary mb-4 h-10 w-10" />
-              <h3 className="font-secondary text-dark-black mb-2 text-xl font-bold">
+              <h3 className="font-secondary text-dark-black mb-2 text-xl font-semibold">
                 Flexible Timing
               </h3>
               <p className="font-secondary text-sm text-gray-600">
@@ -491,7 +479,7 @@ export default function FloorPlansPage() {
             </div>
             <div className="bg-whitesmoke p-8">
               <Wifi className="text-primary mb-4 h-10 w-10" />
-              <h3 className="font-secondary text-dark-black mb-2 text-xl font-bold">
+              <h3 className="font-secondary text-dark-black mb-2 text-xl font-semibold">
                 Premium Amenities
               </h3>
               <p className="font-secondary text-sm text-gray-600">
@@ -501,7 +489,7 @@ export default function FloorPlansPage() {
             </div>
             <div className="bg-whitesmoke p-8">
               <Music className="text-primary mb-4 h-10 w-10" />
-              <h3 className="font-secondary text-dark-black mb-2 text-xl font-bold">
+              <h3 className="font-secondary text-dark-black mb-2 text-xl font-semibold">
                 Full Service Options
               </h3>
               <p className="font-secondary text-sm text-gray-600">

@@ -15,7 +15,7 @@ export default function VirtualTourPage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/misc/hv.jpg')",
+            backgroundImage: "url('/misc/hv_1.jpg')",
           }}
         />
 
