@@ -32,7 +32,7 @@ export default function Testimonial() {
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Section Title */}
-        <h2 className="font-primary text-primary mb-16 text-center text-4xl tracking-wide md:text-5xl lg:text-6xl">
+        <h2 className="heading-hero text-primary text-center">
           WHAT OUR GUESTS SAY
         </h2>
 

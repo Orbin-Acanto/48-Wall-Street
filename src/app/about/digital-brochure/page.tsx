@@ -30,8 +30,9 @@ export default function DigitalBrochurePage() {
               transition={{ duration: 0.8 }}
             >
               {/* Main Title */}
-              <h1 className="font-primary text-whitesmoke mb-6 text-5xl tracking-wider uppercase md:text-6xl lg:text-7xl">
-                Lower Manhattan&apos;s Premier Event Venue
+              <h1 className="heading-hero text-white">
+                Lower Manhattan&apos;s Premier <br />
+                Event Venue
               </h1>
 
               {/* Decorative Line */}
@@ -60,7 +61,7 @@ export default function DigitalBrochurePage() {
                 transition={{ duration: 0.8, delay: 0.7 }}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary font-secondary hover:bg-primary/90 inline-flex items-center gap-3 px-10 py-4 tracking-wider text-white uppercase shadow-2xl transition md:px-12 md:py-5"
+                className="bg-primary font-secondary hover:bg-primary/90 text-dark-black inline-flex items-center gap-3 px-10 py-4 tracking-wider uppercase shadow-2xl transition md:px-12 md:py-5"
               >
                 <span>Explore Venues</span>
               </motion.a>

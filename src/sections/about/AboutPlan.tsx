@@ -33,7 +33,7 @@ export default function AboutPlan({
 
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
-        <h2 className="font-primary mb-8 max-w-4xl text-center text-3xl tracking-wide text-white md:text-4xl lg:text-5xl">
+        <h2 className="heading-hero max-w-4xl text-center text-white">
           {title}
         </h2>
 

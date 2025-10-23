@@ -14,9 +14,7 @@ export default function VenueAmenities() {
           <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
             Space & Amenities
           </p>
-          <h2 className="font-primary text-dark-black text-4xl tracking-wide md:text-5xl lg:text-6xl">
-            ABOUT THE VENUE
-          </h2>
+          <h2 className="heading-hero">ABOUT THE VENUE</h2>
         </div>
 
         {/* Amenities Grid */}

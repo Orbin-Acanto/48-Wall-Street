@@ -158,7 +158,7 @@ export const navItems = [
     href: '/about',
     dropdown: [
       { name: 'About 48 Wall St', href: '/about' },
-      { name: 'Demo Reel', href: '/about/event-video' },
+      { name: 'Video Gallery', href: '/about/event-video' },
       { name: 'Digital Brochure', href: '/about/digital-brochure' },
       { name: 'Virtual Tour', href: '/about/virtual-tour' },
       { name: 'Floor Plans', href: '/about/floor-plans' },
@@ -225,7 +225,7 @@ export const navItems = [
 export const footerLinks = {
   about: [
     { name: 'Our Story', href: '/about' },
-    { name: 'Demo Reel', href: '/about/event-video' },
+    { name: 'Video Gallery', href: '/about/event-video' },
     { name: 'Digital Brochure', href: '/about/digital-brochure' },
     { name: 'Virtual Tour', href: '/about/virtual-tour' },
     { name: 'Floor Plans', href: '/about/floor-plans' },

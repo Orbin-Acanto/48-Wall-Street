@@ -82,11 +82,11 @@ export default function CateringSection() {
             }}
           >
             {/* Logo Watermark - Top Left */}
-            <div className="absolute -top-22 left-0 sm:-top-30 md:-top-40 lg:-top-60 2xl:-top-67 2xl:-left-45">
+            <div className="absolute -top-22 left-0 sm:-top-30 md:-top-40 lg:-top-60 2xl:-top-67">
               <div
                 className="relative h-24 w-24 opacity-100 transition-all duration-500 hover:opacity-85 sm:h-32 sm:w-32 md:h-48 md:w-48 lg:h-64 lg:w-64"
                 style={{
-                  transform: isLargeScreen ? 'rotate(-30deg)' : 'rotate(0deg)',
+                  transform: isLargeScreen ? 'rotate(0deg)' : 'rotate(0deg)',
                 }}
               >
                 <Image
@@ -110,9 +110,7 @@ export default function CateringSection() {
               event is in expert hands.
             </p>
             <Link href="/services/catering">
-              <CustomButton variant="primary" className="text-white">
-                VIEW SAMPLE MENU
-              </CustomButton>
+              <CustomButton variant="primary">VIEW SAMPLE MENU</CustomButton>
             </Link>
           </div>
 

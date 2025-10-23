@@ -7,7 +7,7 @@ export default function AboutHero() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left Content */}
           <div className="space-y-6">
-            <h2 className="font-primary text-5xl tracking-wider text-gray-900 lg:text-6xl">
+            <h2 className="heading-hero">
               A HISTORIC
               <br />
               EVENT
@@ -17,7 +17,7 @@ export default function AboutHero() {
 
             <div className="bg-primary h-0.5 w-16"></div>
 
-            <div className="font-secondary space-y-4 leading-relaxed text-gray-600">
+            <div className="text-lead">
               <p>
                 48 Wall Street provides a unique and historical setting to host
                 your next corporate or milestone celebration.

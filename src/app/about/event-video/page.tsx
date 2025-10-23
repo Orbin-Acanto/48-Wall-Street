@@ -5,6 +5,7 @@ import { X } from 'lucide-react';
 import { VideoItem } from '@/types';
 import { portfolioVideos } from '@/data';
 import Link from 'next/link';
+import CustomButton from '@/components/CustomButton';
 
 export default function PortfolioVideoPage() {
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
@@ -40,9 +41,9 @@ export default function PortfolioVideoPage() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-primary text-primary mb-6 text-center text-4xl tracking-wide uppercase md:text-5xl lg:text-7xl"
+          className="text-primary heading-hero text-center"
         >
-          VIDEO PORTFOLIO
+          VIDEO Gallery
         </motion.h1>
 
         {/* Tabs */}
@@ -205,20 +206,15 @@ export default function PortfolioVideoPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-primary mb-4 text-3xl tracking-wider text-white uppercase md:text-4xl">
-              Ready to Create Your Event?
+            <h2 className="heading-hero text-center text-white">
+              Ready to Create <br />
+              Your Event?
             </h2>
-            <p className="font-secondary mb-8 text-lg text-white/90">
+            <p className="text-lead mb-8 text-gray-300">
               Let&apos;s make your next event unforgettable
             </p>
             <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-primary font-secondary bg-primary hover:bg-primary/90 border-2 px-10 py-4 text-lg tracking-wider text-white uppercase shadow-xl transition"
-              >
-                Contact Us
-              </motion.button>
+              <CustomButton variant="primary">Contact US</CustomButton>
             </Link>
           </motion.div>
         </div>

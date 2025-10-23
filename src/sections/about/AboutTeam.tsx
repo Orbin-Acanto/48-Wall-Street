@@ -12,11 +12,9 @@ export default function AboutTeam() {
           <p className="font-secondary text-primary text-md mb-4 tracking-[0.3em] uppercase">
             Get to Know Us
           </p>
-          <h2 className="font-primary text-dark-black mb-8 text-4xl tracking-wide md:text-5xl lg:text-6xl">
-            MEET OUR TEAM
-          </h2>
+          <h2 className="heading-hero">MEET OUR TEAM</h2>
           <div className="mx-auto max-w-5xl">
-            <p className="font-secondary text-dark-black/80 text-base leading-relaxed md:text-lg">
+            <p className="text-lead">
               Opened in 1999, 48 Wall Street has established itself as one of
               New York City&apos;s premier event venues. Renowned for
               outstanding culinary expertise, impeccable service, and warm

@@ -14,26 +14,25 @@ const items = [
     src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2000&auto=format&fit=crop',
     title: 'Intimate Wedding Celebration',
     category: 'Weddings',
-    location: 'Napa Valley',
-    href: '#',
+    location: 'Michael Tardi',
   },
   {
     src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000&auto=format&fit=crop',
     title: 'Tech Summit 2024',
     category: 'Conferences',
-    location: 'San Francisco',
+    location: 'Michael Tardi',
   },
   {
     src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2000&auto=format&fit=crop',
     title: 'Fashion Week After Party',
     category: 'Fashion Shows',
-    location: 'Los Angeles',
+    location: 'Michael Tardi',
   },
   {
     src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2000&auto=format&fit=crop',
     title: 'Charity Gala Evening',
     category: 'Non-Profit',
-    location: 'Boston',
+    location: 'Michael Tardi',
   },
 ];
 
@@ -55,7 +54,7 @@ export default function Home() {
       <CateringParralax />
       <ContactUs />
       <ImageSection
-        text="ClIENT ENJOY DRAMATIC, 360° UNOBSTRUCTED CITY AND WATER VIEWS ALONG WITH HISTORIC AND WHITE-GLOVE CONCIERGE SERVICES."
+        text="ENJOY STRESS-FREE EVENT PLANNING WITH FULL SERVICE PRODUCTION, CREATIVE DESIGN AND DEDICATED SUPPORT FROM CONCEPT TO FINAL CURTAIN CALL."
         imageSrc="/misc/wall-sign.jpg"
         imageAlt="Wall Street Sign"
       />

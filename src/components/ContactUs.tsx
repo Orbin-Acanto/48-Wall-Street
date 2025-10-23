@@ -138,10 +138,8 @@ const ContactUs: React.FC = () => {
 
   return (
     <div className="bg-whitesmoke min-h-screen px-6 py-18">
-      <h1 className="text-primary font-primary mb-4 text-center text-5xl tracking-wide md:text-6xl lg:text-7xl">
-        Enquire
-      </h1>
-      <p className="font-secondary mb-12 text-center text-base text-gray-400 lg:mb-16">
+      <h1 className="text-primary heading-hero text-center">Enquire</h1>
+      <p className="text-lead mb-8 text-center">
         Please fill out the contact form, email info@48WallNYC.com or call
         212-971-5353 to schedule a visit.
       </p>

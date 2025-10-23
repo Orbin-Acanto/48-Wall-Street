@@ -14,10 +14,8 @@ export default function About() {
             Welcome to 48 Wall Street
           </p>
           <div className="bg-primary mx-auto mb-8 h-px w-16"></div>
-          <h2 className="font-primary text-dark-black mb-8 text-5xl font-light tracking-wide md:text-6xl lg:text-7xl">
-            THE HISTORIC VENUE LOCATION
-          </h2>
-          <p className="font-secondary mx-auto max-w-4xl text-sm leading-relaxed text-gray-700 md:text-base">
+          <h2 className="heading-hero">THE HISTORIC VENUE LOCATION</h2>
+          <p className="text-lead">
             With 1.3 million square feet of class-a offices space, this 72-story
             landmark address features floorplans ranging from 6,000 square feet
             to 38,000 square feet with the incredible views and world-class

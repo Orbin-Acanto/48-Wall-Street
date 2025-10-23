@@ -1,3 +1,4 @@
+import CustomButton from '@/components/CustomButton';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -21,11 +22,11 @@ export default function AboutParralax() {
       <div className="relative flex min-h-screen items-center justify-center px-6">
         <div className="w-full max-w-4xl">
           <div className="bg-dark-black/70 px-8 py-16 text-center backdrop-blur-sm md:px-16 md:py-20">
-            <h2 className="font-primary mb-8 text-3xl tracking-[0.3em] text-white uppercase md:text-4xl lg:text-6xl">
+            <h2 className="heading-hero text-white">
               THE Wall Street best kept secret
             </h2>
 
-            <p className="font-secondary mx-auto mb-10 max-w-3xl text-base leading-relaxed text-gray-200 md:text-lg">
+            <p className="text-lead mb-8 text-gray-300">
               This space has retained much of its original 1920&apos;s
               architectural detail; from the 30-foot ceilings to its beautiful
               Palladian windows. The Grand Mezzanine can host and accommodate a
@@ -36,9 +37,7 @@ export default function AboutParralax() {
             </p>
 
             <Link href="/contact">
-              <button className="border-primary text-dark-black bg-primary cursor-pointer border px-8 py-3 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-black">
-                Booking INQUIRES
-              </button>
+              <CustomButton variant="primary">Booking INQUIRES</CustomButton>
             </Link>
           </div>
         </div>

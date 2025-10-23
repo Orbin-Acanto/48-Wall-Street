@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { JourneyEvent } from '@/types';
 import { EventCard } from '../EventCard';
 import Link from 'next/link';
-import ScrollIcon from '../ScrollIcon';
+import CustomButton from '../CustomButton';
 
 interface Props {
   items: JourneyEvent[];
@@ -48,19 +48,17 @@ export default function JourneyTimelineScroll({ items }: Props) {
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-              className="border-primary/20 mb-6 inline-flex items-center gap-2 rounded-full border bg-white/90 px-5 py-2 backdrop-blur-sm"
+              className="mb-6 inline-flex items-center gap-2 border-none bg-white px-5 py-2 backdrop-blur-sm"
             >
-              <div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
+              {/* <div className="bg-primary h-2 w-2 animate-pulse rounded-full" /> */}
               <span className="text-primary text-sm tracking-wider uppercase">
                 Our Portfolio
               </span>
             </motion.div>
 
-            <h2 className="font-primary mb-6 text-4xl tracking-wide uppercase md:text-5xl lg:text-7xl">
-              Our Event Journey
-            </h2>
+            <h2 className="heading-hero text-white">Our Event Journey</h2>
 
-            <p className="font-secondary mx-auto max-w-2xl text-base text-gray-200 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] md:text-lg lg:text-xl">
+            <p className="text-lead text-white">
               Follow our path of creating unforgettable moments across the
               country
             </p>
@@ -182,21 +180,13 @@ export default function JourneyTimelineScroll({ items }: Props) {
           transition={{ duration: 0.6 }}
           className="mt-20 text-center md:mt-24 lg:mt-32"
         >
-          <div className="mx-auto max-w-3xl border-2 border-gray-200 bg-white/95 p-8 backdrop-blur-sm md:p-12 lg:p-16">
-            <h3 className="font-primary text-primary mb-6 text-2xl tracking-wide md:text-3xl lg:text-6xl">
-              Ready to start your journey?
-            </h3>
-            <p className="font-secondary mx-auto mb-8 max-w-xl text-base text-gray-700 md:text-lg">
+          <div className="mx-auto max-w-4xl bg-white/95 p-8 backdrop-blur-sm md:p-12 lg:p-16">
+            <h3 className="heading-hero text-primary">Ready to start?</h3>
+            <p className="text-lead mb-8">
               Let&apos;s create an unforgettable event experience together
             </p>
             <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-primary font-secondary bg-primary hover:border-primary/80 hover:bg-primary/80 cursor-pointer border-2 px-10 py-4 text-base text-white transition-all md:px-12 md:text-lg"
-              >
-                Begin Your Event
-              </motion.button>
+              <CustomButton variant="primary">Begin Your Event</CustomButton>
             </Link>
           </div>
         </motion.div>

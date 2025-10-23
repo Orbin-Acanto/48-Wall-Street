@@ -53,6 +53,16 @@ html {
   }
 }
 
+@layer components {
+  .heading-hero {
+    @apply font-primary text-dark-black mb-8 text-5xl font-light tracking-wide uppercase md:text-6xl lg:text-7xl;
+  }
+
+  .text-lead {
+    @apply font-secondary mx-auto max-w-4xl text-sm leading-relaxed text-gray-700 md:text-base;
+  }
+}
+
 .flip-book-container {
   display: flex;
   justify-content: center;

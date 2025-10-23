@@ -61,11 +61,7 @@ export default function ParallaxSection({
       {(title || subtitle) && (
         <div className="relative z-10 flex h-full items-center justify-center">
           <div className="px-6 text-center text-white">
-            {title && (
-              <h2 className="font-primary mb-6 text-4xl tracking-wide uppercase md:text-5xl lg:text-7xl">
-                {title}
-              </h2>
-            )}
+            {title && <h2 className="heading-hero text-white">{title}</h2>}
             {subtitle && (
               <p className="font-secondary text-background text-lg font-semibold tracking-wider uppercase md:text-xl lg:text-2xl">
                 {subtitle}
