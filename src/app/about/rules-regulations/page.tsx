@@ -561,7 +561,7 @@ const RulesRegulations = () => {
       {/* Accordion Sections */}
       <section className="px-6 py-12 md:px-12 md:py-20 lg:px-20">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-primary text-primary mb-4 mb-8 text-center text-3xl tracking-wider uppercase md:text-4xl lg:text-5xl">
+          <h2 className="font-primary text-primary mb-8 text-center text-3xl tracking-wider uppercase md:text-4xl lg:text-5xl">
             Event Guidelines
           </h2>
 
