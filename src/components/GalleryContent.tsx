@@ -12,14 +12,7 @@ export default function GalleryContent() {
   const router = useRouter();
 
   const tabFromUrl = searchParams.get('tab');
-  const validTabs = [
-    'corporate',
-    'conference',
-    'wedding',
-    'fashion',
-    'bar',
-    'holiday',
-  ];
+  const validTabs = ['corporate', 'wedding', 'fashion', 'bar', 'holiday'];
 
   const [activeTab, setActiveTab] = useState(() => {
     return validTabs.includes(tabFromUrl || '') ? tabFromUrl : 'holiday';
@@ -35,7 +28,6 @@ export default function GalleryContent() {
 
   const tabs = [
     { id: 'corporate', name: 'Corporate' },
-    { id: 'conference', name: 'Conference & Meetings' },
     { id: 'wedding', name: 'Wedding' },
     { id: 'fashion', name: 'Fashion' },
     { id: 'bar', name: 'Bar & Bat Mitzvahs' },
