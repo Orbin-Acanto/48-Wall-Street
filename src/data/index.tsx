@@ -1770,11 +1770,10 @@ export const eventCateringData = {
 export const eventRentalsData = {
   title: 'Rentals for your Event in NYC',
   subtitle: 'Transform Your Event with Exclusive Furniture & Props',
-  // heroImage:
-  //   'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2000',
+  leadTitle: 'Premium Event Rentals',
   heroImage: '/videos/er.mp4',
   leadDescription:
-    "MMEink is the event industry's leader for 26 years when it comes to exclusive furniture and prop rentals. We have THOUSANDS of unique props which can transform any event into a wonderland or a tropical location. MME has the ability to outfit your entire event to suit your personal style, whether it is vibrant and fun or sleek, chic, or simple but elegant, MME understands our clients' different styles and personalities. At 48 Wall Street, anything is possible. The space is as vast as our imaginations here at MMEink, which helps us when we transform 48 Wall Street with our wide arrange of luxurious furniture and unique props to set the stage for your next corporate or private event.",
+    'MMEink is the event industry’s leader for 26 years when it comes to exclusive furniture and prop rentals. We have THOUSANDS of unique props which can transform any event into a wonderland or a tropical location. MME has the ability to outfit your entire event to suit your personal style, whether it is vibrant and fun or sleek, chic, or simple but elegant, MME understands our clients’ different styles and personalities. At 48 Wall Street, anything is possible. The space is as vast as our imaginations here at MMEink, which helps us when we transform 48 Wall Street with our wide arrange of luxurious furniture and unique props to set the stage for your next corporate or private event.',
   sections: [
     {
       id: 'decor-rentals',
@@ -1782,15 +1781,11 @@ export const eventRentalsData = {
       description:
         'When it comes to transforming the space at 48 Wall Street, our team knows how to deliver a breathtaking experience for your guests. With a variety of décor accents and life-like props, MMEink will help you customize the look for your event. MMEink maintains an elite line of scenic décor that allows us to take your event to the next level. Our exclusive inventory is composed of chic lounges and décor accents that offer a variety of exciting furnishings to choose from. With a complete line of luxury rentals our fashionable décor items make styling your next event stress-free.',
       images: [
-        '/service/entertainment/20250821_184731.jpg',
-        '/service/entertainment/entertainment.png',
-        '/service/entertainment/IMG_1278.jpg',
+        '/service/decor/20231214_123920.jpg',
+        '/service/decor/DJI_0923.jpg',
+        '/service/decor/IMG_3420.jpg',
       ],
-      imageAlts: [
-        'Rentals display 1',
-        'Rentals display 2',
-        'Rentals display 3',
-      ],
+      imageAlts: ['decor display 1', 'decor display 2', 'decor display 3'],
     },
     {
       id: 'staging-rentals',
@@ -1798,14 +1793,17 @@ export const eventRentalsData = {
       description:
         'We provide 48 Wall Street with a variety of staging services. Whether it is a basic stage for a valued speaker or an elaborate stage for a musical performer, our design team and in-house custom fabrication shop will hand craft the perfect staging for your event. Our design team will help you determine the perfect look for your next event, whether it be simple or extravagant.',
       images: [
-        '/service/entertainment/20250821_184731.jpg',
-        '/service/entertainment/entertainment.png',
-        '/service/entertainment/IMG_1278.jpg',
+        '/service/staging/20240229_134449.jpg',
+        '/service/staging/DSC_0248.jpg',
+        '/service/staging/IMG_2222.jpg',
+        '/service/staging/MOAF_SAMSUNG-470.jpg',
       ],
       imageAlts: [
-        'Rentals display 1',
-        'Rentals display 2',
-        'Rentals display 3',
+        'staging display 1',
+        'staging display 2',
+        'staging display 3',
+        'staging display 4',
+        'staging display 5',
       ],
     },
     {
@@ -1814,14 +1812,18 @@ export const eventRentalsData = {
       description:
         '48 Wall Street can accommodate all of your catering rental needs. We can provide a full line of event catering rentals which range from back of the house to the front of the house such as liquor needs and bar set up to kitchen rental items such as puffers and ovens. We also make sure your linens, tables, chairs, flat ware and stem ware exude the style of your event.',
       images: [
-        '/service/entertainment/20250821_184731.jpg',
-        '/service/entertainment/entertainment.png',
-        '/service/entertainment/IMG_1278.jpg',
+        '/service/catering/20240229_163524.jpg',
+        '/service/catering/20241112_164451.jpg',
+        '/service/catering/DJI_20231130_164612_1061.jpg',
+        '/service/catering/IMG_7900.jpg',
+        '/service/catering/JSV_3463.jpg',
       ],
       imageAlts: [
-        'Rentals display 1',
-        'Rentals display 2',
-        'Rentals display 3',
+        'catering display 1',
+        'catering display 2',
+        'catering display 3',
+        'catering display 4',
+        'catering display 5',
       ],
     },
   ],
