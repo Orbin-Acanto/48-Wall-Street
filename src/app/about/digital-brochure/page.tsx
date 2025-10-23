@@ -105,7 +105,7 @@ export default function DigitalBrochurePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-white py-16 md:py-24">
+      <section className="relative overflow-hidden bg-white py-12 md:py-20">
         <div className="relative container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <motion.div
@@ -118,7 +118,7 @@ export default function DigitalBrochurePage() {
                 Ready to Host Your Event?
               </h2>
 
-              <p className="text-lead mb-8">
+              <p className="text-lead mb-8 max-w-2xl">
                 Let&apos;s discuss how 48 Wall Street can be the perfect venue
                 for your next celebration
                 <br /> or corporate gathering.

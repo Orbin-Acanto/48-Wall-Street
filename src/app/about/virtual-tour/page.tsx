@@ -10,7 +10,7 @@ export default function VirtualTourPage() {
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[600px] overflow-hidden md:h-[800px] lg:h-[800px]">
+      <section className="relative h-[600px] overflow-hidden md:h-[700px] lg:h-[700px]">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -31,7 +31,7 @@ export default function VirtualTourPage() {
               transition={{ duration: 0.8 }}
             >
               {/* Main Title */}
-              <h1 className="font-primary text-whitesmoke mb-6 text-5xl tracking-wider uppercase md:text-6xl lg:text-7xl">
+              <h1 className="heading-hero text-white">
                 Experience 48 Wall Street
               </h1>
 
@@ -48,7 +48,7 @@ export default function VirtualTourPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="font-secondary mx-auto mb-10 max-w-3xl text-lg text-white/90 md:text-xl lg:text-2xl"
+                className="text-lead mb-24 text-gray-300"
               >
                 Take an immersive 3D journey through our historic venue from
                 anywhere in the world
@@ -62,21 +62,8 @@ export default function VirtualTourPage() {
                 transition={{ duration: 0.8, delay: 0.7 }}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary font-secondary hover:bg-primary/90 inline-flex items-center gap-3 px-10 py-4 tracking-wider text-white uppercase shadow-2xl transition md:px-12 md:py-5"
+                className="font-secondary bg-primary text-dark-black border-primary hover:bg-primary/90 cursor-pointer border-2 px-8 py-4 text-sm font-semibold tracking-wide uppercase shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  />
-                </svg>
                 <span>Start Virtual Tour</span>
               </motion.a>
             </motion.div>
@@ -116,7 +103,7 @@ export default function VirtualTourPage() {
       </section>
 
       {/* Virtual Tour Section */}
-      <section id="tour" className="bg-white py-16 md:py-24">
+      <section id="tour" className="bg-white py-12 md:py-20">
         <div className="container mx-auto px-4">
           {/* Section Header */}
           <motion.div
@@ -126,10 +113,10 @@ export default function VirtualTourPage() {
             transition={{ duration: 0.6 }}
             className="mx-auto mb-12 max-w-3xl text-center"
           >
-            <h2 className="font-primary text-primary mb-4 text-3xl md:text-4xl lg:text-5xl">
+            <h2 className="font-primary text-primary mb-4 text-4xl uppercase md:text-5xl lg:text-6xl">
               Explore Every Detail
             </h2>
-            <p className="font-secondary text-lg text-gray-400 md:text-xl">
+            <p className="text-lead text-gray-500">
               Navigate through our stunning venue at your own pace. Click, drag,
               and discover the perfect space for your event.
             </p>
@@ -145,7 +132,7 @@ export default function VirtualTourPage() {
           >
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               {/* Control Tip 1 */}
-              <div className="flex items-center gap-3 rounded-lg bg-gray-50 p-4">
+              <div className="flex items-center gap-3 bg-gray-50 p-4">
                 <div className="bg-primary flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full">
                   <svg
                     className="h-6 w-6 text-white"
@@ -168,7 +155,7 @@ export default function VirtualTourPage() {
               </div>
 
               {/* Control Tip 2 */}
-              <div className="flex items-center gap-3 rounded-lg bg-gray-50 p-4">
+              <div className="flex items-center gap-3 bg-gray-50 p-4">
                 <div className="bg-primary flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full">
                   <svg
                     className="h-6 w-6 text-white"
@@ -191,7 +178,7 @@ export default function VirtualTourPage() {
               </div>
 
               {/* Control Tip 3 */}
-              <div className="flex items-center gap-3 rounded-lg bg-gray-50 p-4">
+              <div className="flex items-center gap-3 bg-gray-50 p-4">
                 <div className="bg-primary flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full">
                   <svg
                     className="h-6 w-6 text-white"
@@ -304,7 +291,7 @@ export default function VirtualTourPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-gray-50 py-16 md:py-24">
+      <section className="relative overflow-hidden bg-gray-50 py-12 md:py-20">
         <div className="relative container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <motion.div
@@ -313,11 +300,11 @@ export default function VirtualTourPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="font-primary mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
+              <h2 className="font-primary text-primary mb-4 text-3xl font-bold uppercase md:text-4xl lg:text-5xl">
                 Ready to See It in Person?
               </h2>
 
-              <p className="font-secondary mb-8 text-lg text-gray-700 md:text-xl">
+              <p className="text-lead mb-8 max-w-2xl">
                 The virtual tour is just the beginning. Schedule a private
                 walkthrough and experience the elegance of 48 Wall Street
                 firsthand.
@@ -326,9 +313,7 @@ export default function VirtualTourPage() {
               {/* CTA Buttons */}
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Link href="/about/digital-brochure">
-                  <CustomButton variant="primary" className="text-white">
-                    View Brochure
-                  </CustomButton>
+                  <CustomButton variant="primary">View Brochure</CustomButton>
                 </Link>
               </div>
 

@@ -25,11 +25,12 @@ export default function JourneyTimelineScroll({ items }: Props) {
       ref={containerRef}
       className={`relative min-h-screen overflow-hidden bg-cover bg-fixed bg-center`}
       style={{
-        backgroundImage: "url('/misc/journey.jpg')",
+        backgroundImage: "url('/misc/journey.png')",
       }}
     >
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-white/15 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-white/5" />
         <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_30%,rgba(0,0,0,0.06)_0%,rgba(0,0,0,0)_65%)]" />
       </div>
       {/* <ScrollIcon /> */}
