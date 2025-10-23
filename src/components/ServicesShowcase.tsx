@@ -2,6 +2,8 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import Image from 'next/image';
+import BookReader from './BookReader';
+import { menuPages } from '@/data';
 
 type ServiceSection = {
   id: string;
@@ -21,6 +23,7 @@ type Props = {
   logoImage?: string;
   logoLink?: string;
   videoSection?: { title: string; embedUrl: string; thumbnail: string };
+  menu?: boolean;
 };
 
 export default function CinematicServicesShowcase({
@@ -32,6 +35,7 @@ export default function CinematicServicesShowcase({
   logoImage,
   logoLink,
   videoSection,
+  menu = false,
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -85,31 +89,6 @@ export default function CinematicServicesShowcase({
         aria-label="Hero"
         className="relative flex h-screen max-h-[1100px] w-full items-center overflow-hidden"
       >
-        {/* Background image (no parallax) */}
-        {/* <div className="absolute inset-0 will-change-transform">
-          <Image
-            src={heroImage}
-            alt={title}
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        </div> */}
-
-        {/* <div className="absolute inset-0 overflow-hidden will-change-transform">
-          <video
-            className="absolute inset-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-          >
-            <source src={heroImage} type="video/mp4" />
-          </video>
-        </div> */}
-
         <div className="absolute inset-0 overflow-hidden will-change-transform">
           <video
             className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-in-out"
@@ -215,7 +194,7 @@ export default function CinematicServicesShowcase({
       {/* 2ND SECTION */}
       <section
         id="lead"
-        className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-100 py-24 lg:py-32"
+        className="relative overflow-hidden bg-white py-16 lg:py-24"
       >
         <div className="pointer-events-none absolute inset-0">
           <div
@@ -275,7 +254,19 @@ export default function CinematicServicesShowcase({
           </motion.div>
         </div>
       </section>
+      {menu && (
+        <section id="book">
+          <BookReader
+            pages={menuPages}
+            title="Tardis Catering & Hospitality 2025"
+            subtitle="Indulge in a Gourmet Dining Experience at Your Next Event"
+            downloadUrl="/menu/48-wall-menu.2025_.pdf"
+            pageColor="text-dark-black"
+          />
+        </section>
+      )}
 
+      {/* Service Area  */}
       <main id="services" className="relative">
         {sections.map((section, idx) => {
           const ref = React.createRef<HTMLDivElement>();

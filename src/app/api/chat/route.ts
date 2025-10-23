@@ -1,8 +1,5 @@
 import { NextRequest } from 'next/server';
 
-const WEBHOOK_URL = process.env.N8N_CHAT_WEBHOOK_URL!;
-// const WEBHOOK_KEY = process.env.CHAT_WEBHOOK_KEY;
-
 export const runtime = 'edge';
 
 const corsHeaders = {
@@ -18,11 +15,18 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.text();
 
+    const WEBHOOK_URL = process.env.N8N_CHAT_WEBHOOK_URL!;
+    const username = process.env.N8N_USERNAME!;
+    const password = process.env.N8N_PASSWORD!;
+    const credentials = Buffer.from(`${username}:${password}`).toString(
+      'base64'
+    );
+
     const res = await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // ...(WEBHOOK_KEY ? { Authorization: `Bearer ${WEBHOOK_KEY}` } : {}),
+        Authorization: `Basic ${credentials}`,
       },
       body,
     });

@@ -15,6 +15,7 @@ interface BookReaderProps {
   subtitle?: string;
   downloadUrl?: string;
   className?: string;
+  pageColor?: string;
 }
 
 interface PageProps {
@@ -23,6 +24,7 @@ interface PageProps {
   pageNumber: number;
   isFirstPage?: boolean;
   isLastPage?: boolean;
+  pageColor?: string;
 }
 
 interface FlipBookRef {
@@ -34,7 +36,7 @@ interface FlipBookRef {
 }
 
 const Page = React.forwardRef<HTMLDivElement, PageProps>(
-  ({ image, alt, pageNumber, isFirstPage, isLastPage }, ref) => {
+  ({ image, alt, pageNumber, isFirstPage, isLastPage, pageColor }, ref) => {
     return (
       <div
         ref={ref}
@@ -46,7 +48,9 @@ const Page = React.forwardRef<HTMLDivElement, PageProps>(
           className={`${isFirstPage || isLastPage ? 'h-full w-auto max-w-full object-contain' : 'h-full w-full object-cover'}`}
           draggable={false}
         />
-        <div className="absolute right-4 bottom-0 px-3 py-1 text-sm font-semibold text-white">
+        <div
+          className={`absolute right-4 bottom-0 px-3 py-1 text-sm font-semibold ${pageColor}`}
+        >
           {pageNumber}
         </div>
       </div>
@@ -62,6 +66,7 @@ export default function BookReader({
   subtitle,
   downloadUrl,
   className = '',
+  pageColor = 'text-white',
 }: BookReaderProps) {
   const bookRef = useRef<FlipBookRef | null>(null);
   const fullscreenBookRef = useRef<FlipBookRef | null>(null);
@@ -295,6 +300,7 @@ export default function BookReader({
                         pageNumber={index + 1}
                         isFirstPage={index === 0}
                         isLastPage={index === pages.length - 1}
+                        pageColor={pageColor}
                       />
                     ))}
                   </HTMLFlipBook>
@@ -443,6 +449,7 @@ export default function BookReader({
                         pageNumber={index + 1}
                         isFirstPage={index === 0}
                         isLastPage={index === pages.length - 1}
+                        pageColor={pageColor}
                       />
                     ))}
                   </HTMLFlipBook>
