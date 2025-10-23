@@ -487,22 +487,19 @@ const RulesRegulations = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&auto=format&fit=crop')",
+            backgroundImage: "url('/misc/wall-sign.jpg')",
           }}
         />
-        <div className="from-dark-black/70 via-dark-black/50 to-dark-black/80 absolute inset-0 bg-gradient-to-b" />
+        <div className="from-dark-black/70 via-dark-black/70 to-dark-black/80 absolute inset-0 bg-gradient-to-b" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
           <div>
-            <h1 className="font-primary text-whitesmoke mb-4 text-5xl tracking-wider md:text-7xl lg:text-8xl">
-              48 WALL STREET
-            </h1>
+            <h1 className="heading-hero text-white">48 WALL STREET</h1>
             <div className="bg-primary mx-auto mb-6 h-[2px] w-32" />
             <p className="font-secondary text-whitesmoke/90 mx-auto max-w-2xl text-lg md:text-xl">
               Venue Rules & Regulations
             </p>
-            <p className="font-secondary text-whitesmoke/70 mx-auto mt-4 max-w-3xl text-base">
+            <p className="text-lead mt-4 text-gray-300">
               Please review all guidelines carefully as you plan your event at
               this landmark building
             </p>
@@ -547,7 +544,7 @@ const RulesRegulations = () => {
       </section>
 
       {/* Introduction */}
-      <section className="bg-white px-6 py-16 md:px-12 lg:px-20">
+      <section className="bg-white px-6 py-12 md:px-12 md:py-20 lg:px-20">
         <div className="mx-auto max-w-4xl">
           <div className="p-8 shadow-lg">
             <p className="font-secondary text-center text-lg leading-relaxed text-gray-700">
@@ -562,9 +559,9 @@ const RulesRegulations = () => {
       </section>
 
       {/* Accordion Sections */}
-      <section className="px-6 py-16 md:px-12 lg:px-20">
+      <section className="px-6 py-12 md:px-12 md:py-20 lg:px-20">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-primary text-primary/80 mb-12 text-center text-4xl tracking-wide uppercase md:text-5xl">
+          <h2 className="font-primary text-primary mb-4 mb-8 text-center text-3xl tracking-wider uppercase md:text-4xl lg:text-5xl">
             Event Guidelines
           </h2>
 
@@ -608,9 +605,9 @@ const RulesRegulations = () => {
       </section>
 
       {/* Important Deadlines */}
-      <section className="bg-white px-6 py-16 md:px-12 lg:px-20">
+      <section className="bg-white px-6 py-12 md:px-12 md:py-20 lg:px-20">
         <div className="mx-auto max-w-7xl">
-          <h2 className="font-primary text-primary mb-16 text-center text-4xl tracking-wide uppercase md:text-5xl">
+          <h2 className="font-primary text-primary mb-8 text-center text-3xl tracking-wider uppercase md:text-4xl lg:text-5xl">
             Important Deadlines
           </h2>
 
@@ -671,12 +668,12 @@ const RulesRegulations = () => {
       </section>
 
       {/* Contact CTA */}
-      <section className="bg-dark-black px-6 py-16 text-center md:px-12 lg:px-20">
+      <section className="bg-dark-black px-6 py-12 text-center md:px-12 md:py-20 lg:px-20">
         <div className="mx-auto max-w-4xl">
-          <h2 className="font-primary text-primary mb-6 text-4xl tracking-wide md:text-5xl">
+          <h2 className="font-primary text-primary mb-4 text-3xl tracking-wider uppercase md:text-4xl lg:text-5xl">
             Questions About Your Event?
           </h2>
-          <p className="font-secondary text-whitesmoke/80 mb-8 text-lg">
+          <p className="text-lead mb-6 text-gray-200">
             Our event team is here to help you navigate the planning process
           </p>
 
@@ -703,9 +700,7 @@ const RulesRegulations = () => {
 
           <div>
             <Link href="/contact">
-              <button className="bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black cursor-pointer border-none px-10 py-5 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
-                Contact Event Team
-              </button>
+              <CustomButton>Contact Event Team</CustomButton>
             </Link>
           </div>
         </div>
