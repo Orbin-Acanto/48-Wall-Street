@@ -4,15 +4,10 @@ import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import { menuPages } from '@/data';
 import BookReader from './BookReader';
-
-type ServiceSection = {
-  id: string;
-  title: string;
-  description: string;
-  images: string[];
-  imageAlts: string[];
-  link?: { text: string; url: string };
-};
+import { ServiceSection } from '@/types';
+import ServiceSectionItem from './ServiceSectionItem';
+import CustomButton from './CustomButton';
+import Link from 'next/link';
 
 type Props = {
   title: string;
@@ -133,7 +128,7 @@ export default function CinematicServicesShowcase({
         <div className="relative z-10 container mx-auto px-6 lg:px-20">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div initial="hidden" animate="show">
-              <h1 className="font-primary text-[clamp(2.4rem,6vw,4.8rem)] leading-relaxed tracking-wider text-white uppercase md:leading-tight">
+              <h2 className="heading-hero text-white">
                 <motion.span
                   className="inline-flex flex-wrap justify-center gap-3"
                   initial="hidden"
@@ -151,7 +146,7 @@ export default function CinematicServicesShowcase({
                     </motion.span>
                   ))}
                 </motion.span>
-              </h1>
+              </h2>
 
               <div className="mb-6 flex justify-center">
                 <motion.div
@@ -166,7 +161,7 @@ export default function CinematicServicesShowcase({
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
-                className="font-secondary mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-white md:text-xl"
+                className="textt-lead font-secondary text-white"
               >
                 {subtitle}
               </motion.p>
@@ -177,12 +172,11 @@ export default function CinematicServicesShowcase({
                 transition={{ delay: 0.9, duration: 0.8 }}
                 className="mt-10 flex justify-center gap-4"
               >
-                <a
-                  href="#services"
-                  className="bg-primary hover:bg-primary/80 inline-flex cursor-pointer items-center gap-3 px-6 py-3 text-base text-white shadow-sm"
-                >
-                  Explore Services
-                </a>
+                <Link href="#services">
+                  <CustomButton variant="primary">
+                    Explore Services
+                  </CustomButton>
+                </Link>
                 {videoSection && (
                   <button
                     onClick={() => videoSection && setVideoOpen(true)}
@@ -210,21 +204,15 @@ export default function CinematicServicesShowcase({
             transition={{ duration: 0.9 }}
             className="mx-auto max-w-5xl"
           >
-            <h2 className="font-primary text-primary mb-8 text-[2.4rem] leading-snug uppercase md:text-[3rem]">
+            <h2 className="font-primary text-primary mb-8 text-[3rem] leading-tight uppercase md:text-[3.6rem]">
               {leadTitle}
             </h2>
-            <p className="font-secondary mx-auto max-w-5xl text-lg leading-relaxed text-gray-700">
-              {leadDescription}
-            </p>
+            <p className="text-lead text-gray-500">{leadDescription}</p>
             {leadDescription2 && (
-              <p className="font-secondary mx-auto mt-8 max-w-5xl text-lg leading-relaxed text-gray-700">
-                {leadDescription2}
-              </p>
+              <p className="text-lead text-gray-500">{leadDescription2}</p>
             )}
             {leadDescription3 && (
-              <p className="font-secondary mx-auto mt-8 max-w-5xl text-lg leading-relaxed text-gray-700">
-                {leadDescription3}
-              </p>
+              <p className="text-lead text-gray-500">{leadDescription3}</p>
             )}
           </motion.div>
         </div>
@@ -232,7 +220,7 @@ export default function CinematicServicesShowcase({
 
       {/* LOGO SECTION */}
       {logoImage && (
-        <section className="bg-whitesmoke relative overflow-hidden py-12">
+        <section className="relative overflow-hidden bg-white py-12">
           <div className="container mx-auto px-6 lg:px-20">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
@@ -278,225 +266,21 @@ export default function CinematicServicesShowcase({
         </section>
       )}
 
-      {/* SERVICES SECTIONS*/}
+      {/* SERVICES SECTIONS */}
       <main id="services" className="relative">
-        {sections.map((section, idx) => {
-          const ref = useRef<HTMLDivElement>(null);
-          const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-          const images =
-            section.images && section.images.length > 0
-              ? section.images
-              : ['/placeholder.jpg'];
-
-          const imageAlts =
-            section.imageAlts && section.imageAlts.length > 0
-              ? section.imageAlts
-              : images.map((_, i) => `${section.title} image ${i + 1}`);
-
-          useEffect(() => {
-            if (images.length <= 1) return;
-
-            const interval = setInterval(() => {
-              setCurrentImageIndex((prev) => (prev + 1) % images.length);
-            }, 7000);
-
-            return () => clearInterval(interval);
-          }, [images.length]);
-
-          return (
-            <section
-              key={section.id}
-              className="relative flex items-center py-12"
-              style={{
-                backgroundColor: idx % 2 === 0 ? 'white' : 'whitesmoke',
-              }}
-              aria-labelledby={`panel-${section.id}`}
-            >
-              <div className="absolute inset-0 -z-20 overflow-hidden">
-                {images.map((image, imgIdx) => (
-                  <div
-                    key={imgIdx}
-                    className="absolute inset-0 transition-opacity duration-1000"
-                    style={{
-                      opacity: currentImageIndex === imgIdx ? 1 : 0,
-                    }}
-                  >
-                    <Image
-                      src={image}
-                      alt={
-                        imageAlts[imgIdx] ||
-                        `${section.title} background ${imgIdx + 1}`
-                      }
-                      fill
-                      className="scale-105 object-cover object-center transition-transform duration-800"
-                      sizes="100vw"
-                      priority={imgIdx === 0}
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          'linear-gradient(180deg, rgba(10,10,10,0.28) 0%, rgba(10,10,10,0.42) 50%, rgba(10,10,10,0.6) 100%)',
-                        mixBlendMode: 'multiply',
-                      }}
-                    />
-                  </div>
-                ))}
-
-                {/* subtle vignette and ambient gold feather */}
-                <div className="pointer-events-none absolute inset-0">
-                  <div
-                    style={{
-                      position: 'absolute',
-                      right: '-20%',
-                      top: '10%',
-                      width: '40%',
-                      height: '60%',
-                      background:
-                        'radial-gradient(closest-side, rgba(210,179,113,0.12), transparent)',
-                      filter: 'blur(40px)',
-                      transform: 'rotate(-12deg)',
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* content */}
-              <div className="relative z-10 container mx-auto px-6 lg:px-20">
-                <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
-                  {/* left copy */}
-                  <motion.div
-                    ref={ref}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.35 }}
-                    variants={panelVariants}
-                    className="max-w-2xl"
-                  >
-                    <h3
-                      id={`panel-${section.id}`}
-                      className="font-primary mb-4 text-[2rem] leading-tight md:text-[2.6rem]"
-                      style={{
-                        color: 'var(--color-gray-900)',
-                        fontFamily: 'var(--font-primary)',
-                      }}
-                    >
-                      {section.title}
-                    </h3>
-
-                    <p
-                      className="font-secondary mb-6 text-[1.05rem] leading-relaxed text-gray-700 md:text-lg"
-                      style={{ fontFamily: 'var(--font-secondary)' }}
-                    >
-                      {section.description}
-                    </p>
-
-                    <div className="text-primary font-secondary flex items-center gap-4">
-                      <button
-                        onClick={() => {
-                          const next =
-                            document.querySelectorAll('section')[idx + 3];
-                          if (next)
-                            (next as HTMLElement).scrollIntoView({
-                              behavior: 'smooth',
-                            });
-                        }}
-                        className="text-primary text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-80"
-                        aria-label={`Scroll to next section after ${section.title}`}
-                      >
-                        Explore next
-                      </button>
-
-                      {section.link && (
-                        <a
-                          href={section.link.url}
-                          className="text-primary text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-80"
-                        >
-                          {section.link.text}
-                        </a>
-                      )}
-                    </div>
-                  </motion.div>
-
-                  {/* right visual card with slideshow */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.98, y: 24 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.35 }}
-                    transition={{ duration: 0.8 }}
-                    className="relative overflow-hidden rounded shadow-2xl shadow-black/20"
-                    style={{
-                      background:
-                        'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))',
-                    }}
-                  >
-                    <div className="relative h-72 md:h-96">
-                      {images.map((image, imgIdx) => (
-                        <div
-                          key={imgIdx}
-                          className="absolute inset-0 transition-opacity duration-1000"
-                          style={{
-                            opacity: currentImageIndex === imgIdx ? 1 : 0,
-                          }}
-                        >
-                          <Image
-                            src={image}
-                            alt={
-                              imageAlts[imgIdx] ||
-                              `${section.title} ${imgIdx + 1}`
-                            }
-                            fill
-                            className="object-cover object-center"
-                            sizes="(max-width:1024px)100vw,50vw"
-                            priority={imgIdx === 0}
-                          />
-                        </div>
-                      ))}
-
-                      {/* soft glass overlay */}
-                      <div
-                        className="pointer-events-none absolute inset-0"
-                        style={{
-                          background:
-                            'linear-gradient(180deg, rgba(255,255,255,0.02), transparent)',
-                          mixBlendMode: 'overlay',
-                        }}
-                      />
-
-                      {/* Slideshow indicators */}
-                      {images.length > 1 && (
-                        <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
-                          {images.map((_, imgIdx) => (
-                            <button
-                              key={imgIdx}
-                              onClick={() => setCurrentImageIndex(imgIdx)}
-                              className="h-2 rounded-full transition-all duration-300 hover:scale-125"
-                              style={{
-                                backgroundColor:
-                                  currentImageIndex === imgIdx
-                                    ? 'rgba(210,179,113,0.9)'
-                                    : 'rgba(255,255,255,0.5)',
-                                width:
-                                  currentImageIndex === imgIdx ? '24px' : '8px',
-                              }}
-                              aria-label={`Go to slide ${imgIdx + 1}`}
-                            />
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </section>
-          );
-        })}
+        {sections.map((section, idx) => (
+          <ServiceSectionItem
+            key={section.id}
+            section={section}
+            idx={idx}
+            panelVariants={panelVariants}
+          />
+        ))}
       </main>
 
       {/* VIDEO SECTION CTA (if provided) */}
       {videoSection && (
-        <section className="bg-[linear-gradient(180deg,#fff,#f7f6f4)] py-20 lg:py-28">
+        <section className="bg-white py-12 lg:py-20">
           <div className="container mx-auto px-6 lg:px-20">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
@@ -506,7 +290,7 @@ export default function CinematicServicesShowcase({
               className="mx-auto max-w-4xl text-center"
             >
               <h4
-                className="font-primary mb-6 text-3xl"
+                className="heading-hero"
                 style={{ color: 'var(--color-gray-900)' }}
               >
                 {videoSection.title}
@@ -589,23 +373,17 @@ export default function CinematicServicesShowcase({
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
           >
-            <h3 className="font-primary mb-4 text-3xl">
+            <h3 className="font-primary mb-4 text-3xl font-bold text-white uppercase md:text-4xl lg:text-5xl">
               Ready to Plan Your Event?
             </h3>
-            <p className="mx-auto mb-8 max-w-2xl text-white/90">
+            <p className="text-lead mb-8 max-w-2xl text-gray-200">
               Let our expert team bring your vision to life — from design to
               production to unforgettable moments.
             </p>
-            <a
-              href="/contact"
-              className="inline-block px-8 py-4 font-semibold text-white"
-              style={{
-                background:
-                  'linear-gradient(90deg, var(--color-primary), rgba(210,179,113,0.85))',
-              }}
-            >
-              Contact Us
-            </a>
+
+            <Link href="/contact">
+              <CustomButton>Contact US</CustomButton>
+            </Link>
           </motion.div>
         </div>
       </footer>

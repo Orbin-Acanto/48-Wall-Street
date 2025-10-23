@@ -20,6 +20,15 @@ export interface Photo {
   span?: 'small' | 'medium' | 'large' | 'wide' | 'tall';
 }
 
+export type ServiceSection = {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  imageAlts: string[];
+  link?: { text: string; url: string };
+};
+
 export interface FormDataType {
   fullName: string;
   company: string;
