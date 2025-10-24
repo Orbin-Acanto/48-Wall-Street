@@ -25,16 +25,16 @@ export default function ContactHero() {
 
               <p>
                 Since 1928, 48 Wall Street has stood as a landmark of
-                architectural excellence in Manhattan's Financial District. Once
-                home to the Bank of New York, our historic venue retains its
-                original grandeur from the soaring 30-foot ceilings and
+                architectural excellence in Manhattan&apos;s Financial District.
+                Once home to the Bank of New York, our historic venue retains
+                its original grandeur from the soaring 30-foot ceilings and
                 Palladian windows to the grand marble staircase that has
-                welcomed generations. Today, this iconic space hosts the city's
-                most memorable events, blending timeless elegance with modern
-                sophistication. Located at the corner of Wall and William
-                Streets, we're ready to bring your vision to life. Reach out to
-                our team and discover why 48 Wall Street continues to be Lower
-                Manhattan's most distinguished event venue.
+                welcomed generations. Today, this iconic space hosts the
+                city&apos;s most memorable events, blending timeless elegance
+                with modern sophistication. Located at the corner of Wall and
+                William Streets, we&apos;re ready to bring your vision to life.
+                Reach out to our team and discover why 48 Wall Street continues
+                to be Lower Manhattan&apos;s most distinguished event venue.
               </p>
             </div>
           </div>

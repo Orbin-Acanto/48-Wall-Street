@@ -44,10 +44,10 @@ export default function LocationPage() {
             <h1 className="heading-hero text-white">OUR LOCATION</h1>
             <div className="bg-primary mx-auto mb-6 h-[2px] w-44" />
             <p className="text-lead text-gray-200">
-              Situated in the heart of Manhattan's Financial District, 48 Wall
-              Street offers seamless subway access, proximity to top hotels and
-              restaurants, and is moments from the city's most celebrated
-              landmarks.
+              Situated in the heart of Manhattan&apos;s Financial District, 48
+              Wall Street offers seamless subway access, proximity to top hotels
+              and restaurants, and is moments from the city&apos;s most
+              celebrated landmarks.
             </p>
           </motion.div>
 
