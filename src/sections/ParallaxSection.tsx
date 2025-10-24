@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 interface ParallaxSectionProps {
-  imageSrc: string;
+  videoSrc: string;
   title?: string;
   subtitle?: string;
   height?: string;
 }
 
 export default function ParallaxSection({
-  imageSrc,
+  videoSrc,
   title,
   subtitle,
   height = 'h-screen',
@@ -41,21 +41,17 @@ export default function ParallaxSection({
 
   return (
     <section ref={sectionRef} className={`relative ${height} overflow-hidden`}>
-      <div
-        className="absolute inset-0 h-[120%] w-full"
-        style={{
-          transform: `translateY(${scrollPosition * -20}%)`,
-          transition: 'transform 0.1s ease-out',
-        }}
-      >
-        <Image
-          src={imageSrc}
-          alt="Background"
-          fill
-          className="object-cover"
-          priority
+      <div className="absolute inset-0 h-[120%] w-full">
+        <video
+          src={videoSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
       {(title || subtitle) && (

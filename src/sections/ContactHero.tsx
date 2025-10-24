@@ -7,12 +7,12 @@ export default function ContactHero() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left Content */}
           <div className="space-y-6">
-            <h2 className="font-primary text-5xl tracking-wider text-gray-900 uppercase lg:text-6xl">
-              The Grand
+            <h2 className="heading-hero">
+              Where History
               <br />
-              Mezzanine
+              Meets
               <br />
-              Banking Hall
+              Celebration
             </h2>
 
             <div className="bg-primary h-0.5 w-16"></div>
@@ -24,19 +24,24 @@ export default function ContactHero() {
               </p>
 
               <p>
-                Located in the heart of the Financial District, the 48 Wall
-                Street event space occupies three floors of the former Bank of
-                New York & Trust Company Building. The current structure is the
-                third to be erected on the same plot. The cornerstone was laid
-                on January 12, 1928, the 171st birthday of the banks founder,
-                Alexander Hamilton
+                Since 1928, 48 Wall Street has stood as a landmark of
+                architectural excellence in Manhattan's Financial District. Once
+                home to the Bank of New York, our historic venue retains its
+                original grandeur from the soaring 30-foot ceilings and
+                Palladian windows to the grand marble staircase that has
+                welcomed generations. Today, this iconic space hosts the city's
+                most memorable events, blending timeless elegance with modern
+                sophistication. Located at the corner of Wall and William
+                Streets, we're ready to bring your vision to life. Reach out to
+                our team and discover why 48 Wall Street continues to be Lower
+                Manhattan's most distinguished event venue.
               </p>
             </div>
           </div>
 
           {/* Right Image */}
           <div className="flex items-center justify-center">
-            <div className="relative h-[500px] w-full max-w-md overflow-hidden rounded-sm shadow-2xl">
+            <div className="relative h-[600px] w-full overflow-hidden rounded-sm shadow-2xl">
               <Image
                 src="/about/contactHero.jpg"
                 alt="Green architectural detail of Manhattan building"

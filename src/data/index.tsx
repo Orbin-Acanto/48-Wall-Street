@@ -769,7 +769,7 @@ export const locations = [
       'Perfect for cocktail hours and VIP lounges',
       'Climate-controlled environment',
     ],
-    image: '/misc/events2.jpg',
+    image: '/about/c1.jpg',
     type: 'Discover Breakout Spaces',
     sqft: '3,500 sq ft',
   },

@@ -42,10 +42,9 @@ export default function Home() {
       <HeroSection />
       <About />
       <ParallaxSection
-        imageSrc="/misc/parallax.jpg"
+        videoSrc="/videos/Lower_Manhattan_Financial_District_Website.mp4"
         title="Lower Manhattan's Premier Event Venue"
-        // subtitle="Wall Street's Best Kept Secret"
-        height="h-[80vh]"
+        height="h-[70vh]"
       />
 
       <VenueAmenities />

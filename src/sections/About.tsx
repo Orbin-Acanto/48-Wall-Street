@@ -28,30 +28,34 @@ export default function About() {
           {/* Left Column */}
           <div className="space-y-6">
             {/* Top Image */}
-            <div className="group relative h-64 overflow-hidden shadow-xl md:h-80">
+            <div className="group relative h-64 overflow-hidden md:h-80">
               <Image
-                src="/about/aboutHero.TIF"
+                src="/about/aboutHero-1.jpg"
                 alt="48 Wall Street Venue"
                 fill
+                quality={100}
+                priority
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
 
             {/* Bottom Row - Two Images */}
             <div className="grid grid-cols-2 gap-6">
-              <div className="group relative h-64 overflow-hidden shadow-xl">
-                <Image
-                  src="/about/about (2).jpg"
-                  alt="Elevators 48 Wall Street"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="group relative h-64 overflow-hidden shadow-xl">
+              <div className="group relative h-64 overflow-hidden">
                 <Image
                   src="/about/about (4).jpg"
                   alt="Lounge Area"
                   fill
+                  quality={100}
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              <div className="group relative h-64 overflow-hidden">
+                <Image
+                  src="/about/about (2).jpg"
+                  alt="Lounge Area"
+                  fill
+                  quality={100}
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
@@ -59,11 +63,12 @@ export default function About() {
           </div>
 
           {/* Right Column - Large Image */}
-          <div className="group relative h-full min-h-[600px] overflow-hidden shadow-xl">
+          <div className="group relative h-full overflow-hidden">
             <Image
               src="/about/about (3).jpg"
               alt="48 Wall Street Building Exterior"
               fill
+              quality={100}
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
           </div>
