@@ -25,7 +25,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 1,
     quote:
-      'WE HAD OUR WEDDING RECEPTION AT 48 WALL STREET AND WORKING WITH THEIR TEAM WAS INCREDIBLE!',
+      'WE HAD OUR WEDDING RECEPTION<br/>AT 48 WALL STREET AND WORKING WITH THEIR TEAM WAS INCREDIBLE!',
     author: 'Sarah & Michael',
     event: 'Wedding Reception',
     details:
@@ -181,7 +181,7 @@ export const navItems = [
   },
   {
     name: 'Services',
-    href: '/services',
+    href: '/services/production',
     dropdown: [
       { name: 'Event Production', href: '/services/production' },
       { name: 'Event Catering', href: '/services/catering' },

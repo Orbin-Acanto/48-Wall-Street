@@ -28,7 +28,7 @@ export default function Testimonial() {
       className="relative overflow-hidden bg-white px-6 py-20"
     >
       {/* Decorative Line */}
-      <div className="absolute top-1/2 right-0 left-0 h-px -translate-y-1/2 bg-gray-800/20"></div>
+      {/* <div className="absolute top-1/2 right-0 left-0 h-px -translate-y-1/2 bg-gray-800/20"></div> */}
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Section Title */}
@@ -42,15 +42,16 @@ export default function Testimonial() {
             {/* Left Side - Testimonial Content */}
             <div className="relative flex flex-col justify-center p-8 md:p-12">
               {/* Quote Mark */}
-              <div className="font-primary text-dark-black/10 absolute top-4 left-4 text-8xl leading-none">
-                &quot;
-              </div>
 
               {/* Main Quote */}
-              <div className="relative z-10 mb-6">
-                <p className="font-secondary text-primary mb-6 text-lg leading-relaxed tracking-wide md:text-xl">
-                  {currentTestimonial.quote}
-                </p>
+              <div className="relative z-10">
+                {/* <div className="font-primary text-primary/70 absolute top-[-30] left-[-30] text-8xl leading-none">
+                  &quot;
+                </div> */}
+                <p
+                  className="font-secondary text-primary mb-6 text-lg leading-relaxed tracking-wide md:text-xl"
+                  dangerouslySetInnerHTML={{ __html: currentTestimonial.quote }}
+                />
               </div>
 
               {/* Detailed Review */}

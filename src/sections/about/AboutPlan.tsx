@@ -28,7 +28,7 @@ export default function AboutPlan({
           priority
         />
         {/* Dark Overlay */}
-        <div className="bg-dark-black/40 absolute inset-0"></div>
+        <div className="bg-dark-black/60 absolute inset-0"></div>
       </div>
 
       {/* Content */}

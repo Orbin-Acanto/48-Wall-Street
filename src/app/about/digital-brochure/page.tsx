@@ -10,7 +10,7 @@ export default function DigitalBrochurePage() {
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[600px] overflow-hidden md:h-[800px] lg:h-[800px]">
+      <section className="relative mt-22 h-[600px] overflow-hidden md:h-[700px] lg:h-[700px]">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -24,7 +24,7 @@ export default function DigitalBrochurePage() {
 
         {/* Content */}
         <div className="relative flex h-full items-center justify-center">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto max-w-4xl px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -32,8 +32,7 @@ export default function DigitalBrochurePage() {
             >
               {/* Main Title */}
               <h1 className="heading-hero text-white">
-                Lower Manhattan&apos;s Premier <br />
-                Event Venue
+                Discover Our Historic Venue
               </h1>
 
               {/* Decorative Line */}
@@ -41,7 +40,7 @@ export default function DigitalBrochurePage() {
                 initial={{ width: 0 }}
                 animate={{ width: '200px' }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="bg-primary mx-auto mb-8 h-1"
+                className="bg-primary mx-auto mb-8 h-0.5 w-16"
               />
 
               {/* Subtitle */}
@@ -49,21 +48,25 @@ export default function DigitalBrochurePage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="tex-lead font-secondary mb-8"
+                className="tex-lead font-secondary mb-8 text-center"
               >
-                Discover exceptional venues across New York, thoughtfully
-                curated for unforgettable events
+                Take a closer look at 48 Wall Street&apos;s stunning 1920s
+                architecture and versatile event spaces. Our digital brochure
+                features detailed floor plans, capacity information, and
+                beautiful photography showcasing why we&apos;re Lower
+                Manhattan&apos;s premier destination for unforgettable
+                celebrations.
               </motion.p>
 
-              <Link href="/location">
-                <CustomButton variant="primary">Explore Venues</CustomButton>
+              <Link href={'/brochures/48Brochure-2025.v7.pdf'} download>
+                <CustomButton variant="primary">Download Brochure</CustomButton>
               </Link>
             </motion.div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
@@ -91,7 +94,7 @@ export default function DigitalBrochurePage() {
               />
             </svg>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </section>
 
       {/* Book Reader */}
@@ -114,7 +117,7 @@ export default function DigitalBrochurePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="font-primary mb-4 text-3xl font-bold text-gray-900 uppercase md:text-4xl lg:text-5xl">
+              <h2 className="font-primary mb-4 text-3xl text-gray-900 uppercase md:text-4xl lg:text-5xl">
                 Ready to Host Your Event?
               </h2>
 

@@ -10,7 +10,7 @@ export default function VirtualTourPage() {
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[600px] overflow-hidden md:h-[700px] lg:h-[700px]">
+      <section className="relative mt-22 h-[600px] overflow-hidden md:h-[700px] lg:h-[700px]">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -40,7 +40,7 @@ export default function VirtualTourPage() {
                 initial={{ width: 0 }}
                 animate={{ width: '200px' }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="bg-primary mx-auto mb-8 h-1"
+                className="bg-primary mx-auto mb-8 h-0.5 w-16"
               />
 
               {/* Subtitle */}
@@ -71,7 +71,7 @@ export default function VirtualTourPage() {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
@@ -99,7 +99,7 @@ export default function VirtualTourPage() {
               />
             </svg>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </section>
 
       {/* Virtual Tour Section */}
@@ -117,8 +117,9 @@ export default function VirtualTourPage() {
               Explore Every Detail
             </h2>
             <p className="text-lead text-gray-500">
-              Navigate through our stunning venue at your own pace. Click, drag,
-              and discover the perfect space for your event.
+              Navigate through our stunning venue at your own pace.
+              <br />
+              Click, drag, and discover the perfect space for your event.
             </p>
           </motion.div>
 
@@ -300,7 +301,7 @@ export default function VirtualTourPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="font-primary text-primary mb-4 text-3xl font-bold uppercase md:text-4xl lg:text-5xl">
+              <h2 className="font-primary text-primary mb-4 text-3xl uppercase md:text-4xl lg:text-5xl">
                 Ready to See It in Person?
               </h2>
 

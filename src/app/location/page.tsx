@@ -9,6 +9,7 @@ import {
   Mail,
   Clock,
   CheckCircle,
+  MapPin,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { locationAmenities, locations, venues } from '@/data';
@@ -41,6 +42,12 @@ export default function LocationPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            <div className="text-primary mb-4 flex items-center justify-center gap-2">
+              <MapPin className="h-5 w-5" />
+              <span className="font-secondary text-sm tracking-widest uppercase">
+                48 Wall Street, New York
+              </span>
+            </div>
             <h1 className="heading-hero text-white">OUR LOCATION</h1>
             <div className="bg-primary mx-auto mb-6 h-[2px] w-44" />
             <p className="text-lead text-gray-200">

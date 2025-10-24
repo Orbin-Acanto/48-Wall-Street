@@ -9,7 +9,7 @@ export default function AboutTeam() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 text-center">
-          <p className="font-secondary text-primary text-md mb-4 tracking-[0.3em] uppercase">
+          <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
             Get to Know Us
           </p>
           <h2 className="heading-hero">MEET OUR TEAM</h2>

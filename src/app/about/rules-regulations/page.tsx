@@ -483,7 +483,7 @@ const RulesRegulations = () => {
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[70vh] overflow-hidden">
+      <section className="relative mt-22 h-[70vh] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{

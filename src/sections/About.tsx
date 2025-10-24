@@ -69,7 +69,7 @@ export default function About() {
               alt="48 Wall Street Building Exterior"
               fill
               quality={100}
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              className="scale-105 object-cover transition-transform duration-500 group-hover:scale-115"
             />
           </div>
         </div>

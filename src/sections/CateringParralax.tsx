@@ -76,7 +76,7 @@ export default function CateringSection() {
         <div className="grid items-center gap-6 lg:grid-cols-2">
           {/* Left Side - Text Content */}
           <div
-            className="relative mt-20 border border-gray-800/10 bg-white/95 p-8 shadow-2xl backdrop-blur-sm md:px-8 md:py-8"
+            className="relative mt-20 border border-gray-800/10 bg-white/95 p-8 shadow-2xl md:px-8 md:py-8"
             style={{
               transform: `translateY(${scrollProgress * -30}px)`,
             }}
@@ -93,7 +93,7 @@ export default function CateringSection() {
                   src="/logo/tardis-logo-new.png"
                   alt="Catering Service Logo"
                   fill
-                  className="object-contain drop-shadow-lg"
+                  className="object-contain"
                 />
               </div>
             </div>

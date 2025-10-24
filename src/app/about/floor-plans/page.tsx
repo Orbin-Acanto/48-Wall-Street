@@ -51,7 +51,7 @@ export default function FloorPlansPage() {
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[70vh] overflow-hidden">
+      <section className="relative mt-22 h-[70vh] overflow-hidden">
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -70,12 +70,6 @@ export default function FloorPlansPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl"
           >
-            <div className="text-primary mb-4 flex items-center justify-center gap-2">
-              <MapPin className="h-5 w-5" />
-              <span className="font-secondary text-sm tracking-widest uppercase">
-                48 Wall Street, New York
-              </span>
-            </div>
             <h2 className="heading-hero text-white">FLOOR PLANS</h2>
             <div className="bg-primary mx-auto mb-6 h-[2px] w-32" />
             <p className="text-lead max-w-3xl text-gray-200">
@@ -434,7 +428,13 @@ export default function FloorPlansPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Sparkles className="text-primary mx-auto mb-6 h-16 w-16" />
+            <Image
+              src="/icons/sparkles.svg"
+              alt="Icon"
+              width={64}
+              height={64}
+              className="text-primary mx-auto mb-6"
+            />
             <h2 className="heading-hero text-white">Visualize Your Event</h2>
             <p className="text-lead mb-8 text-gray-200">
               Use our interactive 3D designer to place furniture, experiment

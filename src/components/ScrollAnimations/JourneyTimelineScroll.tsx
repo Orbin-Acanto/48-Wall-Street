@@ -49,10 +49,10 @@ export default function JourneyTimelineScroll({ items }: Props) {
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-              className="mb-6 inline-flex items-center gap-2 border-none bg-white px-5 py-2 backdrop-blur-sm"
+              className="mb-4 inline-flex items-center gap-2 border-none"
             >
               {/* <div className="bg-primary h-2 w-2 animate-pulse rounded-full" /> */}
-              <span className="text-primary text-sm tracking-wider uppercase">
+              <span className="font-secondary text-primary text-sm tracking-[0.3em] uppercase">
                 Our Portfolio
               </span>
             </motion.div>

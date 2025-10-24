@@ -36,7 +36,7 @@ export default function AboutHero() {
 
           {/* Right Image */}
           <div className="flex items-center justify-center">
-            <div className="relative h-[500px] w-full max-w-md overflow-hidden rounded-sm shadow-2xl">
+            <div className="relative h-[500px] w-full overflow-hidden rounded-sm shadow-2xl">
               <Image
                 src="/about/aboutHero.tif"
                 alt="Green architectural detail of Manhattan building"
