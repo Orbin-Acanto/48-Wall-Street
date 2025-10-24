@@ -17,11 +17,12 @@ import { categories, priceRanges, products, themes } from '@/data';
 import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
 import CartModal from '@/components/CartModal';
+import CustomButton from '@/components/CustomButton';
 
 export default function RentalsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedTheme, setSelectedTheme] = useState('all');
-  const [priceRange, setPriceRange] = useState('all');
+  // const [priceRange, setPriceRange] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showFilters, setShowFilters] = useState(false);
@@ -38,18 +39,20 @@ export default function RentalsPage() {
       activeCategory === 'all' || product.category === activeCategory;
     const matchesTheme =
       selectedTheme === 'all' || product.theme === selectedTheme;
-    const matchesPrice =
-      priceRange === 'all' || product.priceRange === priceRange;
+    // const matchesPrice =
+    //   priceRange === 'all' || product.priceRange === priceRange;
     const matchesSearch =
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesTheme && matchesPrice && matchesSearch;
+    return (
+      matchesCategory && matchesTheme && /* matchesPrice && */ matchesSearch
+    );
   });
 
   const activeFiltersCount = [
     activeCategory !== 'all',
     selectedTheme !== 'all',
-    priceRange !== 'all',
+    // priceRange !== 'all',
   ].filter(Boolean).length;
 
   const handleAddToCart = (product: Product) => {
@@ -65,14 +68,13 @@ export default function RentalsPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1600&auto=format&fit=crop')",
+            backgroundImage: "url('/about/rentals.jpg')",
           }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5 }}
         />
-        <div className="from-dark-black/80 via-dark-black/60 to-primary/30 absolute inset-0 bg-gradient-to-br" />
+        <div className="from-dark-black/70 via-dark-black/70 to-primary/30 absolute inset-0 bg-gradient-to-br" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
           <motion.div
@@ -80,11 +82,9 @@ export default function RentalsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-primary text-whitesmoke mb-4 text-5xl tracking-wider md:text-7xl lg:text-8xl">
-              RENTAL CATALOG
-            </h1>
+            <h1 className="heading-hero text-white">RENTAL CATALOG</h1>
             <div className="bg-primary mx-auto mb-6 h-[2px] w-32" />
-            <p className="font-secondary text-whitesmoke/90 mx-auto max-w-2xl text-lg md:text-xl">
+            <p className="text-lead text-gray-200">
               Transform your event with our curated collection of furniture,
               props, and interactive experiences
             </p>
@@ -166,7 +166,7 @@ export default function RentalsPage() {
                   </div>
 
                   {/* Price Filter */}
-                  <div>
+                  {/* <div>
                     <label className="font-secondary mb-2 block text-xs font-bold tracking-wider text-gray-600 uppercase">
                       Price Range
                     </label>
@@ -181,7 +181,7 @@ export default function RentalsPage() {
                         </option>
                       ))}
                     </select>
-                  </div>
+                  </div> */}
 
                   {/* Clear Filters */}
                   <div className="flex items-end">
@@ -189,12 +189,11 @@ export default function RentalsPage() {
                       onClick={() => {
                         setActiveCategory('all');
                         setSelectedTheme('all');
-                        setPriceRange('all');
-                        setSearchQuery('');
+                        // setPriceRange('all');
                       }}
-                      className="border-dark-black font-secondary text-dark-black hover:bg-primary hover:text-whitesmoke w-full cursor-pointer rounded-lg border-1 px-4 py-2 text-sm font-semibold transition-all hover:border-none"
+                      className="text-dark-black font-secondary hover:text-primary w-full text-sm font-semibold transition-all"
                     >
-                      Clear All
+                      Clear All Filters
                     </button>
                   </div>
                 </div>
@@ -204,58 +203,50 @@ export default function RentalsPage() {
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="bg-white px-6 py-8">
+      {/* Category Filter */}
+      <section className="bg-white px-6 pt-8 pb-4">
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => {
-              const Icon = category.icon;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`group font-secondary hover:bg-primary flex cursor-pointer items-center gap-3 px-6 py-3 text-sm font-semibold tracking-wider uppercase transition-all ${
-                    activeCategory === category.id
-                      ? 'bg-primary text-white shadow-lg'
-                      : 'bg-whitesmoke hover:text-whitesmoke text-gray-600'
-                  }`}
-                >
-                  <Icon className="h-5 w-5" />
-                  {category.name}
-                </button>
-              );
-            })}
+          <div className="flex flex-wrap justify-center gap-3">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`font-secondary cursor-pointer px-6 py-3 text-sm font-semibold tracking-wider uppercase transition-all ${
+                  activeCategory === category.id
+                    ? 'bg-primary text-whitesmoke shadow-xl'
+                    : 'bg-whitesmoke text-dark-black hover:bg-primary/10'
+                }`}
+              >
+                {category.name}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Products Grid */}
-      <section className="px-6 py-12 md:px-12 lg:px-20">
+      <section className="px-6 py-12">
         <div className="mx-auto max-w-7xl">
-          {/* Results Info */}
-          <div className="mb-8 flex items-center justify-between">
-            <p className="font-secondary text-sm text-gray-600">
-              <span className="text-dark-black font-bold">
-                {filteredProducts.length}
-              </span>{' '}
-              items found
+          <div className="font-secondary mb-6 flex items-center justify-between">
+            <p className="text-dark-black text-sm">
+              Showing{' '}
+              <span className="font-bold">{filteredProducts.length}</span>{' '}
+              rentals
             </p>
           </div>
 
-          {/* Products */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filteredProducts.map((product, index) => (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {filteredProducts.map((product) => (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                onHoverStart={() => setHoveredProduct(product.id)}
-                onHoverEnd={() => setHoveredProduct(null)}
+                onMouseEnter={() => setHoveredProduct(product.id)}
+                onMouseLeave={() => setHoveredProduct(null)}
+                className="group relative cursor-pointer overflow-hidden bg-white shadow-xl transition-all hover:shadow-2xl"
                 onClick={() => setSelectedProduct(product)}
-                className="group relative cursor-pointer overflow-hidden bg-white shadow-lg transition-all hover:shadow-2xl"
               >
-                {/* Product Image */}
+                {/* Image Container */}
                 <div className="relative h-80 overflow-hidden">
                   <motion.img
                     src={
@@ -264,85 +255,96 @@ export default function RentalsPage() {
                         : product.image
                     }
                     alt={product.name}
-                    className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="from-dark-black/60 absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                  {/* Badges */}
-                  <div className="absolute top-4 left-4 flex gap-2">
+                  {/* Overlay Badges */}
+                  <div className="absolute top-4 right-4 flex flex-col gap-2">
                     {product.popular && (
-                      <span className="bg-primary font-secondary text-dark-black flex items-center gap-1 px-3 py-1 text-xs font-bold tracking-wider uppercase">
+                      <span className="bg-primary font-secondary text-dark-black inline-flex items-center gap-1 px-3 py-1 text-xs font-bold tracking-wider uppercase shadow-lg">
                         <Star className="h-3 w-3 fill-current" />
                         Popular
                       </span>
                     )}
                   </div>
 
-                  {/* Quick Actions */}
-                  <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <button className="hover:bg-primary/70 bg-primary cursor-pointer p-2 shadow-lg transition-all">
-                      <Heart className="h-4 w-4" />
-                    </button>
-                    <button className="hover:bg-primary/70 bg-primary cursor-pointer p-2 shadow-lg transition-all">
-                      <Eye className="h-4 w-4" />
-                    </button>
-                  </div>
+                  {/* Hover Quick Actions */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{
+                      opacity: hoveredProduct === product.id ? 1 : 0,
+                      y: hoveredProduct === product.id ? 0 : 20,
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="from-dark-black/90 absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent p-4"
+                  >
+                    <div className="flex gap-2">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedProduct(product);
+                        }}
+                        className="border-whitesmoke text-whitesmoke hover:bg-whitesmoke hover:text-dark-black flex flex-1 cursor-pointer items-center justify-center gap-2 border-2 py-2 text-sm transition-all"
+                      >
+                        <Eye className="h-4 w-4" />
+                        Details
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleAddToCart(product);
+                        }}
+                        className="bg-primary text-dark-black hover:bg-primary/90 flex flex-1 cursor-pointer items-center justify-center gap-2 py-2 text-sm transition-all"
+                      >
+                        <ShoppingCart className="h-4 w-4" />
+                        Add
+                      </button>
+                    </div>
+                  </motion.div>
                 </div>
 
                 {/* Product Info */}
                 <div className="p-6">
-                  <div className="mb-2 flex items-start justify-between">
-                    <h3 className="font-secondary text-primary text-xl font-bold">
+                  <div className="mb-2">
+                    <h3 className="font-primary text-dark-black mb-1 text-xl tracking-wide">
                       {product.name}
                     </h3>
-                    <div className="flex flex-col items-end">
-                      <span className="font-primary text-primary text-2xl">
-                        ${product.price}
-                      </span>
+                    {/* <div className="flex items-center gap-2">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`h-3 w-3 ${
+                              i < Math.floor(product.rating)
+                                ? 'fill-primary text-primary'
+                                : 'text-gray-600'
+                            }`}
+                          />
+                        ))}
+                      </div>
                       <span className="font-secondary text-xs text-gray-600">
-                        per day
+                        ({product.reviews})
                       </span>
-                    </div>
+                    </div> */}
                   </div>
 
-                  <p className="font-secondary mb-4 text-sm text-gray-600">
+                  <p className="font-secondary mb-4 line-clamp-2 text-sm text-gray-600">
                     {product.description}
                   </p>
 
-                  {/* Rating */}
-                  <div className="mb-4 flex items-center gap-2">
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${
-                            i < Math.floor(product.rating)
-                              ? 'fill-primary text-primary'
-                              : 'text-gray-600'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <span className="font-secondary text-sm text-gray-600">
-                      {product.rating} ({product.reviews})
+                  {/* <div className="flex items-baseline gap-2">
+                    <span className="font-primary text-primary text-2xl">
+                      ${product.price}
                     </span>
-                  </div>
+                    <span className="font-secondary text-xs text-gray-600">
+                      per day
+                    </span>
+                  </div> */}
 
-                  {/* Features */}
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {product.features.slice(0, 2).map((feature, i) => (
-                      <span
-                        key={i}
-                        className="bg-primary/10 font-secondary text-dark-black px-3 py-1 text-xs"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                  {/* RENTAL DAYS SELECTOR */}
-                  {/* <div className="mb-4">
-                    <label className="font-secondary mb-2 block text-xs font-bold text-gray-600 uppercase">
-                      Rental Days
+                  {/* Rental Duration Selector */}
+                  {/* <div className="mt-4">
+                    <label className="font-secondary mb-1 block text-xs text-gray-600">
+                      Rental Duration
                     </label>
                     <select
                       value={selectedRentalDays[product.id] || 1}
@@ -365,7 +367,7 @@ export default function RentalsPage() {
                   </div> */}
 
                   {/* Add to Cart */}
-                  <button
+                  {/* <button
                     className="bg-primary font-secondary text-whitesmoke hover:bg-primary/90 w-full cursor-pointer py-3 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -373,7 +375,7 @@ export default function RentalsPage() {
                     }}
                   >
                     Add to Cart
-                  </button>
+                  </button> */}
                 </div>
               </motion.div>
             ))}
@@ -430,7 +432,7 @@ export default function RentalsPage() {
                     {selectedProduct.name}
                   </h2>
 
-                  <div className="mb-4 flex items-center gap-2">
+                  {/* <div className="mb-4 flex items-center gap-2">
                     <div className="flex">
                       {[...Array(5)].map((_, i) => (
                         <Star
@@ -447,7 +449,7 @@ export default function RentalsPage() {
                       {selectedProduct.rating} ({selectedProduct.reviews}{' '}
                       reviews)
                     </span>
-                  </div>
+                  </div> */}
 
                   <p className="font-secondary mb-6 text-gray-600">
                     {selectedProduct.description}
@@ -469,7 +471,7 @@ export default function RentalsPage() {
                     </div>
                   </div>
 
-                  <div className="bg-primary/10 mb-6 p-6">
+                  {/* <div className="bg-primary/10 mb-6 p-6">
                     <div className="mb-2 flex items-baseline gap-2">
                       <span className="font-primary text-primary text-4xl">
                         ${selectedProduct.price}
@@ -481,7 +483,7 @@ export default function RentalsPage() {
                     <p className="font-secondary text-xs text-gray-600">
                       Multi-day discounts available
                     </p>
-                  </div>
+                  </div> */}
 
                   <div className="flex gap-3">
                     <button
@@ -510,17 +512,15 @@ export default function RentalsPage() {
           className="mx-auto max-w-4xl"
         >
           <Sparkles className="text-primary mx-auto mb-6 h-12 w-12" />
-          <h2 className="font-primary text-whitesmoke mb-6 text-4xl tracking-wide md:text-5xl">
+          <h2 className="heading-hero text-white">
             Can&apos;t Find What You Need?
           </h2>
-          <p className="font-secondary text-whitesmoke/80 mb-8 text-lg">
+          <p className="text-lead mb-8 text-gray-200">
             Our team can source custom rentals and create bespoke experiences
             for your event
           </p>
           <Link href="/contact">
-            <button className="bg-primary font-secondary text-dark-black hover:bg-whitesmoke cursor-pointer px-10 py-5 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-2xl">
-              Request Custom Quote
-            </button>
+            <CustomButton>Request Custom Quote</CustomButton>
           </Link>
         </motion.div>
       </section>
