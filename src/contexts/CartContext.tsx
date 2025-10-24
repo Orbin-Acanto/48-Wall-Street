@@ -2,12 +2,12 @@
 
 import {
   CartItem,
-  CartSummary,
-  MULTI_DAY_DISCOUNTS,
+  // CartSummary,
+  // MULTI_DAY_DISCOUNTS,
   Product,
-  PROMO_CODES,
-  PromoCode,
-  TAX_RATE,
+  // PROMO_CODES,
+  // PromoCode,
+  // TAX_RATE,
 } from '@/types';
 import React, {
   createContext,
@@ -19,44 +19,44 @@ import React, {
 } from 'react';
 
 const CART_STORAGE_KEY = 'rental_cart';
-const PROMO_STORAGE_KEY = 'applied_promo';
+// const PROMO_STORAGE_KEY = 'applied_promo';
 
 interface CartContextType {
   cart: CartItem[];
   itemCount: number;
-  summary: CartSummary;
-  appliedPromo: PromoCode | null;
+  // summary: CartSummary;
+  // appliedPromo: PromoCode | null;
   isLoaded: boolean;
   addToCart: (product: Product, rentalDays?: number) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, quantity: number) => void;
   updateRentalDays: (productId: number, days: number) => void;
   clearCart: () => void;
-  applyPromoCode: (code: string) => { success: boolean; message: string };
-  removePromoCode: () => void;
+  // applyPromoCode: (code: string) => { success: boolean; message: string };
+  // removePromoCode: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [appliedPromo, setAppliedPromo] = useState<PromoCode | null>(null);
+  // const [appliedPromo, setAppliedPromo] = useState<PromoCode | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     try {
       const savedCart = localStorage.getItem(CART_STORAGE_KEY);
-      const savedPromo = localStorage.getItem(PROMO_STORAGE_KEY);
+      // const savedPromo = localStorage.getItem(PROMO_STORAGE_KEY);
 
       if (savedCart) {
         const parsedCart = JSON.parse(savedCart);
         setCart(parsedCart);
       }
 
-      if (savedPromo) {
-        const parsedPromo = JSON.parse(savedPromo);
-        setAppliedPromo(parsedPromo);
-      }
+      // if (savedPromo) {
+      //   const parsedPromo = JSON.parse(savedPromo);
+      //   setAppliedPromo(parsedPromo);
+      // }
     } catch (error) {
       console.error('Error loading cart from localStorage:', error);
     } finally {
@@ -74,19 +74,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [cart, isLoaded]);
 
-  useEffect(() => {
-    if (isLoaded) {
-      try {
-        if (appliedPromo) {
-          localStorage.setItem(PROMO_STORAGE_KEY, JSON.stringify(appliedPromo));
-        } else {
-          localStorage.removeItem(PROMO_STORAGE_KEY);
-        }
-      } catch (error) {
-        console.error('Error saving promo to localStorage:', error);
-      }
-    }
-  }, [appliedPromo, isLoaded]);
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     try {
+  //       if (appliedPromo) {
+  //         localStorage.setItem(PROMO_STORAGE_KEY, JSON.stringify(appliedPromo));
+  //       } else {
+  //         localStorage.removeItem(PROMO_STORAGE_KEY);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error saving promo to localStorage:', error);
+  //     }
+  //   }
+  // }, [appliedPromo, isLoaded]);
 
   const addToCart = useCallback((product: Product, rentalDays: number = 1) => {
     setCart((prevCart) => {
@@ -136,103 +136,103 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clearCart = useCallback(() => {
     setCart([]);
-    setAppliedPromo(null);
+    // setAppliedPromo(null);
   }, []);
 
-  const getMultiDayDiscount = (days: number): number => {
-    const applicable = MULTI_DAY_DISCOUNTS.filter((d) => days >= d.days).sort(
-      (a, b) => b.discount - a.discount
-    );
-    return applicable.length > 0 ? applicable[0].discount : 0;
-  };
+  // const getMultiDayDiscount = (days: number): number => {
+  //   const applicable = MULTI_DAY_DISCOUNTS.filter((d) => days >= d.days).sort(
+  //     (a, b) => b.discount - a.discount
+  //   );
+  //   return applicable.length > 0 ? applicable[0].discount : 0;
+  // };
 
-  const calculateSummary = useCallback(
-    (items: CartItem[], promo: PromoCode | null): CartSummary => {
-      let subtotal = 0;
-      let totalMultiDayDiscount = 0;
+  // const calculateSummary = useCallback(
+  //   (items: CartItem[], promo: PromoCode | null): CartSummary => {
+  //     let subtotal = 0;
+  //     let totalMultiDayDiscount = 0;
 
-      items.forEach((item) => {
-        const itemTotal = item.price * item.quantity * item.rentalDays;
-        const multiDayDiscountPercent = getMultiDayDiscount(item.rentalDays);
-        const multiDayDiscount = (itemTotal * multiDayDiscountPercent) / 100;
+  //     items.forEach((item) => {
+  //       const itemTotal = item.price * item.quantity * item.rentalDays;
+  //       const multiDayDiscountPercent = getMultiDayDiscount(item.rentalDays);
+  //       const multiDayDiscount = (itemTotal * multiDayDiscountPercent) / 100;
 
-        subtotal += itemTotal;
-        totalMultiDayDiscount += multiDayDiscount;
-      });
+  //       subtotal += itemTotal;
+  //       totalMultiDayDiscount += multiDayDiscount;
+  //     });
 
-      const afterMultiDayDiscount = subtotal - totalMultiDayDiscount;
+  //     const afterMultiDayDiscount = subtotal - totalMultiDayDiscount;
 
-      let promoDiscount = 0;
-      if (promo) {
-        if (promo.type === 'percentage') {
-          promoDiscount = (afterMultiDayDiscount * promo.discount) / 100;
-        } else {
-          promoDiscount = promo.discount;
-        }
-      }
+  //     let promoDiscount = 0;
+  //     if (promo) {
+  //       if (promo.type === 'percentage') {
+  //         promoDiscount = (afterMultiDayDiscount * promo.discount) / 100;
+  //       } else {
+  //         promoDiscount = promo.discount;
+  //       }
+  //     }
 
-      const afterPromoDiscount = afterMultiDayDiscount - promoDiscount;
+  //     const afterPromoDiscount = afterMultiDayDiscount - promoDiscount;
 
-      const tax = afterPromoDiscount * TAX_RATE;
+  //     const tax = afterPromoDiscount * TAX_RATE;
 
-      const total = afterPromoDiscount + tax;
+  //     const total = afterPromoDiscount + tax;
 
-      return {
-        subtotal,
-        multiDayDiscount: totalMultiDayDiscount,
-        promoDiscount,
-        tax,
-        total,
-      };
-    },
-    []
-  );
+  //     return {
+  //       subtotal,
+  //       multiDayDiscount: totalMultiDayDiscount,
+  //       promoDiscount,
+  //       tax,
+  //       total,
+  //     };
+  //   },
+  //   []
+  // );
 
-  const applyPromoCode = useCallback(
-    (code: string): { success: boolean; message: string } => {
-      const promo = PROMO_CODES.find(
-        (p) => p.code.toLowerCase() === code.toLowerCase()
-      );
+  // const applyPromoCode = useCallback(
+  //   (code: string): { success: boolean; message: string } => {
+  //     const promo = PROMO_CODES.find(
+  //       (p) => p.code.toLowerCase() === code.toLowerCase()
+  //     );
 
-      if (!promo) {
-        return { success: false, message: 'Invalid promo code' };
-      }
+  //     if (!promo) {
+  //       return { success: false, message: 'Invalid promo code' };
+  //     }
 
-      const summary = calculateSummary(cart, null);
+  //     const summary = calculateSummary(cart, null);
 
-      if (promo.minAmount && summary.subtotal < promo.minAmount) {
-        return {
-          success: false,
-          message: `Minimum order of $${promo.minAmount} required`,
-        };
-      }
+  //     if (promo.minAmount && summary.subtotal < promo.minAmount) {
+  //       return {
+  //         success: false,
+  //         message: `Minimum order of $${promo.minAmount} required`,
+  //       };
+  //     }
 
-      setAppliedPromo(promo);
-      return { success: true, message: 'Promo code applied successfully!' };
-    },
-    [cart, calculateSummary]
-  );
+  //     setAppliedPromo(promo);
+  //     return { success: true, message: 'Promo code applied successfully!' };
+  //   },
+  //   [cart, calculateSummary]
+  // );
 
-  const removePromoCode = useCallback(() => {
-    setAppliedPromo(null);
-  }, []);
+  // const removePromoCode = useCallback(() => {
+  //   setAppliedPromo(null);
+  // }, []);
 
-  const summary = calculateSummary(cart, appliedPromo);
+  // const summary = calculateSummary(cart, appliedPromo);
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const value: CartContextType = {
     cart,
     itemCount,
-    summary,
-    appliedPromo,
+    // summary,
+    // appliedPromo,
     isLoaded,
     addToCart,
     removeFromCart,
     updateQuantity,
     updateRentalDays,
     clearCart,
-    applyPromoCode,
-    removePromoCode,
+    // applyPromoCode,
+    // removePromoCode,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

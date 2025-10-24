@@ -8,10 +8,10 @@ import {
   Trash2,
   Plus,
   Minus,
-  Tag,
+  // Tag,
   Calendar,
   Send,
-  AlertCircle,
+  // AlertCircle,
 } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import CustomButton from './CustomButton';
@@ -31,38 +31,38 @@ interface ContactInfo {
 export default function CartModal({ isOpen, onClose }: CartModalProps) {
   const {
     cart,
-    summary,
-    appliedPromo,
+    // summary,
+    // appliedPromo,
     updateQuantity,
     updateRentalDays,
     removeFromCart,
     clearCart,
-    applyPromoCode,
-    removePromoCode,
+    // applyPromoCode,
+    // removePromoCode,
   } = useCart();
 
-  const [promoInput, setPromoInput] = useState('');
-  const [promoMessage, setPromoMessage] = useState<{
-    type: 'success' | 'error';
-    text: string;
-  } | null>(null);
+  // const [promoInput, setPromoInput] = useState('');
+  // const [promoMessage, setPromoMessage] = useState<{
+  //   type: 'success' | 'error';
+  //   text: string;
+  // } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
 
-  const handleApplyPromo = () => {
-    if (!promoInput.trim()) return;
+  // const handleApplyPromo = () => {
+  //   if (!promoInput.trim()) return;
 
-    const result = applyPromoCode(promoInput);
-    setPromoMessage({
-      type: result.success ? 'success' : 'error',
-      text: result.message,
-    });
+  //   const result = applyPromoCode(promoInput);
+  //   setPromoMessage({
+  //     type: result.success ? 'success' : 'error',
+  //     text: result.message,
+  //   });
 
-    if (result.success) {
-      setPromoInput('');
-      setTimeout(() => setPromoMessage(null), 3000);
-    }
-  };
+  //   if (result.success) {
+  //     setPromoInput('');
+  //     setTimeout(() => setPromoMessage(null), 3000);
+  //   }
+  // };
 
   const handleOpenContactForm = () => {
     if (cart.length === 0) return;
@@ -81,8 +81,8 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
     try {
       const proposalData = {
         items: cart,
-        summary,
-        appliedPromo,
+        // summary,
+        // appliedPromo,
         contactInfo,
         timestamp: new Date().toISOString(),
       };
@@ -200,22 +200,22 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                         <div className="flex flex-1 flex-col">
                           <div className="mb-2 flex items-start justify-between">
                             <div>
-                              <h3 className="font-primary text-dark-black text-lg uppercase">
+                              <h3 className="font-primary text-dark-black text-lg">
                                 {item.name}
                               </h3>
-                              <p className="font-secondary text-sm text-gray-500">
-                                ${item.price} per day
-                              </p>
+                              {/* <p className="font-secondary text-primary text-sm font-bold">
+                                ${item.price}/day
+                              </p> */}
                             </div>
                             <button
                               onClick={() => removeFromCart(item.id)}
-                              className="cursor-pointer text-gray-400 transition-colors hover:text-red-500"
+                              className="cursor-pointer text-gray-600 transition-colors hover:text-red-500"
                             >
                               <Trash2 className="h-5 w-5" />
                             </button>
                           </div>
 
-                          {/* Quantity Controls */}
+                          {/* Quantity */}
                           <div className="mb-2 flex items-center gap-2">
                             <span className="font-secondary text-xs text-gray-600 uppercase">
                               Qty:
@@ -271,10 +271,19 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                                     : '5% OFF'}
                               </span>
                             )}
+                            {/* {item.rentalDays >= 3 && (
+                              <span className="bg-primary/20 text-primary font-secondary px-2 py-0.5 text-xs font-bold">
+                                {item.rentalDays >= 14
+                                  ? '15% OFF'
+                                  : item.rentalDays >= 7
+                                    ? '10% OFF'
+                                    : '5% OFF'}
+                              </span>
+                            )} */}
                           </div>
 
                           {/* Item Total */}
-                          <div className="mt-2 text-right">
+                          {/* <div className="mt-2 text-right">
                             <span className="font-primary text-primary text-xl font-bold">
                               $
                               {(
@@ -283,7 +292,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                                 item.rentalDays
                               ).toFixed(2)}
                             </span>
-                          </div>
+                          </div> */}
                         </div>
                       </motion.div>
                     ))}
@@ -305,7 +314,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
               {cart.length > 0 && (
                 <div className="border-t-2 border-gray-200 bg-gray-50 p-6">
                   {/* Promo Code */}
-                  <div className="mb-4">
+                  {/* <div className="mb-4">
                     <label className="font-secondary mb-2 block text-xs font-bold text-gray-600 uppercase">
                       Promo Code
                     </label>
@@ -361,10 +370,10 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                         {promoMessage.text}
                       </motion.div>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Summary */}
-                  <div className="font-secondary mb-4 space-y-2 border-t border-gray-300 pt-4 text-sm">
+                  {/* <div className="font-secondary mb-4 space-y-2 border-t border-gray-300 pt-4 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Subtotal:</span>
                       <span className="font-bold text-gray-600">
@@ -399,7 +408,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                         ${summary.total.toFixed(2)}
                       </span>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Submit Button */}
                   <button
