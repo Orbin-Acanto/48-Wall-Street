@@ -746,48 +746,32 @@ export const galleryPhotos: GPhoto[] = [
 
 export const locations = [
   {
-    name: 'Metropolitan Grand Hall',
+    name: 'Grand Mezzanine Banking Hall',
     address: '350 Fifth Avenue, New York, NY 10118',
-    capacity: '500 guests',
+    capacity: '350 seated | 500 cocktail reception',
     features: [
-      'Rooftop Terrace',
-      'Smart Lighting',
-      'A/V Equipment',
-      'Catering Kitchen',
+      'Original 30-foot coffered ceilings',
+      'Stunning Palladian windows',
+      'Grand marble staircase entrance',
+      '1920s architectural details',
     ],
-    image: '/location/l1.jpg',
-    type: 'Premium Venue',
-    sqft: '8,500 sq ft',
+    image: '/about/about (3).jpg',
+    type: 'Explore Grand Ballroom',
+    sqft: '9,000 sq ft',
   },
   {
-    name: 'Riverside Event Center',
+    name: 'Concourse Level',
     address: '120 Riverside Drive, New York, NY 10024',
-    capacity: '300 guests',
-    features: [
-      'Waterfront Views',
-      'Outdoor Patio',
-      'Eco-Friendly',
-      'Flexible Layout',
-    ],
-    image:
-      'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&auto=format&fit=crop',
-    type: 'Sustainable Space',
-    sqft: '6,000 sq ft',
-  },
-  {
-    name: 'The Industrial Loft',
-    address: '88 Bleecker Street, New York, NY 10012',
     capacity: '200 guests',
     features: [
-      'Exposed Brick',
-      'Natural Light',
-      'Modern Amenities',
-      'Urban Chic',
+      'Divisible into six separate breakout rooms',
+      'Ideal for meetings, workshops, and lectures',
+      'Perfect for cocktail hours and VIP lounges',
+      'Climate-controlled environment',
     ],
-    image:
-      'https://images.unsplash.com/photo-1478147427282-58a87a120781?w=800&auto=format&fit=crop',
-    type: 'Boutique Venue',
-    sqft: '4,200 sq ft',
+    image: '/misc/events2.jpg',
+    type: 'Discover Breakout Spaces',
+    sqft: '3,500 sq ft',
   },
 ];
 
@@ -795,22 +779,22 @@ export const venues = [
   {
     icon: Calendar,
     title: 'Corporate Events',
-    desc: 'Professional settings for conferences & meetings',
+    desc: 'From executive board meetings and annual conferences to product launches and holiday celebrations, 48 Wall Street provides the perfect backdrop for business gatherings of any scale. Our flexible spaces, state-of-the-art AV capabilities, and prime Financial District location make us the preferred choice for companies seeking sophistication and functionality.',
   },
   {
     icon: Sparkles,
     title: 'Weddings',
-    desc: 'Elegant spaces for your special day',
+    desc: 'Exchange vows beneath soaring 30-foot ceilings and celebrate your love story in a venue steeped in elegance and history. Our grand mezzanine and stunning architectural details create an unforgettable setting for ceremonies and receptions, accommodating up to 350 seated guests with impeccable service and timeless beauty.',
   },
   {
     icon: Users,
     title: 'Social Events',
-    desc: 'Perfect venues for celebrations & gatherings',
+    desc: "Milestone celebrations deserve an extraordinary venue. Whether you're planning a Bar or Bat Mitzvah, anniversary party, birthday celebration, or Sweet 16, our versatile spaces and dedicated event team ensure every detail reflects your vision. Create memories that will last a lifetime in a setting as special as your occasion.",
   },
   {
     icon: Star,
     title: 'Fashion Shows',
-    desc: 'Contemporary spaces for runway events',
+    desc: "Make a statement with your next fashion presentation in our dramatic, high-ceiling venue. The grand marble staircase provides the perfect runway entrance, while our expansive floor plans and professional lighting capabilities offer designers the ideal canvas to showcase their latest collections in Lower Manhattan's most distinctive event space.",
   },
 ];
 

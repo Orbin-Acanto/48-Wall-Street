@@ -18,10 +18,8 @@ export default function InteractiveMapSection() {
         <div className="container mx-auto px-4">
           {/* Section Header */}
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <h2 className="font-secondary text-3xl text-gray-900 md:text-4xl lg:text-5xl">
-              Visit Our Venue
-            </h2>
-            <p className="font-primary mt-4 text-lg text-gray-600">
+            <h2 className="heading-hero text-primary">Visit Our Venue</h2>
+            <p className="text-lead mb-8">
               Located in the heart of the Financial District, our historic venue
               is easily accessible and offers a stunning backdrop for your
               event.

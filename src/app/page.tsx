@@ -43,8 +43,8 @@ export default function Home() {
       <About />
       <ParallaxSection
         imageSrc="/misc/parallax.jpg"
-        title="Historic Venue Location"
-        subtitle="Wall Street's Best Kept Secret"
+        title="Lower Manhattan's Premier Event Venue"
+        // subtitle="Wall Street's Best Kept Secret"
         height="h-[80vh]"
       />
 

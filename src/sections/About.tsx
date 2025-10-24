@@ -30,7 +30,7 @@ export default function About() {
             {/* Top Image */}
             <div className="group relative h-64 overflow-hidden shadow-xl md:h-80">
               <Image
-                src="/about/image_4.jpg"
+                src="/about/aboutHero.TIF"
                 alt="48 Wall Street Venue"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -41,7 +41,7 @@ export default function About() {
             <div className="grid grid-cols-2 gap-6">
               <div className="group relative h-64 overflow-hidden shadow-xl">
                 <Image
-                  src="/about/image_3.jpg"
+                  src="/about/about (2).jpg"
                   alt="Elevators 48 Wall Street"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -49,7 +49,7 @@ export default function About() {
               </div>
               <div className="group relative h-64 overflow-hidden shadow-xl">
                 <Image
-                  src="/about/image_1.jpg"
+                  src="/about/about (4).jpg"
                   alt="Lounge Area"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -61,7 +61,7 @@ export default function About() {
           {/* Right Column - Large Image */}
           <div className="group relative h-full min-h-[600px] overflow-hidden shadow-xl">
             <Image
-              src="/about/image_2.jpg"
+              src="/about/about (3).jpg"
               alt="48 Wall Street Building Exterior"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"

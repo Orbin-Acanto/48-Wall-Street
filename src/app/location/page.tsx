@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import {
-  MapPin,
   Users,
   Sparkles,
   ArrowRight,
@@ -16,6 +15,7 @@ import { locationAmenities, locations, venues } from '@/data';
 import CustomButton from '@/components/CustomButton';
 import Link from 'next/link';
 import InteractiveMapSection from '@/sections/InteractiveMapSection';
+import Image from 'next/image';
 
 export default function LocationPage() {
   const [activeLocation, setActiveLocation] = useState(0);
@@ -27,14 +27,13 @@ export default function LocationPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1600&auto=format&fit=crop')",
+            backgroundImage: 'url(/location/historic_location.jpg)',
           }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5 }}
         />
-        <div className="from-dark-black/70 via-dark-black/50 to-dark-black/80 absolute inset-0 bg-gradient-to-b" />
+        <div className="from-dark-black/70 via-dark-black/70 to-dark-black/70 absolute inset-0 bg-gradient-to-b" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
           <motion.div
@@ -42,13 +41,13 @@ export default function LocationPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-whitesmoke font-primary mb-4 text-5xl tracking-wider md:text-7xl lg:text-8xl">
-              OUR LOCATIONS
-            </h1>
-            <div className="bg-primary mx-auto mb-6 h-[2px] w-32" />
-            <p className="font-secondary text-whitesmoke/90 mx-auto max-w-2xl text-lg md:text-xl">
-              Discover exceptional venues across New York, thoughtfully curated
-              for unforgettable events
+            <h1 className="heading-hero text-white">OUR LOCATION</h1>
+            <div className="bg-primary mx-auto mb-6 h-[2px] w-44" />
+            <p className="text-lead text-gray-200">
+              Situated in the heart of Manhattan's Financial District, 48 Wall
+              Street offers seamless subway access, proximity to top hotels and
+              restaurants, and is moments from the city's most celebrated
+              landmarks.
             </p>
           </motion.div>
 
@@ -60,7 +59,7 @@ export default function LocationPage() {
           >
             <Link href="#locations">
               <CustomButton className="group inline-flex items-center gap-2 px-8 py-4 text-sm tracking-wider uppercase transition-all">
-                Explore Venues
+                Explore Venue
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </CustomButton>
             </Link>
@@ -69,15 +68,15 @@ export default function LocationPage() {
       </section>
 
       {/* Event Types */}
-      <section className="px-6 py-20 md:px-12 lg:px-20">
+      <section className="px-6 py-12 md:px-12 md:py-20 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary font-primary mb-12 text-center text-4xl tracking-wide uppercase md:text-5xl"
+            className="heading-hero text-primary text-center"
           >
-            Venues for Every Occasion
+            Venue for Every Occasion
           </motion.h2>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -107,15 +106,18 @@ export default function LocationPage() {
       </section>
 
       {/* Featured Locations */}
-      <section id="locations" className="bg-white px-6 py-20 md:px-12 lg:px-20">
+      <section
+        id="locations"
+        className="bg-white px-6 py-12 md:px-12 md:py-20 lg:px-20"
+      >
         <div className="mx-auto max-w-7xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-primary/80 font-primary mb-16 text-center text-4xl tracking-wide uppercase md:text-5xl"
+            className="heading-hero text-primary text-center"
           >
-            Featured Venues
+            Our Distinctive Spaces
           </motion.h2>
 
           {/* Location Tabs */}
@@ -126,8 +128,8 @@ export default function LocationPage() {
                 onClick={() => setActiveLocation(index)}
                 className={`font-secondary border-none px-6 py-3 text-sm font-medium tracking-wider uppercase transition-all ${
                   activeLocation === index
-                    ? 'bg-primary text-white shadow-lg'
-                    : 'bg-whitesmoke hover:text-whitesmoke'
+                    ? 'bg-primary text-dark-black shadow-lg'
+                    : 'bg-whitesmoke hover:text-dark-black'
                 }`}
               >
                 {location.type}
@@ -144,15 +146,17 @@ export default function LocationPage() {
             className="grid gap-8 lg:grid-cols-2"
           >
             {/* Image */}
-            <div className="relative h-[400px] overflow-hidden rounded-3xl lg:h-[600px]">
-              <img
+            <div className="relative h-[400px] overflow-hidden rounded-sm lg:h-[600px]">
+              <Image
                 src={locations[activeLocation].image}
                 alt={locations[activeLocation].name}
-                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                fill
+                quality={100}
+                priority
+                className="scale-110 object-cover transition-transform duration-700 hover:scale-105"
               />
-              <div className="from-dark-black/60 absolute inset-0 bg-gradient-to-t via-transparent to-transparent" />
               <div className="absolute right-6 bottom-6 left-6">
-                <span className="bg-primary font-secondary text-dark-black inline-block rounded-full px-4 py-2 text-xs font-bold tracking-wider uppercase">
+                <span className="bg-primary font-secondary text-dark-black inline-block px-4 py-2 text-xs font-bold tracking-wider uppercase">
                   {locations[activeLocation].type}
                 </span>
               </div>
@@ -165,12 +169,12 @@ export default function LocationPage() {
               </h3>
 
               <div className="mb-6 space-y-3">
-                <div className="flex items-start gap-3">
+                {/* <div className="flex items-start gap-3">
                   <MapPin className="text-primary mt-1 h-5 w-5 flex-shrink-0" />
                   <p className="font-secondary text-gray-600">
                     {locations[activeLocation].address}
                   </p>
-                </div>
+                </div> */}
                 <div className="flex items-center gap-3">
                   <Users className="text-primary h-5 w-5" />
                   <p className="font-secondary text-gray-600">
@@ -208,9 +212,9 @@ export default function LocationPage() {
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <Link href="/contact">
-                  <button className="bg-primary font-secondary hover:text-whitesmoke cursor-pointer px-8 py-4 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-xl">
-                    Schedule Tour
+                <Link href="/about/virtual-tour">
+                  <button className="bg-primary font-secondary text-dark-black cursor-pointer px-8 py-4 text-sm font-semibold tracking-wider uppercase transition-all hover:shadow-xl">
+                    View in 3D
                   </button>
                 </Link>
                 <Link href="/contact">
@@ -233,10 +237,8 @@ export default function LocationPage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-dark-black font-primary mb-4 text-4xl tracking-wide md:text-5xl">
-              Premium Amenities
-            </h2>
-            <p className="font-secondary mb-12 text-lg text-gray-600">
+            <h2 className="text-primary heading-hero">Premium Amenities</h2>
+            <p className="text-lead mb-8">
               Every venue includes professional-grade amenities
             </p>
           </motion.div>
@@ -269,29 +271,29 @@ export default function LocationPage() {
           viewport={{ once: true }}
           className="mx-auto max-w-4xl"
         >
-          <h2 className="text-primary font-primary mb-6 text-4xl tracking-wide md:text-5xl">
+          <h2 className="text-primary heading-hero">
             Ready to Plan Your Event?
           </h2>
-          <p className="font-secondary text-whitesmoke/80 mb-8 text-lg">
+          <p className="text-lead mb-8 text-gray-200">
             Let us help you find the perfect venue and create an unforgettable
             experience
           </p>
 
           <div className="text-whitesmoke flex flex-wrap items-center justify-center gap-6">
-            <a
+            <Link
               href="tel:+1234567890"
               className="hover:text-primary font-secondary flex items-center gap-2 transition-colors"
             >
               <Phone className="h-5 w-5" />
-              <span>(123) 456-7890</span>
-            </a>
-            <a
-              href="mailto:info@events.com"
+              <span>+1 (877) 885-0705</span>
+            </Link>
+            <Link
+              href="mailto:info@48WallNYC.com"
               className="hover:text-primary font-secondary flex items-center gap-2 transition-colors"
             >
               <Mail className="h-5 w-5" />
-              <span>info@events.com</span>
-            </a>
+              <span>info@48WallNYC.com</span>
+            </Link>
             <div className="font-secondary flex items-center gap-2">
               <Clock className="h-5 w-5" />
               <span>Mon-Fri: 9AM-6PM</span>
@@ -300,9 +302,7 @@ export default function LocationPage() {
 
           <div className="mt-10">
             <Link href="/contact">
-              <CustomButton className="bg-primary font-secondary hover:bg-whitesmoke hover:text-dark-black border-none px-10 py-5 text-sm font-semibold tracking-wider text-white uppercase transition-all hover:shadow-2xl">
-                Book a Consultation
-              </CustomButton>
+              <CustomButton>Book a Consultation</CustomButton>
             </Link>
           </div>
         </motion.div>
