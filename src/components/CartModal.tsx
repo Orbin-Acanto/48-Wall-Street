@@ -262,7 +262,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                               }
                               className="font-secondary focus:ring-primary w-16 border border-gray-300 px-2 py-1 text-sm text-gray-600 focus:outline-none"
                             />
-                            {item.rentalDays >= 3 && (
+                            {/* {item.rentalDays >= 3 && (
                               <span className="bg-primary/20 text-primary font-secondary px-2 py-0.5 text-xs font-bold">
                                 {item.rentalDays >= 14
                                   ? '15% OFF'
@@ -270,7 +270,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
                                     ? '10% OFF'
                                     : '5% OFF'}
                               </span>
-                            )}
+                            )} */}
                             {/* {item.rentalDays >= 3 && (
                               <span className="bg-primary/20 text-primary font-secondary px-2 py-0.5 text-xs font-bold">
                                 {item.rentalDays >= 14
