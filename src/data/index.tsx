@@ -170,7 +170,7 @@ export const navItems = [
     href: '/events/corporate',
     dropdown: [
       { name: 'Corporate Events', href: '/events/corporate' },
-      { name: 'Conferences & Meetings', href: '/events/conferences' },
+      // { name: 'Conferences & Meetings', href: '/events/conferences' },
       { name: 'Fashion Shows', href: '/events/fashion-shows' },
       { name: 'Film & TV Shoots', href: '/events/film-shoots' },
       { name: 'Non-Profit Events', href: '/events/non-profit' },
@@ -233,7 +233,7 @@ export const footerLinks = {
   ],
   events: [
     { name: 'Corporate Events', href: '/events/corporate' },
-    { name: 'Conferences & Meetings', href: '/events/conferences' },
+    // { name: 'Conferences & Meetings', href: '/events/conferences' },
     { name: 'Fashion Shows', href: '/events/fashion-shows' },
     { name: 'Non-Profit Events', href: '/events/non-profit' },
     { name: 'Weddings', href: '/events/weddings' },
@@ -1132,28 +1132,28 @@ export const corporateData: EventShowcaseProps = {
     'Elevate your brand with impactful corporate experiences. From product launches to annual conferences, we deliver professional events that engage audiences, strengthen culture, and drive business results with precision and innovation.',
   images: [
     {
-      src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1600&auto=format&fit=crop',
+      src: '/gallery/corporate/ (24).jpg',
       alt: 'Corporate conference setup',
     },
     {
-      src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Professional networking event',
+      src: '/gallery/corporate/ (10).jpg',
+      alt: 'Corporate conference',
     },
     {
-      src: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Corporate presentation stage',
+      src: '/gallery/corporate/ (19).jpg',
+      alt: 'Corporate conference',
     },
     {
-      src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Business meeting space',
+      src: '/gallery/corporate/ (9).jpg',
+      alt: 'Corporate conference',
     },
     {
-      src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Corporate gala dinner',
+      src: '/gallery/corporate/ (6).jpg',
+      alt: 'Corporate conference',
     },
     {
-      src: 'https://images.unsplash.com/photo-1560439514-4e9645039924?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Team building event',
+      src: '/gallery/corporate/ (2).jpg',
+      alt: 'Corporate conference',
     },
   ],
   tags: [
@@ -1278,28 +1278,28 @@ export const fashionData: EventShowcaseProps = {
     'Create unforgettable fashion experiences that captivate audiences and elevate brands. From intimate trunk shows to major runway productions, we deliver flawless execution with dramatic staging, perfect lighting, and impeccable timing that puts your collection center stage.',
   images: [
     {
-      src: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Fashion runway show',
+      src: '/gallery/fashion/ (6).jpg',
+      alt: 'Fashion show',
     },
     {
-      src: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Models backstage',
+      src: '/gallery/fashion/ (1).jpeg',
+      alt: 'Fashion show',
     },
     {
-      src: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Fashion show audience',
+      src: '/gallery/fashion/ (4).jpg',
+      alt: 'Fashion show',
     },
     {
-      src: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Runway setup',
+      src: '/gallery/fashion/ (7).jpg',
+      alt: 'Fashion show',
     },
     {
-      src: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Fashion presentation',
+      src: '/gallery/fashion/ (12).jpg',
+      alt: 'Fashion show',
     },
     {
-      src: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Designer boutique event',
+      src: '/gallery/fashion/ (14).jpg',
+      alt: 'Fashion show',
     },
   ],
   tags: [
@@ -1424,28 +1424,28 @@ export const mitzvahData: EventShowcaseProps = {
     "Honor this sacred milestone with celebrations that blend tradition and personal style. We create unforgettable Bar and Bat Mitzvah experiences that reflect your family's values, your teen's personality, and the joy of this momentous occasion.",
   images: [
     {
-      src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1600&auto=format&fit=crop',
+      src: '/gallery/bar/39.jpg',
       alt: 'Bar Mitzvah celebration at the Western Wall',
     },
     {
-      src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Party decor setup',
+      src: '/gallery/bar/40.jpg',
+      alt: 'Bar Mitzvah celebration',
     },
     {
-      src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Dance floor celebration',
+      src: '/gallery/bar/43.jpg',
+      alt: 'Bar Mitzvah celebration',
     },
     {
-      src: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Teen party atmosphere',
+      src: '/gallery/bar/44.jpg',
+      alt: 'Bar Mitzvah celebration',
     },
     {
-      src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Themed decorations',
+      src: '/gallery/bar/46.jpg',
+      alt: 'Bar Mitzvah celebration',
     },
     {
-      src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Dessert table display',
+      src: '/gallery/bar/47.jpg',
+      alt: 'Bar Mitzvah celebration',
     },
   ],
   tags: [

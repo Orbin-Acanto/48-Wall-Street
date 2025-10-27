@@ -102,6 +102,12 @@ export default function EventDetails({
                       src={img.src}
                       alt={img.alt || `event-${idx}`}
                       className="h-full w-full object-cover"
+                      style={{
+                        imageRendering: '-webkit-optimize-contrast',
+                        backfaceVisibility: 'hidden',
+                        transform: 'translateZ(0)',
+                      }}
+                      loading="eager"
                     />
                   </motion.button>
                 ))}
@@ -120,6 +126,12 @@ export default function EventDetails({
                     src={images[0]?.src}
                     alt={images[0]?.alt || 'event-0'}
                     className="h-full w-full object-cover"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                    }}
+                    loading="eager"
                   />
                 </motion.button>
 
@@ -134,6 +146,12 @@ export default function EventDetails({
                     src={images[1]?.src}
                     alt={images[1]?.alt || 'event-1'}
                     className="h-full w-full object-cover"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                    }}
+                    loading="eager"
                   />
                 </motion.button>
 
@@ -148,6 +166,12 @@ export default function EventDetails({
                     src={images[2]?.src}
                     alt={images[2]?.alt || 'event-2'}
                     className="h-full w-full object-cover"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                    }}
+                    loading="eager"
                   />
                 </motion.button>
 
@@ -162,6 +186,12 @@ export default function EventDetails({
                     src={images[3]?.src}
                     alt={images[3]?.alt || 'event-3'}
                     className="h-full w-full object-cover"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                    }}
+                    loading="eager"
                   />
                 </motion.button>
 
@@ -176,6 +206,12 @@ export default function EventDetails({
                     src={images[4]?.src}
                     alt={images[4]?.alt || 'event-4'}
                     className="h-full w-full object-cover"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                    }}
+                    loading="eager"
                   />
                 </motion.button>
 
@@ -190,6 +226,12 @@ export default function EventDetails({
                     src={images[5]?.src}
                     alt={images[5]?.alt || 'event-5'}
                     className="h-full w-full object-cover"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                    }}
+                    loading="eager"
                   />
                 </motion.button>
               </div>
@@ -215,11 +257,10 @@ export default function EventDetails({
             {services.map((service, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.05 * i }}
-                className="group"
+                transition={{ delay: i * 0.1 }}
               >
                 <GlassCard className="h-full p-6 md:p-8">
                   <div className="flex items-start gap-4">

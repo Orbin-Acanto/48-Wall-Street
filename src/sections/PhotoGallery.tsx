@@ -87,12 +87,20 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
               key={index}
               onClick={() => openLightbox(index)}
               className={`group relative cursor-pointer overflow-hidden bg-gray-900 ${getSpanClass(photo.span)}`}
+              style={{
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0)',
+              }}
             >
               <Image
                 src={photo.src}
                 alt={photo.alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
+                style={{
+                  imageRendering: '-webkit-optimize-contrast',
+                }}
+                priority={index < 4}
               />
               {/* <div className="absolute inset-0 z-10 bg-black/30 opacity-100 transition-opacity duration-500 group-hover:opacity-0"></div> */}
             </button>
@@ -151,6 +159,9 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
               alt={galleryPhotos[selectedIndex].alt}
               fill
               className="object-contain"
+              style={{
+                imageRendering: '-webkit-optimize-contrast',
+              }}
               priority
             />
           </div>

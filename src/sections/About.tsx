@@ -28,7 +28,13 @@ export default function About() {
           {/* Left Column */}
           <div className="space-y-6">
             {/* Top Image */}
-            <div className="group relative h-64 overflow-hidden md:h-80">
+            <div
+              className="group relative h-64 overflow-hidden md:h-80"
+              style={{
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0)',
+              }}
+            >
               <Image
                 src="/about/aboutHero-1.jpg"
                 alt="48 Wall Street Venue"
@@ -36,40 +42,70 @@ export default function About() {
                 quality={100}
                 priority
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
+                style={{
+                  imageRendering: '-webkit-optimize-contrast',
+                }}
               />
             </div>
 
             {/* Bottom Row - Two Images */}
             <div className="grid grid-cols-2 gap-6">
-              <div className="group relative h-64 overflow-hidden">
+              <div
+                className="group relative h-64 overflow-hidden"
+                style={{
+                  backfaceVisibility: 'hidden',
+                  transform: 'translateZ(0)',
+                }}
+              >
                 <Image
                   src="/about/about (4).jpg"
                   alt="Lounge Area"
                   fill
                   quality={100}
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  style={{
+                    imageRendering: '-webkit-optimize-contrast',
+                  }}
                 />
               </div>
-              <div className="group relative h-64 overflow-hidden">
+              <div
+                className="group relative h-64 overflow-hidden"
+                style={{
+                  backfaceVisibility: 'hidden',
+                  transform: 'translateZ(0)',
+                }}
+              >
                 <Image
                   src="/about/about (2).jpg"
                   alt="Lounge Area"
                   fill
                   quality={100}
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  style={{
+                    imageRendering: '-webkit-optimize-contrast',
+                  }}
                 />
               </div>
             </div>
           </div>
 
           {/* Right Column - Large Image */}
-          <div className="group relative h-full overflow-hidden">
+          <div
+            className="group relative h-full overflow-hidden"
+            style={{
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
+            }}
+          >
             <Image
               src="/about/about (3).jpg"
               alt="48 Wall Street Building Exterior"
               fill
               quality={100}
               className="scale-105 object-cover transition-transform duration-500 group-hover:scale-115"
+              style={{
+                imageRendering: '-webkit-optimize-contrast',
+              }}
             />
           </div>
         </div>
