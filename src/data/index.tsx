@@ -170,7 +170,6 @@ export const navItems = [
     href: '/events/corporate',
     dropdown: [
       { name: 'Corporate Events', href: '/events/corporate' },
-      // { name: 'Conferences & Meetings', href: '/events/conferences' },
       { name: 'Fashion Shows', href: '/events/fashion-shows' },
       { name: 'Film & TV Shoots', href: '/events/film-shoots' },
       { name: 'Non-Profit Events', href: '/events/non-profit' },
@@ -233,7 +232,6 @@ export const footerLinks = {
   ],
   events: [
     { name: 'Corporate Events', href: '/events/corporate' },
-    // { name: 'Conferences & Meetings', href: '/events/conferences' },
     { name: 'Fashion Shows', href: '/events/fashion-shows' },
     { name: 'Non-Profit Events', href: '/events/non-profit' },
     { name: 'Weddings', href: '/events/weddings' },
@@ -1059,28 +1057,28 @@ export const weddingData: EventShowcaseProps = {
     'From intimate garden ceremonies to grand ballroom receptions, we orchestrate every detail of your special day. Our expert planners transform your vision into reality with personalized design, seamless coordination, and flawless execution.',
   images: [
     {
-      src: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Elegant wedding ceremony setup',
+      src: '/gallery/wedding/22.jpg',
+      alt: 'Elegant wedding',
     },
     {
-      src: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Wedding reception table settings',
+      src: '/gallery/wedding/24.jpg',
+      alt: 'Wedding reception',
     },
     {
-      src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Beautiful wedding flowers',
+      src: '/gallery/wedding/23.jpg',
+      alt: 'Elegant wedding',
     },
     {
-      src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Wedding venue exterior',
+      src: '/gallery/wedding/26.jpg',
+      alt: 'Elegant wedding',
     },
     {
-      src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Bride and groom first dance',
+      src: '/gallery/wedding/27.jpg',
+      alt: 'Elegant wedding',
     },
     {
-      src: 'https://images.unsplash.com/photo-1478146896981-b80fe463b330?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Wedding cake display',
+      src: '/gallery/wedding/29.jpg',
+      alt: 'Elegant wedding',
     },
   ],
   tags: [
@@ -1497,28 +1495,28 @@ export const holidayData: EventShowcaseProps = {
     'Transform the holidays into magical memories with expertly crafted seasonal celebrations. From corporate holiday parties to family gatherings, we infuse every event with festive spirit, creative themes, and meticulous attention to detail that captures the joy of the season.',
   images: [
     {
-      src: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Holiday party decor',
+      src: '/gallery/holiday/54.jpg',
+      alt: 'Holiday party',
     },
     {
-      src: 'https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Festive table settings',
+      src: '/gallery/holiday/51.jpg',
+      alt: 'Holiday party',
     },
     {
-      src: 'https://images.unsplash.com/photo-1482517967863-00e15c9b44be?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Christmas celebration',
+      src: '/gallery/holiday/50.jpg',
+      alt: 'Holiday party',
     },
     {
-      src: 'https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Holiday lights display',
+      src: '/gallery/holiday/57.jpg',
+      alt: 'Holiday party',
     },
     {
-      src: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Winter wonderland theme',
+      src: '/gallery/holiday/56.jpg',
+      alt: 'Holiday party',
     },
     {
-      src: 'https://images.unsplash.com/photo-1482517967863-00e15c9b44be?q=80&w=1600&auto=format&fit=crop',
-      alt: 'New Year celebration',
+      src: '/gallery/holiday/60.jpg',
+      alt: 'Holiday party',
     },
   ],
   tags: [
@@ -1920,7 +1918,6 @@ export const eventRentalsData = {
         '/service/staging/20240229_134449.jpg',
         '/service/staging/DSC_0248.jpg',
         '/service/staging/IMG_2222.jpg',
-        '/service/staging/MOAF_SAMSUNG-470.jpg',
       ],
       imageAlts: [
         'staging display 1',
