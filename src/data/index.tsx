@@ -1626,28 +1626,28 @@ export const nonprofitData: EventShowcaseProps = {
     'Maximize your impact and fundraising potential with expertly crafted charity events. We understand the unique challenges of non-profit organizations and deliver meaningful experiences that inspire generosity, engage donors, and amplify your mission.',
   images: [
     {
-      src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Charity gala event',
+      src: '/gallery/corporate/ (24).jpg',
+      alt: 'Corporate conference setup',
     },
     {
-      src: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Fundraising auction',
+      src: '/gallery/corporate/ (10).jpg',
+      alt: 'Corporate conference',
     },
     {
-      src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Benefit dinner',
+      src: '/gallery/corporate/ (19).jpg',
+      alt: 'Corporate conference',
     },
     {
-      src: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Community event',
+      src: '/gallery/corporate/ (9).jpg',
+      alt: 'Corporate conference',
     },
     {
-      src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Awards ceremony',
+      src: '/gallery/corporate/ (6).jpg',
+      alt: 'Corporate conference',
     },
     {
-      src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Volunteer appreciation',
+      src: '/gallery/corporate/ (2).jpg',
+      alt: 'Corporate conference',
     },
   ],
   tags: [
