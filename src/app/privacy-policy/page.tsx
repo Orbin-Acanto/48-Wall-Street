@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
             Fi Di Hospitality Group Inc.
           </p>
           <p className="text-sm text-gray-600 md:text-base">
-            Last Updated: October 2024
+            Last Updated: October 2025
           </p>
         </motion.div>
 
@@ -36,9 +36,10 @@ export default function PrivacyPolicyPage() {
           <div className="mb-10">
             <p className="leading-relaxed text-gray-700">
               Your privacy is very important to Fi Di Hospitality Group Inc.
-              ("FiDi", "our", "we" or "us"). This Privacy Policy describes the
-              types of information that we collect from and about you when you
-              visit our website (the "Website"), and explains how we may use,
+              (&quot;FiDi&quot;, &quot;our&quot;, &quot;we&quot; or
+              &quot;us&quot;). This Privacy Policy describes the types of
+              information that we collect from and about you when you visit our
+              website (the &quot;Website&quot;), and explains how we may use,
               store, collect, or disclose, or any combination of the foregoing,
               your personal data, as follows:
             </p>
@@ -118,21 +119,22 @@ export default function PrivacyPolicyPage() {
               computer, or other electronic device used to visit the Website)
               to, among other things, gather information regarding the date and
               time of your visit and the information for which you searched and
-              which you viewed. "Cookies" are information or data, or both, that
-              a website sends to your computer's storage media while you are
-              viewing a website. We might use both session cookies (these
-              cookies are temporary and expire once you close your browser) or
-              persistent cookies, or both, which remain on your storage media
-              until you erase them. You have the option to set your browser or
-              operating system to limit tracking or to decline cookies, however,
-              this may limit certain features of the Website and make your use
-              of the Website less effective. For example, if you block our
-              cookies, you may not be able to add items to your cart or
-              checkout. The "help" feature on most browsers explains how to stop
-              your browser from accepting new cookies, how to set the browser to
-              notify you when you receive a new cookie, or how to disable
-              cookies altogether. You can disable or delete similar data used by
-              browser add-ons by changing the add-on's settings.
+              which you viewed. &quot;Cookies&quot; are information or data, or
+              both, that a website sends to your computer&apos;s storage media
+              while you are viewing a website. We might use both session cookies
+              (these cookies are temporary and expire once you close your
+              browser) or persistent cookies, or both, which remain on your
+              storage media until you erase them. You have the option to set
+              your browser or operating system to limit tracking or to decline
+              cookies, however, this may limit certain features of the Website
+              and make your use of the Website less effective. For example, if
+              you block our cookies, you may not be able to add items to your
+              cart or checkout. The &quot;help&quot; feature on most browsers
+              explains how to stop your browser from accepting new cookies, how
+              to set the browser to notify you when you receive a new cookie, or
+              how to disable cookies altogether. You can disable or delete
+              similar data used by browser add-ons by changing the add-on&apos;s
+              settings.
             </p>
           </div>
 
@@ -181,12 +183,13 @@ export default function PrivacyPolicyPage() {
               We may release personal information to law enforcement,
               governmental agencies, or authorized third parties when we believe
               release is appropriate or required to comply with applicable laws,
-              orders, or regulations, enforce our Terms of Use ("TOUs") and
-              other agreements, or protect the rights, property, or safety of
-              others. This includes providing or exchanging information with law
-              enforcement, governmental authorities, or other companies and
-              organizations for law enforcement purposes such as fraud
-              protection and similar purposes.
+              orders, or regulations, enforce our Terms of Use
+              (&quot;TOUs&quot;) and other agreements, or protect the rights,
+              property, or safety of others. This includes providing or
+              exchanging information with law enforcement, governmental
+              authorities, or other companies and organizations for law
+              enforcement purposes such as fraud protection and similar
+              purposes.
             </p>
             <p className="leading-relaxed text-gray-700">
               Except as described above, you will receive notice when
@@ -220,14 +223,14 @@ export default function PrivacyPolicyPage() {
               Residents of the State of California can request a list of all
               third parties to which FIDI has disclosed certain personal
               information (as defined by California law) during the preceding
-              year for those third parties' direct marketing purposes. If you
-              are a California resident and want such a list, please contact us
-              at privacy@FiDi.com. For all requests, please ensure you put the
-              statement "Your California Privacy Rights" in the body of your
-              request, as well as your name, street address, city, state, and
-              zip code. In the body of your request, please provide enough
-              information for us to determine if this applies to you. You need
-              to attest to the fact that you are a California resident and
+              year for those third parties&apos; direct marketing purposes. If
+              you are a California resident and want such a list, please contact
+              us at privacy@FiDi.com. For all requests, please ensure you put
+              the statement &quot;Your California Privacy Rights&quot; in the
+              body of your request, as well as your name, street address, city,
+              state, and zip code. In the body of your request, please provide
+              enough information for us to determine if this applies to you. You
+              need to attest to the fact that you are a California resident and
               provide a current California address for our response.
             </p>
             <p className="mb-6 leading-relaxed text-gray-700">
@@ -255,10 +258,10 @@ export default function PrivacyPolicyPage() {
               local data protection authority.
             </p>
             <p className="leading-relaxed text-gray-700">
-              Additionally, please review the section entitled "CUSTOMER DATA
-              PROTECTION RIGHTS" and review the protections afforded to FiDi
-              customers who are covered under the General Data Protection
-              Regulation (GDPR).
+              Additionally, please review the section entitled &quot;CUSTOMER
+              DATA PROTECTION RIGHTS&quot; and review the protections afforded
+              to FiDi customers who are covered under the General Data
+              Protection Regulation (GDPR).
             </p>
           </div>
 
@@ -515,15 +518,15 @@ export default function PrivacyPolicyPage() {
               If you are under 18, you may use the Website only with the
               involvement and supervision of a parent or guardian. We do not
               knowingly collect personal information from children under the age
-              of 13 without the consent of the child's parent or guardian.
+              of 13 without the consent of the child&apos;s parent or guardian.
             </p>
           </div>
 
           {/* User's Acceptance */}
           <div className="mb-10">
             <h2 className="font-primary mb-4 text-2xl font-bold text-gray-900 md:text-3xl">
-              User's Acceptance of Our Privacy Policy; Changes to Our Privacy
-              Policy
+              User&apos;s Acceptance of Our Privacy Policy; Changes to Our
+              Privacy Policy
             </h2>
             <p className="mb-4 leading-relaxed text-gray-700">
               By visiting and using the Website, you automatically signify your
