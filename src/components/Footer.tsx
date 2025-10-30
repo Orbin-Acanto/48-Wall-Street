@@ -148,19 +148,19 @@ export default function Footer() {
         <div className="">
           <div className="mx-auto max-w-7xl px-6 py-6">
             <div className="flex flex-col items-center justify-center gap-4 text-center md:flex-row">
-              <a
+              <Link
                 href="/terms-of-service"
                 className="font-secondary hover:text-primary text-xs text-white/50 transition-colors duration-300"
               >
                 Terms of Service
-              </a>
+              </Link>
               <span className="hidden text-white/30 md:inline">|</span>
-              <a
+              <Link
                 href="/privacy-policy"
                 className="font-secondary hover:text-primary text-xs text-white/50 transition-colors duration-300"
               >
                 Privacy Policy
-              </a>
+              </Link>
               <span className="hidden text-white/30 md:inline">|</span>
               <p className="font-secondary text-xs text-white/50">
                 Copyright © 2025 The Trump Organization
