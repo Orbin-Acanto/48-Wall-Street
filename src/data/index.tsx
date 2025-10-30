@@ -2241,3 +2241,111 @@ export const services = [
     body: 'Bring your event to life with cutting-edge audio-visual technology, professional lighting, and seamless production management. Our technical experts ensure flawless execution, from sound systems and LED displays to live streaming and immersive stage design.',
   },
 ];
+
+export const videoGallery = [
+  {
+    src: 'https://vimeo.com/686078385/829c7b3957',
+    alt: '48 Wall Sizzle',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/589508161/6fb71525d0',
+    alt: '48 Wall Walkthrough',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/192678532/c1ec68adce',
+    alt: 'Concourse Walkthrough',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/684435438/aacf6a4c59',
+    alt: 'Cena Negra 2021 - 48 Wall',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/769214822/ccfb31f657',
+    alt: 'Cena Negra 2022 - 48 Wall',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/795045791/91e67fc4dd',
+    alt: 'Mongo DB - NYC Holiday REEL',
+    categories: 'corporate',
+  },
+  {
+    src: 'https://vimeo.com/787648338/f4be058968',
+    alt: 'OKX - REEL',
+    categories: 'corporate',
+  },
+  {
+    src: 'https://vimeo.com/768701775/e039743fe9',
+    alt: 'Answer the Call',
+    categories: 'corporate',
+  },
+  {
+    src: 'https://vimeo.com/764235747/213ddeb0d7',
+    alt: 'Botify',
+    categories: 'corporate',
+  },
+  {
+    src: 'https://vimeo.com/762753010/2d966a69ed',
+    alt: 'PIMCO - REEL',
+    categories: 'corporate',
+  },
+  {
+    src: 'https://vimeo.com/798551991/eef8a509ec',
+    alt: 'NYC Juniors',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/868805662/eb1d32f592',
+    alt: 'Work-Bench',
+    categories: 'corporate',
+  },
+  {
+    src: 'https://vimeo.com/828408575/165c2f95fb',
+    alt: 'Cornell',
+    categories: 'corporate',
+  },
+  {
+    src: 'https://vimeo.com/839172315/d7befe76de',
+    alt: 'SANYFW at 48 Wall Street',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/864819311/0ec3092440',
+    alt: 'Alice + Olivia and SANYFW at 48 Wall Street',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/864132997/9fba97afac',
+    alt: 'Alice + Olivia - NYFW',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/844376960/19bc7adcb4',
+    alt: 'Wedding Walk Through',
+    categories: 'wedding',
+  },
+  {
+    src: 'https://vimeo.com/844376623/042e93122f',
+    alt: 'Holiday Event Walk Through',
+    categories: 'special',
+  },
+  {
+    src: 'https://vimeo.com/1100132573/dd6080d494',
+    alt: 'FPM',
+    categories: 'corporate',
+  },
+  {
+    src: 'https://vimeo.com/905757796/a0c8c40141',
+    alt: 'Wieden+Kennedy Holiday Event',
+    categories: 'corporate',
+  },
+  {
+    src: 'https://vimeo.com/1019542531/db334a1c87',
+    alt: 'OpenText',
+    categories: 'corporate',
+  },
+];

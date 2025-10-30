@@ -1,15 +1,69 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { VideoItem } from '@/types';
-import { portfolioVideos } from '@/data';
 import Link from 'next/link';
 import CustomButton from '@/components/CustomButton';
+import { videoGallery } from '@/data';
+
+const getVimeoEmbedUrl = (url: string) => {
+  const match = url.match(/vimeo\.com\/(\d+)\/([a-zA-Z0-9]+)/);
+  if (match) {
+    return `https://player.vimeo.com/video/${match[1]}?h=${match[2]}&autoplay=1`;
+  }
+  return url;
+};
+
+const getVimeoThumbnail = async (url: string): Promise<string> => {
+  try {
+    const response = await fetch(
+      `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(url)}`
+    );
+    const data = await response.json();
+    const thumbnail = data.thumbnail_url;
+    if (thumbnail) {
+      return thumbnail.replace(/_\d+x\d+/, '_1280');
+    }
+    return '';
+  } catch (error) {
+    console.error('Error fetching Vimeo thumbnail:', error);
+    return '';
+  }
+};
+
+interface VideoItem {
+  src: string;
+  alt: string;
+  categories: string;
+  thumbnail?: string;
+}
 
 export default function PortfolioVideoPage() {
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
   const [activeTab, setActiveTab] = useState('all');
+  const [videos, setVideos] = useState<VideoItem[]>(videoGallery);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchThumbnails = async () => {
+      setLoading(true);
+      const updatedVideos = await Promise.all(
+        videoGallery.map(async (video) => {
+          const thumbnail = await getVimeoThumbnail(video.src);
+          return {
+            ...video,
+            thumbnail:
+              thumbnail ||
+              'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&auto=format&fit=crop',
+          };
+        })
+      );
+      setVideos(updatedVideos);
+      setLoading(false);
+    };
+
+    fetchThumbnails();
+  }, []);
 
   const tabs = [
     { id: 'all', name: 'All Events' },
@@ -20,8 +74,8 @@ export default function PortfolioVideoPage() {
 
   const filteredVideos =
     activeTab === 'all'
-      ? portfolioVideos
-      : portfolioVideos.filter((video) => video.category === activeTab);
+      ? videos
+      : videos.filter((video) => video.categories === activeTab);
 
   const openVideo = (video: VideoItem) => {
     setSelectedVideo(video);
@@ -78,11 +132,11 @@ export default function PortfolioVideoPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4"
           >
             {filteredVideos.map((video, index) => (
               <motion.div
-                key={video.id}
+                key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
@@ -92,44 +146,57 @@ export default function PortfolioVideoPage() {
               >
                 {/* Thumbnail */}
                 <div className="relative aspect-video overflow-hidden bg-gray-200">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-110 group-hover:rotate-1"
-                  />
-                  {/* Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 transition group-hover:bg-black/60">
-                    <div className="border-primary bg-primary flex h-12 w-12 items-center justify-center border-3 transition group-hover:scale-110 md:h-14 md:w-14">
-                      <svg
-                        className="ml-0.5 h-6 w-6 text-white md:h-7 md:w-7"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
+                  {video.thumbnail ? (
+                    <img
+                      src={video.thumbnail}
+                      alt={video.alt}
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gray-300 to-gray-400">
+                      <span className="text-sm text-gray-500">Loading...</span>
                     </div>
+                  )}
+
+                  {/* Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-all duration-300 group-hover:bg-black/50">
+                    <motion.div
+                      whileHover={{ scale: 1.15 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative flex items-center justify-center"
+                    >
+                      <div className="bg-primary/30 absolute inset-0 scale-150 rounded-sm blur-2xl"></div>
+
+                      <div className="bg-primary hover:bg-opacity-90 relative flex h-12 w-12 items-center justify-center shadow-2xl transition-all duration-300 md:h-16 md:w-16">
+                        <div className="ml-1 h-0 w-0 border-t-[8px] border-b-[8px] border-l-[14px] border-t-transparent border-b-transparent border-l-white md:border-t-[10px] md:border-b-[10px] md:border-l-[18px]"></div>
+                      </div>
+                    </motion.div>
                   </div>
                 </div>
 
                 {/* Video Info */}
-                <div className="flex-1 bg-white p-6">
+                <div className="flex-1 bg-white p-4 md:p-6">
                   <div className="text-primary mb-2 text-xs font-bold tracking-wider uppercase md:text-sm">
-                    {video.category}
+                    {video.categories}
                   </div>
-                  <h3 className="font-primary mb-2 text-lg font-bold text-gray-900 md:text-xl">
-                    {video.title}
+                  <h3 className="font-primary text-base font-bold text-gray-900 md:text-lg lg:text-xl">
+                    {video.alt}
                   </h3>
-                  <p className="font-secondary text-sm text-gray-700 md:text-base">
-                    {video.description}
-                  </p>
                 </div>
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
 
+        {/* Loading state */}
+        {loading && (
+          <div className="py-20 text-center">
+            <p className="text-gray-600">Loading videos...</p>
+          </div>
+        )}
+
         {/* Empty state if no videos */}
-        {filteredVideos.length === 0 && (
+        {!loading && filteredVideos.length === 0 && (
           <div className="py-20 text-center">
             <p className="text-gray-600">
               No videos available in this category.
@@ -138,11 +205,11 @@ export default function PortfolioVideoPage() {
         )}
       </div>
 
-      {/* Video Modal/Lightbox */}
+      {/* Video Modal*/}
       <AnimatePresence>
         {selectedVideo && (
           <motion.div
-            className="bg-dark-black/95 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
+            className="bg-dark-black/95 fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm sm:p-6 md:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -151,54 +218,36 @@ export default function PortfolioVideoPage() {
             {/* Close Button */}
             <motion.button
               onClick={closeVideo}
-              className="absolute top-6 right-6 z-10 rounded-full bg-white/10 p-3 transition hover:bg-white/20"
+              className="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-2 transition hover:bg-white/20 sm:top-6 sm:right-6 sm:p-3"
               whileHover={{ rotate: 90 }}
             >
-              <X className="h-8 w-8 text-white" />
+              <X className="h-6 w-6 text-white sm:h-8 sm:w-8" />
             </motion.button>
 
-            {/* Video Container */}
             <motion.div
               onClick={(e) => e.stopPropagation()}
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="relative mx-auto w-full max-w-5xl px-4"
+              className="relative flex h-full max-h-[90vh] w-full max-w-[95vw] items-center justify-center"
             >
-              <div className="aspect-video w-full overflow-hidden border-4 border-white bg-black shadow-2xl">
+              <div className="h-full max-h-[900px] w-full max-w-[1600px] overflow-hidden border-2 border-white bg-black shadow-2xl sm:border-4">
                 <iframe
-                  src={selectedVideo.videoUrl}
-                  title={selectedVideo.title}
+                  src={getVimeoEmbedUrl(selectedVideo.src)}
+                  title={selectedVideo.alt}
                   className="h-full w-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               </div>
-
-              {/* Video Info Below */}
-              <motion.div
-                className="mt-4 rounded-lg bg-white/10 p-6 backdrop-blur-md"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <div className="text-primary mb-2 text-xs font-bold tracking-wider uppercase md:text-sm">
-                  {selectedVideo.category}
-                </div>
-                <h2 className="font-primary mb-2 text-xl font-bold text-white md:text-2xl">
-                  {selectedVideo.title}
-                </h2>
-                <p className="font-secondary text-sm text-white/90 md:text-base">
-                  {selectedVideo.description}
-                </p>
-              </motion.div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* CTA Section */}
-      <section className="mt-20 border-t-4 border-gray-900 bg-gray-900 py-16 md:py-24">
+      <section className="mt-12 border-t-4 border-gray-900 bg-gray-900 py-12 sm:mt-16 sm:py-16 md:mt-20 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -210,7 +259,7 @@ export default function PortfolioVideoPage() {
               Ready to Create <br />
               Your Event?
             </h2>
-            <p className="text-lead mb-8 text-gray-300">
+            <p className="text-lead mb-6 text-gray-300 sm:mb-8">
               Let&apos;s make your next event unforgettable
             </p>
             <Link href="/contact">
