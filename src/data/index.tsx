@@ -374,7 +374,7 @@ export const galleryPhotos: GPhoto[] = [
     size: 'large',
   },
   {
-    src: '/gallery/corporate/ (16).jpg',
+    src: '/gallery/corporate/ (16).JPG',
     alt: 'corporate',
     category: 'corporate',
     size: 'medium',
