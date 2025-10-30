@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Product } from '@/types';
-import { categories, priceRanges, products, themes } from '@/data';
+import { categories, products, themes } from '@/data';
 import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
 import CartModal from '@/components/CartModal';
