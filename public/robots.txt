@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /privacy-policy
+Disallow: /terms-conditions
+
+Sitemap: https://www.48wallnyc.com/sitemap.xml
