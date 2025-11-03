@@ -248,18 +248,18 @@ export const footerLinks = {
 export const socialLinks = [
   {
     icon: '/icons/facebook.svg',
-    href: 'https://facebook.com',
+    href: 'https://www.facebook.com/48wallst/',
     label: 'Facebook',
   },
   { icon: '/icons/x.svg', href: 'https://x.com', label: 'X' },
   {
     icon: '/icons/instagram.svg',
-    href: 'https://instagram.com',
+    href: 'https://www.instagram.com/48wallst/',
     label: 'Instagram',
   },
   {
     icon: '/icons/youtube.svg',
-    href: 'https://youtube.com',
+    href: 'https://www.youtube.com/@Mmeink1',
     label: 'YouTube',
   },
 ];

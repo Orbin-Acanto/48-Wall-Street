@@ -225,7 +225,7 @@ export default function PrivacyPolicyPage() {
               information (as defined by California law) during the preceding
               year for those third parties&apos; direct marketing purposes. If
               you are a California resident and want such a list, please contact
-              us at privacy@FiDi.com. For all requests, please ensure you put
+              us at info@48WallNYC.com. For all requests, please ensure you put
               the statement &quot;Your California Privacy Rights&quot; in the
               body of your request, as well as your name, street address, city,
               state, and zip code. In the body of your request, please provide
@@ -310,7 +310,7 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p className="mt-4 leading-relaxed text-gray-700">
               For additional inquiries or to exercise your rights under GDPR,
-              please contact our Data Protection Officer at privacy@FiDi.com.
+              please contact our Data Protection Officer at info@48WallNYC.com.
             </p>
           </div>
 
@@ -358,7 +358,7 @@ export default function PrivacyPolicyPage() {
             <p className="mt-4 leading-relaxed text-gray-700">
               For detailed information about how we collect, store, and use
               personal data, or to exercise your rights under CCPA, please email
-              us at privacy@FiDi.com.
+              us at info@48WallNYC.com.
             </p>
           </div>
 
@@ -412,8 +412,8 @@ export default function PrivacyPolicyPage() {
               your personal information within. However, we cannot guarantee
               that your data will not be compromised. If you have reason to
               believe that your data has been compromised, please immediately
-              notify us at: privacy@FiDi.com. Likewise, it is important for you
-              to protect against unauthorized access to your password and to
+              notify us at: info@48WallNYC.com. Likewise, it is important for
+              you to protect against unauthorized access to your password and to
               your computer. Be sure to sign off when finished using a shared
               computer and do not provide your credit card or other payment
               information unless you are connected to the Website using a
@@ -483,7 +483,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="leading-relaxed text-gray-700">
               If you would like update or delete your personal information,
-              please write to: privacy@FiDi.com. When writing to us, please
+              please write to: info@48WallNYC.com. When writing to us, please
               clearly identify what information you would like to update or
               delete. When processing your request, we may ask you questions to
               verify your identity. Please note that we are required to retain
@@ -552,10 +552,10 @@ export default function PrivacyPolicyPage() {
               If you have any questions, feedback, or concerns about this
               Privacy Policy, please contact us at{' '}
               <a
-                href="mailto:privacy@FiDi.com"
+                href="mailto:info@48WallNYC.com"
                 className="text-primary hover:text-primary/80 font-semibold transition-colors"
               >
-                privacy@FiDi.com
+                info@48WallNYC.com
               </a>
             </p>
           </div>

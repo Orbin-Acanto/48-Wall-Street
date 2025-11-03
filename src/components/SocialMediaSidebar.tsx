@@ -11,12 +11,12 @@ export default function SocialMediaSidebar() {
     {
       name: 'Facebook',
       icon: '/icons/facebook.svg',
-      href: 'https://facebook.com',
+      href: 'https://www.facebook.com/48wallst/',
     },
     {
       name: 'Instagram',
       icon: '/icons/instagram.svg',
-      href: 'https://instagram.com',
+      href: 'https://www.instagram.com/48wallst/',
     },
     {
       name: 'X',
@@ -26,7 +26,7 @@ export default function SocialMediaSidebar() {
     {
       name: 'YouTube',
       icon: '/icons/youtube.svg',
-      href: 'https://youtube.com',
+      href: 'https://www.youtube.com/@Mmeink1',
     },
   ];
 

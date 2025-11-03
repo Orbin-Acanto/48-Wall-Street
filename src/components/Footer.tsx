@@ -163,7 +163,7 @@ export default function Footer() {
               </Link>
               <span className="hidden text-white/30 md:inline">|</span>
               <p className="font-secondary text-xs text-white/50">
-                Copyright © 2025 The Trump Organization
+                Copyright © 2025 48 Wall Street Events. All rights reserved.
               </p>
             </div>
           </div>
