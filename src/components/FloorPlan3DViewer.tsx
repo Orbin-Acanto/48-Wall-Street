@@ -78,64 +78,102 @@ export default function FloorPlan3DViewer({
   );
 
   // Create hotspot sprites
+  // const createHotspotSprite = useCallback((hotspot: Hotspot, index: number) => {
+  //   const canvas = document.createElement('canvas');
+  //   const size = 128;
+  //   canvas.width = size;
+  //   canvas.height = size;
+  //   const ctx = canvas.getContext('2d');
+
+  //   if (!ctx) return null;
+
+  //   // Draw circle background with glow effect
+  //   const gradient = ctx.createRadialGradient(
+  //     size / 2,
+  //     size / 2,
+  //     0,
+  //     size / 2,
+  //     size / 2,
+  //     size / 2
+  //   );
+  //   gradient.addColorStop(0, 'rgba(212, 179, 113, 1)');
+  //   gradient.addColorStop(0.7, 'rgba(212, 179, 113, 0.9)');
+  //   gradient.addColorStop(1, 'rgba(212, 179, 113, 0.5)');
+
+  //   ctx.fillStyle = gradient;
+  //   ctx.beginPath();
+  //   ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
+  //   ctx.fill();
+
+  //   // Draw border
+  //   ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
+  //   ctx.lineWidth = 4;
+  //   ctx.beginPath();
+  //   ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
+  //   ctx.stroke();
+
+  //   // Draw number
+  //   ctx.fillStyle = '#FFFFFF';
+  //   ctx.font = 'bold 64px Arial';
+  //   ctx.textAlign = 'center';
+  //   ctx.textBaseline = 'middle';
+  //   ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+  //   ctx.shadowBlur = 4;
+  //   ctx.shadowOffsetX = 2;
+  //   ctx.shadowOffsetY = 2;
+  //   ctx.fillText((index + 1).toString(), size / 2, size / 2);
+
+  //   const texture = new THREE.CanvasTexture(canvas);
+  //   texture.needsUpdate = true;
+
+  //   const spriteMaterial = new THREE.SpriteMaterial({
+  //     map: texture,
+  //     transparent: true,
+  //     depthTest: true,
+  //     depthWrite: false,
+  //     sizeAttenuation: true,
+  //   });
+
+  //   const sprite = new THREE.Sprite(spriteMaterial);
+  //   sprite.scale.set(0.6, 0.6, 1);
+  //   sprite.position.copy(hotspot.position);
+  //   sprite.userData = { hotspot, index };
+
+  //   return sprite;
+  // }, []);
+
   const createHotspotSprite = useCallback((hotspot: Hotspot, index: number) => {
     const canvas = document.createElement('canvas');
-    const size = 128;
+    const size = 64; // Reduced from 128 for better performance
     canvas.width = size;
     canvas.height = size;
     const ctx = canvas.getContext('2d');
 
     if (!ctx) return null;
 
-    // Draw circle background with glow effect
-    const gradient = ctx.createRadialGradient(
-      size / 2,
-      size / 2,
-      0,
-      size / 2,
-      size / 2,
-      size / 2
-    );
-    gradient.addColorStop(0, 'rgba(212, 179, 113, 1)');
-    gradient.addColorStop(0.7, 'rgba(212, 179, 113, 0.9)');
-    gradient.addColorStop(1, 'rgba(212, 179, 113, 0.5)');
-
-    ctx.fillStyle = gradient;
+    // Simplified drawing - remove expensive effects
+    ctx.fillStyle = 'rgba(212, 179, 113, 0.9)';
     ctx.beginPath();
-    ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
+    ctx.arc(size / 2, size / 2, size / 2 - 2, 0, Math.PI * 2);
     ctx.fill();
 
-    // Draw border
-    ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
-    ctx.stroke();
-
-    // Draw number
+    // Draw number only
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'bold 64px Arial';
+    ctx.font = 'bold 32px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-    ctx.shadowBlur = 4;
-    ctx.shadowOffsetX = 2;
-    ctx.shadowOffsetY = 2;
     ctx.fillText((index + 1).toString(), size / 2, size / 2);
 
     const texture = new THREE.CanvasTexture(canvas);
-    texture.needsUpdate = true;
-
     const spriteMaterial = new THREE.SpriteMaterial({
       map: texture,
       transparent: true,
       depthTest: true,
       depthWrite: false,
-      sizeAttenuation: true,
     });
 
     const sprite = new THREE.Sprite(spriteMaterial);
-    sprite.scale.set(0.6, 0.6, 1);
+    sprite.scale.set(0.4, 0.4, 1);
     sprite.position.copy(hotspot.position);
     sprite.userData = { hotspot, index };
 
@@ -219,6 +257,17 @@ export default function FloorPlan3DViewer({
       if (!document.fullscreenElement) {
         await containerRef.current.requestFullscreen();
         setIsFullscreen(true);
+
+        setTimeout(() => {
+          if (canvasRef.current && cameraRef.current && rendererRef.current) {
+            const width = canvasRef.current.clientWidth;
+            const height = canvasRef.current.clientHeight;
+
+            cameraRef.current.aspect = width / height;
+            cameraRef.current.updateProjectionMatrix();
+            rendererRef.current.setSize(width, height, false);
+          }
+        }, 100);
       } else {
         await document.exitFullscreen();
         setIsFullscreen(false);
@@ -233,24 +282,57 @@ export default function FloorPlan3DViewer({
     const handleFullscreenChange = () => {
       const isNowFullscreen = !!document.fullscreenElement;
       setIsFullscreen(isNowFullscreen);
-
-      // Force resize when fullscreen state changes
-      setTimeout(() => {
-        if (canvasRef.current && cameraRef.current && rendererRef.current) {
-          const width = canvasRef.current.clientWidth;
-          const height = canvasRef.current.clientHeight;
-
-          cameraRef.current.aspect = width / height;
-          cameraRef.current.updateProjectionMatrix();
-          rendererRef.current.setSize(width, height, false);
-        }
-      }, 100);
     };
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () =>
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
+
+  // useEffect(() => {
+  //   const handleFullscreenChange = () => {
+  //     const isNowFullscreen = !!document.fullscreenElement;
+  //     setIsFullscreen(isNowFullscreen);
+
+  //     // Force immediate resize when fullscreen state changes
+  //     if (canvasRef.current && cameraRef.current && rendererRef.current) {
+  //       const width = canvasRef.current.clientWidth;
+  //       const height = canvasRef.current.clientHeight;
+
+  //       cameraRef.current.aspect = width / height;
+  //       cameraRef.current.updateProjectionMatrix();
+  //       rendererRef.current.setSize(width, height, false);
+  //     }
+  //   };
+
+  //   document.addEventListener('fullscreenchange', handleFullscreenChange);
+  //   return () =>
+  //     document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  // }, []);
+
+  // useEffect(() => {
+  //   if (!containerRef.current || !cameraRef.current || !rendererRef.current)
+  //     return;
+
+  //   const resizeObserver = new ResizeObserver((entries) => {
+  //     for (const entry of entries) {
+  //       if (canvasRef.current && cameraRef.current && rendererRef.current) {
+  //         const width = entry.contentRect.width;
+  //         const height = entry.contentRect.height;
+
+  //         cameraRef.current.aspect = width / height;
+  //         cameraRef.current.updateProjectionMatrix();
+  //         rendererRef.current.setSize(width, height, false);
+  //       }
+  //     }
+  //   });
+
+  //   resizeObserver.observe(containerRef.current);
+
+  //   return () => {
+  //     resizeObserver.disconnect();
+  //   };
+  // }, []);
 
   // Navigate view points
   const navigateViewPoint = useCallback(
@@ -423,11 +505,12 @@ export default function FloorPlan3DViewer({
           alpha: false,
           powerPreference: 'high-performance',
         });
+        const width = canvasRef.current.clientWidth;
+        const height = canvasRef.current.clientHeight;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
 
-        renderer.setSize(
-          canvasRef.current.clientWidth,
-          canvasRef.current.clientHeight
-        );
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -484,6 +567,8 @@ export default function FloorPlan3DViewer({
         // 6. Interior warm lighting (ceiling lights simulation)
         if (!enablePerformanceMode) {
           // Main ceiling lights
+          sunLight.shadow.mapSize.width = 2048;
+          sunLight.shadow.mapSize.height = 2048;
           const createCeilingLight = (
             x: number,
             z: number,
@@ -529,7 +614,9 @@ export default function FloorPlan3DViewer({
           createSpotlight(10, 6);
           createSpotlight(-10, -6);
         } else {
-          // Performance mode - simplified lighting
+          sunLight.shadow.mapSize.width = 1024;
+          sunLight.shadow.mapSize.height = 1024;
+
           const light1 = new THREE.PointLight(0xfff5e1, 1.5, 25, 2);
           light1.position.set(5, 8, 5);
           scene.add(light1);
@@ -580,61 +667,23 @@ export default function FloorPlan3DViewer({
 
                 mesh.castShadow = true;
                 mesh.receiveShadow = true;
-                mesh.frustumCulled = true;
 
-                if (mesh.geometry) {
-                  mesh.geometry.computeBoundingSphere();
-                  mesh.geometry.computeVertexNormals();
-
-                  if (enablePerformanceMode && mesh.geometry.attributes.uv2) {
-                    mesh.geometry.deleteAttribute('uv2');
-                  }
-                }
-
-                if (mesh.material) {
+                if (mesh.material && !enablePerformanceMode) {
                   const materials = Array.isArray(mesh.material)
                     ? mesh.material
                     : [mesh.material];
 
                   materials.forEach((mat: THREE.Material) => {
                     if (mat instanceof THREE.MeshStandardMaterial) {
-                      mat.needsUpdate = true;
-
-                      // Enhanced material properties for realism
-                      if (mat.metalness !== undefined) {
-                        mat.metalness = Math.min(mat.metalness * 0.7, 0.3);
-                      }
-                      if (mat.roughness !== undefined) {
+                      if (mat.metalness !== undefined) mat.metalness *= 0.7;
+                      if (mat.roughness !== undefined)
                         mat.roughness = Math.max(mat.roughness, 0.35);
-                      }
+                      if (mat.envMapIntensity !== undefined)
+                        mat.envMapIntensity = 0.8;
 
-                      // Enable environment map intensity
-                      mat.envMapIntensity = 0.8;
-
-                      // Texture optimization
                       if (mat.map) {
-                        const texture = mat.map;
-                        texture.minFilter = THREE.LinearMipmapLinearFilter;
-                        texture.magFilter = THREE.LinearFilter;
-                        texture.generateMipmaps = true;
-                        texture.anisotropy =
+                        mat.map.anisotropy =
                           renderer.capabilities.getMaxAnisotropy();
-                        texture.colorSpace = THREE.SRGBColorSpace;
-                      }
-
-                      // Normal map enhancement
-                      if (mat.normalMap) {
-                        mat.normalScale.set(1, 1);
-                      }
-
-                      // Roughness map
-                      if (mat.roughnessMap) {
-                        mat.roughnessMap.anisotropy = 4;
-                      }
-
-                      // AO map enhancement
-                      if (mat.aoMap) {
-                        mat.aoMapIntensity = 1.2;
                       }
                     }
                   });
@@ -642,7 +691,6 @@ export default function FloorPlan3DViewer({
               }
             });
 
-            // Center and scale model
             const box = new THREE.Box3().setFromObject(model);
             const center = box.getCenter(new THREE.Vector3());
             const size = box.getSize(new THREE.Vector3());
@@ -693,35 +741,21 @@ export default function FloorPlan3DViewer({
           }
         );
 
-        // Optimized animation loop
-        let lastFrameTime = Date.now();
-        const targetFPS = 60;
-        const frameInterval = 1000 / targetFPS;
-
         const animate = () => {
           if (!mounted) return;
           animationFrameRef.current = requestAnimationFrame(animate);
 
-          const now = Date.now();
-          const delta = now - lastFrameTime;
-
-          if (delta >= frameInterval) {
-            lastFrameTime = now - (delta % frameInterval);
-            controls.update();
-            renderer.render(scene, camera);
-          }
+          controls.update();
+          renderer.render(scene, camera);
         };
         animate();
 
-        // Event listeners
         canvasRef.current.addEventListener('mousemove', handleMouseMove);
         canvasRef.current.addEventListener('click', handleClick);
 
-        // Handle window resize
         const handleResize = () => {
           if (!canvasRef.current || !mounted) return;
 
-          // Get the actual display size
           const width = canvasRef.current.clientWidth;
           const height = canvasRef.current.clientHeight;
 
@@ -790,9 +824,9 @@ export default function FloorPlan3DViewer({
     furnishedModelPath,
     isRotating,
     enablePerformanceMode,
-    maxTextureSize,
-    handleMouseMove,
-    handleClick,
+    // maxTextureSize,
+    // handleMouseMove,
+    // handleClick,
   ]);
 
   // Update hotspots when they change
@@ -807,217 +841,196 @@ export default function FloorPlan3DViewer({
     }
   }, [isRotating]);
 
-  // Handle canvas resize when fullscreen state changes
-  useEffect(() => {
-    if (!canvasRef.current || !cameraRef.current || !rendererRef.current)
-      return;
-
-    // Small delay to ensure DOM has updated
-    const timer = setTimeout(() => {
-      if (canvasRef.current && cameraRef.current && rendererRef.current) {
-        const width = canvasRef.current.clientWidth;
-        const height = canvasRef.current.clientHeight;
-
-        cameraRef.current.aspect = width / height;
-        cameraRef.current.updateProjectionMatrix();
-        rendererRef.current.setSize(width, height, false);
-      }
-    }, 50);
-
-    return () => clearTimeout(timer);
-  }, [isFullscreen]);
-
   return (
     <div
       ref={containerRef}
       className={`relative overflow-hidden border-[0.5] border-gray-300 bg-black shadow-lg ${
-        isFullscreen ? 'fixed inset-0 z-50' : ''
+        isFullscreen
+          ? 'fixed inset-0 z-50 h-screen w-screen'
+          : 'aspect-[16/10] w-full'
       }`}
     >
-      <div
-        className={`relative ${isFullscreen ? 'h-screen w-screen' : 'aspect-[16/10]'}`}
-      >
-        <canvas
-          ref={canvasRef}
-          className="block h-full w-full"
-          style={{ display: 'block' }}
-        />
+      {/* Remove the nested div and put canvas directly */}
+      <canvas
+        ref={canvasRef}
+        className="block h-full w-full"
+        style={{ display: 'block' }}
+      />
 
-        {/* Loading overlay */}
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-            <div className="text-center">
-              <RotateCw className="mx-auto mb-4 h-12 w-12 animate-spin text-[#D4B371]" />
-              <p className="mb-2 text-sm font-medium text-white">
-                Loading 3D model...
-              </p>
-              <div className="h-2 w-48 overflow-hidden rounded-full bg-gray-700">
-                <div
-                  className="h-full bg-[#D4B371] transition-all duration-300"
-                  style={{ width: `${loadingProgress}%` }}
-                />
-              </div>
-              <p className="mt-2 text-xs text-gray-400">{loadingProgress}%</p>
-            </div>
-          </div>
-        )}
-
-        {/* Control panel - Left side - Icon only buttons */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2">
-          {/* Rotation control */}
-          <button
-            onClick={() => setIsRotating(!isRotating)}
-            className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
-            title={
-              isRotating ? 'Pause rotation (Space)' : 'Start rotation (Space)'
-            }
-          >
-            {isRotating ? (
-              <Pause className="h-5 w-5 text-gray-700" />
-            ) : (
-              <Play className="h-5 w-5 text-gray-700" />
-            )}
-          </button>
-
-          {/* Furnished/Empty toggle */}
-          <button
-            onClick={() => setShowFurnished(!showFurnished)}
-            className="rounded bg-[#D4B371] px-3 py-2 text-xs font-semibold tracking-wider text-white uppercase shadow-lg transition-all hover:scale-105 hover:bg-[#C5A562]"
-            title="Toggle furnished/empty view"
-          >
-            {showFurnished ? 'Empty' : 'Furnished'}
-          </button>
-
-          {/* Interior view toggle */}
-          {viewPoints.length > 0 && (
-            <button
-              onClick={toggleInteriorView}
-              className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
-                isInteriorView
-                  ? 'bg-[#D4B371] text-white'
-                  : 'bg-white/90 text-gray-700 hover:bg-white'
-              }`}
-              title="Toggle interior view"
-            >
-              <Eye className="h-5 w-5" />
-            </button>
-          )}
-
-          {/* Reset camera */}
-          <button
-            onClick={resetCamera}
-            className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
-            title="Reset camera (R)"
-          >
-            <Home className="h-5 w-5 text-gray-700" />
-          </button>
-
-          {/* Toggle hotspots */}
-          {hotspots.length > 0 && (
-            <button
-              onClick={() => setShowHotspots(!showHotspots)}
-              className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
-                showHotspots
-                  ? 'bg-[#D4B371] text-white'
-                  : 'bg-white/90 text-gray-700 hover:bg-white'
-              }`}
-              title="Toggle hotspots (H)"
-            >
-              <MapPin className="h-5 w-5" />
-            </button>
-          )}
-        </div>
-
-        {/* Fullscreen toggle - Top right */}
-        <div className="absolute top-4 right-4">
-          <button
-            onClick={toggleFullscreen}
-            className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
-            title={isFullscreen ? 'Exit fullscreen (Esc)' : 'Fullscreen (F)'}
-          >
-            {isFullscreen ? (
-              <Minimize2 className="h-5 w-5 text-gray-700" />
-            ) : (
-              <Maximize2 className="h-5 w-5 text-gray-700" />
-            )}
-          </button>
-        </div>
-
-        {/* Interior navigation arrows */}
-        {isInteriorView && viewPoints.length > 1 && (
-          <>
-            <button
-              onClick={() => navigateViewPoint('prev')}
-              className="absolute top-1/2 left-4 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
-              title="Previous viewpoint (←)"
-            >
-              <ChevronLeft className="h-7 w-7 text-gray-700" />
-            </button>
-            <button
-              onClick={() => navigateViewPoint('next')}
-              className="absolute top-1/2 right-4 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
-              title="Next viewpoint (→)"
-            >
-              <ChevronRight className="h-7 w-7 text-gray-700" />
-            </button>
-          </>
-        )}
-
-        {/* View indicator - Bottom left */}
-        <div className="absolute bottom-4 left-4 rounded bg-black/80 px-4 py-2 shadow-lg backdrop-blur-sm">
-          <span className="text-sm font-semibold tracking-wider text-white uppercase">
-            {isInteriorView && currentViewPoint
-              ? currentViewPoint.name
-              : showFurnished
-                ? 'Furnished 3D View'
-                : 'Empty 3D View'}
-          </span>
-          {isInteriorView && viewPoints.length > 1 && (
-            <span className="ml-2 text-xs text-gray-400">
-              {currentViewPointIndex + 1}/{viewPoints.length}
-            </span>
-          )}
-        </div>
-
-        {/* Hotspot information panel */}
-        {selectedHotspot && (
-          <div className="absolute inset-x-4 bottom-4 rounded-lg bg-white/95 p-6 shadow-2xl backdrop-blur-sm md:inset-x-auto md:top-1/2 md:right-6 md:bottom-auto md:w-96 md:-translate-y-1/2">
-            <button
-              onClick={() => setSelectedHotspot(null)}
-              className="absolute top-3 right-3 rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
-              title="Close (Esc)"
-            >
-              <X className="h-5 w-5" />
-            </button>
-
-            <div className="mb-3 flex items-center gap-2">
-              <Info className="h-6 w-6 text-[#D4B371]" />
-              <h3 className="text-xl font-bold text-gray-900">
-                {selectedHotspot.title}
-              </h3>
-            </div>
-
-            {selectedHotspot.category && (
-              <span className="mb-4 inline-block rounded-full bg-[#D4B371]/20 px-3 py-1 text-xs font-semibold tracking-wider text-[#D4B371] uppercase">
-                {selectedHotspot.category}
-              </span>
-            )}
-
-            <p className="text-sm leading-relaxed text-gray-700">
-              {selectedHotspot.description}
+      {/* Loading overlay */}
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="text-center">
+            <RotateCw className="mx-auto mb-4 h-12 w-12 animate-spin text-[#D4B371]" />
+            <p className="mb-2 text-sm font-medium text-white">
+              Loading 3D model...
             </p>
+            <div className="h-2 w-48 overflow-hidden rounded-full bg-gray-700">
+              <div
+                className="h-full bg-[#D4B371] transition-all duration-300"
+                style={{ width: `${loadingProgress}%` }}
+              />
+            </div>
+            <p className="mt-2 text-xs text-gray-400">{loadingProgress}%</p>
           </div>
+        </div>
+      )}
+
+      {/* Control panel - Left side - Icon only buttons */}
+      <div className="absolute top-4 left-4 flex flex-col gap-2">
+        {/* Rotation control */}
+        <button
+          onClick={() => setIsRotating(!isRotating)}
+          className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
+          title={
+            isRotating ? 'Pause rotation (Space)' : 'Start rotation (Space)'
+          }
+        >
+          {isRotating ? (
+            <Pause className="h-5 w-5 text-gray-700" />
+          ) : (
+            <Play className="h-5 w-5 text-gray-700" />
+          )}
+        </button>
+
+        {/* Furnished/Empty toggle */}
+        <button
+          onClick={() => setShowFurnished(!showFurnished)}
+          className="rounded bg-[#D4B371] px-3 py-2 text-xs font-semibold tracking-wider text-white uppercase shadow-lg transition-all hover:scale-105 hover:bg-[#C5A562]"
+          title="Toggle furnished/empty view"
+        >
+          {showFurnished ? 'Empty' : 'Furnished'}
+        </button>
+
+        {/* Interior view toggle */}
+        {viewPoints.length > 0 && (
+          <button
+            onClick={toggleInteriorView}
+            className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
+              isInteriorView
+                ? 'bg-[#D4B371] text-white'
+                : 'bg-white/90 text-gray-700 hover:bg-white'
+            }`}
+            title="Toggle interior view"
+          >
+            <Eye className="h-5 w-5" />
+          </button>
         )}
 
-        {/* Hotspot hover tooltip */}
-        {hoveredHotspot && !selectedHotspot && (
-          <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-black/90 px-4 py-2 shadow-lg backdrop-blur-sm">
-            <span className="text-xs font-medium text-white">
-              Click to view details
-            </span>
-          </div>
+        {/* Reset camera */}
+        <button
+          onClick={resetCamera}
+          className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
+          title="Reset camera (R)"
+        >
+          <Home className="h-5 w-5 text-gray-700" />
+        </button>
+
+        {/* Toggle hotspots */}
+        {hotspots.length > 0 && (
+          <button
+            onClick={() => setShowHotspots(!showHotspots)}
+            className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
+              showHotspots
+                ? 'bg-[#D4B371] text-white'
+                : 'bg-white/90 text-gray-700 hover:bg-white'
+            }`}
+            title="Toggle hotspots (H)"
+          >
+            <MapPin className="h-5 w-5" />
+          </button>
         )}
       </div>
+
+      {/* Fullscreen toggle - Top right */}
+      <div className="absolute top-4 right-4">
+        <button
+          onClick={toggleFullscreen}
+          className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
+          title={isFullscreen ? 'Exit fullscreen (Esc)' : 'Fullscreen (F)'}
+        >
+          {isFullscreen ? (
+            <Minimize2 className="h-5 w-5 text-gray-700" />
+          ) : (
+            <Maximize2 className="h-5 w-5 text-gray-700" />
+          )}
+        </button>
+      </div>
+
+      {/* Interior navigation arrows */}
+      {isInteriorView && viewPoints.length > 1 && (
+        <>
+          <button
+            onClick={() => navigateViewPoint('prev')}
+            className="absolute top-1/2 left-4 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
+            title="Previous viewpoint (←)"
+          >
+            <ChevronLeft className="h-7 w-7 text-gray-700" />
+          </button>
+          <button
+            onClick={() => navigateViewPoint('next')}
+            className="absolute top-1/2 right-4 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
+            title="Next viewpoint (→)"
+          >
+            <ChevronRight className="h-7 w-7 text-gray-700" />
+          </button>
+        </>
+      )}
+
+      {/* View indicator - Bottom left */}
+      <div className="absolute bottom-4 left-4 rounded bg-black/80 px-4 py-2 shadow-lg backdrop-blur-sm">
+        <span className="text-sm font-semibold tracking-wider text-white uppercase">
+          {isInteriorView && currentViewPoint
+            ? currentViewPoint.name
+            : showFurnished
+              ? 'Furnished 3D View'
+              : 'Empty 3D View'}
+        </span>
+        {isInteriorView && viewPoints.length > 1 && (
+          <span className="ml-2 text-xs text-gray-400">
+            {currentViewPointIndex + 1}/{viewPoints.length}
+          </span>
+        )}
+      </div>
+
+      {/* Hotspot information panel */}
+      {selectedHotspot && (
+        <div className="absolute inset-x-4 bottom-4 rounded-lg bg-white/95 p-6 shadow-2xl backdrop-blur-sm md:inset-x-auto md:top-1/2 md:right-6 md:bottom-auto md:w-96 md:-translate-y-1/2">
+          <button
+            onClick={() => setSelectedHotspot(null)}
+            className="absolute top-3 right-3 rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+            title="Close (Esc)"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          <div className="mb-3 flex items-center gap-2">
+            <Info className="h-6 w-6 text-[#D4B371]" />
+            <h3 className="text-xl font-bold text-gray-900">
+              {selectedHotspot.title}
+            </h3>
+          </div>
+
+          {selectedHotspot.category && (
+            <span className="mb-4 inline-block rounded-full bg-[#D4B371]/20 px-3 py-1 text-xs font-semibold tracking-wider text-[#D4B371] uppercase">
+              {selectedHotspot.category}
+            </span>
+          )}
+
+          <p className="text-sm leading-relaxed text-gray-700">
+            {selectedHotspot.description}
+          </p>
+        </div>
+      )}
+
+      {/* Hotspot hover tooltip */}
+      {hoveredHotspot && !selectedHotspot && (
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded bg-black/90 px-4 py-2 shadow-lg backdrop-blur-sm">
+          <span className="text-xs font-medium text-white">
+            Click to view details
+          </span>
+        </div>
+      )}
     </div>
   );
 }
