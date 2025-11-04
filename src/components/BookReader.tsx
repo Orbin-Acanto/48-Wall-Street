@@ -337,7 +337,10 @@ export default function BookReader({
             {/* Page Indicator */}
             <div className="flex items-center gap-3">
               <span className="text-sm font-bold text-gray-700">
-                {currentPage + 1} {currentPage !== 0 && `-${currentPage + 2}`}
+                {currentPage + 1}{' '}
+                {currentPage !== 0 &&
+                  currentPage !== totalPages - 1 &&
+                  `-${currentPage + 2}`}
               </span>
               <span className="text-sm text-gray-500">of</span>
               <span className="text-sm font-bold text-gray-700">

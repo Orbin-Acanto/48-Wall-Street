@@ -97,7 +97,11 @@ export const photos: Photo[] = [
   { src: '/gallery/4.jpg', alt: 'Wedding celebration', span: 'large' },
   { src: '/gallery/7.jpg', alt: 'Wedding celebration', span: 'tall' },
   { src: '/gallery/8.jpg', alt: 'Wedding celebration', span: 'wide' },
-  { src: '/gallery/9.jpg', alt: 'Wedding celebration', span: 'small' },
+  {
+    src: '/gallery/corporate/ (3).jpg',
+    alt: 'Wedding celebration',
+    span: 'small',
+  },
 ];
 
 export const portfolioVideos: VideoItem[] = [
