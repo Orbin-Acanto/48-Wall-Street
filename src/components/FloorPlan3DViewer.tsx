@@ -38,7 +38,6 @@ export default function FloorPlan3DViewer({
   hotspots = [],
   viewPoints = [],
   enablePerformanceMode = false,
-  maxTextureSize = 2048,
 }: FloorPlan3DViewerProps) {
   // State management
   const [isRotating, setIsRotating] = useState(false);
@@ -77,87 +76,20 @@ export default function FloorPlan3DViewer({
     [viewPoints, currentViewPointIndex]
   );
 
-  // Create hotspot sprites
-  // const createHotspotSprite = useCallback((hotspot: Hotspot, index: number) => {
-  //   const canvas = document.createElement('canvas');
-  //   const size = 128;
-  //   canvas.width = size;
-  //   canvas.height = size;
-  //   const ctx = canvas.getContext('2d');
-
-  //   if (!ctx) return null;
-
-  //   // Draw circle background with glow effect
-  //   const gradient = ctx.createRadialGradient(
-  //     size / 2,
-  //     size / 2,
-  //     0,
-  //     size / 2,
-  //     size / 2,
-  //     size / 2
-  //   );
-  //   gradient.addColorStop(0, 'rgba(212, 179, 113, 1)');
-  //   gradient.addColorStop(0.7, 'rgba(212, 179, 113, 0.9)');
-  //   gradient.addColorStop(1, 'rgba(212, 179, 113, 0.5)');
-
-  //   ctx.fillStyle = gradient;
-  //   ctx.beginPath();
-  //   ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
-  //   ctx.fill();
-
-  //   // Draw border
-  //   ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
-  //   ctx.lineWidth = 4;
-  //   ctx.beginPath();
-  //   ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
-  //   ctx.stroke();
-
-  //   // Draw number
-  //   ctx.fillStyle = '#FFFFFF';
-  //   ctx.font = 'bold 64px Arial';
-  //   ctx.textAlign = 'center';
-  //   ctx.textBaseline = 'middle';
-  //   ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-  //   ctx.shadowBlur = 4;
-  //   ctx.shadowOffsetX = 2;
-  //   ctx.shadowOffsetY = 2;
-  //   ctx.fillText((index + 1).toString(), size / 2, size / 2);
-
-  //   const texture = new THREE.CanvasTexture(canvas);
-  //   texture.needsUpdate = true;
-
-  //   const spriteMaterial = new THREE.SpriteMaterial({
-  //     map: texture,
-  //     transparent: true,
-  //     depthTest: true,
-  //     depthWrite: false,
-  //     sizeAttenuation: true,
-  //   });
-
-  //   const sprite = new THREE.Sprite(spriteMaterial);
-  //   sprite.scale.set(0.6, 0.6, 1);
-  //   sprite.position.copy(hotspot.position);
-  //   sprite.userData = { hotspot, index };
-
-  //   return sprite;
-  // }, []);
-
   const createHotspotSprite = useCallback((hotspot: Hotspot, index: number) => {
     const canvas = document.createElement('canvas');
-    const size = 64; // Reduced from 128 for better performance
+    const size = 64;
     canvas.width = size;
     canvas.height = size;
     const ctx = canvas.getContext('2d');
 
     if (!ctx) return null;
 
-    // Simplified drawing - remove expensive effects
     ctx.fillStyle = 'rgba(212, 179, 113, 0.9)';
     ctx.beginPath();
     ctx.arc(size / 2, size / 2, size / 2 - 2, 0, Math.PI * 2);
     ctx.fill();
 
-    // Draw number only
     ctx.fillStyle = '#FFFFFF';
     ctx.font = 'bold 32px Arial';
     ctx.textAlign = 'center';
@@ -180,11 +112,9 @@ export default function FloorPlan3DViewer({
     return sprite;
   }, []);
 
-  // Update hotspots
   const updateHotspots = useCallback(() => {
     if (!sceneRef.current) return;
 
-    // Remove old sprites
     hotspotSpritesRef.current.forEach((sprite) => {
       sceneRef.current?.remove(sprite);
       sprite.material.dispose();
@@ -192,7 +122,6 @@ export default function FloorPlan3DViewer({
     });
     hotspotSpritesRef.current.clear();
 
-    // Add new sprites if hotspots are visible
     if (showHotspots) {
       hotspots.forEach((hotspot, index) => {
         const sprite = createHotspotSprite(hotspot, index);
@@ -289,51 +218,6 @@ export default function FloorPlan3DViewer({
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
-  // useEffect(() => {
-  //   const handleFullscreenChange = () => {
-  //     const isNowFullscreen = !!document.fullscreenElement;
-  //     setIsFullscreen(isNowFullscreen);
-
-  //     // Force immediate resize when fullscreen state changes
-  //     if (canvasRef.current && cameraRef.current && rendererRef.current) {
-  //       const width = canvasRef.current.clientWidth;
-  //       const height = canvasRef.current.clientHeight;
-
-  //       cameraRef.current.aspect = width / height;
-  //       cameraRef.current.updateProjectionMatrix();
-  //       rendererRef.current.setSize(width, height, false);
-  //     }
-  //   };
-
-  //   document.addEventListener('fullscreenchange', handleFullscreenChange);
-  //   return () =>
-  //     document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!containerRef.current || !cameraRef.current || !rendererRef.current)
-  //     return;
-
-  //   const resizeObserver = new ResizeObserver((entries) => {
-  //     for (const entry of entries) {
-  //       if (canvasRef.current && cameraRef.current && rendererRef.current) {
-  //         const width = entry.contentRect.width;
-  //         const height = entry.contentRect.height;
-
-  //         cameraRef.current.aspect = width / height;
-  //         cameraRef.current.updateProjectionMatrix();
-  //         rendererRef.current.setSize(width, height, false);
-  //       }
-  //     }
-  //   });
-
-  //   resizeObserver.observe(containerRef.current);
-
-  //   return () => {
-  //     resizeObserver.disconnect();
-  //   };
-  // }, []);
-
   // Navigate view points
   const navigateViewPoint = useCallback(
     (direction: 'next' | 'prev') => {
@@ -349,7 +233,6 @@ export default function FloorPlan3DViewer({
 
       const viewPoint = viewPoints[newIndex];
 
-      // Smooth camera transition
       const startPos = cameraRef.current.position.clone();
       const startTarget = controlsRef.current.target.clone();
       const duration = 1000;
@@ -358,7 +241,7 @@ export default function FloorPlan3DViewer({
       const animateTransition = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
 
         if (cameraRef.current && controlsRef.current) {
           cameraRef.current.position.lerpVectors(
@@ -406,7 +289,6 @@ export default function FloorPlan3DViewer({
     });
   }, [viewPoints]);
 
-  // Reset camera
   const resetCamera = useCallback(() => {
     if (!cameraRef.current || !controlsRef.current) return;
 
@@ -482,7 +364,6 @@ export default function FloorPlan3DViewer({
       try {
         if (!mounted || !canvasRef.current) return;
 
-        // Scene setup with realistic environment
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0xf0f0f0);
         scene.fog = new THREE.Fog(0xf0f0f0, 40, 80);
@@ -498,7 +379,6 @@ export default function FloorPlan3DViewer({
         camera.position.copy(initialCameraPositionRef.current);
         cameraRef.current = camera;
 
-        // Renderer setup for photorealistic output
         const renderer = new THREE.WebGLRenderer({
           canvas: canvasRef.current,
           antialias: true,
@@ -520,23 +400,18 @@ export default function FloorPlan3DViewer({
 
         rendererRef.current = renderer;
 
-        // REALISTIC LIGHTING SETUP FOR PHOTOREALISM
-
-        // 1. Hemisphere light for ambient occlusion effect
         const hemisphereLight = new THREE.HemisphereLight(
-          0xffffff, // Sky color
-          0x8d8d8d, // Ground color
+          0xffffff,
+          0x8d8d8d,
           0.4
         );
         hemisphereLight.position.set(0, 50, 0);
         scene.add(hemisphereLight);
 
-        // 2. Main sun light (primary directional)
         const sunLight = new THREE.DirectionalLight(0xfff4e6, 2.8);
         sunLight.position.set(30, 50, 30);
         sunLight.castShadow = true;
 
-        // High-quality shadow configuration
         sunLight.shadow.mapSize.width = 4096;
         sunLight.shadow.mapSize.height = 4096;
         sunLight.shadow.camera.left = -35;
@@ -550,23 +425,18 @@ export default function FloorPlan3DViewer({
         sunLight.shadow.radius = 2;
         scene.add(sunLight);
 
-        // 3. Sky/bounce light (secondary directional from opposite side)
         const skyLight = new THREE.DirectionalLight(0xadd8e6, 1.5);
         skyLight.position.set(-25, 35, -25);
         scene.add(skyLight);
 
-        // 4. Soft ambient light
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
         scene.add(ambientLight);
 
-        // 5. Rim light for edge definition
         const rimLight = new THREE.DirectionalLight(0xffffff, 0.9);
         rimLight.position.set(-35, 12, 25);
         scene.add(rimLight);
 
-        // 6. Interior warm lighting (ceiling lights simulation)
         if (!enablePerformanceMode) {
-          // Main ceiling lights
           sunLight.shadow.mapSize.width = 2048;
           sunLight.shadow.mapSize.height = 2048;
           const createCeilingLight = (
@@ -591,7 +461,6 @@ export default function FloorPlan3DViewer({
           scene.add(createCeilingLight(-6, 6, 1.5));
           scene.add(createCeilingLight(0, 0, 1.6));
 
-          // Accent spotlights
           const createSpotlight = (x: number, targetX: number) => {
             const spotlight = new THREE.SpotLight(
               0xffd4a3,
@@ -626,7 +495,6 @@ export default function FloorPlan3DViewer({
           scene.add(light2);
         }
 
-        // OrbitControls
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
@@ -639,7 +507,6 @@ export default function FloorPlan3DViewer({
         controls.update();
         controlsRef.current = controls;
 
-        // DRACO Loader for compressed models
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath(
           'https://www.gstatic.com/draco/versioned/decoders/1.5.7/'
@@ -647,7 +514,6 @@ export default function FloorPlan3DViewer({
         dracoLoader.setDecoderConfig({ type: 'js' });
         dracoLoader.preload();
 
-        // GLTF Loader with DRACO support
         const loader = new GLTFLoader();
         loader.setDRACOLoader(dracoLoader);
 
@@ -660,7 +526,6 @@ export default function FloorPlan3DViewer({
 
             const model = gltf.scene;
 
-            // ENHANCED MATERIAL PROCESSING FOR REALISM
             model.traverse((child) => {
               if ((child as THREE.Mesh).isMesh) {
                 const mesh = child as THREE.Mesh;
@@ -707,7 +572,6 @@ export default function FloorPlan3DViewer({
             const newCenter = newBox.getCenter(new THREE.Vector3());
             model.position.sub(newCenter);
 
-            // Remove old model
             if (modelRef.current && sceneRef.current) {
               sceneRef.current.remove(modelRef.current);
               modelRef.current.traverse((child) => {
@@ -764,7 +628,6 @@ export default function FloorPlan3DViewer({
           renderer.setSize(width, height, false);
         };
 
-        // Initial resize to ensure proper sizing
         handleResize();
 
         window.addEventListener('resize', handleResize);
@@ -789,7 +652,6 @@ export default function FloorPlan3DViewer({
         cancelAnimationFrame(animationFrameRef.current);
       }
 
-      // Cleanup hotspots
       hotspotSpritesRef.current.forEach((sprite) => {
         sceneRef.current?.remove(sprite);
         sprite.material.dispose();
@@ -797,7 +659,6 @@ export default function FloorPlan3DViewer({
       });
       hotspotSpritesRef.current.clear();
 
-      // Cleanup model
       if (modelRef.current && sceneRef.current) {
         sceneRef.current.remove(modelRef.current);
         modelRef.current.traverse((child) => {
@@ -824,17 +685,12 @@ export default function FloorPlan3DViewer({
     furnishedModelPath,
     isRotating,
     enablePerformanceMode,
-    // maxTextureSize,
-    // handleMouseMove,
-    // handleClick,
   ]);
 
-  // Update hotspots when they change
   useEffect(() => {
     updateHotspots();
   }, [updateHotspots]);
 
-  // Update controls rotation
   useEffect(() => {
     if (controlsRef.current) {
       controlsRef.current.autoRotate = isRotating;
@@ -850,14 +706,12 @@ export default function FloorPlan3DViewer({
           : 'aspect-[16/10] w-full'
       }`}
     >
-      {/* Remove the nested div and put canvas directly */}
       <canvas
         ref={canvasRef}
         className="block h-full w-full"
         style={{ display: 'block' }}
       />
 
-      {/* Loading overlay */}
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm">
           <div className="text-center">
@@ -876,7 +730,7 @@ export default function FloorPlan3DViewer({
         </div>
       )}
 
-      {/* Control panel - Left side - Icon only buttons */}
+      {/* Control panel */}
       <div className="absolute top-4 left-4 flex flex-col gap-2">
         {/* Rotation control */}
         <button
@@ -942,7 +796,7 @@ export default function FloorPlan3DViewer({
         )}
       </div>
 
-      {/* Fullscreen toggle - Top right */}
+      {/* Fullscreen toggle */}
       <div className="absolute top-4 right-4">
         <button
           onClick={toggleFullscreen}
@@ -977,7 +831,7 @@ export default function FloorPlan3DViewer({
         </>
       )}
 
-      {/* View indicator - Bottom left */}
+      {/* View indicator */}
       <div className="absolute bottom-4 left-4 rounded bg-black/80 px-4 py-2 shadow-lg backdrop-blur-sm">
         <span className="text-sm font-semibold tracking-wider text-white uppercase">
           {isInteriorView && currentViewPoint
