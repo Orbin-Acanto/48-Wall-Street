@@ -14,6 +14,8 @@ import {
   ChevronRight,
   Eye,
   MapPin,
+  RefreshCwOff,
+  Rotate3d,
 } from 'lucide-react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -732,22 +734,64 @@ export default function FloorPlan3DViewer({
 
       {/* Control panel */}
       <div className="absolute top-4 left-4 flex flex-col gap-2">
-        {/* Rotation control */}
-        <button
-          onClick={() => setIsRotating(!isRotating)}
-          className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
-          title={
-            isRotating ? 'Pause rotation (Space)' : 'Start rotation (Space)'
-          }
-        >
-          {isRotating ? (
-            <Pause className="h-5 w-5 text-gray-700" />
-          ) : (
-            <Play className="h-5 w-5 text-gray-700" />
-          )}
-        </button>
+        {/* Icon buttons */}
+        <div className="flex flex-row gap-2">
+          {/* Rotation control */}
+          <button
+            onClick={() => setIsRotating(!isRotating)}
+            className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
+            title={
+              isRotating ? 'Pause rotation (Space)' : 'Start rotation (Space)'
+            }
+          >
+            {isRotating ? (
+              <Pause className="h-5 w-5 text-gray-700" />
+            ) : (
+              <Play className="h-5 w-5 text-gray-700" />
+            )}
+          </button>
 
-        {/* Furnished/Empty toggle */}
+          {/* Interior view toggle */}
+          {viewPoints.length > 0 && (
+            <button
+              onClick={toggleInteriorView}
+              className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
+                isInteriorView
+                  ? 'bg-[#D4B371] text-white'
+                  : 'bg-white/90 text-gray-700 hover:bg-white'
+              }`}
+              title="Toggle interior view"
+            >
+              <Eye className="h-5 w-5" />
+            </button>
+          )}
+
+          {/* Reset camera */}
+          <button
+            onClick={resetCamera}
+            className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
+            title="Reset camera (R)"
+          >
+            <Home className="h-5 w-5 text-gray-700" />
+          </button>
+
+          {/* Toggle hotspots */}
+          {hotspots.length > 0 && (
+            <button
+              onClick={() => setShowHotspots(!showHotspots)}
+              className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
+                showHotspots
+                  ? 'bg-[#D4B371] text-white'
+                  : 'bg-white/90 text-gray-700 hover:bg-white'
+              }`}
+              title="Toggle hotspots (H)"
+            >
+              <MapPin className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+
+        {/* Furnished/Empty */}
         <button
           onClick={() => setShowFurnished(!showFurnished)}
           className="rounded bg-[#D4B371] px-3 py-2 text-xs font-semibold tracking-wider text-white uppercase shadow-lg transition-all hover:scale-105 hover:bg-[#C5A562]"
@@ -755,45 +799,6 @@ export default function FloorPlan3DViewer({
         >
           {showFurnished ? 'Empty' : 'Furnished'}
         </button>
-
-        {/* Interior view toggle */}
-        {viewPoints.length > 0 && (
-          <button
-            onClick={toggleInteriorView}
-            className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
-              isInteriorView
-                ? 'bg-[#D4B371] text-white'
-                : 'bg-white/90 text-gray-700 hover:bg-white'
-            }`}
-            title="Toggle interior view"
-          >
-            <Eye className="h-5 w-5" />
-          </button>
-        )}
-
-        {/* Reset camera */}
-        <button
-          onClick={resetCamera}
-          className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
-          title="Reset camera (R)"
-        >
-          <Home className="h-5 w-5 text-gray-700" />
-        </button>
-
-        {/* Toggle hotspots */}
-        {hotspots.length > 0 && (
-          <button
-            onClick={() => setShowHotspots(!showHotspots)}
-            className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
-              showHotspots
-                ? 'bg-[#D4B371] text-white'
-                : 'bg-white/90 text-gray-700 hover:bg-white'
-            }`}
-            title="Toggle hotspots (H)"
-          >
-            <MapPin className="h-5 w-5" />
-          </button>
-        )}
       </div>
 
       {/* Fullscreen toggle */}
@@ -845,6 +850,59 @@ export default function FloorPlan3DViewer({
             {currentViewPointIndex + 1}/{viewPoints.length}
           </span>
         )}
+      </div>
+
+      <div className="absolute right-4 bottom-4">
+        <div className="group relative">
+          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white">
+            <Info className="h-5 w-5 text-gray-700" />
+          </button>
+
+          {/* Tooltip Content */}
+          <div className="pointer-events-none absolute right-0 bottom-full mb-2 w-80 rounded-lg bg-black/90 p-4 text-white opacity-0 shadow-2xl backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
+            <h3 className="mb-2 font-semibold text-[#D4B371]">
+              Navigation Guide
+            </h3>
+            <div className="space-y-2 text-xs">
+              <div className="flex justify-between">
+                <span>Mouse Drag:</span>
+                <span className="text-gray-300">Rotate View</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Mouse Wheel:</span>
+                <span className="text-gray-300">Zoom In/Out</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Spacebar:</span>
+                <span className="text-gray-300">Toggle Auto-Rotate</span>
+              </div>
+              <div className="flex justify-between">
+                <span>R Key:</span>
+                <span className="text-gray-300">Reset Camera</span>
+              </div>
+              <div className="flex justify-between">
+                <span>F Key:</span>
+                <span className="text-gray-300">Toggle Fullscreen</span>
+              </div>
+              <div className="flex justify-between">
+                <span>H Key:</span>
+                <span className="text-gray-300">Toggle Hotspots</span>
+              </div>
+              {viewPoints.length > 0 && (
+                <>
+                  <div className="flex justify-between">
+                    <span>Arrow Keys:</span>
+                    <span className="text-gray-300">Navigate Views</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Click Numbers:</span>
+                    <span className="text-gray-300">View Hotspot Info</span>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Hotspot information panel */}
