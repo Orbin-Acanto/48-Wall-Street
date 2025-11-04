@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 export interface Testimonial {
   id: number;
   quote: string;
@@ -60,6 +62,35 @@ export interface Product {
   description: string;
   features: string[];
   popular: boolean;
+}
+
+export interface Hotspot {
+  id: string;
+  position: THREE.Vector3;
+  title: string;
+  description: string;
+  category?: 'room' | 'furniture' | 'feature' | 'appliance';
+}
+
+export type PerformanceTier = 'high' | 'medium' | 'low';
+export type NetworkSpeed = 'slow' | 'medium' | 'fast';
+
+export interface OptimizationSettings {
+  enablePerformanceMode: boolean;
+  maxTextureSize: number;
+  enableShadows: boolean;
+  antialias: boolean;
+  pixelRatio: number;
+  shadowMapSize: number;
+  anisotropy: number;
+}
+
+export interface ViewPoint {
+  id: string;
+  name: string;
+  position: THREE.Vector3;
+  target: THREE.Vector3;
+  icon?: string;
 }
 
 export interface PhotoGalleryProps {

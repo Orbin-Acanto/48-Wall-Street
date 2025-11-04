@@ -35,3 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /.vscode
+public/floor-plans/e.glb
+public/floor-plans/f.glb

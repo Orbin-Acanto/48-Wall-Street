@@ -2,11 +2,13 @@ import { EventShowcaseProps } from '@/components/EventDetails';
 import {
   Amenity,
   GPhoto,
+  Hotspot,
   Photo,
   Product,
   TeamMember,
   Testimonial,
   VideoItem,
+  ViewPoint,
 } from '@/types';
 import {
   Calendar,
@@ -20,6 +22,7 @@ import {
   Grid3x3,
   Box,
 } from 'lucide-react';
+import * as THREE from 'three';
 
 export const testimonials: Testimonial[] = [
   {
@@ -3136,5 +3139,89 @@ export const videoGallery = [
     src: 'https://vimeo.com/1019542531/db334a1c87',
     alt: 'OpenText',
     categories: 'corporate',
+  },
+];
+
+export const sampleHotspots: Hotspot[] = [
+  {
+    id: 'hotspot-1',
+    position: new THREE.Vector3(5, 1.5, 3),
+    title: 'Master Bedroom',
+    description:
+      'Spacious master bedroom with ensuite bathroom and walk-in closet. Features large windows with natural light and premium hardwood flooring.',
+    category: 'room' as const,
+  },
+  {
+    id: 'hotspot-2',
+    position: new THREE.Vector3(-4, 1.5, 2),
+    title: 'Gourmet Kitchen',
+    description:
+      'Modern kitchen with stainless steel appliances, granite countertops, and custom cabinetry. Open concept design perfect for entertaining.',
+    category: 'room' as const,
+  },
+  {
+    id: 'hotspot-3',
+    position: new THREE.Vector3(0, 1.5, -5),
+    title: 'Living Room',
+    description:
+      'Open and bright living room with vaulted ceilings and fireplace. Perfect for family gatherings and relaxation.',
+    category: 'room' as const,
+  },
+  {
+    id: 'hotspot-4',
+    position: new THREE.Vector3(3, 1, 4),
+    title: 'Smart Home System',
+    description:
+      'Integrated smart home technology including climate control, security system, and automated lighting throughout the property.',
+    category: 'feature' as const,
+  },
+  {
+    id: 'hotspot-5',
+    position: new THREE.Vector3(-3, 1, 1),
+    title: 'Premium Appliances',
+    description:
+      'High-end appliances including double oven, wine cooler, and professional-grade range. All Energy Star certified.',
+    category: 'appliance' as const,
+  },
+  {
+    id: 'hotspot-6',
+    position: new THREE.Vector3(2, 1.5, -3),
+    title: 'Home Office',
+    description:
+      'Dedicated home office space with built-in shelving and desk. Perfect for remote work with excellent natural lighting.',
+    category: 'room' as const,
+  },
+];
+
+export const sampleViewPoints: ViewPoint[] = [
+  {
+    id: 'view-1',
+    name: 'Living Room View',
+    position: new THREE.Vector3(0, 2, -3),
+    target: new THREE.Vector3(0, 1.5, -6),
+  },
+  {
+    id: 'view-2',
+    name: 'Kitchen View',
+    position: new THREE.Vector3(-4, 2, 3),
+    target: new THREE.Vector3(-4, 1.5, 0),
+  },
+  {
+    id: 'view-3',
+    name: 'Master Bedroom View',
+    position: new THREE.Vector3(5, 2, 4),
+    target: new THREE.Vector3(5, 1.5, 1),
+  },
+  {
+    id: 'view-4',
+    name: 'Hallway View',
+    position: new THREE.Vector3(0, 2, 0),
+    target: new THREE.Vector3(3, 1.5, 0),
+  },
+  {
+    id: 'view-5',
+    name: 'Dining Area View',
+    position: new THREE.Vector3(-2, 2, -1),
+    target: new THREE.Vector3(-2, 1.5, -4),
   },
 ];

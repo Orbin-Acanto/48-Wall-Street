@@ -6,7 +6,6 @@ import {
   Maximize2,
   Wifi,
   Music,
-  Sparkles,
   Download,
   Eye,
   Layers,
@@ -14,17 +13,17 @@ import {
   Box,
   ChevronLeft,
   ChevronRight,
-  MapPin,
   Calendar,
   Clock,
   Check,
   Info,
 } from 'lucide-react';
-import { floors, layouts } from '@/data';
-import ThreeD from '@/components/ThreeD';
+import { floors, layouts, sampleHotspots, sampleViewPoints } from '@/data';
+import FloorPlan3DViewer from '@/components/FloorPlan3DViewer';
 import CustomButton from '@/components/CustomButton';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getRecommendedSettings } from '@/utils/ThreeDviewerutils';
 
 export default function FloorPlansPage() {
   const [activeFloor, setActiveFloor] = useState('second');
@@ -33,6 +32,8 @@ export default function FloorPlansPage() {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
+
+  const settings = getRecommendedSettings();
 
   const currentFloor = floors.find((f) => f.id === activeFloor) || floors[0];
 
@@ -330,10 +331,13 @@ export default function FloorPlansPage() {
                 )}
 
                 {viewMode === '3d' && (
-                  <ThreeD
+                  <FloorPlan3DViewer
                     emptyModelPath={currentFloor.model3DEmpty}
                     furnishedModelPath={currentFloor.model3DFurnished}
                     initialFurnished={false}
+                    hotspots={sampleHotspots}
+                    viewPoints={sampleViewPoints}
+                    {...settings}
                   />
                 )}
 
