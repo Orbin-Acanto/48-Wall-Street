@@ -1,3 +1,4 @@
+import { PerformanceMemory } from '@/types';
 import * as THREE from 'three';
 
 export function useDebugMode(
@@ -96,7 +97,9 @@ export function detectPerformanceTier(): 'high' | 'medium' | 'low' {
 
   const cores = navigator.hardwareConcurrency || 2;
 
-  const memory = (navigator as any).deviceMemory || 4;
+  // FIX: Line 99 - Proper type for deviceMemory
+  const memory =
+    (navigator as Navigator & { deviceMemory?: number }).deviceMemory || 4;
 
   if (cores >= 8 && memory >= 8) return 'high';
   if (cores >= 4 && memory >= 4) return 'medium';
@@ -156,9 +159,9 @@ export function disposeObject(object: THREE.Object3D): void {
 
       materials.forEach((material) => {
         Object.keys(material).forEach((key) => {
-          const value = (material as any)[key];
-          if (value && value.isTexture) {
-            value.dispose();
+          const value = (material as unknown as Record<string, unknown>)[key];
+          if (value && typeof value === 'object' && 'isTexture' in value) {
+            (value as THREE.Texture).dispose();
           }
         });
 
@@ -212,9 +215,11 @@ export function getMemoryUsage(): {
   total: number;
   percentage: number;
 } | null {
-  if (!(performance as any).memory) return null;
+  const perf = performance as Performance & { memory?: PerformanceMemory };
 
-  const memory = (performance as any).memory;
+  if (!perf.memory) return null;
+
+  const memory = perf.memory;
   const used = memory.usedJSHeapSize / (1024 * 1024);
   const total = memory.jsHeapSizeLimit / (1024 * 1024);
   const percentage = (used / total) * 100;
@@ -249,7 +254,7 @@ export function isWebGLAvailable(): { available: boolean; version: number } {
 
     const version = gl instanceof WebGL2RenderingContext ? 2 : 1;
     return { available: true, version };
-  } catch (e) {
+  } catch {
     return { available: false, version: 0 };
   }
 }

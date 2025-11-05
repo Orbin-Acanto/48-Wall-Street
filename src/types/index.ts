@@ -64,6 +64,12 @@ export interface Product {
   popular: boolean;
 }
 
+export interface PerformanceMemory {
+  usedJSHeapSize: number;
+  totalJSHeapSize: number;
+  jsHeapSizeLimit: number;
+}
+
 export interface Hotspot {
   id: string;
   position: THREE.Vector3;
