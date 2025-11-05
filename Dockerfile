@@ -14,10 +14,10 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# RUN wget -O ./public/floor-plans/e.glb https://github.com/Orbin-Acanto/48-Wall-Street/releases/download/v1/e.glb && \
-#     wget -O ./public/floor-plans/f.glb https://github.com/Orbin-Acanto/48-Wall-Street/releases/download/v1/f.glb
+RUN wget -O ./public/floor-plans/e.glb https://github.com/Orbin-Acanto/48-Wall-Street/releases/download/v1/e.glb && \
+    wget -O ./public/floor-plans/f.glb https://github.com/Orbin-Acanto/48-Wall-Street/releases/download/v1/f.glb
 
-# RUN ls -lh ./public/floor-plans/e.glb ./public/floor-plans/f.glb
+RUN ls -lh ./public/floor-plans/e.glb ./public/floor-plans/f.glb
 
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
