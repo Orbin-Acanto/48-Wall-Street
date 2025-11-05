@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import {
   RotateCw,
-  Pause,
-  Play,
   Maximize2,
   Minimize2,
   Home,
@@ -685,7 +683,6 @@ export default function FloorPlan3DViewer({
     showFurnished,
     emptyModelPath,
     furnishedModelPath,
-    isRotating,
     enablePerformanceMode,
   ]);
 
@@ -745,9 +742,9 @@ export default function FloorPlan3DViewer({
             }
           >
             {isRotating ? (
-              <Pause className="h-5 w-5 text-gray-700" />
+              <RefreshCwOff className="h-5 w-5 text-gray-700" />
             ) : (
-              <Play className="h-5 w-5 text-gray-700" />
+              <Rotate3d className="h-5 w-5 text-gray-700" />
             )}
           </button>
 
@@ -793,7 +790,11 @@ export default function FloorPlan3DViewer({
 
         {/* Furnished/Empty */}
         <button
-          onClick={() => setShowFurnished(!showFurnished)}
+          onClick={() => {
+            setShowFurnished(!showFurnished);
+            setShowHotspots(false);
+            setIsInteriorView(false);
+          }}
           className="rounded bg-[#D4B371] px-3 py-2 text-xs font-semibold tracking-wider text-white uppercase shadow-lg transition-all hover:scale-105 hover:bg-[#C5A562]"
           title="Toggle furnished/empty view"
         >
