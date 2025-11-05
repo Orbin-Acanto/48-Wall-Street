@@ -3197,37 +3197,37 @@ export const sampleViewPoints: ViewPoint[] = [
   {
     id: 'view-1',
     name: 'Living Room View',
-    position: new THREE.Vector3(-5.42, 0.8, -0.02),
+    position: new THREE.Vector3(-5.42, 1.2, -0.02),
     target: new THREE.Vector3(0, 1.5, -6),
   },
   {
     id: 'view-2',
     name: 'Kitchen View',
-    position: new THREE.Vector3(0.74, 0.8, -0.18),
+    position: new THREE.Vector3(0.74, 1.2, -0.18),
     target: new THREE.Vector3(-4, 1.5, 0),
   },
   {
     id: 'view-3',
     name: 'Master Bedroom View',
-    position: new THREE.Vector3(7.38, 0.95, 2.55),
+    position: new THREE.Vector3(7.38, 1.2, 2.55),
     target: new THREE.Vector3(5, 1.5, 1),
   },
   {
     id: 'view-4',
     name: 'Hallway View',
-    position: new THREE.Vector3(7.38, 0.95, -3.15),
+    position: new THREE.Vector3(7.38, 1.2, -3.15),
     target: new THREE.Vector3(3, 1.5, 0),
   },
   {
     id: 'view-5',
     name: 'Dining Area View',
-    position: new THREE.Vector3(-2.81, 0.8, 2.22),
+    position: new THREE.Vector3(-2.81, 1.2, 2.22),
     target: new THREE.Vector3(-2, 1.5, -4),
   },
   {
     id: 'view-5',
     name: 'Dining Area View',
-    position: new THREE.Vector3(-2.81, 0.8, -3.05),
+    position: new THREE.Vector3(-2.81, 1.2, -3.05),
     target: new THREE.Vector3(-2, 1.5, -4),
   },
 ];

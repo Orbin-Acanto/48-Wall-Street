@@ -19,6 +19,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 import { Hotspot, ViewPoint } from '@/types';
 
 interface FloorPlan3DViewerProps {
@@ -50,6 +51,9 @@ export default function FloorPlan3DViewer({
   const [currentViewPointIndex, setCurrentViewPointIndex] = useState(0);
   const [showHotspots, setShowHotspots] = useState(true);
   const [hoveredHotspot, setHoveredHotspot] = useState<string | null>(null);
+  const [activeControls, setActiveControls] = useState<'orbit' | 'firstperson'>(
+    'orbit'
+  );
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -58,6 +62,7 @@ export default function FloorPlan3DViewer({
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const controlsRef = useRef<OrbitControls | null>(null);
+  const pointerLockControlsRef = useRef<PointerLockControls | null>(null);
   const modelRef = useRef<THREE.Group | null>(null);
   const animationFrameRef = useRef<number | undefined>(undefined);
   const hotspotSpritesRef = useRef<Map<string, THREE.Sprite>>(new Map());
@@ -69,6 +74,27 @@ export default function FloorPlan3DViewer({
   const initialCameraTargetRef = useRef<THREE.Vector3>(
     new THREE.Vector3(0, 0, 0)
   );
+
+  const moveStateRef = useRef({
+    forward: false,
+    backward: false,
+    left: false,
+    right: false,
+  });
+
+  const onLock = useCallback(() => {
+    setActiveControls('firstperson');
+  }, []);
+
+  const onUnlock = useCallback(() => {
+    if (controlsRef.current) {
+      controlsRef.current.enabled = true;
+    }
+    setIsInteriorView(false);
+  }, []);
+
+  const velocityRef = useRef(new THREE.Vector3());
+  const directionRef = useRef(new THREE.Vector3());
 
   // Memoized values
   const currentViewPoint = useMemo(
@@ -181,7 +207,7 @@ export default function FloorPlan3DViewer({
   // Fullscreen handling
   const toggleFullscreen = useCallback(async () => {
     if (!containerRef.current) return;
-
+    resetCamera();
     try {
       if (!document.fullscreenElement) {
         await containerRef.current.requestFullscreen();
@@ -210,13 +236,19 @@ export default function FloorPlan3DViewer({
   useEffect(() => {
     const handleFullscreenChange = () => {
       const isNowFullscreen = !!document.fullscreenElement;
+      const wasFullscreen = isFullscreen;
+
       setIsFullscreen(isNowFullscreen);
+
+      if (wasFullscreen && !isNowFullscreen) {
+        resetCamera();
+      }
     };
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () =>
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  }, []);
+  }, [isFullscreen]);
 
   // Navigate view points
   const navigateViewPoint = useCallback(
@@ -267,9 +299,13 @@ export default function FloorPlan3DViewer({
     [viewPoints, currentViewPointIndex]
   );
 
-  // Toggle interior view
   const toggleInteriorView = useCallback(() => {
-    if (!cameraRef.current || !controlsRef.current) return;
+    if (
+      !cameraRef.current ||
+      !controlsRef.current ||
+      !pointerLockControlsRef.current
+    )
+      return;
 
     setIsInteriorView((prev) => {
       const newIsInterior = !prev;
@@ -277,23 +313,49 @@ export default function FloorPlan3DViewer({
       if (newIsInterior && viewPoints.length > 0) {
         const viewPoint = viewPoints[0];
         cameraRef.current!.position.copy(viewPoint.position);
-        controlsRef.current!.target.copy(viewPoint.target);
+        cameraRef.current!.lookAt(viewPoint.target);
+
+        controlsRef.current!.enabled = false;
+        pointerLockControlsRef.current!.enabled = true;
+
+        setActiveControls('firstperson');
         setCurrentViewPointIndex(0);
+
+        requestAnimationFrame(() => {
+          pointerLockControlsRef.current!.lock();
+        });
       } else {
         cameraRef.current!.position.copy(initialCameraPositionRef.current);
         controlsRef.current!.target.copy(initialCameraTargetRef.current);
+
+        pointerLockControlsRef.current!.unlock();
+        pointerLockControlsRef.current!.enabled = false;
+        controlsRef.current!.enabled = true;
+
+        setActiveControls('orbit');
       }
 
       controlsRef.current!.update();
       return newIsInterior;
     });
-  }, [viewPoints]);
+  }, [viewPoints, isFullscreen]);
 
   const resetCamera = useCallback(() => {
-    if (!cameraRef.current || !controlsRef.current) return;
+    if (
+      !cameraRef.current ||
+      !controlsRef.current ||
+      !pointerLockControlsRef.current
+    )
+      return;
 
     cameraRef.current.position.copy(initialCameraPositionRef.current);
     controlsRef.current.target.copy(initialCameraTargetRef.current);
+
+    pointerLockControlsRef.current.unlock();
+    pointerLockControlsRef.current.enabled = false;
+    controlsRef.current.enabled = true;
+    setActiveControls('orbit');
+
     controlsRef.current.update();
     setIsInteriorView(false);
   }, []);
@@ -303,23 +365,10 @@ export default function FloorPlan3DViewer({
     const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.key) {
         case 'Escape':
-          if (isFullscreen) {
-            toggleFullscreen();
-          }
           if (selectedHotspot) {
             setSelectedHotspot(null);
-          }
-          break;
-        case 'ArrowLeft':
-          if (isInteriorView) {
-            event.preventDefault();
-            navigateViewPoint('prev');
-          }
-          break;
-        case 'ArrowRight':
-          if (isInteriorView) {
-            event.preventDefault();
-            navigateViewPoint('next');
+          } else if (isInteriorView && !isFullscreen) {
+            resetCamera();
           }
           break;
         case 'f':
@@ -350,314 +399,388 @@ export default function FloorPlan3DViewer({
     toggleFullscreen,
     navigateViewPoint,
     resetCamera,
+    activeControls,
   ]);
 
-  // Main scene initialization
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!pointerLockControlsRef.current?.isLocked) return;
+
+      switch (event.code) {
+        case 'KeyW':
+        case 'ArrowUp':
+          moveStateRef.current.forward = true;
+          break;
+        case 'KeyS':
+        case 'ArrowDown':
+          moveStateRef.current.backward = true;
+          break;
+        case 'KeyA':
+        case 'ArrowLeft':
+          moveStateRef.current.left = true;
+          break;
+        case 'KeyD':
+        case 'ArrowRight':
+          moveStateRef.current.right = true;
+          break;
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (!pointerLockControlsRef.current?.isLocked) return;
+
+      switch (event.code) {
+        case 'KeyW':
+        case 'ArrowUp':
+          moveStateRef.current.forward = false;
+          break;
+        case 'KeyS':
+        case 'ArrowDown':
+          moveStateRef.current.backward = false;
+          break;
+        case 'KeyA':
+        case 'ArrowLeft':
+          moveStateRef.current.left = false;
+          break;
+        case 'KeyD':
+        case 'ArrowRight':
+          moveStateRef.current.right = false;
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
+    };
+  }, []);
+
   useEffect(() => {
     if (!canvasRef.current) return;
 
-    let mounted = true;
     setIsLoading(true);
     setLoadingProgress(0);
 
-    const initScene = async () => {
-      try {
-        if (!mounted || !canvasRef.current) return;
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf0f0f0);
+    scene.fog = new THREE.Fog(0xf0f0f0, 40, 80);
+    sceneRef.current = scene;
 
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xf0f0f0);
-        scene.fog = new THREE.Fog(0xf0f0f0, 40, 80);
-        sceneRef.current = scene;
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      canvasRef.current.clientWidth / canvasRef.current.clientHeight,
+      0.1,
+      1000
+    );
+    camera.position.copy(initialCameraPositionRef.current);
+    cameraRef.current = camera;
 
-        // Camera setup
-        const camera = new THREE.PerspectiveCamera(
-          45,
-          canvasRef.current.clientWidth / canvasRef.current.clientHeight,
-          0.1,
-          1000
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvasRef.current,
+      antialias: true,
+      alpha: false,
+      powerPreference: 'high-performance',
+    });
+    const width = canvasRef.current.clientWidth;
+    const height = canvasRef.current.clientHeight;
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+
+    rendererRef.current = renderer;
+
+    return () => {
+      if (rendererRef.current) {
+        rendererRef.current.dispose();
+        rendererRef.current = null;
+      }
+      sceneRef.current = null;
+      cameraRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!sceneRef.current) return;
+
+    const scene = sceneRef.current;
+    const lights: THREE.Light[] = [];
+
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x8d8d8d, 0.4);
+    hemisphereLight.position.set(0, 50, 0);
+    scene.add(hemisphereLight);
+    lights.push(hemisphereLight);
+
+    const sunLight = new THREE.DirectionalLight(0xfff4e6, 2.8);
+    sunLight.position.set(30, 50, 30);
+    sunLight.castShadow = true;
+
+    sunLight.shadow.mapSize.width = enablePerformanceMode ? 1024 : 4096;
+    sunLight.shadow.mapSize.height = enablePerformanceMode ? 1024 : 4096;
+    sunLight.shadow.camera.left = -35;
+    sunLight.shadow.camera.right = 35;
+    sunLight.shadow.camera.top = 35;
+    sunLight.shadow.camera.bottom = -35;
+    sunLight.shadow.camera.near = 0.5;
+    sunLight.shadow.camera.far = 120;
+    sunLight.shadow.bias = -0.00005;
+    sunLight.shadow.normalBias = 0.03;
+    sunLight.shadow.radius = 2;
+    scene.add(sunLight);
+    lights.push(sunLight);
+
+    const skyLight = new THREE.DirectionalLight(0xadd8e6, 1.5);
+    skyLight.position.set(-25, 35, -25);
+    scene.add(skyLight);
+    lights.push(skyLight);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
+    scene.add(ambientLight);
+    lights.push(ambientLight);
+
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.9);
+    rimLight.position.set(-35, 12, 25);
+    scene.add(rimLight);
+    lights.push(rimLight);
+
+    if (!enablePerformanceMode) {
+      const createCeilingLight = (
+        x: number,
+        z: number,
+        intensity: number = 1.8
+      ) => {
+        const light = new THREE.PointLight(0xfff5e1, intensity, 28, 2);
+        light.position.set(x, 8, z);
+        light.castShadow = true;
+        light.shadow.mapSize.width = 1024;
+        light.shadow.mapSize.height = 1024;
+        light.shadow.camera.near = 0.5;
+        light.shadow.camera.far = 30;
+        light.shadow.bias = -0.0001;
+        return light;
+      };
+
+      const ceilingLights = [
+        createCeilingLight(6, 6, 1.8),
+        createCeilingLight(-6, -6, 1.8),
+        createCeilingLight(6, -6, 1.5),
+        createCeilingLight(-6, 6, 1.5),
+        createCeilingLight(0, 0, 1.6),
+      ];
+
+      ceilingLights.forEach((light) => {
+        scene.add(light);
+        lights.push(light);
+      });
+
+      const createSpotlight = (x: number, targetX: number) => {
+        const spotlight = new THREE.SpotLight(
+          0xffd4a3,
+          1.0,
+          18,
+          Math.PI / 5,
+          0.4,
+          1.8
         );
-        camera.position.copy(initialCameraPositionRef.current);
-        cameraRef.current = camera;
+        spotlight.position.set(x, 10, 0);
+        spotlight.target.position.set(targetX, 0, 0);
+        spotlight.castShadow = true;
+        spotlight.shadow.mapSize.width = 512;
+        spotlight.shadow.mapSize.height = 512;
+        scene.add(spotlight);
+        scene.add(spotlight.target);
+        return spotlight;
+      };
 
-        const renderer = new THREE.WebGLRenderer({
-          canvas: canvasRef.current,
-          antialias: true,
-          alpha: false,
-          powerPreference: 'high-performance',
-        });
-        const width = canvasRef.current.clientWidth;
-        const height = canvasRef.current.clientHeight;
-        renderer.setSize(width, height, false);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
+      const spotlight1 = createSpotlight(10, 6);
+      const spotlight2 = createSpotlight(-10, -6);
+      lights.push(spotlight1, spotlight2);
+    } else {
+      const light1 = new THREE.PointLight(0xfff5e1, 1.5, 25, 2);
+      light1.position.set(5, 8, 5);
+      scene.add(light1);
+      lights.push(light1);
 
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        renderer.outputColorSpace = THREE.SRGBColorSpace;
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.1;
+      const light2 = new THREE.PointLight(0xfff5e1, 1.5, 25, 2);
+      light2.position.set(-5, 8, -5);
+      scene.add(light2);
+      lights.push(light2);
+    }
 
-        rendererRef.current = renderer;
-
-        const hemisphereLight = new THREE.HemisphereLight(
-          0xffffff,
-          0x8d8d8d,
-          0.4
-        );
-        hemisphereLight.position.set(0, 50, 0);
-        scene.add(hemisphereLight);
-
-        const sunLight = new THREE.DirectionalLight(0xfff4e6, 2.8);
-        sunLight.position.set(30, 50, 30);
-        sunLight.castShadow = true;
-
-        sunLight.shadow.mapSize.width = 4096;
-        sunLight.shadow.mapSize.height = 4096;
-        sunLight.shadow.camera.left = -35;
-        sunLight.shadow.camera.right = 35;
-        sunLight.shadow.camera.top = 35;
-        sunLight.shadow.camera.bottom = -35;
-        sunLight.shadow.camera.near = 0.5;
-        sunLight.shadow.camera.far = 120;
-        sunLight.shadow.bias = -0.00005;
-        sunLight.shadow.normalBias = 0.03;
-        sunLight.shadow.radius = 2;
-        scene.add(sunLight);
-
-        const skyLight = new THREE.DirectionalLight(0xadd8e6, 1.5);
-        skyLight.position.set(-25, 35, -25);
-        scene.add(skyLight);
-
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
-        scene.add(ambientLight);
-
-        const rimLight = new THREE.DirectionalLight(0xffffff, 0.9);
-        rimLight.position.set(-35, 12, 25);
-        scene.add(rimLight);
-
-        if (!enablePerformanceMode) {
-          sunLight.shadow.mapSize.width = 2048;
-          sunLight.shadow.mapSize.height = 2048;
-          const createCeilingLight = (
-            x: number,
-            z: number,
-            intensity: number = 1.8
-          ) => {
-            const light = new THREE.PointLight(0xfff5e1, intensity, 28, 2);
-            light.position.set(x, 8, z);
-            light.castShadow = true;
-            light.shadow.mapSize.width = 1024;
-            light.shadow.mapSize.height = 1024;
-            light.shadow.camera.near = 0.5;
-            light.shadow.camera.far = 30;
-            light.shadow.bias = -0.0001;
-            return light;
-          };
-
-          scene.add(createCeilingLight(6, 6, 1.8));
-          scene.add(createCeilingLight(-6, -6, 1.8));
-          scene.add(createCeilingLight(6, -6, 1.5));
-          scene.add(createCeilingLight(-6, 6, 1.5));
-          scene.add(createCeilingLight(0, 0, 1.6));
-
-          const createSpotlight = (x: number, targetX: number) => {
-            const spotlight = new THREE.SpotLight(
-              0xffd4a3,
-              1.0,
-              18,
-              Math.PI / 5,
-              0.4,
-              1.8
-            );
-            spotlight.position.set(x, 10, 0);
-            spotlight.target.position.set(targetX, 0, 0);
-            spotlight.castShadow = true;
-            spotlight.shadow.mapSize.width = 512;
-            spotlight.shadow.mapSize.height = 512;
-            scene.add(spotlight);
-            scene.add(spotlight.target);
-            return spotlight;
-          };
-
-          createSpotlight(10, 6);
-          createSpotlight(-10, -6);
-        } else {
-          sunLight.shadow.mapSize.width = 1024;
-          sunLight.shadow.mapSize.height = 1024;
-
-          const light1 = new THREE.PointLight(0xfff5e1, 1.5, 25, 2);
-          light1.position.set(5, 8, 5);
-          scene.add(light1);
-
-          const light2 = new THREE.PointLight(0xfff5e1, 1.5, 25, 2);
-          light2.position.set(-5, 8, -5);
-          scene.add(light2);
+    return () => {
+      lights.forEach((light) => {
+        scene.remove(light);
+        if (light instanceof THREE.SpotLight && light.target) {
+          scene.remove(light.target);
         }
+      });
+    };
+  }, [enablePerformanceMode]);
 
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.minDistance = 5;
-        controls.maxDistance = 45;
-        controls.maxPolarAngle = Math.PI / 2.05;
-        controls.autoRotate = isRotating;
-        controls.autoRotateSpeed = 1.2;
-        controls.target.copy(initialCameraTargetRef.current);
-        controls.update();
-        controlsRef.current = controls;
+  useEffect(() => {
+    if (!cameraRef.current || !rendererRef.current) return;
 
-        const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath(
-          'https://www.gstatic.com/draco/versioned/decoders/1.5.7/'
-        );
-        dracoLoader.setDecoderConfig({ type: 'js' });
-        dracoLoader.preload();
+    const camera = cameraRef.current;
+    const renderer = rendererRef.current;
 
-        const loader = new GLTFLoader();
-        loader.setDRACOLoader(dracoLoader);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.minDistance = 5;
+    controls.maxDistance = 45;
+    controls.maxPolarAngle = Math.PI / 2.05;
+    controls.autoRotate = isRotating;
+    controls.autoRotateSpeed = 1.2;
+    controls.target.copy(initialCameraTargetRef.current);
+    controls.update();
+    controlsRef.current = controls;
 
-        const modelPath = showFurnished ? furnishedModelPath : emptyModelPath;
+    const pointerLockControls = new PointerLockControls(
+      camera,
+      renderer.domElement
+    );
+    pointerLockControls.enabled = false;
+    pointerLockControlsRef.current = pointerLockControls;
 
-        loader.load(
-          modelPath,
-          (gltf) => {
-            if (!mounted) return;
+    pointerLockControls.addEventListener('lock', onLock);
+    pointerLockControls.addEventListener('unlock', onUnlock);
 
-            const model = gltf.scene;
+    return () => {
+      if (controlsRef.current) {
+        controlsRef.current.dispose();
+        controlsRef.current = null;
+      }
+      if (pointerLockControlsRef.current) {
+        pointerLockControlsRef.current.removeEventListener('lock', onLock);
+        pointerLockControlsRef.current.removeEventListener('unlock', onUnlock);
+        pointerLockControlsRef.current.dispose();
+        pointerLockControlsRef.current = null;
+      }
+    };
+  }, [isRotating, onLock, onUnlock]);
 
-            model.traverse((child) => {
-              if ((child as THREE.Mesh).isMesh) {
-                const mesh = child as THREE.Mesh;
+  useEffect(() => {
+    if (controlsRef.current) {
+      controlsRef.current.autoRotate = isRotating;
+    }
+  }, [isRotating]);
 
-                mesh.castShadow = true;
-                mesh.receiveShadow = true;
+  useEffect(() => {
+    if (!sceneRef.current || !rendererRef.current) return;
 
-                if (mesh.material && !enablePerformanceMode) {
-                  const materials = Array.isArray(mesh.material)
-                    ? mesh.material
-                    : [mesh.material];
+    let mounted = true;
+    const scene = sceneRef.current;
+    const renderer = rendererRef.current;
 
-                  materials.forEach((mat: THREE.Material) => {
-                    if (mat instanceof THREE.MeshStandardMaterial) {
-                      if (mat.metalness !== undefined) mat.metalness *= 0.7;
-                      if (mat.roughness !== undefined)
-                        mat.roughness = Math.max(mat.roughness, 0.35);
-                      if (mat.envMapIntensity !== undefined)
-                        mat.envMapIntensity = 0.8;
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath(
+      'https://www.gstatic.com/draco/versioned/decoders/1.5.7/'
+    );
+    dracoLoader.setDecoderConfig({ type: 'js' });
+    dracoLoader.preload();
 
-                      if (mat.map) {
-                        mat.map.anisotropy =
-                          renderer.capabilities.getMaxAnisotropy();
-                      }
-                    }
-                  });
-                }
-              }
-            });
+    const loader = new GLTFLoader();
+    loader.setDRACOLoader(dracoLoader);
 
-            const box = new THREE.Box3().setFromObject(model);
-            const center = box.getCenter(new THREE.Vector3());
-            const size = box.getSize(new THREE.Vector3());
+    const modelPath = showFurnished ? furnishedModelPath : emptyModelPath;
 
-            model.position.x += model.position.x - center.x;
-            model.position.y += model.position.y - center.y;
-            model.position.z += model.position.z - center.z;
+    loader.load(
+      modelPath,
+      (gltf) => {
+        if (!mounted || !scene) return;
 
-            const maxDim = Math.max(size.x, size.y, size.z);
-            const scale = 20 / maxDim;
-            model.scale.setScalar(scale);
+        const model = gltf.scene;
 
-            const newBox = new THREE.Box3().setFromObject(model);
-            const newCenter = newBox.getCenter(new THREE.Vector3());
-            model.position.sub(newCenter);
+        model.traverse((child) => {
+          if ((child as THREE.Mesh).isMesh) {
+            const mesh = child as THREE.Mesh;
 
-            if (modelRef.current && sceneRef.current) {
-              sceneRef.current.remove(modelRef.current);
-              modelRef.current.traverse((child) => {
-                if ((child as THREE.Mesh).isMesh) {
-                  const mesh = child as THREE.Mesh;
-                  if (mesh.geometry) mesh.geometry.dispose();
-                  if (mesh.material) {
-                    const materials = Array.isArray(mesh.material)
-                      ? mesh.material
-                      : [mesh.material];
-                    materials.forEach((mat) => mat.dispose());
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+
+            if (mesh.material && !enablePerformanceMode) {
+              const materials = Array.isArray(mesh.material)
+                ? mesh.material
+                : [mesh.material];
+
+              materials.forEach((mat: THREE.Material) => {
+                if (mat instanceof THREE.MeshStandardMaterial) {
+                  if (mat.metalness !== undefined) mat.metalness *= 0.7;
+                  if (mat.roughness !== undefined)
+                    mat.roughness = Math.max(mat.roughness, 0.35);
+                  if (mat.envMapIntensity !== undefined)
+                    mat.envMapIntensity = 0.8;
+
+                  if (mat.map) {
+                    mat.map.anisotropy =
+                      renderer.capabilities.getMaxAnisotropy();
                   }
                 }
               });
             }
-
-            scene.add(model);
-            modelRef.current = model;
-            setIsLoading(false);
-            setLoadingProgress(100);
-          },
-          (progress) => {
-            if (progress.total > 0) {
-              const percentComplete = (progress.loaded / progress.total) * 100;
-              setLoadingProgress(Math.round(percentComplete));
-            }
-          },
-          (error) => {
-            console.error('Error loading 3D model:', error);
-            setIsLoading(false);
           }
-        );
+        });
 
-        const animate = () => {
-          if (!mounted) return;
-          animationFrameRef.current = requestAnimationFrame(animate);
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
 
-          controls.update();
-          renderer.render(scene, camera);
-        };
-        animate();
+        model.position.x += model.position.x - center.x;
+        model.position.y += model.position.y - center.y;
+        model.position.z += model.position.z - center.z;
 
-        canvasRef.current.addEventListener('mousemove', handleMouseMove);
-        canvasRef.current.addEventListener('click', handleClick);
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 20 / maxDim;
+        model.scale.setScalar(scale);
 
-        const handleResize = () => {
-          if (!canvasRef.current || !mounted) return;
+        const newBox = new THREE.Box3().setFromObject(model);
+        const newCenter = newBox.getCenter(new THREE.Vector3());
+        model.position.sub(newCenter);
 
-          const width = canvasRef.current.clientWidth;
-          const height = canvasRef.current.clientHeight;
+        if (modelRef.current && scene) {
+          scene.remove(modelRef.current);
+          modelRef.current.traverse((child) => {
+            if ((child as THREE.Mesh).isMesh) {
+              const mesh = child as THREE.Mesh;
+              if (mesh.geometry) mesh.geometry.dispose();
+              if (mesh.material) {
+                const materials = Array.isArray(mesh.material)
+                  ? mesh.material
+                  : [mesh.material];
+                materials.forEach((mat) => mat.dispose());
+              }
+            }
+          });
+        }
 
-          camera.aspect = width / height;
-          camera.updateProjectionMatrix();
-          renderer.setSize(width, height, false);
-        };
-
-        handleResize();
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-          window.removeEventListener('resize', handleResize);
-          canvasRef.current?.removeEventListener('mousemove', handleMouseMove);
-          canvasRef.current?.removeEventListener('click', handleClick);
-        };
-      } catch (error) {
-        console.error('Error initializing 3D scene:', error);
+        scene.add(model);
+        modelRef.current = model;
+        setIsLoading(false);
+        setLoadingProgress(100);
+      },
+      (progress) => {
+        if (progress.total > 0) {
+          const percentComplete = (progress.loaded / progress.total) * 100;
+          setLoadingProgress(Math.round(percentComplete));
+        }
+      },
+      (error) => {
+        console.error('Error loading 3D model:', error);
         setIsLoading(false);
       }
-    };
-
-    initScene();
+    );
 
     return () => {
       mounted = false;
-
-      if (animationFrameRef.current !== undefined) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-
-      hotspotSpritesRef.current.forEach((sprite) => {
-        sceneRef.current?.remove(sprite);
-        sprite.material.dispose();
-        if (sprite.material.map) sprite.material.map.dispose();
-      });
-      hotspotSpritesRef.current.clear();
 
       if (modelRef.current && sceneRef.current) {
         sceneRef.current.remove(modelRef.current);
@@ -673,10 +796,7 @@ export default function FloorPlan3DViewer({
             }
           }
         });
-      }
-
-      if (rendererRef.current) {
-        rendererRef.current.dispose();
+        modelRef.current = null;
       }
     };
   }, [
@@ -687,14 +807,114 @@ export default function FloorPlan3DViewer({
   ]);
 
   useEffect(() => {
-    updateHotspots();
-  }, [updateHotspots]);
+    if (!sceneRef.current || !cameraRef.current || !rendererRef.current) return;
+
+    let mounted = true;
+    const scene = sceneRef.current;
+    const camera = cameraRef.current;
+    const renderer = rendererRef.current;
+    const clock = new THREE.Clock();
+
+    const animate = () => {
+      if (!mounted) return;
+      animationFrameRef.current = requestAnimationFrame(animate);
+
+      const delta = clock.getDelta();
+
+      if (activeControls === 'orbit' && controlsRef.current) {
+        controlsRef.current.update();
+      } else if (
+        activeControls === 'firstperson' &&
+        pointerLockControlsRef.current?.isLocked
+      ) {
+        const moveState = moveStateRef.current;
+        const velocity = velocityRef.current;
+        const direction = directionRef.current;
+
+        velocity.x -= velocity.x * 10.0 * delta;
+        velocity.z -= velocity.z * 10.0 * delta;
+
+        direction.z = Number(moveState.forward) - Number(moveState.backward);
+        direction.x = Number(moveState.right) - Number(moveState.left);
+        direction.normalize();
+
+        if (moveState.forward || moveState.backward)
+          velocity.z -= direction.z * 10.0 * delta;
+
+        if (moveState.left || moveState.right)
+          velocity.x -= direction.x * 10.0 * delta;
+
+        pointerLockControlsRef.current.moveRight(-velocity.x * delta);
+        pointerLockControlsRef.current.moveForward(-velocity.z * delta);
+      }
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    return () => {
+      mounted = false;
+      if (animationFrameRef.current !== undefined) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = undefined;
+      }
+    };
+  }, [activeControls]);
 
   useEffect(() => {
-    if (controlsRef.current) {
-      controlsRef.current.autoRotate = isRotating;
-    }
-  }, [isRotating]);
+    if (!canvasRef.current || !cameraRef.current || !rendererRef.current)
+      return;
+
+    const handleResize = () => {
+      if (!canvasRef.current || !cameraRef.current || !rendererRef.current)
+        return;
+
+      const width = canvasRef.current.clientWidth;
+      const height = canvasRef.current.clientHeight;
+
+      cameraRef.current.aspect = width / height;
+      cameraRef.current.updateProjectionMatrix();
+      rendererRef.current.setSize(width, height, false);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+
+    const canvas = canvasRef.current;
+
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('click', handleClick);
+
+    return () => {
+      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('click', handleClick);
+    };
+  }, [handleMouseMove, handleClick]);
+
+  useEffect(() => {
+    return () => {
+      hotspotSpritesRef.current.forEach((sprite) => {
+        sceneRef.current?.remove(sprite);
+        sprite.material.dispose();
+        if (sprite.material.map) sprite.material.map.dispose();
+      });
+      hotspotSpritesRef.current.clear();
+    };
+  }, []);
+
+  useEffect(() => {
+    updateHotspots();
+  }, [updateHotspots]);
 
   return (
     <div
@@ -751,7 +971,12 @@ export default function FloorPlan3DViewer({
           {/* Interior view toggle */}
           {viewPoints.length > 0 && (
             <button
-              onClick={toggleInteriorView}
+              onClick={() => {
+                if (!isFullscreen) {
+                  toggleFullscreen();
+                }
+                toggleInteriorView();
+              }}
               className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
                 isInteriorView
                   ? 'bg-[#D4B371] text-white'
