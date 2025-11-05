@@ -44,7 +44,6 @@ export function useDebugMode(
 
 export function optimizeTexture(
   texture: THREE.Texture,
-  maxSize: number = 2048,
   quality: 'high' | 'medium' | 'low' = 'medium'
 ): void {
   texture.minFilter = THREE.LinearMipmapLinearFilter;
@@ -88,6 +87,10 @@ export function calculateOptimalCameraPosition(
 }
 
 export function detectPerformanceTier(): 'high' | 'medium' | 'low' {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return 'medium';
+  }
+
   const isMobile =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
@@ -97,7 +100,6 @@ export function detectPerformanceTier(): 'high' | 'medium' | 'low' {
 
   const cores = navigator.hardwareConcurrency || 2;
 
-  // FIX: Line 99 - Proper type for deviceMemory
   const memory =
     (navigator as Navigator & { deviceMemory?: number }).deviceMemory || 4;
 
@@ -215,6 +217,10 @@ export function getMemoryUsage(): {
   total: number;
   percentage: number;
 } | null {
+  if (typeof window === 'undefined' || typeof performance === 'undefined') {
+    return null;
+  }
+
   const perf = performance as Performance & { memory?: PerformanceMemory };
 
   if (!perf.memory) return null;
@@ -227,23 +233,11 @@ export function getMemoryUsage(): {
   return { used, total, percentage };
 }
 
-export function createLazyLoader(threshold: number = 0.1) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.dispatchEvent(new CustomEvent('lazyload'));
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold }
-  );
-
-  return observer;
-}
-
 export function isWebGLAvailable(): { available: boolean; version: number } {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return { available: false, version: 0 };
+  }
+
   try {
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
