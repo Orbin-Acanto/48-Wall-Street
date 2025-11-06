@@ -500,7 +500,7 @@ export default function FloorPlan3DViewer({
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(
-      65,
+      60,
       canvasRef.current.clientWidth / canvasRef.current.clientHeight,
       0.1,
       1000
