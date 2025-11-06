@@ -14,6 +14,10 @@ import {
   MapPin,
   RefreshCwOff,
   Rotate3d,
+  ArrowDownRight,
+  Camera,
+  Cctv,
+  SwitchCamera,
 } from 'lucide-react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -49,7 +53,7 @@ export default function FloorPlan3DViewer({
   const [selectedHotspot, setSelectedHotspot] = useState<Hotspot | null>(null);
   const [isInteriorView, setIsInteriorView] = useState(false);
   const [currentViewPointIndex, setCurrentViewPointIndex] = useState(0);
-  const [showHotspots, setShowHotspots] = useState(true);
+  const [showHotspots, setShowHotspots] = useState(false);
   const [hoveredHotspot, setHoveredHotspot] = useState<string | null>(null);
   const [activeControls, setActiveControls] = useState<'orbit' | 'firstperson'>(
     'orbit'
@@ -251,52 +255,68 @@ export default function FloorPlan3DViewer({
   }, [isFullscreen]);
 
   // Navigate view points
-  const navigateViewPoint = useCallback(
-    (direction: 'next' | 'prev') => {
-      if (viewPoints.length === 0 || !cameraRef.current || !controlsRef.current)
-        return;
+  // const navigateViewPoint = useCallback(
+  //   (direction: 'next' | 'prev') => {
+  //     if (viewPoints.length === 0 || !cameraRef.current || !controlsRef.current)
+  //       return;
 
-      const newIndex =
-        direction === 'next'
-          ? (currentViewPointIndex + 1) % viewPoints.length
-          : (currentViewPointIndex - 1 + viewPoints.length) % viewPoints.length;
+  //     const newIndex =
+  //       direction === 'next'
+  //         ? (currentViewPointIndex + 1) % viewPoints.length
+  //         : (currentViewPointIndex - 1 + viewPoints.length) % viewPoints.length;
 
-      setCurrentViewPointIndex(newIndex);
+  //     setCurrentViewPointIndex(newIndex);
 
-      const viewPoint = viewPoints[newIndex];
+  //     const viewPoint = viewPoints[newIndex];
 
-      const startPos = cameraRef.current.position.clone();
-      const startTarget = controlsRef.current.target.clone();
-      const duration = 1000;
-      const startTime = Date.now();
+  //     const startPos = cameraRef.current.position.clone();
+  //     const startTarget = controlsRef.current.target.clone();
+  //     const duration = 1000;
+  //     const startTime = Date.now();
 
-      const animateTransition = () => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
+  //     const animateTransition = () => {
+  //       const elapsed = Date.now() - startTime;
+  //       const progress = Math.min(elapsed / duration, 1);
+  //       const eased = 1 - Math.pow(1 - progress, 3);
 
-        if (cameraRef.current && controlsRef.current) {
-          cameraRef.current.position.lerpVectors(
-            startPos,
-            viewPoint.position,
-            eased
-          );
-          controlsRef.current.target.lerpVectors(
-            startTarget,
-            viewPoint.target,
-            eased
-          );
-          controlsRef.current.update();
-        }
+  //       if (cameraRef.current && controlsRef.current) {
+  //         cameraRef.current.position.lerpVectors(
+  //           startPos,
+  //           viewPoint.position,
+  //           eased
+  //         );
+  //         controlsRef.current.target.lerpVectors(
+  //           startTarget,
+  //           viewPoint.target,
+  //           eased
+  //         );
+  //         controlsRef.current.update();
+  //       }
 
-        if (progress < 1) {
-          requestAnimationFrame(animateTransition);
-        }
-      };
+  //       if (progress < 1) {
+  //         requestAnimationFrame(animateTransition);
+  //       }
+  //     };
 
-      animateTransition();
+  //     animateTransition();
+  //   },
+  //   [viewPoints, currentViewPointIndex]
+  // );
+
+  const toggleInteriorFixedView = useCallback(
+    (viewPointCoordinates: {
+      position: THREE.Vector3;
+      target: THREE.Vector3;
+    }) => {
+      if (!cameraRef.current || !controlsRef.current) return;
+
+      controlsRef.current.enabled = false;
+      cameraRef.current!.position.copy(viewPointCoordinates.position);
+      controlsRef.current!.target.copy(viewPointCoordinates.target);
+
+      controlsRef.current!.update();
     },
-    [viewPoints, currentViewPointIndex]
+    [viewPoints]
   );
 
   const toggleInteriorView = useCallback(() => {
@@ -383,6 +403,15 @@ export default function FloorPlan3DViewer({
         case 'R':
           resetCamera();
           break;
+        case 't':
+        case 'T':
+          {
+            if (!isFullscreen) {
+              toggleFullscreen();
+            }
+            toggleInteriorView();
+          }
+          break;
         case ' ':
           event.preventDefault();
           setIsRotating((prev) => !prev);
@@ -397,7 +426,7 @@ export default function FloorPlan3DViewer({
     isInteriorView,
     selectedHotspot,
     toggleFullscreen,
-    navigateViewPoint,
+    // navigateViewPoint,
     resetCamera,
     activeControls,
   ]);
@@ -458,6 +487,7 @@ export default function FloorPlan3DViewer({
     };
   }, []);
 
+  // scene Setup
   useEffect(() => {
     if (!canvasRef.current) return;
 
@@ -470,7 +500,7 @@ export default function FloorPlan3DViewer({
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(
-      45,
+      65,
       canvasRef.current.clientWidth / canvasRef.current.clientHeight,
       0.1,
       1000
@@ -509,6 +539,7 @@ export default function FloorPlan3DViewer({
     };
   }, []);
 
+  // Light Setup
   useEffect(() => {
     if (!sceneRef.current) return;
 
@@ -626,6 +657,7 @@ export default function FloorPlan3DViewer({
     };
   }, [enablePerformanceMode]);
 
+  // camera controller setup
   useEffect(() => {
     if (!cameraRef.current || !rendererRef.current) return;
 
@@ -668,12 +700,14 @@ export default function FloorPlan3DViewer({
     };
   }, [isRotating, onLock, onUnlock]);
 
+  // control rotation
   useEffect(() => {
     if (controlsRef.current) {
       controlsRef.current.autoRotate = isRotating;
     }
   }, [isRotating]);
 
+  // Model setup
   useEffect(() => {
     if (!sceneRef.current || !rendererRef.current) return;
 
@@ -806,6 +840,7 @@ export default function FloorPlan3DViewer({
     enablePerformanceMode,
   ]);
 
+  // animate between viewpoint
   useEffect(() => {
     if (!sceneRef.current || !cameraRef.current || !rendererRef.current) return;
 
@@ -1027,6 +1062,85 @@ export default function FloorPlan3DViewer({
         </button>
       </div>
 
+      {/* fixed camera pos control panel  */}
+      <div className="absolute top-26 left-4 flex flex-col gap-2">
+        <div className="flex flex-row gap-2">
+          {/* corner view toggle */}
+          {viewPoints.length > 0 && (
+            <button
+              onClick={() =>
+                toggleInteriorFixedView({
+                  position: new THREE.Vector3(-8.5, 6, -3.5),
+                  target: new THREE.Vector3(0, 0, 3.5),
+                })
+              }
+              className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
+                isInteriorView
+                  ? 'bg-[#D4B371] text-white'
+                  : 'bg-white/90 text-gray-700 hover:bg-white'
+              }`}
+              title="Corner View Camera"
+            >
+              <ArrowDownRight className="h-5 w-5" />
+            </button>
+          )}
+
+          {/* top view camera */}
+          <button
+            onClick={() =>
+              toggleInteriorFixedView({
+                position: new THREE.Vector3(0, 17, 0),
+                target: new THREE.Vector3(0, 0, 0),
+              })
+            }
+            className="flex h-10 w-10 items-center justify-center rounded bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white"
+            title="Top View Camera"
+          >
+            <Camera className="h-5 w-5 text-gray-700" />
+          </button>
+
+          {/* Stage View Camera */}
+          {hotspots.length > 0 && (
+            <button
+              onClick={() =>
+                toggleInteriorFixedView({
+                  position: new THREE.Vector3(6, 2, 0),
+                  target: new THREE.Vector3(0, 1, 0),
+                })
+              }
+              className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
+                showHotspots
+                  ? 'bg-[#D4B371] text-white'
+                  : 'bg-white/90 text-gray-700 hover:bg-white'
+              }`}
+              title="Stage View Camera"
+            >
+              <Cctv className="h-5 w-5" />
+            </button>
+          )}
+
+          {/* Staircase View Camera */}
+          {hotspots.length > 0 && (
+            <button
+              onClick={() =>
+                toggleInteriorFixedView({
+                  position: new THREE.Vector3(-7.5, 1.5, 0),
+                  target: new THREE.Vector3(0, 1.5, 0),
+                })
+              }
+              className={`flex h-10 w-10 items-center justify-center rounded shadow-lg transition-all hover:scale-110 ${
+                showHotspots
+                  ? 'bg-[#D4B371] text-white'
+                  : 'bg-white/90 text-gray-700 hover:bg-white'
+              }`}
+              title="Staircase View Camera"
+            >
+              <SwitchCamera className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+      </div>
+
       {/* Fullscreen toggle */}
       <div className="absolute top-4 right-4">
         <button
@@ -1043,7 +1157,7 @@ export default function FloorPlan3DViewer({
       </div>
 
       {/* Interior navigation arrows */}
-      {isInteriorView && viewPoints.length > 1 && (
+      {/* {isInteriorView && viewPoints.length > 1 && (
         <>
           <button
             onClick={() => navigateViewPoint('prev')}
@@ -1060,7 +1174,7 @@ export default function FloorPlan3DViewer({
             <ChevronRight className="h-7 w-7 text-gray-700" />
           </button>
         </>
-      )}
+      )} */}
 
       {/* View indicator */}
       <div className="absolute bottom-4 left-4 rounded bg-black/80 px-4 py-2 shadow-lg backdrop-blur-sm">
