@@ -163,7 +163,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
       <div className="flex items-center gap-1 border-r border-gray-300 pr-2">
         <button
           onClick={onSave}
-          className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
+          className="flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
           title="Save (Ctrl+S)"
         >
           <svg
@@ -183,7 +183,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
         </button>
         <button
           onClick={onLoad}
-          className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
+          className="flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
           title="Load"
         >
           <svg
@@ -203,7 +203,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
         </button>
         <button
           onClick={onExport}
-          className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
+          className="flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
           title="Export"
         >
           <svg
@@ -228,7 +228,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
         <button
           onClick={onUndo}
           disabled={!canUndo}
-          className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
           title="Undo (Ctrl+Z)"
         >
           <svg
@@ -249,7 +249,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
         <button
           onClick={onRedo}
           disabled={!canRedo}
-          className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
           title="Redo (Ctrl+Y)"
         >
           <svg
@@ -279,9 +279,9 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
               isLocked &&
               (tool.id === 'wall' || tool.id === 'door' || tool.id === 'window')
             }
-            className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+            className={`flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
               selectedTool === tool.id
-                ? 'bg-blue-500 text-white'
+                ? 'bg-primary text-white'
                 : 'text-gray-700 hover:bg-gray-100'
             } disabled:cursor-not-allowed disabled:opacity-40`}
             title={tool.label}
@@ -296,9 +296,9 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
       <div className="flex items-center gap-1 border-r border-gray-300 pr-2">
         <button
           onClick={onToggleGrid}
-          className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+          className={`flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
             showGrid
-              ? 'bg-blue-500 text-white'
+              ? 'bg-primary text-white'
               : 'text-gray-700 hover:bg-gray-100'
           }`}
           title="Toggle Grid (G)"
@@ -320,9 +320,9 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
         </button>
         <button
           onClick={onToggleDimensions}
-          className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+          className={`flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
             showDimensions
-              ? 'bg-blue-500 text-white'
+              ? 'bg-primary text-white'
               : 'text-gray-700 hover:bg-gray-100'
           }`}
           title="Toggle Dimensions (D)"
@@ -348,7 +348,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
       <div className="ml-auto flex items-center gap-2">
         <button
           onClick={onOpenEventDetails}
-          className="flex items-center gap-2 rounded-md bg-purple-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-600"
+          className="bg-primary hover:bg-primary/80 flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-white transition-colors hover:cursor-pointer"
         >
           <svg
             className="h-4 w-4"
@@ -371,7 +371,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
           className={`flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors ${
             isLocked
               ? 'bg-red-500 text-white hover:bg-red-600'
-              : 'bg-green-500 text-white hover:bg-green-600'
+              : 'text-dark-black bg-white hover:bg-gray-300'
           }`}
           title={isLocked ? 'Floor plan is locked' : 'Floor plan is unlocked'}
         >

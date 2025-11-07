@@ -38,9 +38,17 @@ export interface Room {
   color?: string;
 }
 
+export type SelectedType =
+  | 'wall'
+  | 'furniture'
+  | 'room'
+  | 'door'
+  | 'window'
+  | null;
+
 export interface FurnitureItem {
   id: string;
-  type: 'furniture' | 'av' | 'catering';
+  type: 'furniture' | 'av' | 'catering' | string;
   category: string;
   name: string;
   position: Point;

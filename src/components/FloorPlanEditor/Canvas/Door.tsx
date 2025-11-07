@@ -10,6 +10,7 @@ interface DoorProps {
   wallThickness: number;
   wallAngle: number;
   pixelsPerFoot: number;
+  onClick?: () => void;
 }
 
 export const Door: React.FC<DoorProps> = ({
@@ -19,6 +20,7 @@ export const Door: React.FC<DoorProps> = ({
   wallThickness,
   wallAngle,
   pixelsPerFoot,
+  onClick,
 }) => {
   const doorCenter = getPointAlongLine(
     wallStart,
@@ -154,6 +156,11 @@ export const Door: React.FC<DoorProps> = ({
   return (
     <g
       transform={`translate(${doorCenter.x},${doorCenter.y}) rotate(${wallAngle})`}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick?.();
+      }}
+      style={{ cursor: 'pointer' }}
     >
       {renderDoorStyle()}
       <text y={wallThickness + 10} fontSize="8" fill="#666" textAnchor="middle">

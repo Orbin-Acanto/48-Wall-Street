@@ -1,41 +1,85 @@
 'use client';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
+
 import { FloorPlanCanvas } from '@/components/FloorPlanEditor/Canvas/FloorPlanCanvas';
 import { EventDetailsModal } from '@/components/FloorPlanEditor/Modals/EventDetailsModal';
 import { ExportImportModal } from '@/components/FloorPlanEditor/Modals/ExportImportModal';
 import { WallPropertiesModal } from '@/components/FloorPlanEditor/Modals/WallPropertiesModal';
 import { PropertiesPanel } from '@/components/FloorPlanEditor/Panels/PropertiesPanel';
+
 import { AudioVisualsSidebar } from '@/components/FloorPlanEditor/Sidebars/AudioVisualsSidebar';
 import { CateringSidebar } from '@/components/FloorPlanEditor/Sidebars/CateringSidebar';
 import { FurnitureSidebar } from '@/components/FloorPlanEditor/Sidebars/FurnitureSidebar';
+
 import { TopToolbar } from '@/components/FloorPlanEditor/Toolbars/TopToolbar';
+import { DrawingTools } from '@/components/FloorPlanEditor/Toolbars/DrawingTools';
+
 import { MobileWarning } from '@/components/Mobilewarning';
+
 import { useFloorPlanState } from '@/hooks/useFloorPlanState';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
-import { Tool } from '@/types/floorplan.types';
+
+import {
+  Tool,
+  Point,
+  Wall as WallType,
+  FurnitureItem,
+  SelectedType,
+} from '@/types/floorplan.types';
+import { v4 as uuidv4 } from 'uuid';
+import { DoorWindow } from '@/types/floorplan.types';
 import { exportToJSON, importFromJSON } from '@/utils/exportUtils';
+import { calculateDistance } from '@/utils/geometryUtils';
+import { isValidWall, isValidFurnitureItem } from '@/utils/validationUtils';
+import { feetToInches } from '@/utils/conversionUtils';
+
+import { FURNITURE_LIBRARY } from '@/constants/furnitureLibrary';
+import { AV_EQUIPMENT_LIBRARY } from '@/constants/avEquipment';
+import { CATERING_LIBRARY } from '@/constants/cateringStations';
 
 type SidebarType = 'furniture' | 'av' | 'catering' | null;
 type ModalType = 'event' | 'wall' | 'export' | null;
+
+interface LibraryItemLike {
+  id: string;
+  type: string;
+  category: string;
+  name: string;
+  defaultDimensions: FurnitureItem['dimensions'];
+  svgPath: string;
+}
+
+const ALL_LIBRARY_ITEMS: LibraryItemLike[] = [
+  ...(FURNITURE_LIBRARY as LibraryItemLike[]),
+  ...(AV_EQUIPMENT_LIBRARY as LibraryItemLike[]),
+  ...(CATERING_LIBRARY as LibraryItemLike[]),
+];
+
+const DEFAULT_WALL_THICKNESS = 6; // px
+
+const findLibraryItem = (id: string): LibraryItemLike | undefined =>
+  ALL_LIBRARY_ITEMS.find((item) => item.id === id);
 
 export const FloorPlanEditor: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 768);
+      }
     };
 
     checkMobile();
     window.addEventListener('resize', checkMobile);
-
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   if (isMobile) {
     return <MobileWarning />;
   }
+
   const {
     floorPlan,
     canUndo,
@@ -50,6 +94,9 @@ export const FloorPlanEditor: React.FC = () => {
     deleteFurniture,
     moveFurniture,
     rotateFurniture,
+    addRoom,
+    updateRoom,
+    deleteRoom,
     updateEventDetails,
     updateCanvasSettings,
     toggleLock,
@@ -59,47 +106,102 @@ export const FloorPlanEditor: React.FC = () => {
 
   const [selectedTool, setSelectedTool] = useState<Tool>('select');
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
-  const [selectedItemType, setSelectedItemType] = useState<
-    'wall' | 'furniture' | 'room' | null
-  >(null);
+
   const [activeSidebar, setActiveSidebar] = useState<SidebarType>('furniture');
   const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [showPropertiesPanel, setShowPropertiesPanel] = useState(true);
+  const [showPropertiesPanel, setShowPropertiesPanel] = useState<boolean>(true);
 
+  const [selectedItemType, setSelectedItemType] = useState<SelectedType>(null);
+  const [selectedDoorRef, setSelectedDoorRef] = useState<{
+    wallId: string;
+    doorId: string;
+  } | null>(null);
+  const [selectedWindowRef, setSelectedWindowRef] = useState<{
+    wallId: string;
+    windowId: string;
+  } | null>(null);
+
+  let selectedItem: any = null;
+
+  if (selectedItemId && selectedItemType === 'wall') {
+    selectedItem = floorPlan.walls.find((w) => w.id === selectedItemId) || null;
+  } else if (selectedItemId && selectedItemType === 'furniture') {
+    selectedItem =
+      floorPlan.furniture.find((f) => f.id === selectedItemId) || null;
+  } else if (selectedItemType === 'door' && selectedDoorRef) {
+    const wall = floorPlan.walls.find((w) => w.id === selectedDoorRef.wallId);
+    selectedItem =
+      wall?.doors.find((d) => d.id === selectedDoorRef.doorId) || null;
+  } else if (selectedItemType === 'window' && selectedWindowRef) {
+    const wall = floorPlan.walls.find((w) => w.id === selectedWindowRef.wallId);
+    selectedItem =
+      wall?.windows.find((w) => w.id === selectedWindowRef.windowId) || null;
+  }
+
+  const handleWallCreate = useCallback(
+    (start: Point, end: Point) => {
+      const pixels = calculateDistance(start, end);
+      const scale = floorPlan.canvasSettings.scale;
+
+      if (scale <= 0) return;
+
+      const lengthInFeet = pixels / scale;
+      const lengthInInches = feetToInches(lengthInFeet);
+
+      const candidate: Omit<WallType, 'id'> = {
+        start,
+        end,
+        thickness: DEFAULT_WALL_THICKNESS,
+        lengthInFeet,
+        lengthInInches,
+        doors: [],
+        windows: [],
+      };
+
+      // Optional safety: validate before committing
+      if (!isValidWall({ ...candidate, id: 'tmp-wall-id' })) {
+        console.warn('Invalid wall data, creation skipped', candidate);
+        return;
+      }
+
+      addWall(candidate);
+    },
+    [floorPlan.canvasSettings.scale, addWall]
+  );
   const handleItemSelect = useCallback(
-    (id: string | null, type: 'wall' | 'furniture' | 'room') => {
+    (id: string | null, type: SelectedType) => {
       setSelectedItemId(id);
       setSelectedItemType(id ? type : null);
+
+      if (type !== 'door') setSelectedDoorRef(null);
+      if (type !== 'window') setSelectedWindowRef(null);
     },
     []
   );
 
-  const handleWallCreate = useCallback(
-    (start: any, end: any) => {
-      const length = Math.sqrt(
-        Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2)
-      );
-      const lengthInFeet = length / floorPlan.canvasSettings.scale;
+  const handleDoorSelect = useCallback((wallId: string, doorId: string) => {
+    setSelectedItemId(doorId);
+    setSelectedItemType('door');
+    setSelectedDoorRef({ wallId, doorId });
+    setSelectedWindowRef(null);
+  }, []);
 
-      addWall({
-        start,
-        end,
-        thickness: 6,
-        lengthInFeet,
-        lengthInInches: lengthInFeet * 12,
-        doors: [],
-        windows: [],
-      });
-    },
-    [addWall, floorPlan.canvasSettings.scale]
-  );
+  const handleWindowSelect = useCallback((wallId: string, windowId: string) => {
+    setSelectedItemId(windowId);
+    setSelectedItemType('window');
+    setSelectedWindowRef({ wallId, windowId });
+    setSelectedDoorRef(null);
+  }, []);
 
   const handleFurnitureDrop = useCallback(
-    (libraryItemId: string, position: any) => {
+    (libraryItemId: string, position: Point) => {
       const libraryItem = findLibraryItem(libraryItemId);
-      if (!libraryItem) return;
+      if (!libraryItem) {
+        console.warn(`Library item with id "${libraryItemId}" not found`);
+        return;
+      }
 
-      addFurniture({
+      const candidate: Omit<FurnitureItem, 'id'> = {
         type: libraryItem.type,
         category: libraryItem.category,
         name: libraryItem.name,
@@ -109,18 +211,32 @@ export const FloorPlanEditor: React.FC = () => {
         svgPath: libraryItem.svgPath,
         locked: false,
         zIndex: 1,
-      });
+      };
+
+      if (
+        !isValidFurnitureItem({
+          ...candidate,
+          id: 'tmp-furniture-id',
+        })
+      ) {
+        console.warn('Invalid furniture data, drop skipped', candidate);
+        return;
+      }
+
+      addFurniture(candidate);
     },
     [addFurniture]
   );
 
   const handleDelete = useCallback(() => {
-    if (!selectedItemId) return;
+    if (!selectedItemId || !selectedItemType) return;
 
     if (selectedItemType === 'wall' && !floorPlan.isLocked) {
       deleteWall(selectedItemId);
     } else if (selectedItemType === 'furniture') {
       deleteFurniture(selectedItemId);
+    } else if (selectedItemType === 'room') {
+      deleteRoom(selectedItemId);
     }
 
     setSelectedItemId(null);
@@ -131,6 +247,7 @@ export const FloorPlanEditor: React.FC = () => {
     floorPlan.isLocked,
     deleteWall,
     deleteFurniture,
+    deleteRoom,
   ]);
 
   const handleSave = useCallback(() => {
@@ -143,6 +260,8 @@ export const FloorPlanEditor: React.FC = () => {
         const data = await importFromJSON(file);
         loadFloorPlan(data);
         setActiveModal(null);
+        setSelectedItemId(null);
+        setSelectedItemType(null);
       } catch (error) {
         console.error('Failed to load floor plan:', error);
         alert('Failed to load floor plan. Please check the file format.');
@@ -162,20 +281,88 @@ export const FloorPlanEditor: React.FC = () => {
       setSelectedTool('select');
     },
     onToggleGrid: () =>
-      updateCanvasSettings({ showGrid: !floorPlan.canvasSettings.showGrid }),
+      updateCanvasSettings({
+        showGrid: !floorPlan.canvasSettings.showGrid,
+      }),
     onToggleDimensions: () =>
       updateCanvasSettings({
         showDimensions: !floorPlan.canvasSettings.showDimensions,
       }),
   });
 
-  const selectedItem = selectedItemId
-    ? selectedItemType === 'wall'
-      ? floorPlan.walls.find((w) => w.id === selectedItemId)
-      : selectedItemType === 'furniture'
-        ? floorPlan.furniture.find((f) => f.id === selectedItemId)
-        : null
-    : null;
+  const toggleSidebar = (type: SidebarType) => {
+    setActiveSidebar((current) => (current === type ? null : type));
+  };
+
+  const addDoorToWall = useCallback(
+    (wallId: string, position: number = 0.5) => {
+      const wall = floorPlan.walls.find((w) => w.id === wallId);
+      if (!wall) return;
+
+      const newDoor: DoorWindow = {
+        id: uuidv4(),
+        type: 'door',
+        position,
+        width: 36,
+        height: 80,
+        style: 'single',
+      };
+
+      updateWall(wallId, {
+        doors: [...wall.doors, newDoor],
+      });
+    },
+    [floorPlan.walls, updateWall]
+  );
+
+  const addWindowToWall = useCallback(
+    (wallId: string, position: number = 0.5) => {
+      const wall = floorPlan.walls.find((w) => w.id === wallId);
+      if (!wall) return;
+
+      const newWindow: DoorWindow = {
+        id: uuidv4(),
+        type: 'window',
+        position,
+        width: 48,
+        height: 48,
+        style: 'single',
+      };
+
+      updateWall(wallId, {
+        windows: [...wall.windows, newWindow],
+      });
+    },
+    [floorPlan.walls, updateWall]
+  );
+
+  const updateDoorOnWall = useCallback(
+    (wallId: string, doorId: string, updates: Partial<DoorWindow>) => {
+      const wall = floorPlan.walls.find((w) => w.id === wallId);
+      if (!wall) return;
+
+      updateWall(wallId, {
+        doors: wall.doors.map((door) =>
+          door.id === doorId ? { ...door, ...updates } : door
+        ),
+      });
+    },
+    [floorPlan.walls, updateWall]
+  );
+
+  const updateWindowOnWall = useCallback(
+    (wallId: string, windowId: string, updates: Partial<DoorWindow>) => {
+      const wall = floorPlan.walls.find((w) => w.id === wallId);
+      if (!wall) return;
+
+      updateWall(wallId, {
+        windows: wall.windows.map((win) =>
+          win.id === windowId ? { ...win, ...updates } : win
+        ),
+      });
+    },
+    [floorPlan.walls, updateWall]
+  );
 
   return (
     <div className="mt-22 flex h-[90vh] flex-col bg-gray-50">
@@ -193,7 +380,9 @@ export const FloorPlanEditor: React.FC = () => {
         showGrid={floorPlan.canvasSettings.showGrid}
         showDimensions={floorPlan.canvasSettings.showDimensions}
         onToggleGrid={() =>
-          updateCanvasSettings({ showGrid: !floorPlan.canvasSettings.showGrid })
+          updateCanvasSettings({
+            showGrid: !floorPlan.canvasSettings.showGrid,
+          })
         }
         onToggleDimensions={() =>
           updateCanvasSettings({
@@ -209,11 +398,7 @@ export const FloorPlanEditor: React.FC = () => {
         <div className="flex">
           <div className="flex w-16 flex-col items-center space-y-2 bg-gray-800 py-4">
             <button
-              onClick={() =>
-                setActiveSidebar(
-                  activeSidebar === 'furniture' ? null : 'furniture'
-                )
-              }
+              onClick={() => toggleSidebar('furniture')}
               className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
                 activeSidebar === 'furniture'
                   ? 'bg-blue-500 text-white'
@@ -237,15 +422,13 @@ export const FloorPlanEditor: React.FC = () => {
             </button>
 
             <button
-              onClick={() =>
-                setActiveSidebar(activeSidebar === 'av' ? null : 'av')
-              }
+              onClick={() => toggleSidebar('av')}
               className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
                 activeSidebar === 'av'
                   ? 'bg-blue-500 text-white'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
-              title="Audio/Visual"
+              title="Audio / Visual"
             >
               <svg
                 className="h-6 w-6"
@@ -263,11 +446,7 @@ export const FloorPlanEditor: React.FC = () => {
             </button>
 
             <button
-              onClick={() =>
-                setActiveSidebar(
-                  activeSidebar === 'catering' ? null : 'catering'
-                )
-              }
+              onClick={() => toggleSidebar('catering')}
               className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
                 activeSidebar === 'catering'
                   ? 'bg-blue-500 text-white'
@@ -297,6 +476,12 @@ export const FloorPlanEditor: React.FC = () => {
         </div>
 
         <div className="relative flex-1">
+          <DrawingTools
+            selectedTool={selectedTool}
+            onToolChange={setSelectedTool}
+            isLocked={floorPlan.isLocked}
+          />
+
           <FloorPlanCanvas
             floorPlan={floorPlan}
             selectedTool={selectedTool}
@@ -305,6 +490,10 @@ export const FloorPlanEditor: React.FC = () => {
             onWallCreate={handleWallCreate}
             onFurnitureMove={moveFurniture}
             onFurnitureDrop={handleFurnitureDrop}
+            onAddDoor={addDoorToWall}
+            onAddWindow={addWindowToWall}
+            onDoorSelect={handleDoorSelect}
+            onWindowSelect={handleWindowSelect}
           />
         </div>
 
@@ -314,10 +503,29 @@ export const FloorPlanEditor: React.FC = () => {
             selectedItemType={selectedItemType}
             isLocked={floorPlan.isLocked}
             onUpdate={(updates) => {
-              if (selectedItemId && selectedItemType === 'wall') {
-                updateWall(selectedItemId, updates);
-              } else if (selectedItemId && selectedItemType === 'furniture') {
-                updateFurniture(selectedItemId, updates);
+              if (!selectedItemId || !selectedItemType) return;
+
+              if (selectedItemType === 'wall') {
+                updateWall(selectedItemId, updates as Partial<WallType>);
+              } else if (selectedItemType === 'furniture') {
+                updateFurniture(
+                  selectedItemId,
+                  updates as Partial<FurnitureItem>
+                );
+              } else if (selectedItemType === 'room') {
+                updateRoom(selectedItemId, updates);
+              } else if (selectedItemType === 'door' && selectedDoorRef) {
+                updateDoorOnWall(
+                  selectedDoorRef.wallId,
+                  selectedDoorRef.doorId,
+                  updates
+                );
+              } else if (selectedItemType === 'window' && selectedWindowRef) {
+                updateWindowOnWall(
+                  selectedWindowRef.wallId,
+                  selectedWindowRef.windowId,
+                  updates
+                );
               }
             }}
             onRotate={(rotation) => {
@@ -333,7 +541,7 @@ export const FloorPlanEditor: React.FC = () => {
 
       {activeModal === 'event' && (
         <EventDetailsModal
-          isOpen={true}
+          isOpen
           eventDetails={floorPlan.eventDetails}
           onSave={(details) => {
             updateEventDetails(details);
@@ -347,8 +555,10 @@ export const FloorPlanEditor: React.FC = () => {
         selectedItemId &&
         selectedItemType === 'wall' && (
           <WallPropertiesModal
-            isOpen={true}
-            wall={floorPlan.walls.find((w) => w.id === selectedItemId)!}
+            isOpen
+            wall={
+              floorPlan.walls.find((w) => w.id === selectedItemId) as WallType
+            }
             onSave={(updates) => {
               updateWall(selectedItemId, updates);
               setActiveModal(null);
@@ -359,7 +569,7 @@ export const FloorPlanEditor: React.FC = () => {
 
       {activeModal === 'export' && (
         <ExportImportModal
-          isOpen={true}
+          isOpen
           floorPlan={floorPlan}
           onImport={handleLoad}
           onClose={() => setActiveModal(null)}
@@ -389,15 +599,3 @@ export const FloorPlanEditor: React.FC = () => {
     </div>
   );
 };
-
-function findLibraryItem(id: string): any {
-  const { FURNITURE_LIBRARY } = require('@/constants/furnitureLibrary');
-  const { AV_EQUIPMENT_LIBRARY } = require('@/constants/avEquipment');
-  const { CATERING_LIBRARY } = require('@/constants/cateringStations');
-
-  return [
-    ...FURNITURE_LIBRARY,
-    ...AV_EQUIPMENT_LIBRARY,
-    ...CATERING_LIBRARY,
-  ].find((item) => item.id === id);
-}

@@ -14,7 +14,7 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
   height,
   gridSize,
   showGrid,
-  color = '#E5E7EB',
+  color = '#D1D5DB',
   opacity = 0.5,
 }) => {
   if (!showGrid) return null;

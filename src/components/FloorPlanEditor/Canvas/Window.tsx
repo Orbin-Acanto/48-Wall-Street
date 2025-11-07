@@ -10,6 +10,7 @@ interface WindowProps {
   wallThickness: number;
   wallAngle: number;
   pixelsPerFoot: number;
+  onClick?: () => void;
 }
 
 export const Window: React.FC<WindowProps> = ({
@@ -19,6 +20,7 @@ export const Window: React.FC<WindowProps> = ({
   wallThickness,
   wallAngle,
   pixelsPerFoot,
+  onClick,
 }) => {
   const windowCenter = getPointAlongLine(
     wallStart,
@@ -201,6 +203,11 @@ export const Window: React.FC<WindowProps> = ({
   return (
     <g
       transform={`translate(${windowCenter.x},${windowCenter.y}) rotate(${wallAngle})`}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick?.();
+      }}
+      style={{ cursor: 'pointer' }}
     >
       {renderWindowStyle()}
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wall as WallType } from '@//types/floorplan.types';
+import { Wall as WallType } from '@/types/floorplan.types';
 import { calculateAngle } from '@/utils/geometryUtils';
 import { DimensionLabel } from './DimensionLabel';
 import { Door } from './Door';
@@ -11,6 +11,8 @@ interface WallProps {
   showDimensions: boolean;
   pixelsPerFoot: number;
   onClick: () => void;
+  onDoorClick?: (doorId: string) => void;
+  onWindowClick?: (windowId: string) => void;
 }
 
 export const Wall: React.FC<WallProps> = ({
@@ -19,11 +21,18 @@ export const Wall: React.FC<WallProps> = ({
   showDimensions,
   pixelsPerFoot,
   onClick,
+  onDoorClick,
+  onWindowClick,
 }) => {
   const angle = calculateAngle(wall.start, wall.end);
 
+  const handleClick = (e: React.MouseEvent<SVGGElement>) => {
+    e.stopPropagation();
+    onClick();
+  };
+
   return (
-    <g onClick={onClick} style={{ cursor: 'pointer' }}>
+    <g onClick={handleClick} style={{ cursor: 'pointer' }}>
       <line
         x1={wall.start.x}
         y1={wall.start.y}
@@ -40,18 +49,18 @@ export const Wall: React.FC<WallProps> = ({
           <circle
             cx={wall.start.x}
             cy={wall.start.y}
-            r="6"
+            r={6}
             fill="#EF4444"
             stroke="#FFF"
-            strokeWidth="2"
+            strokeWidth={2}
           />
           <circle
             cx={wall.end.x}
             cy={wall.end.y}
-            r="6"
+            r={6}
             fill="#EF4444"
             stroke="#FFF"
-            strokeWidth="2"
+            strokeWidth={2}
           />
         </>
       )}
@@ -73,6 +82,7 @@ export const Wall: React.FC<WallProps> = ({
           wallThickness={wall.thickness}
           wallAngle={angle}
           pixelsPerFoot={pixelsPerFoot}
+          onClick={onDoorClick ? () => onDoorClick(door.id) : undefined}
         />
       ))}
 
@@ -85,6 +95,7 @@ export const Wall: React.FC<WallProps> = ({
           wallThickness={wall.thickness}
           wallAngle={angle}
           pixelsPerFoot={pixelsPerFoot}
+          onClick={onWindowClick ? () => onWindowClick(window.id) : undefined}
         />
       ))}
     </g>
