@@ -10,6 +10,7 @@ import {
   VideoItem,
   ViewPoint,
 } from '@/types';
+import { ExportFormat } from '@/types/floorplan.types';
 import {
   Calendar,
   Users,
@@ -3190,6 +3191,30 @@ export const sampleHotspots: Hotspot[] = [
     description:
       'Dedicated home office space with built-in shelving and desk. Perfect for remote work with excellent natural lighting.',
     category: 'room' as const,
+  },
+];
+
+export const exportFormats = [
+  {
+    id: 'json' as ExportFormat,
+    name: 'JSON',
+    description: 'Full floor plan data with all settings',
+    recommended: true,
+  },
+  {
+    id: 'svg' as ExportFormat,
+    name: 'SVG',
+    description: 'Vector format for designers (no header)',
+  },
+  {
+    id: 'png' as ExportFormat,
+    name: 'PNG',
+    description: 'Presentation-ready image with header & signature line',
+  },
+  {
+    id: 'pdf' as ExportFormat,
+    name: 'PDF',
+    description: 'Client-ready PDF with header & approval section',
   },
 ];
 

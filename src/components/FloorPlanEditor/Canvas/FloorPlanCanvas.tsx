@@ -291,11 +291,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
               showDimensions={showDimensions}
               pixelsPerFoot={pixelsPerFoot}
               onClick={() => {
-                if (selectedTool === 'door') {
-                  onAddDoor(wall.id, 0.5);
-                } else if (selectedTool === 'window') {
-                  onAddWindow(wall.id, 0.5);
-                } else {
+                if (selectedTool === 'select') {
                   onItemSelect(wall.id, 'wall');
                 }
               }}

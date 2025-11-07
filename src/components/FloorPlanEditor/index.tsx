@@ -573,6 +573,7 @@ export const FloorPlanEditor: React.FC = () => {
           floorPlan={floorPlan}
           onImport={handleLoad}
           onClose={() => setActiveModal(null)}
+          eventDetails={floorPlan.eventDetails}
         />
       )}
 

@@ -60,12 +60,41 @@ export interface FurnitureItem {
 }
 
 export interface EventDetails {
+  clientName?: string;
+  clientEmail?: string;
+
+  foodType?: string;
+  cateringStyle?: string;
+
+  layoutStyle?: string;
+  decorStyle?: string;
+  colorPalette?: string;
+
+  hasDanceFloor?: boolean;
+  danceFloorSize?: string;
+  hasStage?: boolean;
+  stageSize?: string;
+  barsCount?: number;
+
+  specialNotes?: string;
   eventType: string;
   guestCount: number;
   services: string[];
   eventDate?: string;
   eventName?: string;
 }
+
+export interface ExportImportModalProps {
+  isOpen: boolean;
+  floorPlan: FloorPlanData;
+  onImport: (file: File) => void;
+  onClose: () => void;
+  eventDetails: EventDetails;
+}
+
+export type FloorLevel = 'grand_mezzanine' | 'concourse';
+
+export type ExportFormat = 'json' | 'svg' | 'png' | 'pdf';
 
 export interface FloorPlanData {
   id: string;
