@@ -401,7 +401,7 @@ export const FloorPlanEditor: React.FC = () => {
               onClick={() => toggleSidebar('furniture')}
               className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
                 activeSidebar === 'furniture'
-                  ? 'bg-blue-500 text-white'
+                  ? 'bg-primary text-white'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
               title="Furniture"
@@ -425,7 +425,7 @@ export const FloorPlanEditor: React.FC = () => {
               onClick={() => toggleSidebar('av')}
               className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
                 activeSidebar === 'av'
-                  ? 'bg-blue-500 text-white'
+                  ? 'bg-primary text-white'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
               title="Audio / Visual"
@@ -449,7 +449,7 @@ export const FloorPlanEditor: React.FC = () => {
               onClick={() => toggleSidebar('catering')}
               className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
                 activeSidebar === 'catering'
-                  ? 'bg-blue-500 text-white'
+                  ? 'bg-primary text-white'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
               title="Catering"
