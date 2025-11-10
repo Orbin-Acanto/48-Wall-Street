@@ -216,6 +216,14 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     defaultDimensions: { width: 72, height: 6, unit: 'in' },
     svgPath: `<rect x="-36" y="-3" width="72" height="6" fill="#8B8B8B" stroke="#000" stroke-width="1.5"/>`,
   },
+  {
+    id: 'seat-1',
+    type: 'furniture',
+    category: 'Chairs',
+    name: 'Chair 1 Unit',
+    defaultDimensions: { width: 72, height: 6, unit: 'in' },
+    svgPath: `<rect x="-36" y="-3" width="72" height="6" fill="#8B8B8B" stroke="#000" stroke-width="1.5"/>`,
+  },
 ];
 
 export const getFurnitureByCategory = (
