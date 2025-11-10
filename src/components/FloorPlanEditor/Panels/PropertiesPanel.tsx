@@ -20,7 +20,13 @@ interface PropertiesPanelProps {
   selectedItem: Wall | FurnitureItem | Room | DoorWindow | null;
   selectedItemType: SelectedType;
   isLocked: boolean;
-  onUpdate: (updates: any) => void;
+  onUpdate: (
+    updates:
+      | Partial<Wall>
+      | Partial<FurnitureItem>
+      | Partial<Room>
+      | Partial<DoorWindow>
+  ) => void;
   onRotate: (rotation: number) => void;
   onDelete: () => void;
   onClose: () => void;
@@ -79,7 +85,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   ];
 
   const clampNumber = (
-    value: any,
+    value: string | number,
     fallback: number,
     min?: number,
     max?: number
@@ -421,7 +427,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
       });
     };
 
-    const updatePosition = (axis: 'x' | 'y', value: any) => {
+    const updatePosition = (axis: 'x' | 'y', value: number | string) => {
       if (itemLocked) return;
       const next = clampNumber(value, item.position[axis], -99999, 99999);
       onUpdate({
@@ -442,7 +448,10 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
       });
     };
 
-    const updateDimension = (key: 'width' | 'height', value: any) => {
+    const updateDimension = (
+      key: 'width' | 'height',
+      value: number | string
+    ) => {
       if (itemLocked) return;
       const next = clampNumber(
         value,
@@ -718,7 +727,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className="mb-1 block text-xs font-medium text-gray-700">
-            Width (")
+            Width (&quot;)
           </label>
           <input
             type="number"
@@ -734,7 +743,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
         </div>
         <div>
           <label className="mb-1 block text-xs font-medium text-gray-700">
-            Height (")
+            Height (&quot;)
           </label>
           <input
             type="number"
@@ -797,7 +806,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className="mb-1 block text-xs font-medium text-gray-700">
-            Width (")
+            Width (&quot;)
           </label>
           <input
             type="number"
@@ -813,7 +822,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
         </div>
         <div>
           <label className="mb-1 block text-xs font-medium text-gray-700">
-            Height (")
+            Height (&quot;)
           </label>
           <input
             type="number"

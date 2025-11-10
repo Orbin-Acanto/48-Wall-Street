@@ -33,8 +33,6 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  if (!isOpen) return null;
-
   const handleExport = async () => {
     const svgElement = document.querySelector(
       '#floor-plan-canvas svg'
@@ -130,6 +128,8 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
     setClientName(eventDetails.clientName ?? '');
     setEventDate(eventDetails.eventDate ?? '');
   }, [eventDetails]);
+
+  if (!isOpen) return null;
 
   return (
     <div

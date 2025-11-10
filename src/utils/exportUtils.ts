@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
 import 'svg2pdf.js';
-import { FloorPlanData } from '../types/floorplan.types';
+import { EventDetails, FloorPlanData } from '../types/floorplan.types';
 
 export const exportToJSON = (data: FloorPlanData, filename?: string): void => {
   const json = JSON.stringify(data, null, 2);
@@ -32,6 +32,7 @@ export const importFromJSON = (file: File): Promise<FloorPlanData> => {
         }
       } catch (error) {
         reject(new Error('Failed to parse JSON file'));
+        console.log(error);
       }
     };
 
@@ -43,7 +44,9 @@ export const importFromJSON = (file: File): Promise<FloorPlanData> => {
   });
 };
 
-export const validateFloorPlanData = (data: any): data is FloorPlanData => {
+export const validateFloorPlanData = (
+  data: FloorPlanData
+): data is FloorPlanData => {
   if (!data || typeof data !== 'object') return false;
 
   const requiredFields = [
@@ -317,7 +320,7 @@ export const exportToPNG = async (
 
   const title =
     headerTitle ||
-    (data.eventDetails as any)?.eventName ||
+    (data.eventDetails as EventDetails)?.eventName ||
     data.name ||
     'Floor Plan';
   ctx.fillStyle = '#111827';
@@ -334,9 +337,10 @@ export const exportToPNG = async (
   ctx.lineTo(middleX + underlineWidth / 2, middleY + 5);
   ctx.stroke();
 
-  const displayDate = eventDate || (data.eventDetails as any)?.eventDate || '';
+  const displayDate =
+    eventDate || (data.eventDetails as EventDetails)?.eventDate || '';
   const displayClient =
-    clientName || (data.eventDetails as any)?.clientName || '';
+    clientName || (data.eventDetails as EventDetails)?.clientName || '';
 
   const rightX = headerX + 2 * colWidth + 20;
   let textY = headerY + 28;
@@ -494,7 +498,7 @@ export const exportToPDF = async (
 
   const title =
     headerTitle ||
-    (data.eventDetails as any)?.eventName ||
+    (data.eventDetails as EventDetails)?.eventName ||
     data.name ||
     'Floor Plan';
   pdf.setFont('helvetica', 'bold');
@@ -513,9 +517,10 @@ export const exportToPDF = async (
     middleY + 4
   );
 
-  const displayDate = eventDate || (data.eventDetails as any)?.eventDate || '';
+  const displayDate =
+    eventDate || (data.eventDetails as EventDetails)?.eventDate || '';
   const displayClient =
-    clientName || (data.eventDetails as any)?.clientName || '';
+    clientName || (data.eventDetails as EventDetails)?.clientName || '';
 
   const rightX = headerX + 2 * colWidth + 16;
   let textY = headerY + 22;

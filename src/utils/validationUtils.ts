@@ -16,7 +16,7 @@ export const isValidPoint = (point: Point): boolean => {
   );
 };
 
-export const isValidWall = (wall: any): wall is Wall => {
+export const isValidWall = (wall: Wall): wall is Wall => {
   return (
     wall &&
     typeof wall.id === 'string' &&
@@ -33,7 +33,9 @@ export const isValidWall = (wall: any): wall is Wall => {
   );
 };
 
-export const isValidFurnitureItem = (item: any): item is FurnitureItem => {
+export const isValidFurnitureItem = (
+  item: FurnitureItem
+): item is FurnitureItem => {
   return (
     item &&
     typeof item.id === 'string' &&
@@ -50,7 +52,9 @@ export const isValidFurnitureItem = (item: any): item is FurnitureItem => {
   );
 };
 
-export const isValidFloorPlan = (data: any): data is FloorPlanData => {
+export const isValidFloorPlan = (
+  data: FloorPlanData
+): data is FloorPlanData => {
   if (!data || typeof data !== 'object') return false;
 
   if (
