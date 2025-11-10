@@ -1,9 +1,10 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import {
   FloorPlanData,
   Point,
   Tool,
   FurnitureItem as FurnitureItemType,
+  Room,
 } from '@/types/floorplan.types';
 
 import { useCanvasInteraction } from '@/hooks/useCanvasInteraction';
@@ -29,6 +30,9 @@ interface FloorPlanCanvasProps {
   onAddWindow: (wallId: string, position?: number) => void;
   onDoorSelect: (wallId: string, doorId: string) => void;
   onWindowSelect: (wallId: string, windowId: string) => void;
+  onRoomSelect: (roomId: string) => void;
+  onCreateRoomAtPosition: (position: Point) => void;
+  onRoomMove: (roomId: string, x: number, y: number) => void;
 }
 
 export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
@@ -43,10 +47,16 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   onAddWindow,
   onDoorSelect,
   onWindowSelect,
+  onRoomSelect,
+  onCreateRoomAtPosition,
+  onRoomMove,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null!);
 
-  const { canvasSettings, walls, furniture } = floorPlan;
+  const { canvasSettings, walls, furniture, rooms } = floorPlan;
+
+  const [draggingRoomId, setDraggingRoomId] = useState<string | null>(null);
+  const roomDragOffsetRef = useRef<Point | null>(null);
 
   const {
     width,
@@ -144,18 +154,18 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     ]
   );
 
-  const handleSvgMouseMove = useCallback(
-    (e: React.MouseEvent<SVGSVGElement>) => {
-      canvasMouseMove(e);
-      continueDrag(e);
-    },
-    [canvasMouseMove, continueDrag]
-  );
+  // const handleSvgMouseMove = useCallback(
+  //   (e: React.MouseEvent<SVGSVGElement>) => {
+  //     canvasMouseMove(e);
+  //     continueDrag(e);
+  //   },
+  //   [canvasMouseMove, continueDrag]
+  // );
 
-  const handleSvgMouseUp = useCallback(() => {
-    canvasMouseUp();
-    endDrag();
-  }, [canvasMouseUp, endDrag]);
+  // const handleSvgMouseUp = useCallback(() => {
+  //   canvasMouseUp();
+  //   endDrag();
+  // }, [canvasMouseUp, endDrag]);
 
   const renderFurniture = () =>
     furniture.map((item: FurnitureItemType) => {
@@ -183,6 +193,125 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
         />
       );
     });
+
+  const handleSvgDoubleClick = useCallback(
+    (e: React.MouseEvent<SVGSVGElement>) => {
+      if (selectedTool !== 'select') return;
+      if (e.target !== e.currentTarget) return;
+
+      const canvasPoint = screenToCanvas(e.clientX, e.clientY);
+      onCreateRoomAtPosition(canvasPoint);
+    },
+    [selectedTool, screenToCanvas, onCreateRoomAtPosition]
+  );
+
+  const handleRoomMouseDown = useCallback(
+    (e: React.MouseEvent<SVGGElement>, room: Room) => {
+      if (selectedTool !== 'select') return;
+
+      if (typeof room.x !== 'number' || typeof room.y !== 'number') {
+        return;
+      }
+
+      e.stopPropagation();
+
+      const pt = screenToCanvas(e.clientX, e.clientY);
+
+      roomDragOffsetRef.current = {
+        x: pt.x - room.x,
+        y: pt.y - room.y,
+      };
+
+      setDraggingRoomId(room.id);
+      onRoomSelect(room.id);
+    },
+    [screenToCanvas, onRoomSelect, selectedTool]
+  );
+
+  const handleSvgMouseMove = useCallback(
+    (e: React.MouseEvent<SVGSVGElement>) => {
+      canvasMouseMove(e);
+      continueDrag(e);
+
+      if (draggingRoomId && roomDragOffsetRef.current) {
+        const pt = screenToCanvas(e.clientX, e.clientY);
+        const { x: ox, y: oy } = roomDragOffsetRef.current;
+        onRoomMove(draggingRoomId, pt.x - ox, pt.y - oy);
+      }
+    },
+    [canvasMouseMove, continueDrag, draggingRoomId, screenToCanvas, onRoomMove]
+  );
+
+  const handleSvgMouseUp = useCallback(() => {
+    canvasMouseUp();
+    endDrag();
+    setDraggingRoomId(null);
+    roomDragOffsetRef.current = null;
+  }, [canvasMouseUp, endDrag]);
+
+  const renderRooms = () =>
+    rooms
+      .filter(
+        (room) =>
+          typeof room.x === 'number' &&
+          typeof room.y === 'number' &&
+          typeof room.width === 'number' &&
+          typeof room.height === 'number'
+      )
+      .map((room) => {
+        const isSelected = selectedItemId === room.id;
+
+        const stroke = room.color || '#CBA35C';
+        const fill =
+          room.color && room.color.startsWith('#')
+            ? `${room.color}99`
+            : room.color || 'rgba(203,163,92,0.52)';
+
+        const centerX = room.x! + room.width! / 2;
+        const centerY = room.y! + room.height! / 2;
+
+        return (
+          <g key={room.id} onMouseDown={(e) => handleRoomMouseDown(e, room)}>
+            <rect
+              x={room.x}
+              y={room.y}
+              width={room.width}
+              height={room.height}
+              rx={4}
+              ry={4}
+              fill={fill}
+              stroke={stroke}
+              strokeWidth={isSelected ? 1.5 : 0.75}
+              strokeDasharray={isSelected ? '4 2' : '3 3'}
+            />
+            <text
+              x={centerX}
+              y={centerY}
+              textAnchor="middle"
+              fontSize={14}
+              fontWeight="bold"
+              fill="#1E3A8A"
+              stroke="#ffffff"
+              strokeWidth={0.5}
+              paintOrder="stroke"
+              style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}
+            >
+              {room.name || 'ROOM'}
+            </text>
+            {room.area ? (
+              <text
+                x={centerX}
+                y={centerY + 16}
+                textAnchor="middle"
+                fontSize={12}
+                fill="#374151"
+              >
+                {room.area} sq ft
+              </text>
+            ) : null}
+          </g>
+        );
+      });
 
   const renderTempWall = () => {
     if (selectedTool !== 'wall' || !drawingStart || !currentMousePos) {
@@ -266,6 +395,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragEnd={handleDragEnd}
+        onDoubleClick={handleSvgDoubleClick}
         className={
           isAnyDragging
             ? 'cursor-grabbing'
@@ -286,6 +416,8 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
             color="#808080"
             opacity={0.7}
           />
+
+          {renderRooms()}
 
           {walls.map((wall) => (
             <WallComponent

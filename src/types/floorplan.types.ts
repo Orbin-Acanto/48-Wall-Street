@@ -40,7 +40,11 @@ export interface Room {
   id: string;
   name: string;
   walls: string[];
-  area: number;
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  area?: number;
   color?: string;
 }
 
@@ -154,7 +158,7 @@ export type Tool =
   | 'wall'
   | 'door'
   | 'window'
-  | 'measure'
+  | 'room'
   | 'pan'
   | 'delete';
 

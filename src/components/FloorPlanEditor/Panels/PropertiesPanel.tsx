@@ -32,6 +32,7 @@ interface PropertiesPanelProps {
   onDelete: () => void;
   onClose: () => void;
   furnitureItems?: FurnitureItem[];
+  pixelsPerFoot?: number;
 }
 
 export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
@@ -42,6 +43,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   onRotate,
   onDelete,
   furnitureItems = [],
+  pixelsPerFoot,
 }) => {
   if (!selectedItem) {
     const categoryCounts = furnitureItems.reduce<Record<string, number>>(
@@ -72,7 +74,9 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           </div>
 
           <div className="space-y-1.5">
-            {LEGEND_ITEMS.map((item) => {
+            {LEGEND_ITEMS.filter(
+              (item) => (categoryCounts[item.category] ?? 0) > 0
+            ).map((item) => {
               const count = categoryCounts[item.category] ?? 0;
 
               return (
@@ -100,9 +104,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
 
           <div className="mt-4 rounded-md border border-gray-100 bg-gray-50 px-3 py-2">
             <p className="text-[10px] text-gray-500">
-              Tip: Select any item on the canvas to edit its properties. When
-              nothing is selected, this panel becomes a quick legend summary for
-              your client PDFs.
+              Tip: Select any item on the canvas to edit its properties.
             </p>
           </div>
         </div>
@@ -899,6 +901,117 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
     </div>
   );
 
+  // Room
+  const renderRoomProperties = (room: Room) => {
+    const pxPerFt = pixelsPerFoot || 20;
+
+    const updateDim = (key: 'width' | 'height', raw: string) => {
+      const val = parseFloat(raw);
+      if (Number.isNaN(val) || val <= 0) {
+        onUpdate({ [key]: undefined });
+        return;
+      }
+
+      const other = key === 'width' ? (room.height ?? 0) : (room.width ?? 0);
+
+      let area = room.area ?? 0;
+
+      if (other > 0 && pxPerFt > 0) {
+        const wPx = key === 'width' ? val : other;
+        const hPx = key === 'width' ? other : val;
+        const wFt = wPx / pxPerFt;
+        const hFt = hPx / pxPerFt;
+        area = +(wFt * hFt).toFixed(2);
+      }
+
+      onUpdate({
+        [key]: val,
+        area,
+      });
+    };
+
+    const widthFt =
+      room.width && pxPerFt ? +(room.width / pxPerFt).toFixed(2) : null;
+    const heightFt =
+      room.height && pxPerFt ? +(room.height / pxPerFt).toFixed(2) : null;
+
+    return (
+      <div className="space-y-4">
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            Room Name
+          </label>
+          <input
+            type="text"
+            value={room.name}
+            onChange={(e) => onUpdate({ name: e.target.value })}
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/40 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            Label Box Size (px)
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <span className="text-[10px] text-gray-500">Width</span>
+              <input
+                type="number"
+                min={10}
+                value={room.width ?? ''}
+                onChange={(e) => updateDim('width', e.target.value)}
+                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/40 focus:outline-none"
+              />
+            </div>
+            <div>
+              <span className="text-[10px] text-gray-500">Height</span>
+              <input
+                type="number"
+                min={10}
+                value={room.height ?? ''}
+                onChange={(e) => updateDim('height', e.target.value)}
+                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/40 focus:outline-none"
+              />
+            </div>
+          </div>
+          {widthFt && heightFt && (
+            <p className="mt-1 text-[10px] text-gray-500">
+              {widthFt} ft × {heightFt} ft
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            Area (sq ft)
+          </label>
+          <input
+            type="number"
+            readOnly
+            value={room.area ?? ''}
+            className="w-full rounded-lg border border-gray-200 bg-gray-100 px-3 py-2 text-sm text-gray-500"
+          />
+          <p className="mt-1 text-[10px] text-gray-500">
+            Calculated from label box width × height using canvas scale.
+          </p>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            Highlight Color
+          </label>
+          <input
+            type="color"
+            value={room.color || '#FDE68A'}
+            onChange={(e) => onUpdate({ color: e.target.value })}
+            className="h-9 w-16 cursor-pointer rounded border border-gray-300 bg-white"
+          />
+        </div>
+      </div>
+    );
+  };
+
   // PANEL SHELL
   return (
     <div className="flex w-80 flex-col border-l border-gray-200 bg-white">
@@ -915,6 +1028,9 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
             <DoorClosed className="text-dark-black h-6 w-6" />
           )}
           {selectedItemType === 'window' && (
+            <Grid2x2 className="text-dark-black h-6 w-6" />
+          )}
+          {selectedItemType === 'room' && (
             <Grid2x2 className="text-dark-black h-6 w-6" />
           )}
           <h3 className="text-lg font-semibold text-gray-900">Properties</h3>
@@ -934,6 +1050,8 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
 
         {selectedItemType === 'window' &&
           renderWindowProperties(selectedItem as DoorWindow)}
+        {selectedItemType === 'room' &&
+          renderRoomProperties(selectedItem as Room)}
       </div>
 
       {/* Footer */}

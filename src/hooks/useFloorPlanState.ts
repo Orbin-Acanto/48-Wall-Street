@@ -250,10 +250,12 @@ export const useFloorPlanState = () => {
   // ----------------------------
   const addRoom = useCallback(
     (room: Omit<Room, 'id'>) => {
+      const id = uuidv4();
       updateFloorPlan((prev) => ({
         ...prev,
-        rooms: [...prev.rooms, { ...room, id: uuidv4() }],
+        rooms: [...prev.rooms, { ...room, id }],
       }));
+      return id;
     },
     [updateFloorPlan]
   );

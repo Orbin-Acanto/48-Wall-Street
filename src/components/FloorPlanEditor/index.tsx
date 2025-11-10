@@ -142,6 +142,10 @@ export const FloorPlanEditor: React.FC = () => {
       );
     }
 
+    if (selectedItemType === 'room') {
+      return floorPlan.rooms.find((r) => r.id === selectedItemId) || null;
+    }
+
     return null;
   }, [
     selectedItemId,
@@ -150,6 +154,7 @@ export const FloorPlanEditor: React.FC = () => {
     selectedWindowRef,
     floorPlan.walls,
     floorPlan.furniture,
+    floorPlan.rooms,
   ]);
   const handleWallCreate = useCallback(
     (start: Point, end: Point) => {
@@ -263,6 +268,8 @@ export const FloorPlanEditor: React.FC = () => {
     selectedItemId,
     selectedItemType,
     floorPlan.isLocked,
+    deleteDoor,
+    deleteWindow,
     deleteWall,
     deleteFurniture,
     deleteRoom,
@@ -286,6 +293,34 @@ export const FloorPlanEditor: React.FC = () => {
       }
     },
     [loadFloorPlan]
+  );
+
+  const handleCreateRoomAt = useCallback(
+    (position: Point) => {
+      const pixelsPerFoot = floorPlan.canvasSettings.scale || 20;
+
+      const defaultWidth = 200;
+      const defaultHeight = 120;
+
+      const widthFt = defaultWidth / pixelsPerFoot;
+      const heightFt = defaultHeight / pixelsPerFoot;
+      const areaSqFt = +(widthFt * heightFt).toFixed(2);
+
+      const newRoomId = addRoom({
+        name: `Room ${floorPlan.rooms.length + 1}`,
+        walls: [],
+        x: position.x - defaultWidth / 2,
+        y: position.y - defaultHeight / 2,
+        width: defaultWidth,
+        height: defaultHeight,
+        area: areaSqFt,
+        color: '#FDE68A',
+      });
+
+      setSelectedItemId(newRoomId);
+      setSelectedItemType('room');
+    },
+    [addRoom, floorPlan.rooms.length, floorPlan.canvasSettings.scale]
   );
 
   useKeyboardShortcuts({
@@ -528,6 +563,9 @@ export const FloorPlanEditor: React.FC = () => {
             onAddWindow={addWindowToWall}
             onDoorSelect={handleDoorSelect}
             onWindowSelect={handleWindowSelect}
+            onRoomSelect={(roomId) => handleItemSelect(roomId, 'room')}
+            onCreateRoomAtPosition={handleCreateRoomAt}
+            onRoomMove={(id, x, y) => updateRoom(id, { x, y })}
           />
         </div>
 
@@ -570,6 +608,7 @@ export const FloorPlanEditor: React.FC = () => {
             }}
             onDelete={handleDelete}
             onClose={() => setShowPropertiesPanel(false)}
+            pixelsPerFoot={floorPlan.canvasSettings.scale}
           />
         )}
       </div>
