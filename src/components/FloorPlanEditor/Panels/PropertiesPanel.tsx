@@ -7,11 +7,12 @@ import {
   DoorWindow,
 } from '@/types/floorplan.types';
 import { formatFeetAndInches } from '@/utils/conversionUtils';
+import { Armchair, BrickWall, DoorClosed, Grid2x2 } from 'lucide-react';
 
 interface PropertiesPanelProps {
   selectedItem: Wall | FurnitureItem | Room | DoorWindow | null;
   selectedItemType: SelectedType;
-  isLocked: boolean;
+  isLocked: boolean; // global lock
   onUpdate: (updates: any) => void;
   onRotate: (rotation: number) => void;
   onDelete: () => void;
@@ -84,6 +85,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
     return n;
   };
 
+  // WALL PROPERTIES
   const renderWallProperties = (wall: Wall) => {
     const handleDoorChange = (doorId: string, updates: Partial<DoorWindow>) => {
       const updatedDoors = wall.doors.map((door) =>
@@ -133,16 +135,16 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
               })
             }
             disabled={isLocked}
-            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
             min={1}
             max={24}
           />
           <p className="mt-1 text-xs text-gray-500">
-            Thickness in pixels (visual wall line weight)
+            Visual wall line weight (pixels)
           </p>
         </div>
 
-        {/* Doors on this wall */}
+        {/* Doors */}
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-700">
             Doors on this wall
@@ -150,7 +152,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           <div className="space-y-2">
             {wall.doors.length === 0 ? (
               <p className="text-sm text-gray-400 italic">
-                No doors. Use the Door tool and click on this wall to add one.
+                No doors. Use the Door tool and click this wall to add one.
               </p>
             ) : (
               wall.doors.map((door) => (
@@ -178,7 +180,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                         })
                       }
                       disabled={isLocked}
-                      className="flex-1 rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+                      className="flex-1 rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
                     >
                       {doorStyles.map((style) => (
                         <option key={style} value={style}>
@@ -199,13 +201,16 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                         value={door.width}
                         onChange={(e) =>
                           handleDoorChange(door.id, {
-                            width: clampNumber(e.target.value, door.width, 12),
+                            width: clampNumber(
+                              e.target.value,
+                              door.width,
+                              12,
+                              120
+                            ),
                           })
                         }
                         disabled={isLocked}
-                        className="mt-0.5 w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
-                        min={12}
-                        max={120}
+                        className="mt-0.5 w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
                       />
                     </div>
                     <div>
@@ -220,19 +225,18 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                             height: clampNumber(
                               e.target.value,
                               door.height,
-                              60
+                              60,
+                              120
                             ),
                           })
                         }
                         disabled={isLocked}
-                        className="mt-0.5 w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
-                        min={60}
-                        max={120}
+                        className="mt-0.5 w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
                       />
                     </div>
                   </div>
 
-                  {/* Position along wall */}
+                  {/* Position */}
                   <div className="mt-1">
                     <span className="text-[10px] text-gray-500">
                       Position along wall
@@ -258,7 +262,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           </div>
         </div>
 
-        {/* Windows on this wall */}
+        {/* Windows */}
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-700">
             Windows on this wall
@@ -266,8 +270,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           <div className="space-y-2">
             {wall.windows.length === 0 ? (
               <p className="text-sm text-gray-400 italic">
-                No windows. Use the Window tool and click on this wall to add
-                one.
+                No windows. Use the Window tool and click this wall to add one.
               </p>
             ) : (
               wall.windows.map((window) => (
@@ -295,7 +298,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                         })
                       }
                       disabled={isLocked}
-                      className="flex-1 rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+                      className="flex-1 rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
                     >
                       {windowStyles.map((style) => (
                         <option key={style} value={style}>
@@ -319,14 +322,13 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                             width: clampNumber(
                               e.target.value,
                               window.width,
-                              12
+                              12,
+                              200
                             ),
                           })
                         }
                         disabled={isLocked}
-                        className="mt-0.5 w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
-                        min={12}
-                        max={200}
+                        className="mt-0.5 w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
                       />
                     </div>
                     <div>
@@ -341,19 +343,18 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                             height: clampNumber(
                               e.target.value,
                               window.height,
-                              12
+                              12,
+                              200
                             ),
                           })
                         }
                         disabled={isLocked}
-                        className="mt-0.5 w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
-                        min={12}
-                        max={200}
+                        className="mt-0.5 w-full rounded-md border border-gray-300 bg-white px-2 py-1 text-xs text-gray-900 focus:ring-1 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
                       />
                     </div>
                   </div>
 
-                  {/* Position along wall */}
+                  {/* Position */}
                   <div className="mt-1">
                     <span className="text-[10px] text-gray-500">
                       Position along wall
@@ -370,7 +371,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                         })
                       }
                       disabled={isLocked}
-                      className="mt-0.5 h-1 w-full cursor-pointer appearance-none rounded-full bg-gray-300"
+                      className="h-1 w-full cursor-pointer appearance-none rounded-full bg-gray-300"
                     />
                   </div>
                 </div>
@@ -382,121 +383,299 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
     );
   };
 
-  const renderFurnitureProperties = (furniture: FurnitureItem) => (
-    <div className="space-y-4">
-      {/* Name */}
-      <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">
-          Name
-        </label>
-        <p className="text-base font-medium text-gray-900">{furniture.name}</p>
-      </div>
+  // FURNITURE PROPERTIES
+  const renderFurnitureProperties = (item: FurnitureItem) => {
+    const itemLocked = !!item.locked || isLocked;
 
-      {/* Category */}
-      <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">
-          Category
-        </label>
-        <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-800">
-          {furniture.category}
-        </span>
-      </div>
+    const updatePosition = (axis: 'x' | 'y', value: any) => {
+      if (itemLocked) return;
+      const next = clampNumber(value, item.position[axis], -99999, 99999);
+      onUpdate({
+        position: {
+          ...item.position,
+          [axis]: next,
+        },
+      });
+    };
 
-      {/* Type */}
-      <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">
-          Type
-        </label>
-        <span className="inline-block rounded-full bg-purple-100 px-3 py-1 text-sm text-purple-800">
-          {furniture.type}
-        </span>
-      </div>
+    const nudge = (axis: 'x' | 'y', delta: number) => {
+      if (itemLocked) return;
+      onUpdate({
+        position: {
+          ...item.position,
+          [axis]: item.position[axis] + delta,
+        },
+      });
+    };
 
-      {/* Dimensions */}
-      <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">
-          Dimensions
-        </label>
-        <div className="rounded-lg bg-gray-50 p-3">
-          <p className="text-base font-semibold text-gray-900">
-            {furniture.dimensions.width}" × {furniture.dimensions.height}"
-          </p>
-          <p className="mt-1 text-xs text-gray-500">Width × Height (inches)</p>
-        </div>
-      </div>
+    const updateDimension = (key: 'width' | 'height', value: any) => {
+      if (itemLocked) return;
+      const next = clampNumber(
+        value,
+        item.dimensions[key],
+        1,
+        item.dimensions.unit === 'ft' ? 200 : 2400
+      );
+      onUpdate({
+        dimensions: {
+          ...item.dimensions,
+          [key]: next,
+        },
+      });
+    };
 
-      {/* Position */}
-      <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">
-          Position
-        </label>
-        <div className="grid grid-cols-2 gap-2">
-          <div className="rounded bg-gray-50 p-2">
-            <p className="text-xs text-gray-500">X</p>
-            <p className="text-sm font-medium text-gray-900">
-              {Math.round(furniture.position.x)}px
+    const handleUnitChange = (unit: 'ft' | 'in') => {
+      if (itemLocked) return;
+      if (unit === item.dimensions.unit) return;
+
+      let { width, height } = item.dimensions;
+
+      if (unit === 'ft' && item.dimensions.unit === 'in') {
+        width = +(width / 12).toFixed(2);
+        height = +(height / 12).toFixed(2);
+      } else if (unit === 'in' && item.dimensions.unit === 'ft') {
+        width = Math.round(width * 12);
+        height = Math.round(height * 12);
+      }
+
+      onUpdate({
+        dimensions: {
+          ...item.dimensions,
+          unit,
+          width,
+          height,
+        },
+      });
+    };
+
+    const toggleLock = () => {
+      if (isLocked) return;
+      onUpdate({ locked: !item.locked });
+    };
+
+    const safeRotate = (value: number) => {
+      if (itemLocked) return;
+      const normalized = ((value % 360) + 360) % 360;
+      onRotate(normalized);
+    };
+
+    return (
+      <div className="space-y-5">
+        {/* Basic meta */}
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <p className="text-xs font-semibold tracking-wide text-gray-500 uppercase">
+              {item.type}
+            </p>
+            <h4 className="text-base font-semibold text-gray-900">
+              {item.name}
+            </h4>
+            <p className="mt-0.5 inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-700">
+              {item.category}
             </p>
           </div>
-          <div className="rounded bg-gray-50 p-2">
-            <p className="text-xs text-gray-500">Y</p>
-            <p className="text-sm font-medium text-gray-900">
-              {Math.round(furniture.position.y)}px
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Rotation */}
-      <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
-          Rotation
-        </label>
-        <div className="flex gap-2">
-          <input
-            type="number"
-            value={furniture.rotation}
-            onChange={(e) => {
-              const value = parseFloat(e.target.value) || 0;
-              onRotate(((value % 360) + 360) % 360);
-            }}
-            className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            step={15}
-          />
-          <span className="flex items-center text-sm text-gray-500">°</span>
-        </div>
-
-        <div className="mt-2 grid grid-cols-4 gap-2">
-          {[0, 90, 180, 270].map((angle) => (
-            <button
-              key={angle}
-              onClick={() => onRotate(angle)}
-              className="rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200"
+          <button
+            type="button"
+            onClick={toggleLock}
+            className={`inline-flex items-center rounded-full px-2 py-1 text-[9px] font-semibold ${
+              itemLocked
+                ? 'bg-gray-900 text-white'
+                : 'border border-[#CBA35C]/40 bg-[#CBA35C]/10 text-[#CBA35C]'
+            }`}
+          >
+            <svg
+              className="mr-1 h-3 w-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              {angle}°
-            </button>
-          ))}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={
+                  itemLocked
+                    ? 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'
+                    : 'M5 11V7a7 7 0 0114 0v4m-9 4v4m4-4v4m-9 0h14a2 2 0 002-2v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2z'
+                }
+              />
+            </svg>
+            {itemLocked ? 'Locked' : 'Lock item'}
+          </button>
         </div>
 
-        <div className="mt-2 flex gap-2">
-          <button
-            onClick={() =>
-              onRotate((((furniture.rotation - 15) % 360) + 360) % 360)
-            }
-            className="flex-1 rounded-lg bg-blue-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
-          >
-            ↶ -15°
-          </button>
-          <button
-            onClick={() => onRotate((furniture.rotation + 15) % 360)}
-            className="flex-1 rounded-lg bg-blue-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
-          >
-            +15° ↷
-          </button>
+        {/* Dimensions */}
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            Dimensions
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <span className="text-[10px] text-gray-500">Width</span>
+              <input
+                type="number"
+                value={item.dimensions.width}
+                onChange={(e) => updateDimension('width', e.target.value)}
+                disabled={itemLocked}
+                className="mt-0.5 w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-xs text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+              />
+            </div>
+            <div>
+              <span className="text-[10px] text-gray-500">Height</span>
+              <input
+                type="number"
+                value={item.dimensions.height}
+                onChange={(e) => updateDimension('height', e.target.value)}
+                disabled={itemLocked}
+                className="mt-0.5 w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-xs text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+              />
+            </div>
+          </div>
+          <div className="mt-2 inline-flex gap-1 rounded-full bg-gray-50 p-1 text-[9px]">
+            <button
+              type="button"
+              onClick={() => handleUnitChange('in')}
+              className={`rounded-full px-2 py-0.5 ${
+                item.dimensions.unit === 'in'
+                  ? 'bg-[#CBA35C] font-semibold text-black'
+                  : 'text-gray-600'
+              }`}
+            >
+              Inches
+            </button>
+            <button
+              type="button"
+              onClick={() => handleUnitChange('ft')}
+              className={`rounded-full px-2 py-0.5 ${
+                item.dimensions.unit === 'ft'
+                  ? 'bg-[#CBA35C] font-semibold text-black'
+                  : 'text-gray-600'
+              }`}
+            >
+              Feet
+            </button>
+          </div>
+          <p className="mt-1 text-[10px] text-gray-500">
+            Size is used for spacing + layout suggestions.
+          </p>
+        </div>
+
+        {/* Position */}
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            Position
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <span className="text-[10px] text-gray-500">X (canvas)</span>
+              <input
+                type="number"
+                value={Math.round(item.position.x)}
+                onChange={(e) => updatePosition('x', e.target.value)}
+                disabled={itemLocked}
+                className="mt-0.5 w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-xs text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+              />
+            </div>
+            <div>
+              <span className="text-[10px] text-gray-500">Y (canvas)</span>
+              <input
+                type="number"
+                value={Math.round(item.position.y)}
+                onChange={(e) => updatePosition('y', e.target.value)}
+                disabled={itemLocked}
+                className="mt-0.5 w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-xs text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+              />
+            </div>
+          </div>
+          <div className="mt-2 grid grid-cols-4 gap-1 text-[9px]">
+            <button
+              type="button"
+              onClick={() => nudge('y', -5)}
+              disabled={itemLocked}
+              className="rounded-md bg-gray-100 py-1 text-center text-gray-700 hover:bg-gray-200 disabled:opacity-40"
+            >
+              ↑ 5
+            </button>
+            <button
+              type="button"
+              onClick={() => nudge('y', 5)}
+              disabled={itemLocked}
+              className="rounded-md bg-gray-100 py-1 text-center text-gray-700 hover:bg-gray-200 disabled:opacity-40"
+            >
+              ↓ 5
+            </button>
+            <button
+              type="button"
+              onClick={() => nudge('x', -5)}
+              disabled={itemLocked}
+              className="rounded-md bg-gray-100 py-1 text-center text-gray-700 hover:bg-gray-200 disabled:opacity-40"
+            >
+              ← 5
+            </button>
+            <button
+              type="button"
+              onClick={() => nudge('x', 5)}
+              disabled={itemLocked}
+              className="rounded-md bg-gray-100 py-1 text-center text-gray-700 hover:bg-gray-200 disabled:opacity-40"
+            >
+              → 5
+            </button>
+          </div>
+        </div>
+
+        {/* Rotation */}
+        <div>
+          <label className="mb-2 block text-sm font-medium text-gray-700">
+            Rotation
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="number"
+              value={item.rotation}
+              onChange={(e) => safeRotate(parseFloat(e.target.value) || 0)}
+              disabled={itemLocked}
+              className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+              step={15}
+            />
+            <span className="flex items-center text-sm text-gray-500">°</span>
+          </div>
+          <div className="mt-2 grid grid-cols-4 gap-2 text-[10px]">
+            {[0, 90, 180, 270].map((angle) => (
+              <button
+                key={angle}
+                type="button"
+                onClick={() => safeRotate(angle)}
+                disabled={itemLocked}
+                className="rounded-md bg-gray-100 px-2 py-1 text-gray-700 hover:bg-gray-200 disabled:opacity-40"
+              >
+                {angle}°
+              </button>
+            ))}
+          </div>
+          <div className="mt-2 flex gap-2 text-[10px]">
+            <button
+              type="button"
+              onClick={() => safeRotate(item.rotation - 15)}
+              disabled={itemLocked}
+              className="flex-1 rounded-lg bg-[#CBA35C] px-3 py-2 text-center font-semibold text-black shadow-sm hover:bg-[#b0914f] disabled:opacity-40"
+            >
+              ↶ -15°
+            </button>
+            <button
+              type="button"
+              onClick={() => safeRotate(item.rotation + 15)}
+              disabled={itemLocked}
+              className="flex-1 rounded-lg bg-[#CBA35C] px-3 py-2 text-center font-semibold text-black shadow-sm hover:bg-[#b0914f] disabled:opacity-40"
+            >
+              +15° ↷
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
+  // DOOR (selected as its own item)
   const renderDoorProperties = (door: DoorWindow) => (
     <div className="space-y-4">
       <div>
@@ -509,7 +688,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
             onUpdate({ style: e.target.value as DoorWindow['style'] })
           }
           disabled={isLocked}
-          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
         >
           {doorStyles.map((style) => (
             <option key={style} value={style}>
@@ -533,7 +712,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
               })
             }
             disabled={isLocked}
-            className="w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+            className="w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
           />
         </div>
         <div>
@@ -549,7 +728,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
               })
             }
             disabled={isLocked}
-            className="w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+            className="w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
           />
         </div>
       </div>
@@ -575,6 +754,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
     </div>
   );
 
+  // WINDOW (selected as its own item)
   const renderWindowProperties = (window: DoorWindow) => (
     <div className="space-y-4">
       <div>
@@ -587,7 +767,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
             onUpdate({ style: e.target.value as DoorWindow['style'] })
           }
           disabled={isLocked}
-          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
         >
           {windowStyles.map((style) => (
             <option key={style} value={style}>
@@ -611,7 +791,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
               })
             }
             disabled={isLocked}
-            className="w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+            className="w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
           />
         </div>
         <div>
@@ -627,7 +807,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
               })
             }
             disabled={isLocked}
-            className="w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+            className="w-full rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-900 focus:ring-2 focus:ring-[#CBA35C]/60 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
           />
         </div>
       </div>
@@ -653,81 +833,42 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
     </div>
   );
 
+  // PANEL SHELL
   return (
     <div className="flex w-80 flex-col border-l border-gray-200 bg-white">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-3">
         <div className="flex items-center gap-2">
           {selectedItemType === 'wall' && (
-            <svg
-              className="h-5 w-5 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 5h7v7H4zM13 5h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"
-              />
-            </svg>
+            <BrickWall className="text-dark-black h-6 w-6" />
           )}
           {selectedItemType === 'furniture' && (
-            <svg
-              className="h-5 w-5 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 9.5L12 4l9 5.5v9L12 24l-9-5.5v-9z"
-              />
-            </svg>
+            // <svg
+            //   className="h-5 w-5 text-gray-700"
+            //   fill="none"
+            //   stroke="currentColor"
+            //   viewBox="0 0 24 24"
+            // >
+            //   <path
+            //     strokeLinecap="round"
+            //     strokeLinejoin="round"
+            //     strokeWidth={2}
+            //     d="M3 10h18M6 10V5h12v5M5 10h14v9H5z"
+            //   />
+            // </svg>
+            <Armchair className="text-dark-black h-6 w-6" />
           )}
           {selectedItemType === 'door' && (
-            <svg
-              className="h-5 w-5 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 3h8l2 4v14H6V7z"
-              />
-            </svg>
+            <DoorClosed className="text-dark-black h-6 w-6" />
           )}
           {selectedItemType === 'window' && (
-            <svg
-              className="h-5 w-5 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <rect
-                x={4}
-                y={4}
-                width={16}
-                height={16}
-                rx={1}
-                ry={1}
-                strokeWidth={2}
-              />
-              <line x1={12} y1={4} x2={12} y2={20} strokeWidth={2} />
-              <line x1={4} y1={12} x2={20} y2={12} strokeWidth={2} />
-            </svg>
+            <Grid2x2 className="text-dark-black h-6 w-6" />
           )}
           <h3 className="text-lg font-semibold text-gray-900">Properties</h3>
         </div>
       </div>
 
-      {/* Content */}
+      {/* Body */}
       <div className="flex-1 overflow-y-auto p-4">
         {selectedItemType === 'wall' &&
           renderWallProperties(selectedItem as Wall)}
@@ -742,12 +883,12 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           renderWindowProperties(selectedItem as DoorWindow)}
       </div>
 
-      {/* Footer Actions */}
+      {/* Footer */}
       <div className="border-t border-gray-200 bg-gray-50 p-4">
         <button
           onClick={onDelete}
           disabled={selectedItemType === 'wall' && isLocked}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <svg
             className="h-4 w-4"
@@ -766,8 +907,8 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
         </button>
 
         {selectedItemType === 'wall' && isLocked && (
-          <p className="mt-2 text-center text-xs text-gray-500">
-            Unlock floor plan to delete walls
+          <p className="mt-2 text-center text-[10px] text-gray-500">
+            Unlock the floor plan to delete walls.
           </p>
         )}
       </div>

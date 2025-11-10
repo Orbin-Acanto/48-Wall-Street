@@ -5,7 +5,7 @@ import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { FloorPlanCanvas } from '@/components/FloorPlanEditor/Canvas/FloorPlanCanvas';
 import { EventDetailsModal } from '@/components/FloorPlanEditor/Modals/EventDetailsModal';
 import { ExportImportModal } from '@/components/FloorPlanEditor/Modals/ExportImportModal';
-import { WallPropertiesModal } from '@/components/FloorPlanEditor/Modals/WallPropertiesModal';
+// import { WallPropertiesModal } from '@/components/FloorPlanEditor/Modals/WallPropertiesModal';
 import { PropertiesPanel } from '@/components/FloorPlanEditor/Panels/PropertiesPanel';
 
 import { AudioVisualsSidebar } from '@/components/FloorPlanEditor/Sidebars/AudioVisualsSidebar';
@@ -121,23 +121,67 @@ export const FloorPlanEditor: React.FC = () => {
     windowId: string;
   } | null>(null);
 
-  let selectedItem: any = null;
+  // let selectedItem: any = null;
 
-  if (selectedItemId && selectedItemType === 'wall') {
-    selectedItem = floorPlan.walls.find((w) => w.id === selectedItemId) || null;
-  } else if (selectedItemId && selectedItemType === 'furniture') {
-    selectedItem =
-      floorPlan.furniture.find((f) => f.id === selectedItemId) || null;
-  } else if (selectedItemType === 'door' && selectedDoorRef) {
-    const wall = floorPlan.walls.find((w) => w.id === selectedDoorRef.wallId);
-    selectedItem =
-      wall?.doors.find((d) => d.id === selectedDoorRef.doorId) || null;
-  } else if (selectedItemType === 'window' && selectedWindowRef) {
-    const wall = floorPlan.walls.find((w) => w.id === selectedWindowRef.wallId);
-    selectedItem =
-      wall?.windows.find((w) => w.id === selectedWindowRef.windowId) || null;
-  }
+  // if (selectedItemId && selectedItemType === 'wall') {
+  //   selectedItem = floorPlan.walls.find((w) => w.id === selectedItemId) || null;
+  // } else if (selectedItemId && selectedItemType === 'furniture') {
+  //   selectedItem =
+  //     floorPlan.furniture.find((f) => f.id === selectedItemId) || null;
+  // } else if (selectedItemType === 'door' && selectedDoorRef) {
+  //   const wall = floorPlan.walls.find((w) => w.id === selectedDoorRef.wallId);
+  //   selectedItem =
+  //     wall?.doors.find((d) => d.id === selectedDoorRef.doorId) || null;
+  // } else if (selectedItemType === 'window' && selectedWindowRef) {
+  //   const wall = floorPlan.walls.find((w) => w.id === selectedWindowRef.wallId);
+  //   selectedItem =
+  //     wall?.windows.find((w) => w.id === selectedWindowRef.windowId) || null;
+  // }
+  const selectedItem = useMemo(() => {
+    if (!selectedItemId) return null;
 
+    console.log('Computing selectedItem:', {
+      selectedItemId,
+      selectedItemType,
+    }); // Debug log
+
+    if (selectedItemType === 'wall') {
+      const wall = floorPlan.walls.find((w) => w.id === selectedItemId);
+      console.log('Found wall:', wall);
+      return wall || null;
+    }
+
+    if (selectedItemType === 'furniture') {
+      const furniture = floorPlan.furniture.find(
+        (f) => f.id === selectedItemId
+      );
+      console.log('Found furniture:', furniture);
+      return furniture || null;
+    }
+
+    if (selectedItemType === 'door' && selectedDoorRef) {
+      const wall = floorPlan.walls.find((w) => w.id === selectedDoorRef.wallId);
+      return wall?.doors.find((d) => d.id === selectedDoorRef.doorId) || null;
+    }
+
+    if (selectedItemType === 'window' && selectedWindowRef) {
+      const wall = floorPlan.walls.find(
+        (w) => w.id === selectedWindowRef.wallId
+      );
+      return (
+        wall?.windows.find((w) => w.id === selectedWindowRef.windowId) || null
+      );
+    }
+
+    return null;
+  }, [
+    selectedItemId,
+    selectedItemType,
+    selectedDoorRef,
+    selectedWindowRef,
+    floorPlan.walls,
+    floorPlan.furniture,
+  ]);
   const handleWallCreate = useCallback(
     (start: Point, end: Point) => {
       const pixels = calculateDistance(start, end);
@@ -364,6 +408,16 @@ export const FloorPlanEditor: React.FC = () => {
     [floorPlan.walls, updateWall]
   );
 
+  useEffect(() => {
+    console.log('Selection State:', {
+      selectedItemId,
+      selectedItemType,
+      selectedItem,
+      furnitureCount: floorPlan.furniture.length,
+      furnitureIds: floorPlan.furniture.map((f) => f.id),
+    });
+  }, [selectedItemId, selectedItemType, selectedItem, floorPlan.furniture]);
+
   return (
     <div className="mt-22 flex h-[90vh] flex-col bg-gray-50">
       <TopToolbar
@@ -550,22 +604,6 @@ export const FloorPlanEditor: React.FC = () => {
           onClose={() => setActiveModal(null)}
         />
       )}
-
-      {activeModal === 'wall' &&
-        selectedItemId &&
-        selectedItemType === 'wall' && (
-          <WallPropertiesModal
-            isOpen
-            wall={
-              floorPlan.walls.find((w) => w.id === selectedItemId) as WallType
-            }
-            onSave={(updates) => {
-              updateWall(selectedItemId, updates);
-              setActiveModal(null);
-            }}
-            onClose={() => setActiveModal(null)}
-          />
-        )}
 
       {activeModal === 'export' && (
         <ExportImportModal

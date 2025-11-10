@@ -312,8 +312,8 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
         </g>
       </svg>
 
-      <div className="absolute bottom-6 left-6 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
-        <div className="flex flex-col">
+      <div className="absolute bottom-6 left-6 overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg">
+        <div className="flex items-center">
           <button
             onClick={zoomIn}
             className="border-b border-gray-200 px-4 py-3 transition-colors hover:bg-gray-100"
@@ -336,7 +336,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
           <button
             onClick={resetZoom}
-            className="border-b border-gray-200 px-4 py-2 transition-colors hover:bg-gray-100"
+            className="border-b border-gray-200 px-2 py-2 transition-colors hover:bg-gray-100"
             title="Reset Zoom"
           >
             <span className="text-sm font-medium text-gray-700">
