@@ -10,7 +10,7 @@ import {
   VideoItem,
   ViewPoint,
 } from '@/types';
-import { ExportFormat } from '@/types/floorplan.types';
+import { ExportFormat, LegendItemConfig } from '@/types/floorplan.types';
 import {
   Calendar,
   Users,
@@ -3224,5 +3224,83 @@ export const sampleViewPoints: ViewPoint[] = [
     name: 'Living Room View',
     position: new THREE.Vector3(-7, 1.5, 0),
     target: new THREE.Vector3(0, 1.5, 0),
+  },
+];
+
+export const LEGEND_ITEMS: LegendItemConfig[] = [
+  {
+    category: '60" Round Tables',
+    label: '60" ROUND TABLES',
+    color: '#26A9E0',
+  },
+  {
+    category: 'Swag Table',
+    label: 'SWAG TABLE',
+    color: '#242671',
+  },
+  {
+    category: 'Staging',
+    label: '8’X16’ STAGE',
+    color: '#00A651',
+  },
+  {
+    category: 'Podium / Mic',
+    label: 'PODIUM / MIC',
+    color: '#F7941D',
+  },
+  {
+    category: 'Award Table',
+    label: 'AWARD TABLE',
+    color: '#FFD400',
+  },
+  {
+    category: 'Coffee',
+    label: 'COFFEE',
+    color: '#2F4F4F',
+  },
+  {
+    category: 'Italian Station',
+    label: 'ITALIAN STATION',
+    color: '#27AE60',
+  },
+  {
+    category: 'Auction Tables',
+    label: 'AUCTION TABLES',
+    color: '#6FD4C2',
+  },
+  {
+    category: "12' Bar",
+    label: '12’ BAR',
+    color: '#0097A7',
+  },
+  {
+    category: 'Registration',
+    label: 'REGISTRATION TABLE',
+    color: '#5E2A84',
+  },
+  {
+    category: 'Red Carpet',
+    label: 'RED CARPET',
+    color: '#B71C1C',
+  },
+  {
+    category: 'Chinese Station',
+    label: 'CHINESE STATION',
+    color: '#6D3B0F',
+  },
+  {
+    category: 'Europe Station',
+    label: 'EUROPE STATION',
+    color: '#8E24AA',
+  },
+  {
+    category: "18' Bar",
+    label: '18’ BAR',
+    color: '#C2185B',
+  },
+  {
+    category: 'Black Highboys',
+    label: 'BLACK HIGH BOYS WITH STOOLS',
+    color: '#000000',
   },
 ];

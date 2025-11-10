@@ -15,6 +15,7 @@ import {
   Lock,
   LockOpen,
 } from 'lucide-react';
+import { LEGEND_ITEMS } from '@/data';
 
 interface PropertiesPanelProps {
   selectedItem: Wall | FurnitureItem | Room | DoorWindow | null;
@@ -30,6 +31,7 @@ interface PropertiesPanelProps {
   onRotate: (rotation: number) => void;
   onDelete: () => void;
   onClose: () => void;
+  furnitureItems?: FurnitureItem[];
 }
 
 export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
@@ -39,31 +41,69 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   onUpdate,
   onRotate,
   onDelete,
+  furnitureItems = [],
 }) => {
   if (!selectedItem) {
+    const categoryCounts = furnitureItems.reduce<Record<string, number>>(
+      (acc, item) => {
+        const key = item.category;
+        acc[key] = (acc[key] ?? 0) + 1;
+        return acc;
+      },
+      {}
+    );
+
     return (
       <div className="flex w-80 flex-col border-l border-gray-200 bg-white">
+        {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-3">
-          <h3 className="text-lg font-semibold text-gray-900">Properties</h3>
+          <h3 className="text-lg font-semibold text-gray-900">Plan Legend</h3>
         </div>
 
-        <div className="flex flex-1 items-center justify-center p-8">
-          <div className="text-center text-gray-400">
-            <svg
-              className="mx-auto mb-4 h-16 w-16"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <p className="text-sm">No item selected</p>
-            <p className="mt-1 text-xs">Select an item to view properties</p>
+        {/* Legend body */}
+        <div className="flex-1 overflow-y-auto p-4">
+          <div className="mb-3">
+            <h4 className="text-sm font-semibold tracking-wide text-gray-900">
+              LEGEND
+            </h4>
+            <p className="mt-1 text-xs text-gray-500">
+              Overview of key layout elements placed on this floor plan.
+            </p>
+          </div>
+
+          <div className="space-y-1.5">
+            {LEGEND_ITEMS.map((item) => {
+              const count = categoryCounts[item.category] ?? 0;
+
+              return (
+                <div
+                  key={item.category}
+                  className="flex items-center justify-between gap-2 rounded-md border border-gray-100 bg-white px-2.5 py-1.5"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span
+                      className="h-4 w-4 rounded-sm border border-gray-300"
+                      style={{ backgroundColor: item.color }}
+                    />
+                    <span className="text-[11px] font-medium text-gray-800">
+                      {item.label}
+                    </span>
+                  </div>
+
+                  <span className="text-[10px] font-semibold text-gray-600">
+                    {count}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-4 rounded-md border border-gray-100 bg-gray-50 px-3 py-2">
+            <p className="text-[10px] text-gray-500">
+              Tip: Select any item on the canvas to edit its properties. When
+              nothing is selected, this panel becomes a quick legend summary for
+              your client PDFs.
+            </p>
           </div>
         </div>
       </div>

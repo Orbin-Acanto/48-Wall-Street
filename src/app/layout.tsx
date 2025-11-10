@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     description:
       'Premier Manhattan event venue for corporate events, weddings & celebrations in historic Financial District landmark.',
     images: ['/images/twitter-home.jpg'],
-    creator: '@48WallStreetNYC', // Add if you have Twitter
+    creator: '@48WallStreetNYC',
   },
   robots: {
     index: true,
@@ -68,9 +68,7 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   verification: {
-    google: 'your-google-verification-code', // Add your Google Search Console verification
-    // yandex: 'your-yandex-verification-code',
-    // bing: 'your-bing-verification-code',
+    google: 'your-google-verification-code',
   },
 };
 
@@ -119,8 +117,8 @@ export default function RootLayout({
                 latitude: 40.7074,
                 longitude: -74.0089,
               },
-              telephone: '+1-XXX-XXX-XXXX', // Replace with actual
-              email: 'events@48wallnyc.com', // Replace with actual
+              telephone: '+1-XXX-XXX-XXXX',
+              email: 'events@48wallnyc.com',
               priceRange: '$$$',
               maximumAttendeeCapacity: 500,
               smokingAllowed: false,
@@ -142,7 +140,6 @@ export default function RootLayout({
                 'https://facebook.com/48wallst',
                 'https://instagram.com/48wallstreetnyc',
                 'https://www.linkedin.com/company/48-wall-street',
-                // Add your actual social media URLs
               ],
               amenityFeature: [
                 {

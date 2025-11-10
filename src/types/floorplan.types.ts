@@ -20,6 +20,12 @@ export interface Wall {
   windows: DoorWindow[];
 }
 
+export type LegendItemConfig = {
+  category: string;
+  label: string;
+  color: string;
+};
+
 export interface DoorWindow {
   id: string;
   type: 'door' | 'window';

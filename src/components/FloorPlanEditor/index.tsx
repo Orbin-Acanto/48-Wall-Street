@@ -536,6 +536,7 @@ export const FloorPlanEditor: React.FC = () => {
             selectedItem={selectedItem}
             selectedItemType={selectedItemType}
             isLocked={floorPlan.isLocked}
+            furnitureItems={floorPlan.furniture}
             onUpdate={(updates) => {
               if (!selectedItemId || !selectedItemType) return;
 
