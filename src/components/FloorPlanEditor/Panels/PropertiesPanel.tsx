@@ -200,7 +200,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                   <div className="mt-1 grid grid-cols-2 gap-2">
                     <div>
                       <span className="text-[10px] text-gray-500">
-                        Width (")
+                        Width (&quot;)
                       </span>
                       <input
                         type="number"
@@ -221,7 +221,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                     </div>
                     <div>
                       <span className="text-[10px] text-gray-500">
-                        Height (")
+                        Height (&quot;)
                       </span>
                       <input
                         type="number"
@@ -318,7 +318,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                   <div className="mt-1 grid grid-cols-2 gap-2">
                     <div>
                       <span className="text-[10px] text-gray-500">
-                        Width (")
+                        Width (&quot;)
                       </span>
                       <input
                         type="number"
@@ -339,7 +339,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
                     </div>
                     <div>
                       <span className="text-[10px] text-gray-500">
-                        Height (")
+                        Height (&quot;)
                       </span>
                       <input
                         type="number"
@@ -394,22 +394,6 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
     const itemLocked = !!item.locked || isLocked;
 
     const dims = item.dimensions;
-
-    const toInches = (value: number, unit: 'in' | 'ft') =>
-      unit === 'ft' ? value * 12 : value;
-
-    const handleSizeChange = (
-      field: 'width' | 'height',
-      value: string | number
-    ) => {
-      const n = clampNumber(value, dims[field], 1, 1000);
-      onUpdate({
-        dimensions: {
-          ...dims,
-          [field]: n,
-        },
-      });
-    };
 
     const handleUnitChange = (nextUnit: 'in' | 'ft') => {
       if (nextUnit === dims.unit) return;
