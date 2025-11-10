@@ -1,6 +1,7 @@
 'use client';
 
 import { FormDataType } from '@/types';
+import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 
 const ContactUsSlider: React.FC = () => {
@@ -134,6 +135,9 @@ const ContactUsSlider: React.FC = () => {
   const toggleForm = () => {
     setIsOpen(!isOpen);
   };
+
+  const pathname = usePathname();
+  if (pathname === '/about/customize-plan') return null;
 
   return (
     <>

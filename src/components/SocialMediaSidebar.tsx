@@ -2,10 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 export default function SocialMediaSidebar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const pathname = usePathname();
+  if (pathname === '/about/customize-plan') return null;
 
   const socialLinks = [
     {

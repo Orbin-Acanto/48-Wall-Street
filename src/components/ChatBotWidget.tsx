@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Bot, MessageCircle, X, Send } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 type ChatMessage = {
   id: string;
@@ -146,6 +147,9 @@ export default function ChatbotWidget() {
       setIsTyping(false);
     }
   };
+
+  const pathname = usePathname();
+  if (pathname === '/about/customize-plan') return null;
 
   return (
     <>

@@ -3,20 +3,15 @@
 import Image from 'next/image';
 import { footerLinks, socialLinks } from '@/data';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === '/about/customize-plan') return null;
+
   return (
     <footer className="relative bg-gray-900 text-white">
       <div className="bg-primary right-0 left-0 z-10 h-0.5"></div>
-      {/* Building Image Background */}
-      {/* <div className="absolute inset-0 opacity-50">
-        <Image
-          src="/misc/tower_golden.svg"
-          alt="48 Wall Street Building"
-          fill
-          className="object-contain object-left"
-        />
-      </div> */}
 
       <div className="relative z-10">
         {/* Main Footer Content */}
