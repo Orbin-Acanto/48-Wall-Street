@@ -85,6 +85,8 @@ export const FloorPlanEditor: React.FC = () => {
     toggleLock,
     loadFloorPlan,
     resetFloorPlan,
+    deleteDoor,
+    deleteWindow,
   } = useFloorPlanState();
 
   const [selectedTool, setSelectedTool] = useState<Tool>('select');
@@ -249,6 +251,10 @@ export const FloorPlanEditor: React.FC = () => {
       deleteFurniture(selectedItemId);
     } else if (selectedItemType === 'room') {
       deleteRoom(selectedItemId);
+    } else if (selectedItemType === 'door') {
+      deleteDoor(selectedItemId);
+    } else if (selectedItemType === 'window') {
+      deleteWindow(selectedItemId);
     }
 
     setSelectedItemId(null);
@@ -301,22 +307,6 @@ export const FloorPlanEditor: React.FC = () => {
         showDimensions: !floorPlan.canvasSettings.showDimensions,
       }),
   });
-
-  useEffect(() => {
-    const checkMobile = () => {
-      if (typeof window !== 'undefined') {
-        setIsMobile(window.innerWidth < 768);
-      }
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  if (isMobile) {
-    return <MobileWarning />;
-  }
 
   const toggleSidebar = (type: SidebarType) => {
     setActiveSidebar((current) => (current === type ? null : type));
@@ -391,6 +381,22 @@ export const FloorPlanEditor: React.FC = () => {
     },
     [floorPlan.walls, updateWall]
   );
+
+  useEffect(() => {
+    const checkMobile = () => {
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 768);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return <MobileWarning />;
+  }
 
   return (
     <div className="mt-22 flex h-[90vh] flex-col bg-gray-50">
@@ -546,13 +552,13 @@ export const FloorPlanEditor: React.FC = () => {
                 updateDoorOnWall(
                   selectedDoorRef.wallId,
                   selectedDoorRef.doorId,
-                  updates
+                  updates as Partial<DoorWindow>
                 );
               } else if (selectedItemType === 'window' && selectedWindowRef) {
                 updateWindowOnWall(
                   selectedWindowRef.wallId,
                   selectedWindowRef.windowId,
-                  updates
+                  updates as Partial<DoorWindow>
                 );
               }
             }}

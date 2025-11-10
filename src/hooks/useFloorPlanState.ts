@@ -9,6 +9,7 @@ import {
   Room,
   HistoryState,
   Point,
+  DoorWindow,
 } from '../types/floorplan.types';
 
 const createInitialFloorPlan = (): FloorPlanData => ({
@@ -28,7 +29,7 @@ const createInitialFloorPlan = (): FloorPlanData => ({
   canvasSettings: {
     width: 2000,
     height: 1500,
-    scale: 20, // 20 pixels per foot
+    scale: 20,
     gridSize: 20,
     showGrid: true,
     showDimensions: false,
@@ -47,6 +48,9 @@ export const useFloorPlanState = () => {
 
   const present = history.present;
 
+  // ----------------------------
+  //Canvas settings
+  // ----------------------------
   const updateFloorPlan = useCallback(
     (updater: (prev: FloorPlanData) => FloorPlanData) => {
       setHistory((prev) => {
@@ -60,6 +64,55 @@ export const useFloorPlanState = () => {
     },
     []
   );
+
+  const updateCanvasSettings = useCallback(
+    (updates: Partial<CanvasSettings>) => {
+      updateFloorPlan((prev) => ({
+        ...prev,
+        canvasSettings: { ...prev.canvasSettings, ...updates },
+      }));
+    },
+    [updateFloorPlan]
+  );
+
+  const toggleLock = useCallback(() => {
+    updateFloorPlan((prev) => ({
+      ...prev,
+      isLocked: !prev.isLocked,
+    }));
+  }, [updateFloorPlan]);
+
+  const loadFloorPlan = useCallback((data: FloorPlanData) => {
+    setHistory({
+      past: [],
+      present: data,
+      future: [],
+    });
+  }, []);
+
+  const resetFloorPlan = useCallback(() => {
+    if (
+      window.confirm(
+        'Are you sure you want to reset? All unsaved changes will be lost.'
+      )
+    ) {
+      setHistory({
+        past: [],
+        present: createInitialFloorPlan(),
+        future: [],
+      });
+    }
+  }, []);
+
+  const updateFloorPlanName = useCallback(
+    (name: string) => {
+      updateFloorPlan((prev) => ({ ...prev, name }));
+    },
+    [updateFloorPlan]
+  );
+  // ----------------------------
+  //Canvas settings
+  // ----------------------------
 
   // Undo
   const undo = useCallback(() => {
@@ -89,7 +142,9 @@ export const useFloorPlanState = () => {
     });
   }, []);
 
-  // Wall operations
+  // ----------------------------
+  // Wall
+  // ----------------------------
   const addWall = useCallback(
     (wall: Omit<Wall, 'id'>) => {
       updateFloorPlan((prev) => ({
@@ -121,8 +176,13 @@ export const useFloorPlanState = () => {
     },
     [updateFloorPlan]
   );
+  // ----------------------------
+  // Wall
+  // ----------------------------
 
-  // Furniture operations
+  // ----------------------------
+  // Furniture
+  // ----------------------------
   const addFurniture = useCallback(
     (furniture: Omit<FurnitureItem, 'id'>) => {
       updateFloorPlan((prev) => ({
@@ -169,7 +229,25 @@ export const useFloorPlanState = () => {
     [updateFurniture]
   );
 
-  // Room operations
+  const deleteFurnitureItems = useCallback(
+    (furnitureIds: string[]) => {
+      updateFloorPlan((prev) => ({
+        ...prev,
+        furniture: prev.furniture.filter(
+          (item) => !furnitureIds.includes(item.id)
+        ),
+      }));
+    },
+    [updateFloorPlan]
+  );
+
+  // ----------------------------
+  // Furniture
+  // ----------------------------
+
+  // ----------------------------
+  // Room
+  // ----------------------------
   const addRoom = useCallback(
     (room: Omit<Room, 'id'>) => {
       updateFloorPlan((prev) => ({
@@ -201,8 +279,13 @@ export const useFloorPlanState = () => {
     },
     [updateFloorPlan]
   );
+  // ----------------------------
+  // Room
+  // ----------------------------
 
-  // Event details
+  // ----------------------------
+  // Event
+  // ----------------------------
   const updateEventDetails = useCallback(
     (updates: Partial<EventDetails>) => {
       updateFloorPlan((prev) => ({
@@ -212,70 +295,41 @@ export const useFloorPlanState = () => {
     },
     [updateFloorPlan]
   );
+  // ----------------------------
+  // Event
+  // ----------------------------
 
-  // Canvas settings
-  const updateCanvasSettings = useCallback(
-    (updates: Partial<CanvasSettings>) => {
+  // ----------------------------
+  // Window and Door delete Logic
+  // ----------------------------
+  const deleteDoor = useCallback(
+    (doorId: string) => {
       updateFloorPlan((prev) => ({
         ...prev,
-        canvasSettings: { ...prev.canvasSettings, ...updates },
+        walls: prev.walls.map((wall) => ({
+          ...wall,
+          doors: wall.doors.filter((d) => d.id !== doorId),
+        })),
       }));
     },
     [updateFloorPlan]
   );
 
-  // Lock/unlock floor plan
-  const toggleLock = useCallback(() => {
-    updateFloorPlan((prev) => ({
-      ...prev,
-      isLocked: !prev.isLocked,
-    }));
-  }, [updateFloorPlan]);
-
-  // Load floor plan
-  const loadFloorPlan = useCallback((data: FloorPlanData) => {
-    setHistory({
-      past: [],
-      present: data,
-      future: [],
-    });
-  }, []);
-
-  // Reset floor plan
-  const resetFloorPlan = useCallback(() => {
-    if (
-      window.confirm(
-        'Are you sure you want to reset? All unsaved changes will be lost.'
-      )
-    ) {
-      setHistory({
-        past: [],
-        present: createInitialFloorPlan(),
-        future: [],
-      });
-    }
-  }, []);
-
-  // Update floor plan name
-  const updateFloorPlanName = useCallback(
-    (name: string) => {
-      updateFloorPlan((prev) => ({ ...prev, name }));
-    },
-    [updateFloorPlan]
-  );
-
-  // Batch delete
-  const deleteFurnitureItems = useCallback(
-    (furnitureIds: string[]) => {
+  const deleteWindow = useCallback(
+    (windowId: string) => {
       updateFloorPlan((prev) => ({
         ...prev,
-        furniture: prev.furniture.filter(
-          (item) => !furnitureIds.includes(item.id)
-        ),
+        walls: prev.walls.map((wall) => ({
+          ...wall,
+          windows: wall.windows.filter((w) => w.id !== windowId),
+        })),
       }));
     },
     [updateFloorPlan]
   );
+  // ----------------------------
+  // Window and Door delete Logic
+  // ----------------------------
 
   return {
     floorPlan: present,
@@ -286,6 +340,8 @@ export const useFloorPlanState = () => {
     addWall,
     updateWall,
     deleteWall,
+    deleteDoor,
+    deleteWindow,
     addFurniture,
     updateFurniture,
     deleteFurniture,
