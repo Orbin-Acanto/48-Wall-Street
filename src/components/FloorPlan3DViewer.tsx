@@ -8,8 +8,6 @@ import {
   Home,
   Info,
   X,
-  ChevronLeft,
-  ChevronRight,
   Eye,
   MapPin,
   RefreshCwOff,

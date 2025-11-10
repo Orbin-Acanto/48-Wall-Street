@@ -1,10 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  EventDetails,
   ExportFormat,
   ExportImportModalProps,
   FloorLevel,
-  FloorPlanData,
 } from '@/types/floorplan.types';
 import {
   exportToJSON,

@@ -393,6 +393,50 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   const renderFurnitureProperties = (item: FurnitureItem) => {
     const itemLocked = !!item.locked || isLocked;
 
+    const dims = item.dimensions;
+
+    const toInches = (value: number, unit: 'in' | 'ft') =>
+      unit === 'ft' ? value * 12 : value;
+
+    const handleSizeChange = (
+      field: 'width' | 'height',
+      value: string | number
+    ) => {
+      const n = clampNumber(value, dims[field], 1, 1000);
+      onUpdate({
+        dimensions: {
+          ...dims,
+          [field]: n,
+        },
+      });
+    };
+
+    const handleUnitChange = (nextUnit: 'in' | 'ft') => {
+      if (nextUnit === dims.unit) return;
+
+      const currentUnit = dims.unit || 'in';
+
+      let width = dims.width;
+      let height = dims.height;
+
+      if (currentUnit === 'in' && nextUnit === 'ft') {
+        width = +(width / 12).toFixed(2);
+        height = +(height / 12).toFixed(2);
+      } else if (currentUnit === 'ft' && nextUnit === 'in') {
+        width = +(width * 12);
+        height = +(height * 12);
+      }
+
+      onUpdate({
+        dimensions: {
+          ...dims,
+          width,
+          height,
+          unit: nextUnit,
+        },
+      });
+    };
+
     const updatePosition = (axis: 'x' | 'y', value: any) => {
       if (itemLocked) return;
       const next = clampNumber(value, item.position[axis], -99999, 99999);
@@ -430,29 +474,29 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
       });
     };
 
-    const handleUnitChange = (unit: 'ft' | 'in') => {
-      if (itemLocked) return;
-      if (unit === item.dimensions.unit) return;
+    // const handleUnitChange = (unit: 'ft' | 'in') => {
+    //   if (itemLocked) return;
+    //   if (unit === item.dimensions.unit) return;
 
-      let { width, height } = item.dimensions;
+    //   let { width, height } = item.dimensions;
 
-      if (unit === 'ft' && item.dimensions.unit === 'in') {
-        width = +(width / 12).toFixed(2);
-        height = +(height / 12).toFixed(2);
-      } else if (unit === 'in' && item.dimensions.unit === 'ft') {
-        width = Math.round(width * 12);
-        height = Math.round(height * 12);
-      }
+    //   if (unit === 'ft' && item.dimensions.unit === 'in') {
+    //     width = +(width / 12).toFixed(2);
+    //     height = +(height / 12).toFixed(2);
+    //   } else if (unit === 'in' && item.dimensions.unit === 'ft') {
+    //     width = Math.round(width * 12);
+    //     height = Math.round(height * 12);
+    //   }
 
-      onUpdate({
-        dimensions: {
-          ...item.dimensions,
-          unit,
-          width,
-          height,
-        },
-      });
-    };
+    //   onUpdate({
+    //     dimensions: {
+    //       ...item.dimensions,
+    //       unit,
+    //       width,
+    //       height,
+    //     },
+    //   });
+    // };
 
     const toggleLock = () => {
       if (isLocked) return;
@@ -526,7 +570,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
               onClick={() => handleUnitChange('in')}
               className={`rounded-full px-2 py-0.5 ${
                 item.dimensions.unit === 'in'
-                  ? 'bg-[#CBA35C] font-semibold text-black'
+                  ? 'bg-primary text-white'
                   : 'text-gray-600'
               }`}
             >
@@ -537,7 +581,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
               onClick={() => handleUnitChange('ft')}
               className={`rounded-full px-2 py-0.5 ${
                 item.dimensions.unit === 'ft'
-                  ? 'bg-[#CBA35C] font-semibold text-black'
+                  ? 'bg-primary text-white'
                   : 'text-gray-600'
               }`}
             >

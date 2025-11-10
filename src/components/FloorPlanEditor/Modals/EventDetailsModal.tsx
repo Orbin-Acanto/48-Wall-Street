@@ -63,8 +63,6 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
   onSave,
   onClose,
 }) => {
-  if (!isOpen) return null;
-
   const [formData, setFormData] = useState<EventDetails>({
     ...eventDetails,
     clientName: eventDetails.clientName || '',
@@ -82,6 +80,8 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
       typeof eventDetails.barsCount === 'number' ? eventDetails.barsCount : 1,
     specialNotes: eventDetails.specialNotes || '',
   });
+
+  if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

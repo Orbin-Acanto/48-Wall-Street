@@ -10,6 +10,9 @@ interface FurnitureItemProps {
   onDragStart: (e: React.MouseEvent) => void;
 }
 
+const toInches = (value: number, unit: 'in' | 'ft') =>
+  unit === 'ft' ? value * 12 : value;
+
 export const FurnitureItem: React.FC<FurnitureItemProps> = ({
   item,
   isSelected,
@@ -18,24 +21,50 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
   onClick,
   onDragStart,
 }) => {
-  const pixelsPerInch = pixelsPerFoot / 12;
+  const pxPerInch = pixelsPerFoot / 12;
 
-  const widthPx = item.dimensions.width * pixelsPerInch;
-  const heightPx = item.dimensions.height * pixelsPerInch;
+  // Current dimensions (respect unit)
+  const dimUnit = item.dimensions.unit || 'in';
+  const currentWIn = toInches(item.dimensions.width, dimUnit);
+  const currentHIn = toInches(item.dimensions.height, dimUnit);
+
+  // Base/original dimensions for svgPath scaling
+  const baseUnit = item.baseDimensions?.unit || dimUnit;
+  const baseWIn = toInches(
+    item.baseDimensions?.width ?? item.dimensions.width,
+    baseUnit
+  );
+  const baseHIn = toInches(
+    item.baseDimensions?.height ?? item.dimensions.height,
+    baseUnit
+  );
+
+  // Avoid div-by-zero
+  const safeBaseWIn = baseWIn || currentWIn || 1;
+  const safeBaseHIn = baseHIn || currentHIn || 1;
+
+  const widthPx = currentWIn * pxPerInch;
+  const heightPx = currentHIn * pxPerInch;
+
+  const scaleX = currentWIn / safeBaseWIn;
+  const scaleY = currentHIn / safeBaseHIn;
+
+  const isLocked = !!item.locked;
 
   return (
     <g
       transform={`translate(${item.position.x},${item.position.y}) rotate(${item.rotation})`}
       onMouseDown={(e) => {
         e.stopPropagation();
-        onClick();
-        if (!item.locked) {
-          onDragStart(e);
+        onClick(); // always selectable
+        if (!isLocked) {
+          onDragStart(e); // drag only when unlocked
         }
       }}
-      style={{ cursor: item.locked ? 'not-allowed' : 'move' }}
+      style={{ cursor: isLocked ? 'not-allowed' : 'move' }}
       className={isSelected ? 'furniture-item-selected' : 'furniture-item'}
     >
+      {/* Selection frame */}
       {isSelected && (
         <g>
           <rect
@@ -48,7 +77,6 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
             strokeWidth={2}
             strokeDasharray="5,5"
           />
-
           <circle
             cx={-widthPx / 2 - 5}
             cy={-heightPx / 2 - 5}
@@ -81,7 +109,6 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
             stroke="#FFF"
             strokeWidth={1}
           />
-
           <line
             x1={0}
             y1={-heightPx / 2 - 5}
@@ -94,12 +121,16 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
         </g>
       )}
 
-      <g
-        transform={`scale(${pixelsPerInch})`}
-        dangerouslySetInnerHTML={{ __html: item.svgPath }}
-        opacity={isSelected ? 0.95 : 1}
-      />
+      {/* Actual furniture SVG, scaled from its base dimensions */}
+      <g transform={`scale(${scaleX},${scaleY})`}>
+        <g
+          transform={`scale(${pxPerInch})`}
+          dangerouslySetInnerHTML={{ __html: item.svgPath }}
+          opacity={isSelected ? 0.95 : 1}
+        />
+      </g>
 
+      {/* Label */}
       {isSelected && (
         <text
           y={-heightPx / 2 - 20}
@@ -110,9 +141,11 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
           className="select-none"
         >
           {item.name}
+          {isLocked ? ' (Locked)' : ''}
         </text>
       )}
 
+      {/* Dimensions text (shown in current unit) */}
       {showDimensions && (
         <text
           y={heightPx / 2 + 15}
@@ -121,10 +154,13 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
           textAnchor="middle"
           className="select-none"
         >
-          {item.dimensions.width}" × {item.dimensions.height}"
+          {item.dimensions.width}
+          {dimUnit === 'ft' ? 'ft' : '"'} × {item.dimensions.height}
+          {dimUnit === 'ft' ? 'ft' : '"'}
         </text>
       )}
 
+      {/* Type pill */}
       {isSelected && (
         <g transform={`translate(${widthPx / 2 + 10}, ${-heightPx / 2 - 5})`}>
           <rect x={0} y={-8} width={40} height={16} fill="#3B82F6" rx={8} />
@@ -138,7 +174,7 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
             className="select-none"
           >
             {item.type === 'furniture'
-              ? 'Rental'
+              ? 'FURN'
               : item.type === 'av'
                 ? 'A/V'
                 : 'FOOD'}

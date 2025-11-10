@@ -95,7 +95,6 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   });
 
   const {
-    draggingItemId,
     isDragging: isFurnitureDragging,
     startDrag,
     continueDrag,

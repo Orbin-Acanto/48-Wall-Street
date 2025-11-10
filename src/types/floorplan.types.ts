@@ -54,6 +54,7 @@ export interface FurnitureItem {
   position: Point;
   rotation: number;
   dimensions: Dimensions;
+  baseDimensions?: Dimensions;
   svgPath: string;
   locked?: boolean;
   zIndex?: number;
