@@ -46,7 +46,8 @@ export const DraggableItem: React.FC<DraggableItemProps> = ({ item }) => {
 
       {/* Dimensions */}
       <p className="mt-1 text-xs text-gray-500">
-        {item.defaultDimensions.width}" × {item.defaultDimensions.height}"
+        {item.defaultDimensions.width}&quot; × {item.defaultDimensions.height}
+        &quot;
       </p>
 
       {/* Category Badge */}

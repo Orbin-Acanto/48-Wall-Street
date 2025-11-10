@@ -63,22 +63,6 @@ const findLibraryItem = (id: string): LibraryItemLike | undefined =>
 export const FloorPlanEditor: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      if (typeof window !== 'undefined') {
-        setIsMobile(window.innerWidth < 768);
-      }
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  if (isMobile) {
-    return <MobileWarning />;
-  }
-
   const {
     floorPlan,
     canUndo,
@@ -317,6 +301,22 @@ export const FloorPlanEditor: React.FC = () => {
         showDimensions: !floorPlan.canvasSettings.showDimensions,
       }),
   });
+
+  useEffect(() => {
+    const checkMobile = () => {
+      if (typeof window !== 'undefined') {
+        setIsMobile(window.innerWidth < 768);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return <MobileWarning />;
+  }
 
   const toggleSidebar = (type: SidebarType) => {
     setActiveSidebar((current) => (current === type ? null : type));
