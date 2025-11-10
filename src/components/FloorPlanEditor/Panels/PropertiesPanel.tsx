@@ -7,12 +7,19 @@ import {
   DoorWindow,
 } from '@/types/floorplan.types';
 import { formatFeetAndInches } from '@/utils/conversionUtils';
-import { Armchair, BrickWall, DoorClosed, Grid2x2 } from 'lucide-react';
+import {
+  Armchair,
+  BrickWall,
+  DoorClosed,
+  Grid2x2,
+  Lock,
+  LockOpen,
+} from 'lucide-react';
 
 interface PropertiesPanelProps {
   selectedItem: Wall | FurnitureItem | Room | DoorWindow | null;
   selectedItemType: SelectedType;
-  isLocked: boolean; // global lock
+  isLocked: boolean;
   onUpdate: (updates: any) => void;
   onRotate: (rotation: number) => void;
   onDelete: () => void;
@@ -26,7 +33,6 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   onUpdate,
   onRotate,
   onDelete,
-  onClose,
 }) => {
   if (!selectedItem) {
     return (
@@ -477,30 +483,13 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           <button
             type="button"
             onClick={toggleLock}
-            className={`inline-flex items-center rounded-full px-2 py-1 text-[9px] font-semibold ${
-              itemLocked
-                ? 'bg-gray-900 text-white'
-                : 'border border-[#CBA35C]/40 bg-[#CBA35C]/10 text-[#CBA35C]'
-            }`}
+            className={`inline-flex items-center px-2 py-1 text-[9px] font-semibold`}
           >
-            <svg
-              className="mr-1 h-3 w-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d={
-                  itemLocked
-                    ? 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'
-                    : 'M5 11V7a7 7 0 0114 0v4m-9 4v4m4-4v4m-9 0h14a2 2 0 002-2v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2z'
-                }
-              />
-            </svg>
-            {itemLocked ? 'Locked' : 'Lock item'}
+            {itemLocked ? (
+              <Lock className="h-6 w-6 text-red-500" />
+            ) : (
+              <LockOpen className="text-dark-black h-6 w-6" />
+            )}
           </button>
         </div>
 
@@ -843,19 +832,6 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
             <BrickWall className="text-dark-black h-6 w-6" />
           )}
           {selectedItemType === 'furniture' && (
-            // <svg
-            //   className="h-5 w-5 text-gray-700"
-            //   fill="none"
-            //   stroke="currentColor"
-            //   viewBox="0 0 24 24"
-            // >
-            //   <path
-            //     strokeLinecap="round"
-            //     strokeLinejoin="round"
-            //     strokeWidth={2}
-            //     d="M3 10h18M6 10V5h12v5M5 10h14v9H5z"
-            //   />
-            // </svg>
             <Armchair className="text-dark-black h-6 w-6" />
           )}
           {selectedItemType === 'door' && (
@@ -887,7 +863,11 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
       <div className="border-t border-gray-200 bg-gray-50 p-4">
         <button
           onClick={onDelete}
-          disabled={selectedItemType === 'wall' && isLocked}
+          disabled={
+            (selectedItemType === 'wall' && isLocked) ||
+            (selectedItemType === 'furniture' &&
+              (selectedItem as FurnitureItem)?.locked)
+          }
           className="flex w-full items-center justify-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <svg

@@ -174,6 +174,11 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
           }}
           onDragStart={(e) => {
             e.stopPropagation();
+
+            if (selectedTool === 'select') {
+              onItemSelect(item.id, 'furniture');
+            }
+
             startDrag(e, item.id, item.position);
           }}
         />

@@ -408,16 +408,6 @@ export const FloorPlanEditor: React.FC = () => {
     [floorPlan.walls, updateWall]
   );
 
-  useEffect(() => {
-    console.log('Selection State:', {
-      selectedItemId,
-      selectedItemType,
-      selectedItem,
-      furnitureCount: floorPlan.furniture.length,
-      furnitureIds: floorPlan.furniture.map((f) => f.id),
-    });
-  }, [selectedItemId, selectedItemType, selectedItem, floorPlan.furniture]);
-
   return (
     <div className="mt-22 flex h-[90vh] flex-col bg-gray-50">
       <TopToolbar

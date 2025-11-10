@@ -1,6 +1,5 @@
 import React from 'react';
 import { FurnitureItem as FurnitureItemType } from '@/types/floorplan.types';
-import { feetToPixels } from '@/utils/conversionUtils';
 
 interface FurnitureItemProps {
   item: FurnitureItemType;
@@ -19,15 +18,22 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
   onClick,
   onDragStart,
 }) => {
-  const widthPx = feetToPixels(item.dimensions.width / 12, pixelsPerFoot);
-  const heightPx = feetToPixels(item.dimensions.height / 12, pixelsPerFoot);
+  const pixelsPerInch = pixelsPerFoot / 12;
+
+  const widthPx = item.dimensions.width * pixelsPerInch;
+  const heightPx = item.dimensions.height * pixelsPerInch;
 
   return (
     <g
       transform={`translate(${item.position.x},${item.position.y}) rotate(${item.rotation})`}
-      onClick={onClick}
-      onMouseDown={onDragStart}
-      style={{ cursor: 'move' }}
+      onMouseDown={(e) => {
+        e.stopPropagation();
+        onClick();
+        if (!item.locked) {
+          onDragStart(e);
+        }
+      }}
+      style={{ cursor: item.locked ? 'not-allowed' : 'move' }}
       className={isSelected ? 'furniture-item-selected' : 'furniture-item'}
     >
       {isSelected && (
@@ -41,7 +47,6 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
             stroke="#3B82F6"
             strokeWidth={2}
             strokeDasharray="5,5"
-            className="animate-pulse"
           />
 
           <circle
@@ -90,8 +95,9 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
       )}
 
       <g
+        transform={`scale(${pixelsPerInch})`}
         dangerouslySetInnerHTML={{ __html: item.svgPath }}
-        opacity={isSelected ? 0.9 : 1}
+        opacity={isSelected ? 0.95 : 1}
       />
 
       {isSelected && (
@@ -132,7 +138,7 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
             className="select-none"
           >
             {item.type === 'furniture'
-              ? 'FURN'
+              ? 'Rental'
               : item.type === 'av'
                 ? 'A/V'
                 : 'FOOD'}
