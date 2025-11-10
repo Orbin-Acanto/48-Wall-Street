@@ -283,8 +283,8 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
             height={height}
             gridSize={gridSize}
             showGrid={showGrid}
-            color="#D1D5DB"
-            opacity={0.9}
+            color="#808080"
+            opacity={0.7}
           />
 
           {walls.map((wall) => (
