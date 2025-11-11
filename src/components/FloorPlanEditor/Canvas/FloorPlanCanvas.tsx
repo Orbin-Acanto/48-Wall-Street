@@ -154,19 +154,6 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     ]
   );
 
-  // const handleSvgMouseMove = useCallback(
-  //   (e: React.MouseEvent<SVGSVGElement>) => {
-  //     canvasMouseMove(e);
-  //     continueDrag(e);
-  //   },
-  //   [canvasMouseMove, continueDrag]
-  // );
-
-  // const handleSvgMouseUp = useCallback(() => {
-  //   canvasMouseUp();
-  //   endDrag();
-  // }, [canvasMouseUp, endDrag]);
-
   const renderFurniture = () =>
     furniture.map((item: FurnitureItemType) => {
       const isSelected = selectedItemId === item.id;
@@ -379,7 +366,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   return (
     <div
       id="floor-plan-canvas"
-      className="relative h-full w-full overflow-hidden"
+      className="absolute inset-0 h-full w-full overflow-hidden"
     >
       <svg
         ref={svgRef}

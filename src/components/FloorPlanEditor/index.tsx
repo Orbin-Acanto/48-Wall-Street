@@ -434,7 +434,7 @@ export const FloorPlanEditor: React.FC = () => {
   }
 
   return (
-    <div className="mt-22 flex h-[90vh] flex-col bg-gray-50">
+    <div className="mt-22 flex h-[90vh] min-w-7xl flex-col bg-gray-50">
       <TopToolbar
         selectedTool={selectedTool}
         onToolChange={setSelectedTool}
@@ -465,7 +465,7 @@ export const FloorPlanEditor: React.FC = () => {
 
       <div className="flex flex-1 overflow-hidden">
         <div className="flex">
-          <div className="flex w-16 flex-col items-center space-y-2 bg-gray-800 py-4">
+          <div className="flex flex-col items-center space-y-2 bg-gray-800 py-4">
             <button
               onClick={() => toggleSidebar('furniture')}
               className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
@@ -544,7 +544,7 @@ export const FloorPlanEditor: React.FC = () => {
           {activeSidebar === 'catering' && <CateringSidebar />}
         </div>
 
-        <div className="relative flex-1">
+        <div className="relative h-full w-full flex-1">
           <DrawingTools
             selectedTool={selectedTool}
             onToolChange={setSelectedTool}
