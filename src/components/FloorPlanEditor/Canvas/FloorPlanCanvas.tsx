@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
 import {
   FloorPlanData,
   Point,
@@ -24,6 +24,7 @@ interface FloorPlanCanvasProps {
     type: 'wall' | 'furniture' | 'room'
   ) => void;
   onWallCreate: (start: Point, end: Point) => void;
+  onCurveWallComplete?: (points: Point[]) => void;
   onFurnitureMove: (id: string, position: Point) => void;
   onFurnitureDrop: (libraryItemId: string, position: Point) => void;
   onAddDoor: (wallId: string, position?: number) => void;
@@ -50,6 +51,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   onRoomSelect,
   onCreateRoomAtPosition,
   onRoomMove,
+  onCurveWallComplete,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null!);
 
@@ -114,9 +116,31 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     screenToCanvas,
   });
 
+  const [curvePoints, setCurvePoints] = useState<Point[]>([]);
+  const prevToolRef = useRef<Tool>(selectedTool);
+
+  useEffect(() => {
+    const prevTool = prevToolRef.current;
+
+    if (prevTool === 'curve-wall' && selectedTool !== 'curve-wall') {
+      if (curvePoints.length >= 2 && onCurveWallComplete) {
+        onCurveWallComplete(curvePoints);
+      }
+      setCurvePoints([]);
+    }
+
+    prevToolRef.current = selectedTool;
+  }, [selectedTool, curvePoints, onCurveWallComplete]);
+
   const handleSvgMouseDown = useCallback(
     (e: React.MouseEvent<SVGSVGElement>) => {
       const canvasPoint = screenToCanvas(e.clientX, e.clientY);
+
+      if (selectedTool === 'curve-wall' && e.button === 0) {
+        e.stopPropagation();
+        setCurvePoints((prev) => [...prev, canvasPoint]);
+        return;
+      }
 
       if (selectedTool === 'door' || selectedTool === 'window') {
         const hitWall = findWallHit(canvasPoint, walls, 10);
@@ -338,6 +362,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     threshold = 10
   ) => {
     for (const wall of walls) {
+      if (wall.isCurved && wall.curvePoints?.length) continue;
       if (isPointNearLine(pt, wall.start, wall.end, threshold)) {
         return wall;
       }
@@ -359,6 +384,32 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     if (t < 0) t = 0;
     if (t > 1) t = 1;
     return t;
+  };
+
+  const renderCurveDraft = () => {
+    if (selectedTool !== 'curve-wall' || curvePoints.length === 0) return null;
+
+    const pts = [...curvePoints];
+    if (currentMousePos) pts.push(currentMousePos);
+
+    if (pts.length === 1) {
+      const p = pts[0];
+      return <circle cx={p.x} cy={p.y} r={4} fill="#3B82F6" />;
+    }
+
+    const d = pts
+      .map((p, i) => (i === 0 ? `M ${p.x} ${p.y}` : `L ${p.x} ${p.y}`))
+      .join(' ');
+
+    return (
+      <path
+        d={d}
+        stroke="#3B82F6"
+        strokeWidth={4}
+        fill="none"
+        strokeDasharray="4 2"
+      />
+    );
   };
 
   const isAnyDragging = isPanning || isCanvasDragging || isFurnitureDragging;
@@ -430,6 +481,8 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
           {renderFurniture()}
 
           {renderTempWall()}
+
+          {renderCurveDraft()}
 
           {renderDragPreview()}
         </g>

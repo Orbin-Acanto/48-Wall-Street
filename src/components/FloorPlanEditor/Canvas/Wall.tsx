@@ -4,6 +4,7 @@ import { calculateAngle } from '@/utils/geometryUtils';
 import { DimensionLabel } from './DimensionLabel';
 import { Door } from './Door';
 import { Window } from './Window';
+import { buildSmoothCurvePath } from '@/utils/geometryUtils';
 
 interface WallProps {
   wall: WallType;
@@ -24,27 +25,52 @@ export const Wall: React.FC<WallProps> = ({
   onDoorClick,
   onWindowClick,
 }) => {
-  const angle = calculateAngle(wall.start, wall.end);
-
   const handleClick = (e: React.MouseEvent<SVGGElement>) => {
     e.stopPropagation();
     onClick();
   };
 
-  return (
-    <g onClick={handleClick} style={{ cursor: 'pointer' }}>
+  const hasCurve =
+    wall.isCurved && wall.curvePoints && wall.curvePoints.length >= 2;
+
+  const strokeColor = isSelected ? '#EF4444' : '#333333';
+  const strokeWidth = wall.thickness;
+
+  let mainShape: React.ReactNode = null;
+
+  if (hasCurve) {
+    const d = buildSmoothCurvePath(wall.curvePoints!);
+    mainShape = (
+      <path
+        d={d}
+        stroke={strokeColor}
+        strokeWidth={strokeWidth}
+        fill="none"
+        className={isSelected ? 'animate-pulse' : ''}
+      />
+    );
+  } else {
+    mainShape = (
       <line
         x1={wall.start.x}
         y1={wall.start.y}
         x2={wall.end.x}
         y2={wall.end.y}
-        stroke={isSelected ? '#EF4444' : '#333333'}
-        strokeWidth={wall.thickness}
+        stroke={strokeColor}
+        strokeWidth={strokeWidth}
         strokeLinecap="square"
         className={isSelected ? 'animate-pulse' : ''}
       />
+    );
+  }
 
-      {isSelected && (
+  const angle = calculateAngle(wall.start, wall.end);
+
+  return (
+    <g onClick={handleClick} style={{ cursor: 'pointer' }}>
+      {mainShape}
+
+      {!hasCurve && isSelected && (
         <>
           <circle
             cx={wall.start.x}
@@ -73,31 +99,33 @@ export const Wall: React.FC<WallProps> = ({
         />
       )}
 
-      {wall.doors.map((door) => (
-        <Door
-          key={door.id}
-          door={door}
-          wallStart={wall.start}
-          wallEnd={wall.end}
-          wallThickness={wall.thickness}
-          wallAngle={angle}
-          pixelsPerFoot={pixelsPerFoot}
-          onClick={onDoorClick ? () => onDoorClick(door.id) : undefined}
-        />
-      ))}
+      {!hasCurve &&
+        wall.doors.map((door) => (
+          <Door
+            key={door.id}
+            door={door}
+            wallStart={wall.start}
+            wallEnd={wall.end}
+            wallThickness={wall.thickness}
+            wallAngle={angle}
+            pixelsPerFoot={pixelsPerFoot}
+            onClick={onDoorClick ? () => onDoorClick(door.id) : undefined}
+          />
+        ))}
 
-      {wall.windows.map((window) => (
-        <Window
-          key={window.id}
-          window={window}
-          wallStart={wall.start}
-          wallEnd={wall.end}
-          wallThickness={wall.thickness}
-          wallAngle={angle}
-          pixelsPerFoot={pixelsPerFoot}
-          onClick={onWindowClick ? () => onWindowClick(window.id) : undefined}
-        />
-      ))}
+      {!hasCurve &&
+        wall.windows.map((window) => (
+          <Window
+            key={window.id}
+            window={window}
+            wallStart={wall.start}
+            wallEnd={wall.end}
+            wallThickness={wall.thickness}
+            wallAngle={angle}
+            pixelsPerFoot={pixelsPerFoot}
+            onClick={onWindowClick ? () => onWindowClick(window.id) : undefined}
+          />
+        ))}
     </g>
   );
 };

@@ -198,3 +198,47 @@ export const calculateRoomArea = (walls: Wall[]): number => {
 
   return Math.abs(area / 2);
 };
+
+export const getPolylineLength = (points: Point[]): number => {
+  if (points.length < 2) return 0;
+  let length = 0;
+  for (let i = 1; i < points.length; i++) {
+    length += calculateDistance(points[i - 1], points[i]);
+  }
+  return length;
+};
+
+export function buildSmoothCurvePath(points: Point[], tension = 0.5): string {
+  if (!points || points.length === 0) return '';
+
+  if (points.length === 1) {
+    const p = points[0];
+    return `M ${p.x} ${p.y}`;
+  }
+
+  if (points.length === 2) {
+    const [p0, p1] = points;
+    return `M ${p0.x} ${p0.y} L ${p1.x} ${p1.y}`;
+  }
+
+  let d = `M ${points[0].x} ${points[0].y}`;
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i - 1] ?? points[i];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[i + 2] ?? p2;
+
+    const t = tension / 6;
+
+    const cp1x = p1.x + (p2.x - p0.x) * t;
+    const cp1y = p1.y + (p2.y - p0.y) * t;
+
+    const cp2x = p2.x - (p3.x - p1.x) * t;
+    const cp2y = p2.y - (p3.y - p1.y) * t;
+
+    d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
+  }
+
+  return d;
+}

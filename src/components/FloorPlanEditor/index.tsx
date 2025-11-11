@@ -36,6 +36,7 @@ import { feetToInches } from '@/utils/conversionUtils';
 import { FURNITURE_LIBRARY } from '@/constants/furnitureLibrary';
 import { AV_EQUIPMENT_LIBRARY } from '@/constants/avEquipment';
 import { CATERING_LIBRARY } from '@/constants/cateringStations';
+import { getPolylineLength } from '@/utils/geometryUtils';
 
 type SidebarType = 'furniture' | 'av' | 'catering' | null;
 type ModalType = 'event' | 'wall' | 'export' | null;
@@ -417,6 +418,37 @@ export const FloorPlanEditor: React.FC = () => {
     [floorPlan.walls, updateWall]
   );
 
+  const handleCurveWallComplete = useCallback(
+    (points: Point[]) => {
+      if (!points || points.length < 2) return;
+
+      const start = points[0];
+      const end = points[points.length - 1];
+
+      const pixels = getPolylineLength(points);
+      const scale = floorPlan.canvasSettings.scale;
+      if (scale <= 0) return;
+
+      const lengthInFeet = pixels / scale;
+      const lengthInInches = feetToInches(lengthInFeet);
+
+      const candidate: Omit<WallType, 'id'> = {
+        start,
+        end,
+        thickness: DEFAULT_WALL_THICKNESS,
+        lengthInFeet,
+        lengthInInches,
+        doors: [],
+        windows: [],
+        isCurved: true,
+        curvePoints: points,
+      };
+
+      addWall(candidate);
+    },
+    [floorPlan.canvasSettings.scale, addWall]
+  );
+
   useEffect(() => {
     const checkMobile = () => {
       if (typeof window !== 'undefined') {
@@ -545,11 +577,11 @@ export const FloorPlanEditor: React.FC = () => {
         </div>
 
         <div className="relative h-full w-full flex-1">
-          <DrawingTools
+          {/* <DrawingTools
             selectedTool={selectedTool}
             onToolChange={setSelectedTool}
             isLocked={floorPlan.isLocked}
-          />
+          /> */}
 
           <FloorPlanCanvas
             floorPlan={floorPlan}
@@ -557,6 +589,7 @@ export const FloorPlanEditor: React.FC = () => {
             selectedItemId={selectedItemId}
             onItemSelect={handleItemSelect}
             onWallCreate={handleWallCreate}
+            onCurveWallComplete={handleCurveWallComplete}
             onFurnitureMove={moveFurniture}
             onFurnitureDrop={handleFurnitureDrop}
             onAddDoor={addDoorToWall}

@@ -3336,9 +3336,9 @@ export const tools: { id: Tool; label: string; icon: React.ReactElement }[] = [
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       >
         <circle cx="19" cy="5" r="2" />
         <circle cx="5" cy="19" r="2" />
@@ -3357,9 +3357,9 @@ export const tools: { id: Tool; label: string; icon: React.ReactElement }[] = [
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       >
         <path d="M10 12h.01" />
         <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14" />
@@ -3407,7 +3407,7 @@ export const tools: { id: Tool; label: string; icon: React.ReactElement }[] = [
     ),
   },
   {
-    id: 'curveWall',
+    id: 'curve-wall',
     label: 'Curved Wall',
     icon: (
       <svg
@@ -3417,9 +3417,9 @@ export const tools: { id: Tool; label: string; icon: React.ReactElement }[] = [
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       >
         <path d="M7 3.5c5-2 7 2.5 3 4C1.5 10 2 15 5 16c5 2 9-10 14-7s.5 13.5-4 12c-5-2.5.5-11 6-2" />
       </svg>

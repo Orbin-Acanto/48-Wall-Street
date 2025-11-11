@@ -8,6 +8,7 @@ interface UseCanvasInteractionProps {
   shouldSnapToGrid: boolean;
   gridSize: number;
   onWallCreate?: (start: Point, end: Point) => void;
+  onCurvedWallCreate?: (start: Point, control: Point, end: Point) => void;
   onItemSelect?: (id: string | null) => void;
 }
 
@@ -16,6 +17,7 @@ export const useCanvasInteraction = ({
   selectedTool,
   shouldSnapToGrid,
   gridSize,
+  onCurvedWallCreate,
   onWallCreate,
 }: UseCanvasInteractionProps) => {
   const [viewport, setViewport] = useState<ViewportTransform>({
@@ -28,6 +30,8 @@ export const useCanvasInteraction = ({
   const [drawingStart, setDrawingStart] = useState<Point | null>(null);
   const [currentMousePos, setCurrentMousePos] = useState<Point | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [curveStart, setCurveStart] = useState<Point | null>(null);
+  const [curveEnd, setCurveEnd] = useState<Point | null>(null);
 
   // Convert screen coordinates to canvas coordinates
   const screenToCanvas = useCallback(
@@ -76,6 +80,17 @@ export const useCanvasInteraction = ({
             setDrawingStart(null);
           }
           break;
+        case 'curveWall':
+          if (!curveStart) {
+            setCurveStart(point);
+          } else if (!curveEnd) {
+            setCurveEnd(point);
+          } else {
+            onCurvedWallCreate?.(curveStart, point, curveEnd);
+            setCurveStart(null);
+            setCurveEnd(null);
+          }
+          break;
 
         case 'select':
           setIsDragging(true);
@@ -85,7 +100,16 @@ export const useCanvasInteraction = ({
           break;
       }
     },
-    [screenToCanvas, selectedTool, drawingStart, viewport, onWallCreate]
+    [
+      screenToCanvas,
+      selectedTool,
+      drawingStart,
+      viewport,
+      onWallCreate,
+      onCurvedWallCreate,
+      curveStart,
+      curveEnd,
+    ]
   );
 
   // Handle mouse move
