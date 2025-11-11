@@ -1,5 +1,6 @@
 'use client';
 
+import { sidebarSocialLinks } from '@/data';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -9,30 +10,6 @@ export default function SocialMediaSidebar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const pathname = usePathname();
-  if (pathname === '/about/customize-plan') return null;
-
-  const socialLinks = [
-    {
-      name: 'Facebook',
-      icon: '/icons/facebook.svg',
-      href: 'https://www.facebook.com/48wallst/',
-    },
-    {
-      name: 'Instagram',
-      icon: '/icons/instagram.svg',
-      href: 'https://www.instagram.com/48wallst/',
-    },
-    {
-      name: 'X',
-      icon: '/icons/x.svg',
-      href: 'https://x.com',
-    },
-    {
-      name: 'YouTube',
-      icon: '/icons/youtube.svg',
-      href: 'https://www.youtube.com/@Mmeink1',
-    },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +25,8 @@ export default function SocialMediaSidebar() {
     };
   }, [isOpen]);
 
+  if (pathname === '/about/customize-plan') return null;
+
   return (
     <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2">
       <div
@@ -55,7 +34,7 @@ export default function SocialMediaSidebar() {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {socialLinks.map((social) => (
+        {sidebarSocialLinks.map((social) => (
           <Link
             key={social.name}
             href={social.href}

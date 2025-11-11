@@ -3403,3 +3403,26 @@ export const tools: { id: Tool; label: string; icon: React.ReactElement }[] = [
     ),
   },
 ];
+
+export const sidebarSocialLinks = [
+  {
+    name: 'Facebook',
+    icon: '/icons/facebook.svg',
+    href: 'https://www.facebook.com/48wallst/',
+  },
+  {
+    name: 'Instagram',
+    icon: '/icons/instagram.svg',
+    href: 'https://www.instagram.com/48wallst/',
+  },
+  {
+    name: 'X',
+    icon: '/icons/x.svg',
+    href: 'https://x.com',
+  },
+  {
+    name: 'YouTube',
+    icon: '/icons/youtube.svg',
+    href: 'https://www.youtube.com/@Mmeink1',
+  },
+];

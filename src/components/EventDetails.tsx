@@ -34,7 +34,6 @@ export default function EventDetails({
   tags,
   primaryCta,
   secondaryCta,
-  stats,
   info,
 }: EventShowcaseProps) {
   const [lightboxIndex, setLightboxIndex] = useState(-1);

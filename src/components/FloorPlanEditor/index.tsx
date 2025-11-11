@@ -55,7 +55,7 @@ const ALL_LIBRARY_ITEMS: LibraryItemLike[] = [
   ...(CATERING_LIBRARY as LibraryItemLike[]),
 ];
 
-const DEFAULT_WALL_THICKNESS = 6; // px
+const DEFAULT_WALL_THICKNESS = 6;
 
 const findLibraryItem = (id: string): LibraryItemLike | undefined =>
   ALL_LIBRARY_ITEMS.find((item) => item.id === id);

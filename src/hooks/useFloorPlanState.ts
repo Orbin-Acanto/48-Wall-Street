@@ -9,7 +9,6 @@ import {
   Room,
   HistoryState,
   Point,
-  DoorWindow,
 } from '../types/floorplan.types';
 
 const createInitialFloorPlan = (): FloorPlanData => ({

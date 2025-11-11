@@ -17,7 +17,6 @@ export const useCanvasInteraction = ({
   shouldSnapToGrid,
   gridSize,
   onWallCreate,
-  onItemSelect,
 }: UseCanvasInteractionProps) => {
   const [viewport, setViewport] = useState<ViewportTransform>({
     x: 0,
