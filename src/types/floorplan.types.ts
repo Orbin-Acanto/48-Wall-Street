@@ -172,6 +172,27 @@ export interface SelectionBox {
   end: Point;
 }
 
+export type SidebarType = 'furniture' | 'av' | 'catering' | null;
+export type ModalType = 'event' | 'wall' | 'export' | null;
+export type FloorKey = 'ground' | 'concourse';
+
+export type UnderlayProps = {
+  svg?: string;
+  href?: string;
+  scale?: number;
+  opacity?: number;
+  offset?: { x: number; y: number };
+};
+
+export interface LibraryItemLike {
+  id: string;
+  type: string;
+  category: string;
+  name: string;
+  defaultDimensions: FurnitureItem['dimensions'];
+  svgPath: string;
+}
+
 export type Tool =
   | 'select'
   | 'wall'

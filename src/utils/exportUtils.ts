@@ -10,6 +10,52 @@ import {
 const DEFAULT_LOGO_URL = '/logo/48-wall-logo.svg';
 
 // Primary Helper
+const getSvgContentBounds = (
+  svgElement: SVGSVGElement,
+  hideGrid: boolean
+): BBox | null => {
+  const clone = svgElement.cloneNode(true) as SVGSVGElement;
+
+  if (hideGrid) stripGridFromSvg(clone);
+
+  if (!clone.getAttribute('width')) clone.setAttribute('width', '4000');
+  if (!clone.getAttribute('height')) clone.setAttribute('height', '3000');
+
+  clone.style.position = 'absolute';
+  clone.style.left = '-99999px';
+  clone.style.top = '-99999px';
+  clone.style.pointerEvents = 'none';
+
+  document.body.appendChild(clone);
+
+  try {
+    const bbox = clone.getBBox();
+
+    if (
+      !isFinite(bbox.x) ||
+      !isFinite(bbox.y) ||
+      !isFinite(bbox.width) ||
+      !isFinite(bbox.height) ||
+      bbox.width <= 0 ||
+      bbox.height <= 0
+    ) {
+      return null;
+    }
+
+    return {
+      x: bbox.x,
+      y: bbox.y,
+      width: bbox.width,
+      height: bbox.height,
+    };
+  } catch (e) {
+    console.warn('getBBox failed, falling back to data bounds', e);
+    return null;
+  } finally {
+    document.body.removeChild(clone);
+  }
+};
+
 export const validateFloorPlanData = (
   data: FloorPlanData
 ): data is FloorPlanData => {
@@ -31,46 +77,165 @@ export const validateFloorPlanData = (
 
 const getFloorPlanBoundsFromData = (data: FloorPlanData): BBox => {
   let minX = Infinity,
-    minY = Infinity;
-  let maxX = -Infinity,
+    minY = Infinity,
+    maxX = -Infinity,
     maxY = -Infinity;
 
-  data.walls.forEach((wall) => {
-    minX = Math.min(minX, wall.start.x);
-    minY = Math.min(minY, wall.start.y);
-    maxX = Math.max(maxX, wall.start.x);
-    maxY = Math.max(maxY, wall.start.y);
+  for (const wall of data.walls) {
+    const pts = [wall.start, wall.end, ...(wall.curvePoints ?? [])];
+    for (const p of pts) {
+      if (!p) continue;
+      minX = Math.min(minX, p.x);
+      minY = Math.min(minY, p.y);
+      maxX = Math.max(maxX, p.x);
+      maxY = Math.max(maxY, p.y);
+    }
+  }
 
-    minX = Math.min(minX, wall.end.x);
-    minY = Math.min(minY, wall.end.y);
-    maxX = Math.max(maxX, wall.end.x);
-    maxY = Math.max(maxY, wall.end.y);
-  });
+  for (const item of data.furniture) {
+    const cx = item.position.x;
+    const cy = item.position.y;
+    const halfW = (item.dimensions?.width ?? 50) / 2;
+    const halfH = (item.dimensions?.height ?? 50) / 2;
+    minX = Math.min(minX, cx - halfW);
+    minY = Math.min(minY, cy - halfH);
+    maxX = Math.max(maxX, cx + halfW);
+    maxY = Math.max(maxY, cy + halfH);
+  }
 
-  data.furniture.forEach((item) => {
-    const furnitureX = item.position.x;
-    const furnitureY = item.position.y;
-    const halfWidth = (item.dimensions.width || 50) / 2;
-    const halfHeight = (item.dimensions.height || 50) / 2;
+  for (const room of data.rooms ?? []) {
+    const { x, y, width, height } = room as any;
+    if (
+      typeof x === 'number' &&
+      typeof y === 'number' &&
+      typeof width === 'number' &&
+      typeof height === 'number'
+    ) {
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x + width);
+      maxY = Math.max(maxY, y + height);
+    }
+  }
 
-    minX = Math.min(minX, furnitureX - halfWidth);
-    minY = Math.min(minY, furnitureY - halfHeight);
-    maxX = Math.max(maxX, furnitureX + halfWidth);
-    maxY = Math.max(maxY, furnitureY + halfHeight);
-  });
+  const canvasW = data.canvasSettings?.width ?? 2000;
+  const canvasH = data.canvasSettings?.height ?? 1500;
+
+  if (
+    !isFinite(minX) ||
+    !isFinite(minY) ||
+    !isFinite(maxX) ||
+    !isFinite(maxY)
+  ) {
+    return { x: 0, y: 0, width: canvasW, height: canvasH };
+  }
 
   const padding = 20;
+  let x = minX - padding;
+  let y = minY - padding;
+  let width = Math.max(1, maxX - minX + padding * 2);
+  let height = Math.max(1, maxY - minY + padding * 2);
 
-  const bounds = {
-    x: minX - padding,
-    y: minY - padding,
-    width: maxX - minX + padding * 2,
-    height: maxY - minY + padding * 2,
-  };
+  const maxWidth = canvasW * 1.5;
+  const maxHeight = canvasH * 1.5;
 
-  console.log('Calculated bounds from data:', bounds);
-  return bounds;
+  if (width > maxWidth) {
+    const diff = width - maxWidth;
+    x += diff / 2;
+    width = maxWidth;
+  }
+  if (height > maxHeight) {
+    const diff = height - maxHeight;
+    y += diff / 2;
+    height = maxHeight;
+  }
+
+  return { x, y, width, height };
 };
+
+const blobToDataURL = (blob: Blob) =>
+  new Promise<string>((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result));
+    r.onerror = reject;
+    r.readAsDataURL(blob);
+  });
+
+const inlineExternalImages = async (svg: SVGSVGElement) => {
+  const images = Array.from(svg.querySelectorAll('image'));
+  for (const img of images) {
+    const href = (
+      img.getAttribute('href') ||
+      img.getAttributeNS('http://www.w3.org/1999/xlink', 'href') ||
+      ''
+    ).trim();
+    if (!href || href.startsWith('data:') || href.startsWith('blob:')) continue;
+    try {
+      const res = await fetch(href, { mode: 'cors' });
+      const blob = await res.blob();
+      const dataUrl = await blobToDataURL(blob);
+      img.setAttribute('href', dataUrl);
+      img.setAttributeNS('http://www.w3.org/1999/xlink', 'href', dataUrl);
+    } catch (e) {
+      console.warn('Could not inline image href:', href, e);
+    }
+  }
+};
+
+// const createCroppedPlanImage = async (
+//   svgElement: SVGSVGElement,
+//   bounds: BBox,
+//   hideGrid: boolean
+// ): Promise<{ img: HTMLImageElement; width: number; height: number }> => {
+//   const clonedSvg = svgElement.cloneNode(true) as SVGSVGElement;
+
+//   if (hideGrid) {
+//     const gridSelectors = [
+//       '.grid-overlay',
+//       '.grid',
+//       '[data-grid="true"]',
+//       '[data-testid="grid"]',
+//       '#grid',
+//       'pattern[id*="grid"]',
+//       'defs pattern[id*="grid"]',
+//       'rect[fill*="url(#grid"]',
+//     ];
+//     gridSelectors.forEach((selector) => {
+//       clonedSvg.querySelectorAll(selector).forEach((el) => el.remove());
+//     });
+//   }
+
+//   await inlineExternalImages(clonedSvg);
+
+//   clonedSvg.removeAttribute('style');
+//   clonedSvg.setAttribute(
+//     'viewBox',
+//     `${bounds.x} ${bounds.y} ${bounds.width} ${bounds.height}`
+//   );
+
+//   const scale = window.devicePixelRatio * 4;
+//   clonedSvg.setAttribute('width', String(bounds.width * scale));
+//   clonedSvg.setAttribute('height', String(bounds.height * scale));
+
+//   const bgRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+//   bgRect.setAttribute('x', String(bounds.x));
+//   bgRect.setAttribute('y', String(bounds.y));
+//   bgRect.setAttribute('width', String(bounds.width));
+//   bgRect.setAttribute('height', String(bounds.height));
+//   bgRect.setAttribute('fill', 'white');
+//   clonedSvg.insertBefore(bgRect, clonedSvg.firstChild);
+
+//   const svgData = new XMLSerializer().serializeToString(clonedSvg);
+//   const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+//   const url = URL.createObjectURL(blob);
+
+//   try {
+//     const img = await loadImage(url);
+//     return { img, width: bounds.width, height: bounds.height };
+//   } finally {
+//     URL.revokeObjectURL(url);
+//   }
+// };
 
 const createCroppedPlanImage = async (
   svgElement: SVGSVGElement,
@@ -79,25 +244,10 @@ const createCroppedPlanImage = async (
 ): Promise<{ img: HTMLImageElement; width: number; height: number }> => {
   const clonedSvg = svgElement.cloneNode(true) as SVGSVGElement;
 
-  if (hideGrid) {
-    const gridSelectors = [
-      '.grid-overlay',
-      '.grid',
-      '[data-grid="true"]',
-      '[data-testid="grid"]',
-      '#grid',
-      'pattern[id*="grid"]',
-      'defs pattern[id*="grid"]',
-      'rect[fill*="url(#grid"]',
-    ];
-
-    gridSelectors.forEach((selector) => {
-      clonedSvg.querySelectorAll(selector).forEach((el) => el.remove());
-    });
-  }
+  if (hideGrid) stripGridFromSvg(clonedSvg);
+  await inlineExternalImages(clonedSvg);
 
   clonedSvg.removeAttribute('style');
-  clonedSvg.removeAttribute('transform');
 
   clonedSvg.setAttribute(
     'viewBox',
@@ -108,7 +258,8 @@ const createCroppedPlanImage = async (
   clonedSvg.setAttribute('width', String(bounds.width * scale));
   clonedSvg.setAttribute('height', String(bounds.height * scale));
 
-  const bgRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  const ns = 'http://www.w3.org/2000/svg';
+  const bgRect = document.createElementNS(ns, 'rect');
   bgRect.setAttribute('x', String(bounds.x));
   bgRect.setAttribute('y', String(bounds.y));
   bgRect.setAttribute('width', String(bounds.width));
@@ -122,17 +273,7 @@ const createCroppedPlanImage = async (
 
   try {
     const img = await loadImage(url);
-    console.log('Created image with dimensions:', {
-      imgWidth: img.width,
-      imgHeight: img.height,
-      logicalWidth: bounds.width,
-      logicalHeight: bounds.height,
-    });
-    return {
-      img,
-      width: bounds.width,
-      height: bounds.height,
-    };
+    return { img, width: bounds.width, height: bounds.height };
   } finally {
     URL.revokeObjectURL(url);
   }
@@ -172,6 +313,19 @@ const getLogoDataUrl = async (logoUrl: string): Promise<string | null> => {
     return null;
   }
 };
+
+const stripGridFromSvg = (svg: SVGSVGElement) => {
+  const wrapper = svg.querySelector('#fp-grid-overlay');
+  if (wrapper && wrapper.parentNode) wrapper.parentNode.removeChild(wrapper);
+
+  svg
+    .querySelectorAll('[data-grid="true"], .grid-overlay')
+    .forEach((el) => el.parentNode?.removeChild(el));
+
+  svg.querySelectorAll('defs').forEach((d) => {
+    if (!d.children.length) d.remove();
+  });
+};
 // Primary Helper End
 
 // Json Import
@@ -204,12 +358,37 @@ export const importFromJSON = (file: File): Promise<FloorPlanData> => {
 };
 
 // SVG export
-export const exportToSVG = (
+export const exportToSVG = async (
   data: FloorPlanData,
   svgElement: SVGSVGElement,
-  filename?: string
-): void => {
-  const svgData = new XMLSerializer().serializeToString(svgElement);
+  filename?: string,
+  { hideGrid = true }: { hideGrid?: boolean } = {}
+): Promise<void> => {
+  const clonedSvg = svgElement.cloneNode(true) as SVGSVGElement;
+
+  if (hideGrid) {
+    stripGridFromSvg(clonedSvg);
+  }
+
+  await inlineExternalImages(clonedSvg);
+
+  const vb = clonedSvg.getAttribute('viewBox');
+  if (!vb) {
+    const w = Number(clonedSvg.getAttribute('width') || 5000);
+    const h = Number(clonedSvg.getAttribute('height') || 2500);
+    const bgRect = clonedSvg.ownerDocument!.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'rect'
+    );
+    bgRect.setAttribute('x', '0');
+    bgRect.setAttribute('y', '0');
+    bgRect.setAttribute('width', String(w));
+    bgRect.setAttribute('height', String(h));
+    bgRect.setAttribute('fill', 'white');
+    clonedSvg.insertBefore(bgRect, clonedSvg.firstChild);
+  }
+
+  const svgData = new XMLSerializer().serializeToString(clonedSvg);
   const blob = new Blob([svgData], { type: 'image/svg+xml' });
   const url = URL.createObjectURL(blob);
 
@@ -238,7 +417,8 @@ export const exportToPNG = async (
     clientLogo,
   } = options;
 
-  const bounds = getFloorPlanBoundsFromData(data);
+  const svgBounds = getSvgContentBounds(svgElement, hideGrid);
+  const bounds = svgBounds || getFloorPlanBoundsFromData(data);
 
   const {
     img: planImg,
@@ -256,7 +436,8 @@ export const exportToPNG = async (
   const availableWidth = pageWidth - margin * 2;
   const availableHeight = 1000;
 
-  const planScale = Math.min(availableWidth / planW, availableHeight / planH);
+  const planScale =
+    Math.min(availableWidth / planW, availableHeight / planH) * 0.95;
   const drawPlanW = planW * planScale;
   const drawPlanH = planH * planScale;
 
@@ -475,7 +656,8 @@ export const exportToPDF = async (
     clientLogo,
   } = options;
 
-  const bounds = getFloorPlanBoundsFromData(data);
+  const svgBounds = getSvgContentBounds(svgElement, hideGrid);
+  const bounds = svgBounds || getFloorPlanBoundsFromData(data);
 
   const {
     img: planImg,
@@ -486,19 +668,14 @@ export const exportToPDF = async (
   const planPng = imageToPngDataUrl(planImg);
   const logoPng = await getLogoDataUrl(logoUrl);
 
-  const isLandscape = planW > planH * 1.2;
-
   const pdf = new jsPDF({
-    orientation: isLandscape ? 'landscape' : 'portrait',
+    orientation: 'landscape',
     unit: 'pt',
     format: 'a4',
   });
 
   const pageWidth = pdf.internal.pageSize.getWidth();
   const pageHeight = pdf.internal.pageSize.getHeight();
-
-  console.log('PDF Page:', { width: pageWidth, height: pageHeight });
-  console.log('Floor Plan:', { width: planW, height: planH });
 
   const margin = 30;
   const headerHeight = 90;
@@ -648,7 +825,7 @@ export const exportToPDF = async (
   const availHeight =
     pageHeight - headerY - headerHeight - footerHeight - planAreaMargin;
 
-  const planScale = Math.min(availWidth / planW, availHeight / planH) * 0.98;
+  const planScale = Math.min(availWidth / planW, availHeight / planH) * 0.95;
   const drawPlanW = planW * planScale;
   const drawPlanH = planH * planScale;
 
@@ -661,7 +838,7 @@ export const exportToPDF = async (
   });
 
   const planX = (pageWidth - drawPlanW) / 2;
-  const planY = headerY + headerHeight + (availHeight - drawPlanH) / 2;
+  const planY = margin + headerHeight + (availHeight - drawPlanH) / 2;
 
   pdf.setFillColor(255, 255, 255);
   pdf.rect(planX - 1, planY - 1, drawPlanW + 2, drawPlanH + 2, 'F');

@@ -53,15 +53,26 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
   }
 
   return (
-    <g className="grid-overlay">
+    <g className="grid-overlay" data-grid="true" id="fp-grid-overlay">
       {verticalLines}
       {horizontalLines}
 
-      {/* Origin marker */}
-      <circle cx={0} cy={0} r={3} fill="#3B82F6" opacity={0.5} />
-
-      {/* Grid info */}
-      <text x={10} y={20} fontSize="10" fill="#999" className="select-none">
+      <circle
+        cx={0}
+        cy={0}
+        r={3}
+        fill="#3B82F6"
+        opacity={0.5}
+        data-grid="true"
+      />
+      <text
+        x={10}
+        y={20}
+        fontSize="10"
+        fill="#999"
+        className="select-none"
+        data-grid="true"
+      >
         Grid: {gridSize}px
       </text>
     </g>

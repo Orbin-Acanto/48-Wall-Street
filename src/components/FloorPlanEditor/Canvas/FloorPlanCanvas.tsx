@@ -5,6 +5,7 @@ import {
   Tool,
   FurnitureItem as FurnitureItemType,
   Room,
+  UnderlayProps,
 } from '@/types/floorplan.types';
 
 import { useCanvasInteraction } from '@/hooks/useCanvasInteraction';
@@ -34,6 +35,7 @@ interface FloorPlanCanvasProps {
   onRoomSelect: (roomId: string) => void;
   onCreateRoomAtPosition: (position: Point) => void;
   onRoomMove: (roomId: string, x: number, y: number) => void;
+  underlay?: UnderlayProps;
 }
 
 export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
@@ -52,6 +54,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   onCreateRoomAtPosition,
   onRoomMove,
   onCurveWallComplete,
+  underlay,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null!);
 
@@ -119,9 +122,6 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
   const [curvePoints, setCurvePoints] = useState<Point[]>([]);
   const prevToolRef = useRef<Tool>(selectedTool);
-  const MIN_CURVE_STEP_PX = 2;
-
-  const dist = (a: Point, b: Point) => Math.hypot(a.x - b.x, a.y - b.y);
 
   useEffect(() => {
     const prevTool = prevToolRef.current;
@@ -419,6 +419,40 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     );
   };
 
+  const renderUnderlay = () => {
+    if (!underlay) return null;
+
+    const scale = underlay.scale ?? 0.8;
+    const opacity = underlay.opacity ?? 0.35;
+    const tx = underlay.offset?.x ?? 40;
+    const ty = underlay.offset?.y ?? 40;
+
+    if (underlay.svg) {
+      return (
+        <g
+          opacity={opacity}
+          transform={`translate(${tx},${ty}) scale(${scale})`}
+          pointerEvents="none"
+          dangerouslySetInnerHTML={{ __html: underlay.svg }}
+        />
+      );
+    }
+
+    if (underlay.href) {
+      return (
+        <g
+          opacity={opacity}
+          transform={`translate(${tx},${ty}) scale(${scale})`}
+          pointerEvents="none"
+        >
+          <image href={underlay.href} width={1200} height={900} />
+        </g>
+      );
+    }
+
+    return null;
+  };
+
   const isAnyDragging = isPanning || isCanvasDragging || isFurnitureDragging;
 
   return (
@@ -453,12 +487,13 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
         <g
           transform={`translate(${viewport.x},${viewport.y}) scale(${viewport.scale})`}
         >
+          {renderUnderlay()}
           <GridOverlay
             width={width}
             height={height}
             gridSize={gridSize}
             showGrid={showGrid}
-            color="#808080"
+            color="#36454F"
             opacity={0.7}
           />
 

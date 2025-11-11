@@ -25,6 +25,10 @@ import {
   Wall as WallType,
   FurnitureItem,
   SelectedType,
+  LibraryItemLike,
+  SidebarType,
+  ModalType,
+  FloorKey,
 } from '@/types/floorplan.types';
 import { v4 as uuidv4 } from 'uuid';
 import { DoorWindow } from '@/types/floorplan.types';
@@ -38,18 +42,6 @@ import { AV_EQUIPMENT_LIBRARY } from '@/constants/avEquipment';
 import { CATERING_LIBRARY } from '@/constants/cateringStations';
 import { getPolylineLength } from '@/utils/geometryUtils';
 
-type SidebarType = 'furniture' | 'av' | 'catering' | null;
-type ModalType = 'event' | 'wall' | 'export' | null;
-
-interface LibraryItemLike {
-  id: string;
-  type: string;
-  category: string;
-  name: string;
-  defaultDimensions: FurnitureItem['dimensions'];
-  svgPath: string;
-}
-
 const ALL_LIBRARY_ITEMS: LibraryItemLike[] = [
   ...(FURNITURE_LIBRARY as LibraryItemLike[]),
   ...(AV_EQUIPMENT_LIBRARY as LibraryItemLike[]),
@@ -60,6 +52,14 @@ const DEFAULT_WALL_THICKNESS = 6;
 
 const findLibraryItem = (id: string): LibraryItemLike | undefined =>
   ALL_LIBRARY_ITEMS.find((item) => item.id === id);
+
+const FLOOR_UNDERLAYS: Record<
+  FloorKey,
+  { label: string; svg?: string; href?: string }
+> = {
+  ground: { label: 'Ground', href: '/floor_planner/plan/ground.svg' },
+  concourse: { label: 'Concourse', href: '/floor_planner/plan/concourse.svg' },
+};
 
 export const FloorPlanEditor: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -106,6 +106,17 @@ export const FloorPlanEditor: React.FC = () => {
     wallId: string;
     windowId: string;
   } | null>(null);
+
+  // ---Underlay UI state ---
+  const [selectedFloor, setSelectedFloor] = useState<FloorKey>('ground');
+  const [underlayScale, setUnderlayScale] = useState<number>(2.955);
+  const [underlayOpacity, setUnderlayOpacity] = useState<number>(1);
+  const [underlayOffset, setUnderlayOffset] = useState<{
+    x: number;
+    y: number;
+  }>({ x: 40, y: 40 });
+
+  const underlayDef = FLOOR_UNDERLAYS[selectedFloor];
 
   const selectedItem = useMemo(() => {
     if (!selectedItemId) return null;
@@ -494,7 +505,24 @@ export const FloorPlanEditor: React.FC = () => {
         onToggleLock={toggleLock}
         onOpenEventDetails={() => setActiveModal('event')}
       />
-
+      <div className="mx-4 mt-2 mb-2 flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-600">Floor:</span>
+          {(['ground', 'concourse'] as FloorKey[]).map((key) => (
+            <button
+              key={key}
+              onClick={() => setSelectedFloor(key)}
+              className={`rounded-md px-3 py-1 text-sm ${
+                selectedFloor === key
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-200 text-gray-800'
+              }`}
+            >
+              {FLOOR_UNDERLAYS[key].label}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="flex flex-1 overflow-hidden">
         <div className="flex">
           <div className="flex flex-col items-center space-y-2 bg-gray-800 py-4">
@@ -599,6 +627,12 @@ export const FloorPlanEditor: React.FC = () => {
             onRoomSelect={(roomId) => handleItemSelect(roomId, 'room')}
             onCreateRoomAtPosition={handleCreateRoomAt}
             onRoomMove={(id, x, y) => updateRoom(id, { x, y })}
+            underlay={{
+              href: underlayDef.href,
+              opacity: underlayOpacity,
+              scale: underlayScale,
+              offset: underlayOffset,
+            }}
           />
         </div>
 

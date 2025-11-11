@@ -143,6 +143,14 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
               <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="14">STAGE</text>`,
   },
   {
+    id: 'stage-large',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Stage (8x16)',
+    defaultDimensions: { width: 96, height: 192, unit: 'in' },
+    svgPath: `<rect x="-48" y="-96" width="96" height="192" fill="#2F4F4F"/>`,
+  },
+  {
     id: 'podium',
     type: 'furniture',
     category: 'Staging',
