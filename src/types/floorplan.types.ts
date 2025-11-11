@@ -36,6 +36,23 @@ export interface DoorWindow {
   svgIcon?: string;
 }
 
+export type ExportLayoutOptions = {
+  filename?: string;
+  hideGrid?: boolean;
+  headerTitle?: string;
+  clientName?: string;
+  eventDate?: string;
+  logoUrl?: string;
+  clientLogo?: string | null;
+};
+
+export type BBox = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
 export interface Room {
   id: string;
   name: string;

@@ -23,15 +23,26 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
   const [selectedFormat, setSelectedFormat] = useState<ExportFormat>('json');
   const [selectedFloor, setSelectedFloor] =
     useState<FloorLevel>('grand_mezzanine');
-
   const [clientName, setClientName] = useState<string>(
     eventDetails.clientName ?? ''
   );
   const [eventDate, setEventDate] = useState<string>(
     eventDetails.eventDate ?? ''
   );
-
+  const [clientLogo, setClientLogo] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleClientLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const result = event.target?.result as string;
+      setClientLogo(result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   const handleExport = async () => {
     const svgElement = document.querySelector(
@@ -89,6 +100,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
             clientName: headerClient,
             eventDate: headerDate,
             logoUrl: '/logo/48-wall-logo.svg',
+            clientLogo: clientLogo ?? null,
           });
         }
         break;
@@ -106,6 +118,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
             clientName: headerClient,
             eventDate: headerDate,
             logoUrl: '/logo/48-wall-logo.svg',
+            clientLogo: clientLogo ?? null,
           });
         }
         break;
@@ -215,9 +228,9 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
         <div className="p-6">
           {activeTab === 'export' ? (
             <>
-              {/* Floor + Client + Date row */}
+              {/* Floor + Client + Date + Logo row */}
               <div className="border border-gray-100 bg-gray-50/60 p-4">
-                <div className="grid gap-4 md:grid-cols-3">
+                <div className="grid gap-4 md:grid-cols-4">
                   {/* Floor */}
                   <div className="space-y-1">
                     <label className="text-[10px] font-semibold tracking-[0.12em] text-gray-700 uppercase">
@@ -262,6 +275,34 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
                       onChange={(e) => setEventDate(e.target.value)}
                       className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-[#CBA35C] focus:ring-2 focus:ring-[#CBA35C]/30 focus:outline-none"
                     />
+                  </div>
+
+                  {/* Client Logo */}
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-semibold tracking-[0.12em] text-gray-700 uppercase">
+                      Client Logo (optional)
+                    </label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleClientLogoUpload}
+                      className="block w-full text-xs text-gray-700 file:mr-3 file:rounded-md file:border-0 file:bg-[#CBA35C]/10 file:px-3 file:py-1 file:text-xs file:font-semibold file:text-[#CBA35C] hover:file:bg-[#CBA35C]/20"
+                    />
+                    {clientLogo && (
+                      <div className="mt-2 flex items-center gap-2">
+                        <img
+                          src={clientLogo}
+                          alt="Client logo preview"
+                          className="h-10 w-auto rounded border border-gray-200 object-contain"
+                        />
+                        <button
+                          onClick={() => setClientLogo(null)}
+                          className="text-xs text-red-500 hover:underline"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
 

@@ -22,7 +22,6 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
   const verticalLines = [];
   const horizontalLines = [];
 
-  // Generate vertical lines
   for (let x = 0; x <= width; x += gridSize) {
     verticalLines.push(
       <line
@@ -38,7 +37,6 @@ export const GridOverlay: React.FC<GridOverlayProps> = ({
     );
   }
 
-  // Generate horizontal lines
   for (let y = 0; y <= height; y += gridSize) {
     horizontalLines.push(
       <line
