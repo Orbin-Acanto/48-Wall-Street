@@ -9,6 +9,10 @@ export interface Dimensions {
   unit: 'ft' | 'in';
 }
 
+export interface CurveData {
+  control: Point;
+}
+
 export interface Wall {
   id: string;
   start: Point;
@@ -18,6 +22,7 @@ export interface Wall {
   lengthInInches: number;
   doors: DoorWindow[];
   windows: DoorWindow[];
+  curve?: CurveData;
 }
 
 export type LegendItemConfig = {
@@ -175,6 +180,7 @@ export type Tool =
   | 'wall'
   | 'door'
   | 'window'
+  | 'curveWall'
   | 'room'
   | 'pan'
   | 'delete';

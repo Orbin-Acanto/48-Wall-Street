@@ -313,7 +313,7 @@ export const exportToPNG = async (
       const lw = logoImg.width * logoScale;
       const lh = logoImg.height * logoScale;
 
-      let lx = headerX + (colWidth - lw) / 2;
+      const lx = headerX + (colWidth - lw) / 2;
       const ly = headerY + (headerInnerH - lh) / 2;
 
       if (clientLogo) {
