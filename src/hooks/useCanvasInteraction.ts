@@ -33,21 +33,38 @@ export const useCanvasInteraction = ({
   const [curveStart, setCurveStart] = useState<Point | null>(null);
   const [curveEnd, setCurveEnd] = useState<Point | null>(null);
 
-  // Convert screen coordinates to canvas coordinates
-  const screenToCanvas = useCallback(
+  // const screenToCanvas = useCallback(
+  //   (screenX: number, screenY: number): Point => {
+  //     if (!svgRef.current) return { x: 0, y: 0 };
+
+  //     const rect = svgRef.current.getBoundingClientRect();
+  //     const x = (screenX - rect.left - viewport.x) / viewport.scale;
+  //     const y = (screenY - rect.top - viewport.y) / viewport.scale;
+
+  //     return shouldSnapToGrid ? snapPointToGrid({ x, y }, gridSize) : { x, y };
+  //   },
+  //   [viewport, shouldSnapToGrid, gridSize, svgRef]
+  // );
+
+  const screenToCanvasRaw = useCallback(
     (screenX: number, screenY: number): Point => {
       if (!svgRef.current) return { x: 0, y: 0 };
-
       const rect = svgRef.current.getBoundingClientRect();
       const x = (screenX - rect.left - viewport.x) / viewport.scale;
       const y = (screenY - rect.top - viewport.y) / viewport.scale;
-
-      return shouldSnapToGrid ? snapPointToGrid({ x, y }, gridSize) : { x, y };
+      return { x, y };
     },
-    [viewport, shouldSnapToGrid, gridSize, svgRef]
+    [viewport, svgRef]
   );
 
-  // Convert canvas coordinates to screen coordinates
+  const screenToCanvas = useCallback(
+    (screenX: number, screenY: number): Point => {
+      const raw = screenToCanvasRaw(screenX, screenY);
+      return shouldSnapToGrid ? snapPointToGrid(raw, gridSize) : raw;
+    },
+    [screenToCanvasRaw, shouldSnapToGrid, gridSize]
+  );
+
   const canvasToScreen = useCallback(
     (canvasX: number, canvasY: number): Point => {
       return {
@@ -58,19 +75,16 @@ export const useCanvasInteraction = ({
     [viewport]
   );
 
-  // Handle mouse down
   const handleMouseDown = useCallback(
     (e: React.MouseEvent<SVGSVGElement>) => {
       const point = screenToCanvas(e.clientX, e.clientY);
 
-      // Pan with middle mouse or space key
       if (e.button === 1 || (e.button === 0 && selectedTool === 'pan')) {
         setIsPanning(true);
         setPanStart({ x: e.clientX - viewport.x, y: e.clientY - viewport.y });
         return;
       }
 
-      // Tool-specific actions
       switch (selectedTool) {
         case 'wall':
           if (!drawingStart) {
@@ -80,7 +94,7 @@ export const useCanvasInteraction = ({
             setDrawingStart(null);
           }
           break;
-        case 'curveWall':
+        case 'curve-wall':
           if (!curveStart) {
             setCurveStart(point);
           } else if (!curveEnd) {
@@ -112,7 +126,6 @@ export const useCanvasInteraction = ({
     ]
   );
 
-  // Handle mouse move
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<SVGSVGElement>) => {
       const point = screenToCanvas(e.clientX, e.clientY);
@@ -130,13 +143,11 @@ export const useCanvasInteraction = ({
     [screenToCanvas, isPanning, panStart]
   );
 
-  // Handle mouse up
   const handleMouseUp = useCallback(() => {
     setIsPanning(false);
     setIsDragging(false);
   }, []);
 
-  // Handle wheel for zoom
   const handleWheel = useCallback(
     (e: React.WheelEvent<SVGSVGElement>) => {
       e.preventDefault();
@@ -145,7 +156,6 @@ export const useCanvasInteraction = ({
       setViewport((prev) => {
         const newScale = Math.max(0.1, Math.min(5, prev.scale * delta));
 
-        // Zoom towards mouse position
         const rect = svgRef.current?.getBoundingClientRect();
         if (!rect) return prev;
 
@@ -165,7 +175,6 @@ export const useCanvasInteraction = ({
     [svgRef]
   );
 
-  // Zoom controls
   const zoomIn = useCallback(() => {
     setViewport((prev) => ({
       ...prev,
@@ -184,7 +193,6 @@ export const useCanvasInteraction = ({
     setViewport({ x: 0, y: 0, scale: 1 });
   }, []);
 
-  // Pan controls
   const pan = useCallback((dx: number, dy: number) => {
     setViewport((prev) => ({
       ...prev,
@@ -200,6 +208,7 @@ export const useCanvasInteraction = ({
     currentMousePos,
     isDragging,
     screenToCanvas,
+    screenToCanvasRaw,
     canvasToScreen,
     handleMouseDown,
     handleMouseMove,

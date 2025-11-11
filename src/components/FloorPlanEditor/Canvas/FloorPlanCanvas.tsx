@@ -78,6 +78,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     isPanning,
     isDragging: isCanvasDragging,
     screenToCanvas,
+    screenToCanvasRaw,
     handleMouseDown: canvasMouseDown,
     handleMouseMove: canvasMouseMove,
     handleMouseUp: canvasMouseUp,
@@ -118,6 +119,9 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
   const [curvePoints, setCurvePoints] = useState<Point[]>([]);
   const prevToolRef = useRef<Tool>(selectedTool);
+  const MIN_CURVE_STEP_PX = 2;
+
+  const dist = (a: Point, b: Point) => Math.hypot(a.x - b.x, a.y - b.y);
 
   useEffect(() => {
     const prevTool = prevToolRef.current;
@@ -137,8 +141,11 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
       const canvasPoint = screenToCanvas(e.clientX, e.clientY);
 
       if (selectedTool === 'curve-wall' && e.button === 0) {
+        const pt = e.altKey
+          ? screenToCanvasRaw(e.clientX, e.clientY)
+          : screenToCanvasRaw(e.clientX, e.clientY);
         e.stopPropagation();
-        setCurvePoints((prev) => [...prev, canvasPoint]);
+        setCurvePoints((prev) => [...prev, pt]);
         return;
       }
 
