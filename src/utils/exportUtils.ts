@@ -5,6 +5,7 @@ import {
   EventDetails,
   ExportLayoutOptions,
   FloorPlanData,
+  Room,
 } from '../types/floorplan.types';
 
 const DEFAULT_LOGO_URL = '/logo/48-wall-logo.svg';
@@ -104,7 +105,7 @@ const getFloorPlanBoundsFromData = (data: FloorPlanData): BBox => {
   }
 
   for (const room of data.rooms ?? []) {
-    const { x, y, width, height } = room as any;
+    const { x, y, width, height } = room as Room;
     if (
       typeof x === 'number' &&
       typeof y === 'number' &&
@@ -182,7 +183,6 @@ const inlineExternalImages = async (svg: SVGSVGElement) => {
   }
 };
 
-// const createCroppedPlanImage = async (
 //   svgElement: SVGSVGElement,
 //   bounds: BBox,
 //   hideGrid: boolean
