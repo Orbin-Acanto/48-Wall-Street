@@ -123,6 +123,13 @@ export interface EventDetails {
   eventName?: string;
 }
 
+export type GetPosFn = (id: string) => Point | null;
+
+export interface UseFurnitureDragProps {
+  onMove: (id: string, position: Point) => void;
+  screenToCanvas: (screenX: number, screenY: number) => Point;
+}
+
 export interface ExportImportModalProps {
   isOpen: boolean;
   floorPlan: FloorPlanData;

@@ -20,6 +20,8 @@ interface FloorPlanCanvasProps {
   floorPlan: FloorPlanData;
   selectedTool: Tool;
   selectedItemId: string | null;
+  selectedFurnitureIds?: Set<string>;
+  onFurnitureClick?: (id: string, opts: { toggle: boolean }) => void;
   onItemSelect: (
     id: string | null,
     type: 'wall' | 'furniture' | 'room'
@@ -36,6 +38,7 @@ interface FloorPlanCanvasProps {
   onCreateRoomAtPosition: (position: Point) => void;
   onRoomMove: (roomId: string, x: number, y: number) => void;
   underlay?: UnderlayProps;
+  onCanvasMousePosition?: (p: Point) => void;
 }
 
 export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
@@ -55,6 +58,9 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   onRoomMove,
   onCurveWallComplete,
   underlay,
+  selectedFurnitureIds,
+  onFurnitureClick,
+  onCanvasMousePosition,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null!);
 
@@ -112,7 +118,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
   const {
     isDragging: isFurnitureDragging,
-    startDrag,
+    startGroupDrag,
     continueDrag,
     endDrag,
   } = useFurnitureDrag({
@@ -186,8 +192,10 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   );
 
   const renderFurniture = () =>
-    furniture.map((item: FurnitureItemType) => {
-      const isSelected = selectedItemId === item.id;
+    furniture.map((item) => {
+      const isSelected =
+        (selectedFurnitureIds?.has?.(item.id) ?? false) ||
+        selectedItemId === item.id;
 
       return (
         <FurnitureItem
@@ -196,17 +204,22 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
           isSelected={isSelected}
           showDimensions={showDimensions}
           pixelsPerFoot={pixelsPerFoot}
-          onClick={() => {
-            onItemSelect(item.id, 'furniture');
+          onClick={(e) => {
+            const toggle = e.ctrlKey || e.metaKey;
+            if (onFurnitureClick) onFurnitureClick(item.id, { toggle });
+            else onItemSelect(item.id, 'furniture');
           }}
           onDragStart={(e) => {
             e.stopPropagation();
+            const ids =
+              selectedFurnitureIds && selectedFurnitureIds.size
+                ? Array.from(selectedFurnitureIds)
+                : [item.id];
 
-            if (selectedTool === 'select') {
-              onItemSelect(item.id, 'furniture');
-            }
-
-            startDrag(e, item.id, item.position);
+            startGroupDrag(e, item.id, ids, (id) => {
+              const f = furniture.find((ff) => ff.id === id);
+              return f ? f.position : null;
+            });
           }}
         />
       );
@@ -251,13 +264,22 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
       canvasMouseMove(e);
       continueDrag(e);
 
+      const pt = screenToCanvas(e.clientX, e.clientY);
+      onCanvasMousePosition?.(pt);
+
       if (draggingRoomId && roomDragOffsetRef.current) {
-        const pt = screenToCanvas(e.clientX, e.clientY);
         const { x: ox, y: oy } = roomDragOffsetRef.current;
         onRoomMove(draggingRoomId, pt.x - ox, pt.y - oy);
       }
     },
-    [canvasMouseMove, continueDrag, draggingRoomId, screenToCanvas, onRoomMove]
+    [
+      canvasMouseMove,
+      continueDrag,
+      draggingRoomId,
+      screenToCanvas,
+      onRoomMove,
+      onCanvasMousePosition,
+    ]
   );
 
   const handleSvgMouseUp = useCallback(() => {
@@ -454,6 +476,11 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   };
 
   const isAnyDragging = isPanning || isCanvasDragging || isFurnitureDragging;
+
+  useEffect(() => {
+    console.log('selectedItemId', selectedItemId);
+    console.log('selectedFurnitureIds', selectedFurnitureIds);
+  }, [selectedItemId, selectedFurnitureIds]);
 
   return (
     <div

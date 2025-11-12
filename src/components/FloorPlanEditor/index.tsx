@@ -1,6 +1,12 @@
 'use client';
 
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 
 import { FloorPlanCanvas } from '@/components/FloorPlanEditor/Canvas/FloorPlanCanvas';
 import { EventDetailsModal } from '@/components/FloorPlanEditor/Modals/EventDetailsModal';
@@ -111,6 +117,15 @@ export const FloorPlanEditor: React.FC = () => {
     windowId: string;
   } | null>(null);
 
+  // Multi Select Copy Paste Furniture Item State
+  const [selectedFurnitureIds, setSelectedFurnitureIds] = useState<Set<string>>(
+    new Set()
+  );
+  const [clipboardFurniture, setClipboardFurniture] = useState<
+    FurnitureItem[] | null
+  >(null);
+  const pasteBumpRef = useRef(0);
+
   // ---Underlay UI state ---
   const [selectedFloor, setSelectedFloor] = useState<FloorKey>('ground');
   const [underlayScale, setUnderlayScale] = useState<number>(2.955);
@@ -122,17 +137,13 @@ export const FloorPlanEditor: React.FC = () => {
 
   const underlayDef = FLOOR_UNDERLAYS[selectedFloor];
 
+  const lastMouseCanvasPosRef = useRef<Point | null>(null);
+
   const selectedItem = useMemo(() => {
     if (!selectedItemId) return null;
 
-    console.log('Computing selectedItem:', {
-      selectedItemId,
-      selectedItemType,
-    });
-
     if (selectedItemType === 'wall') {
       const wall = floorPlan.walls.find((w) => w.id === selectedItemId);
-      console.log('Found wall:', wall);
       return wall || null;
     }
 
@@ -140,7 +151,6 @@ export const FloorPlanEditor: React.FC = () => {
       const furniture = floorPlan.furniture.find(
         (f) => f.id === selectedItemId
       );
-      console.log('Found furniture:', furniture);
       return furniture || null;
     }
 
@@ -172,6 +182,7 @@ export const FloorPlanEditor: React.FC = () => {
     floorPlan.furniture,
     floorPlan.rooms,
   ]);
+
   const handleWallCreate = useCallback(
     (start: Point, end: Point) => {
       const pixels = calculateDistance(start, end);
@@ -192,7 +203,6 @@ export const FloorPlanEditor: React.FC = () => {
         windows: [],
       };
 
-      // Optional safety: validate before committing
       if (!isValidWall({ ...candidate, id: 'tmp-wall-id' })) {
         console.warn('Invalid wall data, creation skipped', candidate);
         return;
@@ -202,13 +212,32 @@ export const FloorPlanEditor: React.FC = () => {
     },
     [floorPlan.canvasSettings.scale, addWall]
   );
+
   const handleItemSelect = useCallback(
     (id: string | null, type: SelectedType) => {
-      setSelectedItemId(id);
-      setSelectedItemType(id ? type : null);
+      if (!id) {
+        setSelectedItemId(null);
+        setSelectedItemType(null);
+        setSelectedFurnitureIds(new Set());
+        setSelectedDoorRef(null);
+        setSelectedWindowRef(null);
+        return;
+      }
 
+      if (type === 'furniture') {
+        setSelectedItemType('furniture');
+        setSelectedItemId(id);
+        setSelectedFurnitureIds(new Set([id]));
+        setSelectedDoorRef(null);
+        setSelectedWindowRef(null);
+        return;
+      }
+
+      setSelectedItemId(id);
+      setSelectedItemType(type);
       if (type !== 'door') setSelectedDoorRef(null);
       if (type !== 'window') setSelectedWindowRef(null);
+      setSelectedFurnitureIds(new Set());
     },
     []
   );
@@ -270,7 +299,11 @@ export const FloorPlanEditor: React.FC = () => {
     if (selectedItemType === 'wall' && !floorPlan.isLocked) {
       deleteWall(selectedItemId);
     } else if (selectedItemType === 'furniture') {
-      deleteFurniture(selectedItemId);
+      if (selectedFurnitureIds.size > 1) {
+        Array.from(selectedFurnitureIds).forEach((id) => deleteFurniture(id));
+      } else if (selectedItemId) {
+        deleteFurniture(selectedItemId);
+      }
     } else if (selectedItemType === 'room') {
       deleteRoom(selectedItemId);
     } else if (selectedItemType === 'door') {
@@ -280,9 +313,11 @@ export const FloorPlanEditor: React.FC = () => {
     }
 
     setSelectedItemId(null);
+    setSelectedFurnitureIds(new Set());
     setSelectedItemType(null);
   }, [
     selectedItemId,
+    selectedFurnitureIds,
     selectedItemType,
     floorPlan.isLocked,
     deleteDoor,
@@ -291,6 +326,27 @@ export const FloorPlanEditor: React.FC = () => {
     deleteFurniture,
     deleteRoom,
   ]);
+
+  const handleFurnitureClick = useCallback(
+    (id: string, { toggle }: { toggle: boolean }) => {
+      setSelectedItemType('furniture');
+      setSelectedItemId(id);
+      setSelectedDoorRef(null);
+      setSelectedWindowRef(null);
+
+      setSelectedFurnitureIds((prev) => {
+        const next = new Set(prev);
+        if (toggle) {
+          next.has(id) ? next.delete(id) : next.add(id);
+        } else {
+          next.clear();
+          next.add(id);
+        }
+        return next;
+      });
+    },
+    []
+  );
 
   const handleSave = useCallback(() => {
     exportToJSON(floorPlan);
@@ -304,6 +360,7 @@ export const FloorPlanEditor: React.FC = () => {
         setActiveModal(null);
         setSelectedItemId(null);
         setSelectedItemType(null);
+        setSelectedFurnitureIds(new Set());
       } catch (error) {
         console.error('Failed to load floor plan:', error);
         alert('Failed to load floor plan. Please check the file format.');
@@ -339,26 +396,6 @@ export const FloorPlanEditor: React.FC = () => {
     },
     [addRoom, floorPlan.rooms.length, floorPlan.canvasSettings.scale]
   );
-
-  useKeyboardShortcuts({
-    onUndo: canUndo ? undo : undefined,
-    onRedo: canRedo ? redo : undefined,
-    onSave: handleSave,
-    onDelete: selectedItemId ? handleDelete : undefined,
-    onEscape: () => {
-      setSelectedItemId(null);
-      setSelectedItemType(null);
-      setSelectedTool('select');
-    },
-    onToggleGrid: () =>
-      updateCanvasSettings({
-        showGrid: !floorPlan.canvasSettings.showGrid,
-      }),
-    onToggleDimensions: () =>
-      updateCanvasSettings({
-        showDimensions: !floorPlan.canvasSettings.showDimensions,
-      }),
-  });
 
   const toggleSidebar = (type: SidebarType) => {
     setActiveSidebar((current) => (current === type ? null : type));
@@ -464,6 +501,99 @@ export const FloorPlanEditor: React.FC = () => {
     },
     [floorPlan.canvasSettings.scale, addWall]
   );
+
+  const copySelectedFurniture = useCallback(() => {
+    const ids = Array.from(selectedFurnitureIds);
+    if (!ids.length) return;
+
+    const items = ids
+      .map((id) => floorPlan.furniture.find((f) => f.id === id))
+      .filter(Boolean) as FurnitureItem[];
+
+    const clones: FurnitureItem[] = items.map((f) => ({
+      ...f,
+      position: { ...f.position },
+      dimensions: { ...f.dimensions },
+      baseDimensions: f.baseDimensions ? { ...f.baseDimensions } : undefined,
+    }));
+
+    setClipboardFurniture(clones);
+    pasteBumpRef.current = 0;
+  }, [selectedFurnitureIds, floorPlan.furniture]);
+
+  const pasteFurniture = useCallback(() => {
+    if (!clipboardFurniture?.length) return;
+
+    const mouse = lastMouseCanvasPosRef.current;
+
+    pasteBumpRef.current += 1;
+    const bump = 10 * pasteBumpRef.current;
+
+    const cx =
+      clipboardFurniture.reduce((s, f) => s + f.position.x, 0) /
+      clipboardFurniture.length;
+    const cy =
+      clipboardFurniture.reduce((s, f) => s + f.position.y, 0) /
+      clipboardFurniture.length;
+
+    let dx = bump,
+      dy = bump;
+    if (mouse) {
+      dx = mouse.x - cx;
+      dy = mouse.y - cy;
+    }
+
+    const newIds: string[] = [];
+    clipboardFurniture.forEach((f) => {
+      const newId = addFurniture({
+        type: f.type,
+        category: f.category,
+        name: f.name,
+        position: {
+          x: f.position.x + dx,
+          y: f.position.y + dy,
+        },
+        rotation: f.rotation,
+        dimensions: f.dimensions,
+        baseDimensions: f.baseDimensions,
+        svgPath: f.svgPath,
+        locked: false,
+        zIndex: (f.zIndex ?? 1) + 1,
+        groupBy: f.groupBy,
+      });
+
+      if (newId) newIds.push(newId);
+    });
+
+    if (newIds.length) {
+      setSelectedItemId(newIds[newIds.length - 1]);
+      setSelectedItemType('furniture');
+      setSelectedFurnitureIds(new Set(newIds));
+    }
+  }, [clipboardFurniture, addFurniture]);
+
+  useKeyboardShortcuts({
+    onUndo: canUndo ? undo : undefined,
+    onRedo: canRedo ? redo : undefined,
+    onSave: handleSave,
+    onDelete: selectedItemId ? handleDelete : undefined,
+    onEscape: () => {
+      setSelectedItemId(null);
+      setSelectedItemType(null);
+      setSelectedTool('select');
+      setSelectedFurnitureIds(new Set());
+    },
+    onToggleGrid: () =>
+      updateCanvasSettings({
+        showGrid: !floorPlan.canvasSettings.showGrid,
+      }),
+    onToggleDimensions: () =>
+      updateCanvasSettings({
+        showDimensions: !floorPlan.canvasSettings.showDimensions,
+      }),
+    onCopy: copySelectedFurniture,
+    onPaste: pasteFurniture,
+  });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -622,6 +752,8 @@ export const FloorPlanEditor: React.FC = () => {
             floorPlan={floorPlan}
             selectedTool={selectedTool}
             selectedItemId={selectedItemId}
+            selectedFurnitureIds={selectedFurnitureIds}
+            onFurnitureClick={handleFurnitureClick}
             onItemSelect={handleItemSelect}
             onWallCreate={handleWallCreate}
             onCurveWallComplete={handleCurveWallComplete}
@@ -639,6 +771,9 @@ export const FloorPlanEditor: React.FC = () => {
               opacity: underlayOpacity,
               scale: underlayScale,
               offset: underlayOffset,
+            }}
+            onCanvasMousePosition={(p) => {
+              lastMouseCanvasPosRef.current = p;
             }}
           />
         </div>

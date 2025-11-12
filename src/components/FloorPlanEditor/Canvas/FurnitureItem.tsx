@@ -6,7 +6,7 @@ interface FurnitureItemProps {
   isSelected: boolean;
   showDimensions: boolean;
   pixelsPerFoot: number;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
   onDragStart: (e: React.MouseEvent) => void;
 }
 
@@ -53,7 +53,7 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
       transform={`translate(${item.position.x},${item.position.y}) rotate(${item.rotation})`}
       onMouseDown={(e) => {
         e.stopPropagation();
-        onClick();
+        onClick(e);
         if (!isLocked) {
           onDragStart(e);
         }

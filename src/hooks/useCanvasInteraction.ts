@@ -33,19 +33,6 @@ export const useCanvasInteraction = ({
   const [curveStart, setCurveStart] = useState<Point | null>(null);
   const [curveEnd, setCurveEnd] = useState<Point | null>(null);
 
-  // const screenToCanvas = useCallback(
-  //   (screenX: number, screenY: number): Point => {
-  //     if (!svgRef.current) return { x: 0, y: 0 };
-
-  //     const rect = svgRef.current.getBoundingClientRect();
-  //     const x = (screenX - rect.left - viewport.x) / viewport.scale;
-  //     const y = (screenY - rect.top - viewport.y) / viewport.scale;
-
-  //     return shouldSnapToGrid ? snapPointToGrid({ x, y }, gridSize) : { x, y };
-  //   },
-  //   [viewport, shouldSnapToGrid, gridSize, svgRef]
-  // );
-
   const screenToCanvasRaw = useCallback(
     (screenX: number, screenY: number): Point => {
       if (!svgRef.current) return { x: 0, y: 0 };

@@ -10,6 +10,8 @@ interface KeyboardShortcutsHandlers {
   onToggleDimensions?: () => void;
   onZoomIn?: () => void;
   onZoomOut?: () => void;
+  onCopy?: () => void;
+  onPaste?: () => void;
 }
 
 export const useKeyboardShortcuts = (handlers: KeyboardShortcutsHandlers) => {
@@ -24,12 +26,14 @@ export const useKeyboardShortcuts = (handlers: KeyboardShortcutsHandlers) => {
       const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
       const modifier = isMac ? e.metaKey : e.ctrlKey;
 
+      // Undo
       if (modifier && e.key === 'z' && !e.shiftKey && handlers.onUndo) {
         e.preventDefault();
         handlers.onUndo();
         return;
       }
 
+      // Redo
       if (
         ((modifier && e.key === 'y') ||
           (modifier && e.shiftKey && e.key === 'z')) &&
@@ -40,12 +44,38 @@ export const useKeyboardShortcuts = (handlers: KeyboardShortcutsHandlers) => {
         return;
       }
 
+      // Save
       if (modifier && e.key === 's' && handlers.onSave) {
         e.preventDefault();
         handlers.onSave();
         return;
       }
 
+      // Copy
+      if (
+        modifier &&
+        e.key.toLowerCase() === 'c' &&
+        handlers.onCopy &&
+        !isInputField
+      ) {
+        e.preventDefault();
+        handlers.onCopy();
+        return;
+      }
+
+      // Paste
+      if (
+        modifier &&
+        e.key.toLowerCase() === 'v' &&
+        handlers.onPaste &&
+        !isInputField
+      ) {
+        e.preventDefault();
+        handlers.onPaste();
+        return;
+      }
+
+      // Delete
       if (
         (e.key === 'Delete' || e.key === 'Backspace') &&
         !isInputField &&
@@ -56,11 +86,13 @@ export const useKeyboardShortcuts = (handlers: KeyboardShortcutsHandlers) => {
         return;
       }
 
+      // Cancel
       if (e.key === 'Escape' && handlers.onEscape) {
         handlers.onEscape();
         return;
       }
 
+      // grid Toogle
       if (
         e.key === 'g' &&
         !modifier &&
@@ -72,6 +104,7 @@ export const useKeyboardShortcuts = (handlers: KeyboardShortcutsHandlers) => {
         return;
       }
 
+      // Dimensions Toogle
       if (
         e.key === 'd' &&
         !modifier &&
@@ -82,7 +115,7 @@ export const useKeyboardShortcuts = (handlers: KeyboardShortcutsHandlers) => {
         handlers.onToggleDimensions();
         return;
       }
-
+      // Zoom Control
       if (
         (e.key === '+' || e.key === '=') &&
         !isInputField &&

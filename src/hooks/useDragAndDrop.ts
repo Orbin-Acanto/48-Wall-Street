@@ -1,5 +1,9 @@
 import { useState, useCallback } from 'react';
-import { Point } from '../types/floorplan.types';
+import {
+  GetPosFn,
+  Point,
+  UseFurnitureDragProps,
+} from '../types/floorplan.types';
 
 interface UseDragAndDropProps {
   onDrop: (libraryItemId: string, position: Point) => void;
@@ -15,14 +19,12 @@ export const useDragAndDrop = ({
     null
   );
 
-  // Handle drag start from library
   const handleDragStart = useCallback(
     (e: React.DragEvent<HTMLDivElement>, libraryItemId: string) => {
       e.dataTransfer.effectAllowed = 'copy';
       e.dataTransfer.setData('libraryItemId', libraryItemId);
       setDraggedItemId(libraryItemId);
 
-      // Create custom drag image
       const dragImage = e.currentTarget.cloneNode(true) as HTMLElement;
       dragImage.style.position = 'absolute';
       dragImage.style.top = '-1000px';
@@ -31,7 +33,6 @@ export const useDragAndDrop = ({
 
       e.dataTransfer.setDragImage(dragImage, 50, 50);
 
-      // Clean up drag image after a short delay
       setTimeout(() => {
         if (document.body.contains(dragImage)) {
           document.body.removeChild(dragImage);
@@ -41,7 +42,6 @@ export const useDragAndDrop = ({
     []
   );
 
-  // Handle drag over canvas
   const handleDragOver = useCallback(
     (e: React.DragEvent<SVGSVGElement>) => {
       e.preventDefault();
@@ -53,21 +53,17 @@ export const useDragAndDrop = ({
     [screenToCanvas]
   );
 
-  // Handle drag enter
   const handleDragEnter = useCallback((e: React.DragEvent<SVGSVGElement>) => {
     e.preventDefault();
   }, []);
 
-  // Handle drag leave
   const handleDragLeave = useCallback((e: React.DragEvent<SVGSVGElement>) => {
-    // Only clear if leaving the canvas entirely
     const relatedTarget = e.relatedTarget as HTMLElement;
     if (!relatedTarget || !e.currentTarget.contains(relatedTarget)) {
       setDragPreviewPosition(null);
     }
   }, []);
 
-  // Handle drop on canvas
   const handleDrop = useCallback(
     (e: React.DragEvent<SVGSVGElement>) => {
       e.preventDefault();
@@ -78,14 +74,12 @@ export const useDragAndDrop = ({
       const position = screenToCanvas(e.clientX, e.clientY);
       onDrop(libraryItemId, position);
 
-      // Clean up
       setDraggedItemId(null);
       setDragPreviewPosition(null);
     },
     [screenToCanvas, onDrop]
   );
 
-  // Handle drag end
   const handleDragEnd = useCallback(() => {
     setDraggedItemId(null);
     setDragPreviewPosition(null);
@@ -103,30 +97,38 @@ export const useDragAndDrop = ({
   };
 };
 
-/**
- * Hook for handling furniture item dragging on canvas
- */
-interface UseFurnitureDragProps {
-  onMove: (id: string, position: Point) => void;
-  screenToCanvas: (screenX: number, screenY: number) => Point;
-}
-
 export const useFurnitureDrag = ({
   onMove,
   screenToCanvas,
 }: UseFurnitureDragProps) => {
-  const [draggingItemId, setDraggingItemId] = useState<string | null>(null);
-  const [dragOffset, setDragOffset] = useState<Point>({ x: 0, y: 0 });
+  const [draggingAnchorId, setDraggingAnchorId] = useState<string | null>(null);
+  const [groupIds, setGroupIds] = useState<string[]>([]);
+  const [groupStartPos, setGroupStartPos] = useState<Map<string, Point> | null>(
+    null
+  );
+  const [anchorStart, setAnchorStart] = useState<Point | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
-  const startDrag = useCallback(
-    (e: React.MouseEvent, itemId: string, itemPosition: Point) => {
-      const canvasPoint = screenToCanvas(e.clientX, e.clientY);
-      setDraggingItemId(itemId);
-      setDragOffset({
-        x: canvasPoint.x - itemPosition.x,
-        y: canvasPoint.y - itemPosition.y,
+  const startGroupDrag = useCallback(
+    (
+      e: React.MouseEvent,
+      anchorId: string,
+      selectedIds: string[],
+      getPositionById: GetPosFn
+    ) => {
+      const startPt = screenToCanvas(e.clientX, e.clientY);
+      const ids = selectedIds.length ? selectedIds : [anchorId];
+
+      const startMap = new Map<string, Point>();
+      ids.forEach((id) => {
+        const p = getPositionById(id);
+        if (p) startMap.set(id, { x: p.x, y: p.y });
       });
+
+      setDraggingAnchorId(anchorId);
+      setGroupIds(ids);
+      setGroupStartPos(startMap);
+      setAnchorStart(startPt);
       setIsDragging(true);
     },
     [screenToCanvas]
@@ -134,29 +136,29 @@ export const useFurnitureDrag = ({
 
   const continueDrag = useCallback(
     (e: React.MouseEvent) => {
-      if (!draggingItemId || !isDragging) return;
+      if (!isDragging || !anchorStart || !groupStartPos) return;
+      const pt = screenToCanvas(e.clientX, e.clientY);
+      const dx = pt.x - anchorStart.x;
+      const dy = pt.y - anchorStart.y;
 
-      const canvasPoint = screenToCanvas(e.clientX, e.clientY);
-      const newPosition = {
-        x: canvasPoint.x - dragOffset.x,
-        y: canvasPoint.y - dragOffset.y,
-      };
-
-      onMove(draggingItemId, newPosition);
+      groupStartPos.forEach((startPos, id) => {
+        onMove(id, { x: startPos.x + dx, y: startPos.y + dy });
+      });
     },
-    [draggingItemId, isDragging, dragOffset, screenToCanvas, onMove]
+    [isDragging, anchorStart, groupStartPos, screenToCanvas, onMove]
   );
 
   const endDrag = useCallback(() => {
-    setDraggingItemId(null);
     setIsDragging(false);
-    setDragOffset({ x: 0, y: 0 });
+    setDraggingAnchorId(null);
+    setGroupIds([]);
+    setGroupStartPos(null);
+    setAnchorStart(null);
   }, []);
 
   return {
-    draggingItemId,
     isDragging,
-    startDrag,
+    startGroupDrag,
     continueDrag,
     endDrag,
   };
