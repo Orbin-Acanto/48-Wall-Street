@@ -38,8 +38,7 @@ export const AV_EQUIPMENT_LIBRARY: DraggableLibraryItem[] = [
     defaultDimensions: { width: 60, height: 36, unit: 'in' },
     svgPath: `<rect x="-30" y="-18" width="60" height="36" fill="#2F4F4F" stroke="#000" stroke-width="2"/>
               <rect x="-25" y="-13" width="20" height="15" fill="#1C1C1C" stroke="#666" stroke-width="1"/>
-              <rect x="5" y="-13" width="20" height="15" fill="#1C1C1C" stroke="#666" stroke-width="1"/>
-              <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">DJ</text>`,
+              <rect x="5" y="-13" width="20" height="15" fill="#1C1C1C" stroke="#666" stroke-width="1"/>`,
   },
   {
     id: 'microphone-stand',

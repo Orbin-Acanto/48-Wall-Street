@@ -87,6 +87,7 @@ export interface FurnitureItem {
   svgPath: string;
   locked?: boolean;
   zIndex?: number;
+  groupBy?: string;
 }
 
 export interface EventDetails {
@@ -159,6 +160,7 @@ export interface DraggableLibraryItem {
   defaultDimensions: Dimensions;
   svgPath: string;
   thumbnail?: string;
+  groupBy?: string;
 }
 
 export interface ViewportTransform {
@@ -191,6 +193,7 @@ export interface LibraryItemLike {
   name: string;
   defaultDimensions: FurnitureItem['dimensions'];
   svgPath: string;
+  groupBy?: string;
 }
 
 export type Tool =

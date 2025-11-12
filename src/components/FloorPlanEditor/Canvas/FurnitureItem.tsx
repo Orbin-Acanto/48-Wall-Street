@@ -23,12 +23,10 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
 }) => {
   const pxPerInch = pixelsPerFoot / 12;
 
-  // Current dimensions (respect unit)
   const dimUnit = item.dimensions.unit || 'in';
   const currentWIn = toInches(item.dimensions.width, dimUnit);
   const currentHIn = toInches(item.dimensions.height, dimUnit);
 
-  // Base/original dimensions for svgPath scaling
   const baseUnit = item.baseDimensions?.unit || dimUnit;
   const baseWIn = toInches(
     item.baseDimensions?.width ?? item.dimensions.width,
@@ -39,7 +37,6 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
     baseUnit
   );
 
-  // Avoid div-by-zero
   const safeBaseWIn = baseWIn || currentWIn || 1;
   const safeBaseHIn = baseHIn || currentHIn || 1;
 
@@ -56,15 +53,14 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
       transform={`translate(${item.position.x},${item.position.y}) rotate(${item.rotation})`}
       onMouseDown={(e) => {
         e.stopPropagation();
-        onClick(); // always selectable
+        onClick();
         if (!isLocked) {
-          onDragStart(e); // drag only when unlocked
+          onDragStart(e);
         }
       }}
       style={{ cursor: isLocked ? 'not-allowed' : 'move' }}
       className={isSelected ? 'furniture-item-selected' : 'furniture-item'}
     >
-      {/* Selection frame */}
       {isSelected && (
         <g>
           <rect
@@ -121,7 +117,6 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
         </g>
       )}
 
-      {/* Actual furniture SVG, scaled from its base dimensions */}
       <g transform={`scale(${scaleX},${scaleY})`}>
         <g
           transform={`scale(${pxPerInch})`}
@@ -130,7 +125,6 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
         />
       </g>
 
-      {/* Label */}
       {isSelected && (
         <text
           y={-heightPx / 2 - 20}
@@ -145,7 +139,6 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
         </text>
       )}
 
-      {/* Dimensions text (shown in current unit) */}
       {showDimensions && (
         <text
           y={heightPx / 2 + 15}
@@ -160,7 +153,6 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
         </text>
       )}
 
-      {/* Type pill */}
       {isSelected && (
         <g transform={`translate(${widthPx / 2 + 10}, ${-heightPx / 2 - 5})`}>
           <rect x={0} y={-8} width={40} height={16} fill="#3B82F6" rx={8} />

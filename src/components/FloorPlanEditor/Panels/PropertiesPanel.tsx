@@ -48,13 +48,13 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   if (!selectedItem) {
     const categoryCounts = furnitureItems.reduce<Record<string, number>>(
       (acc, item) => {
-        const key = item.category;
+        const key = item.groupBy || item.category;
         acc[key] = (acc[key] ?? 0) + 1;
         return acc;
       },
       {}
     );
-
+    console.log('Final counts:', categoryCounts);
     return (
       <div className="flex w-80 flex-col border-l border-gray-200 bg-white">
         {/* Header */}

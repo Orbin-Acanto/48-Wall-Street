@@ -242,6 +242,7 @@ export const FloorPlanEditor: React.FC = () => {
         svgPath: libraryItem.svgPath,
         locked: false,
         zIndex: 1,
+        groupBy: libraryItem.groupBy,
       };
 
       if (

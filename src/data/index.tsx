@@ -275,18 +275,18 @@ export const socialLinks = [
 export const teamMembers: TeamMember[] = [
   {
     name: 'Micheal Tardi',
-    title: 'Managing Partner',
-    image: 'https://avatar.iran.liara.run/public/20',
+    title: 'Owner',
+    image: '/headshots/michael.jpg',
   },
   {
-    name: 'Micheal Tardi',
-    title: 'General Manager and Operations Manager',
-    image: 'https://avatar.iran.liara.run/public/20',
+    name: 'Lauren Leuci',
+    title: 'Director of Sales',
+    image: '/headshots/Lauren.png',
   },
   {
-    name: 'Micheal Tardi',
-    title: 'Executive Chef',
-    image: 'https://avatar.iran.liara.run/public/20',
+    name: 'Andrew Heaton',
+    title: 'Director of Operations',
+    image: '/headshots/Andy.png',
   },
 ];
 
@@ -3231,12 +3231,17 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
   {
     category: '60" Round Tables',
     label: '60" ROUND TABLES',
-    color: '#26A9E0',
+    color: '#2BACE2',
+  },
+  {
+    category: 'Seating',
+    label: 'Seating',
+    color: '#2BACE2',
   },
   {
     category: 'Swag Table',
     label: 'SWAG TABLE',
-    color: '#242671',
+    color: '#2E3192',
   },
   {
     category: 'Staging',
@@ -3251,52 +3256,52 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
   {
     category: 'Award Table',
     label: 'AWARD TABLE',
-    color: '#FFD400',
+    color: '#F9ED32',
   },
   {
     category: 'Coffee',
     label: 'COFFEE',
-    color: '#2F4F4F',
+    color: '#355855',
   },
   {
-    category: 'Italian Station',
-    label: 'ITALIAN STATION',
-    color: '#27AE60',
+    category: 'Food 1',
+    label: 'FOOD STATION 1',
+    color: '#39B54A',
   },
   {
     category: 'Auction Tables',
     label: 'AUCTION TABLES',
-    color: '#6FD4C2',
+    color: '#6BC5A8',
   },
   {
     category: "12' Bar",
     label: '12’ BAR',
-    color: '#0097A7',
+    color: '#00A79D',
   },
   {
     category: 'Registration',
     label: 'REGISTRATION TABLE',
-    color: '#5E2A84',
+    color: '#662D91',
   },
   {
     category: 'Red Carpet',
     label: 'RED CARPET',
-    color: '#B71C1C',
+    color: '#AF2025',
   },
   {
-    category: 'Chinese Station',
-    label: 'CHINESE STATION',
-    color: '#6D3B0F',
+    category: 'Food 2',
+    label: 'FOOD STATION 2',
+    color: '#603913',
   },
   {
-    category: 'Europe Station',
-    label: 'EUROPE STATION',
-    color: '#8E24AA',
+    category: 'Food 3',
+    label: 'FOOD STATION 3',
+    color: '#92278F',
   },
   {
     category: "18' Bar",
     label: '18’ BAR',
-    color: '#C2185B',
+    color: '#9E1F63',
   },
   {
     category: 'Black Highboys',
