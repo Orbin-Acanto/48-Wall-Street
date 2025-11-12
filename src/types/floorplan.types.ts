@@ -38,6 +38,13 @@ export interface DoorWindow {
   svgIcon?: string;
 }
 
+export type LegendItemWithCount = {
+  category: string;
+  label: string;
+  color: string;
+  count: number;
+};
+
 export type ExportLayoutOptions = {
   filename?: string;
   hideGrid?: boolean;
@@ -46,6 +53,7 @@ export type ExportLayoutOptions = {
   eventDate?: string;
   logoUrl?: string;
   clientLogo?: string | null;
+  legendItems?: LegendItemWithCount[];
 };
 
 export type BBox = {
@@ -121,6 +129,7 @@ export interface ExportImportModalProps {
   onImport: (file: File) => void;
   onClose: () => void;
   eventDetails: EventDetails;
+  legendItems: LegendItemWithCount[];
 }
 
 export type FloorLevel = 'grand_mezzanine' | 'concourse';

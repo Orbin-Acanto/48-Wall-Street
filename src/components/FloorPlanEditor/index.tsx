@@ -29,6 +29,7 @@ import {
   SidebarType,
   ModalType,
   FloorKey,
+  LegendItemWithCount,
 } from '@/types/floorplan.types';
 import { v4 as uuidv4 } from 'uuid';
 import { DoorWindow } from '@/types/floorplan.types';
@@ -96,6 +97,9 @@ export const FloorPlanEditor: React.FC = () => {
   const [activeSidebar, setActiveSidebar] = useState<SidebarType>('furniture');
   const [activeModal, setActiveModal] = useState<ModalType>(null);
   const [showPropertiesPanel, setShowPropertiesPanel] = useState<boolean>(true);
+  const [legendItemsWithCounts, setLegendItemsWithCounts] = useState<
+    LegendItemWithCount[]
+  >([]);
 
   const [selectedItemType, setSelectedItemType] = useState<SelectedType>(null);
   const [selectedDoorRef, setSelectedDoorRef] = useState<{
@@ -643,6 +647,7 @@ export const FloorPlanEditor: React.FC = () => {
             selectedItemType={selectedItemType}
             isLocked={floorPlan.isLocked}
             furnitureItems={floorPlan.furniture}
+            onLegendUpdate={setLegendItemsWithCounts}
             onUpdate={(updates) => {
               if (!selectedItemId || !selectedItemType) return;
 
@@ -700,6 +705,7 @@ export const FloorPlanEditor: React.FC = () => {
           onImport={handleLoad}
           onClose={() => setActiveModal(null)}
           eventDetails={floorPlan.eventDetails}
+          legendItems={legendItemsWithCounts}
         />
       )}
 

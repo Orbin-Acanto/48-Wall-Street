@@ -18,6 +18,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
   onImport,
   onClose,
   eventDetails,
+  legendItems,
 }) => {
   const [activeTab, setActiveTab] = useState<'export' | 'import'>('export');
   const [selectedFormat, setSelectedFormat] = useState<ExportFormat>('json');
@@ -119,6 +120,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
             eventDate: headerDate,
             logoUrl: '/logo/48-wall-logo.svg',
             clientLogo: clientLogo ?? null,
+            legendItems: legendItems,
           });
         }
         break;

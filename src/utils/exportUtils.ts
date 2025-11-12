@@ -326,6 +326,16 @@ const stripGridFromSvg = (svg: SVGSVGElement) => {
     if (!d.children.length) d.remove();
   });
 };
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
 // Primary Helper End
 
 // Json Import
@@ -639,7 +649,6 @@ export const exportToPNG = async (
     1.0
   );
 };
-
 // Pdf Export
 export const exportToPDF = async (
   data: FloorPlanData,
@@ -654,6 +663,7 @@ export const exportToPDF = async (
     eventDate,
     logoUrl = DEFAULT_LOGO_URL,
     clientLogo,
+    legendItems,
   } = options;
 
   const svgBounds = getSvgContentBounds(svgElement, hideGrid);
@@ -680,6 +690,7 @@ export const exportToPDF = async (
   const margin = 30;
   const headerHeight = 90;
   const footerHeight = 35;
+  const legendWidth = 140;
 
   const headerX = margin;
   const headerY = margin;
@@ -820,12 +831,14 @@ export const exportToPDF = async (
   pdf.setTextColor(17, 24, 39);
   pdf.text(eventDate || data.eventDetails?.eventDate || '-', rightX, textY);
 
+  const planToLegendGap = 8;
   const planAreaMargin = 10;
-  const availWidth = pageWidth - planAreaMargin * 2;
+  const availWidth =
+    pageWidth - planAreaMargin * 2 - legendWidth - planToLegendGap;
   const availHeight =
     pageHeight - headerY - headerHeight - footerHeight - planAreaMargin;
 
-  const planScale = Math.min(availWidth / planW, availHeight / planH) * 0.95;
+  const planScale = Math.min(availWidth / planW, availHeight / planH) * 1.05;
   const drawPlanW = planW * planScale;
   const drawPlanH = planH * planScale;
 
@@ -837,7 +850,7 @@ export const exportToPDF = async (
     drawPlanH,
   });
 
-  const planX = (pageWidth - drawPlanW) / 2;
+  const planX = margin + 10;
   const planY = margin + headerHeight + (availHeight - drawPlanH) / 2;
 
   pdf.setFillColor(255, 255, 255);
@@ -853,6 +866,85 @@ export const exportToPDF = async (
     undefined,
     'FAST'
   );
+
+  if (legendItems && legendItems.length > 0) {
+    const filteredItems = legendItems.filter((item) => item.count > 0);
+
+    if (filteredItems.length > 0) {
+      const legendPadding = 5;
+      const itemHeight = 12;
+
+      const legendContentHeight =
+        14 + 14 + filteredItems.length * itemHeight + legendPadding * 2 + 5;
+
+      const legendBoxX = planX + drawPlanW + planToLegendGap;
+      const legendBoxY = margin + headerHeight + 10;
+      const legendBoxWidth = legendWidth;
+      const legendBoxHeight = Math.min(legendContentHeight, availHeight - 20);
+
+      pdf.setDrawColor(17, 24, 39);
+      pdf.setLineWidth(0.8);
+      pdf.rect(legendBoxX, legendBoxY, legendBoxWidth, legendBoxHeight);
+
+      const legendContentX = legendBoxX + legendPadding;
+      let currentY = legendBoxY + legendPadding + 9;
+
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(8);
+      pdf.setTextColor(17, 24, 39);
+      pdf.text('LEGEND', legendContentX, currentY);
+
+      currentY += 10;
+
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(6);
+      pdf.setTextColor(107, 114, 128);
+      const description = 'Overview of key layout elements.';
+      pdf.text(description, legendContentX, currentY);
+
+      currentY += 13;
+
+      const legendInnerWidth = legendBoxWidth - legendPadding * 2;
+
+      filteredItems.forEach((item) => {
+        const hexColor = item.color;
+        const rgb = hexToRgb(hexColor);
+        if (rgb) {
+          pdf.setFillColor(rgb.r, rgb.g, rgb.b);
+          pdf.setDrawColor(200, 200, 200);
+          pdf.setLineWidth(0.5);
+          pdf.rect(legendContentX, currentY - 6, 7, 7, 'FD');
+        }
+
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(6.5);
+        pdf.setTextColor(17, 24, 39);
+        const maxLabelLength = 27;
+        const labelText =
+          item.label.length > maxLabelLength
+            ? item.label.substring(0, maxLabelLength) + '...'
+            : item.label;
+        pdf.text(labelText, legendContentX + 10, currentY);
+
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(6.5);
+        pdf.setTextColor(75, 85, 99);
+        const countText = `${item.count}`;
+        const countWidth = pdf.getTextWidth(countText);
+        pdf.text(
+          countText,
+          legendContentX + legendInnerWidth - countWidth,
+          currentY
+        );
+
+        currentY += itemHeight;
+      });
+
+      console.log(
+        `Legend: Displayed ${filteredItems.length} items, final Y: ${currentY}, box bottom: ${legendBoxY + legendBoxHeight}`
+      );
+    }
+  }
 
   const footerTop = pageHeight - footerHeight - 10;
   pdf.setDrawColor(17, 24, 39);

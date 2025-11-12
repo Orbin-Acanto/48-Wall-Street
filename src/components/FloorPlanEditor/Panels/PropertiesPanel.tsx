@@ -1,10 +1,12 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 import {
   FurnitureItem,
   Room,
   SelectedType,
   Wall,
   DoorWindow,
+  LegendItemWithCount,
 } from '@/types/floorplan.types';
 import { formatFeetAndInches } from '@/utils/conversionUtils';
 import {
@@ -33,6 +35,7 @@ interface PropertiesPanelProps {
   onClose: () => void;
   furnitureItems?: FurnitureItem[];
   pixelsPerFoot?: number;
+  onLegendUpdate: (items: LegendItemWithCount[]) => void;
 }
 
 export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
@@ -44,6 +47,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   onDelete,
   furnitureItems = [],
   pixelsPerFoot,
+  onLegendUpdate,
 }) => {
   if (!selectedItem) {
     const categoryCounts = furnitureItems.reduce<Record<string, number>>(
@@ -54,7 +58,19 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
       },
       {}
     );
-    console.log('Final counts:', categoryCounts);
+
+    const legendItemsWithCounts = LEGEND_ITEMS.filter(
+      (item) => (categoryCounts[item.category] ?? 0) > 0
+    ).map((item) => ({
+      category: item.category,
+      label: item.label,
+      color: item.color,
+      count: categoryCounts[item.category] ?? 0,
+    }));
+    useEffect(() => {
+      onLegendUpdate(legendItemsWithCounts);
+    }, [furnitureItems, onLegendUpdate]);
+
     return (
       <div className="flex w-80 flex-col border-l border-gray-200 bg-white">
         {/* Header */}
