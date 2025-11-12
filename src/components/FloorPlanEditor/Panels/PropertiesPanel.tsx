@@ -49,28 +49,29 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   pixelsPerFoot,
   onLegendUpdate,
 }) => {
+  const categoryCounts = furnitureItems.reduce<Record<string, number>>(
+    (acc, item) => {
+      const key = item.groupBy || item.category;
+      acc[key] = (acc[key] ?? 0) + 1;
+      return acc;
+    },
+    {}
+  );
+
+  const legendItemsWithCounts = LEGEND_ITEMS.filter(
+    (item) => (categoryCounts[item.category] ?? 0) > 0
+  ).map((item) => ({
+    category: item.category,
+    label: item.label,
+    color: item.color,
+    count: categoryCounts[item.category] ?? 0,
+  }));
+
+  useEffect(() => {
+    onLegendUpdate(legendItemsWithCounts);
+  }, [furnitureItems, onLegendUpdate]);
+
   if (!selectedItem) {
-    const categoryCounts = furnitureItems.reduce<Record<string, number>>(
-      (acc, item) => {
-        const key = item.groupBy || item.category;
-        acc[key] = (acc[key] ?? 0) + 1;
-        return acc;
-      },
-      {}
-    );
-
-    const legendItemsWithCounts = LEGEND_ITEMS.filter(
-      (item) => (categoryCounts[item.category] ?? 0) > 0
-    ).map((item) => ({
-      category: item.category,
-      label: item.label,
-      color: item.color,
-      count: categoryCounts[item.category] ?? 0,
-    }));
-    useEffect(() => {
-      onLegendUpdate(legendItemsWithCounts);
-    }, [furnitureItems, onLegendUpdate]);
-
     return (
       <div className="flex w-80 flex-col border-l border-gray-200 bg-white">
         {/* Header */}

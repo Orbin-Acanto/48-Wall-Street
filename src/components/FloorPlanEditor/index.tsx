@@ -510,7 +510,9 @@ export const FloorPlanEditor: React.FC = () => {
         onToggleLock={toggleLock}
         onOpenEventDetails={() => setActiveModal('event')}
       />
-      <div className="mx-4 mt-2 mb-2 flex items-center gap-3">
+
+      {/* Floor Selector  */}
+      {/* <div className="mx-4 mt-2 mb-2 flex items-center gap-3">
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-600">Floor:</span>
           {(['ground', 'concourse'] as FloorKey[]).map((key) => (
@@ -527,7 +529,7 @@ export const FloorPlanEditor: React.FC = () => {
             </button>
           ))}
         </div>
-      </div>
+      </div> */}
       <div className="flex flex-1 overflow-hidden">
         <div className="flex">
           <div className="flex flex-col items-center space-y-2 bg-gray-800 py-4">
