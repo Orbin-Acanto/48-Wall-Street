@@ -183,11 +183,11 @@ export const useFloorPlanState = () => {
   // Furniture
   // ----------------------------
   const addFurniture = useCallback(
-    (furniture: Omit<FurnitureItem, 'id'>) => {
+    (f: Omit<FurnitureItem, 'id'>) => {
       const newId = uuidv4();
       updateFloorPlan((prev) => ({
         ...prev,
-        furniture: [...prev.furniture, { ...furniture, id: newId }],
+        furniture: [...prev.furniture, { ...f, id: newId }],
       }));
       return newId;
     },

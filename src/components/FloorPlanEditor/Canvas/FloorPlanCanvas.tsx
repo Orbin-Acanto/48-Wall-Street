@@ -121,10 +121,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     startGroupDrag,
     continueDrag,
     endDrag,
-  } = useFurnitureDrag({
-    onMove: onFurnitureMove,
-    screenToCanvas,
-  });
+  } = useFurnitureDrag({ onMove: onFurnitureMove, screenToCanvas });
 
   const [curvePoints, setCurvePoints] = useState<Point[]>([]);
   const prevToolRef = useRef<Tool>(selectedTool);
@@ -211,12 +208,11 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
           }}
           onDragStart={(e) => {
             e.stopPropagation();
-            const ids =
-              selectedFurnitureIds && selectedFurnitureIds.size
-                ? Array.from(selectedFurnitureIds)
-                : [item.id];
+            const idsToDrag = selectedFurnitureIds?.has?.(item.id)
+              ? Array.from(selectedFurnitureIds)
+              : [item.id];
 
-            startGroupDrag(e, item.id, ids, (id) => {
+            startGroupDrag(e, item.id, idsToDrag, (id) => {
               const f = furniture.find((ff) => ff.id === id);
               return f ? f.position : null;
             });

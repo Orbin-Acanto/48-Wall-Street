@@ -422,6 +422,10 @@ export const FloorPlanEditor: React.FC = () => {
     [floorPlan.walls, updateWall]
   );
 
+  // Click-drag marquee selection
+  // Arrow-key nudge
+  // Group Can move together, they should rotate together as well
+
   const addWindowToWall = useCallback(
     (wallId: string, position: number = 0.5) => {
       const wall = floorPlan.walls.find((w) => w.id === wallId);

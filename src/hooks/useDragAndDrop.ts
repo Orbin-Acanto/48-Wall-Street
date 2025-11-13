@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import {
   GetPosFn,
   Point,
@@ -101,63 +101,60 @@ export const useFurnitureDrag = ({
   onMove,
   screenToCanvas,
 }: UseFurnitureDragProps) => {
-  const [draggingAnchorId, setDraggingAnchorId] = useState<string | null>(null);
-  const [groupIds, setGroupIds] = useState<string[]>([]);
-  const [groupStartPos, setGroupStartPos] = useState<Map<string, Point> | null>(
-    null
-  );
-  const [anchorStart, setAnchorStart] = useState<Point | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);
+  const anchorStartRef = useRef<Point | null>(null);
+  const groupStartPosRef = useRef<Map<string, Point> | null>(null);
+  const groupIdsRef = useRef<string[]>([]);
 
   const startGroupDrag = useCallback(
     (
       e: React.MouseEvent,
       anchorId: string,
-      selectedIds: string[],
-      getPositionById: GetPosFn
+      ids: string[],
+      getPos: (id: string) => Point | null
     ) => {
       const startPt = screenToCanvas(e.clientX, e.clientY);
-      const ids = selectedIds.length ? selectedIds : [anchorId];
-
       const startMap = new Map<string, Point>();
       ids.forEach((id) => {
-        const p = getPositionById(id);
+        const p = getPos(id);
         if (p) startMap.set(id, { x: p.x, y: p.y });
       });
-
-      setDraggingAnchorId(anchorId);
-      setGroupIds(ids);
-      setGroupStartPos(startMap);
-      setAnchorStart(startPt);
-      setIsDragging(true);
+      anchorStartRef.current = startPt;
+      groupStartPosRef.current = startMap;
+      groupIdsRef.current = ids;
+      isDraggingRef.current = true;
     },
     [screenToCanvas]
   );
 
   const continueDrag = useCallback(
     (e: React.MouseEvent) => {
-      if (!isDragging || !anchorStart || !groupStartPos) return;
+      if (
+        !isDraggingRef.current ||
+        !anchorStartRef.current ||
+        !groupStartPosRef.current
+      )
+        return;
       const pt = screenToCanvas(e.clientX, e.clientY);
-      const dx = pt.x - anchorStart.x;
-      const dy = pt.y - anchorStart.y;
+      const dx = pt.x - anchorStartRef.current.x;
+      const dy = pt.y - anchorStartRef.current.y;
 
-      groupStartPos.forEach((startPos, id) => {
+      groupStartPosRef.current.forEach((startPos, id) => {
         onMove(id, { x: startPos.x + dx, y: startPos.y + dy });
       });
     },
-    [isDragging, anchorStart, groupStartPos, screenToCanvas, onMove]
+    [screenToCanvas, onMove]
   );
 
   const endDrag = useCallback(() => {
-    setIsDragging(false);
-    setDraggingAnchorId(null);
-    setGroupIds([]);
-    setGroupStartPos(null);
-    setAnchorStart(null);
+    isDraggingRef.current = false;
+    anchorStartRef.current = null;
+    groupStartPosRef.current = null;
+    groupIdsRef.current = [];
   }, []);
 
   return {
-    isDragging,
+    isDragging: isDraggingRef.current,
     startGroupDrag,
     continueDrag,
     endDrag,
