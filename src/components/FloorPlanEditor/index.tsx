@@ -128,12 +128,9 @@ export const FloorPlanEditor: React.FC = () => {
 
   // ---Underlay UI state ---
   const [selectedFloor, setSelectedFloor] = useState<FloorKey>('ground');
-  const [underlayScale, setUnderlayScale] = useState<number>(2.955);
-  const [underlayOpacity, setUnderlayOpacity] = useState<number>(1);
-  const [underlayOffset, setUnderlayOffset] = useState<{
-    x: number;
-    y: number;
-  }>({ x: 40, y: 40 });
+  const underlayScale: number = 2.955;
+  const underlayOpacity: number = 1;
+  const underlayOffset: { x: number; y: number } = { x: 40, y: 40 };
 
   const underlayDef = FLOOR_UNDERLAYS[selectedFloor];
 
