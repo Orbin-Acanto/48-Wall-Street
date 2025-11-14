@@ -174,7 +174,7 @@ export interface MarqueeProps {
 }
 
 export interface JourneyEvent {
-  src: string;
+  images: string[];
   title: string;
   category: string;
   location?: string;

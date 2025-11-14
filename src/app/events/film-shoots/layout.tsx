@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Events & Celebrations | 48 Wall Street NYC - Corporate, Weddings, Bar Mitzvahs & More',
+  title: 'Film and TV Shoot Location in NYC | 48 Wall Street',
   description:
     "Host unforgettable events at 48 Wall Street in Manhattan's Financial District. From corporate conferences and weddings to Bar/Bat Mitzvahs, fashion shows, film shoots, holiday parties, and nonprofit galas in our historic 1920s venue.",
   keywords:

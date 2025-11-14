@@ -121,7 +121,7 @@ export default function CateringSection() {
               className="absolute top-0 right-0 hidden h-48 w-64 overflow-hidden border-4 border-white shadow-2xl sm:block md:h-64 md:w-80"
               style={{
                 transform: `translateY(${scrollProgress * 120}px)`,
-                opacity: Math.max(0.8, 1 - scrollProgress * 0.3),
+                // opacity: Math.max(0.8, 1 - scrollProgress * 0.3),
               }}
             >
               <Image
@@ -137,7 +137,7 @@ export default function CateringSection() {
               className="absolute bottom-40 left-0 h-56 w-56 overflow-hidden border-4 border-white shadow-2xl md:h-68 md:w-68"
               style={{
                 transform: `translateY(${scrollProgress * -200}px)`,
-                opacity: Math.max(0.8, 1 - scrollProgress * 0.3),
+                // opacity: Math.max(0.8, 1 - scrollProgress * 0.3),
               }}
             >
               <Image
@@ -153,7 +153,7 @@ export default function CateringSection() {
               className="absolute right-0 bottom-20 h-60 w-60 overflow-hidden border-4 border-white shadow-2xl md:h-80 md:w-80"
               style={{
                 transform: `translateY(${scrollProgress * 160}px)`,
-                opacity: Math.max(0.8, 1 - scrollProgress * 0.3),
+                // opacity: Math.max(0.8, 1 - scrollProgress * 0.3),
               }}
             >
               <Image

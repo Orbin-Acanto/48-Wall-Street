@@ -58,7 +58,7 @@ export default function About() {
                 }}
               >
                 <Image
-                  src="/about/about (4).jpg"
+                  src="/about/about (3).jpg"
                   alt="Lounge Area"
                   fill
                   quality={100}
@@ -98,7 +98,7 @@ export default function About() {
             }}
           >
             <Image
-              src="/about/about (3).jpg"
+              src="/gallery/corporate/ (25).jpg"
               alt="48 Wall Street Building Exterior"
               fill
               quality={100}

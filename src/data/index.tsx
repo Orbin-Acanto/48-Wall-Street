@@ -259,17 +259,17 @@ export const socialLinks = [
     href: 'https://www.facebook.com/48wallst/',
     label: 'Facebook',
   },
-  { icon: '/icons/x.svg', href: 'https://x.com', label: 'X' },
+  // { icon: '/icons/x.svg', href: 'https://x.com', label: 'X' },
   {
     icon: '/icons/instagram.svg',
     href: 'https://www.instagram.com/48wallst/',
     label: 'Instagram',
   },
-  {
-    icon: '/icons/youtube.svg',
-    href: 'https://www.youtube.com/@Mmeink1',
-    label: 'YouTube',
-  },
+  // {
+  //   icon: '/icons/youtube.svg',
+  //   href: 'https://www.youtube.com/@Mmeink1',
+  //   label: 'YouTube',
+  // },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -2772,6 +2772,55 @@ export const menuPages = [
   { id: 30, image: '/menu/48-wall-menu.2025__page-0030.jpg' },
 ];
 
+export const items = [
+  {
+    images: [
+      '/event/Cornell/1.jpg',
+      '/event/Cornell/2.jpg',
+      '/event/Cornell/3.jpg',
+    ],
+    title: 'Cornell Alumni Conference',
+    category: 'Conferences',
+    location: 'Cornell',
+  },
+  {
+    images: ['/event/FPM/1.jpg', '/event/FPM/2.jpg', '/event/FPM/3.jpg'],
+    title: 'World Of Excellence Fund Raising Gala',
+    category: 'Galas',
+    location: 'FPM US',
+  },
+  {
+    images: [
+      '/event/Alice_Oliva/1.jpg',
+      '/event/Alice_Oliva/2.jpg',
+      '/event/Alice_Oliva/3.jpg',
+    ],
+    title: 'Immersive Fashion Show',
+    category: 'Fashion Shows',
+    location: 'Alice + Oliva',
+  },
+
+  {
+    images: [
+      '/event/Nordstrom/1.jpg',
+      '/event/Nordstrom/2.jpg',
+      '/event/Nordstrom/3.jpg',
+    ],
+    title: 'Vintage Department Store Activation',
+    category: 'Event Activation',
+    location: 'Nordstrom',
+  },
+  {
+    images: [
+      '/event/Wedding/1.jpg',
+      '/event/Wedding/2.jpg',
+      '/event/Wedding/3.jpg',
+    ],
+    title: 'Wedding Ceremony',
+    category: 'Wedding',
+  },
+];
+
 export const eventProductionData = {
   title: 'Event Production NYC',
   subtitle: 'Spectacular Events at 48 Wall Street',
@@ -3442,15 +3491,5 @@ export const sidebarSocialLinks = [
     name: 'Instagram',
     icon: '/icons/instagram.svg',
     href: 'https://www.instagram.com/48wallst/',
-  },
-  {
-    name: 'X',
-    icon: '/icons/x.svg',
-    href: 'https://x.com',
-  },
-  {
-    name: 'YouTube',
-    icon: '/icons/youtube.svg',
-    href: 'https://www.youtube.com/@Mmeink1',
   },
 ];

@@ -57,11 +57,10 @@ export default function JourneyTimelineScroll({ items }: Props) {
               </span>
             </motion.div>
 
-            <h2 className="heading-hero text-white">Our Event Journey</h2>
+            <h2 className="heading-hero text-white">Event Highlights</h2>
 
             <p className="text-lead text-white">
-              Follow our path of creating unforgettable moments across the
-              country
+              Explore some of our past events.
             </p>
           </motion.div>
         </div>

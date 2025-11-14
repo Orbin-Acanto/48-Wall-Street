@@ -1,5 +1,10 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from 'framer-motion';
 import { JourneyEvent } from '@/types';
 
 interface EventCardProps {
@@ -14,6 +19,7 @@ export const EventCard: React.FC<EventCardProps> = ({
   isLeft,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -31,6 +37,20 @@ export const EventCard: React.FC<EventCardProps> = ({
     [0, 0.15, 0.85, 1],
     [0, 1, 1, 0.85]
   );
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % event.images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + event.images.length) % event.images.length
+    );
+  };
+
+  const goToImage = (idx: number) => {
+    setCurrentImageIndex(idx);
+  };
 
   return (
     <div
@@ -63,23 +83,99 @@ export const EventCard: React.FC<EventCardProps> = ({
             whileHover={{ y: -8 }}
             className="group-hover:border-primary bg-whitesmoke/95 relative overflow-hidden border-2 border-gray-200 backdrop-blur-sm transition-all duration-300 group-hover:shadow-xl"
           >
-            {/* Image  */}
+            {/* Image Slider */}
             <div className="relative h-64 overflow-hidden md:h-80 lg:h-96">
-              <motion.img
-                src={event.src}
-                alt={event.title}
-                className="h-full w-full object-cover"
-                whileHover={{ scale: 1.08 }}
-                transition={{ duration: 0.6 }}
-              />
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentImageIndex}
+                  src={event.images[currentImageIndex]}
+                  alt={`${event.title} - Image ${currentImageIndex + 1}`}
+                  className="h-full w-full object-cover"
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5 }}
+                />
+              </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
+              {/* Navigation Arrows */}
+              {event.images.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prevImage();
+                    }}
+                    className="absolute top-1/2 left-4 z-20 -translate-y-1/2 rounded-full bg-white/80 p-2 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-white"
+                    aria-label="Previous image"
+                  >
+                    <svg
+                      className="h-6 w-6 text-gray-800"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      nextImage();
+                    }}
+                    className="absolute top-1/2 right-4 z-20 -translate-y-1/2 rounded-full bg-white/80 p-2 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:bg-white"
+                    aria-label="Next image"
+                  >
+                    <svg
+                      className="h-6 w-6 text-gray-800"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </>
+              )}
+
+              {/* Dot Indicators */}
+              {event.images.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+                  {event.images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        goToImage(idx);
+                      }}
+                      className={`h-2 transition-all duration-300 ${
+                        idx === currentImageIndex
+                          ? 'bg-primary w-8'
+                          : 'w-2 bg-white/60 hover:bg-white/80'
+                      }`}
+                      aria-label={`Go to image ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+
               {/* Index number */}
-              <div className="absolute top-6 right-6 flex h-14 w-14 items-center justify-center border-2 border-white/80 bg-white/95 shadow-lg backdrop-blur-sm">
+              {/* <div className="absolute top-6 right-6 flex h-14 w-14 items-center justify-center border-2 border-white/80 bg-white/95 shadow-lg backdrop-blur-sm">
                 <span className="font-secondary text-primary text-3xl font-bold">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-              </div>
+              </div> */}
             </div>
 
             {/* Content */}
@@ -110,29 +206,6 @@ export const EventCard: React.FC<EventCardProps> = ({
                   {event.location}
                 </p>
               )}
-
-              {/* {event.href && (
-                <motion.a
-                  href={event.href}
-                  whileHover={{ x: 5 }}
-                  className="group/link text-primary inline-flex items-center gap-2 transition-colors hover:text-gray-900"
-                >
-                  View Project
-                  <svg
-                    className="h-5 w-5 transition-transform group-hover/link:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.5}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </motion.a>
-              )} */}
             </div>
 
             {/* Decorative corner element */}

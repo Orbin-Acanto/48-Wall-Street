@@ -41,7 +41,7 @@ export default function ServiceSectionItem({
       key={section.id}
       className="relative flex items-center py-20"
       style={{
-        backgroundColor: idx % 2 === 0 ? 'white' : 'whitesmoke',
+        backgroundColor: idx % 2 === 0 ? '#ffffff' : '#f5f5f5',
       }}
       aria-labelledby={`panel-${section.id}`}
     >
