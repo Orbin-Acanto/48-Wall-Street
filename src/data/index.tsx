@@ -29,8 +29,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 1,
     quote:
-      'WE HAD OUR WEDDING RECEPTION<br/>AT 48 WALL STREET AND WORKING WITH THEIR TEAM WAS INCREDIBLE!',
-    author: 'Sarah & Michael',
+      'We had our company holiday party at 48 Wall Street last night. The space is amazing - large and beautifully decorated, with comfortable seating and great lighting. The staff were outstanding and attentive. Highly recommend!',
+    author: 'Okone M.',
     event: 'Wedding Reception',
     details:
       '"Our operations manager made wedding planning a breeze - attentive, responsive, and focused on every detail to ensure perfection. She coordinated with all vendors, ran the show on our wedding day, and made it absolutely perfect. The venue itself is stunning with rooftop views, an immaculate reception room, and amazing city views. The food and service were exceptional - comparable to fine dining in Manhattan. The staff went above and beyond, ensuring everyone had a great experience. We wholeheartedly recommend 48 Wall Street - they made our dreams come true!"',
@@ -40,8 +40,8 @@ export const testimonials: Testimonial[] = [
   {
     id: 2,
     quote:
-      'THE PERFECT VENUE FOR OUR CORPORATE EVENT. EXCEEDED ALL EXPECTATIONS!',
-    author: 'Goldman Sachs',
+      'I was very impressed with the entire 48 Wall Street team. The event always goes so fast and when I replay the evening in my head, what stands out most, are the smiles and support from everyone.',
+    author: 'Rose T.',
     event: 'Corporate Gala',
     details:
       '"48 Wall Street provided an elegant and professional setting for our annual gala. The attention to detail was impeccable, from the stunning ballroom setup to the world-class catering. Our guests were thoroughly impressed with the venue\'s sophistication and the staff\'s professionalism. The event coordination team made the entire process seamless."',
@@ -51,8 +51,41 @@ export const testimonials: Testimonial[] = [
   {
     id: 3,
     quote:
-      'AN UNFORGETTABLE BAR MITZVAH CELEBRATION IN A TRULY SPECTACULAR VENUE!',
-    author: 'The Cohen Family',
+      'We had a lot of elements at play that made our event sort of tricky to navigate. The night itself went off without a hitch. The food was incredible, the entertainment was excellent, and my entire staff is still talking about it. Highly recommend them.',
+    author: 'Taylyn R.',
+    event: 'Bar Mitzvah',
+    details:
+      '"We couldn\'t have asked for a better venue for our son\'s Bar Mitzvah. The team at 48 Wall Street went above and beyond to make our celebration special. The space was beautifully decorated, the food was outstanding, and the service was impeccable. Every guest commented on how amazing the venue was. Thank you for making this milestone so memorable!"',
+    image: '/testimonial/t_1.jpg',
+    imageLabel: 'COHEN FAMILY BAR MITZVAH',
+  },
+  {
+    id: 4,
+    quote:
+      '48 Wall Street is beautifully unique and added to the energetic atmosphere.',
+    author: 'Shane C.',
+    event: 'Bar Mitzvah',
+    details:
+      '"We couldn\'t have asked for a better venue for our son\'s Bar Mitzvah. The team at 48 Wall Street went above and beyond to make our celebration special. The space was beautifully decorated, the food was outstanding, and the service was impeccable. Every guest commented on how amazing the venue was. Thank you for making this milestone so memorable!"',
+    image: '/testimonial/t_1.jpg',
+    imageLabel: 'COHEN FAMILY BAR MITZVAH',
+  },
+  {
+    id: 5,
+    quote:
+      'We recently hosted a conference at the historic 48 Wall Street, and it was outstanding. Every detail was meticulously managed, from the seamless setup to the excellent catering.',
+    author: 'Nicholas L.',
+    event: 'Bar Mitzvah',
+    details:
+      '"We couldn\'t have asked for a better venue for our son\'s Bar Mitzvah. The team at 48 Wall Street went above and beyond to make our celebration special. The space was beautifully decorated, the food was outstanding, and the service was impeccable. Every guest commented on how amazing the venue was. Thank you for making this milestone so memorable!"',
+    image: '/testimonial/t_1.jpg',
+    imageLabel: 'COHEN FAMILY BAR MITZVAH',
+  },
+  {
+    id: 6,
+    quote:
+      "We held our daughter's wedding at 48 Wall Street and could not have been happier.",
+    author: 'Helen W.',
     event: 'Bar Mitzvah',
     details:
       '"We couldn\'t have asked for a better venue for our son\'s Bar Mitzvah. The team at 48 Wall Street went above and beyond to make our celebration special. The space was beautifully decorated, the food was outstanding, and the service was impeccable. Every guest commented on how amazing the venue was. Thank you for making this milestone so memorable!"',

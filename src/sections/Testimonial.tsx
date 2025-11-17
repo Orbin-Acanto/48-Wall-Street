@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { testimonials } from '@/data';
 
@@ -20,6 +19,16 @@ export default function Testimonial() {
     );
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) =>
+        prev === testimonials.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const currentTestimonial = testimonials[currentIndex];
 
   return (
@@ -31,67 +40,53 @@ export default function Testimonial() {
       {/* <div className="absolute top-1/2 right-0 left-0 h-px -translate-y-1/2 bg-gray-800/20"></div> */}
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Section Title */}
         <h2 className="heading-hero text-primary text-center">
           WHAT OUR GUESTS SAY
         </h2>
 
-        {/* Testimonial Card */}
-        <div className="border-primary mx-auto max-w-6xl border-1 bg-white shadow-2xl">
-          <div className="grid md:grid-cols-2">
-            {/* Left Side - Testimonial Content */}
+        <div className="border-primary mx-auto max-w-3xl border-1 bg-white shadow-2xl">
+          <div className="grid md:grid-cols-1">
             <div className="relative flex flex-col justify-center p-8 md:p-12">
-              {/* Quote Mark */}
-
-              {/* Main Quote */}
               <div className="relative z-10">
                 {/* <div className="font-primary text-primary/70 absolute top-[-30] left-[-30] text-8xl leading-none">
                   &quot;
                 </div> */}
                 <p
-                  className="font-secondary text-primary mb-6 text-lg leading-relaxed tracking-wide md:text-xl"
+                  className="font-secondary text-dark-black mb-6 text-lg leading-relaxed tracking-wide md:text-xl"
                   dangerouslySetInnerHTML={{ __html: currentTestimonial.quote }}
                 />
               </div>
 
-              {/* Detailed Review */}
-              <div className="mb-8">
+              {/* <div className="mb-8">
                 <p className="font-secondary text-dark-black/70 text-sm leading-relaxed">
                   {currentTestimonial.details}
                 </p>
-              </div>
+              </div> */}
 
-              {/* Author Info */}
               <div className="border-primary border-t-2 pt-6">
                 <p className="font-primary text-dark-black mb-1 text-xl">
                   {currentTestimonial.author}
                 </p>
-                <p className="font-secondary text-dark-black/60 text-sm tracking-wider uppercase">
+                {/* <p className="font-secondary text-dark-black/60 text-sm tracking-wider uppercase">
                   {currentTestimonial.event}
-                </p>
+                </p> */}
               </div>
             </div>
 
-            {/* Right Side - Image */}
-            <div className="relative h-full min-h-[400px] md:min-h-[600px]">
+            {/* <div className="relative h-full min-h-[400px] md:min-h-[600px]">
               <Image
                 src={currentTestimonial.image}
                 alt={currentTestimonial.author}
                 fill
                 className="object-cover"
               />
-              {/* Image Label */}
-              {/* <div className="bg-dark-black writing-mode-vertical absolute top-1/2 right-0 -translate-y-1/2 px-4 py-8 text-white">
-                <p className="font-secondary rotate-180 transform text-xs tracking-[0.3em] uppercase">
-                  {currentTestimonial.imageLabel}
-                </p>
-              </div> */}
+
               <div className="bg-dark-black/70 absolute bottom-4 left-4 rounded-sm px-3 py-1 text-white">
                 <p className="font-secondary text-xs tracking-wider uppercase">
                   {currentTestimonial.imageLabel}
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
