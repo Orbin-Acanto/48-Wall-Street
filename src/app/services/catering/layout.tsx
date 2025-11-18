@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     description:
       '30+ years culinary excellence. First-class dining for Manhattan events. Seated dinners, cocktails, buffets, breakfast & lunch.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/services/catering',

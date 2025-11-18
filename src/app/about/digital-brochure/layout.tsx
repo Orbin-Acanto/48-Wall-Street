@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     description:
       'Download our venue brochure with complete event space information, catering options, and historic venue details.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about/digital-brochure',

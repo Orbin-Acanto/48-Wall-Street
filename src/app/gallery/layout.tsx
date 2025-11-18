@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     description:
       "Stunning photos of corporate events, weddings, fashion shows, Bar/Bat Mitzvahs & holiday parties at Manhattan's premier historic venue.",
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/gallery',

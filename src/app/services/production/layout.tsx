@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     description:
       'Turn-key event production: AV, lighting, staging, custom fabrication & entertainment. Full-service solutions for Manhattan events.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/services/production',

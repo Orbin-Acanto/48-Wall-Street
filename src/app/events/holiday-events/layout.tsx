@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     description:
       'Premier Manhattan venue for corporate holiday parties. Historic elegance, festive atmosphere, full catering, 50-500 capacity.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/holiday-events',

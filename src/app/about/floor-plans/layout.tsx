@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     description:
       'View Grand Mezzanine and Concourse Level floor plans. Explore venue amenities and capacity information for your NYC event.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about/floor-plans',

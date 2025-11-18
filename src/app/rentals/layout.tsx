@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     description:
       'Explore thousands of rental items. Browse, add to cart, request proposals for your Manhattan event.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/rentals',

@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     description:
       'Premier Financial District venue for corporate meetings, conferences & events. State-of-the-art AV, flexible layouts, 50-500 capacity.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/corporate',

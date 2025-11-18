@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     description:
       'Venue policies and event guidelines for planning your event at 48 Wall Street NYC historic venue.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about/rules-regulations',

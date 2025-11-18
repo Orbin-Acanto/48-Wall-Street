@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     description:
       'Premier Manhattan fashion show venue. Grand marble staircase runway, 30-foot ceilings, professional lighting & historic architecture.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/fashion-shows',

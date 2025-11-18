@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     description:
       "Watch event videos from Manhattan's premier historic venue. Corporate events, weddings & celebrations in our stunning 1927 landmark.",
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about/event-video',

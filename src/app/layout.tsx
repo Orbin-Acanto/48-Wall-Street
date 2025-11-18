@@ -51,7 +51,6 @@ export const metadata: Metadata = {
     description:
       "Historic 1927 venue in Manhattan's Financial District. Perfect for corporate events, weddings & celebrations with full-service catering.",
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   robots: {
     index: true,

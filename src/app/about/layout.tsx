@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     description:
       'Historic 1927 Bank of New York building in Financial District. Meet our team and discover why clients love our landmark venue.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about',

@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     description:
       'Historic 1927 Manhattan location for film, TV & commercial productions. Original architecture, grand spaces, production support.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/film-shoots',

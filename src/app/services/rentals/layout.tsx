@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     description:
       '26+ years exclusive event rentals. Thousands of furniture, decor & prop items. Transform your Manhattan event.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/services/rentals',

@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     description:
       'Design your event with our interactive floor plan tool. Customize layouts and export your plan as PDF.',
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about/customize-plan',

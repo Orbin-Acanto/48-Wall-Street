@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     description:
       "Celebrate your Bar/Bat Mitzvah in Manhattan's premier historic venue. Customizable themes, full catering, 50-500 guests.",
     images: ['/images/twitter-home.jpg'],
-    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/bar-bat-mitzvahs',
