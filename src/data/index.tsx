@@ -334,17 +334,18 @@ export const teamMembers: TeamMember[] = [
 
 export const galleryPhotos: GPhoto[] = [
   {
-    src: '/gallery/corporate/ (1).jpg',
+    src: '/gallery/corporate/ (2).jpg',
     alt: 'corporate',
     category: 'corporate',
     size: 'large',
   },
   {
-    src: '/gallery/corporate/ (2).jpg',
+    src: '/gallery/corporate/ (1).jpg',
     alt: 'corporate',
     category: 'corporate',
-    size: 'small',
+    size: 'large',
   },
+
   {
     src: '/gallery/corporate/ (3).jpg',
     alt: 'corporate',
@@ -370,6 +371,12 @@ export const galleryPhotos: GPhoto[] = [
     size: 'large',
   },
   {
+    src: '/gallery/corporate/ (23).jpg',
+    alt: 'corporate',
+    category: 'corporate',
+    size: 'medium',
+  },
+  {
     src: '/gallery/corporate/ (7).jpg',
     alt: 'corporate',
     category: 'corporate',
@@ -380,6 +387,12 @@ export const galleryPhotos: GPhoto[] = [
     alt: 'corporate',
     category: 'corporate',
     size: 'small',
+  },
+  {
+    src: '/gallery/corporate/ (11).jpg',
+    alt: 'corporate',
+    category: 'corporate',
+    size: 'large',
   },
   {
     src: '/gallery/corporate/ (9).jpg',
@@ -393,30 +406,21 @@ export const galleryPhotos: GPhoto[] = [
     category: 'corporate',
     size: 'large',
   },
-  {
-    src: '/gallery/corporate/ (11).jpg',
-    alt: 'corporate',
-    category: 'corporate',
-    size: 'small',
-  },
+
   {
     src: '/gallery/corporate/ (12).jpg',
     alt: 'corporate',
     category: 'corporate',
     size: 'medium',
   },
+
   {
-    src: '/gallery/corporate/ (13).jpg',
-    alt: 'corporate',
-    category: 'corporate',
-    size: 'small',
-  },
-  {
-    src: '/gallery/corporate/ (14).jpg',
+    src: '/gallery/corporate/ (18).jpg',
     alt: 'corporate',
     category: 'corporate',
     size: 'large',
   },
+
   {
     src: '/gallery/corporate/ (15).jpg',
     alt: 'corporate',
@@ -430,16 +434,22 @@ export const galleryPhotos: GPhoto[] = [
     size: 'medium',
   },
   {
+    src: '/gallery/corporate/ (13).jpg',
+    alt: 'corporate',
+    category: 'corporate',
+    size: 'small',
+  },
+  {
     src: '/gallery/corporate/ (17).jpg',
     alt: 'corporate',
     category: 'corporate',
     size: 'large',
   },
   {
-    src: '/gallery/corporate/ (18).jpg',
+    src: '/gallery/corporate/ (25).jpg',
     alt: 'corporate',
     category: 'corporate',
-    size: 'small',
+    size: 'medium',
   },
   {
     src: '/gallery/corporate/ (19).jpg',
@@ -465,31 +475,26 @@ export const galleryPhotos: GPhoto[] = [
     category: 'corporate',
     size: 'wide',
   },
-  {
-    src: '/gallery/corporate/ (23).jpg',
-    alt: 'corporate',
-    category: 'corporate',
-    size: 'medium',
-  },
+
   {
     src: '/gallery/corporate/ (24).jpg',
     alt: 'corporate',
     category: 'corporate',
     size: 'large',
   },
-  {
-    src: '/gallery/corporate/ (25).jpg',
-    alt: 'corporate',
-    category: 'corporate',
-    size: 'small',
-  },
+
   {
     src: '/gallery/corporate/ (26).jpg',
     alt: 'corporate',
     category: 'corporate',
     size: 'medium',
   },
-
+  {
+    src: '/gallery/corporate/ (14).jpg',
+    alt: 'corporate',
+    category: 'corporate',
+    size: 'large',
+  },
   {
     src: '/gallery/fashion/ (1).jpg',
     alt: 'fashion',
