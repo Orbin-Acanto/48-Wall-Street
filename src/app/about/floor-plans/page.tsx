@@ -166,17 +166,17 @@ export default function FloorPlansPage() {
               transition={{ duration: 0.5 }}
               className="space-y-6"
             >
-              <div>
+              {/* <div>
                 <h2 className="font-primary text-dark-black mb-2 text-4xl tracking-wide">
                   {currentFloor.name}
                 </h2>
                 <p className="font-secondary text-primary text-lg">
                   {currentFloor.size}
                 </p>
-              </div>
+              </div> */}
 
               {/* Capacity Cards */}
-              <div className="space-y-3">
+              {/* <div className="space-y-3">
                 <h3 className="font-secondary text-sm font-bold tracking-wider text-gray-600 uppercase">
                   Capacity
                 </h3>
@@ -206,7 +206,7 @@ export default function FloorPlansPage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* Features */}
               <div className="space-y-3">
@@ -343,7 +343,7 @@ export default function FloorPlansPage() {
                 )}
 
                 {/* Layout Options */}
-                <div>
+                {/* <div>
                   <h3 className="font-secondary text-dark-black mb-4 text-lg font-semibold">
                     Popular Layouts
                   </h3>
@@ -412,7 +412,7 @@ export default function FloorPlansPage() {
                       );
                     })}
                   </div>
-                </div>
+                </div> */}
               </motion.div>
             </div>
           </div>
@@ -447,10 +447,10 @@ export default function FloorPlansPage() {
               day
             </p>
 
-            <div className="mb-10 grid gap-4 sm:grid-cols-3">
+            <div className="mb-10 grid gap-4 sm:grid-cols-2">
               {[
                 { icon: Layers, text: 'Drag & Drop Furniture' },
-                { icon: Eye, text: '3D Walkthrough' },
+                // { icon: Eye, text: '3D Walkthrough' },
                 { icon: Download, text: 'Export & Share' },
               ].map((feature, i) => (
                 <div
@@ -463,6 +463,11 @@ export default function FloorPlansPage() {
                   </span>
                 </div>
               ))}
+            </div>
+            <div className="flex w-full items-center justify-center">
+              <Link href="/about/virtual-tour">
+                <CustomButton variant="primary">Floor Plan Design</CustomButton>
+              </Link>
             </div>
           </motion.div>
         </div>
