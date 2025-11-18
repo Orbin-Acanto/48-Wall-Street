@@ -5,7 +5,9 @@ import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { PhotoGalleryProps } from '@/types';
 
-export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
+export default function EmptyPhotoGallery({
+  galleryPhotos,
+}: PhotoGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const openLightbox = (index: number) => {
@@ -57,7 +59,7 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
     <section className="bg-whitesmoke/25 px-6 py-20">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-12 flex items-center justify-between">
+        <div className="mb-2 flex items-center justify-between">
           <h2 className="heading-hero text-primary">PHOTO GALLERY</h2>
           <a
             href="/gallery"
@@ -81,7 +83,7 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
         </div>
 
         {/* Masonry Gallery Grid */}
-        <div className="grid auto-rows-[200px] grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid auto-rows-[230px] grid-cols-2 gap-4 md:grid-cols-4">
           {galleryPhotos.map((photo, index) => (
             <button
               key={index}
@@ -115,7 +117,6 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
           onKeyDown={handleKeyPress}
           tabIndex={0}
         >
-          {/* Close Button */}
           <button
             onClick={closeLightbox}
             className="absolute top-6 right-6 z-50 rounded-full bg-white/10 p-3 transition-colors duration-300 hover:bg-white/20"
@@ -124,7 +125,6 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
             <X className="h-8 w-8 text-white" />
           </button>
 
-          {/* Previous Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -136,7 +136,6 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
             <ChevronLeft className="h-8 w-8 text-white" />
           </button>
 
-          {/* Next Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -148,7 +147,6 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
             <ChevronRight className="h-8 w-8 text-white" />
           </button>
 
-          {/* Image */}
           <div
             className="relative mx-auto h-full max-h-[90vh] w-full max-w-7xl px-20"
             onClick={(e) => e.stopPropagation()}
@@ -165,7 +163,6 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
             />
           </div>
 
-          {/* Image Counter */}
           <div className="absolute bottom-6 left-1/2 z-50 -translate-x-1/2">
             <div className="rounded-full bg-white/10 px-6 py-3 backdrop-blur-sm">
               <p className="font-secondary text-sm text-white">

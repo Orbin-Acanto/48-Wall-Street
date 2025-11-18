@@ -12,7 +12,8 @@ import {
   useParallax,
 } from '@/utils';
 import Link from 'next/link';
-import { services } from '@/data';
+import { emptyFashionVenue, services } from '@/data';
+import EmptyPhotoGallery from './EmptyPhotoGallery';
 
 export interface EventShowcaseProps {
   title: string;
@@ -409,10 +410,10 @@ export default function EventDetails({
           </motion.div>
         </div>
       </section>
-
+      <EmptyPhotoGallery galleryPhotos={emptyFashionVenue} />
       {/* ACCORDION */}
       {info?.length > 0 && (
-        <section className="bg-gradient-to-b from-gray-50 to-white py-12 md:py-20">
+        <section className="bg-white py-12 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl">
               {/* Section Header */}

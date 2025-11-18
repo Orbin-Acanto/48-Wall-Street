@@ -141,6 +141,15 @@ export const photos: Photo[] = [
   },
 ];
 
+export const emptyFashionVenue: Photo[] = [
+  { src: '/empty/3.jpg', alt: 'Empty 48 Wall Street', span: 'small' },
+  { src: '/empty/2.jpg', alt: 'Empty 48 Wall Street', span: 'tall' },
+  { src: '/empty/1.jpg', alt: 'Empty 48 Wall Street', span: 'large' },
+  { src: '/empty/4.jpg', alt: 'Empty 48 Wall Street', span: 'tall' },
+  { src: '/empty/6.jpg', alt: 'Empty 48 Wall Street', span: 'wide' },
+  { src: '/empty/5.jpg', alt: 'Empty 48 Wall Street', span: 'small' },
+];
+
 export const portfolioVideos: VideoItem[] = [
   {
     id: 1,
