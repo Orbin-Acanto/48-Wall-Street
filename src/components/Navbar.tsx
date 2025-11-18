@@ -99,23 +99,36 @@ export default function Navbar() {
             <div className="hidden flex-1 items-center space-x-12 pl-16 lg:flex">
               {rightItems.map((item) => (
                 <div key={item.name} className="group relative">
-                  <Link
-                    href={item.href}
-                    className="font-primary text-dark-black/80 hover:text-dark-black relative flex items-center gap-1 py-2 text-[0.75rem] tracking-wide uppercase transition-colors duration-300"
-                  >
-                    {item.name}
-                    {item.dropdown && (
-                      <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
-                    )}
-                    {/* Animated Underline */}
-                    <span className="bg-primary absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 ease-out group-hover:w-full"></span>
-                  </Link>
+                  {item.external ? (
+                    <span className="font-primary text-dark-black/80 hover:text-dark-black group relative flex cursor-pointer items-center gap-1 py-2 text-[0.75rem] tracking-wide uppercase transition-colors duration-300">
+                      {item.name}
+                      {item.dropdown && (
+                        <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
+                      )}
+                      <span className="bg-primary absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 ease-out group-hover:w-full"></span>
+                    </span>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="font-primary text-dark-black/80 hover:text-dark-black group relative flex items-center gap-1 py-2 text-[0.75rem] tracking-wide uppercase transition-colors duration-300"
+                    >
+                      {item.name}
+                      {item.dropdown && (
+                        <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
+                      )}
+                      <span className="bg-primary absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 ease-out group-hover:w-full"></span>
+                    </Link>
+                  )}
                   {item.dropdown && (
                     <div className="invisible absolute top-full left-1/2 mt-6 w-52 -translate-x-1/2 border border-gray-800/20 bg-white/98 opacity-0 shadow-2xl backdrop-blur-md transition-all duration-300 group-hover:visible group-hover:mt-3 group-hover:opacity-100">
                       <div className="py-3">
                         {item.dropdown.map((subItem, idx) => (
                           <Link
                             key={subItem.name}
+                            target={item.external ? '_blank' : '_self'}
+                            rel={
+                              item.external ? 'noopener noreferrer' : undefined
+                            }
                             href={subItem.href}
                             className={`font-primary text-dark-black/70 hover:text-dark-black block px-6 py-3 text-[0.75rem] transition-all duration-200 hover:bg-gray-800/5 ${
                               idx === 0 ? 'rounded-none' : ''
