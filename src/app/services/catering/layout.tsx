@@ -61,7 +61,7 @@ export default function CateringServicesLayout({
             description:
               'Creative food studio delivering first-class dining experiences for corporate and private events with over 30 years of experience. Specializing in seated dinners, cocktail receptions, buffets, breakfast, and lunch catering with fresh ingredients and creative presentation.',
             url: 'https://www.48wallnyc.com/services/catering',
-            telephone: '1.877.885.0705',
+            telephone: '+1-877-885-0705',
             email: 'info@48WallNYC.com',
             priceRange: '$$$',
             servesCuisine: [
@@ -189,7 +189,7 @@ export default function CateringServicesLayout({
               description:
                 'Creative food studio specializing in first-class dining experiences',
               url: 'https://www.48wallnyc.com/services/catering',
-              telephone: '1.877.885.0705',
+              telephone: '+1-877-885-0705',
               email: 'info@48WallNYC.com',
               foundingDate: '1994',
               address: {
@@ -428,7 +428,7 @@ export default function CateringServicesLayout({
             description:
               'Creative food studio with over 30 years of experience delivering first-class dining for NYC events',
             url: 'https://www.48wallnyc.com/services/catering',
-            telephone: '1.877.885.0705',
+            telephone: '+1-877-885-0705',
             email: 'info@48WallNYC.com',
             foundingDate: '1994',
             address: {

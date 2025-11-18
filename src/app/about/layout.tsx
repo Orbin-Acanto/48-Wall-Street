@@ -76,7 +76,7 @@ export default function AboutLayout({
                 latitude: 40.707421,
                 longitude: -74.009224,
               },
-              telephone: '1.877.885.0705',
+              telephone: '+1-877-885-0705',
               email: 'info@48WallNYC.com',
               url: 'https://www.48wallnyc.com',
               maximumAttendeeCapacity: 500,

@@ -67,7 +67,7 @@ export default function RentalServicesLayout({
               description:
                 'Event industry leader in exclusive furniture and prop rentals for 26+ years',
               url: 'https://www.48wallnyc.com',
-              telephone: '1.877.885.0705',
+              telephone: '+1-877-885-0705',
               email: 'info@48WallNYC.com',
               foundingDate: '1998',
               address: {
@@ -201,7 +201,7 @@ export default function RentalServicesLayout({
             description:
               'Event rental company with thousands of exclusive furniture, decor, staging, and catering rental items',
             url: 'https://www.48wallnyc.com/services/rentals',
-            telephone: '1.877.885.0705',
+            telephone: '+1-877-885-0705',
             email: 'info@48WallNYC.com',
             priceRange: '$$',
             address: {
@@ -351,7 +351,7 @@ export default function RentalServicesLayout({
             description:
               'Event industry leader for 26+ years providing exclusive furniture and prop rentals with thousands of unique items',
             url: 'https://www.48wallnyc.com/services/rentals',
-            telephone: '1.877.885.0705',
+            telephone: '+1-877-885-0705',
             email: 'info@48WallNYC.com',
             foundingDate: '1998',
             address: {

@@ -129,7 +129,7 @@ export default function RootLayout({
                 latitude: 40.707421,
                 longitude: -74.009224,
               },
-              telephone: '1.877.885.0705',
+              telephone: '+1-877-885-0705',
               email: 'info@48WallNYC.com',
               priceRange: '$$$',
               maximumAttendeeCapacity: 500,
@@ -233,7 +233,7 @@ export default function RootLayout({
                 "Premier historic event venue in New York City's Financial District, specializing in corporate events, weddings, and private celebrations.",
               contactPoint: {
                 '@type': 'ContactPoint',
-                telephone: '1.877.885.0705',
+                telephone: '+1-877-885-0705',
                 contactType: 'Sales',
                 email: 'info@48WallNYC.com',
                 availableLanguage: ['English'],
@@ -265,7 +265,7 @@ export default function RootLayout({
               name: '48 Wall Street',
               image: `${siteUrl}/images/venue-exterior.jpg`,
               url: siteUrl,
-              telephone: '1.877.885.0705',
+              telephone: '+1-877-885-0705',
               priceRange: '$$$',
               address: {
                 '@type': 'PostalAddress',

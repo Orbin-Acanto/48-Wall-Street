@@ -59,6 +59,7 @@ export default function EventsLayout({
               postalCode: '10005',
               addressCountry: 'US',
             },
+            telephone: '+1-877-885-0705',
             geo: {
               '@type': 'GeoCoordinates',
               latitude: 40.7074,

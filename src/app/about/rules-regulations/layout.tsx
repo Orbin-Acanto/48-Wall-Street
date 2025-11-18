@@ -76,7 +76,7 @@ export default function RulesRegulationsLayout({
                 postalCode: '10005',
                 addressCountry: 'US',
               },
-              telephone: '1.877.885.0705',
+              telephone: '+1-877-885-0705',
               email: 'info@48WallNYC.com',
             },
           }),
@@ -132,7 +132,7 @@ export default function RulesRegulationsLayout({
               url: 'https://www.48wallnyc.com',
               contactPoint: {
                 '@type': 'ContactPoint',
-                telephone: '1.877.885.0705',
+                telephone: '+1-877-885-0705',
                 contactType: 'Customer Service',
                 email: 'info@48WallNYC.com',
                 availableLanguage: 'English',

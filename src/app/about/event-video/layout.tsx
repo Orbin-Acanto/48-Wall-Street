@@ -70,7 +70,7 @@ export default function EventVideoLayout({
                 postalCode: '10005',
                 addressCountry: 'US',
               },
-              telephone: '1.877.885.0705',
+              telephone: '+1-877-885-0705',
               email: 'info@48WallNYC.com',
               url: 'https://www.48wallnyc.com',
             },
