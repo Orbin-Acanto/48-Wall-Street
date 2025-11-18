@@ -464,11 +464,11 @@ export default function FloorPlansPage() {
                 </div>
               ))}
             </div>
-            <div className="flex w-full items-center justify-center">
-              <Link href="/about/virtual-tour">
+            {/* <div className="flex w-full items-center justify-center">
+              <Link href="/about/customize-plan">
                 <CustomButton variant="primary">Floor Plan Design</CustomButton>
               </Link>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </section>
