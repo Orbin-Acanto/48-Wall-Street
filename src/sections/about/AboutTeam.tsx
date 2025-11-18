@@ -15,16 +15,19 @@ export default function AboutTeam() {
           <h2 className="heading-hero">MEET OUR TEAM</h2>
           <div className="mx-auto max-w-5xl">
             <p className="text-lead">
-              Opened in 1999, 48 Wall Street has established itself as one of
-              New York City&apos;s premier event venues. Renowned for
-              outstanding culinary expertise, impeccable service, and warm
-              hospitality, our commitment to delivering unparalleled experiences
-              ensures that every event is truly unforgettable. With two distinct
-              event spaces, 48 Wall Street offers a sophisticated and
-              contemporary atmosphere complemented by stunning panoramic views
-              of the cityscape and riverside views. Discover limitless potential
-              and witness your vision unfold into reality with our exceptional
-              team and versatile event spaces.
+              At 48 Wall Street, a dedicated leadership team ensures that every
+              event receives personal attention and professional guidance from
+              start to finish. Owner Micheal Tardi oversees the overall vision
+              of the venue and is committed to maintaining both its historic
+              character and its modern event capabilities. Director of Sales
+              Lauren Leuci partners with planners and clients to understand
+              goals, design layouts, and coordinate proposals and timelines that
+              match each program. Director of Operations Andrew Heaton manages
+              on site logistics, vendor coordination, and event day execution so
+              that service, flow, and technical details run smoothly. Together,
+              this experienced team provides a trusted foundation for corporate
+              events, social celebrations, and weddings in the heart of New York
+              City.
             </p>
           </div>
         </div>
