@@ -1,15 +1,16 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Us | 48 Wall Street NYC - Historic Venue Since 1928',
+  title:
+    'About 48 Wall Street | Historic 1927 Bank of New York Event Venue NYC',
   description:
-    "Discover the history of 48 Wall Street, Manhattan's premier historic event venue. Explore our story, meet our team, view floor plans, virtual tours, and learn about our 1920s landmark venue in the Financial District.",
+    "Discover 48 Wall Street - a historic 1927 Bank of New York building in Manhattan's Financial District. Learn about our Grand Mezzanine with 30-foot ceilings, original 1920s architecture, expert event team, and why clients choose our landmark venue for corporate events, weddings & celebrations. Added to National Register of Historic Places in 2003.",
   keywords:
-    'about 48 Wall Street, historic venue NYC history, Bank of New York building, Alexander Hamilton venue, Financial District landmark, 1928 historic building, Manhattan event venue team, venue floor plans NYC',
+    '48 Wall Street history, Bank of New York building, 1927 historic venue, Alexander Hamilton, Financial District landmark, Grand Mezzanine NYC, historic bank venue, National Register Historic Places, 1920s architecture Manhattan, Palladian windows, marble staircase venue, event venue team NYC, 48 Wall Street testimonials, Lower Manhattan historic building',
   openGraph: {
-    title: 'About 48 Wall Street NYC - Historic Event Venue',
+    title: 'About 48 Wall Street | Historic 1927 Bank Building Event Venue NYC',
     description:
-      "Learn about Manhattan's iconic 1928 landmark venue. Explore our history, team, virtual tours, and floor plans.",
+      "Explore the history of 48 Wall Street - Manhattan's iconic 1927 Bank of New York building. Meet our expert event team, hear from happy clients, and discover why our historic Financial District venue is perfect for your next event.",
     url: 'https://www.48wallnyc.com/about',
     siteName: '48 Wall Street NYC',
     images: [
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
         url: '/images/about-hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Historic 48 Wall Street Building Manhattan',
+        alt: '48 Wall Street historic Bank of New York building exterior in Manhattan Financial District',
       },
     ],
     locale: 'en_US',
@@ -25,13 +26,20 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Us - 48 Wall Street NYC',
+    title: 'About 48 Wall Street | Historic NYC Event Venue',
     description:
-      "Discover the story behind Manhattan's most distinguished historic event venue since 1928.",
+      'Historic 1927 Bank of New York building in Financial District. Meet our team and discover why clients love our landmark venue.',
     images: ['/images/about-hero.jpg'],
+    site: '@48wallst',
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about',
+  },
+  other: {
+    'geo.region': 'US-NY',
+    'geo.placename': 'New York City',
+    'geo.position': '40.707421;-74.009224',
+    ICBM: '40.707421, -74.009224',
   },
 };
 
@@ -51,12 +59,13 @@ export default function AboutLayout({
             mainEntity: {
               '@type': 'EventVenue',
               name: '48 Wall Street',
+              alternateName: '48 Wall Street Events',
               description:
-                'Historic 1928 landmark event venue, former Bank of New York building with original architectural details',
-              foundingDate: '1928',
+                "Historic 1927 Bank of New York & Trust Company building in Manhattan's Financial District. Features Grand Mezzanine Banking Hall with 30-foot ceilings, original 1920s architecture, Palladian windows, and grand marble staircase. Added to National Register of Historic Places in 2003.",
+              foundingDate: '1927',
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: '48 Wall Street',
+                streetAddress: '48 Wall Street, Lobby 1',
                 addressLocality: 'New York',
                 addressRegion: 'NY',
                 postalCode: '10005',
@@ -64,15 +73,55 @@ export default function AboutLayout({
               },
               geo: {
                 '@type': 'GeoCoordinates',
-                latitude: 40.7074,
-                longitude: -74.0089,
+                latitude: 40.707421,
+                longitude: -74.009224,
               },
+              telephone: '1.877.885.0705',
+              email: 'info@48WallNYC.com',
               url: 'https://www.48wallnyc.com',
-              historicalData: {
-                '@type': 'HistoricalData',
-                description:
-                  "Former Bank of New York building, cornerstone laid January 12, 1928 on Alexander Hamilton's 171st birthday",
-              },
+              maximumAttendeeCapacity: 500,
+              amenityFeature: [
+                {
+                  '@type': 'LocationFeatureSpecification',
+                  name: 'Grand Mezzanine Banking Hall',
+                  value: '30-foot ceilings with original 1920s architecture',
+                },
+                {
+                  '@type': 'LocationFeatureSpecification',
+                  name: 'Seating Capacity',
+                  value: '350 seated dinner guests',
+                },
+                {
+                  '@type': 'LocationFeatureSpecification',
+                  name: 'Reception Capacity',
+                  value: '500 cocktail reception guests',
+                },
+              ],
+              smokingAllowed: false,
+              publicAccess: true,
+              isAccessibleForFree: false,
+              additionalProperty: [
+                {
+                  '@type': 'PropertyValue',
+                  name: 'Historic Designation',
+                  value: 'National Register of Historic Places (2003)',
+                },
+                {
+                  '@type': 'PropertyValue',
+                  name: 'Original Building',
+                  value: 'Bank of New York & Trust Company Building',
+                },
+                {
+                  '@type': 'PropertyValue',
+                  name: 'Cornerstone Date',
+                  value:
+                    'January 12, 1928 - 171st birthday of Alexander Hamilton',
+                },
+              ],
+              sameAs: [
+                'https://www.instagram.com/48wallst/',
+                'https://www.facebook.com/48wallst/',
+              ],
             },
           }),
         }}

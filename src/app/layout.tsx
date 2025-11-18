@@ -6,7 +6,7 @@ import ChatbotWidget from '@/components/ChatBotWidget';
 import Footer from '@/components/Footer';
 import ContactUsSlider from '@/components/ContactUsSlider';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.48wallnyc.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -16,12 +16,12 @@ export const metadata: Metadata = {
     template: '%s | 48 Wall Street NYC',
   },
   description:
-    "Premier historic event venue in Manhattan's Financial District. Host corporate events, weddings, Bar/Bat Mitzvahs, and celebrations in our stunning 1920s landmark building with 30-foot ceilings and grand architecture.",
+    "Discover 48 Wall Street - a historic 1927 Bank of New York building turned premier NYC event venue. Host corporate events, weddings, Bar/Bat Mitzvahs & celebrations in our stunning Grand Mezzanine with 30-foot ceilings, original architecture & full-service catering. Located in Manhattan's Financial District. Book your tour today.",
   keywords:
-    'event venue NYC, Financial District venue, historic venue Manhattan, corporate event space NYC, wedding venue Manhattan, Lower Manhattan event space, Wall Street venue, 48 Wall Street, Bank of New York building',
-  authors: [{ name: '48 Wall Street NYC' }],
-  creator: '48 Wall Street NYC',
-  publisher: '48 Wall Street NYC',
+    '48 Wall Street, NYC event venue, Manhattan event space, Financial District venue, historic venue NYC, corporate event space Manhattan, wedding venue NYC, Bar Mitzvah venue, Bat Mitzvah venue, Grand Mezzanine, Wall Street events, Lower Manhattan venue, historic bank building venue, event venue with catering, Financial District wedding, corporate meeting space NYC, Bank of New York building, 1920s architecture venue, Manhattan private events, New York event venue',
+  authors: [{ name: '48 Wall Street Events' }],
+  creator: '48 Wall Street Events',
+  publisher: '48 Wall Street Events',
   formatDetection: {
     email: false,
     address: false,
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     title: '48 Wall Street NYC | Historic Event Venue in Financial District',
     description:
-      "Manhattan's premier historic event venue for corporate events, weddings, and celebrations. 1920s landmark with stunning architecture.",
+      "Premier historic event venue in Manhattan's Financial District. Host corporate events, weddings & celebrations in our stunning 1927 landmark building featuring 30-foot ceilings, grand marble staircase, and original 1920s architecture. Full-service catering available.",
     images: [
       {
         url: '/images/og-home.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street Historic Event Venue Manhattan',
+        alt: '48 Wall Street Grand Mezzanine - Historic NYC Event Venue with 30-foot ceilings',
         type: 'image/jpeg',
       },
     ],
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '48 Wall Street NYC | Historic Event Venue',
     description:
-      'Premier Manhattan event venue for corporate events, weddings & celebrations in historic Financial District landmark.',
+      "Historic 1927 venue in Manhattan's Financial District. Perfect for corporate events, weddings & celebrations with full-service catering.",
     images: ['/images/twitter-home.jpg'],
-    creator: '@48WallStreetNYC',
+    site: '@48wallst',
   },
   robots: {
     index: true,
@@ -68,7 +68,20 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'ola-WXXq-bJgIEbRdGZMr4cGuKqcyF65J94yOY0ybQ8',
+  },
+  other: {
+    'geo.region': 'US-NY',
+    'geo.placename': 'New York City',
+    'geo.position': '40.707421;-74.009224',
+    ICBM: '40.707421, -74.009224',
+    'business:contact_data:street_address': '48 Wall Street, Lobby 1',
+    'business:contact_data:locality': 'New York',
+    'business:contact_data:region': 'NY',
+    'business:contact_data:postal_code': '10005',
+    'business:contact_data:country_name': 'United States',
+    'business:contact_data:email': 'info@48WallNYC.com',
+    'business:contact_data:phone_number': '1.877.885.0705',
   },
 };
 
