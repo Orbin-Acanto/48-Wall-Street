@@ -99,27 +99,26 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'EventVenue',
-              '@id': `${siteUrl}/#organization`,
+              '@id': `${siteUrl}/#eventvenue`,
               name: '48 Wall Street',
-              alternateName: '48 Wall Street NYC',
+              alternateName: '48 Wall Street Events',
               description:
-                "Historic 1928 event venue in Manhattan's Financial District, former Bank of New York building",
+                "Historic 1927 Bank of New York & Trust Company building in Manhattan's Financial District. Features Grand Mezzanine Banking Hall with 30-foot ceilings, original 1920s architecture, Palladian windows, and grand marble staircase. Added to National Register of Historic Places in 2003.",
               url: siteUrl,
               logo: {
                 '@type': 'ImageObject',
                 url: `${siteUrl}/images/logo.png`,
-                width: 250,
-                height: 100,
+                width: 600,
+                height: 200,
               },
-              image: {
-                '@type': 'ImageObject',
-                url: `${siteUrl}/images/venue-exterior.jpg`,
-                width: 1200,
-                height: 630,
-              },
+              image: [
+                `${siteUrl}/images/og-home.jpg`,
+                `${siteUrl}/images/grand-mezzanine.jpg`,
+                `${siteUrl}/images/venue-exterior.jpg`,
+              ],
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: '48 Wall Street',
+                streetAddress: '48 Wall Street, Lobby 1',
                 addressLocality: 'New York',
                 addressRegion: 'NY',
                 postalCode: '10005',
@@ -127,14 +126,16 @@ export default function RootLayout({
               },
               geo: {
                 '@type': 'GeoCoordinates',
-                latitude: 40.7074,
-                longitude: -74.0089,
+                latitude: 40.707421,
+                longitude: -74.009224,
               },
-              telephone: '+1-XXX-XXX-XXXX',
-              email: 'events@48wallnyc.com',
+              telephone: '1.877.885.0705',
+              email: 'info@48WallNYC.com',
               priceRange: '$$$',
               maximumAttendeeCapacity: 500,
               smokingAllowed: false,
+              publicAccess: true,
+              isAccessibleForFree: false,
               openingHoursSpecification: [
                 {
                   '@type': 'OpeningHoursSpecification',
@@ -146,40 +147,158 @@ export default function RootLayout({
                     'Friday',
                   ],
                   opens: '09:00',
-                  closes: '18:00',
+                  closes: '23:00',
+                },
+                {
+                  '@type': 'OpeningHoursSpecification',
+                  dayOfWeek: ['Saturday', 'Sunday'],
+                  opens: '10:00',
+                  closes: '23:00',
                 },
               ],
               sameAs: [
-                'https://facebook.com/48wallst',
-                'https://instagram.com/48wallstreetnyc',
-                'https://www.linkedin.com/company/48-wall-street',
+                'https://www.facebook.com/48wallst/',
+                'https://www.instagram.com/48wallst/',
               ],
               amenityFeature: [
                 {
                   '@type': 'LocationFeatureSpecification',
                   name: 'Grand Mezzanine Banking Hall',
-                  value: true,
+                  value: '30-foot ceilings with original 1920s architecture',
                 },
                 {
                   '@type': 'LocationFeatureSpecification',
-                  name: 'AV Equipment',
-                  value: true,
+                  name: 'Seating Capacity',
+                  value: '350 seated dinner guests',
                 },
                 {
                   '@type': 'LocationFeatureSpecification',
-                  name: 'Catering Services',
-                  value: true,
+                  name: 'Reception Capacity',
+                  value: '500 cocktail reception guests',
+                },
+                {
+                  '@type': 'LocationFeatureSpecification',
+                  name: 'Audio Visual Equipment',
+                  value: 'State-of-the-art AV capabilities',
+                },
+                {
+                  '@type': 'LocationFeatureSpecification',
+                  name: 'Full-Service Catering',
+                  value: 'Professional catering services available',
                 },
                 {
                   '@type': 'LocationFeatureSpecification',
                   name: 'Event Planning',
-                  value: true,
+                  value: 'Expert event planning team',
                 },
                 {
                   '@type': 'LocationFeatureSpecification',
-                  name: 'Wheelchair Accessible',
-                  value: true,
+                  name: 'Breakout Rooms',
+                  value: 'Multiple breakout spaces on Concourse Level',
                 },
+                {
+                  '@type': 'LocationFeatureSpecification',
+                  name: 'Historic Architecture',
+                  value: 'Original 1920s architectural details preserved',
+                },
+              ],
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.8',
+                reviewCount: '150',
+                bestRating: '5',
+                worstRating: '1',
+              },
+              hasMap:
+                'https://maps.google.com/?q=48+Wall+Street+New+York+NY+10005',
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              '@id': `${siteUrl}/#organization`,
+              name: '48 Wall Street Events',
+              legalName: '48 Wall Street Events LLC',
+              url: siteUrl,
+              logo: {
+                '@type': 'ImageObject',
+                url: `${siteUrl}/images/logo.png`,
+              },
+              foundingDate: '2010',
+              description:
+                "Premier historic event venue in New York City's Financial District, specializing in corporate events, weddings, and private celebrations.",
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '1.877.885.0705',
+                contactType: 'Sales',
+                email: 'info@48WallNYC.com',
+                availableLanguage: ['English'],
+                areaServed: 'US',
+                contactOption: 'TollFree',
+              },
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '48 Wall Street, Lobby 1',
+                addressLocality: 'New York',
+                addressRegion: 'NY',
+                postalCode: '10005',
+                addressCountry: 'US',
+              },
+              sameAs: [
+                'https://www.instagram.com/48wallst/',
+                'https://www.facebook.com/48wallst/',
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              '@id': `${siteUrl}/#localbusiness`,
+              name: '48 Wall Street',
+              image: `${siteUrl}/images/venue-exterior.jpg`,
+              url: siteUrl,
+              telephone: '1.877.885.0705',
+              priceRange: '$$$',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '48 Wall Street, Lobby 1',
+                addressLocality: 'New York',
+                addressRegion: 'NY',
+                postalCode: '10005',
+                addressCountry: 'US',
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: 40.707421,
+                longitude: -74.009224,
+              },
+              openingHoursSpecification: [
+                {
+                  '@type': 'OpeningHoursSpecification',
+                  dayOfWeek: [
+                    'Monday',
+                    'Tuesday',
+                    'Wednesday',
+                    'Thursday',
+                    'Friday',
+                    'Saturday',
+                    'Sunday',
+                  ],
+                  opens: '09:00',
+                  closes: '23:00',
+                },
+              ],
+              sameAs: [
+                'https://www.instagram.com/48wallst/',
+                'https://www.facebook.com/48wallst/',
               ],
             }),
           }}
@@ -194,7 +313,7 @@ export default function RootLayout({
               url: siteUrl,
               name: '48 Wall Street NYC',
               description:
-                "Historic event venue in Manhattan's Financial District",
+                "Historic 1927 event venue in Manhattan's Financial District",
               publisher: {
                 '@id': `${siteUrl}/#organization`,
               },
@@ -214,15 +333,66 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'What is the capacity of 48 Wall Street?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: '48 Wall Street can accommodate 350 guests for seated dinners and up to 500 guests for cocktail-style receptions. The venue features flexible spaces that can be configured for various event sizes.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What types of events can be held at 48 Wall Street?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: '48 Wall Street hosts a wide variety of events including corporate meetings, conferences, product launches, weddings, Bar/Bat Mitzvahs, fashion shows, film productions, holiday parties, and private celebrations.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Where is 48 Wall Street located?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: "48 Wall Street is located in the heart of Manhattan's Financial District at 48 Wall Street, Lobby 1, New York, NY 10005. The venue is easily accessible by subway and is near major Wall Street landmarks.",
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What makes 48 Wall Street unique?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: '48 Wall Street is a historic 1927 former Bank of New York building featuring original architecture, 30-foot ceilings, Palladian windows, a grand marble staircase, and stunning chandeliers. The venue maintains much of its 1920s architectural detail and was added to the National Register of Historic Places in 2003.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Does 48 Wall Street provide catering and event services?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes, 48 Wall Street offers comprehensive event services through exclusive vendors including full-service catering, audiovisual equipment, event planning, decor, floral design, and event rentals.',
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
               '@type': 'Place',
               name: '48 Wall Street',
               description:
-                'Historic landmark building at the corner of Wall and William Streets',
+                'Historic 1927 Bank of New York & Trust Company building at the corner of Wall and William Streets in Lower Manhattan',
               hasMap:
                 'https://maps.google.com/?q=48+Wall+Street+New+York+NY+10005',
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: '48 Wall Street',
+                streetAddress: '48 Wall Street, Lobby 1',
                 addressLocality: 'New York',
                 addressRegion: 'NY',
                 postalCode: '10005',
@@ -230,13 +400,30 @@ export default function RootLayout({
               },
               geo: {
                 '@type': 'GeoCoordinates',
-                latitude: 40.7074,
-                longitude: -74.0089,
+                latitude: 40.707421,
+                longitude: -74.009224,
               },
               containedInPlace: {
                 '@type': 'City',
                 name: 'New York',
               },
+              additionalProperty: [
+                {
+                  '@type': 'PropertyValue',
+                  name: 'Historic Designation',
+                  value: 'National Register of Historic Places (2003)',
+                },
+                {
+                  '@type': 'PropertyValue',
+                  name: 'Original Building',
+                  value: 'Bank of New York & Trust Company Building',
+                },
+                {
+                  '@type': 'PropertyValue',
+                  name: 'Year Built',
+                  value: '1927',
+                },
+              ],
             }),
           }}
         />
