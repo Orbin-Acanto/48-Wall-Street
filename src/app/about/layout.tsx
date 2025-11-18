@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/about-hero.jpg',
+        url: '/images/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street historic Bank of New York building exterior in Manhattan Financial District',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'About 48 Wall Street | Historic NYC Event Venue',
     description:
       'Historic 1927 Bank of New York building in Financial District. Meet our team and discover why clients love our landmark venue.',
-    images: ['/images/about-hero.jpg'],
+    images: ['/images/twitter-home.jpg'],
     site: '@48wallst',
   },
   alternates: {
