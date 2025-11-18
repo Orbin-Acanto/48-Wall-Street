@@ -51,27 +51,32 @@ export default function VenueAmenities() {
         {/* Description Text */}
         <div className="mx-auto max-w-5xl space-y-6 text-center">
           <p className="font-secondary text-dark-black/80 text-sm leading-relaxed md:text-base">
-            Recent renovations have elevated 48 Wall Street to new heights,
-            doubling its size and opening new, breathtaking views. Upgraded with
-            state-of-the-art features, the renovations include a meticulously
-            crafted wrap-around quartz bar spanning over 60 feet, an extended
-            dance floor that measures 2,000 square feet, and newly installed
-            custom Italian drop lights.
+            Recent renovations at 48 Wall Street have refined the venue into an
+            even more impressive destination for private and corporate events.
+            The main level now features expanded entertaining areas, enhanced
+            finishes, upgraded lighting, and improved technical infrastructure
+            that bring modern comfort to a historic setting. Generous space for
+            bar service, dining, and dancing allows the venue to support
+            conferences, galas, fashion shows, weddings, and large scale
+            celebrations with ease.
           </p>
 
           <p className="font-secondary text-dark-black/80 text-sm leading-relaxed md:text-base">
             <span className="text-dark-black font-bold">48 Wall Street</span>{' '}
-            offers a dual event space with rooftop access and an interior venue
-            that both showcase phenomenal panoramic views of the cityscape and
-            riverside views. Discover limitless potential and witness your
-            vision unfold into reality with our exceptional team and versatile
-            event spaces.
+            offers multiple event levels with both elegant interior rooms and
+            access to sweeping views of the city skyline and nearby river. Host
+            a welcome reception in a grand hall, move guests through dramatic
+            stairways and mezzanine spaces, and incorporate rooftop access or
+            partner spaces for outdoor experiences. With flexible floor plans, a
+            responsive planning team, and versatile layouts, the venue provides
+            the setting you need to turn any event concept into a memorable New
+            York City experience.
           </p>
         </div>
 
         <div className="mt-12 flex justify-center">
-          <Link href="/contact">
-            <CustomButton variant="primary">Request Virtual Tour</CustomButton>
+          <Link href="/about/virtual-tour">
+            <CustomButton variant="primary">Virtual Tour</CustomButton>
           </Link>
         </div>
       </div>

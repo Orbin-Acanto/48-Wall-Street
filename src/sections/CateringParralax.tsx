@@ -102,12 +102,15 @@ export default function CateringSection() {
               OUR CATERING SERVICES
             </h2>
             <p className="text-lead mb-8">
-              Experience culinary excellence with our in-house catering, led by
-              Chef Orbin Acanto who has worked in the food industry for over
-              four decades. Each menu is meticulously crafted to fit your unique
-              event. With our attentive staff seamlessly orchestrating every
-              detail, you can relax and enjoy every moment knowing that your
-              event is in expert hands.
+              Experience thoughtful culinary service with a team that
+              understands how important food is to the overall success of your
+              event. Our trusted catering partners design seasonal menus
+              tailored to your tastes, style, and guest preferences, from
+              elegant plated dinners to generous reception stations and
+              memorable late night bites. Service staff manage timing,
+              presentation, and flow with care, so you can focus on hosting
+              while guests enjoy a refined dining experience in the heart of
+              Lower Manhattan.
             </p>
             <Link href="/services/catering">
               <CustomButton variant="primary">VIEW SAMPLE MENU</CustomButton>

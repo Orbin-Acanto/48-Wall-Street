@@ -16,10 +16,11 @@ export default function About() {
           <div className="bg-primary mx-auto mb-8 h-px w-16"></div>
           <h2 className="heading-hero">THE HISTORIC VENUE LOCATION</h2>
           <p className="text-lead">
-            With 1.3 million square feet of class-a offices space, this 72-story
-            landmark address features floorplans ranging from 6,000 square feet
-            to 38,000 square feet with the incredible views and world-class
-            management team.
+            Located in the heart of the Manhattan Financial District, 48 Wall
+            Street is a restored historic landmark that now serves as a grand
+            event venue. Elegant architecture, soaring ceilings, and flexible
+            floor layouts provide a refined backdrop for corporate gatherings,
+            weddings, and social celebrations of many sizes.
           </p>
         </div>
 
