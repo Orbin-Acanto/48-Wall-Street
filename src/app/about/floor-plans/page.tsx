@@ -89,13 +89,13 @@ export default function FloorPlansPage() {
             <div className="flex items-center gap-2 bg-white/10 px-6 py-3 backdrop-blur-md">
               <Users className="text-primary h-5 w-5" />
               <span className="font-secondary text-whitesmoke text-sm">
-                Up to 600 guests
+                Up to 700 guests
               </span>
             </div>
             <div className="flex items-center gap-2 bg-white/10 px-6 py-3 backdrop-blur-md">
               <Maximize2 className="text-primary h-5 w-5" />
               <span className="font-secondary text-whitesmoke text-sm">
-                14,500 total sq ft
+                30,000 total sq ft
               </span>
             </div>
             <div className="flex items-center gap-2 bg-white/10 px-6 py-3 backdrop-blur-md">
