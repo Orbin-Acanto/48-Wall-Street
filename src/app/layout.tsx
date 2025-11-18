@@ -5,6 +5,7 @@ import SocialMediaSidebar from '@/components/SocialMediaSidebar';
 import ChatbotWidget from '@/components/ChatBotWidget';
 import Footer from '@/components/Footer';
 import ContactUsSlider from '@/components/ContactUsSlider';
+import Script from 'next/script';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.48wallnyc.com';
 
@@ -428,6 +429,20 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-80XQBNM6K4"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-80XQBNM6K4');
+            gtag('config', 'AW-11296477299');
+          `}
+        </Script>
         <Navbar />
         <SocialMediaSidebar />
         <ChatbotWidget />

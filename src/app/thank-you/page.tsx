@@ -17,7 +17,7 @@ export default function ThankYouScheduling() {
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
-            <h1 className="mb-6 text-3xl font-bold md:text-5xl lg:text-6xl">
+            <h1 className="mb-6 text-2xl font-bold md:text-3xl lg:text-5xl">
               <span className="bg-primary bg-clip-text text-transparent">
                 THANK YOU FOR CONTACTING 48 WALL STREET
               </span>
