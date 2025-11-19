@@ -106,7 +106,7 @@ export default function ServiceSectionItem({
           >
             <h3
               id={`panel-${section.id}`}
-              className="font-primary mb-4 text-[2rem] leading-tight md:text-[2.6rem]"
+              className="font-primary mb-4 text-[2rem] leading-tight uppercase md:text-[2.6rem]"
             >
               {section.title}
             </h3>
@@ -116,7 +116,7 @@ export default function ServiceSectionItem({
             </p>
 
             <div className="text-primary font-secondary flex items-center gap-4">
-              <button
+              {/* <button
                 onClick={() => {
                   const next = document.querySelectorAll('section')[idx + 3];
                   if (next)
@@ -128,7 +128,7 @@ export default function ServiceSectionItem({
                 aria-label={`Scroll to next section after ${section.title}`}
               >
                 Explore next
-              </button>
+              </button> */}
 
               {section.link && (
                 <a

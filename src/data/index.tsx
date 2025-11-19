@@ -97,7 +97,7 @@ export const testimonials: Testimonial[] = [
 export const amenities: Amenity[] = [
   {
     icon: '/icons/square-icon.svg',
-    title: '29,000 SQFT.',
+    title: '30,000 SQFT.',
     description: 'Usable Space',
   },
   {
@@ -118,7 +118,7 @@ export const amenities: Amenity[] = [
   {
     icon: '/icons/door-icon.svg',
     title: 'PRIVATE ENTRANCE',
-    description: 'w/ attended elevators',
+    description: 'attended elevators',
   },
 
   {
@@ -1077,7 +1077,7 @@ export const categories = [
   { id: 'all', name: 'All Rentals', icon: Sparkles },
   { id: 'furniture', name: 'Event Furniture', icon: Crown },
   { id: 'props', name: 'Themed Props', icon: PartyPopper },
-  { id: 'interactive', name: 'Interactive', icon: Dice5 },
+  // { id: 'interactive', name: 'Interactive', icon: Dice5 },
 ];
 
 export const themes = [
@@ -2241,7 +2241,7 @@ export const weddingData: EventShowcaseProps = {
     label: 'Schedule Consultation',
   },
   secondaryCta: {
-    label: 'View Wedding Portfolio',
+    label: 'View Wedding Gallery',
     href: '/gallery?tab=wedding',
   },
 };
@@ -2312,10 +2312,11 @@ export const corporateData: EventShowcaseProps = {
   ],
   primaryCta: {
     label: 'Request Proposal',
+    href: '/contact',
   },
   secondaryCta: {
-    label: 'Case Studies',
-    href: '/about#testimonial',
+    label: 'View Photo Gallery',
+    href: '/gallery?tab=corporate',
   },
 };
 
@@ -2384,11 +2385,12 @@ export const conferenceData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Plan Your Conference',
+    label: 'Request Proposal',
+    href: '/contact',
   },
   secondaryCta: {
-    label: 'Download Brochure',
-    href: '/about/digital-brochure',
+    label: 'View Photo Gallery',
+    href: '/gallery?tab=corporate',
   },
 };
 
@@ -2457,10 +2459,11 @@ export const fashionData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Book Your Show',
+    label: 'Request Proposal',
+    href: '/contact',
   },
   secondaryCta: {
-    label: 'View Past Shows',
+    label: 'View Photo Gallery',
     href: '/gallery?tab=fashion',
   },
 };
@@ -2472,27 +2475,27 @@ export const nonprofitData: EventShowcaseProps = {
     'Maximize your impact and fundraising potential with expertly crafted charity events. We understand the unique challenges of non-profit organizations and deliver meaningful experiences that inspire generosity, engage donors, and amplify your mission.',
   images: [
     {
-      src: '/gallery/corporate/ (24).jpg',
+      src: '/gallery/non/1.jpg',
       alt: 'Corporate conference setup',
     },
     {
-      src: '/gallery/corporate/ (10).jpg',
+      src: '/gallery/non/2.jpg',
       alt: 'Corporate conference',
     },
     {
-      src: '/gallery/corporate/ (19).jpg',
+      src: '/gallery/non/3.jpg',
       alt: 'Corporate conference',
     },
     {
-      src: '/gallery/corporate/ (9).jpg',
+      src: '/gallery/non/4.jpg',
       alt: 'Corporate conference',
     },
     {
-      src: '/gallery/corporate/ (6).jpg',
+      src: '/gallery/non/7.jpg',
       alt: 'Corporate conference',
     },
     {
-      src: '/gallery/corporate/ (2).jpg',
+      src: '/gallery/non/6.jpg',
       alt: 'Corporate conference',
     },
   ],
@@ -2530,11 +2533,12 @@ export const nonprofitData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Discuss Your Mission',
+    label: 'Request Proposal',
+    href: '/contact',
   },
   secondaryCta: {
-    label: 'Success Stories',
-    href: '/about#testimonial',
+    label: 'View Photo Gallery',
+    href: '/gallery?tab=corporate',
   },
 };
 
@@ -2549,7 +2553,7 @@ export const mitzvahData: EventShowcaseProps = {
       alt: 'Bar Mitzvah celebration at the Western Wall',
     },
     {
-      src: '/gallery/bar/40.jpg',
+      src: '/gallery/bar/48.jpg',
       alt: 'Bar Mitzvah celebration',
     },
     {
@@ -2557,7 +2561,7 @@ export const mitzvahData: EventShowcaseProps = {
       alt: 'Bar Mitzvah celebration',
     },
     {
-      src: '/gallery/bar/44.jpg',
+      src: '/gallery/bar/49.jpg',
       alt: 'Bar Mitzvah celebration',
     },
     {
@@ -2603,11 +2607,12 @@ export const mitzvahData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Start Planning',
+    label: 'Request Proposal',
+    href: '/contact',
   },
   secondaryCta: {
-    label: 'Theme Gallery',
-    href: '/rentals',
+    label: 'View Photo Gallery',
+    href: '/gallery?tab=bar',
   },
 };
 
@@ -2676,10 +2681,11 @@ export const holidayData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Plan Holiday Event',
+    label: 'Request Proposal',
+    href: '/contact',
   },
   secondaryCta: {
-    label: 'Past Event',
+    label: 'View Photo Gallery',
     href: '/gallery?tab=holiday',
   },
 };
@@ -2749,11 +2755,12 @@ export const filmtvData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Discuss Your Project',
+    label: 'Request Proposal',
+    href: '/contact',
   },
   secondaryCta: {
-    label: 'Production Rentals',
-    href: '/services/rentals',
+    label: 'View Photo Gallery',
+    href: '/gallery?tab=fashion',
   },
 };
 

@@ -23,7 +23,7 @@ export default function AboutParralax() {
         <div className="w-full max-w-4xl">
           <div className="bg-dark-black/70 px-8 py-16 text-center backdrop-blur-sm md:px-16 md:py-20">
             <h2 className="heading-hero text-white">
-              THE Wall Street best kept secret
+              Wall Street's best kept secret
             </h2>
 
             <p className="text-lead mb-8 text-gray-300">

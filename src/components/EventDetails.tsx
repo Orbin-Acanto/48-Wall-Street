@@ -319,8 +319,7 @@ export default function EventDetails({
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/60 to-black/60" />
 
-          {/* Animated Light Streaks */}
-          <div className="absolute inset-0 overflow-hidden">
+          {/* <div className="absolute inset-0 overflow-hidden">
             {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}
@@ -341,7 +340,7 @@ export default function EventDetails({
                 }}
               />
             ))}
-          </div>
+          </div> */}
 
           <div className="absolute inset-0 opacity-40">
             {[...Array(8)].map((_, i) => (
@@ -377,7 +376,7 @@ export default function EventDetails({
             viewport={{ once: true }}
             className="text-primary font-secondary text-base font-light tracking-[0.25em] uppercase shadow-2xl"
           >
-            Full-Service • Anywhere • Any Scale
+            Full-Service • Professional Staff • Any Scale
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
@@ -386,7 +385,7 @@ export default function EventDetails({
             transition={{ delay: 0.08 }}
             className="heading-hero my-8 text-white"
           >
-            Exceptional events for every occasion.
+            Exceptional events for every occasion
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -405,7 +404,7 @@ export default function EventDetails({
             className="mt-8"
           >
             <Link href="/contact">
-              <CustomButton>Start Your Event</CustomButton>
+              <CustomButton>Start Planning Your Event</CustomButton>
             </Link>
           </motion.div>
         </div>

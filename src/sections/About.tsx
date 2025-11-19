@@ -14,7 +14,7 @@ export default function About() {
             Welcome to 48 Wall Street
           </p>
           <div className="bg-primary mx-auto mb-8 h-px w-16"></div>
-          <h2 className="heading-hero">THE HISTORIC VENUE LOCATION</h2>
+          <h2 className="heading-hero">HISTORIC VENUE LOCATION</h2>
           <p className="text-lead">
             Located in the heart of the Manhattan Financial District, 48 Wall
             Street is a restored historic landmark that now serves as a grand

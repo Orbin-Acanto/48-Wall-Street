@@ -80,7 +80,7 @@ export default function LocationLayout({
       description:
         'Historic corporate and private event venue located in Manhattan’s Financial District, featuring multiple floors for corporate events, weddings, social celebrations, and fashion shows.',
       url: 'https://www.48wallnyc.com',
-      telephone: '+1-877-885-0705',
+      telephone: '212.971.5353',
       email: 'info@48wallnyc.com',
       address: {
         '@type': 'PostalAddress',

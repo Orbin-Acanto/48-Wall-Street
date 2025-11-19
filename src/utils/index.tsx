@@ -8,6 +8,7 @@ import {
   SplitTitleProps,
 } from '@/types';
 import CustomButton from '@/components/CustomButton';
+import { X } from 'lucide-react';
 
 export const useParallax = (offset: [string, string] = ['0%', '-20%']) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -96,10 +97,10 @@ export const Lightbox = ({ images, index, onClose }: LightboxProps) => {
       exit={{ opacity: 0 }}
     >
       <button
-        className="absolute top-5 right-5 text-xl text-white/90 hover:text-white"
+        className="absolute top-5 right-5 rounded-full bg-gray-300 p-2 text-7xl text-gray-600 hover:bg-gray-100 hover:text-gray-400"
         onClick={onClose}
       >
-        ×
+        <X />
       </button>
       <div className="flex w-full max-w-6xl flex-col items-center gap-4">
         <img

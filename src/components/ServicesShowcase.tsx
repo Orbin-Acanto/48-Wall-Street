@@ -178,12 +178,12 @@ export default function CinematicServicesShowcase({
                   </CustomButton>
                 </Link>
                 {videoSection && (
-                  <button
+                  <CustomButton
+                    variant="secondary"
                     onClick={() => videoSection && setVideoOpen(true)}
-                    className="border-dark-black/30 bg-dark-black hover:bg-dark-black/70 inline-flex cursor-pointer items-center gap-3 border-1 px-6 py-3 text-base text-white"
                   >
-                    Watch Story
-                  </button>
+                    View Video
+                  </CustomButton>
                 )}
               </motion.div>
             </motion.div>
@@ -207,12 +207,12 @@ export default function CinematicServicesShowcase({
             <h2 className="font-primary text-primary mb-8 text-[3rem] leading-tight uppercase md:text-[3.6rem]">
               {leadTitle}
             </h2>
-            <p className="text-lead text-gray-500">{leadDescription}</p>
+            <p className="text-lead mb-2 text-gray-500">{leadDescription}</p>
             {leadDescription2 && (
-              <p className="text-lead text-gray-500">{leadDescription2}</p>
+              <p className="text-lead mb-2 text-gray-500">{leadDescription2}</p>
             )}
             {leadDescription3 && (
-              <p className="text-lead text-gray-500">{leadDescription3}</p>
+              <p className="text-lead mb-2 text-gray-500">{leadDescription3}</p>
             )}
           </motion.div>
         </div>
@@ -258,7 +258,7 @@ export default function CinematicServicesShowcase({
         <section>
           <BookReader
             pages={menuPages}
-            title="Tardis Catering & Hospitality 2025"
+            title="Tardi's Catering Menu"
             subtitle="Indulge in a Gourmet Dining Experience at Your Next Event"
             downloadUrl="/menu/48-wall-menu.2025_.pdf"
             pageColor="text-dark-black"

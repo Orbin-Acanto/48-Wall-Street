@@ -74,7 +74,7 @@ export default function RentalsCatalogLayout({
             provider: {
               '@type': 'Organization',
               name: 'MMEink',
-              telephone: '+1-877-885-0705',
+              telephone: '212.971.5353',
               email: 'info@48WallNYC.com',
               address: {
                 '@type': 'PostalAddress',
@@ -314,7 +314,7 @@ export default function RentalsCatalogLayout({
             provider: {
               '@type': 'Organization',
               name: 'MMEink',
-              telephone: '+1-877-885-0705',
+              telephone: '212.971.5353',
               email: 'info@48WallNYC.com',
               url: 'https://www.48wallnyc.com',
             },

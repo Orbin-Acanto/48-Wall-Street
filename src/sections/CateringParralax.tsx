@@ -99,21 +99,20 @@ export default function CateringSection() {
             </div>
 
             <h2 className="font-primary text-primary mb-6 text-3xl tracking-wide uppercase md:text-4xl lg:text-6xl">
-              OUR CATERING SERVICES
+              OUR CATERING PARTNER
             </h2>
             <p className="text-lead mb-8">
               Experience thoughtful culinary service with a team that
               understands how important food is to the overall success of your
-              event. Our trusted catering partners design seasonal menus
-              tailored to your tastes, style, and guest preferences, from
-              elegant plated dinners to generous reception stations and
-              memorable late night bites. Service staff manage timing,
-              presentation, and flow with care, so you can focus on hosting
-              while guests enjoy a refined dining experience in the heart of
-              Lower Manhattan.
+              event. Our trusted catering partner design seasonal menus tailored
+              to your tastes, style, and guest preferences, from elegant plated
+              dinners to generous reception stations and memorable late night
+              bites. Service staff manage timing, presentation, and flow with
+              care, so you can focus on hosting while guests enjoy a refined
+              dining experience in the heart of Lower Manhattan.
             </p>
             <Link href="/services/catering">
-              <CustomButton variant="primary">VIEW SAMPLE MENU</CustomButton>
+              <CustomButton variant="primary">VIEW OUR MENU</CustomButton>
             </Link>
           </div>
 

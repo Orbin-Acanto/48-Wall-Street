@@ -71,7 +71,7 @@ export default function DigitalBrochureLayout({
                 postalCode: '10005',
                 addressCountry: 'US',
               },
-              telephone: '+1-877-885-0705',
+              telephone: '212.971.5353',
               email: 'info@48WallNYC.com',
               url: 'https://www.48wallnyc.com',
             },
@@ -81,7 +81,7 @@ export default function DigitalBrochureLayout({
               url: 'https://www.48wallnyc.com',
               contactPoint: {
                 '@type': 'ContactPoint',
-                telephone: '+1-877-885-0705',
+                telephone: '212.971.5353',
                 contactType: 'Sales',
                 email: 'info@48WallNYC.com',
                 availableLanguage: 'English',

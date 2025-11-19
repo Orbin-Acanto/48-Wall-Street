@@ -188,7 +188,9 @@ export default function JourneyTimelineScroll({ items }: Props) {
               Let&apos;s create an unforgettable event experience together
             </p>
             <Link href="/contact">
-              <CustomButton variant="primary">Begin Your Event</CustomButton>
+              <CustomButton variant="primary">
+                Begin Planning Your Event
+              </CustomButton>
             </Link>
           </div>
         </motion.div>

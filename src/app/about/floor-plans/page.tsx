@@ -220,7 +220,7 @@ export default function FloorPlansPage() {
                       className="flex items-center gap-3 bg-white p-3 shadow-md"
                     >
                       <Check className="text-primary h-4 w-4 flex-shrink-0" />
-                      <span className="font-secondary text-sm text-gray-600">
+                      <span className="font-secondary text-sm text-gray-600 capitalize">
                         {feature}
                       </span>
                     </div>

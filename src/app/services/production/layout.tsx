@@ -66,7 +66,7 @@ export default function ProductionServicesLayout({
               description:
                 'Premier NYC event production company providing comprehensive event services',
               url: 'https://www.48wallnyc.com',
-              telephone: '+1-877-885-0705',
+              telephone: '212.971.5353',
               email: 'info@48WallNYC.com',
               address: {
                 '@type': 'PostalAddress',
@@ -208,7 +208,7 @@ export default function ProductionServicesLayout({
             description:
               'Self-contained event production agency providing turn-key solutions for events in NYC',
             url: 'https://www.48wallnyc.com/services/production',
-            telephone: '+1-877-885-0705',
+            telephone: '212.971.5353',
             email: 'info@48WallNYC.com',
             priceRange: '$$$',
             address: {
@@ -372,7 +372,7 @@ export default function ProductionServicesLayout({
             description:
               'Premier NYC event production company providing turn-key event solutions',
             url: 'https://www.48wallnyc.com/services/production',
-            telephone: '+1-877-885-0705',
+            telephone: '212.971.5353',
             email: 'info@48WallNYC.com',
             address: {
               '@type': 'PostalAddress',

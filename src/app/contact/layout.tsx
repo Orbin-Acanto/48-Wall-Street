@@ -79,7 +79,7 @@ export default function ContactLayout({
       description:
         'Historic corporate and private event venue in New York City’s Financial District offering space for corporate events, weddings, conferences, fashion shows, and holiday parties.',
       url: 'https://www.48wallnyc.com',
-      telephone: '+1-877-885-0705',
+      telephone: '212.971.5353',
       email: 'info@48wallnyc.com',
       address: {
         '@type': 'PostalAddress',
@@ -116,7 +116,7 @@ export default function ContactLayout({
         contactPoint: [
           {
             '@type': 'ContactPoint',
-            telephone: '+1-877-885-0705',
+            telephone: '212.971.5353',
             contactType: 'customer service',
             areaServed: 'US',
             availableLanguage: ['en'],

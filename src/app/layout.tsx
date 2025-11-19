@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     'business:contact_data:postal_code': '10005',
     'business:contact_data:country_name': 'United States',
     'business:contact_data:email': 'info@48WallNYC.com',
-    'business:contact_data:phone_number': '1.877.885.0705',
+    'business:contact_data:phone_number': '212.971.5353',
   },
 };
 
@@ -129,7 +129,7 @@ export default function RootLayout({
                 latitude: 40.707421,
                 longitude: -74.009224,
               },
-              telephone: '+1-877-885-0705',
+              telephone: '212.971.5353',
               email: 'info@48WallNYC.com',
               priceRange: '$$$',
               maximumAttendeeCapacity: 500,
@@ -233,7 +233,7 @@ export default function RootLayout({
                 "Premier historic event venue in New York City's Financial District, specializing in corporate events, weddings, and private celebrations.",
               contactPoint: {
                 '@type': 'ContactPoint',
-                telephone: '+1-877-885-0705',
+                telephone: '212.971.5353',
                 contactType: 'Sales',
                 email: 'info@48WallNYC.com',
                 availableLanguage: ['English'],
@@ -265,7 +265,7 @@ export default function RootLayout({
               name: '48 Wall Street',
               image: `${siteUrl}/images/venue-exterior.jpg`,
               url: siteUrl,
-              telephone: '+1-877-885-0705',
+              telephone: '212.971.5353',
               priceRange: '$$$',
               address: {
                 '@type': 'PostalAddress',

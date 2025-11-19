@@ -86,7 +86,7 @@ export default function CustomizePlanLayout({
                 postalCode: '10005',
                 addressCountry: 'US',
               },
-              telephone: '+1-877-885-0705',
+              telephone: '212.971.5353',
               email: 'info@48WallNYC.com',
             },
           }),

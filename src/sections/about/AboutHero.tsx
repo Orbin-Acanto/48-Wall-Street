@@ -23,7 +23,7 @@ export default function AboutHero() {
                 your next corporate or milestone celebration.
               </p>
 
-              <p>
+              <p className="mt-2">
                 Located in the heart of the Financial District, the 48 Wall
                 Street event space occupies three floors of the former Bank of
                 New York & Trust Company Building. The current structure is the

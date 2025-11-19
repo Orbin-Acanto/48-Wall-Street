@@ -26,7 +26,7 @@ export default function Home() {
       <CateringParralax />
       <ContactUs />
       <ImageSection
-        text="ENJOY STRESS-FREE EVENT PLANNING WITH FULL SERVICE PRODUCTION, CREATIVE DESIGN AND DEDICATED SUPPORT FROM CONCEPT TO FINAL CURTAIN CALL."
+        text="ENJOY STRESS-FREE EVENT PLANNING WITH FULL SERVICE PRODUCTION, CREATIVE DESIGN AND DEDICATED SUPPORT FROM CONCEPT TO FINAL CURTAIN CALL"
         imageSrc="/misc/wall-sign.jpg"
         imageAlt="Wall Street Sign"
       />

@@ -106,7 +106,7 @@ export default function Footer() {
                     Lobby 1<br />
                     New York, NY 10005
                     <br />
-                    1-877-885-0705
+                    212.971.5353
                   </p>
                 </div>
               </div>

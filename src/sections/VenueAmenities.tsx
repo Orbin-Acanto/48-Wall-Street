@@ -41,7 +41,7 @@ export default function VenueAmenities() {
               </h3>
 
               {/* Description */}
-              <p className="font-secondary text-dark-black/80 text-xs leading-relaxed">
+              <p className="font-secondary text-dark-black/80 text-xs leading-relaxed capitalize">
                 {amenity.description}
               </p>
             </div>
