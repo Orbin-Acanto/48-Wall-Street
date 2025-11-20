@@ -6,6 +6,7 @@ import ChatbotWidget from '@/components/ChatBotWidget';
 import Footer from '@/components/Footer';
 import ContactUsSlider from '@/components/ContactUsSlider';
 import Script from 'next/script';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.48wallnyc.com';
 
@@ -448,6 +449,7 @@ export default function RootLayout({
         <ChatbotWidget />
         <ContactUsSlider />
         {children}
+        <SpeedInsights />
         <Footer />
       </body>
     </html>
