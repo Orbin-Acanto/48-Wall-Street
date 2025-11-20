@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
       message: formData.get('message') as string,
       eventStartTime: `${formData.get('eventStartHour')}:${formData.get('eventStartMinute')} ${formData.get('eventStartPeriod')}`,
       submittedAt: new Date().toISOString(),
+      page: (formData.get('page') as string) || '/',
     };
 
     const n8nFormData = new FormData();

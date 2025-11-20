@@ -2,10 +2,12 @@
 
 import { FormDataType } from '@/types';
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ContactUsSlider: React.FC = () => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const MAX_FILE_SIZE = 20 * 1024 * 1024;
   const [formData, setFormData] = useState<FormDataType>({
     fullName: '',
     company: '',
@@ -21,6 +23,7 @@ const ContactUsSlider: React.FC = () => {
     message: '',
     robotCheck: false,
     attachments: [],
+    page: pathname || '/',
   });
 
   const [submitStatus, setSubmitStatus] = useState<{
@@ -39,13 +42,33 @@ const ContactUsSlider: React.FC = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files) {
-      const fileArray = Array.from(files);
-      setFormData((prev) => ({
-        ...prev,
-        attachments: [...(prev.attachments || []), ...fileArray],
-      }));
+    if (!files) return;
+
+    const incomingFiles = Array.from(files);
+    const validFiles: File[] = [];
+    let hasTooLargeFile = false;
+
+    incomingFiles.forEach((file) => {
+      if (file.size <= MAX_FILE_SIZE) {
+        validFiles.push(file);
+      } else {
+        hasTooLargeFile = true;
+      }
+    });
+
+    if (hasTooLargeFile) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Each attachment must be 20MB or smaller.',
+      });
     }
+
+    if (validFiles.length === 0) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      attachments: [...(prev.attachments || []), ...validFiles],
+    }));
   };
 
   const removeFile = (index: number) => {
@@ -115,6 +138,7 @@ const ContactUsSlider: React.FC = () => {
           message: '',
           robotCheck: false,
           attachments: [],
+          page: pathname || '/',
         });
       } else {
         setSubmitStatus({
@@ -136,7 +160,13 @@ const ContactUsSlider: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  const pathname = usePathname();
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      page: pathname || '/',
+    }));
+  }, [pathname]);
+
   if (pathname === '/about/customize-plan') return null;
 
   return (
