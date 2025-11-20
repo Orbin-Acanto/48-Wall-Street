@@ -141,6 +141,47 @@ const nextConfig: NextConfig = {
       },
       { source: '/contact-us.html', destination: '/contact', permanent: true },
       { source: '/thankyou.html', destination: '/thank-you', permanent: true },
+      {
+        source: '/events-private.html',
+        destination: '/events/weddings',
+        permanent: true,
+      },
+      {
+        source: '/executive-chef.html',
+        destination: '/services/catering',
+        permanent: true,
+      },
+      {
+        source: '/about-the-museum.html',
+        destination: '/about',
+        permanent: true,
+      },
+      { source: '/moaf-concourse.html', destination: '/', permanent: true },
+      {
+        source: '/moaf-grand-mezzanine.html',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/museum-corporate-gallery.html',
+        destination: '/gallery',
+        permanent: true,
+      },
+      {
+        source: '/museum-event-gallery.html',
+        destination: '/gallery',
+        permanent: true,
+      },
+      {
+        source: '/museum-mitvah-gallery.html',
+        destination: '/gallery',
+        permanent: true,
+      },
+      {
+        source: '/museum-wedding-gallery.html',
+        destination: '/gallery',
+        permanent: true,
+      },
     ];
   },
   images: {
