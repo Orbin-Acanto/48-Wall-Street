@@ -116,6 +116,8 @@ const ContactUs: React.FC = () => {
         }
       });
 
+      formDataToSend.set('page', pathname || '/');
+
       if (formData.attachments && formData.attachments.length > 0) {
         formData.attachments.forEach((file) => {
           formDataToSend.append('attachments', file);
@@ -172,13 +174,6 @@ const ContactUs: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      page: pathname || '/',
-    }));
-  }, [pathname]);
 
   return (
     <div className="bg-whitesmoke min-h-screen px-6 py-20">

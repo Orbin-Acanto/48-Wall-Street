@@ -111,6 +111,7 @@ const ContactUsSlider: React.FC = () => {
           );
         }
       });
+      formDataToSend.set('page', pathname || '/');
 
       if (formData.attachments && formData.attachments.length > 0) {
         formData.attachments.forEach((file) => {
@@ -170,13 +171,6 @@ const ContactUsSlider: React.FC = () => {
   const toggleForm = () => {
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      page: pathname || '/',
-    }));
-  }, [pathname]);
 
   if (pathname === '/about/customize-plan') return null;
 
