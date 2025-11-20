@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import ContactUsSlider from '@/components/ContactUsSlider';
 import Script from 'next/script';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.48wallnyc.com';
 
@@ -450,6 +451,7 @@ export default function RootLayout({
         <ContactUsSlider />
         {children}
         <SpeedInsights />
+        <Analytics />
         <Footer />
       </body>
     </html>
