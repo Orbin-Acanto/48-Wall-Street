@@ -2,12 +2,16 @@
 
 import { FormDataType } from '@/types';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ContactUsSlider: React.FC = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const MAX_FILE_SIZE = 20 * 1024 * 1024;
+
   const [formData, setFormData] = useState<FormDataType>({
     fullName: '',
     company: '',
@@ -61,14 +65,20 @@ const ContactUsSlider: React.FC = () => {
         type: 'error',
         message: 'Each attachment must be 20MB or smaller.',
       });
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+
+      setFormData((prev) => ({ ...prev, attachments: [] }));
     }
 
-    if (validFiles.length === 0) return;
-
-    setFormData((prev) => ({
-      ...prev,
-      attachments: [...(prev.attachments || []), ...validFiles],
-    }));
+    if (validFiles.length > 0) {
+      setFormData((prev) => ({
+        ...prev,
+        attachments: [...(prev.attachments || []), ...validFiles],
+      }));
+    }
   };
 
   const removeFile = (index: number) => {
@@ -140,6 +150,7 @@ const ContactUsSlider: React.FC = () => {
           attachments: [],
           page: pathname || '/',
         });
+        router.push('/thank-you');
       } else {
         setSubmitStatus({
           type: 'error',
@@ -377,6 +388,7 @@ const ContactUsSlider: React.FC = () => {
                   <div>
                     <input
                       type="file"
+                      ref={fileInputRef}
                       multiple
                       onChange={handleFileChange}
                       className="font-secondary text-dark-black file:bg-primary file:text-dark-black hover:file:bg-primary/80 w-full text-sm file:mr-4 file:rounded file:border-0 file:px-4 file:py-2 file:text-sm file:font-semibold"

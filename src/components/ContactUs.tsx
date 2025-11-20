@@ -1,13 +1,17 @@
 'use client';
 
 import { FormDataType } from '@/types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import CustomButton from './CustomButton';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const ContactUs: React.FC = () => {
   const pathname = usePathname();
   const MAX_FILE_SIZE = 20 * 1024 * 1024;
+  const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
   const [formData, setFormData] = useState<FormDataType>({
     fullName: '',
     company: '',
@@ -63,14 +67,20 @@ const ContactUs: React.FC = () => {
         type: 'error',
         message: 'Each attachment must be 20MB or smaller.',
       });
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+
+      setFormData((prev) => ({ ...prev, attachments: [] }));
     }
 
-    if (validFiles.length === 0) return;
-
-    setFormData((prev) => ({
-      ...prev,
-      attachments: [...(prev.attachments || []), ...validFiles],
-    }));
+    if (validFiles.length > 0) {
+      setFormData((prev) => ({
+        ...prev,
+        attachments: [...(prev.attachments || []), ...validFiles],
+      }));
+    }
   };
 
   const removeFile = (index: number) => {
@@ -144,6 +154,7 @@ const ContactUs: React.FC = () => {
           attachments: [],
           page: pathname || '/',
         });
+        router.push('/thank-you');
       } else {
         setSubmitStatus({
           type: 'error',
@@ -330,6 +341,7 @@ const ContactUs: React.FC = () => {
               <div>
                 <input
                   type="file"
+                  ref={fileInputRef}
                   multiple
                   onChange={handleFileChange}
                   className="font-secondary text-dark-black file:bg-primary hover:file:bg-primary/80 file:text-dark-black w-full text-sm file:mr-4 file:rounded file:border-0 file:px-4 file:py-2 file:text-sm file:font-semibold"
