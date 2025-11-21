@@ -517,7 +517,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
             gridSize={gridSize}
             showGrid={showGrid}
             color="#36454F"
-            opacity={0.7}
+            opacity={0.3}
           />
 
           {renderRooms()}

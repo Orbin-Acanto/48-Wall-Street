@@ -1,6 +1,7 @@
 import { tools } from '@/data';
-import { Tool } from '@/types/floorplan.types';
+import { FloorKey, Tool } from '@/types/floorplan.types';
 import React from 'react';
+import { FLOOR_UNDERLAYS } from '..';
 
 interface TopToolbarProps {
   selectedTool: Tool;
@@ -20,6 +21,9 @@ interface TopToolbarProps {
   isLocked: boolean;
   onToggleLock: () => void;
   onOpenEventDetails: () => void;
+  selectedFloor: FloorKey;
+  onFloorChange: (floor: FloorKey) => void;
+  floors?: FloorKey[];
 }
 
 export const TopToolbar: React.FC<TopToolbarProps> = ({
@@ -40,6 +44,9 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
   isLocked,
   onToggleLock,
   onOpenEventDetails,
+  selectedFloor,
+  onFloorChange,
+  floors = ['ground', 'concourse'] as FloorKey[],
 }) => {
   return (
     <div className="flex h-16 items-center gap-2 border-b border-gray-200 bg-white px-4">
@@ -226,6 +233,24 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
           </svg>
           <span className="hidden lg:inline">Dimensions</span>
         </button>
+      </div>
+
+      <div className="mx-4 mt-2 mb-2 flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          {floors.map((key) => (
+            <button
+              key={key}
+              onClick={() => onFloorChange(key)}
+              className={`rounded-md px-3 py-1 text-sm ${
+                selectedFloor === key
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-200 text-gray-800'
+              }`}
+            >
+              {FLOOR_UNDERLAYS[key].label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Right-aligned Actions */}

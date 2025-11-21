@@ -60,7 +60,7 @@ const DEFAULT_WALL_THICKNESS = 6;
 const findLibraryItem = (id: string): LibraryItemLike | undefined =>
   ALL_LIBRARY_ITEMS.find((item) => item.id === id);
 
-const FLOOR_UNDERLAYS: Record<
+export const FLOOR_UNDERLAYS: Record<
   FloorKey,
   { label: string; svg?: string; href?: string }
 > = {
@@ -80,9 +80,11 @@ export const FloorPlanEditor: React.FC = () => {
     addWall,
     updateWall,
     deleteWall,
+    deleteDoor,
+    deleteWindow,
+    deleteFurniture,
     addFurniture,
     updateFurniture,
-    deleteFurniture,
     moveFurniture,
     rotateFurniture,
     addRoom,
@@ -93,8 +95,7 @@ export const FloorPlanEditor: React.FC = () => {
     toggleLock,
     loadFloorPlan,
     resetFloorPlan,
-    deleteDoor,
-    deleteWindow,
+    updateFloorPlanName,
   } = useFloorPlanState();
 
   const [selectedTool, setSelectedTool] = useState<Tool>('select');
@@ -128,7 +129,7 @@ export const FloorPlanEditor: React.FC = () => {
 
   // ---Underlay UI state ---
   const [selectedFloor, setSelectedFloor] = useState<FloorKey>('ground');
-  const underlayScale: number = 2.955;
+  const underlayScale: number = selectedFloor === 'ground' ? 2.955 : 2.27;
   const underlayOpacity: number = 1;
   const underlayOffset: { x: number; y: number } = { x: 40, y: 40 };
 
@@ -640,27 +641,10 @@ export const FloorPlanEditor: React.FC = () => {
         isLocked={floorPlan.isLocked}
         onToggleLock={toggleLock}
         onOpenEventDetails={() => setActiveModal('event')}
+        selectedFloor={selectedFloor}
+        onFloorChange={setSelectedFloor}
       />
 
-      {/* Floor Selector  */}
-      {/* <div className="mx-4 mt-2 mb-2 flex items-center gap-3">
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-600">Floor:</span>
-          {(['ground', 'concourse'] as FloorKey[]).map((key) => (
-            <button
-              key={key}
-              onClick={() => setSelectedFloor(key)}
-              className={`rounded-md px-3 py-1 text-sm ${
-                selectedFloor === key
-                  ? 'bg-primary text-white'
-                  : 'bg-gray-200 text-gray-800'
-              }`}
-            >
-              {FLOOR_UNDERLAYS[key].label}
-            </button>
-          ))}
-        </div>
-      </div> */}
       <div className="flex flex-1 overflow-hidden">
         <div className="flex">
           <div className="flex flex-col items-center space-y-2 bg-gray-800 py-4">
