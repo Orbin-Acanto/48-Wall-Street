@@ -172,7 +172,8 @@ const ContactUsSlider: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  if (pathname === '/about/customize-plan') return null;
+  if (pathname === '/about/customize-plan' || pathname === '/thank-you')
+    return null;
 
   return (
     <>

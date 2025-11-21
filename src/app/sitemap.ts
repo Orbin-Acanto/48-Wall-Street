@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.48wallnyc.com';
+  const now = new Date();
 
   return [
     // Home
@@ -114,7 +115,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
 
-    // Other Main Pages
     {
       url: `${baseUrl}/rentals`,
       lastModified: new Date(),
@@ -138,6 +138,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/gallery?tab=corporate`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.64,
+    },
+    {
+      url: `${baseUrl}/gallery?tab=fashion`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.64,
+    },
+    {
+      url: `${baseUrl}/gallery?tab=wedding`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.64,
+    },
+    {
+      url: `${baseUrl}/gallery?tab=bar`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.64,
+    },
+    {
+      url: `${baseUrl}/gallery?tab=holiday`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.64,
+    },
+    {
+      url: `${baseUrl}/menu/48-wall-menu.2025_.pdf`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.64,
     },
   ];
 }
