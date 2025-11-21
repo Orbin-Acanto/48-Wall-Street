@@ -261,7 +261,6 @@ export default function FloorPlansPage() {
                 {viewMode === '2d' && (
                   <div className="relative overflow-hidden bg-white shadow-2xl">
                     <div className="relative aspect-[16/10]">
-                      {/* Before Image (Blueprint) */}
                       <div className="absolute inset-0">
                         <Image
                           src={currentFloor.blueprint}
@@ -276,59 +275,78 @@ export default function FloorPlansPage() {
                           </span>
                         </div>
                       </div>
-
-                      {/* After Image (Furnished) */}
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
-                        }}
-                      >
-                        <Image
-                          src={currentFloor.furnished}
-                          alt="Furnished floor plan"
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                        <div className="bg-primary/90 absolute right-4 bottom-4 px-4 py-2 backdrop-blur-sm">
-                          <span className="font-secondary text-dark-black text-xs font-semibold tracking-wider uppercase">
-                            Furnished Setup
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Slider Handle */}
-                      <div
-                        ref={sliderRef}
-                        className="absolute inset-0 cursor-ew-resize"
-                        onMouseMove={handleMouseMove}
-                        onMouseDown={handleMouseDown}
-                        onMouseUp={handleMouseUp}
-                        onMouseLeave={handleMouseUp}
-                      >
-                        <div
-                          className="bg-primary/70 absolute top-0 bottom-0 w-1 shadow-2xl"
-                          style={{ left: `${sliderPosition}%` }}
-                        >
-                          <div className="bg-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 shadow-2xl">
-                            <div className="flex items-center gap-1">
-                              <ChevronLeft className="text-dark-black h-4 w-4" />
-                              <ChevronRight className="text-dark-black h-4 w-4" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Instructions */}
-                    <div className="bg-primary absolute top-4 right-4 flex items-center gap-2 px-4 py-2 backdrop-blur-sm">
-                      <Info className="h-4 w-4 text-white" />
-                      <span className="font-secondary text-xs text-white">
-                        Drag slider to compare
-                      </span>
                     </div>
                   </div>
+                  // <div className="relative overflow-hidden bg-white shadow-2xl">
+                  //   <div className="relative aspect-[16/10]">
+                  //     {/* Before Image (Blueprint) */}
+                  //     <div className="absolute inset-0">
+                  //       <Image
+                  //         src={currentFloor.blueprint}
+                  //         alt="Floor plan blueprint"
+                  //         fill
+                  //         className="object-cover"
+                  //         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  //       />
+                  //       <div className="bg-dark-black/80 absolute bottom-4 left-4 px-4 py-2 backdrop-blur-sm">
+                  //         <span className="font-secondary text-whitesmoke text-xs font-semibold tracking-wider uppercase">
+                  //           Empty Floor Plan
+                  //         </span>
+                  //       </div>
+                  //     </div>
+
+                  //     {/* After Image (Furnished) */}
+                  //     <div
+                  //       className="absolute inset-0"
+                  //       style={{
+                  //         clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+                  //       }}
+                  //     >
+                  //       <Image
+                  //         src={currentFloor.furnished}
+                  //         alt="Furnished floor plan"
+                  //         fill
+                  //         className="object-cover"
+                  //         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  //       />
+                  //       <div className="bg-primary/90 absolute right-4 bottom-4 px-4 py-2 backdrop-blur-sm">
+                  //         <span className="font-secondary text-dark-black text-xs font-semibold tracking-wider uppercase">
+                  //           Furnished Setup
+                  //         </span>
+                  //       </div>
+                  //     </div>
+
+                  //     {/* Slider Handle */}
+                  //     <div
+                  //       ref={sliderRef}
+                  //       className="absolute inset-0 cursor-ew-resize"
+                  //       onMouseMove={handleMouseMove}
+                  //       onMouseDown={handleMouseDown}
+                  //       onMouseUp={handleMouseUp}
+                  //       onMouseLeave={handleMouseUp}
+                  //     >
+                  //       <div
+                  //         className="bg-primary/70 absolute top-0 bottom-0 w-1 shadow-2xl"
+                  //         style={{ left: `${sliderPosition}%` }}
+                  //       >
+                  //         <div className="bg-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 shadow-2xl">
+                  //           <div className="flex items-center gap-1">
+                  //             <ChevronLeft className="text-dark-black h-4 w-4" />
+                  //             <ChevronRight className="text-dark-black h-4 w-4" />
+                  //           </div>
+                  //         </div>
+                  //       </div>
+                  //     </div>
+                  //   </div>
+
+                  //   {/* Instructions */}
+                  //   <div className="bg-primary absolute top-4 right-4 flex items-center gap-2 px-4 py-2 backdrop-blur-sm">
+                  //     <Info className="h-4 w-4 text-white" />
+                  //     <span className="font-secondary text-xs text-white">
+                  //       Drag slider to compare
+                  //     </span>
+                  //   </div>
+                  // </div>
                 )}
 
                 {viewMode === '3d' && (
@@ -464,11 +482,11 @@ export default function FloorPlansPage() {
                 </div>
               ))}
             </div>
-            {/* <div className="flex w-full items-center justify-center">
+            <div className="flex w-full items-center justify-center">
               <Link href="/about/customize-plan">
                 <CustomButton variant="primary">Floor Plan Design</CustomButton>
               </Link>
-            </div> */}
+            </div>
           </motion.div>
         </div>
       </section>
