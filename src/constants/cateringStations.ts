@@ -6,8 +6,8 @@ export const CATERING_LIBRARY: DraggableLibraryItem[] = [
     type: 'catering',
     category: 'Food',
     name: 'Food Station 1',
-    defaultDimensions: { width: 72, height: 19, unit: 'in' },
-    svgPath: `<rect x="-36" y="-9.5" width="72" height="19" fill="#39B54A" stroke="#000" stroke-width="0.5"/>`,
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath: `<rect x="-36" y="-15" width="72" height="30" fill="#39B54A" stroke="#000" stroke-width="0.5"/>`,
     groupBy: 'Food 1',
   },
   {
@@ -15,8 +15,8 @@ export const CATERING_LIBRARY: DraggableLibraryItem[] = [
     type: 'catering',
     category: 'Food',
     name: 'Food Station 2',
-    defaultDimensions: { width: 72, height: 19, unit: 'in' },
-    svgPath: `<rect x="-36" y="-9.5" width="72" height="19" fill="#603913" stroke="#000" stroke-width="0.5"/>`,
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath: `<rect x="-36" y="-15" width="72" height="30" fill="#603913" stroke="#000" stroke-width="0.5"/>`,
     groupBy: 'Food 2',
   },
   {
@@ -24,8 +24,8 @@ export const CATERING_LIBRARY: DraggableLibraryItem[] = [
     type: 'catering',
     category: 'Food',
     name: 'Food Station 3',
-    defaultDimensions: { width: 72, height: 19, unit: 'in' },
-    svgPath: `<rect x="-36" y="-9.5" width="72" height="19" fill="#92278F" stroke="#000" stroke-width="0.5"/>`,
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath: `<rect x="-36" y="-15" width="72" height="30" fill="#92278F" stroke="#000" stroke-width="0.5"/>`,
     groupBy: 'Food 3',
   },
   // Food Station End
@@ -59,6 +59,18 @@ export const CATERING_LIBRARY: DraggableLibraryItem[] = [
     svgPath: `<rect x="-108" y="-12" width="216" height="24" fill="#9E1F63" />
               <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">BAR</text>`,
     groupBy: "18' Bar",
+  },
+  {
+    id: 'bar-straight-3',
+    type: 'furniture',
+    category: 'Bars',
+    name: 'Straight Bar (6ft)',
+    defaultDimensions: { width: 72, height: 24, unit: 'in' },
+    svgPath: `
+    <rect x="-36" y="-12" width="72" height="24" fill="#4B77BE" />
+    <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">BAR</text>
+  `,
+    groupBy: "6' Bar",
   },
   // Beverage End
   // Misc Start
