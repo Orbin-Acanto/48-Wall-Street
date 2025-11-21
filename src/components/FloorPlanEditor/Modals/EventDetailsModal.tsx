@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   EVENT_TYPES,
   EventDetails,
+  FloorKey,
   SERVICE_TYPES,
 } from '@/types/floorplan.types';
 
@@ -10,6 +11,7 @@ interface EventDetailsModalProps {
   eventDetails: EventDetails;
   onSave: (details: EventDetails) => void;
   onClose: () => void;
+  selectedFloor: FloorKey;
 }
 
 const FOOD_TYPES = [
@@ -62,6 +64,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
   eventDetails,
   onSave,
   onClose,
+  selectedFloor,
 }) => {
   const [formData, setFormData] = useState<EventDetails>({
     ...eventDetails,
@@ -79,6 +82,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
     barsCount:
       typeof eventDetails.barsCount === 'number' ? eventDetails.barsCount : 1,
     specialNotes: eventDetails.specialNotes || '',
+    floor: selectedFloor || 'ground',
   });
 
   if (!isOpen) return null;
@@ -109,7 +113,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
   return (
     <div
       className="font-secondary fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-      onClick={onClose}
+      // onClick={onClose}
     >
       <div
         className="max-h-[90vh] w-full max-w-3xl overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl"

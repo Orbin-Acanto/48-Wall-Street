@@ -811,6 +811,7 @@ export const FloorPlanEditor: React.FC = () => {
       {activeModal === 'event' && (
         <EventDetailsModal
           isOpen
+          selectedFloor={selectedFloor}
           eventDetails={floorPlan.eventDetails}
           onSave={(details) => {
             updateEventDetails(details);

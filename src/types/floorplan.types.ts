@@ -121,6 +121,7 @@ export interface EventDetails {
   services: string[];
   eventDate?: string;
   eventName?: string;
+  floor?: string;
 }
 
 export type GetPosFn = (id: string) => Point | null;
