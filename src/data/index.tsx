@@ -3338,8 +3338,23 @@ export const sampleViewPoints: ViewPoint[] = [
 
 export const LEGEND_ITEMS: LegendItemConfig[] = [
   {
+    category: '36" Round Tables',
+    label: '36" ROUND TABLES',
+    color: '#2BACE2',
+  },
+  {
+    category: '54" Round Tables',
+    label: '54" ROUND TABLES',
+    color: '#2BACE2',
+  },
+  {
     category: '60" Round Tables',
     label: '60" ROUND TABLES',
+    color: '#2BACE2',
+  },
+  {
+    category: '72" Round Tables',
+    label: '72" ROUND TABLES',
     color: '#2BACE2',
   },
   {
@@ -3386,6 +3401,11 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     category: "12' Bar",
     label: '12’ BAR',
     color: '#00A79D',
+  },
+  {
+    category: "6' Bar",
+    label: '6’ BAR',
+    color: '#4B77BE',
   },
   {
     category: 'Registration',
