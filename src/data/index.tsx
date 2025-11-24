@@ -3459,67 +3459,67 @@ export const tools: { id: Tool; label: string; icon: React.ReactElement }[] = [
       </svg>
     ),
   },
-  {
-    id: 'wall',
-    label: 'Wall',
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="19" cy="5" r="2" />
-        <circle cx="5" cy="19" r="2" />
-        <path d="M5 17A12 12 0 0 1 17 5" />
-      </svg>
-    ),
-  },
-  {
-    id: 'door',
-    label: 'Door',
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M10 12h.01" />
-        <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14" />
-        <path d="M2 20h20" />
-      </svg>
-    ),
-  },
-  {
-    id: 'window',
-    label: 'Window',
-    icon: (
-      <svg
-        className="h-5 w-5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z M12 5v14 M4 12h16"
-        />
-      </svg>
-    ),
-  },
+  // {
+  //   id: 'wall',
+  //   label: 'Wall',
+  //   icon: (
+  //     <svg
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       width="24"
+  //       height="24"
+  //       viewBox="0 0 24 24"
+  //       fill="none"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinecap="round"
+  //       strokeLinejoin="round"
+  //     >
+  //       <circle cx="19" cy="5" r="2" />
+  //       <circle cx="5" cy="19" r="2" />
+  //       <path d="M5 17A12 12 0 0 1 17 5" />
+  //     </svg>
+  //   ),
+  // },
+  // {
+  //   id: 'door',
+  //   label: 'Door',
+  //   icon: (
+  //     <svg
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       width="24"
+  //       height="24"
+  //       viewBox="0 0 24 24"
+  //       fill="none"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinecap="round"
+  //       strokeLinejoin="round"
+  //     >
+  //       <path d="M10 12h.01" />
+  //       <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14" />
+  //       <path d="M2 20h20" />
+  //     </svg>
+  //   ),
+  // },
+  // {
+  //   id: 'window',
+  //   label: 'Window',
+  //   icon: (
+  //     <svg
+  //       className="h-5 w-5"
+  //       fill="none"
+  //       stroke="currentColor"
+  //       viewBox="0 0 24 24"
+  //     >
+  //       <path
+  //         strokeLinecap="round"
+  //         strokeLinejoin="round"
+  //         strokeWidth={2}
+  //         d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z M12 5v14 M4 12h16"
+  //       />
+  //     </svg>
+  //   ),
+  // },
 
   {
     id: 'pan',
@@ -3540,25 +3540,25 @@ export const tools: { id: Tool; label: string; icon: React.ReactElement }[] = [
       </svg>
     ),
   },
-  {
-    id: 'curve-wall',
-    label: 'Curved Wall',
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M7 3.5c5-2 7 2.5 3 4C1.5 10 2 15 5 16c5 2 9-10 14-7s.5 13.5-4 12c-5-2.5.5-11 6-2" />
-      </svg>
-    ),
-  },
+  // {
+  //   id: 'curve-wall',
+  //   label: 'Curved Wall',
+  //   icon: (
+  //     <svg
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       width="24"
+  //       height="24"
+  //       viewBox="0 0 24 24"
+  //       fill="none"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinecap="round"
+  //       strokeLinejoin="round"
+  //     >
+  //       <path d="M7 3.5c5-2 7 2.5 3 4C1.5 10 2 15 5 16c5 2 9-10 14-7s.5 13.5-4 12c-5-2.5.5-11 6-2" />
+  //     </svg>
+  //   ),
+  // },
 ];
 
 export const sidebarSocialLinks = [

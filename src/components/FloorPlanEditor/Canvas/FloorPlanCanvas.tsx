@@ -285,6 +285,70 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     roomDragOffsetRef.current = null;
   }, [canvasMouseUp, endDrag]);
 
+  // const renderRooms = () =>
+  //   rooms
+  //     .filter(
+  //       (room) =>
+  //         typeof room.x === 'number' &&
+  //         typeof room.y === 'number' &&
+  //         typeof room.width === 'number' &&
+  //         typeof room.height === 'number'
+  //     )
+  //     .map((room) => {
+  //       const isSelected = selectedItemId === room.id;
+
+  //       const stroke = room.color || '#CBA35C';
+  //       const fill =
+  //         room.color && room.color.startsWith('#')
+  //           ? `${room.color}99`
+  //           : room.color || 'rgba(203,163,92,0.52)';
+
+  //       const centerX = room.x! + room.width! / 2;
+  //       const centerY = room.y! + room.height! / 2;
+
+  //       return (
+  //         <g key={room.id} onMouseDown={(e) => handleRoomMouseDown(e, room)}>
+  //           <rect
+  //             x={room.x}
+  //             y={room.y}
+  //             width={room.width}
+  //             height={room.height}
+  //             rx={4}
+  //             ry={4}
+  //             fill={fill}
+  //             stroke={stroke}
+  //             strokeWidth={isSelected ? 1.5 : 0.75}
+  //             strokeDasharray={isSelected ? '4 2' : '3 3'}
+  //           />
+  //           <text
+  //             x={centerX}
+  //             y={centerY}
+  //             textAnchor="middle"
+  //             fontSize={14}
+  //             fontWeight="bold"
+  //             fill="#1E3A8A"
+  //             stroke="#ffffff"
+  //             strokeWidth={0.5}
+  //             paintOrder="stroke"
+  //             style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}
+  //           >
+  //             {room.name || 'ROOM'}
+  //           </text>
+  //           {room.area ? (
+  //             <text
+  //               x={centerX}
+  //               y={centerY + 16}
+  //               textAnchor="middle"
+  //               fontSize={12}
+  //               fill="#374151"
+  //             >
+  //               {room.area} sq ft
+  //             </text>
+  //           ) : null}
+  //         </g>
+  //       );
+  //     });
+
   const renderRooms = () =>
     rooms
       .filter(
@@ -295,13 +359,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
           typeof room.height === 'number'
       )
       .map((room) => {
-        const isSelected = selectedItemId === room.id;
-
-        const stroke = room.color || '#CBA35C';
-        const fill =
-          room.color && room.color.startsWith('#')
-            ? `${room.color}99`
-            : room.color || 'rgba(203,163,92,0.52)';
+        const textColor = room.color || '#000000';
 
         const centerX = room.x! + room.width! / 2;
         const centerY = room.y! + room.height! / 2;
@@ -315,36 +373,20 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
               height={room.height}
               rx={4}
               ry={4}
-              fill={fill}
-              stroke={stroke}
-              strokeWidth={isSelected ? 1.5 : 0.75}
-              strokeDasharray={isSelected ? '4 2' : '3 3'}
+              fill="transparent"
             />
             <text
               x={centerX}
               y={centerY}
               textAnchor="middle"
-              fontSize={14}
+              fontSize={18}
               fontWeight="bold"
-              fill="#1E3A8A"
-              stroke="#ffffff"
-              strokeWidth={0.5}
+              fill={textColor}
               paintOrder="stroke"
               style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}
             >
               {room.name || 'ROOM'}
             </text>
-            {room.area ? (
-              <text
-                x={centerX}
-                y={centerY + 16}
-                textAnchor="middle"
-                fontSize={12}
-                fill="#374151"
-              >
-                {room.area} sq ft
-              </text>
-            ) : null}
           </g>
         );
       });

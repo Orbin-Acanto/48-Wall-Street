@@ -956,7 +956,8 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
       <div className="space-y-4">
         <div>
           <label className="mb-1 block text-sm font-medium text-gray-700">
-            Room Name
+            {/* Room Name */}
+            Label Name
           </label>
           <input
             type="text"
@@ -966,7 +967,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           />
         </div>
 
-        <div>
+        {/* <div>
           <label className="mb-1 block text-sm font-medium text-gray-700">
             Label Box Size (px)
           </label>
@@ -997,9 +998,9 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
               {widthFt} ft × {heightFt} ft
             </p>
           )}
-        </div>
+        </div> */}
 
-        <div>
+        {/* <div>
           <label className="mb-1 block text-sm font-medium text-gray-700">
             Area (sq ft)
           </label>
@@ -1012,11 +1013,12 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           <p className="mt-1 text-[10px] text-gray-500">
             Calculated from label box width × height using canvas scale.
           </p>
-        </div>
+        </div> */}
 
         <div>
           <label className="mb-1 block text-sm font-medium text-gray-700">
-            Highlight Color
+            {/* Highlight Color */}
+            Label Color
           </label>
           <input
             type="color"

@@ -371,22 +371,22 @@ export const FloorPlanEditor: React.FC = () => {
     (position: Point) => {
       const pixelsPerFoot = floorPlan.canvasSettings.scale || 20;
 
-      const defaultWidth = 200;
-      const defaultHeight = 120;
+      const defaultWidth = 120;
+      const defaultHeight = 40;
 
       const widthFt = defaultWidth / pixelsPerFoot;
       const heightFt = defaultHeight / pixelsPerFoot;
       const areaSqFt = +(widthFt * heightFt).toFixed(2);
 
       const newRoomId = addRoom({
-        name: `Room ${floorPlan.rooms.length + 1}`,
+        name: `Label ${floorPlan.rooms.length + 1}`,
         walls: [],
         x: position.x - defaultWidth / 2,
         y: position.y - defaultHeight / 2,
         width: defaultWidth,
         height: defaultHeight,
         area: areaSqFt,
-        color: '#FDE68A',
+        color: '#000000',
       });
 
       setSelectedItemId(newRoomId);
