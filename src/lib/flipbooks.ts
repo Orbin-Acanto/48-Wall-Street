@@ -10,7 +10,7 @@ export type Flipbook = {
 
 export async function getFlipbooks(): Promise<Flipbook[]> {
   const res = await fetch(process.env.N8N_FLIPBOOK_API!, {
-    next: { revalidate: 600 },
+    next: { revalidate: 14400 },
   });
 
   if (!res.ok) {
