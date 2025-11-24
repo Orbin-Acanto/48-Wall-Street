@@ -12,17 +12,14 @@ type PageProps = {
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
 
-  try {
-    const flipbooks = await getFlipbooks();
-    const book = flipbooks.find((b) => slugify(b.title) === slug);
-    if (!book) return {};
-    return {
-      title: `${book.title} | 48 Wall Street NYC`,
-      description: `${book.title} flipbook brochure`,
-    };
-  } catch {
-    return {};
-  }
+  const flipbooks = await getFlipbooks();
+  const book = flipbooks.find((b) => slugify(b.title) === slug);
+  if (!book) return {};
+
+  return {
+    title: `${book.title} | 48 Wall Street NYC`,
+    description: `${book.title} flipbook brochure`,
+  };
 }
 
 export default async function FlipbookPage({ params }: PageProps) {

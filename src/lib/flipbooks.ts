@@ -1,5 +1,9 @@
-export type FlipbookImage = {
-  id: string;
+export type FlipbookImage = { id: string };
+
+type FlipbookRaw = {
+  title?: unknown;
+  pdfUrl?: unknown;
+  images?: unknown;
 };
 
 export type Flipbook = {
@@ -9,15 +13,44 @@ export type Flipbook = {
 };
 
 export async function getFlipbooks(): Promise<Flipbook[]> {
-  const res = await fetch(process.env.N8N_FLIPBOOK_API!, {
-    next: { revalidate: 14400 },
-  });
+  const url = process.env.N8N_FLIPBOOK_API;
+  if (!url) return [];
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch flipbooks: ${res.statusText}`);
-  }
+  const res = await fetch(url, { next: { revalidate: 14400 } });
+  if (!res.ok) return [];
 
-  return res.json();
+  const data: FlipbookRaw[] = await res.json();
+  if (!Array.isArray(data)) return [];
+
+  return data
+    .map(normalizeFlipbook)
+    .filter((b) => b.title && b.images.length > 0);
+}
+
+function normalizeFlipbook(raw: FlipbookRaw): Flipbook {
+  const title = typeof raw.title === 'string' ? raw.title : '';
+  const pdfUrl = typeof raw.pdfUrl === 'string' ? raw.pdfUrl : '';
+
+  const imagesArray = Array.isArray(raw.images) ? raw.images : [];
+
+  const images: FlipbookImage[] = imagesArray
+    .map((img: any) => {
+      if (typeof img === 'string') {
+        try {
+          const idFromUrl = new URL(img).searchParams.get('id');
+          return idFromUrl ? { id: idFromUrl } : { id: img };
+        } catch {
+          return { id: img };
+        }
+      }
+      if (img && typeof img.id === 'string') {
+        return { id: img.id };
+      }
+      return null;
+    })
+    .filter(Boolean) as FlipbookImage[];
+
+  return { title, pdfUrl, images };
 }
 
 export function slugify(title: string) {
