@@ -49,26 +49,85 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   pixelsPerFoot,
   onLegendUpdate,
 }) => {
+  const getLegendItems = () => {
+    const items: Array<{
+      category: string;
+      label: string;
+      color: string;
+      count: number;
+      isCustom: boolean;
+    }> = [];
+
+    LEGEND_ITEMS.forEach((legendItem) => {
+      const count = categoryCounts[legendItem.category] ?? 0;
+      if (count > 0) {
+        items.push({
+          category: legendItem.category,
+          label: legendItem.label,
+          color: legendItem.color,
+          count,
+          isCustom: false,
+        });
+      }
+    });
+
+    const customItems = furnitureItems.filter(
+      (item) => item.category === 'Customize'
+    );
+
+    const customGroups = new Map<
+      string,
+      { color: string; count: number; items: typeof furnitureItems }
+    >();
+
+    customItems.forEach((item) => {
+      const key = `${item.customName || 'Custom Table'}-${item.color || '#8B4789'}`;
+      const existing = customGroups.get(key);
+
+      if (existing) {
+        existing.count += 1;
+        existing.items.push(item);
+      } else {
+        customGroups.set(key, {
+          color: item.color || '#8B4789',
+          count: 1,
+          items: [item],
+        });
+      }
+    });
+
+    customGroups.forEach((data, key) => {
+      const name = key.split('-')[0];
+      items.push({
+        category: name,
+        label: name.toUpperCase(),
+        color: data.color,
+        count: data.count,
+        isCustom: true,
+      });
+    });
+
+    return items;
+  };
+
   const categoryCounts = furnitureItems.reduce<Record<string, number>>(
     (acc, item) => {
-      const key = item.groupBy || item.category;
-      acc[key] = (acc[key] ?? 0) + 1;
+      if (item.category === 'Customize') {
+        const key = item.customName || 'Custom Table';
+        acc[key] = (acc[key] ?? 0) + 1;
+      } else {
+        const key = item.groupBy || item.category;
+        acc[key] = (acc[key] ?? 0) + 1;
+      }
       return acc;
     },
     {}
   );
 
-  const legendItemsWithCounts = LEGEND_ITEMS.filter(
-    (item) => (categoryCounts[item.category] ?? 0) > 0
-  ).map((item) => ({
-    category: item.category,
-    label: item.label,
-    color: item.color,
-    count: categoryCounts[item.category] ?? 0,
-  }));
+  const allLegendItems = getLegendItems();
 
   useEffect(() => {
-    onLegendUpdate(legendItemsWithCounts);
+    onLegendUpdate(allLegendItems);
   }, [furnitureItems, onLegendUpdate]);
 
   if (!selectedItem) {
@@ -91,32 +150,40 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           </div>
 
           <div className="space-y-1.5">
-            {LEGEND_ITEMS.filter(
-              (item) => (categoryCounts[item.category] ?? 0) > 0
-            ).map((item) => {
-              const count = categoryCounts[item.category] ?? 0;
-
-              return (
-                <div
-                  key={item.category}
-                  className="flex items-center justify-between gap-2 rounded-md border border-gray-100 bg-white px-2.5 py-1.5"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span
-                      className="h-4 w-4 rounded-sm border border-gray-300"
-                      style={{ backgroundColor: item.color }}
-                    />
-                    <span className="text-[11px] font-medium text-gray-800">
-                      {item.label}
-                    </span>
-                  </div>
-
-                  <span className="text-[10px] font-semibold text-gray-600">
-                    {count}
+            {allLegendItems.map((item, index) => (
+              <div
+                key={`${item.category}-${item.isCustom ? 'custom' : 'static'}-${index}`}
+                className="flex items-center justify-between gap-2 rounded-md border border-gray-100 bg-white px-2.5 py-1.5"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span
+                    className="h-4 w-4 flex-shrink-0 rounded-sm border border-gray-300"
+                    style={{ backgroundColor: item.color }}
+                  />
+                  <span className="text-[11px] font-medium text-gray-800">
+                    {item.label}
                   </span>
+                  {item.isCustom && (
+                    <span className="text-[9px] text-gray-500 italic">
+                      (Custom)
+                    </span>
+                  )}
                 </div>
-              );
-            })}
+
+                <span className="text-[10px] font-semibold text-gray-600">
+                  {item.count}
+                </span>
+              </div>
+            ))}
+
+            {allLegendItems.length === 0 && (
+              <div className="rounded-md border border-gray-200 bg-gray-50 px-3 py-4 text-center">
+                <p className="text-xs text-gray-500">
+                  No items placed yet. Drag items from the sidebar to get
+                  started.
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="mt-4 rounded-md border border-gray-100 bg-gray-50 px-3 py-2">
@@ -457,8 +524,8 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   // FURNITURE PROPERTIES
   const renderFurnitureProperties = (item: FurnitureItem) => {
     const itemLocked = !!item.locked || isLocked;
-
     const dims = item.dimensions;
+    const isCustomizable = item.category === 'Customize';
 
     const handleUnitChange = (nextUnit: 'in' | 'ft') => {
       if (nextUnit === dims.unit) return;
@@ -561,6 +628,16 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
       onRotate(normalized);
     };
 
+    const updateColor = (color: string) => {
+      if (itemLocked) return;
+      onUpdate({ color });
+    };
+
+    const updateCustomName = (customName: string) => {
+      if (itemLocked) return;
+      onUpdate({ customName });
+    };
+
     return (
       <div className="space-y-5">
         {/* Basic meta */}
@@ -570,7 +647,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
               {item.type}
             </p>
             <h4 className="text-base font-semibold text-gray-900">
-              {item.name}
+              {item.customName || item.name}
             </h4>
             <p className="mt-0.5 inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-700">
               {item.category}
@@ -588,6 +665,53 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
             )}
           </button>
         </div>
+
+        {isCustomizable && (
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              Custom Name
+            </label>
+            <input
+              type="text"
+              value={item.customName || ''}
+              onChange={(e) => updateCustomName(e.target.value)}
+              placeholder="Enter custom name"
+              disabled={itemLocked}
+              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-[#CBA35C]/50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+            />
+            <p className="mt-1 text-[10px] text-gray-500">
+              This name will appear in the legend
+            </p>
+          </div>
+        )}
+
+        {isCustomizable && (
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              Color
+            </label>
+            <div className="flex items-center gap-2">
+              <input
+                type="color"
+                value={item.color || '#8B4789'}
+                onChange={(e) => updateColor(e.target.value)}
+                disabled={itemLocked}
+                className="h-10 w-16 cursor-pointer rounded-lg border border-gray-300 disabled:cursor-not-allowed disabled:opacity-50"
+              />
+              <input
+                type="text"
+                value={item.color || '#8B4789'}
+                onChange={(e) => updateColor(e.target.value)}
+                placeholder="#8B4789"
+                disabled={itemLocked}
+                className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 font-mono text-sm text-gray-900 uppercase placeholder:text-gray-400 focus:ring-2 focus:ring-[#CBA35C]/50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+              />
+            </div>
+            <p className="mt-1 text-[10px] text-gray-500">
+              This color will appear in the legend
+            </p>
+          </div>
+        )}
 
         {/* Dimensions */}
         <div>

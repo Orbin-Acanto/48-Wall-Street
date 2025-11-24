@@ -1,3 +1,6 @@
+import { CUSTOM_TABLE_COLORS } from '@/data';
+import { FurnitureItem as FurnitureItemType } from '@/types/floorplan.types';
+
 export const feetToInches = (feet: number): number => {
   return feet * 12;
 };
@@ -22,6 +25,35 @@ export const inchesToPixels = (inches: number, scale: number): number => {
 export const pixelsToInches = (pixels: number, scale: number): number => {
   const feet = pixelsToFeet(pixels, scale);
   return feetToInches(feet);
+};
+
+export const getNextAvailableColor = (
+  existingItems: FurnitureItemType[]
+): string => {
+  const usedCustomColors = new Set(
+    existingItems
+      .filter((item) => item.category === 'Customize' && item.color)
+      .map((item) => item.color)
+  );
+
+  const availableColor = CUSTOM_TABLE_COLORS.find(
+    (color) => !usedCustomColors.has(color)
+  );
+
+  if (!availableColor) {
+    return generateRandomColor();
+  }
+
+  return availableColor;
+};
+
+const generateRandomColor = (): string => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 };
 
 export const formatDimension = (

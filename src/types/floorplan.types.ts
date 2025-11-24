@@ -96,6 +96,8 @@ export interface FurnitureItem {
   locked?: boolean;
   zIndex?: number;
   groupBy?: string;
+  color?: string;
+  customName?: string;
 }
 
 export interface EventDetails {
@@ -178,6 +180,7 @@ export interface DraggableLibraryItem {
   svgPath: string;
   thumbnail?: string;
   groupBy?: string;
+  color?: string;
 }
 
 export interface ViewportTransform {

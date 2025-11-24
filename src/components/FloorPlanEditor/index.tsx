@@ -42,7 +42,7 @@ import { DoorWindow } from '@/types/floorplan.types';
 import { exportToJSON, importFromJSON } from '@/utils/exportUtils';
 import { calculateDistance } from '@/utils/geometryUtils';
 import { isValidWall, isValidFurnitureItem } from '@/utils/validationUtils';
-import { feetToInches } from '@/utils/conversionUtils';
+import { feetToInches, getNextAvailableColor } from '@/utils/conversionUtils';
 
 import { FURNITURE_LIBRARY } from '@/constants/furnitureLibrary';
 import { AV_EQUIPMENT_LIBRARY } from '@/constants/avEquipment';
@@ -262,6 +262,19 @@ export const FloorPlanEditor: React.FC = () => {
         return;
       }
 
+      const isCustomTable = libraryItem.category === 'Customize';
+
+      let svgPath = libraryItem.svgPath;
+      let color: string | undefined;
+
+      if (isCustomTable) {
+        color = getNextAvailableColor(floorPlan.furniture);
+        svgPath = libraryItem.svgPath.replace(
+          /fill="#[0-9A-Fa-f]{6}"/gi,
+          `fill="${color}"`
+        );
+      }
+
       const candidate: Omit<FurnitureItem, 'id'> = {
         type: libraryItem.type,
         category: libraryItem.category,
@@ -270,10 +283,11 @@ export const FloorPlanEditor: React.FC = () => {
         rotation: 0,
         dimensions: libraryItem.defaultDimensions,
         baseDimensions: libraryItem.defaultDimensions,
-        svgPath: libraryItem.svgPath,
+        svgPath,
         locked: false,
         zIndex: 1,
         groupBy: libraryItem.groupBy,
+        ...(color && { color }),
       };
 
       if (
@@ -288,7 +302,7 @@ export const FloorPlanEditor: React.FC = () => {
 
       addFurniture(candidate);
     },
-    [addFurniture]
+    [addFurniture, floorPlan.furniture]
   );
 
   const handleDelete = useCallback(() => {
@@ -419,10 +433,6 @@ export const FloorPlanEditor: React.FC = () => {
     },
     [floorPlan.walls, updateWall]
   );
-
-  // Click-drag marquee selection
-  // Arrow-key nudge
-  // Group Can move together, they should rotate together as well
 
   const addWindowToWall = useCallback(
     (wallId: string, position: number = 0.5) => {

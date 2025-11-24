@@ -562,8 +562,6 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
             opacity={0.3}
           />
 
-          {renderRooms()}
-
           {walls.map((wall) => (
             <WallComponent
               key={wall.id}
@@ -586,6 +584,8 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
           ))}
 
           {renderFurniture()}
+
+          {renderRooms()}
 
           {renderTempWall()}
 

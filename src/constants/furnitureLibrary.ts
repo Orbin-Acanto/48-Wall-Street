@@ -135,17 +135,22 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
   },
   // Seating End
   // Tables Start
+  // 36 inch table
   {
-    id: 'table-round',
+    id: 'table-round-36',
     type: 'furniture',
     category: 'Tables',
-    name: 'Round Table',
-    defaultDimensions: { width: 60, height: 60, unit: 'in' },
-    svgPath: `<circle cx="0" cy="0" r="30" fill="#2BACE2" stroke="#000" stroke-width="1"/>
-              <circle cx="0" cy="0" r="26" fill="none" stroke="#000" stroke-width="0.5" stroke-dasharray="2,2"/>`,
-    groupBy: '60" Round Tables',
+    name: 'Round Table 36"',
+    defaultDimensions: { width: 36, height: 36, unit: 'in' },
+
+    svgPath: `
+    <!-- 36" round table -->
+    <circle cx="0" cy="0" r="18" fill="#2BACE2" stroke="#000" stroke-width="1"/>
+    <circle cx="0" cy="0" r="16" fill="none" stroke="#000" stroke-width="0.5" stroke-dasharray="2,2"/>
+  `,
+
+    groupBy: '36" Round Tables',
   },
-  // 36 inch table
   {
     id: 'table-round-4',
     type: 'furniture',
@@ -343,6 +348,16 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
   // 54 inch table
 
   // 60 inch table
+  {
+    id: 'table-round',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Round Table',
+    defaultDimensions: { width: 60, height: 60, unit: 'in' },
+    svgPath: `<circle cx="0" cy="0" r="30" fill="#2BACE2" stroke="#000" stroke-width="1"/>
+              <circle cx="0" cy="0" r="26" fill="none" stroke="#000" stroke-width="0.5" stroke-dasharray="2,2"/>`,
+    groupBy: '60" Round Tables',
+  },
   {
     id: 'table-round-8-60',
     type: 'furniture',
@@ -744,6 +759,18 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     id: 'bar-straight-1',
     type: 'furniture',
     category: 'Bars',
+    name: 'Straight Bar (6ft)',
+    defaultDimensions: { width: 72, height: 24, unit: 'in' },
+    svgPath: `
+    <rect x="-36" y="-12" width="72" height="24" fill="#4B77BE" />
+    <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">BAR</text>
+  `,
+    groupBy: "6' Bar",
+  },
+  {
+    id: 'bar-straight-2',
+    type: 'furniture',
+    category: 'Bars',
     name: 'Straight Bar (12ft)',
     defaultDimensions: { width: 144, height: 24, unit: 'in' },
     svgPath: `<rect x="-72" y="-12" width="144" height="24" fill="#00A79D" />
@@ -751,7 +778,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     groupBy: "12' Bar",
   },
   {
-    id: 'bar-straight-2',
+    id: 'bar-straight-3',
     type: 'furniture',
     category: 'Bars',
     name: 'Straight Bar (18ft)',
@@ -761,17 +788,16 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     groupBy: "18' Bar",
   },
   {
-    id: 'bar-straight-3',
+    id: 'bar-straight-4',
     type: 'furniture',
     category: 'Bars',
-    name: 'Straight Bar (6ft)',
-    defaultDimensions: { width: 72, height: 24, unit: 'in' },
-    svgPath: `
-    <rect x="-36" y="-12" width="72" height="24" fill="#4B77BE" />
-    <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">BAR</text>
-  `,
-    groupBy: "6' Bar",
+    name: 'Straight Bar (24ft)',
+    defaultDimensions: { width: 288, height: 24, unit: 'in' },
+    svgPath: `<rect x="-144" y="-12" width="288" height="24" fill="#E67E22" />
+              <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">BAR</text>`,
+    groupBy: "24' Bar",
   },
+
   // Bar End
   // Decor Start
   {
@@ -802,6 +828,20 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     groupBy: 'Red Carpet',
   },
   // Decor End
+  // Customize
+  {
+    id: 'Rectangle-table',
+    type: 'furniture',
+    category: 'Customize',
+    name: 'Rectangle Table',
+    defaultDimensions: { width: 72, height: 24, unit: 'in' },
+    color: '#8B4789',
+    svgPath: `
+    <rect x="-36" y="-12" width="72" height="24" fill="#8B4789" />
+  `,
+    groupBy: 'Customize',
+  },
+  // Customize
 ];
 
 export const getFurnitureByCategory = (

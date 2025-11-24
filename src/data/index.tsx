@@ -3398,14 +3398,24 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     color: '#6BC5A8',
   },
   {
+    category: "6' Bar",
+    label: '6’ BAR',
+    color: '#4B77BE',
+  },
+  {
     category: "12' Bar",
     label: '12’ BAR',
     color: '#00A79D',
   },
   {
-    category: "6' Bar",
-    label: '6’ BAR',
-    color: '#4B77BE',
+    category: "18' Bar",
+    label: '18’ BAR',
+    color: '#9E1F63',
+  },
+  {
+    category: "24' Bar",
+    label: '24’ BAR',
+    color: '#E67E22',
   },
   {
     category: 'Registration',
@@ -3427,16 +3437,55 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     label: 'FOOD STATION 3',
     color: '#92278F',
   },
-  {
-    category: "18' Bar",
-    label: '18’ BAR',
-    color: '#9E1F63',
-  },
+
   {
     category: 'Black Highboys',
     label: 'BLACK HIGH BOYS WITH STOOLS',
     color: '#000000',
   },
+];
+
+const USED_COLORS = [
+  '#2BACE2', // Tables/Seating
+  '#2E3192', // Swag Table
+  '#00A651', // Staging
+  '#F7941D', // Podium/Mic
+  '#F9ED32', // Award Table
+  '#355855', // Coffee
+  '#39B54A', // Food 1
+  '#6BC5A8', // Auction Tables
+  '#4B77BE', // 6' Bar
+  '#00A79D', // 12' Bar
+  '#9E1F63', // 18' Bar
+  '#E67E22', // 24' Bar
+  '#662D91', // Registration
+  '#AF2025', // Red Carpet
+  '#603913', // Food 2
+  '#92278F', // Food 3
+  '#000000', // Black Highboys
+];
+
+export const CUSTOM_TABLE_COLORS = [
+  '#8B4789',
+  '#E91E63',
+  '#9C27B0',
+  '#673AB7',
+  '#3F51B5',
+  '#00BCD4',
+  '#009688',
+  '#4CAF50',
+  '#8BC34A',
+  '#CDDC39',
+  '#FFC107',
+  '#FF9800',
+  '#FF5722',
+  '#795548',
+  '#607D8B',
+  '#E53935',
+  '#D81B60',
+  '#8E24AA',
+  '#5E35B1',
+  '#3949AB',
 ];
 
 export const tools: { id: Tool; label: string; icon: React.ReactElement }[] = [

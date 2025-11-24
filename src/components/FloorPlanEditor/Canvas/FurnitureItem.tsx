@@ -47,6 +47,15 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
   const scaleY = currentHIn / safeBaseHIn;
 
   const isLocked = !!item.locked;
+  const isCustom = item.category === 'Customize';
+
+  // Get the color for custom items
+  const color = item.color || '#8B4789';
+
+  // Replace color in SVG path for custom items
+  const svgPath = isCustom
+    ? item.svgPath.replace(/fill="[^"]*"/g, `fill="${color}"`)
+    : item.svgPath;
 
   return (
     <g
@@ -120,10 +129,27 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
       <g transform={`scale(${scaleX},${scaleY})`}>
         <g
           transform={`scale(${pxPerInch})`}
-          dangerouslySetInnerHTML={{ __html: item.svgPath }}
+          dangerouslySetInnerHTML={{ __html: svgPath }}
           opacity={isSelected ? 0.95 : 1}
         />
       </g>
+
+      {isCustom && item.customName && !isSelected && (
+        <text
+          y={0}
+          fontSize="10"
+          fill="#ffffff"
+          fontWeight="600"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          className="select-none"
+          style={{
+            textShadow: '0 0 3px rgba(0,0,0,0.5)',
+          }}
+        >
+          {item.customName}
+        </text>
+      )}
 
       {isSelected && (
         <text
@@ -134,7 +160,7 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
           textAnchor="middle"
           className="select-none"
         >
-          {item.name}
+          {item.customName || item.name}
           {isLocked ? ' (Locked)' : ''}
         </text>
       )}
@@ -165,11 +191,13 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
             fontWeight="500"
             className="select-none"
           >
-            {item.type === 'furniture'
-              ? 'FURN'
-              : item.type === 'av'
-                ? 'A/V'
-                : 'FOOD'}
+            {isCustom
+              ? 'CUSTOM'
+              : item.type === 'furniture'
+                ? 'FURN'
+                : item.type === 'av'
+                  ? 'A/V'
+                  : 'FOOD'}
           </text>
         </g>
       )}
