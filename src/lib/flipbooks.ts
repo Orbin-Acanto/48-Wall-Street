@@ -34,7 +34,7 @@ function normalizeFlipbook(raw: FlipbookRaw): Flipbook {
   const imagesArray = Array.isArray(raw.images) ? raw.images : [];
 
   const images: FlipbookImage[] = imagesArray
-    .map((img: any) => {
+    .map((img) => {
       if (typeof img === 'string') {
         try {
           const idFromUrl = new URL(img).searchParams.get('id');
