@@ -99,10 +99,13 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     svgPath: `<circle cx="0" cy="0" r="12" fill="#2BACE2"/>`,
     groupBy: 'Seating',
   },
+  // Seating End
+  // Tables Start
+  // Highboys table
   {
     id: 'hight-boys-1',
     type: 'furniture',
-    category: 'Seating',
+    category: 'Tables',
     name: 'High Boys',
     defaultDimensions: { width: 24, height: 24, unit: 'in' },
 
@@ -116,7 +119,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
   {
     id: 'hight-boys-2',
     type: 'furniture',
-    category: 'Seating',
+    category: 'Tables',
     name: 'High Boys',
     defaultDimensions: { width: 24, height: 24, unit: 'in' },
 
@@ -133,8 +136,8 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
 
     groupBy: 'Black Highboys',
   },
-  // Seating End
-  // Tables Start
+  // Highboys table
+
   // 36 inch table
   {
     id: 'table-round-36',
@@ -724,19 +727,82 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     svgPath: `<rect x="-36" y="-18" width="72" height="36" fill="#2E3192"/>`,
     groupBy: 'Swag Table',
   },
+  {
+    id: 'square-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Square Table',
+    defaultDimensions: { width: 36, height: 36, unit: 'in' },
+    svgPath: `<rect x="-18" y="-18" width="36" height="36" fill="#1E88E5"/>`,
+    groupBy: 'Square Table',
+  },
+  {
+    id: 'conference-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Conference Table',
+    defaultDimensions: { width: 96, height: 48, unit: 'in' },
+    svgPath: `<rect x="-48" y="-24" width="96" height="48" fill="#26A69A"/>`,
+    groupBy: 'Conference Table',
+  },
+  {
+    id: '6ft-exhibitor-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Exhibitor Table 6ft',
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath: `<rect x="-36" y="-15" width="72" height="30" fill="#FFCA28"/>`,
+    groupBy: 'Exhibitor Table 6ft',
+  },
+  {
+    id: '8ft-exhibitor-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Exhibitor Table 8ft',
+    defaultDimensions: { width: 96, height: 30, unit: 'in' },
+    svgPath: `<rect x="-48" y="-15" width="96" height="30" fill="#FFA726"/>`,
+    groupBy: 'Exhibitor Table 8ft',
+  },
+  {
+    id: '6ft-sponsor-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Sponsor Table 6ft',
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath: `<rect x="-36" y="-15" width="72" height="30" fill="#FF7043"/>`,
+    groupBy: 'Sponsor Table 6ft',
+  },
+  {
+    id: '8ft-sponsor-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Sponsor Table 8ft',
+    defaultDimensions: { width: 96, height: 30, unit: 'in' },
+    svgPath: `<rect x="-48" y="-15" width="96" height="30" fill="#EC407A"/>`,
+    groupBy: 'Sponsor Table 8ft',
+  },
+  {
+    id: '6ft-banquet-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Banquet Table 6ft',
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath: `<rect x="-36" y="-15" width="72" height="30" fill="#AB47BC"/>`,
+    groupBy: 'Banquet Table 6ft',
+  },
+  {
+    id: '8ft-banquet-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Banquet Table 8ft',
+    defaultDimensions: { width: 96, height: 30, unit: 'in' },
+    svgPath: `<rect x="-48" y="-15" width="96" height="30" fill="#7E57C2"/>`,
+    groupBy: 'Banquet Table 8ft',
+  },
   // Tables End
   // Stage Start
   {
     id: 'stage-1',
-    type: 'furniture',
-    category: 'Staging',
-    name: 'Stage (8x16)',
-    defaultDimensions: { width: 96, height: 192, unit: 'in' },
-    svgPath: `<rect x="-48" y="-96" width="96" height="192" fill="#00A651"/>`,
-    groupBy: 'Staging',
-  },
-  {
-    id: 'stage-2',
     type: 'furniture',
     category: 'Staging',
     name: 'Stage (8x8)',
@@ -745,10 +811,156 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     groupBy: 'Staging',
   },
   {
-    id: 'podium',
+    id: 'stage-2',
     type: 'furniture',
     category: 'Staging',
-    name: 'Podium',
+    name: 'Stage (8x16)',
+    defaultDimensions: { width: 96, height: 192, unit: 'in' },
+    svgPath: `<rect x="-48" y="-96" width="96" height="192" fill="#00A651"/>`,
+    groupBy: 'Staging',
+  },
+  {
+    id: 'stage-3',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Stage (8x24)',
+    defaultDimensions: { width: 96, height: 288, unit: 'in' },
+    svgPath: `<rect x="-48" y="-144" width="96" height="288" fill="#00A651"/>`,
+    groupBy: 'Staging',
+  },
+  {
+    id: 'camera-platform',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Camera Platform',
+    defaultDimensions: { width: 36, height: 24, unit: 'in' },
+    svgPath: `
+    <rect x='-18' y='-12' width='36' height='24' rx='2' fill='#555' stroke='#000' stroke-width='1.5'/>
+    <rect x='-16' y='-10' width='32' height='20' rx='1' fill='#777' stroke='#000' stroke-width='0.5'/>
+    <line x1='-16' y1='-8' x2='16' y2='-8' stroke='#333' stroke-width='1'/>
+    <line x1='-16' y1='-4' x2='16' y2='-4' stroke='#333' stroke-width='1'/>
+    <line x1='-16' y1='0' x2='16' y2='0' stroke='#333' stroke-width='1'/>
+    <circle cx='0' cy='-6' r='2' fill='#1C1C1C' stroke='#000' stroke-width='0.5'/>
+    <circle cx='0' cy='-6' r='1' fill='#4169E1' stroke='#000' stroke-width='0.3' opacity='0.7'/>
+  `,
+  },
+  {
+    id: 'ada-ramp',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'ADA Compliant Ramp',
+    defaultDimensions: { width: 36, height: 12, unit: 'in' },
+    svgPath:
+      "<rect x='-18' y='-6' width='36' height='12' fill='#A9A9A9' stroke='#000' stroke-width='1.5'/>" +
+      "<line x1='-18' y1='-4' x2='18' y2='-4' stroke='#666' stroke-width='1'/>" +
+      "<line x1='-18' y1='-1' x2='18' y2='-1' stroke='#666' stroke-width='1'/>" +
+      "<line x1='-18' y1='2' x2='18' y2='2' stroke='#666' stroke-width='1'/>" +
+      "<line x1='-18' y1='5' x2='18' y2='5' stroke='#666' stroke-width='1'/>",
+  },
+  {
+    id: 'stage-rails',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Stage Rails',
+    defaultDimensions: { width: 192, height: 4, unit: 'in' },
+    svgPath: `
+    <!-- Outer rail -->
+    <rect x='-96' y='-2' width='192' height='4' fill='#222' stroke='#000' stroke-width='1'/>
+
+    <!-- Inner rail line -->
+    <line x1='-96' y1='-1' x2='96' y2='-1' stroke='#555' stroke-width='1'/>
+
+    <!-- Rail posts -->
+    <circle cx='-96' cy='0' r='1.2' fill='#444' stroke='#000' stroke-width='0.5'/>
+    <circle cx='-72' cy='0' r='1.2' fill='#444' stroke='#000' stroke-width='0.5'/>
+    <circle cx='-48' cy='0' r='1.2' fill='#444' stroke='#000' stroke-width='0.5'/>
+    <circle cx='-24' cy='0' r='1.2' fill='#444' stroke='#000' stroke-width='0.5'/>
+    <circle cx='0' cy='0' r='1.2' fill='#444' stroke='#000' stroke-width='0.5'/>
+    <circle cx='24' cy='0' r='1.2' fill='#444' stroke='#000' stroke-width='0.5'/>
+    <circle cx='48' cy='0' r='1.2' fill='#444' stroke='#000' stroke-width='0.5'/>
+    <circle cx='72' cy='0' r='1.2' fill='#444' stroke='#000' stroke-width='0.5'/>
+    <circle cx='96' cy='0' r='1.2' fill='#444' stroke='#000' stroke-width='0.5'/>
+  `,
+  },
+  {
+    id: 'custom-fabricated-staging',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Custom Fabricated Staging',
+    defaultDimensions: { width: 96, height: 48, unit: 'in' },
+    svgPath:
+      "<polygon points='-48,-24 48,-24 40,24 -40,24' fill='#2E8B57' stroke='#000' stroke-width='1.5'/>" +
+      "<line x1='-40' y1='0' x2='40' y2='0' stroke='#1C5F3B' stroke-width='1'/>" +
+      "<line x1='-30' y1='-12' x2='30' y2='-12' stroke='#1C5F3B' stroke-width='1'/>",
+  },
+  {
+    id: 'stool-white-modern',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'White Modern Stool',
+    defaultDimensions: { width: 12, height: 12, unit: 'in' },
+    svgPath:
+      "<circle cx='0' cy='0' r='6' fill='#FFFFFF' stroke='#000' stroke-width='1'/><circle cx='0' cy='0' r='3' fill='#EEE' stroke='#000' stroke-width='0.5'/>",
+  },
+  {
+    id: 'stool-black-modern',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Black Modern Stool',
+    defaultDimensions: { width: 12, height: 12, unit: 'in' },
+    svgPath:
+      "<circle cx='0' cy='0' r='6' fill='#000000' stroke='#000' stroke-width='1'/><circle cx='0' cy='0' r='3' fill='#333' stroke='#000' stroke-width='0.5'/>",
+  },
+  {
+    id: 'chair-black-club',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Black Club Chair',
+    defaultDimensions: { width: 18, height: 18, unit: 'in' },
+    svgPath:
+      "<ellipse cx='0' cy='0' rx='9' ry='8' fill='#000000' stroke='#000' stroke-width='1'/><ellipse cx='0' cy='0' rx='5' ry='4' fill='#222' stroke='#000' stroke-width='0.5'/>",
+  },
+  {
+    id: 'chair-white-club',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'White Club Chair',
+    defaultDimensions: { width: 18, height: 18, unit: 'in' },
+    svgPath:
+      "<ellipse cx='0' cy='0' rx='9' ry='8' fill='#FFFFFF' stroke='#000' stroke-width='1'/><ellipse cx='0' cy='0' rx='5' ry='4' fill='#EEE' stroke='#000' stroke-width='0.5'/>",
+  },
+  {
+    id: 'side-table-gold',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Gold Side Table',
+    defaultDimensions: { width: 12, height: 12, unit: 'in' },
+    svgPath:
+      "<rect x='-6' y='-6' width='12' height='12' rx='2' fill='#FFD700' stroke='#000' stroke-width='1'/><rect x='-4' y='-4' width='8' height='8' rx='1' fill='#FFE066' stroke='#000' stroke-width='0.5'/>",
+  },
+  {
+    id: 'table-white-silver-modern',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'White & Silver Square Modern Table',
+    defaultDimensions: { width: 18, height: 18, unit: 'in' },
+    svgPath:
+      "<rect x='-9' y='-9' width='18' height='18' rx='3' fill='#FFFFFF' stroke='#C0C0C0' stroke-width='1'/><rect x='-6' y='-6' width='12' height='12' rx='2' fill='#E0E0E0' stroke='#C0C0C0' stroke-width='0.5'/>",
+  },
+  {
+    id: 'podium-1',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Black Wooden Podium',
+    defaultDimensions: { width: 24, height: 24, unit: 'in' },
+    svgPath: `<rect x="-12" y="-12" width="24" height="24" fill="#F7941D"/>`,
+    groupBy: 'Podium / Mic',
+  },
+  {
+    id: 'podium-2',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Lucite Acrylic Podium',
     defaultDimensions: { width: 24, height: 24, unit: 'in' },
     svgPath: `<rect x="-12" y="-12" width="24" height="24" fill="#F7941D"/>`,
     groupBy: 'Podium / Mic',
@@ -840,6 +1052,33 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     <rect x="-36" y="-12" width="72" height="24" fill="#8B4789" />
   `,
     groupBy: 'Customize',
+  },
+  {
+    id: '4ft-table',
+    type: 'furniture',
+    category: 'Customize',
+    name: '4 ft Table',
+    defaultDimensions: { width: 48, height: 30, unit: 'in' },
+    svgPath: `<rect x="-24" y="-15" width="48" height="30" fill="#66BB6A"/>`,
+    groupBy: '4 ft Table',
+  },
+  {
+    id: '6ft-table',
+    type: 'furniture',
+    category: 'Customize',
+    name: '6 ft Table',
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath: `<rect x="-36" y="-15" width="72" height="30" fill="#9CCC65"/>`,
+    groupBy: '6 ft Table',
+  },
+  {
+    id: '8ft-table',
+    type: 'furniture',
+    category: 'Customize',
+    name: '8 ft Table',
+    defaultDimensions: { width: 96, height: 30, unit: 'in' },
+    svgPath: `<rect x="-48" y="-15" width="96" height="30" fill="#D4E157"/>`,
+    groupBy: '8 ft Table',
   },
   // Customize
 ];

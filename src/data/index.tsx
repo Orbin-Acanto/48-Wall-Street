@@ -3338,6 +3338,16 @@ export const sampleViewPoints: ViewPoint[] = [
 
 export const LEGEND_ITEMS: LegendItemConfig[] = [
   {
+    category: 'Seating',
+    label: 'Seating',
+    color: '#2BACE2',
+  },
+  {
+    category: 'Black Highboys',
+    label: 'BLACK HIGH BOYS WITH STOOLS',
+    color: '#000000',
+  },
+  {
     category: '36" Round Tables',
     label: '36" ROUND TABLES',
     color: '#2BACE2',
@@ -3358,14 +3368,79 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     color: '#2BACE2',
   },
   {
-    category: 'Seating',
-    label: 'Seating',
-    color: '#2BACE2',
-  },
-  {
     category: 'Swag Table',
     label: 'SWAG TABLE',
     color: '#2E3192',
+  },
+  {
+    category: 'Award Table',
+    label: 'AWARD TABLE',
+    color: '#F9ED32',
+  },
+  {
+    category: 'Square Table',
+    label: 'Square Table',
+    color: '#1E88E5',
+  },
+  {
+    category: 'Auction Tables',
+    label: 'AUCTION TABLES',
+    color: '#6BC5A8',
+  },
+  {
+    category: 'Registration',
+    label: 'REGISTRATION TABLE',
+    color: '#662D91',
+  },
+  {
+    category: 'Conference Table',
+    label: 'Conference Table',
+    color: '#26A69A',
+  },
+  {
+    category: 'Exhibitor Table 6ft',
+    label: 'Exhibitor Table 6ft',
+    color: '#FFCA28',
+  },
+  {
+    category: 'Exhibitor Table 8ft',
+    label: 'Exhibitor Table 8ft',
+    color: '#FFA726',
+  },
+  {
+    category: 'Sponsor Table 6ft',
+    label: 'Sponsor Table 6ft',
+    color: '#FF7043',
+  },
+  {
+    category: 'Sponsor Table 8ft',
+    label: 'Sponsor Table 8ft',
+    color: '#EC407A',
+  },
+  {
+    category: 'Banquet Table 6ft',
+    label: 'Banquet Table 6ft',
+    color: '#AB47BC',
+  },
+  {
+    category: 'Banquet Table 8ft',
+    label: 'Banquet Table 8ft',
+    color: '#7E57C2',
+  },
+  {
+    category: '4 ft Table',
+    label: '4 ft Table',
+    color: '#66BB6A',
+  },
+  {
+    category: '6 ft Table',
+    label: '6 ft Table',
+    color: '#9CCC65',
+  },
+  {
+    category: '8 ft Table',
+    label: '8 ft Table',
+    color: '#D4E157',
   },
   {
     category: 'Staging',
@@ -3376,26 +3451,6 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     category: 'Podium / Mic',
     label: 'PODIUM / MIC',
     color: '#F7941D',
-  },
-  {
-    category: 'Award Table',
-    label: 'AWARD TABLE',
-    color: '#F9ED32',
-  },
-  {
-    category: 'Coffee',
-    label: 'COFFEE',
-    color: '#355855',
-  },
-  {
-    category: 'Food 1',
-    label: 'FOOD STATION 1',
-    color: '#39B54A',
-  },
-  {
-    category: 'Auction Tables',
-    label: 'AUCTION TABLES',
-    color: '#6BC5A8',
   },
   {
     category: "6' Bar",
@@ -3418,14 +3473,19 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     color: '#E67E22',
   },
   {
-    category: 'Registration',
-    label: 'REGISTRATION TABLE',
-    color: '#662D91',
+    category: 'Coffee',
+    label: 'COFFEE',
+    color: '#355855',
   },
   {
     category: 'Red Carpet',
     label: 'RED CARPET',
     color: '#AF2025',
+  },
+  {
+    category: 'Food 1',
+    label: 'FOOD STATION 1',
+    color: '#39B54A',
   },
   {
     category: 'Food 2',
@@ -3436,12 +3496,6 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     category: 'Food 3',
     label: 'FOOD STATION 3',
     color: '#92278F',
-  },
-
-  {
-    category: 'Black Highboys',
-    label: 'BLACK HIGH BOYS WITH STOOLS',
-    color: '#000000',
   },
 ];
 
