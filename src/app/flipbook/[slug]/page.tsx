@@ -32,7 +32,7 @@ export default async function FlipbookPage({ params }: PageProps) {
 
   if (!book) notFound();
 
-  const pages = (book.images as any[]).map((img, index) => {
+  const pages = book.images.map((img, index) => {
     let fileId: string | null = null;
 
     if (typeof img === 'string') {
