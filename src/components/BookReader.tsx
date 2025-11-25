@@ -180,9 +180,7 @@ export default function BookReader({
           )}
         </motion.div>
 
-        {/* Book Container - Larger */}
         <div className="relative mx-auto max-w-[1800px]">
-          {/* Download, Print & Fullscreen Buttons - Top Right Corner */}
           <div className="absolute top-0 right-0 z-30 flex gap-2">
             {downloadUrl && (
               <motion.a
