@@ -197,7 +197,9 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
                 ? 'FURN'
                 : item.type === 'av'
                   ? 'A/V'
-                  : 'FOOD'}
+                  : item.type === 'av'
+                    ? 'Food'
+                    : 'Decor'}
           </text>
         </g>
       )}

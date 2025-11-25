@@ -48,11 +48,15 @@ import { FURNITURE_LIBRARY } from '@/constants/furnitureLibrary';
 import { AV_EQUIPMENT_LIBRARY } from '@/constants/avEquipment';
 import { CATERING_LIBRARY } from '@/constants/cateringStations';
 import { getPolylineLength } from '@/utils/geometryUtils';
+import { DecorSidebar } from './Sidebars/DecorSidebar';
+import { Paintbrush, Pizza, Sofa, Tv } from 'lucide-react';
+import { DECOR_LIBRARY } from '@/constants/decorLibrary';
 
 const ALL_LIBRARY_ITEMS: LibraryItemLike[] = [
   ...(FURNITURE_LIBRARY as LibraryItemLike[]),
   ...(AV_EQUIPMENT_LIBRARY as LibraryItemLike[]),
   ...(CATERING_LIBRARY as LibraryItemLike[]),
+  ...(DECOR_LIBRARY as LibraryItemLike[]),
 ];
 
 const DEFAULT_WALL_THICKNESS = 6;
@@ -657,83 +661,59 @@ export const FloorPlanEditor: React.FC = () => {
 
       <div className="flex flex-1 overflow-hidden">
         <div className="flex">
-          <div className="flex flex-col items-center space-y-2 bg-gray-800 py-4">
+          <div className="flex flex-col items-center bg-gray-800 py-4">
             <button
               onClick={() => toggleSidebar('furniture')}
-              className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
+              className={`flex h-12 w-12 items-center justify-center transition-colors ${
                 activeSidebar === 'furniture'
                   ? 'bg-primary text-white'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
               title="Furniture"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 9.5L12 4l9 5.5M3 9.5v9l9 5.5m-9-14.5l9 5.5m0 0l9-5.5M12 19v-9.5"
-                />
-              </svg>
+              <Sofa />
             </button>
 
             <button
               onClick={() => toggleSidebar('av')}
-              className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
+              className={`flex h-12 w-12 items-center justify-center transition-colors ${
                 activeSidebar === 'av'
                   ? 'bg-primary text-white'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
               title="Audio / Visual"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 0112.728 0"
-                />
-              </svg>
+              <Tv />
             </button>
 
             <button
               onClick={() => toggleSidebar('catering')}
-              className={`flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
+              className={`flex h-12 w-12 items-center justify-center transition-colors ${
                 activeSidebar === 'catering'
                   ? 'bg-primary text-white'
                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
               }`}
               title="Catering"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
+              <Pizza />
+            </button>
+            <button
+              onClick={() => toggleSidebar('decor')}
+              className={`flex h-12 w-12 items-center justify-center transition-colors ${
+                activeSidebar === 'decor'
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+              }`}
+              title="Decor/Props"
+            >
+              <Paintbrush />
             </button>
           </div>
 
           {activeSidebar === 'furniture' && <FurnitureSidebar />}
           {activeSidebar === 'av' && <AudioVisualsSidebar />}
           {activeSidebar === 'catering' && <CateringSidebar />}
+          {activeSidebar === 'decor' && <DecorSidebar />}
         </div>
 
         <div className="relative h-full w-full flex-1">

@@ -100,6 +100,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     groupBy: 'Seating',
   },
   // Seating End
+
   // Tables Start
   // Highboys table
   {
@@ -689,8 +690,32 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
 
     groupBy: '72" Round Tables',
   },
-
   // 72 inch table
+
+  // SERPENTINE & FARM TABLES
+  {
+    id: 'serpentine-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Serpentine Table',
+    defaultDimensions: { width: 96, height: 30, unit: 'in' },
+    svgPath:
+      "<path d='M-48,-15 Q0,-45 48,-15 L48,15 Q0,45 -48,15 Z' fill='#E0E0E0' stroke='#555' stroke-width='1.5'/>",
+  },
+  {
+    id: 'communal-farm-table',
+    type: 'furniture',
+    category: 'Tables',
+    name: 'Communal Farm Table',
+    defaultDimensions: { width: 96, height: 40, unit: 'in' },
+    svgPath:
+      "<rect x='-48' y='-20' width='96' height='40' fill='#8B5A2B' stroke='#4A2E10' stroke-width='1.5'/>" +
+      "<line x1='-48' y1='-5' x2='48' y2='-5' stroke='#6D3F18' stroke-width='1'/>" +
+      "<line x1='-48' y1='5' x2='48' y2='5' stroke='#6D3F18' stroke-width='1'/>",
+  },
+  // SERPENTINE & FARM TABLES
+
+  // Misc Table
   {
     id: 'award-table',
     type: 'furniture',
@@ -799,7 +824,9 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     svgPath: `<rect x="-48" y="-15" width="96" height="30" fill="#7E57C2"/>`,
     groupBy: 'Banquet Table 8ft',
   },
+  // Misc Table
   // Tables End
+
   // Stage Start
   {
     id: 'stage-1',
@@ -965,81 +992,239 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     svgPath: `<rect x="-12" y="-12" width="24" height="24" fill="#F7941D"/>`,
     groupBy: 'Podium / Mic',
   },
+  {
+    id: 'stage-skirting-section',
+    type: 'furniture',
+    category: 'Staging',
+    name: 'Stage Skirting (Section)',
+    defaultDimensions: { width: 96, height: 12, unit: 'in' },
+    svgPath:
+      "<rect x='-48' y='-6' width='96' height='12' fill='#333333' stroke='#111111' stroke-width='1.5'/>" +
+      "<path d='M-46,-6 L-42,6 L-38,-6 L-34,6 L-30,-6 L-26,6 L-22,-6 L-18,6 L-14,-6 L-10,6 L-6,-6 L-2,6 L2,-6 L6,6 L10,-6 L14,6 L18,-6 L22,6 L26,-6 L30,6 L34,-6 L38,6 L42,-6 L46,6' fill='none' stroke='#555555' stroke-width='0.8'/>",
+  },
   // Stage End
-  // Bar Start
-  {
-    id: 'bar-straight-1',
-    type: 'furniture',
-    category: 'Bars',
-    name: 'Straight Bar (6ft)',
-    defaultDimensions: { width: 72, height: 24, unit: 'in' },
-    svgPath: `
-    <rect x="-36" y="-12" width="72" height="24" fill="#4B77BE" />
-    <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">BAR</text>
-  `,
-    groupBy: "6' Bar",
-  },
-  {
-    id: 'bar-straight-2',
-    type: 'furniture',
-    category: 'Bars',
-    name: 'Straight Bar (12ft)',
-    defaultDimensions: { width: 144, height: 24, unit: 'in' },
-    svgPath: `<rect x="-72" y="-12" width="144" height="24" fill="#00A79D" />
-              <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">BAR</text>`,
-    groupBy: "12' Bar",
-  },
-  {
-    id: 'bar-straight-3',
-    type: 'furniture',
-    category: 'Bars',
-    name: 'Straight Bar (18ft)',
-    defaultDimensions: { width: 216, height: 24, unit: 'in' },
-    svgPath: `<rect x="-108" y="-12" width="216" height="24" fill="#9E1F63" />
-              <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">BAR</text>`,
-    groupBy: "18' Bar",
-  },
-  {
-    id: 'bar-straight-4',
-    type: 'furniture',
-    category: 'Bars',
-    name: 'Straight Bar (24ft)',
-    defaultDimensions: { width: 288, height: 24, unit: 'in' },
-    svgPath: `<rect x="-144" y="-12" width="288" height="24" fill="#E67E22" />
-              <text x="0" y="5" text-anchor="middle" fill="#FFF" font-size="10">BAR</text>`,
-    groupBy: "24' Bar",
-  },
 
-  // Bar End
-  // Decor Start
+  // Lounge Furniture Set
   {
-    id: 'plant-large',
-    type: 'furniture',
-    category: 'Decor',
-    name: 'Large Plant',
-    defaultDimensions: { width: 24, height: 24, unit: 'in' },
-    svgPath: `<circle cx="0" cy="0" r="12" fill="#228B22" stroke="#006400" stroke-width="1.5"/>`,
+    id: 'vip-booth-curved',
+    type: 'decor',
+    category: 'Lounge',
+    name: 'VIP Booth (Curved)',
+    defaultDimensions: { width: 120, height: 60, unit: 'in' },
+    svgPath:
+      "<path d='M-60,-12 A80,80 0 0 1 60,-12 L50,14 A60,60 0 0 0 -50,14 Z' fill='#222' stroke='#000' stroke-width='1.5'/>" +
+      "<rect x='-14' y='-5' width='28' height='14' rx='2' ry='2' fill='#222' stroke='#777' stroke-width='1'/>",
   },
   {
-    id: 'divider-screen',
-    type: 'furniture',
-    category: 'Decor',
-    name: 'Room Divider',
-    defaultDimensions: { width: 72, height: 6, unit: 'in' },
-    svgPath: `<rect x="-36" y="-3" width="72" height="6" fill="#8B8B8B"/>`,
+    id: 'lounge-sofa-lshape',
+    type: 'decor',
+    category: 'Lounge',
+    name: 'L-Shaped Lounge Sofa',
+    defaultDimensions: { width: 72, height: 72, unit: 'in' },
+    svgPath:
+      "<rect x='-36' y='-36' width='72' height='24' fill='#808080' stroke='#555' stroke-width='1.2'/>" +
+      "<rect x='-36' y='-36' width='24' height='72' fill='#808080' stroke='#555' stroke-width='1.2'/>" +
+      "<circle cx='0' cy='0' r='10' fill='#C0C0C0' stroke='#888' stroke-width='1'/>",
   },
   {
-    id: 'carpet-red-rectangle',
-    type: 'furniture',
-    category: 'Decor',
-    name: 'Red Carpet',
-    defaultDimensions: { width: 252, height: 60, unit: 'in' },
-    svgPath: `<rect x="-126" y="-30" width="252" height="60" fill="#AF2025" stroke="#8B0000" stroke-width="2"/>
-              <rect x="-122" y="-26" width="244" height="52" fill="none" stroke="#C92530" stroke-width="1" stroke-dasharray="4,4"/>
-              <rect x="-118" y="-22" width="236" height="44" fill="none" stroke="#8B0000" stroke-width="0.5"/>`,
-    groupBy: 'Red Carpet',
+    id: 'lounge-sofa-modular',
+    type: 'decor',
+    category: 'Lounge',
+    name: 'Modular Sofa Blocks',
+    defaultDimensions: { width: 48, height: 48, unit: 'in' },
+    svgPath:
+      "<rect x='-24' y='-24' width='24' height='24' fill='#696969' stroke='#444' stroke-width='1'/>" +
+      "<rect x='0' y='-24' width='24' height='24' fill='#696969' stroke='#444' stroke-width='1'/>" +
+      "<rect x='-24' y='0' width='24' height='24' fill='#696969' stroke='#444' stroke-width='1'/>" +
+      "<rect x='0' y='0' width='24' height='24' fill='#696969' stroke='#444' stroke-width='1'/>" +
+      "<circle cx='0' cy='0' r='8' fill='#D2B48C' stroke='#888' stroke-width='1'/>",
   },
-  // Decor End
+  {
+    id: 'chaise-lounge-left',
+    type: 'furniture',
+    category: 'Lounge',
+    name: 'Chaise Lounge (Left Arm)',
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath:
+      "<path d='M-36,-15 L30,-15 L36,0 L30,15 L-36,15 Z' fill='#C07A73' stroke='#5A3530' stroke-width='1.5'/>" +
+      "<rect x='-36' y='-15' width='10' height='30' fill='#8B4A43' stroke='#5A3530' stroke-width='1'/>" +
+      "<rect x='16' y='-11' width='14' height='10' rx='2' ry='2' fill='#E5C4B5' stroke='#8B6A5E' stroke-width='0.8'/>",
+  },
+  {
+    id: 'chaise-lounge-right',
+    type: 'furniture',
+    category: 'Lounge',
+    name: 'Chaise Lounge (Right Arm)',
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath:
+      "<path d='M36,-15 L-30,-15 L-36,0 L-30,15 L36,15 Z' fill='#C07A73' stroke='#5A3530' stroke-width='1.5'/>" +
+      "<rect x='26' y='-15' width='10' height='30' fill='#8B4A43' stroke='#5A3530' stroke-width='1'/>" +
+      "<rect x='-30' y='-11' width='14' height='10' rx='2' ry='2' fill='#E5C4B5' stroke='#8B6A5E' stroke-width='0.8'/>",
+  },
+  // Lounge Furniture Set
+
+  // COCKTAIL TABLES
+  {
+    id: 'cocktail-table-round-low',
+    type: 'furniture',
+    category: 'Cocktail',
+    name: 'Cocktail Table – Round (Low)',
+    defaultDimensions: { width: 30, height: 30, unit: 'in' },
+    svgPath:
+      "<circle cx='0' cy='0' r='15' fill='#D8D8D8' stroke='#666' stroke-width='1.5'/>" +
+      "<circle cx='0' cy='0' r='4' fill='#B0B0B0' stroke='#777' stroke-width='1'/>",
+  },
+  {
+    id: 'cocktail-table-round-high',
+    type: 'furniture',
+    category: 'Cocktail',
+    name: 'Cocktail Table – Round (Highboy)',
+    defaultDimensions: { width: 30, height: 30, unit: 'in' },
+    svgPath:
+      "<circle cx='0' cy='0' r='15' fill='#F3F3F3' stroke='#555' stroke-width='1.5'/>" +
+      // subtle ring to hint it’s a pedestal / highboy
+      "<circle cx='0' cy='0' r='9' fill='none' stroke='#AAAAAA' stroke-width='1'/>" +
+      "<circle cx='0' cy='0' r='3' fill='#C0C0C0' stroke='#777' stroke-width='0.8'/>",
+  },
+  {
+    id: 'cocktail-table-square-low',
+    type: 'furniture',
+    category: 'Cocktail',
+    name: 'Cocktail Table – Square (Low)',
+    defaultDimensions: { width: 30, height: 30, unit: 'in' },
+    svgPath:
+      "<rect x='-15' y='-15' width='30' height='30' fill='#D8D8D8' stroke='#666' stroke-width='1.5'/>" +
+      "<circle cx='0' cy='0' r='4' fill='#B0B0B0' stroke='#777' stroke-width='1'/>",
+  },
+  {
+    id: 'cocktail-table-square-high',
+    type: 'furniture',
+    category: 'Cocktail',
+    name: 'Cocktail Table – Square (Highboy)',
+    defaultDimensions: { width: 30, height: 30, unit: 'in' },
+    svgPath:
+      "<rect x='-15' y='-15' width='30' height='30' fill='#F3F3F3' stroke='#555' stroke-width='1.5'/>" +
+      "<rect x='-9' y='-9' width='18' height='18' fill='none' stroke='#AAAAAA' stroke-width='1'/>" +
+      "<circle cx='0' cy='0' r='3' fill='#C0C0C0' stroke='#777' stroke-width='0.8'/>",
+  },
+  // COCKTAIL TABLES
+
+  // DANCE FLOOR (VARIANTS)
+  {
+    id: 'dance-floor-white',
+    type: 'furniture',
+    category: 'Dance',
+    name: 'Dance Floor – White',
+    defaultDimensions: { width: 192, height: 192, unit: 'in' },
+    svgPath:
+      "<rect x='-96' y='-96' width='192' height='192' fill='#FDFDFD' stroke='#BBBBBB' stroke-width='2'/>",
+  },
+  {
+    id: 'dance-floor-black',
+    type: 'furniture',
+    category: 'Dance',
+    name: 'Dance Floor – Black',
+    defaultDimensions: { width: 192, height: 192, unit: 'in' },
+    svgPath:
+      "<rect x='-96' y='-96' width='192' height='192' fill='#111111' stroke='#444444' stroke-width='2'/>",
+  },
+  {
+    id: 'dance-floor-checker',
+    type: 'furniture',
+    category: 'Dance',
+    name: 'Dance Floor – Checkerboard',
+    defaultDimensions: { width: 192, height: 192, unit: 'in' },
+    svgPath:
+      "<rect x='-96' y='-96' width='192' height='192' fill='#FFFFFF' stroke='#555555' stroke-width='2'/>" +
+      Array.from({ length: 4 })
+        .map((_, row) =>
+          Array.from({ length: 4 })
+            .map((_, col) => {
+              const size = 48;
+              const x = -96 + col * size;
+              const y = -96 + row * size;
+              const isDark = (row + col) % 2 === 0;
+              return `<rect x='${x}' y='${y}' width='${size}' height='${size}' fill='${
+                isDark ? '#111111' : 'none'
+              }' stroke='none'/>`;
+            })
+            .join('')
+        )
+        .join(''),
+  },
+  {
+    id: 'dance-floor-led',
+    type: 'furniture',
+    category: 'Dance',
+    name: 'Dance Floor – LED',
+    defaultDimensions: { width: 192, height: 192, unit: 'in' },
+    svgPath:
+      "<rect x='-96' y='-96' width='192' height='192' fill='#000015' stroke='#6666FF' stroke-width='2'/>" +
+      "<path d='M-48,-96 L-48,96 M0,-96 L0,96 M48,-96 L48,96 M96,-96 L96,96 M-96,-48 L96,-48 M-96,0 L96,0 M-96,48 L96,48 M-96,96 L96,96' stroke='#4444AA' stroke-width='1'/>" +
+      "<circle cx='-84' cy='-96' r='3' fill='#FF33CC'/>" +
+      "<circle cx='-60' cy='-96' r='3' fill='#33FFCC'/>" +
+      "<circle cx='-36' cy='-96' r='3' fill='#FFFF66'/>" +
+      "<circle cx='-12' cy='-96' r='3' fill='#66AAFF'/>" +
+      "<circle cx='12' cy='-96' r='3' fill='#FF6633'/>" +
+      "<circle cx='36' cy='-96' r='3' fill='#CC33FF'/>" +
+      "<circle cx='60' cy='-96' r='3' fill='#33FF66'/>" +
+      "<circle cx='84' cy='-96' r='3' fill='#FF33AA'/>" +
+      "<circle cx='96' cy='-84' r='3' fill='#33CCFF'/>" +
+      "<circle cx='96' cy='-60' r='3' fill='#FFAA33'/>" +
+      "<circle cx='96' cy='-36' r='3' fill='#AA33FF'/>" +
+      "<circle cx='96' cy='-12' r='3' fill='#33FF99'/>" +
+      "<circle cx='96' cy='12' r='3' fill='#FF66CC'/>" +
+      "<circle cx='96' cy='36' r='3' fill='#66FF33'/>" +
+      "<circle cx='96' cy='60' r='3' fill='#3366FF'/>" +
+      "<circle cx='96' cy='84' r='3' fill='#FFCC33'/>" +
+      "<circle cx='84' cy='96' r='3' fill='#CC66FF'/>" +
+      "<circle cx='60' cy='96' r='3' fill='#33FFAA'/>" +
+      "<circle cx='36' cy='96' r='3' fill='#FF9933'/>" +
+      "<circle cx='12' cy='96' r='3' fill='#6633FF'/>" +
+      "<circle cx='-12' cy='96' r='3' fill='#FFFF33'/>" +
+      "<circle cx='-36' cy='96' r='3' fill='#33AAFF'/>" +
+      "<circle cx='-60' cy='96' r='3' fill='#FF3399'/>" +
+      "<circle cx='-84' cy='96' r='3' fill='#99FF33'/>" +
+      "<circle cx='-96' cy='84' r='3' fill='#FF6699'/>" +
+      "<circle cx='-96' cy='60' r='3' fill='#33FF33'/>" +
+      "<circle cx='-96' cy='36' r='3' fill='#9933FF'/>" +
+      "<circle cx='-96' cy='12' r='3' fill='#FFAA66'/>" +
+      "<circle cx='-96' cy='-12' r='3' fill='#33CCAA'/>" +
+      "<circle cx='-96' cy='-36' r='3' fill='#FF33FF'/>" +
+      "<circle cx='-96' cy='-60' r='3' fill='#66FF99'/>" +
+      "<circle cx='-96' cy='-84' r='3' fill='#FFCC66'/>" +
+      "<circle cx='0' cy='0' r='12' fill='#C0C0C0' stroke='#888888' stroke-width='1'/>" +
+      "<path d='M-8,-8 L8,-8 L8,8 L-8,8 Z M-8,0 L8,0 M0,-8 L0,8' stroke='#555555' stroke-width='0.5' opacity='0.6'/>" +
+      "<circle cx='-4' cy='-4' r='2' fill='#FFFFFF' opacity='0.8'/>" +
+      "<circle cx='4' cy='-4' r='2' fill='#FF00FF' opacity='0.7'/>" +
+      "<circle cx='-4' cy='4' r='2' fill='#00FFFF' opacity='0.7'/>" +
+      "<circle cx='4' cy='4' r='2' fill='#FFFF00' opacity='0.7'/>" +
+      "<circle cx='0' cy='0' r='2' fill='#FFFFFF' opacity='0.9'/>",
+  },
+  {
+    id: 'dancefloor',
+    type: 'furniture',
+    category: 'Dance',
+    name: 'Dancefloor (Parquet)',
+    defaultDimensions: { width: 144, height: 144, unit: 'in' },
+    svgPath:
+      "<rect x='-72' y='-72' width='144' height='144' fill='#CDAA7D' stroke='#8B5A2B' stroke-width='1'/>" +
+      "<g stroke='#A67C52' stroke-width='1'>" +
+      "<line x1='-72' y1='-48' x2='72' y2='-48'/>" +
+      "<line x1='-72' y1='-24' x2='72' y2='-24'/>" +
+      "<line x1='-72' y1='0' x2='72' y2='0'/>" +
+      "<line x1='-72' y1='24' x2='72' y2='24'/>" +
+      "<line x1='-72' y1='48' x2='72' y2='48'/>" +
+      "<line x1='-48' y1='-72' x2='-48' y2='72'/>" +
+      "<line x1='-24' y1='-72' x2='-24' y2='72'/>" +
+      "<line x1='0' y1='-72' x2='0' y2='72'/>" +
+      "<line x1='24' y1='-72' x2='24' y2='72'/>" +
+      "<line x1='48' y1='-72' x2='48' y2='72'/>" +
+      '</g>' +
+      "<text x='0' y='4' text-anchor='middle' font-size='10' fill='#6B3F1F'>DANCEFLOOR</text>",
+  },
+  // DANCE FLOOR (VARIANTS)
+
   // Customize
   {
     id: 'Rectangle-table',
@@ -1081,6 +1266,82 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     groupBy: '8 ft Table',
   },
   // Customize
+
+  // entertainment
+  {
+    id: 'touchscreen-kiosk',
+    type: 'furniture',
+    category: 'entertainment',
+    name: 'Touchscreen Kiosk',
+    defaultDimensions: { width: 24, height: 24, unit: 'in' },
+    svgPath:
+      "<rect x='-10' y='-14' width='20' height='14' rx='2' ry='2' fill='#1F2933' stroke='#111820' stroke-width='1.5'/>" +
+      "<rect x='-8' y='-12' width='16' height='10' rx='1' ry='1' fill='#1E88E5' stroke='#0B3A6F' stroke-width='1'/>" +
+      "<rect x='-6' y='2' width='12' height='6' rx='2' ry='2' fill='#444444' stroke='#111111' stroke-width='1'/>",
+  },
+  {
+    id: 'casino-table',
+    type: 'furniture',
+    category: 'entertainment',
+    name: 'Casino Table',
+    defaultDimensions: { width: 84, height: 48, unit: 'in' },
+    svgPath:
+      "<path d='M-42,0 Q0,-24 42,0 L42,18 Q0,30 -42,18 Z' fill='#0F5132' stroke='#06341F' stroke-width='1.5'/>" +
+      "<ellipse cx='0' cy='4' rx='30' ry='10' fill='none' stroke='#F4D03F' stroke-width='1.2'/>",
+  },
+  {
+    id: 'karaoke-station',
+    type: 'furniture',
+    category: 'entertainment',
+    name: 'Karaoke Station',
+    defaultDimensions: { width: 60, height: 48, unit: 'in' },
+    svgPath:
+      "<rect x='-30' y='0' width='60' height='24' fill='#2C3E50' stroke='#111820' stroke-width='1.5'/>" +
+      "<rect x='-14' y='-18' width='28' height='14' rx='2' ry='2' fill='#1E88E5' stroke='#0B3A6F' stroke-width='1'/>" +
+      "<circle cx='-24' cy='12' r='4' fill='#AAAAAA'/>" +
+      "<circle cx='24' cy='12' r='4' fill='#AAAAAA'/>",
+  },
+  {
+    id: 'games-table',
+    type: 'furniture',
+    category: 'entertainment',
+    name: 'Games Table',
+    defaultDimensions: { width: 72, height: 36, unit: 'in' },
+    svgPath:
+      "<rect x='-36' y='-18' width='72' height='36' fill='#FFFFFF' stroke='#666666' stroke-width='1.5'/>" +
+      "<line x1='0' y1='-18' x2='0' y2='18' stroke='#BBBBBB' stroke-width='1'/>" +
+      "<circle cx='0' cy='0' r='4' fill='#FF5252'/>" +
+      "<circle cx='-18' cy='0' r='3' fill='#42A5F5'/>" +
+      "<circle cx='18' cy='0' r='3' fill='#66BB6A'/>",
+  },
+  {
+    id: 'photo-booth',
+    type: 'furniture',
+    category: 'entertainment',
+    name: 'Photo Booth',
+    defaultDimensions: { width: 72, height: 48, unit: 'in' },
+    svgPath:
+      "<path d='M-30,-18 L30,-18 L30,18 L14,18 L14,-4 L-14,-4 L-14,18 L-30,18 Z' fill='#F2F2F2' stroke='#777777' stroke-width='1.5'/>" +
+      "<rect x='-12' y='-18' width='24' height='8' fill='#E57373' stroke='#B71C1C' stroke-width='1'/>",
+  },
+  // entertainment
+
+  // TENTS / CANOPIES
+  {
+    id: 'canopy-pagoda-10x10',
+    type: 'furniture',
+    category: 'Canopy',
+    name: 'Canopy / Pagoda 10x10',
+    defaultDimensions: { width: 120, height: 120, unit: 'in' },
+    svgPath:
+      "<rect x='-60' y='-60' width='120' height='120' fill='#F5F5F5' stroke='#BBBBBB' stroke-width='1.5'/>" +
+      "<path d='M-60,-60 L0,-20 L60,-60 M-60,60 L0,20 L60,60 M-60,-60 L-20,0 L-60,60 M60,-60 L20,0 L60,60' fill='none' stroke='#D0D0D0' stroke-width='1'/>" +
+      "<circle cx='-56' cy='-56' r='3' fill='#777777'/>" +
+      "<circle cx='56' cy='-56' r='3' fill='#777777'/>" +
+      "<circle cx='-56' cy='56' r='3' fill='#777777'/>" +
+      "<circle cx='56' cy='56' r='3' fill='#777777'/>",
+  },
+  // TENTS / CANOPIES
 ];
 
 export const getFurnitureByCategory = (

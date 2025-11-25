@@ -3,7 +3,6 @@ import {
   FloorPlanData,
   Point,
   Tool,
-  FurnitureItem as FurnitureItemType,
   Room,
   UnderlayProps,
 } from '@/types/floorplan.types';

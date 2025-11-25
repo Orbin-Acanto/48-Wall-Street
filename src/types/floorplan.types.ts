@@ -124,6 +124,33 @@ export interface EventDetails {
   eventDate?: string;
   eventName?: string;
   floor?: string;
+
+  barStylePreference?: string;
+  barFinishPreference?: string;
+  barServiceType?: string;
+
+  stageSkirtingType?: string;
+  stageBackdropStyle?: string;
+  hasPodium?: boolean;
+  podiumBranding?: string;
+  podiumNotes?: string;
+
+  danceFloorType?: string;
+  danceFloorColor?: string;
+  danceFloorLocation?: string;
+  danceFloorNotes?: string;
+
+  avNeeds?: string[];
+  avNotes?: string;
+  powerPlan?: string;
+  powerNotes?: string;
+
+  entertainmentOptions?: string[];
+  entertainmentNotes?: string;
+
+  loadInTime?: string;
+  loadOutTime?: string;
+  eventScheduleNotes?: string;
 }
 
 export type GetPosFn = (id: string) => Point | null;
@@ -173,7 +200,7 @@ export interface CanvasSettings {
 
 export interface DraggableLibraryItem {
   id: string;
-  type: 'furniture' | 'av' | 'catering';
+  type: 'furniture' | 'av' | 'catering' | 'decor';
   category: string;
   name: string;
   defaultDimensions: Dimensions;
@@ -194,7 +221,7 @@ export interface SelectionBox {
   end: Point;
 }
 
-export type SidebarType = 'furniture' | 'av' | 'catering' | null;
+export type SidebarType = 'furniture' | 'av' | 'catering' | 'decor' | null;
 export type ModalType = 'event' | 'wall' | 'export' | null;
 export type FloorKey = 'ground' | 'concourse';
 
