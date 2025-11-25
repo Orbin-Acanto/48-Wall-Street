@@ -112,7 +112,6 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
       "<rect x='-120' y='-6' width='240' height='12' fill='#222' stroke='#111' stroke-width='1.5'/>" +
       "<text x='0' y='2' text-anchor='middle' font-size='9' fill='#DDD'>BRANDING WALL</text>",
   },
-
   // Branding & Displays
 
   // Floral & Tabletop
