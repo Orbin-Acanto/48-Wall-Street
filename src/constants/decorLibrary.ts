@@ -290,7 +290,7 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
     svgPath:
       "<rect x='-24' y='-120' width='48' height='240' fill='#0000FF' stroke='#000000' stroke-width='2'/>" +
       "<rect x='-21' y='-117' width='42' height='234' fill='none' stroke='#777777' stroke-width='1.5'/>",
-    groupBy: 'Carpet Blue',
+    groupBy: 'Blue Carpet',
   },
   {
     id: 'carpet-runner-black',

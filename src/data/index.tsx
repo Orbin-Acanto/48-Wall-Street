@@ -3483,6 +3483,11 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     color: '#AF2025',
   },
   {
+    category: 'Blue Carpet',
+    label: 'BLUE CARPET',
+    color: '#0000FF',
+  },
+  {
     category: 'asian station',
     label: 'ASIAN STATION',
     color: '#39B54A',
