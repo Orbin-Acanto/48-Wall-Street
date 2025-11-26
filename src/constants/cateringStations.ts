@@ -29,6 +29,15 @@ export const CATERING_LIBRARY: DraggableLibraryItem[] = [
     groupBy: 'pasta station',
   },
   {
+    id: 'food-station-4',
+    type: 'catering',
+    category: 'Food',
+    name: 'Kosher Station',
+    defaultDimensions: { width: 72, height: 30, unit: 'in' },
+    svgPath: `<rect x="-36" y="-15" width="72" height="30" fill="#FFEA00" stroke="#000" stroke-width="0.5"/>`,
+    groupBy: 'kosher station',
+  },
+  {
     id: 'food-station-hot-buffet',
     type: 'catering',
     category: 'Food',

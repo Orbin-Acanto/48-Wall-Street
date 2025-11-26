@@ -283,6 +283,34 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
       }
     : null;
 }
+
+function imageToPngDataUrlWithZoom(
+  img: HTMLImageElement,
+  internalZoom = 1
+): string {
+  const canvas = document.createElement('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    throw new Error('Could not get 2D context');
+  }
+
+  if (internalZoom === 1) {
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  } else {
+    const scaledW = img.width * internalZoom;
+    const scaledH = img.height * internalZoom;
+
+    const offsetX = (canvas.width - scaledW) / 2;
+    const offsetY = (canvas.height - scaledH) / 2;
+
+    ctx.drawImage(img, offsetX, offsetY, scaledW, scaledH);
+  }
+
+  return canvas.toDataURL('image/png');
+}
 // Primary Helper End
 
 // Json Import
@@ -622,19 +650,19 @@ export const exportToPDF = async (
     height: planH,
   } = await createCroppedPlanImage(svgElement, bounds, hideGrid);
 
-  const planPng = imageToPngDataUrl(planImg);
+  let planPng = imageToPngDataUrl(planImg);
   const logoPng = await getLogoDataUrl(logoUrl);
 
   const pdf = new jsPDF({
     orientation: 'landscape',
     unit: 'pt',
-    format: 'a4',
+    format: 'letter',
   });
 
   const pageWidth = pdf.internal.pageSize.getWidth();
   const pageHeight = pdf.internal.pageSize.getHeight();
 
-  const margin = 30;
+  const margin = 10;
   const headerHeight = 90;
   const footerHeight = 35;
   const legendWidth = 140;
@@ -778,14 +806,14 @@ export const exportToPDF = async (
   pdf.setTextColor(17, 24, 39);
   pdf.text(eventDate || data.eventDetails?.eventDate || '-', rightX, textY);
 
-  const planToLegendGap = 8;
-  const planAreaMargin = 10;
+  const planToLegendGap = 0;
+  const planAreaMargin = 0;
   const availWidth =
     pageWidth - planAreaMargin * 2 - legendWidth - planToLegendGap;
   const availHeight =
     pageHeight - headerY - headerHeight - footerHeight - planAreaMargin;
 
-  const planScale = Math.min(availWidth / planW, availHeight / planH) * 1.05;
+  const planScale = Math.min(availWidth / planW, availHeight / planH) * 0.98;
   const drawPlanW = planW * planScale;
   const drawPlanH = planH * planScale;
 
@@ -802,6 +830,8 @@ export const exportToPDF = async (
 
   pdf.setFillColor(255, 255, 255);
   pdf.rect(planX - 1, planY - 1, drawPlanW + 2, drawPlanH + 2, 'F');
+  const INTERNAL_ZOOM = 1.2;
+  planPng = imageToPngDataUrlWithZoom(planImg, INTERNAL_ZOOM);
 
   pdf.addImage(
     planPng,

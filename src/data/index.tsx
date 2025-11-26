@@ -3497,6 +3497,11 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     label: 'PASTA STATION',
     color: '#92278F',
   },
+  {
+    category: 'kosher station',
+    label: 'KOSHER STATION',
+    color: '#FFEA00',
+  },
 ];
 
 const USED_COLORS = [

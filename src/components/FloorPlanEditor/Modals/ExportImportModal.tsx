@@ -96,7 +96,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
             hideGrid: true,
             headerTitle:
               selectedFloor === 'grand_mezzanine'
-                ? 'Grand Floor & Mezzanine'
+                ? 'Ground Floor & Mezzanine'
                 : 'Concourse Level',
             clientName: headerClient,
             eventDate: headerDate,
@@ -114,7 +114,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
             hideGrid: true,
             headerTitle:
               selectedFloor === 'grand_mezzanine'
-                ? 'Grand Floor & Mezzanine'
+                ? 'Ground Floor & Mezzanine'
                 : 'Concourse Level',
             clientName: headerClient,
             eventDate: headerDate,
@@ -245,8 +245,8 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
                       }
                       className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-[#CBA35C] focus:ring-2 focus:ring-[#CBA35C]/30 focus:outline-none"
                     >
-                      <option value="grand_mezzanine">
-                        Grand Floor &amp; Mezzanine
+                      <option value="ground_mezzanine">
+                        Ground Floor &amp; Mezzanine
                       </option>
                       <option value="concourse">Concourse Level</option>
                     </select>
