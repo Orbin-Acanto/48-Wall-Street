@@ -183,60 +183,6 @@ const inlineExternalImages = async (svg: SVGSVGElement) => {
   }
 };
 
-//   svgElement: SVGSVGElement,
-//   bounds: BBox,
-//   hideGrid: boolean
-// ): Promise<{ img: HTMLImageElement; width: number; height: number }> => {
-//   const clonedSvg = svgElement.cloneNode(true) as SVGSVGElement;
-
-//   if (hideGrid) {
-//     const gridSelectors = [
-//       '.grid-overlay',
-//       '.grid',
-//       '[data-grid="true"]',
-//       '[data-testid="grid"]',
-//       '#grid',
-//       'pattern[id*="grid"]',
-//       'defs pattern[id*="grid"]',
-//       'rect[fill*="url(#grid"]',
-//     ];
-//     gridSelectors.forEach((selector) => {
-//       clonedSvg.querySelectorAll(selector).forEach((el) => el.remove());
-//     });
-//   }
-
-//   await inlineExternalImages(clonedSvg);
-
-//   clonedSvg.removeAttribute('style');
-//   clonedSvg.setAttribute(
-//     'viewBox',
-//     `${bounds.x} ${bounds.y} ${bounds.width} ${bounds.height}`
-//   );
-
-//   const scale = window.devicePixelRatio * 4;
-//   clonedSvg.setAttribute('width', String(bounds.width * scale));
-//   clonedSvg.setAttribute('height', String(bounds.height * scale));
-
-//   const bgRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-//   bgRect.setAttribute('x', String(bounds.x));
-//   bgRect.setAttribute('y', String(bounds.y));
-//   bgRect.setAttribute('width', String(bounds.width));
-//   bgRect.setAttribute('height', String(bounds.height));
-//   bgRect.setAttribute('fill', 'white');
-//   clonedSvg.insertBefore(bgRect, clonedSvg.firstChild);
-
-//   const svgData = new XMLSerializer().serializeToString(clonedSvg);
-//   const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
-//   const url = URL.createObjectURL(blob);
-
-//   try {
-//     const img = await loadImage(url);
-//     return { img, width: bounds.width, height: bounds.height };
-//   } finally {
-//     URL.revokeObjectURL(url);
-//   }
-// };
-
 const createCroppedPlanImage = async (
   svgElement: SVGSVGElement,
   bounds: BBox,
@@ -326,6 +272,7 @@ const stripGridFromSvg = (svg: SVGSVGElement) => {
     if (!d.children.length) d.remove();
   });
 };
+
 function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
