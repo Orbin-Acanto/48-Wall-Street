@@ -282,6 +282,17 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
       "<rect x='-21' y='-117' width='42' height='234' fill='none' stroke='#DDDDDD' stroke-width='1.5'/>",
   },
   {
+    id: 'carpet-runner-blue',
+    type: 'decor',
+    category: 'Carpet',
+    name: 'Carpet Runner – Blue',
+    defaultDimensions: { width: 48, height: 240, unit: 'in' },
+    svgPath:
+      "<rect x='-24' y='-120' width='48' height='240' fill='#0000FF' stroke='#000000' stroke-width='2'/>" +
+      "<rect x='-21' y='-117' width='42' height='234' fill='none' stroke='#777777' stroke-width='1.5'/>",
+    groupBy: 'Carpet Blue',
+  },
+  {
     id: 'carpet-runner-black',
     type: 'decor',
     category: 'Carpet',
