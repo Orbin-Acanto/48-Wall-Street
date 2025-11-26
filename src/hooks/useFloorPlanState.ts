@@ -26,8 +26,8 @@ const createInitialFloorPlan = (): FloorPlanData => ({
     services: [],
   },
   canvasSettings: {
-    width: 5000,
-    height: 2500,
+    width: 3200,
+    height: 2400,
     scale: 20,
     gridSize: 20,
     showGrid: true,

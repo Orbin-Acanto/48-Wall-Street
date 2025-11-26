@@ -3483,18 +3483,18 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     color: '#AF2025',
   },
   {
-    category: 'Food 1',
-    label: 'FOOD STATION 1',
+    category: 'asian station',
+    label: 'ASIAN STATION',
     color: '#39B54A',
   },
   {
-    category: 'Food 2',
-    label: 'FOOD STATION 2',
+    category: 'latin station',
+    label: 'LATIN STATION',
     color: '#603913',
   },
   {
-    category: 'Food 3',
-    label: 'FOOD STATION 3',
+    category: 'pasta station',
+    label: 'PASTA STATION',
     color: '#92278F',
   },
 ];
