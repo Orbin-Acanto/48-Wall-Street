@@ -343,6 +343,16 @@ export const FloorPlanEditor: React.FC = () => {
     deleteRoom,
   ]);
 
+  const handleBatchFurnitureSelect = useCallback((ids: string[]) => {
+    if (ids.length === 0) return;
+
+    setSelectedItemType('furniture');
+    setSelectedItemId(ids[ids.length - 1]);
+    setSelectedDoorRef(null);
+    setSelectedWindowRef(null);
+    setSelectedFurnitureIds(new Set(ids));
+  }, []);
+
   const handleFurnitureClick = useCallback(
     (id: string, { toggle }: { toggle: boolean }) => {
       setSelectedItemType('furniture');
@@ -738,6 +748,7 @@ export const FloorPlanEditor: React.FC = () => {
             onAddWindow={addWindowToWall}
             onDoorSelect={handleDoorSelect}
             onWindowSelect={handleWindowSelect}
+            onBatchFurnitureSelect={handleBatchFurnitureSelect}
             onRoomSelect={(roomId) => handleItemSelect(roomId, 'room')}
             onCreateRoomAtPosition={handleCreateRoomAt}
             onRoomMove={(id, x, y) => updateRoom(id, { x, y })}

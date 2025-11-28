@@ -38,6 +38,7 @@ interface FloorPlanCanvasProps {
   onRoomMove: (roomId: string, x: number, y: number) => void;
   underlay?: UnderlayProps;
   onCanvasMousePosition?: (p: Point) => void;
+  onBatchFurnitureSelect?: (ids: string[]) => void;
 }
 
 export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
@@ -60,6 +61,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   selectedFurnitureIds,
   onFurnitureClick,
   onCanvasMousePosition,
+  onBatchFurnitureSelect,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null!);
 
@@ -67,6 +69,10 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
   const [draggingRoomId, setDraggingRoomId] = useState<string | null>(null);
   const roomDragOffsetRef = useRef<Point | null>(null);
+
+  const [marqueeStart, setMarqueeStart] = useState<Point | null>(null);
+  const [marqueeEnd, setMarqueeEnd] = useState<Point | null>(null);
+  const [isMarqueeActive, setIsMarqueeActive] = useState(false);
 
   const {
     width,
@@ -140,6 +146,21 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
   const handleSvgMouseDown = useCallback(
     (e: React.MouseEvent<SVGSVGElement>) => {
+      if (
+        selectedTool === 'select' &&
+        (e.ctrlKey || e.metaKey) &&
+        e.shiftKey &&
+        e.button === 0
+      ) {
+        const canvasPoint = screenToCanvas(e.clientX, e.clientY);
+        setMarqueeStart(canvasPoint);
+        setMarqueeEnd(canvasPoint);
+        setIsMarqueeActive(true);
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+
       const canvasPoint = screenToCanvas(e.clientX, e.clientY);
 
       if (selectedTool === 'curve-wall' && e.button === 0) {
@@ -185,6 +206,27 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
       onItemSelect,
       canvasMouseDown,
     ]
+  );
+
+  const selectFurnitureInMarquee = useCallback(
+    (start: Point, end: Point) => {
+      const minX = Math.min(start.x, end.x);
+      const maxX = Math.max(start.x, end.x);
+      const minY = Math.min(start.y, end.y);
+      const maxY = Math.max(start.y, end.y);
+
+      const selectedIds = furniture
+        .filter((item) => {
+          const { x, y } = item.position;
+          return x >= minX && x <= maxX && y >= minY && y <= maxY;
+        })
+        .map((item) => item.id);
+
+      if (selectedIds.length > 0 && onBatchFurnitureSelect) {
+        onBatchFurnitureSelect(selectedIds);
+      }
+    },
+    [furniture, onBatchFurnitureSelect]
   );
 
   const renderFurniture = () =>
@@ -256,11 +298,17 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
   const handleSvgMouseMove = useCallback(
     (e: React.MouseEvent<SVGSVGElement>) => {
-      canvasMouseMove(e);
-      continueDrag(e);
-
       const pt = screenToCanvas(e.clientX, e.clientY);
       onCanvasMousePosition?.(pt);
+
+      if (isMarqueeActive && marqueeStart) {
+        setMarqueeEnd(pt);
+        e.stopPropagation();
+        return;
+      }
+
+      canvasMouseMove(e);
+      continueDrag(e);
 
       if (draggingRoomId && roomDragOffsetRef.current) {
         const { x: ox, y: oy } = roomDragOffsetRef.current;
@@ -274,15 +322,32 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
       screenToCanvas,
       onRoomMove,
       onCanvasMousePosition,
+      isMarqueeActive,
+      marqueeStart,
     ]
   );
 
   const handleSvgMouseUp = useCallback(() => {
+    if (isMarqueeActive && marqueeStart && marqueeEnd) {
+      selectFurnitureInMarquee(marqueeStart, marqueeEnd);
+      setIsMarqueeActive(false);
+      setMarqueeStart(null);
+      setMarqueeEnd(null);
+      return;
+    }
+
     canvasMouseUp();
     endDrag();
     setDraggingRoomId(null);
     roomDragOffsetRef.current = null;
-  }, [canvasMouseUp, endDrag]);
+  }, [
+    isMarqueeActive,
+    marqueeStart,
+    marqueeEnd,
+    selectFurnitureInMarquee,
+    canvasMouseUp,
+    endDrag,
+  ]);
 
   // const renderRooms = () =>
   //   rooms
@@ -422,6 +487,34 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     );
   };
 
+  const renderMarquee = () => {
+    if (!isMarqueeActive || !marqueeStart || !marqueeEnd) return null;
+
+    const x = Math.min(marqueeStart.x, marqueeEnd.x);
+    const y = Math.min(marqueeStart.y, marqueeEnd.y);
+    const width = Math.abs(marqueeEnd.x - marqueeStart.x);
+    const height = Math.abs(marqueeEnd.y - marqueeStart.y);
+
+    return (
+      <g pointerEvents="none">
+        <rect
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          fill="rgba(59, 130, 246, 0.15)"
+          stroke="#3B82F6"
+          strokeWidth={2}
+          strokeDasharray="5 3"
+        />
+        <circle cx={x} cy={y} r={3} fill="#3B82F6" />
+        <circle cx={x + width} cy={y} r={3} fill="#3B82F6" />
+        <circle cx={x} cy={y + height} r={3} fill="#3B82F6" />
+        <circle cx={x + width} cy={y + height} r={3} fill="#3B82F6" />
+      </g>
+    );
+  };
+
   const findWallHit = (
     pt: Point,
     walls: FloorPlanData['walls'],
@@ -540,11 +633,13 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
         onDragEnd={handleDragEnd}
         onDoubleClick={handleSvgDoubleClick}
         className={
-          isAnyDragging
-            ? 'cursor-grabbing'
-            : selectedTool === 'pan'
-              ? 'cursor-grab'
-              : 'cursor-default'
+          isMarqueeActive
+            ? 'cursor-crosshair'
+            : isAnyDragging
+              ? 'cursor-grabbing'
+              : selectedTool === 'pan'
+                ? 'cursor-grab'
+                : 'cursor-default'
         }
         style={{ backgroundColor }}
       >
@@ -591,6 +686,8 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
           {renderCurveDraft()}
 
           {renderDragPreview()}
+
+          {renderMarquee()}
         </g>
       </svg>
 
