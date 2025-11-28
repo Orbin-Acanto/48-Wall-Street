@@ -1082,7 +1082,6 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     defaultDimensions: { width: 30, height: 30, unit: 'in' },
     svgPath:
       "<circle cx='0' cy='0' r='15' fill='#F3F3F3' stroke='#555' stroke-width='1.5'/>" +
-      // subtle ring to hint it’s a pedestal / highboy
       "<circle cx='0' cy='0' r='9' fill='none' stroke='#AAAAAA' stroke-width='1'/>" +
       "<circle cx='0' cy='0' r='3' fill='#C0C0C0' stroke='#777' stroke-width='0.8'/>",
   },
@@ -1264,6 +1263,14 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     defaultDimensions: { width: 96, height: 30, unit: 'in' },
     svgPath: `<rect x="-48" y="-15" width="96" height="30" fill="#D4E157"/>`,
     groupBy: '8 ft Table',
+  },
+  {
+    id: 'round-shape',
+    type: 'furniture',
+    category: 'Customize',
+    name: 'Round Shape',
+    defaultDimensions: { width: 24, height: 24, unit: 'in' },
+    svgPath: `<circle cx="0" cy="0" r="12" fill="#673AB7"/>`,
   },
   // Customize
 
