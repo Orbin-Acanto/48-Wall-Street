@@ -55,7 +55,8 @@ html {
 
 @layer components {
   .heading-hero {
-    @apply font-primary text-dark-black mb-8 text-5xl font-light tracking-wide uppercase md:text-6xl lg:text-7xl;
+    @apply font-primary text-dark-black mb-8 leading-[1.15] font-light tracking-wide uppercase;
+    font-size: clamp(3rem, 5vw + 1rem, 66px);
   }
 
   .text-lead {

@@ -12,8 +12,13 @@ import {
   useParallax,
 } from '@/utils';
 import Link from 'next/link';
-import { emptyFashionVenue, services } from '@/data';
+import { emptyFashionVenue, services as defaultServices } from '@/data';
 import EmptyPhotoGallery from './EmptyPhotoGallery';
+
+export interface ServiceItem {
+  title: string;
+  body: string;
+}
 
 export interface EventShowcaseProps {
   title: string;
@@ -25,6 +30,7 @@ export interface EventShowcaseProps {
   secondaryCta?: CTA;
   stats: Stat[];
   info: InfoItem[];
+  services?: ServiceItem[];
 }
 
 export default function EventDetails({
@@ -36,9 +42,12 @@ export default function EventDetails({
   primaryCta,
   secondaryCta,
   info,
+  services,
 }: EventShowcaseProps) {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
   const { ref: heroRef, y: heroY } = useParallax(['0%', '-12%']);
+
+  const displayServices = services || defaultServices;
 
   return (
     <div className="mt-16 min-h-screen bg-white text-gray-900 md:mt-10">
@@ -54,12 +63,13 @@ export default function EventDetails({
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
             {/* LEFT SIDE - Content */}
             <div className="font-primary space-y-6">
-              <SplitTitle text={title} immediate />
+              {/* <SplitTitle text={title} immediate /> */}
+              <h1 className="heading-hero">{title}</h1>
               {subtitle && (
                 <SoftFadeIn immediate>
-                  <p className="font-secondary text-primary text-base font-bold tracking-widest uppercase md:text-sm">
+                  <h2 className="font-secondary text-primary text-base font-bold tracking-widest uppercase md:text-sm">
                     {subtitle}
-                  </p>
+                  </h2>
                 </SoftFadeIn>
               )}
               <SoftFadeIn delay={0.1} immediate>
@@ -254,7 +264,7 @@ export default function EventDetails({
       <section className="bg-whitesmoke">
         <div className="container mx-auto px-4 pt-12 pb-12 md:pt-20 md:pb-20">
           <div className="grid gap-6 lg:grid-cols-3">
-            {services.map((service, i) => (
+            {displayServices.map((service, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}

@@ -2247,10 +2247,10 @@ export const weddingData: EventShowcaseProps = {
 };
 
 export const corporateData: EventShowcaseProps = {
-  title: 'Corporate Events That Inspire',
-  subtitle: 'Executive Event Production',
+  title: 'Corporate Event Space in the Financial District',
+  subtitle: 'A Historic Downtown Venue for Modern Business',
   description:
-    'Elevate your brand with impactful corporate experiences. From product launches to annual conferences, we deliver professional events that engage audiences, strengthen culture, and drive business results with precision and innovation.',
+    'Celebrate your brand at this storied building synonymous with success. As a premier Lower Manhattan corporate event space, 48 Wall Street offers an impressive setting for everything from high-level summits to annual conferences. Whether you need a versatile meeting space on Wall Street or a grand Financial District event venue for a product launch, our team delivers professional experiences that engage audiences and drive business results with precision.',
   images: [
     {
       src: '/gallery/corporate/ (24).jpg',
@@ -2318,6 +2318,20 @@ export const corporateData: EventShowcaseProps = {
     label: 'View Photo Gallery',
     href: '/gallery?tab=corporate',
   },
+  services: [
+    {
+      title: 'Conferences & Summits',
+      body: 'Secure a lower Manhattan conference space that commands attention. Our historic hall offers the perfect acoustic and architectural backdrop for industry summits, shareholder meetings, and executive presentations. With flexible layouts and dedicated meeting space on Wall Street, we ensure your content, and your company, takes center stage.',
+    },
+    {
+      title: 'Gala Dinners & Awards',
+      body: 'Celebrate company milestones in an event venue built for prestige. From black-tie awards dinners to executive galas, the banking hall’s grandeur elevates every toast. We offer a sophisticated corporate event space where your team’s achievements are honored in style, supported by world-class catering and seamless production.',
+    },
+    {
+      title: 'Launches & Networking',
+      body: 'Make a lasting impression with a unique event space designed for connection. Perfect for product launches, client mixers, and networking hours, our venue offers a sophisticated environment that sparks conversation. distinct architecture and prime location make us the standout Lower Manhattan corporate event space for impactful brand moments.',
+    },
+  ],
 };
 
 export const conferenceData: EventShowcaseProps = {
@@ -2395,10 +2409,10 @@ export const conferenceData: EventShowcaseProps = {
 };
 
 export const fashionData: EventShowcaseProps = {
-  title: 'Runway to Reality',
-  subtitle: 'Fashion Show Production',
+  title: 'NYC Fashion Show Event Space',
+  subtitle: 'A Dramatic Setting for New York Fashion Week',
   description:
-    'Create unforgettable fashion experiences that captivate audiences and elevate brands. From intimate trunk shows to major runway productions, we deliver flawless execution with dramatic staging, perfect lighting, and impeccable timing that puts your collection center stage.',
+    'Create unforgettable moments in a Lower Manhattan fashion show event space that commands attention. 48 Wall Street offers a stunning backdrop where historic grandeur meets modern style, making it an ideal choice for New York Fashion Week. From intimate designer presentations to major runway productions, we provide the dramatic staging and impeccable atmosphere required to put your collection center stage in a unique event space in New York City.',
   images: [
     {
       src: '/gallery/fashion/ (6).jpg',

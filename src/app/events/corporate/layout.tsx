@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title:
-    'Corporate Event Venue NYC | Meetings & Conferences | 48 Wall Street Financial District',
+    'Corporate Event Venue Wall Street | Conference Space Financial District NYC ',
   description:
-    "Premier corporate event venue in Manhattan's Financial District. Host meetings, conferences, product launches, and company events at 48 Wall Street's historic 1927 venue. State-of-the-art AV, flexible layouts for 50-500 guests, breakout rooms, and full-service catering. Grand Mezzanine with 30-foot ceilings perfect for impactful business events. Request a quote today.",
+    'Host your next business gathering at 48 Wall Street. We are a premier Lower Manhattan corporate event space and historic venue perfect for conferences, meetings, and executive events.',
   keywords:
     'corporate event venue NYC, Manhattan conference space, Financial District meeting venue, corporate meeting space NYC, business event venue Manhattan, product launch venue NYC, company event space, corporate holiday party venue, business conference NYC, Wall Street meeting space, executive event venue, corporate gathering space NYC, team building venue Manhattan, sales kickoff venue, board meeting space NYC, company town hall venue',
   openGraph: {
