@@ -3037,7 +3037,7 @@ export const eventCateringData = {
       title: 'Lunch',
       description:
         "Having a luncheon at 48 Wall Street is a breeze with your trusted partner Tardi's. We provide a myriad of options for our clients including sit-down lunches, buffet style, or passed plates. Our creative culinary team provides the best ideas in food and beverage options when planning your event.",
-      images: ['/catering/cl1.jpg', '/catering/cl2.jpg', '/catering/cl3.JPG'],
+      images: ['/catering/cl1.jpg', '/catering/cl2.jpg', '/catering/cl3.jpg'],
       imageAlts: [
         'Catering display 1',
         'Catering display 2',
@@ -3052,7 +3052,7 @@ export const eventCateringData = {
       images: [
         '/catering/IMG_3248.jpg',
         '/catering/20221020_093758.jpg',
-        '/catering/IMG_0242.JPG',
+        '/catering/IMG_0242.jpg',
       ],
       imageAlts: [
         'Catering display 1',
