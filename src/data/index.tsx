@@ -2946,7 +2946,7 @@ export const eventProductionData = {
         "We carry a complete line of professional staging products, that range from simple to custom installations. Our team's extensive knowledge provides you with the right guidance and resources needed to plan and execute your next event.",
       images: [
         '/service/stage/20240910_072701.jpg',
-        '/service/stage/IMG_0116.jpg',
+        '/service/stage/IMG_0116.JPG',
         '/service/stage/IMG_5831.jpg',
       ],
       imageAlts: [
