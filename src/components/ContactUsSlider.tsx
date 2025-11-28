@@ -4,6 +4,7 @@ import { FormDataType } from '@/types';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ContactUsSlider: React.FC = () => {
   const pathname = usePathname();
@@ -11,6 +12,8 @@ const ContactUsSlider: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const MAX_FILE_SIZE = 20 * 1024 * 1024;
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   const [formData, setFormData] = useState<FormDataType>({
     fullName: '',
@@ -100,6 +103,14 @@ const ContactUsSlider: React.FC = () => {
       return;
     }
 
+    if (!recaptchaToken) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please complete the reCAPTCHA verification',
+      });
+      return;
+    }
+
     try {
       const formDataToSend = new FormData();
 
@@ -112,6 +123,7 @@ const ContactUsSlider: React.FC = () => {
         }
       });
       formDataToSend.set('page', pathname || '/');
+      formDataToSend.set('recaptchaToken', recaptchaToken);
 
       if (formData.attachments && formData.attachments.length > 0) {
         formData.attachments.forEach((file) => {
@@ -133,6 +145,8 @@ const ContactUsSlider: React.FC = () => {
             result.message ||
             'Thank you for your inquiry! We will get back to you shortly.',
         });
+        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
 
         setFormData({
           fullName: '',
@@ -157,6 +171,8 @@ const ContactUsSlider: React.FC = () => {
           type: 'error',
           message: result.message || 'Failed to submit form. Please try again.',
         });
+        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
       }
     } catch (error) {
       console.error('Form submission error:', error);
@@ -165,11 +181,17 @@ const ContactUsSlider: React.FC = () => {
         message:
           'Failed to submit form. Please try again or contact us directly.',
       });
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
     }
   };
 
   const toggleForm = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
   };
 
   if (pathname === '/about/customize-plan' || pathname === '/thank-you')
@@ -239,7 +261,7 @@ const ContactUsSlider: React.FC = () => {
             </div>
           )}
 
-          <div className="mx-auto max-w-6xl">
+          <form onSubmit={handleSubmit} className="mx-auto max-w-6xl">
             <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
               <div className="text-dark-black">
                 <div className="space-y-6">
@@ -427,10 +449,19 @@ const ContactUsSlider: React.FC = () => {
                       )}
                   </div>
 
+                  <div className="flex justify-center py-4">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      onChange={handleRecaptchaChange}
+                    />
+                  </div>
+
                   <div className="flex justify-end pt-4">
                     <button
-                      onClick={handleSubmit}
-                      className="bg-primary font-secondary text-dark-black hover:bg-primary cursor-pointer px-12 py-3 font-semibold tracking-wider transition-colors"
+                      type="submit"
+                      disabled={!recaptchaToken}
+                      className="bg-primary font-secondary text-dark-black hover:bg-primary cursor-pointer px-12 py-3 font-semibold tracking-wider transition-colors disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       SUBMIT
                     </button>
@@ -438,7 +469,7 @@ const ContactUsSlider: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>

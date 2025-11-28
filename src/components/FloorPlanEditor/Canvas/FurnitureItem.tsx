@@ -134,7 +134,7 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
         />
       </g>
 
-      {isCustom && item.customName && !isSelected && (
+      {/* {isCustom && item.customName && !isSelected && (
         <text
           y={0}
           fontSize="10"
@@ -149,7 +149,7 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
         >
           {item.customName}
         </text>
-      )}
+      )} */}
 
       {isSelected && (
         <text

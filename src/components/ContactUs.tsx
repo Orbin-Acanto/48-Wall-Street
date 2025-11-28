@@ -5,12 +5,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import CustomButton from './CustomButton';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ContactUs: React.FC = () => {
   const pathname = usePathname();
   const MAX_FILE_SIZE = 20 * 1024 * 1024;
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const [formData, setFormData] = useState<FormDataType>({
     fullName: '',
@@ -30,6 +32,7 @@ const ContactUs: React.FC = () => {
     page: pathname || '/',
   });
 
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [submitStatus, setSubmitStatus] = useState<{
@@ -90,6 +93,95 @@ const ContactUs: React.FC = () => {
     }));
   };
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+  //   setSubmitStatus(null);
+
+  //   if (!formData.fullName || !formData.email) {
+  //     setSubmitStatus({
+  //       type: 'error',
+  //       message: 'Please fill in all required fields (Name and Email)',
+  //     });
+  //     setIsSubmitting(false);
+  //     return;
+  //   }
+
+  //   try {
+  //     const formDataToSend = new FormData();
+
+  //     Object.keys(formData).forEach((key) => {
+  //       if (key !== 'attachments') {
+  //         formDataToSend.append(
+  //           key,
+  //           formData[key as keyof FormDataType] as string
+  //         );
+  //       }
+  //     });
+
+  //     formDataToSend.set('page', pathname || '/');
+
+  //     if (formData.attachments && formData.attachments.length > 0) {
+  //       formData.attachments.forEach((file) => {
+  //         formDataToSend.append('attachments', file);
+  //       });
+  //     }
+
+  //     const response = await fetch('/api/contact-form', {
+  //       method: 'POST',
+  //       body: formDataToSend,
+  //     });
+
+  //     const result = await response.json();
+
+  //     if (result.success) {
+  //       setSubmitStatus({
+  //         type: 'success',
+  //         message:
+  //           result.message ||
+  //           'Thank you for your inquiry! We will get back to you shortly.',
+  //       });
+
+  //       setFormData({
+  //         fullName: '',
+  //         company: '',
+  //         phone: '',
+  //         email: '',
+  //         eventStartDate: '',
+  //         eventStartHour: '01',
+  //         eventStartMinute: '00',
+  //         eventStartPeriod: 'AM',
+  //         eventType: '',
+  //         numberOfGuests: '',
+  //         howDidYouHear: '',
+  //         message: '',
+  //         robotCheck: false,
+  //         attachments: [],
+  //         page: pathname || '/',
+  //       });
+  //       router.push('/thank-you');
+  //     } else {
+  //       setSubmitStatus({
+  //         type: 'error',
+  //         message: result.message || 'Failed to submit form. Please try again.',
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error('Form submission error:', error);
+  //     setSubmitStatus({
+  //       type: 'error',
+  //       message:
+  //         'Failed to submit form. Please try again or contact us directly.',
+  //     });
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -99,6 +191,15 @@ const ContactUs: React.FC = () => {
       setSubmitStatus({
         type: 'error',
         message: 'Please fill in all required fields (Name and Email)',
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!recaptchaToken) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please complete the reCAPTCHA verification',
       });
       setIsSubmitting(false);
       return;
@@ -117,6 +218,7 @@ const ContactUs: React.FC = () => {
       });
 
       formDataToSend.set('page', pathname || '/');
+      formDataToSend.set('recaptchaToken', recaptchaToken);
 
       if (formData.attachments && formData.attachments.length > 0) {
         formData.attachments.forEach((file) => {
@@ -156,12 +258,19 @@ const ContactUs: React.FC = () => {
           attachments: [],
           page: pathname || '/',
         });
+
+        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
+
         router.push('/thank-you');
       } else {
         setSubmitStatus({
           type: 'error',
           message: result.message || 'Failed to submit form. Please try again.',
         });
+
+        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
       }
     } catch (error) {
       console.error('Form submission error:', error);
@@ -170,6 +279,9 @@ const ContactUs: React.FC = () => {
         message:
           'Failed to submit form. Please try again or contact us directly.',
       });
+
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
     } finally {
       setIsSubmitting(false);
     }
@@ -379,8 +491,19 @@ const ContactUs: React.FC = () => {
                 )}
               </div>
 
+              <div className="flex justify-center py-4">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                  onChange={handleRecaptchaChange}
+                />
+              </div>
+
               <div className="flex justify-end pt-4">
-                <CustomButton type="submit" disabled={isSubmitting}>
+                <CustomButton
+                  type="submit"
+                  disabled={isSubmitting || !recaptchaToken}
+                >
                   {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
                 </CustomButton>
               </div>
