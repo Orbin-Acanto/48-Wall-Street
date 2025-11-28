@@ -15,7 +15,7 @@ export default function GalleryContent() {
   const validTabs = ['corporate', 'wedding', 'fashion', 'bar', 'holiday'];
 
   const [activeTab, setActiveTab] = useState(() => {
-    return validTabs.includes(tabFromUrl || '') ? tabFromUrl : 'holiday';
+    return validTabs.includes(tabFromUrl || '') ? tabFromUrl : 'corporate';
   });
 
   useEffect(() => {
