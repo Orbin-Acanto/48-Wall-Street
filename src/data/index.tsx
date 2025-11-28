@@ -3083,7 +3083,7 @@ export const eventRentalsData = {
         'When it comes to transforming the space at 48 Wall Street, our team knows how to deliver a breathtaking experience for your guests. With a variety of décor accents and life-like props, MMEink will help you customize the look for your event. MMEink maintains an elite line of scenic décor that allows us to take your event to the next level. Our exclusive inventory is composed of chic lounges and décor accents that offer a variety of exciting furnishings to choose from. With a complete line of luxury rentals our fashionable décor items make styling your next event stress-free.',
       images: [
         '/service/decor/20231214_123920.jpg',
-        '/service/decor/DJI_0923.jpg',
+        '/service/decor/DJI_0923.JPG',
         '/service/decor/IMG_3420.jpg',
       ],
       imageAlts: ['decor display 1', 'decor display 2', 'decor display 3'],
@@ -3096,7 +3096,7 @@ export const eventRentalsData = {
       images: [
         '/service/staging/20240229_134449.jpg',
         '/service/staging/DSC_0248.jpg',
-        '/service/staging/IMG_2222.jpg',
+        '/service/staging/IMG_2222.JPG',
       ],
       imageAlts: [
         'staging display 1',
