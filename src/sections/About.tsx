@@ -1,121 +1,241 @@
 'use client';
 
+import { useState } from 'react';
 import CustomButton from '@/components/CustomButton';
 import Image from 'next/image';
 import Link from 'next/link';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const aboutImages = [
+  { src: '/about/aboutHero-1.jpg', alt: '48 Wall Street Venue' },
+  { src: '/about/about (3).jpg', alt: 'Lounge Area' },
+  { src: '/about/about (2).jpg', alt: 'Lounge Area' },
+  {
+    src: '/gallery/corporate/ (25).jpg',
+    alt: '48 Wall Street Building Exterior',
+  },
+];
 
 export default function About() {
-  return (
-    <section className="bg-white px-6 pt-20 pb-18">
-      <div className="mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <p className="font-primary text-primary mb-6 text-3xl tracking-[0.3em] uppercase">
-            Welcome to 48 Wall Street
-          </p>
-          <div className="bg-primary mx-auto mb-8 h-px w-16"></div>
-          <h1 className="heading-hero">HISTORIC Downtown VENUE</h1>
-          <p className="text-lead">
-            Located in the heart of the Financial District, 48 Wall Street is a
-            restored historic landmark that now serves as a unique event space
-            in Lower Manhattan. Elegant architecture, soaring ceilings, and
-            flexible floor layouts provide a refined backdrop for corporate
-            gatherings, weddings, and social celebrations of many sizes.
-          </p>
-        </div>
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-        {/* Image Grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {/* Left Column */}
-          <div className="space-y-6">
-            {/* Top Image */}
-            <div
-              className="group relative h-64 overflow-hidden md:h-80"
+  const openLightbox = (index: number) => {
+    setSelectedIndex(index);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    setSelectedIndex(null);
+    document.body.style.overflow = 'unset';
+  };
+
+  const goToPrevious = () => {
+    if (selectedIndex !== null) {
+      setSelectedIndex(
+        (selectedIndex - 1 + aboutImages.length) % aboutImages.length
+      );
+    }
+  };
+
+  const goToNext = () => {
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex + 1) % aboutImages.length);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') goToPrevious();
+    if (e.key === 'ArrowRight') goToNext();
+  };
+
+  return (
+    <>
+      <section className="bg-white px-6 pt-20 pb-18">
+        <div className="mx-auto max-w-7xl">
+          {/* Header */}
+          <div className="mb-16 text-center">
+            <p className="font-primary text-primary mb-6 text-3xl tracking-[0.3em] uppercase">
+              Welcome to 48 Wall Street
+            </p>
+            <div className="bg-primary mx-auto mb-8 h-px w-16"></div>
+            <h1 className="heading-hero">HISTORIC Downtown VENUE</h1>
+            <p className="text-lead">
+              Located in the heart of the Financial District, 48 Wall Street is
+              a restored historic landmark that now serves as a unique event
+              space in Lower Manhattan. Elegant architecture, soaring ceilings,
+              and flexible floor layouts provide a refined backdrop for
+              corporate gatherings, weddings, and social celebrations of many
+              sizes.
+            </p>
+          </div>
+
+          {/* Image Grid */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {/* Left Column */}
+            <div className="space-y-6">
+              {/* Top Image */}
+              <button
+                onClick={() => openLightbox(0)}
+                className="group relative h-64 w-full cursor-pointer overflow-hidden md:h-80"
+                style={{
+                  backfaceVisibility: 'hidden',
+                  transform: 'translateZ(0)',
+                }}
+              >
+                <Image
+                  src="/about/aboutHero-1.jpg"
+                  alt="48 Wall Street Venue"
+                  fill
+                  quality={100}
+                  priority
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  style={{
+                    imageRendering: '-webkit-optimize-contrast',
+                  }}
+                />
+              </button>
+
+              {/* Bottom Row - Two Images */}
+              <div className="grid grid-cols-2 gap-6">
+                <button
+                  onClick={() => openLightbox(1)}
+                  className="group relative h-64 cursor-pointer overflow-hidden"
+                  style={{
+                    backfaceVisibility: 'hidden',
+                    transform: 'translateZ(0)',
+                  }}
+                >
+                  <Image
+                    src="/about/about (3).jpg"
+                    alt="Lounge Area"
+                    fill
+                    quality={100}
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                    }}
+                  />
+                </button>
+                <button
+                  onClick={() => openLightbox(2)}
+                  className="group relative h-64 cursor-pointer overflow-hidden"
+                  style={{
+                    backfaceVisibility: 'hidden',
+                    transform: 'translateZ(0)',
+                  }}
+                >
+                  <Image
+                    src="/about/about (2).jpg"
+                    alt="Lounge Area"
+                    fill
+                    quality={100}
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                    }}
+                  />
+                </button>
+              </div>
+            </div>
+
+            {/* Right Column - Large Image */}
+            <button
+              onClick={() => openLightbox(3)}
+              className="group relative h-full cursor-pointer overflow-hidden"
               style={{
                 backfaceVisibility: 'hidden',
                 transform: 'translateZ(0)',
               }}
             >
               <Image
-                src="/about/aboutHero-1.jpg"
-                alt="48 Wall Street Venue"
+                src="/gallery/corporate/ (25).jpg"
+                alt="48 Wall Street Building Exterior"
                 fill
                 quality={100}
-                priority
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="scale-105 object-cover transition-transform duration-500 group-hover:scale-115"
                 style={{
                   imageRendering: '-webkit-optimize-contrast',
                 }}
               />
-            </div>
-
-            {/* Bottom Row - Two Images */}
-            <div className="grid grid-cols-2 gap-6">
-              <div
-                className="group relative h-64 overflow-hidden"
-                style={{
-                  backfaceVisibility: 'hidden',
-                  transform: 'translateZ(0)',
-                }}
-              >
-                <Image
-                  src="/about/about (3).jpg"
-                  alt="Lounge Area"
-                  fill
-                  quality={100}
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  style={{
-                    imageRendering: '-webkit-optimize-contrast',
-                  }}
-                />
-              </div>
-              <div
-                className="group relative h-64 overflow-hidden"
-                style={{
-                  backfaceVisibility: 'hidden',
-                  transform: 'translateZ(0)',
-                }}
-              >
-                <Image
-                  src="/about/about (2).jpg"
-                  alt="Lounge Area"
-                  fill
-                  quality={100}
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  style={{
-                    imageRendering: '-webkit-optimize-contrast',
-                  }}
-                />
-              </div>
-            </div>
+            </button>
           </div>
+        </div>
+        <div className="mt-18 flex items-center justify-center">
+          <Link href="/about">
+            <CustomButton variant="primary">learn More</CustomButton>
+          </Link>
+        </div>
+      </section>
 
-          {/* Right Column - Large Image */}
-          <div
-            className="group relative h-full overflow-hidden"
-            style={{
-              backfaceVisibility: 'hidden',
-              transform: 'translateZ(0)',
+      {/* Lightbox Modal */}
+      {selectedIndex !== null && (
+        <div
+          className="bg-dark-black/95 fixed inset-0 z-50 flex items-center justify-center"
+          onClick={closeLightbox}
+          onKeyDown={handleKeyPress}
+          tabIndex={0}
+        >
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-6 right-6 z-50 rounded-full bg-white/10 p-3 transition-colors duration-300 hover:bg-white/20"
+            aria-label="Close"
+          >
+            <X className="h-8 w-8 text-white" />
+          </button>
+
+          {/* Previous Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrevious();
             }}
+            className="absolute top-1/2 left-6 z-50 -translate-y-1/2 rounded-full bg-white/10 p-4 transition-colors duration-300 hover:bg-white/20"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="h-8 w-8 text-white" />
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+            className="absolute top-1/2 right-6 z-50 -translate-y-1/2 rounded-full bg-white/10 p-4 transition-colors duration-300 hover:bg-white/20"
+            aria-label="Next"
+          >
+            <ChevronRight className="h-8 w-8 text-white" />
+          </button>
+
+          {/* Image */}
+          <div
+            className="relative mx-auto h-full max-h-[90vh] w-full max-w-7xl px-20"
+            onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src="/gallery/corporate/ (25).jpg"
-              alt="48 Wall Street Building Exterior"
+              src={aboutImages[selectedIndex].src}
+              alt={aboutImages[selectedIndex].alt}
               fill
-              quality={100}
-              className="scale-105 object-cover transition-transform duration-500 group-hover:scale-115"
+              className="object-contain"
               style={{
                 imageRendering: '-webkit-optimize-contrast',
               }}
+              priority
             />
           </div>
+
+          {/* Image Counter */}
+          <div className="absolute bottom-6 left-1/2 z-50 -translate-x-1/2">
+            <div className="rounded-full bg-white/10 px-6 py-3 backdrop-blur-sm">
+              <p className="font-secondary text-sm text-white">
+                {selectedIndex + 1} / {aboutImages.length}
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="mt-18 flex items-center justify-center">
-        <Link href="/about">
-          <CustomButton variant="primary">learn More</CustomButton>
-        </Link>
-      </div>
-    </section>
+      )}
+    </>
   );
 }
