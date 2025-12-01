@@ -49,8 +49,7 @@ export default function LocationPage() {
               </span>
             </div>
             <h1 className="heading-hero text-3xl text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              Our Location <br />
-              in
+              Our Location in
               <br />
               the Financial District
             </h1>
