@@ -31,8 +31,8 @@ export default function ContactHero() {
               </p>
 
               <p>
-                Today, as a premier historic NYC venue, we host the city's most
-                memorable events, blending timeless elegance with modern
+                Today, as a premier historic NYC venue, we host the city&lsquo;s
+                most memorable events, blending timeless elegance with modern
                 sophistication. Located at the corner of Wall and William
                 Streets, we are ready to bring your vision to life. Reach out to
                 our team and discover why 48 Wall Street continues to be one of

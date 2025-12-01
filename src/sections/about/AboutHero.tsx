@@ -28,8 +28,8 @@ export default function AboutHero() {
                 occupies three grand floors of the former Bank of New York &
                 Trust Company Building. This historic NYC venue stands on a site
                 rich with narrative; the current structure&apos;s cornerstone
-                was laid on January 12, 1928, the 171st birthday of the bank's
-                founder, Alexander Hamilton.
+                was laid on January 12, 1928, the 171st birthday of the
+                bank&apos;s founder, Alexander Hamilton.
               </p>
 
               <p className="mt-2">
