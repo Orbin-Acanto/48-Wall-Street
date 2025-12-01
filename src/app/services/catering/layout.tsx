@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    "Catering Services NYC | Tardi's Catering at 48 Wall Street | Manhattan Event Catering",
+  title: 'Event Catering Services Wall Street | Corporate Dining & Galas NYC',
   description:
-    "Tardi's Catering delivers first-class dining experiences for Manhattan events. 30+ years of culinary excellence serving corporate events, weddings, galas, and private celebrations. Specializing in seated dinners, cocktail receptions, buffets, lunch, and breakfast catering with fresh ingredients and creative presentation. Full-service catering for any size event at 48 Wall Street and throughout NYC. View our digital menu and bring your culinary vision to life.",
+    "Experience signature dining at 48 Wall Street. Partnering with Tardi's Catering to deliver gourmet menus for corporate and social events in a historic downtown venue.",
   keywords:
     "catering services NYC, Manhattan catering, event catering NYC, corporate catering Manhattan, wedding catering NYC, Tardi's Catering, 48 Wall Street catering, seated dinner catering, cocktail catering NYC, buffet catering, breakfast catering NYC, lunch catering Manhattan, kosher catering NYC, event food service, gala catering, party catering NYC, Financial District catering, full-service catering NYC, creative catering Manhattan",
   openGraph: {

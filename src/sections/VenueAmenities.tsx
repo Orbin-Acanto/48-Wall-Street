@@ -14,7 +14,9 @@ export default function VenueAmenities() {
           <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
             Space & Amenities
           </p>
-          <h2 className="heading-hero">ABOUT THE VENUE</h2>
+          <h2 className="heading-hero">
+            About Our Lower Manhattan Historic Venue
+          </h2>
         </div>
 
         {/* Amenities Grid */}
@@ -55,22 +57,21 @@ export default function VenueAmenities() {
             even more impressive destination for private and corporate events.
             The main level now features expanded entertaining areas, enhanced
             finishes, upgraded lighting, and improved technical infrastructure
-            that bring modern comfort to a historic setting. Generous space for
-            bar service, dining, and dancing allows the venue to support
-            conferences, galas, fashion shows, weddings, and large scale
+            that bring modern comfort to a historic NYC venue. Generous space
+            for bar service, dining, and dancing allows us to support
+            conferences, galas, fashion shows, weddings, and large-scale
             celebrations with ease.
           </p>
 
           <p className="font-secondary text-dark-black/80 text-sm leading-relaxed md:text-base">
             <span className="text-dark-black font-bold">48 Wall Street</span>{' '}
-            offers multiple event levels with both elegant interior rooms and
-            access to sweeping views of the city skyline and nearby river. Host
-            a welcome reception in a grand hall, move guests through dramatic
-            stairways and mezzanine spaces, and incorporate rooftop access or
-            partner spaces for outdoor experiences. With flexible floor plans, a
-            responsive planning team, and versatile layouts, the venue provides
-            the setting you need to turn any event concept into a memorable New
-            York City experience.
+            offers multiple levels with both elegant interior rooms and access
+            to sweeping views of the city skyline. Host a welcome reception in
+            the grand hall, move guests through dramatic stairways, and utilize
+            our versatile layouts for a seamless flow. With a responsive
+            planning team and a prime location, we provide the setting you need
+            to turn any concept into a memorable experience at the best Lower
+            Manhattan event space.
           </p>
         </div>
 

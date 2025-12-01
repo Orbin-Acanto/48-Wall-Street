@@ -18,11 +18,12 @@ export default function InteractiveMapSection() {
         <div className="container mx-auto px-4">
           {/* Section Header */}
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <h2 className="heading-hero text-primary">Visit Our Venue</h2>
+            <h2 className="heading-hero text-primary">
+              Visit Our Financial District Venue
+            </h2>
             <p className="text-lead mb-8">
-              Located in the heart of the Financial District, our historic venue
-              is easily accessible and offers a stunning backdrop for your
-              event.
+              Located in the heart of Lower Manhattan, our historic venue is
+              easily accessible and offers a stunning backdrop for your event.
             </p>
           </div>
 

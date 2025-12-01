@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Event Rental Services NYC | Furniture & Decor Rentals Manhattan | 48 Wall Street',
+  title: 'Event Rentals NYC | Furniture, Decor & Props on Wall Street',
   description:
-    'MMEink provides exclusive event rental services in NYC for 26+ years. Thousands of unique furniture, decor, staging, and catering rental items for corporate events, weddings, and celebrations. Transform your Manhattan event with luxurious furniture rentals, props, linens, tables, chairs, and specialty items. From vibrant fun to sleek elegant styles - we outfit your entire event at 48 Wall Street and throughout NYC. Browse our extensive rental inventory today.',
+    'Transform your event with premium rentals at 48 Wall Street. From custom staging and chic lounge furniture to catering equipment, we provide full production support for your Financial District event.',
   keywords:
     'event rentals NYC, furniture rental Manhattan, event decor rentals, prop rentals NYC, staging rentals Manhattan, catering equipment rentals, event furniture NYC, party rentals Manhattan, wedding rentals NYC, corporate event rentals, lounge furniture rental, specialty prop rentals, event equipment NYC, table and chair rentals, linen rentals NYC, MMEink rentals, 48 Wall Street rentals, luxury furniture rentals Manhattan, event prop rental NYC',
   openGraph: {

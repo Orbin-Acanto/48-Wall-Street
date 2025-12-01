@@ -3,9 +3,9 @@ import type { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Contact 48 Wall Street | NYC Corporate & Private Event Venue',
+  title: 'Contact 48 Wall Street | Inquire About Our Historic NYC Venue',
   description:
-    'Contact 48 Wall Street, a historic corporate and private event venue in New York City’s Financial District. Call 1.877.885.0705 or email info@48WallNYC.com to inquire about corporate events, weddings, conferences, and holiday parties.',
+    'Start planning your event at 48 Wall Street. Contact us today to tour our historic downtown venue and unique event space in the heart of the Financial District.',
   keywords: [
     'contact 48 Wall Street',
     'NYC corporate event venue',

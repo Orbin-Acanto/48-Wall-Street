@@ -1043,22 +1043,22 @@ export const venues = [
   {
     icon: Calendar,
     title: 'Corporate Events',
-    desc: 'From executive board meetings and annual conferences to product launches and holiday celebrations, 48 Wall Street provides the perfect backdrop for business gatherings of any scale. Our flexible spaces, state-of-the-art AV capabilities, and prime Financial District location make us the preferred choice for companies seeking sophistication and functionality.',
+    desc: 'From executive board meetings and annual conferences to product launches and holiday celebrations, 48 Wall Street provides the perfect corporate event space in the Financial District. Our flexible layouts, state-of-the-art AV capabilities, and prime Wall Street location make us the preferred choice for companies seeking a historic downtown venue that balances sophistication with functionality.',
   },
   {
     icon: Sparkles,
     title: 'Weddings',
-    desc: 'Exchange vows beneath soaring 30-foot ceilings and celebrate your love story in a venue steeped in elegance and history. Our grand mezzanine and stunning architectural details create an unforgettable setting for ceremonies and receptions, accommodating up to 350 seated guests with impeccable service and timeless beauty.',
+    desc: 'Exchange vows beneath soaring 30-foot ceilings and celebrate your love story in a historic NYC venue steeped in elegance. Our grand mezzanine and stunning architectural details create an unforgettable wedding space on Wall Street for ceremonies and receptions, accommodating up to 350 seated guests with impeccable service and timeless beauty.',
   },
   {
     icon: Users,
     title: 'Social Events',
-    desc: "Milestone celebrations deserve an extraordinary venue. Whether you're planning a Bar or Bat Mitzvah, anniversary party, birthday celebration, or Sweet 16, our versatile spaces and dedicated event team ensure every detail reflects your vision. Create memories that will last a lifetime in a setting as special as your occasion.",
+    desc: "Milestone celebrations deserve a unique event space. Whether you're planning a Bar or Bat Mitzvah, anniversary party, or Sweet 16, our versatile historic venue and dedicated event team ensure every detail reflects your vision. Create memories that will last a lifetime in a setting as special as your occasion.",
   },
   {
     icon: Star,
     title: 'Fashion Shows',
-    desc: "Make a statement with your next fashion presentation in our dramatic, high-ceiling venue. The grand marble staircase provides the perfect runway entrance, while our expansive floor plans and professional lighting capabilities offer designers the ideal canvas to showcase their latest collections in Lower Manhattan's most distinctive event space.",
+    desc: "Make a statement with your next fashion event in our dramatic, high-ceilinged venue. The grand marble staircase provides the perfect runway entrance, while expansive floor plans offer designers the ideal canvas to showcase collections in Lower Manhattan's most distinctive fashion show event space.",
   },
 ];
 
@@ -2174,10 +2174,10 @@ export const floors = [
 ];
 
 export const weddingData: EventShowcaseProps = {
-  title: 'Unforgettable Wedding Celebrations',
-  subtitle: 'Bespoke Wedding Planning',
+  title: 'Unforgettable Wedding Space on Wall Street',
+  subtitle: 'A Historic Downtown Venue for Your Special Day',
   description:
-    'From intimate garden ceremonies to grand ballroom receptions, we orchestrate every detail of your special day. Our expert planners transform your vision into reality with personalized design, seamless coordination, and flawless execution.',
+    'From intimate ceremonies to grand ballroom receptions, orchestrate every detail of your celebration in a historic NYC venue defined by timeless romance. 48 Wall Street transforms your vision into reality, offering a breathtaking wedding space on Wall Street that captivates guests from the moment they arrive. Our expert team ensures seamless coordination and flawless execution, providing a unique event space in Lower Manhattan where your love story takes center stage against a backdrop of marble, gold, and history.',
   images: [
     {
       src: '/gallery/wedding/22.jpg',
@@ -2244,6 +2244,20 @@ export const weddingData: EventShowcaseProps = {
     label: 'View Wedding Gallery',
     href: '/gallery?tab=wedding',
   },
+  services: [
+    {
+      title: 'Elegant Ceremonies',
+      body: "Exchange your vows in an atmosphere of grandeur. Our soaring ceilings and architectural details create a cathedral-like quality perfect for saying 'I do.' As a premier wedding space on Wall Street, we offer the flexibility to host your ceremony and reception in one seamless location, ensuring comfort for your guests and a dramatic aisle for your entrance in this historic downtown venue.",
+    },
+    {
+      title: 'Grand Receptions',
+      body: 'Dance the night away in the best Lower Manhattan event space for an unforgettable celebration. Our ballroom floor plan adapts to your guest count, offering ample room for a band, dining, and dancing. Whether you envision a seated black-tie dinner or a modern cocktail style affair, 48 Wall provides the perfect setting for your wedding day that will be talked about for years to come.',
+    },
+    {
+      title: 'Timeless Photography',
+      body: 'Capture your memories against the backdrop of 1920s glamour.. The banking hall’s grand staircase and intricate features make this a one-of-a-kind event space for wedding photography. You won’t need to travel for portraits; the venue itself is a masterpiece. Secure our historic venue and ensure every photo reflects the elegance and joy of your specific occasion.',
+    },
+  ],
 };
 
 export const corporateData: EventShowcaseProps = {
@@ -2412,7 +2426,7 @@ export const fashionData: EventShowcaseProps = {
   title: 'NYC Fashion Show Event Space',
   subtitle: 'A Dramatic Setting for New York Fashion Week',
   description:
-    'Create unforgettable moments in a Lower Manhattan fashion show event space that commands attention. 48 Wall Street offers a stunning backdrop where historic grandeur meets modern style, making it an ideal choice for New York Fashion Week. From intimate designer presentations to major runway productions, we provide the dramatic staging and impeccable atmosphere required to put your collection center stage in a unique event space in New York City.',
+    '48 Wall Street offers a stunning backdrop where historic grandeur meets modern style, making it an ideal choice for New York Fashion Week. With original architecture, elaborate grand marble staircase and 30 foot ceilings, the space provides the perfect backdrop for any fashion event.</br>Our dedicated and professional in-house event services team will provide you with everything you need for your NYC fashion show. From intimate designer presentations to major runway productions, we provide the dramatic staging, impeccable lighting and everything else required to put your collection center stage in a unique event space in New York City. Our in-house event specialists make 48 Wall Street a true turnkey event venue.</br>There is simply no better venue in the financial district to host your fashion show than the iconic 48 Wall Street!',
   images: [
     {
       src: '/gallery/fashion/ (6).jpg',
@@ -2480,13 +2494,27 @@ export const fashionData: EventShowcaseProps = {
     label: 'View Photo Gallery',
     href: '/gallery?tab=fashion',
   },
+  services: [
+    {
+      title: 'Runway Productions',
+      body: 'Transform our sweeping banking hall into a world-class runway. As a top fashion show event space in NYC, we offer the length and layout necessary for a professional catwalk experience. The soaring ceilings and marble detailing provide a cinematic aesthetic that elevates every look, ensuring your fashion show or presentation is as memorable as the designs themselves.',
+    },
+    {
+      title: 'Showrooms & Pop-Ups',
+      body: 'Beyond the runway, utilize our historic downtown venue for immersive brand activations and buyer showrooms. Our versatile floor plan allows for curated displays that invite guests to interact with your brand up close. Whether for a seasonal launch or a press day, this unique event space on Wall Street turns a standard viewing into an exclusive experience.',
+    },
+    {
+      title: 'Production & Lighting',
+      body: 'We understand that lighting is everything in fashion. Our event venue is equipped to handle complex audiovisual needs, from dramatic spotlights to ambient moods. We work seamlessly with production teams to ensure that our space highlights the texture, color, and movement of your collection with absolute precision.',
+    },
+  ],
 };
 
 export const nonprofitData: EventShowcaseProps = {
-  title: 'Events That Make a Difference',
-  subtitle: 'Non-Profit Event Management',
+  title: 'Non-Profit & Fundraising Event Venue',
+  subtitle: 'A Historic Downtown Venue for Meaningful Impact',
   description:
-    'Maximize your impact and fundraising potential with expertly crafted charity events. We understand the unique challenges of non-profit organizations and deliver meaningful experiences that inspire generosity, engage donors, and amplify your mission.',
+    'Maximize your fundraising potential at a NYC event venue designed to inspire. We understand the unique challenges of non-profit organizations and offer a setting that complements your mission. As a premier Lower Manhattan event venue, 48 Wall Street provides the grandeur necessary to engage donors and amplify your message. From silent auctions to black-tie galas, we deliver experiences that turn a unique event space in Lower Manhattan into a catalyst for generosity.',
   images: [
     {
       src: '/gallery/non/1.jpg',
@@ -2554,13 +2582,27 @@ export const nonprofitData: EventShowcaseProps = {
     label: 'View Photo Gallery',
     href: '/gallery?tab=corporate',
   },
+  services: [
+    {
+      title: 'Galas & Fundraisers',
+      body: "Set the stage for a successful campaign in a setting that commands respect. Our Grand Mezzanine and ballroom offer the scale and elegance required for major fundraising galas. By hosting your supporters in one of the best Manhattan event spaces, you create an atmosphere of prestige that encourages giving and celebrates your organization's achievements in style.",
+    },
+    {
+      title: 'Donor Receptions',
+      body: 'Cultivate relationships with your most important contributors in an intimate and sophisticated setting. Whether it is a VIP cocktail hour or a seated dinner, our unique event space on Wall Street offers the privacy and ambiance needed for meaningful connection. Impress your board and benefactors with the architectural beauty of a true historic venue.',
+    },
+    {
+      title: 'Auctions & Awareness',
+      body: 'Engage your audience with an event flow designed for interaction. Our flexible floor plans are ideal for silent auctions, guest speakers, and awareness campaigns. As a versatile Financial District event venue, we provide the audio-visual infrastructure and logistical support to ensure your message is heard clearly, helping you drive your mission forward in the heart of NYC.',
+    },
+  ],
 };
 
 export const mitzvahData: EventShowcaseProps = {
-  title: 'Bar & Bat Mitzvah Celebrations',
-  subtitle: 'Meaningful Coming-of-Age Events',
+  title: 'Bar & Bat Mitzvah Venue on Wall Street',
+  subtitle: 'A Historic Downtown Venue for Your Milestone',
   description:
-    "Honor this sacred milestone with celebrations that blend tradition and personal style. We create unforgettable Bar and Bat Mitzvah experiences that reflect your family's values, your teen's personality, and the joy of this momentous occasion.",
+    "Honor this sacred milestone with a celebration that blends tradition and personal style in a sophisticated event venue. We create unforgettable experiences that reflect your family's values and your teen's personality. As a unique event space in Lower Manhattan, 48 Wall Street offers the perfect balance of grandeur and fun. From the hora to the final dance, host a seamless event in downtown Manhattan that turns a coming-of-age moment into the party of the year.",
   images: [
     {
       src: '/gallery/bar/39.jpg',
@@ -2628,13 +2670,27 @@ export const mitzvahData: EventShowcaseProps = {
     label: 'View Photo Gallery',
     href: '/gallery?tab=bar',
   },
+  services: [
+    {
+      title: 'The Ultimate Celebration',
+      body: 'Transform the ballroom into a high-energy club atmosphere that teens love, while maintaining the elegance adults appreciate. As one of the best New York City event spaces, our venue offers high ceilings and state-of-the-art lighting capabilities to match any theme. Create a dynamic environment where generations come together to celebrate in a historic setting unlike any other.',
+    },
+    {
+      title: 'Custom Themes & Decor',
+      body: 'Your vision is our blueprint. Whether you are planning a sports-themed bash or a chic sophisticated lounge, our unique Wall Street event space serves as a flexible canvas. The architectural details provide a stunning base that requires minimal dressing, yet allows for total transformation. Make your mark at an event venue that adapts perfectly to your creative concept.',
+    },
+    {
+      title: 'Ceremony & Reception',
+      body: 'Simplify the day by hosting both the service and the party under one roof. 48 Wall Street offers distinct areas that can be separated for the religious service and the reception. Enjoy the convenience of an event venue where guests can move seamlessly from a meaningful service to a lavish cocktail hour without ever leaving the building.',
+    },
+  ],
 };
 
 export const holidayData: EventShowcaseProps = {
-  title: 'Holiday Events That Sparkle',
-  subtitle: 'Seasonal Celebration Experts',
+  title: 'Holiday Event Venue on Wall Street',
+  subtitle: 'Seasonal Celebrations in a Historic Downtown Landmark',
   description:
-    'Transform the holidays into magical memories with expertly crafted seasonal celebrations. From corporate holiday parties to family gatherings, we infuse every event with festive spirit, creative themes, and meticulous attention to detail that captures the joy of the season.',
+    'Transform the season into magical memories at the premier holiday event venue in Lower Manhattan. From spirited corporate holiday parties to grand social gatherings, 48 Wall Street infuses every event with festive elegance. Celebrate in style, where creative themes and meticulous attention to detail capture the joy of the season, ensuring your end-of-year celebration in downtown NYC is as impressive as the year itself.',
   images: [
     {
       src: '/gallery/holiday/54.jpg',
@@ -2702,13 +2758,27 @@ export const holidayData: EventShowcaseProps = {
     label: 'View Photo Gallery',
     href: '/gallery?tab=holiday',
   },
+  services: [
+    {
+      title: 'Corporate Holiday Parties',
+      body: "Toast to the year's success in a corporate event space defined by luxury. Whether it is an employee appreciation night or a client reception, our ballroom offers a sophisticated setting for business celebrations. Secure a holiday event venue on Wall Street that signals prestige and gratitude to your team and partners.",
+    },
+    {
+      title: 'Historic Holiday Charm',
+      body: 'Escape the ordinary and embrace the warmth of this historic NYC venue during the holidays. The Grand Mezzanine and banking hall provide a naturally festive backdrop with gold accents and soaring architecture. Add in the perfect touch of holiday decor and your celebration will sparkle with glamour and timeless style.',
+    },
+    {
+      title: 'Grand Seasonal Galas',
+      body: 'For large-scale festivities, you need the right event space that can handle the crowd. Our venue comfortably accommodates hundreds of guests for cocktails and dancing. Centrally located in downtown NYC, we are the ideal holiday event venue in Lower Manhattan for gathering diverse groups from across the city to celebrate together.',
+    },
+  ],
 };
 
 export const filmtvData: EventShowcaseProps = {
-  title: 'Film & TV Production Events',
-  subtitle: 'Entertainment Industry Specialists',
+  title: 'Film Shoots, Holding & Industry Events',
+  subtitle: 'A Camera-Ready Historic Downtown Venue',
   description:
-    'From red carpet premieres to wrap parties, we bring Hollywood-level production expertise to every entertainment industry event. Our team understands the unique demands of film and television celebrations and delivers flawless execution with style and discretion.',
+    'From major motion pictures to television series, 48 Wall Street serves as a versatile historic NYC venue for the entertainment industry. Whether you require a historic event space in Lower Manhattan for an on-location shoot, a spacious holding area for cast and crew, or a stunning setting for a wrap party, our location delivers. We understand the logistical demands of production and offer the flexibility and discretion required for a seamless experience in the Financial District.',
   images: [
     {
       src: '/gallery/film/ (1).jpg',
@@ -2776,6 +2846,20 @@ export const filmtvData: EventShowcaseProps = {
     label: 'View Photo Gallery',
     href: '/gallery?tab=fashion',
   },
+  services: [
+    {
+      title: 'On-Location Filming',
+      body: 'Capture the essence of Old New York in a historic downtown venue that radiates authenticity. Our 1920s banking hall features soaring ceilings, marble detailing, and period architecture that serves as a turnkey set for period pieces or high-stakes dramas. It is a unique event space on Wall Street that provides high production value and a cinematic aesthetic ready for the camera.',
+    },
+    {
+      title: 'Holding & Catering',
+      body: 'Production requires space, and 48 Wall Street offers ample square footage to support your crew. Our space is perfect as a central base camp, featuring designated areas for wardrobe, hair and makeup, and catering. We provide a comfortable, climate-controlled environment that keeps your talent and team ready for action right in the heart of the Financial District.',
+    },
+    {
+      title: 'Premieres & Wrap Parties',
+      body: 'When production wraps, celebrate in style. We are a premier Financial District event venue perfectly suited for red carpet premieres, screenings, and cast parties. With a grand entrance and flexible floor plan, we transform from a working set into a high-end social club, offering one of the best NYC event spaces to toast the success of your project.',
+    },
+  ],
 };
 
 export const brochurePages = [
@@ -2896,18 +2980,18 @@ export const items = [
 ];
 
 export const eventProductionData = {
-  title: 'Event Production NYC',
+  title: 'Event Production Services NYC',
   subtitle: 'Spectacular Events at 48 Wall Street',
   heroImage: '/videos/ep.mp4',
   leadTitle: 'Bringing Your Vision to Life',
   leadDescription:
-    'MMEink has the ability to deliver full event production services internally, making us your number one resource when planning your next special event in the NYC area. By providing our clients with a turn-key event solution, we have the ability to satisfy all your production needs. With just a phone call, we can assist you with all of your Audio Visual, Staging, Lighting, Decor, and Event Rentals. As a self-contained agency, our attention to detail and seamless orchestration of event services allows us to produce an event that will exceed your every expectation. Contact the number one NYC event production company today to get started right away!',
+    'MME Worldwide delivers full event production services internally, making us your premier resource when planning your next experience in this historic downtown venue. By providing clients with a turn-key solution, we satisfy all production needs under one roof—from Audio Visual and Staging to Lighting, Decor, and Rentals. As a self-contained event space, our seamless orchestration of services allows us to produce an event that exceeds expectations, ensuring your event in Lower Manhattan is flawless.',
   sections: [
     {
       id: 'design',
-      title: 'Design',
+      title: 'Design & Decor',
       description:
-        "MME Worldwide's inspired designers specialize in providing creative floral accents and unique décor. Our team is able to fulfill your event's needs by providing you with a wide range of design services to choose from. Whether it's creating a vision, or helping bring one to light, we will help you develop an environment that is on message for your brand. Assisted by an in-house back-end production team, MME Worldwide maintains an exclusive inventory of décor that allows us to provide you with an original look for your next event.",
+        "MME Worldwide's inspired designers specialize in providing creative floral accents and unique décor that enhance the architecture of our historic NYC venue. Our team fulfills your vision with a wide range of design services, helping you develop an environment that is on-message for your brand. Assisted by an in-house production team, we maintain an exclusive inventory of décor, allowing us to provide an original look that makes your event truly one-of-a-kind.",
       images: [
         '/service/design/20231212_155514.jpg',
         '/service/design/20250821_162023.jpg',
@@ -2925,7 +3009,7 @@ export const eventProductionData = {
       id: 'audio-visual',
       title: 'Audio Visual',
       description:
-        "Our engineers provide a wide range of services that are designed to meet the communication needs of our clients. Based on your event's objectives, budget and parameters, we will develop a cost-effective plan that is effectively managed and delivered by our team.",
+        'Our engineers provide a wide range of AV services designed to meet the communication needs of modern business. We develop cost-effective plans based on your objectives and budget. Whether for a keynote presentation or a panel discussion, our technology is effectively managed and delivered by our team to ensure your message is heard clearly.',
       images: [
         '/service/av/20231027_185043.jpg',
         '/service/av/AE2.jpg',
@@ -2941,7 +3025,7 @@ export const eventProductionData = {
       id: 'lighting',
       title: 'Lighting',
       description:
-        "MME Worldwide's lighting professionals will help you select the right choice of lighting design to accompany your event's desired ambiance. Our services range from simple and sophisticated, to extravagant and bold, offering you the very best in event lighting services.",
+        "Lighting transforms a room, and MME Worldwide's professionals will help you select the right design to highlight the grandeur of this historic downtown venue. Our services range from simple and sophisticated to extravagant and bold. We use illumination to set the desired ambiance, ensuring the marble and architectural details of our unique event space shine perfectly for your guests.",
       images: [
         '/service/light/20241115_155551.jpg',
         '/service/light/20250522_170355.jpg',
@@ -2957,7 +3041,7 @@ export const eventProductionData = {
       id: 'staging',
       title: 'Staging',
       description:
-        "We carry a complete line of professional staging products, that range from simple to custom installations. Our team's extensive knowledge provides you with the right guidance and resources needed to plan and execute your next event.",
+        "We carry a complete line of professional staging products, ranging from simple platforms to custom runway installations. Whether you are hosting a fashion show or a corporate panel, our team's extensive knowledge provides the guidance needed to execute your vision. We ensure every angle looks professional within our space.",
       images: [
         '/service/stage/20240910_072701.jpg',
         '/service/stage/IMG_0116.JPG',
@@ -2973,7 +3057,7 @@ export const eventProductionData = {
       id: 'custom-fabrication',
       title: 'Custom Fabrication',
       description:
-        'Our creative team, accompanied by an in-house design shop, provides limitless state-of-the-art solutions for our event partners. Let our team take your next meeting from ordinary to extraordinary with our unique designs and flawless event execution.',
+        'Our creative team, accompanied by an in-house design shop, provides limitless state-of-the-art solutions for our event partners. Let us take your next meeting from ordinary to extraordinary by transforming our unique event space with custom builds. From branded set pieces to immersive environments, we deliver flawless execution that aligns with your specific event goals.',
       images: [
         '/service/cf/Green Canopy 2.jpg',
         '/service/cf/IMG_2204.jpg',
@@ -2989,7 +3073,7 @@ export const eventProductionData = {
       id: 'entertainment',
       title: 'Entertainment',
       description:
-        "Whether your preference is a lively dance band, jazz ensemble, or a combination of different styles of music, our team of planning professionals will help you select the perfect blend of music for your affair. From soloists to celebrity performances to world renowned DJ's, MMEink has proven to deliver the very best in exceptional musical talent. If you want to go the extra mile at your event, then providing top-notch entertainment for your guests is a must. Acquiring a celebrity speaker or performance is a powerful way you can deliver your message to an audience.",
+        'Whether your preference is a lively dance band, a jazz ensemble, or a world-renowned DJ, our planning professionals will help you select the perfect sound for your Financial District event venue. Our partners have a proven track record of delivering exceptional musical talent. Furthermore, acquiring a celebrity speaker or performer is a powerful way to deliver your message, and we are equipped to manage the rider and requirements for top-tier talent at your event.',
       images: [
         '/service/entertainment/20250821_184731.jpg',
         '/service/entertainment/entertainment.png',
@@ -3005,22 +3089,18 @@ export const eventProductionData = {
 };
 
 export const eventCateringData = {
-  title: 'Event Catering Services',
-  subtitle: 'Signature Dining Experience at 48 Wall Street',
+  title: 'Event Catering Services on Wall Street',
+  subtitle: 'A Signature Dining Experience in a Historic Setting',
   leadTitle: 'Inspired Gourmet Catering',
   heroImage: '/videos/ec.mp4',
   leadDescription:
-    'Tardi’s Catering is a creative food studio that delivers a first class dining experience for guests at both corporate and private events. With over 30 years of experience, Tardi’s Catering is designed to deliver the very best in hospitality and food and beverage services for your special event.',
-  leadDescription2:
-    'Developing an exciting food experience for your guests requires much more than just satisfying an appetite. The culinary team at Tardi’s Catering specializes in designing a menu that not only uses the freshest ingredients, but is also accompanied by a variety of fun props and décor accents.',
-  leadDescription3:
-    'Our catering services can accommodate any size, theme, or individual’s requirements, in virtually any location. Dining options include seated dining, buffet, small plates and globally inspired specialty stations. Whatever you need we will bring your creative visions to life!',
+    'Tardi’s Catering is a creative food studio that delivers a first-class dining experience for guests at our historic downtown venue. With over 30 years of experience, Tardi’s is designed to deliver the very best in hospitality for both Lower Manhattan corporate events and private social celebrations. Developing an exciting food experience requires more than just satisfying an appetite; the culinary team specializes in designing menus that use the freshest ingredients, accompanied by decor accents that complement our unique event space. Whether for a seated dinner, buffet, or globally inspired stations, we bring your creative vision to life in the heart of the Financial District.',
   sections: [
     {
       id: 'seated-dinner',
-      title: 'Seated Dinner',
+      title: 'Seated Dinners',
       description:
-        "When hosting your dinner party at 48 Wall Street you can expect to enjoy a delicious dining experience. The Tardi's executive chef and culinary team will help you create and design a custom menu for your event.",
+        'When hosting a formal dinner at 48 Wall Street, expect a dining experience that matches the grandeur of a historic NYC venue. The executive chef and culinary team will help you create a custom menu tailored to your specific tastes. Whether it is a fundraising gala or an executive banquet, we provide the sophisticated service required for a premier Financial District event venue.',
       images: ['/catering/cd1.jpg', '/catering/cd2.jpg', '/catering/cd3.jpg'],
       imageAlts: [
         'Catering display 1',
@@ -3032,7 +3112,7 @@ export const eventCateringData = {
       id: 'cocktail-events',
       title: 'Cocktail Events',
       description:
-        'Hosting a cocktail reception at 48 Wall Street is truly a remarkable experience. Allowing guests the opportunity to explore the extraordinary space of 48 Wall Street while drinking specialty cocktails and enjoying delicious and creative cuisine makes it the perfect social setting for your guests.',
+        "Hosting a reception at 48 Wall Street is a truly remarkable experience. Allow your guests to explore the extraordinary architecture of this unique event space in Lower Manhattan while sipping specialty cocktails and enjoying creative hors d'oeuvres. It is the perfect social setting for networking mixers or holiday toasts in a landmark Wall Street location.",
       images: [
         '/catering/cc1.jpg',
         '/catering/catering1.jpg',
@@ -3050,7 +3130,7 @@ export const eventCateringData = {
       id: 'lunch',
       title: 'Lunch',
       description:
-        "Having a luncheon at 48 Wall Street is a breeze with your trusted partner Tardi's. We provide a myriad of options for our clients including sit-down lunches, buffet style, or passed plates. Our creative culinary team provides the best ideas in food and beverage options when planning your event.",
+        'Executing a luncheon at 48 Wall Street is seamless with our trusted partners. We provide a myriad of options, including formal sit-down lunches, flexible buffets, or passed plates for networking hours. Our creative culinary team ensures that the food and beverage options keep your attendees energized and engaged throughout your event.',
       images: ['/catering/cl1.jpg', '/catering/cl2.jpg', '/catering/cl3.jpg'],
       imageAlts: [
         'Catering display 1',
@@ -3062,7 +3142,7 @@ export const eventCateringData = {
       id: 'breakfast',
       title: 'Breakfast',
       description:
-        'Start your day right with our exceptional breakfast catering services. From continental spreads to full hot breakfast buffets, we provide morning dining solutions for your corporate meetings and events.',
+        'Start your day right with exceptional breakfast catering services at your meeting space on Wall Street. From light continental spreads to full hot breakfast buffets, we provide morning dining solutions that set the tone for successful corporate meetings and summits.',
       images: [
         '/catering/IMG_3248.jpg',
         '/catering/20221020_093758.jpg',
@@ -3083,12 +3163,12 @@ export const eventCateringData = {
 };
 
 export const eventRentalsData = {
-  title: 'Rentals for your Event in NYC',
-  subtitle: 'Transform Your Event with Exclusive Furniture & Props',
+  title: 'Event Rentals & Decor in Lower Manhattan',
+  subtitle: 'Transforming a Historic Downtown Venue',
   leadTitle: 'Premium Event Rentals',
   heroImage: '/videos/er.mp4',
   leadDescription:
-    'MMEink is the event industry’s leader for 26 years when it comes to exclusive furniture and prop rentals. We have THOUSANDS of unique props which can transform any event into a wonderland or a tropical location. MME has the ability to outfit your entire event to suit your personal style, whether it is vibrant and fun or sleek, chic, or simple but elegant, MME understands our clients’ different styles and personalities. At 48 Wall Street, anything is possible. The space is as vast as our imaginations here at MMEink, which helps us when we transform 48 Wall Street with our wide arrange of luxurious furniture and unique props to set the stage for your next corporate or private event.',
+    'MME Worldwide is an industry leader for exclusive furniture and prop rentals, bringing over three decades of expertise to our historic downtown venue. They possess an inventory of unique props that can transform 48 Wall Street into anything from a winter wonderland to a tropical escape. Whether you envision a vibrant, modern setting or a sleek, elegant atmosphere, we understand how to complement the architecture of this unique event space. The space is as vast as our imagination, allowing us to outfit your corporate or private event on Wall Street with luxurious furniture and design elements that set the perfect stage.',
   sections: [
     {
       id: 'decor-rentals',
@@ -3106,7 +3186,7 @@ export const eventRentalsData = {
       id: 'staging-rentals',
       title: 'Staging Rentals',
       description:
-        'We provide 48 Wall Street with a variety of staging services. Whether it is a basic stage for a valued speaker or an elaborate stage for a musical performer, our design team and in-house custom fabrication shop will hand craft the perfect staging for your event. Our design team will help you determine the perfect look for your next event, whether it be simple or extravagant.',
+        'We provide a variety of staging services essential for a professional conference space in NYC. Whether it is a basic platform for a keynote speaker, a runway for a fashion show, or an elaborate setup for a musical performance, our design team and in-house custom fabrication shop handcraft the perfect solution. We help you determine the perfect look, ensuring that the focal point of your event commands attention.',
       images: [
         '/service/staging/20240229_134449.jpg',
         '/service/staging/DSC_0248.jpg',
@@ -3124,7 +3204,7 @@ export const eventRentalsData = {
       id: 'catering-rentals',
       title: 'Catering Rentals',
       description:
-        '48 Wall Street can accommodate all of your catering rental needs. We can provide a full line of event catering rentals which range from back of the house to the front of the house such as liquor needs and bar set up to kitchen rental items such as puffers and ovens. We also make sure your linens, tables, chairs, flat ware and stem ware exude the style of your event.',
+        '48 Wall Street accommodates all your service needs with a full line of catering rentals. We provide turnkey solutions for events, ranging from "back of the house" kitchen equipment like ovens and warmers to "front of the house" necessities. We ensure that your linens, tables, chairs, flatware, and stemware exude the style and elegance expected of a premier historic downtown venue, ensuring a seamless dining experience for your guests.',
       images: [
         '/service/catering/20240229_163524.jpg',
         '/service/catering/20241112_164451.jpg',

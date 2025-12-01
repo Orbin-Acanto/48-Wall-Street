@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Wedding Venue NYC | Historic Manhattan Wedding Space | 48 Wall Street Financial District',
+  title: 'Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC',
   description:
-    'Say "I do" at 48 Wall Street - Manhattan\'s premier historic wedding venue in the Financial District. Our stunning 1927 Bank of New York building features a Grand Mezzanine with 30-foot ceilings, grand marble staircase, and original 1920s architecture. Perfect for elegant weddings with 50-350 seated guests or 500 reception. Full-service wedding planning, catering, and customizable decor. Create unforgettable memories in NYC\'s most romantic historic venue. Schedule your venue tour today.',
+    'Host impactful charity galas and fundraisers at 48 Wall Street. A historic downtown venue in the Financial District perfect for non-profit events that inspire generosity.',
   keywords:
     'wedding venue NYC, Manhattan wedding venue, historic wedding venue NYC, Financial District wedding, elegant wedding space Manhattan, grand wedding venue NYC, wedding venue with history, Lower Manhattan wedding, Wall Street wedding venue, wedding venue with marble staircase, 1920s wedding venue, wedding reception venue NYC, Manhattan wedding ceremony, wedding venue with catering NYC, unique wedding venue Manhattan',
   openGraph: {

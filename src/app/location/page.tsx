@@ -24,7 +24,7 @@ export default function LocationPage() {
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[70vh] overflow-hidden">
+      <section className="relative mt-16 h-[80vh] overflow-hidden sm:mt-6">
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -48,13 +48,17 @@ export default function LocationPage() {
                 48 Wall Street, New York
               </span>
             </div>
-            <h1 className="heading-hero text-white">OUR LOCATION</h1>
+            <h1 className="heading-hero text-3xl text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+              Our Location <br />
+              in
+              <br />
+              the Financial District
+            </h1>
             <div className="bg-primary mx-auto mb-6 h-[2px] w-44" />
             <p className="text-lead text-gray-200">
-              Situated in the heart of Manhattan&apos;s Financial District, 48
-              Wall Street offers seamless subway access, proximity to top hotels
-              and restaurants, and is moments from the city&apos;s most
-              celebrated landmarks.
+              Situated in the heart of the Financial District, 48 Wall Street
+              offers seamless subway access, proximity to top hotels, and is
+              moments from the city's most celebrated landmarks.
             </p>
           </motion.div>
 
@@ -83,7 +87,7 @@ export default function LocationPage() {
             viewport={{ once: true }}
             className="heading-hero text-primary text-center"
           >
-            Venue for Every Occasion
+            A Lower Manhattan Venue for Every Occasion
           </motion.h2>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -124,7 +128,7 @@ export default function LocationPage() {
             viewport={{ once: true }}
             className="heading-hero text-primary text-center"
           >
-            Our Distinctive Spaces
+            Our Distinctive Event Spaces
           </motion.h2>
 
           {/* Location Tabs */}

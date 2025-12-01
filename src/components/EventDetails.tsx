@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { motion } from 'framer-motion';
 import CustomButton from '@/components/CustomButton';
 import { CTA, ImageItem, InfoItem, Stat } from '@/types';
@@ -73,7 +73,11 @@ export default function EventDetails({
                 </SoftFadeIn>
               )}
               <SoftFadeIn delay={0.1} immediate>
-                <p className="text-lead">{description}</p>
+                <div className="text-lead space-y-4">
+                  {description.split('</br>').map((line, index) => (
+                    <p key={index}>{line}</p>
+                  ))}
+                </div>
               </SoftFadeIn>
 
               <SoftFadeIn delay={0.15} immediate>

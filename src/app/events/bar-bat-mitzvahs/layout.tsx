@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Bar & Bat Mitzvah Venue NYC | Manhattan Celebration Space | 48 Wall Street',
+  title: 'Bar & Bat Mitzvah Venue NYC | Unique Event Space Wall Street',
   description:
-    "Celebrate your Bar or Bat Mitzvah at 48 Wall Street - Manhattan's premier historic venue in the Financial District. Stunning Grand Mezzanine with 30-foot ceilings, customizable themes, extensive decor options, full-service catering, and expert event planning. Accommodate 50-500 guests in our elegant 1920s landmark building. Make your child's special day unforgettable. Request a tour today.",
+    'Celebrate this milestone at 48 Wall Street. A premier historic downtown venue offering a unique event space in Lower Manhattan for unforgettable Bar and Bat Mitzvahs.',
   keywords:
     'Bar Mitzvah venue NYC, Bat Mitzvah venue Manhattan, Bar Mitzvah venue Financial District, Bat Mitzvah venue New York, Jewish celebration venue NYC, Bar Mitzvah party venue, Bat Mitzvah party space, Manhattan Bar Mitzvah venue, NYC Bat Mitzvah location, historic Bar Mitzvah venue, elegant Bat Mitzvah space, Bar Mitzvah venue with catering, customizable Bar Mitzvah venue, Lower Manhattan Bar Mitzvah, Wall Street Bar Mitzvah venue',
   openGraph: {

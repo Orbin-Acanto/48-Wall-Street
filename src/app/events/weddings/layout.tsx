@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Unique Historic Wedding Venue | 48 Wall Street NYC',
+  title:
+    'Wedding Space Wall Street | Historic NYC Wedding Venue Lower Manhattan',
   description:
-    "Host unforgettable events at 48 Wall Street in Manhattan's Financial District. From corporate conferences and weddings to Bar/Bat Mitzvahs, fashion shows, film shoots, holiday parties, and nonprofit galas in our historic 1920s venue.",
+    'Celebrate your love at 48 Wall Street. A stunning historic downtown venue and premier wedding space on Wall Street, offering timeless elegance for ceremonies and receptions.',
   keywords:
     'NYC corporate events, Manhattan wedding venue, Bar Mitzvah venue NYC, Bat Mitzvah Financial District, conference venue Manhattan, fashion show space NYC, film shoot location, holiday party venue, nonprofit gala space, corporate holiday party NYC',
   openGraph: {

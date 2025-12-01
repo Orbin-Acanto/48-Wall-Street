@@ -128,7 +128,7 @@ export default function CinematicServicesShowcase({
         <div className="relative z-10 container mx-auto px-6 lg:px-20">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div initial="hidden" animate="show">
-              <h2 className="heading-hero text-white">
+              <h1 className="heading-hero text-white">
                 <motion.span
                   className="inline-flex flex-wrap justify-center gap-3"
                   initial="hidden"
@@ -146,7 +146,7 @@ export default function CinematicServicesShowcase({
                     </motion.span>
                   ))}
                 </motion.span>
-              </h2>
+              </h1>
 
               <div className="mb-6 flex justify-center">
                 <motion.div

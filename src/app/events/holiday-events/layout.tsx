@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title:
-    'Holiday Party Venue NYC | Corporate Holiday Events Manhattan | 48 Wall Street',
+    'Holiday Event Venue on Wall Street | Corporate Holiday Party Space NYC',
   description:
-    "Host your corporate holiday party at 48 Wall Street - Manhattan's premier historic venue in the Financial District. Perfect for company holiday celebrations, seasonal galas, and end-of-year events. Our stunning 1927 venue features 30-foot ceilings, grand marble staircase, festive decor options, and full-service catering. Accommodate 50-500 guests in elegant 1920s architecture. Book your NYC holiday event today.",
+    'Celebrate the season at 48 Wall Street. The premier holiday event venue in Lower Manhattan offering historic charm for corporate parties and seasonal galas.',
   keywords:
     'holiday party venue NYC, corporate holiday party Manhattan, company holiday event venue, Christmas party venue NYC, holiday gala venue, end of year party venue NYC, corporate holiday celebration, holiday party space Manhattan, Financial District holiday venue, office holiday party NYC, seasonal event venue, holiday networking event, company Christmas party venue, holiday party with catering NYC, Manhattan holiday venue',
   openGraph: {

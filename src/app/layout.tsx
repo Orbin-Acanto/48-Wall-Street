@@ -15,11 +15,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      '48 Wall Street NYC | Historic Event Venue in Manhattan Financial District',
+      'Historic Lower Manhattan Venue | Corporate & Weddings | 48 Wall St',
     template: '%s | 48 Wall Street NYC',
   },
   description:
-    "Discover 48 Wall Street - a historic 1927 Bank of New York building turned premier NYC event venue. Host corporate events, weddings, Bar/Bat Mitzvahs & celebrations in our stunning Grand Mezzanine with 30-foot ceilings, original architecture & full-service catering. Located in Manhattan's Financial District. Book your tour today.",
+    'Welcome to 48 Wall Street. The premier historic downtown venue in the Financial District. A unique event space in Lower Manhattan for corporate events, weddings, and fashion shows.',
   keywords:
     '48 Wall Street, NYC event venue, Manhattan event space, Financial District venue, historic venue NYC, corporate event space Manhattan, wedding venue NYC, Bar Mitzvah venue, Bat Mitzvah venue, Grand Mezzanine, Wall Street events, Lower Manhattan venue, historic bank building venue, event venue with catering, Financial District wedding, corporate meeting space NYC, Bank of New York building, 1920s architecture venue, Manhattan private events, New York event venue',
   authors: [{ name: '48 Wall Street Events' }],

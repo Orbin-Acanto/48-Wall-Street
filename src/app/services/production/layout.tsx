@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Event Production Services NYC | Audio Visual, Lighting & Staging | 48 Wall Street',
+  title: 'Event Production Services NYC | Full Service Venue Wall Street',
   description:
-    "Full-service event production at 48 Wall Street NYC. MMEink provides turn-key event solutions including audio visual equipment, professional lighting, staging, custom fabrication, design, decor, and entertainment coordination. Self-contained event production agency in Manhattan offering seamless orchestration for corporate events, weddings, galas, and celebrations. Contact NYC's premier event production company today.",
+    'Get turn-key event production at 48 Wall Street. Powered by MME Worldwide, we offer AV, lighting, staging, and design services for your Lower Manhattan corporate or social event.',
   keywords:
     'event production NYC, event production services Manhattan, audio visual services NYC, event lighting NYC, staging services Manhattan, custom fabrication events, event AV equipment, professional event lighting, event production company NYC, turn-key event production, full-service event production, event decor services, event rental services NYC, entertainment coordination, MMEink production, 48 Wall Street production services, Manhattan event production',
   openGraph: {
