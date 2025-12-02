@@ -1,4 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { ratelimit } from '@/lib/rate-limit';
+
+const HONEYPOT_FIELD = 'website';
+
+const MIN_FORM_TIME = 5000;
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -30,7 +35,54 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 
 export async function POST(request: NextRequest) {
   try {
+    const realIp = request.headers.get('x-real-ip');
+    const cfIp = request.headers.get('cf-connecting-ip');
+    const forwardedFor = request.headers.get('x-forwarded-for');
+
+    const forwardedIp = forwardedFor
+      ? forwardedFor.split(',')[0]?.trim()
+      : undefined;
+
+    const ip = realIp ?? cfIp ?? forwardedIp ?? 'unknown';
+
+    const { success: allowed } = await ratelimit.limit(`contact:${ip}`);
+
+    if (!allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            'Too many submissions from your network. Please try again tomorrow.',
+        },
+        { status: 429 }
+      );
+    }
+
     const formData = await request.formData();
+
+    const startedAtRaw = formData.get('formStartedAt') as string | null;
+    const startedAt = startedAtRaw ? Number(startedAtRaw) : 0;
+
+    if (!startedAt || Date.now() - startedAt < MIN_FORM_TIME) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Form submitted too quickly. Please try again.',
+        },
+        { status: 400 }
+      );
+    }
+
+    const honeypot = formData.get(HONEYPOT_FIELD) as string | null;
+    if (honeypot && honeypot.trim() !== '') {
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Form submitted successfully!',
+        },
+        { status: 200 }
+      );
+    }
 
     const recaptchaToken = formData.get('recaptchaToken') as string;
 

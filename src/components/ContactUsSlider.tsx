@@ -14,6 +14,8 @@ const ContactUsSlider: React.FC = () => {
   const MAX_FILE_SIZE = 20 * 1024 * 1024;
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const formStartTimeRef = useRef<number | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState<FormDataType>({
     fullName: '',
@@ -31,6 +33,7 @@ const ContactUsSlider: React.FC = () => {
     robotCheck: false,
     attachments: [],
     page: pathname || '/',
+    website: '',
   });
 
   const [submitStatus, setSubmitStatus] = useState<{
@@ -94,12 +97,14 @@ const ContactUsSlider: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitStatus(null);
+    setIsSubmitting(true);
 
     if (!formData.fullName || !formData.email) {
       setSubmitStatus({
         type: 'error',
         message: 'Please fill in all required fields (Name and Email)',
       });
+      setIsSubmitting(false);
       return;
     }
 
@@ -108,6 +113,7 @@ const ContactUsSlider: React.FC = () => {
         type: 'error',
         message: 'Please complete the reCAPTCHA verification',
       });
+      setIsSubmitting(false);
       return;
     }
 
@@ -125,6 +131,10 @@ const ContactUsSlider: React.FC = () => {
       formDataToSend.set('page', pathname || '/');
       formDataToSend.set('recaptchaToken', recaptchaToken);
 
+      if (formStartTimeRef.current) {
+        formDataToSend.set('formStartedAt', String(formStartTimeRef.current));
+      }
+
       if (formData.attachments && formData.attachments.length > 0) {
         formData.attachments.forEach((file) => {
           formDataToSend.append('attachments', file);
@@ -138,13 +148,14 @@ const ContactUsSlider: React.FC = () => {
 
       const result = await response.json();
 
-      if (result.success) {
+      if (result.success && result.data) {
         setSubmitStatus({
           type: 'success',
           message:
             result.message ||
             'Thank you for your inquiry! We will get back to you shortly.',
         });
+
         recaptchaRef.current?.reset();
         setRecaptchaToken(null);
 
@@ -164,13 +175,18 @@ const ContactUsSlider: React.FC = () => {
           robotCheck: false,
           attachments: [],
           page: pathname || '/',
+          website: '',
         });
+
         router.push('/thank-you');
       } else {
         setSubmitStatus({
           type: 'error',
-          message: result.message || 'Failed to submit form. Please try again.',
+          message:
+            result.message ||
+            'Failed to submit form. Please try again or contact us directly.',
         });
+
         recaptchaRef.current?.reset();
         setRecaptchaToken(null);
       }
@@ -183,16 +199,28 @@ const ContactUsSlider: React.FC = () => {
       });
       recaptchaRef.current?.reset();
       setRecaptchaToken(null);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const toggleForm = () => {
-    setIsOpen(!isOpen);
+    const nextOpen = !isOpen;
+    setIsOpen(nextOpen);
+    if (nextOpen) {
+      formStartTimeRef.current = Date.now();
+    }
   };
 
   const handleRecaptchaChange = (token: string | null) => {
     setRecaptchaToken(token);
   };
+
+  useEffect(() => {
+    if (!formStartTimeRef.current) {
+      formStartTimeRef.current = Date.now();
+    }
+  }, []);
 
   if (pathname === '/about/customize-plan' || pathname === '/thank-you')
     return null;
@@ -263,6 +291,15 @@ const ContactUsSlider: React.FC = () => {
 
           <form onSubmit={handleSubmit} className="mx-auto max-w-6xl">
             <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
+              <input
+                type="text"
+                name="website"
+                value={formData.website || ''}
+                onChange={handleInputChange}
+                autoComplete="off"
+                tabIndex={-1}
+                style={{ display: 'none' }}
+              />
               <div className="text-dark-black">
                 <div className="space-y-6">
                   <input
@@ -460,10 +497,10 @@ const ContactUsSlider: React.FC = () => {
                   <div className="flex justify-end pt-4">
                     <button
                       type="submit"
-                      disabled={!recaptchaToken}
+                      disabled={!recaptchaToken || isSubmitting}
                       className="bg-primary font-secondary text-dark-black hover:bg-primary cursor-pointer px-12 py-3 font-semibold tracking-wider transition-colors disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      SUBMIT
+                      {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
                     </button>
                   </div>
                 </div>

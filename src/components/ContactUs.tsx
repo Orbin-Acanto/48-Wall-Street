@@ -30,10 +30,12 @@ const ContactUs: React.FC = () => {
     robotCheck: false,
     attachments: [],
     page: pathname || '/',
+    website: '',
   });
 
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formStartTimeRef = useRef<number | null>(null);
 
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error';
@@ -93,91 +95,6 @@ const ContactUs: React.FC = () => {
     }));
   };
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
-  //   setSubmitStatus(null);
-
-  //   if (!formData.fullName || !formData.email) {
-  //     setSubmitStatus({
-  //       type: 'error',
-  //       message: 'Please fill in all required fields (Name and Email)',
-  //     });
-  //     setIsSubmitting(false);
-  //     return;
-  //   }
-
-  //   try {
-  //     const formDataToSend = new FormData();
-
-  //     Object.keys(formData).forEach((key) => {
-  //       if (key !== 'attachments') {
-  //         formDataToSend.append(
-  //           key,
-  //           formData[key as keyof FormDataType] as string
-  //         );
-  //       }
-  //     });
-
-  //     formDataToSend.set('page', pathname || '/');
-
-  //     if (formData.attachments && formData.attachments.length > 0) {
-  //       formData.attachments.forEach((file) => {
-  //         formDataToSend.append('attachments', file);
-  //       });
-  //     }
-
-  //     const response = await fetch('/api/contact-form', {
-  //       method: 'POST',
-  //       body: formDataToSend,
-  //     });
-
-  //     const result = await response.json();
-
-  //     if (result.success) {
-  //       setSubmitStatus({
-  //         type: 'success',
-  //         message:
-  //           result.message ||
-  //           'Thank you for your inquiry! We will get back to you shortly.',
-  //       });
-
-  //       setFormData({
-  //         fullName: '',
-  //         company: '',
-  //         phone: '',
-  //         email: '',
-  //         eventStartDate: '',
-  //         eventStartHour: '01',
-  //         eventStartMinute: '00',
-  //         eventStartPeriod: 'AM',
-  //         eventType: '',
-  //         numberOfGuests: '',
-  //         howDidYouHear: '',
-  //         message: '',
-  //         robotCheck: false,
-  //         attachments: [],
-  //         page: pathname || '/',
-  //       });
-  //       router.push('/thank-you');
-  //     } else {
-  //       setSubmitStatus({
-  //         type: 'error',
-  //         message: result.message || 'Failed to submit form. Please try again.',
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error('Form submission error:', error);
-  //     setSubmitStatus({
-  //       type: 'error',
-  //       message:
-  //         'Failed to submit form. Please try again or contact us directly.',
-  //     });
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
-
   const handleRecaptchaChange = (token: string | null) => {
     setRecaptchaToken(token);
   };
@@ -220,6 +137,10 @@ const ContactUs: React.FC = () => {
       formDataToSend.set('page', pathname || '/');
       formDataToSend.set('recaptchaToken', recaptchaToken);
 
+      if (formStartTimeRef.current) {
+        formDataToSend.set('formStartedAt', String(formStartTimeRef.current));
+      }
+
       if (formData.attachments && formData.attachments.length > 0) {
         formData.attachments.forEach((file) => {
           formDataToSend.append('attachments', file);
@@ -233,7 +154,7 @@ const ContactUs: React.FC = () => {
 
       const result = await response.json();
 
-      if (result.success) {
+      if (result.success && result.data) {
         setSubmitStatus({
           type: 'success',
           message:
@@ -257,6 +178,7 @@ const ContactUs: React.FC = () => {
           robotCheck: false,
           attachments: [],
           page: pathname || '/',
+          website: '',
         });
 
         recaptchaRef.current?.reset();
@@ -266,7 +188,9 @@ const ContactUs: React.FC = () => {
       } else {
         setSubmitStatus({
           type: 'error',
-          message: result.message || 'Failed to submit form. Please try again.',
+          message:
+            result.message ||
+            'Failed to submit form. Please try again or contact us directly.',
         });
 
         recaptchaRef.current?.reset();
@@ -286,6 +210,10 @@ const ContactUs: React.FC = () => {
       setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    formStartTimeRef.current = Date.now();
+  }, []);
 
   return (
     <div className="bg-whitesmoke min-h-screen px-6 py-20">
@@ -313,6 +241,15 @@ const ContactUs: React.FC = () => {
           onSubmit={handleSubmit}
           className="grid w-full max-w-7xl grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16"
         >
+          <input
+            type="text"
+            name="website"
+            value={formData.website || ''}
+            onChange={handleInputChange}
+            autoComplete="off"
+            tabIndex={-1}
+            style={{ display: 'none' }}
+          />
           <div className="text-dark-black">
             <div className="space-y-6">
               <input

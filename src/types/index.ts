@@ -47,6 +47,7 @@ export interface FormDataType {
   robotCheck: boolean;
   attachments?: File[];
   page?: string;
+  website?: string;
 }
 
 export interface Product {
