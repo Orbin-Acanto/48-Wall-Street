@@ -18,6 +18,7 @@ import {
   Clock,
   Check,
   Info,
+  Lock,
 } from 'lucide-react';
 import { floors, layouts, sampleHotspots, sampleViewPoints } from '@/data';
 import FloorPlan3DViewer from '@/components/FloorPlan3DViewer';
@@ -128,7 +129,7 @@ export default function FloorPlansPage() {
               ))}
             </div>
             {/* view mode  */}
-            <div className="bg-whitesmoke flex items-center gap-2 p-1">
+            {/* <div className="bg-whitesmoke flex items-center gap-2 p-1">
               <button
                 onClick={() => setViewMode('2d')}
                 className={`font-secondary cursor-pointer px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all ${
@@ -148,6 +149,25 @@ export default function FloorPlansPage() {
                 }`}
               >
                 <Box className="inline h-4 w-4" /> 3D
+              </button>
+            </div> */}
+            <div className="bg-whitesmoke flex items-center gap-2 p-1">
+              <button
+                onClick={() => setViewMode('2d')}
+                className={`font-secondary cursor-pointer px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all ${
+                  viewMode === '2d'
+                    ? 'text-dark-black bg-white shadow'
+                    : 'text-gray-600'
+                }`}
+              >
+                <Grid3x3 className="inline h-4 w-4" /> 2D
+              </button>
+              <button
+                disabled
+                className="font-secondary relative cursor-not-allowed px-4 py-2 text-xs font-semibold tracking-wider text-gray-400 uppercase transition-all"
+              >
+                <Box className="inline h-4 w-4" /> 3D
+                <Lock className="ml-1 inline h-3 w-3" />
               </button>
             </div>
           </div>
@@ -460,7 +480,7 @@ export default function FloorPlansPage() {
             />
             <h2 className="heading-hero text-white">Visualize Your Event</h2>
             <p className="text-lead mb-8 text-gray-200">
-              Use our interactive 3D designer to place furniture, experiment
+              Use our interactive 2D designer to place furniture, experiment
               with layouts, and see your vision come to life before your event
               day
             </p>
@@ -482,12 +502,12 @@ export default function FloorPlansPage() {
                 </div>
               ))}
             </div>
-            {/* <div className="flex w-full items-center justify-center">
+            <div className="flex w-full items-center justify-center">
               <Link href="/about/customize-plan">
                 <CustomButton variant="primary">Floor Plan Design</CustomButton>
               </Link>
-            </div> */}
-            <div className="flex w-full items-center justify-center">
+            </div>
+            {/* <div className="flex w-full items-center justify-center">
               <div className="relative inline-block">
                 <CustomButton
                   variant="primary"
@@ -514,7 +534,7 @@ export default function FloorPlansPage() {
                   Coming Soon
                 </p>
               </div>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </section>
