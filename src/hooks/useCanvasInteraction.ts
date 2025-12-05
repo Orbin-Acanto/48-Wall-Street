@@ -23,7 +23,7 @@ export const useCanvasInteraction = ({
   const [viewport, setViewport] = useState<ViewportTransform>({
     x: 0,
     y: 0,
-    scale: 1,
+    scale: 0.33,
   });
   const [isPanning, setIsPanning] = useState(false);
   const [panStart, setPanStart] = useState<Point>({ x: 0, y: 0 });
@@ -177,7 +177,7 @@ export const useCanvasInteraction = ({
   }, []);
 
   const resetZoom = useCallback(() => {
-    setViewport({ x: 0, y: 0, scale: 1 });
+    setViewport({ x: 0, y: 0, scale: 0.33 });
   }, []);
 
   const pan = useCallback((dx: number, dy: number) => {

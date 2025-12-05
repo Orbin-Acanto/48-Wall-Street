@@ -161,9 +161,14 @@ export default function About() {
             </button>
           </div>
         </div>
-        <div className="mt-18 flex items-center justify-center">
+        <div className="mt-18 flex items-center justify-center gap-4">
           <Link href="/about">
             <CustomButton variant="primary">learn More</CustomButton>
+          </Link>
+          <Link href="/about/customize-plan">
+            <CustomButton variant="secondary" className="border-primary">
+              Create Your Floor Plan
+            </CustomButton>
           </Link>
         </div>
       </section>

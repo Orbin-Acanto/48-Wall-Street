@@ -212,6 +212,7 @@ export const navItems = [
       { name: 'Digital Brochure', href: '/about/digital-brochure' },
       { name: 'Virtual Tour', href: '/about/virtual-tour' },
       { name: 'Floor Plans', href: '/about/floor-plans' },
+      { name: 'Create Your Floor Plan', href: '/about/customize-plan' },
       { name: 'Rules & Regulations', href: '/about/rules-regulations' },
     ],
   },
@@ -278,6 +279,7 @@ export const footerLinks = {
     { name: 'Digital Brochure', href: '/about/digital-brochure' },
     { name: 'Virtual Tour', href: '/about/virtual-tour' },
     { name: 'Floor Plans', href: '/about/floor-plans' },
+    { name: 'Create Your Floor Plan', href: '/about/customize-plan' },
     { name: 'Rules & Regulations', href: '/about/rules-regulations' },
   ],
   events: [

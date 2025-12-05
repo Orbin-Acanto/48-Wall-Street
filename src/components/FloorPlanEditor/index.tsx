@@ -102,7 +102,7 @@ export const FloorPlanEditor: React.FC = () => {
     updateFloorPlanName,
   } = useFloorPlanState();
 
-  const [selectedTool, setSelectedTool] = useState<Tool>('select');
+  const [selectedTool, setSelectedTool] = useState<Tool>('pan');
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
 
   const [activeSidebar, setActiveSidebar] = useState<SidebarType>('furniture');
