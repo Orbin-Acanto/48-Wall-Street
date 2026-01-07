@@ -138,46 +138,65 @@ export default function DocumentRequestPage() {
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="documentType"
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                Document Type
-              </label>
-              <select
-                id="documentType"
-                name="documentType"
-                value={formData.documentType}
-                onChange={handleInputChange}
-                required
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              >
-                <option value="">Select a document type</option>
-                <option value="floor_plan">Floor Plan</option>
-                <option value="client_guidelines">
-                  Client Guidelines & Authorization Agreement
-                </option>
-              </select>
-            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="space-y-2">
+                <label
+                  htmlFor="documentType"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Document Type
+                </label>
 
-            <div>
-              <label
-                htmlFor="expirationDate"
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                Signature Deadline
-              </label>
-              <input
-                type="date"
-                id="expirationDate"
-                name="expirationDate"
-                value={formData.expirationDate}
-                onChange={handleInputChange}
-                required
-                min={getMinDate()}
-                className="focus:ring-primary/70 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-2 focus:outline-none"
-              />
+                <div className="relative">
+                  <select
+                    id="documentType"
+                    name="documentType"
+                    value={formData.documentType}
+                    onChange={handleInputChange}
+                    required
+                    className="focus:border-primary focus:ring-primary/30 w-full appearance-none rounded-md border border-gray-200 bg-white px-3 py-2 pr-10 text-sm text-gray-900 shadow-sm focus:ring-2 focus:outline-none"
+                  >
+                    <option value="">Document type</option>
+                    <option value="floor_plan">Floor Plan</option>
+                    <option value="client_guidelines">
+                      Client Guidelines & Authorization Agreement
+                    </option>
+                  </select>
+
+                  <svg
+                    className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-gray-400"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="expirationDate"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Signature Deadline
+                </label>
+
+                <input
+                  type="date"
+                  id="expirationDate"
+                  name="expirationDate"
+                  value={formData.expirationDate}
+                  onChange={handleInputChange}
+                  required
+                  min={getMinDate()}
+                  className="focus:border-primary focus:ring-primary/30 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:ring-2 focus:outline-none"
+                />
+              </div>
             </div>
 
             {error && (
@@ -197,7 +216,6 @@ export default function DocumentRequestPage() {
         </div>
       </div>
 
-      {/* Modal */}
       {showModal && generatedLink && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="w-full max-w-md bg-white p-6 shadow-xl">
