@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
 
 interface DocumentRequestBody {
   clientName: string;
   clientEmail: string;
   documentType: string;
   deadline: string;
+  docId: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -15,7 +17,8 @@ export async function POST(request: NextRequest) {
       !body.clientName ||
       !body.clientEmail ||
       !body.documentType ||
-      !body.deadline
+      !body.deadline ||
+      !body.docId
     ) {
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },
@@ -27,14 +30,23 @@ export async function POST(request: NextRequest) {
     const host = request.headers.get('host') || 'localhost:3000';
     const baseUrl = `${protocol}://${host}`;
 
-    const params = new URLSearchParams({
-      name: body.clientName,
-      email: body.clientEmail,
-      type: body.documentType,
-      deadline: body.deadline,
-    });
+    const payload = Buffer.from(
+      JSON.stringify({
+        name: body.clientName,
+        email: body.clientEmail,
+        type: body.documentType,
+        deadline: body.deadline,
+        docId: body.docId,
+      })
+    ).toString('base64');
 
-    const docsURL = `${baseUrl}/sign?${params.toString()}`;
+    const signature = crypto
+      .createHmac('sha256', process.env.SIGNING_SECRET!)
+      .update(payload)
+      .digest('hex');
+
+    const token = `${payload}.${signature}`;
+    const docsURL = `${baseUrl}/sign?token=${token}`;
 
     const WEBHOOK_URL = process.env.N8N_DOCUSIGN_API!;
     const username = process.env.N8N_USERNAME!;
@@ -55,6 +67,7 @@ export async function POST(request: NextRequest) {
         deadline: body.deadline,
         documentType: body.documentType,
         docsURL: docsURL,
+        docId: body.docId,
       }),
     });
 

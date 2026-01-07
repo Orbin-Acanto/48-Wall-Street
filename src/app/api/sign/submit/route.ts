@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
         location: body.location,
         ipAddress: body.ipAddress,
         signedDate: body.signedDate,
+        docId: body.docId,
         data: pdfBase64,
       }),
     });

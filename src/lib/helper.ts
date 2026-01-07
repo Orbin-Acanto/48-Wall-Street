@@ -247,7 +247,9 @@ export async function generateSignedPDF(
 
   yPos = 80;
 
-  const refNumber = generateRefNumber();
+  const refNumber =
+    data.docId ||
+    `DOC-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
   doc.setFontSize(8);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(100, 100, 100);
@@ -275,7 +277,6 @@ export async function generateSignedPDF(
   });
   doc.setFontSize(8);
   doc.setTextColor(100, 100, 100);
-  doc.text('UTC', pageWidth - margin - 10, yPos + 10, { align: 'right' });
 
   yPos = 105;
 

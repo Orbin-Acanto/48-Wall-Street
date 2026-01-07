@@ -32,6 +32,7 @@ export default function ClientGuidelinesPage() {
   const [clientName, setClientName] = useState('');
   const [clientEmail, setClientEmail] = useState('');
   const [deadline, setDeadline] = useState('');
+  const [docId, setDocId] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   const [viewTime] = useState<string>(new Date().toISOString());
@@ -100,6 +101,7 @@ export default function ClientGuidelinesPage() {
         setClientName(data.name || '');
         setClientEmail(data.email || '');
         setDeadline(data.deadline || '');
+        setDocId(data.docId || '');
         setIsLoading(false);
       } catch (err) {
         setError('Invalid or corrupted signing link.');
@@ -183,6 +185,7 @@ export default function ClientGuidelinesPage() {
           signedDate,
           typedName,
           deadline,
+          docId,
         }),
       });
 

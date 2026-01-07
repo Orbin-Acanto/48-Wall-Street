@@ -255,4 +255,5 @@ export interface SubmitRequestBody {
   signedDate: string;
   typedName: string;
   deadline: string;
+  docId?: string;
 }

@@ -55,6 +55,11 @@ export default function DocumentRequestPage() {
 
     try {
       const docsURL = await generateSigningURL();
+      const docId =
+        'DOC-' +
+        new Date().toISOString().slice(0, 10).replace(/-/g, '') +
+        '-' +
+        Math.random().toString(36).substring(2, 8).toUpperCase();
 
       const response = await fetch('/api/documents/send', {
         method: 'POST',
@@ -65,6 +70,7 @@ export default function DocumentRequestPage() {
           documentType: formData.documentType,
           deadline: formData.expirationDate,
           docsURL: docsURL,
+          docId: docId,
         }),
       });
 
@@ -174,9 +180,13 @@ export default function DocumentRequestPage() {
                     className="focus:border-primary focus:ring-primary/30 w-full appearance-none rounded-md border border-gray-200 bg-white px-3 py-2 pr-10 text-sm text-gray-900 shadow-sm focus:ring-2 focus:outline-none"
                   >
                     <option value="">Document type</option>
-                    <option value="floor_plan">Floor Plan</option>
                     <option value="client_guidelines">
                       Client Guidelines & Authorization Agreement
+                    </option>
+                    <option value="floor_plan">Floor Plan Agreement</option>
+                    <option value="av_production">AV/Production Form</option>
+                    <option value="credit_card_auth">
+                      Credit Card Authorization
                     </option>
                   </select>
 
