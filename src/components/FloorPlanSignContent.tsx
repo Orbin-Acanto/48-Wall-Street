@@ -1,9 +1,16 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-function SignContent() {
+interface DecodedData {
+  name: string;
+  email: string;
+  type: string;
+  deadline: string;
+}
+
+export default function FloorPlanSignContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
@@ -42,6 +49,12 @@ function SignContent() {
           setError('Invalid signing link. Missing required information.');
           return;
         }
+
+        const params = new URLSearchParams({
+          name: data.name,
+          email: data.email,
+          deadline: data.deadline || '',
+        });
 
         if (data.type === 'client_guidelines') {
           router.replace(`/sign/client-guidelines?token=${token}`);
@@ -97,22 +110,5 @@ function SignContent() {
         <p className="text-gray-600">Loading your document...</p>
       </div>
     </div>
-  );
-}
-
-export default function SignPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="flex min-h-screen items-center justify-center bg-gray-50">
-          <div className="text-center">
-            <div className="border-primary mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-b-2"></div>
-            <p className="text-gray-600">Loading your document...</p>
-          </div>
-        </div>
-      }
-    >
-      <SignContent />
-    </Suspense>
   );
 }

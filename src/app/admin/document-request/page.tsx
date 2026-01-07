@@ -2,7 +2,11 @@
 
 import { useState } from 'react';
 
-type DocumentType = 'floor_plan' | 'client_guidelines';
+type DocumentType =
+  | 'floor_plan'
+  | 'client_guidelines'
+  | 'credit_card_auth'
+  | 'av_production';
 
 interface FormData {
   clientFullName: string;
