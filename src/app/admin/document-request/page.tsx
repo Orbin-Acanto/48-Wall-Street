@@ -33,12 +33,29 @@ export default function DocumentRequestPage() {
     setError(null);
   };
 
+  const generateSigningURL = async (): Promise<string> => {
+    const response = await fetch('/api/documents/generate-token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.clientFullName,
+        email: formData.clientEmail,
+        type: formData.documentType,
+        deadline: formData.expirationDate,
+      }),
+    });
+    const { token } = await response.json();
+    return `${window.location.origin}/sign?token=${token}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
     try {
+      const docsURL = await generateSigningURL();
+
       const response = await fetch('/api/documents/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -47,6 +64,7 @@ export default function DocumentRequestPage() {
           clientEmail: formData.clientEmail,
           documentType: formData.documentType,
           deadline: formData.expirationDate,
+          docsURL: docsURL,
         }),
       });
 
@@ -55,8 +73,7 @@ export default function DocumentRequestPage() {
         throw new Error(errorData.error || 'Failed to generate signing link');
       }
 
-      const data = await response.json();
-      setGeneratedLink(data.docsURL);
+      setGeneratedLink(docsURL);
       setShowModal(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');

@@ -234,3 +234,25 @@ export const MULTI_DAY_DISCOUNTS = [
 ];
 
 export const TAX_RATE = 0.0875;
+
+export interface InitialsData {
+  [sectionId: string]: {
+    initials: string;
+    timestamp: string;
+  };
+}
+
+export interface SubmitRequestBody {
+  clientName: string;
+  clientEmail: string;
+  documentType: string;
+  viewTime: string;
+  signTime: string;
+  location: string;
+  ipAddress: string;
+  initials: InitialsData;
+  signature: string;
+  signedDate: string;
+  typedName: string;
+  deadline: string;
+}

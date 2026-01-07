@@ -1,0 +1,69 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { SubmitRequestBody } from '@/types';
+import { generateSignedPDF } from '@/lib/helper';
+
+export async function POST(request: NextRequest) {
+  try {
+    const body: SubmitRequestBody = await request.json();
+
+    if (
+      !body.clientName ||
+      !body.clientEmail ||
+      !body.signature ||
+      !body.signedDate
+    ) {
+      return NextResponse.json(
+        { success: false, error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    const pdfBase64 = await generateSignedPDF(body);
+
+    const WEBHOOK_URL = process.env.N8N_DOCUSIGN_SUBMIT_API!;
+    const username = process.env.N8N_USERNAME!;
+    const password = process.env.N8N_PASSWORD!;
+    const credentials = Buffer.from(`${username}:${password}`).toString(
+      'base64'
+    );
+
+    const n8nResponse = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${credentials}`,
+      },
+      body: JSON.stringify({
+        clientName: body.clientName,
+        clientEmail: body.clientEmail,
+        documentType: body.documentType,
+        viewTime: body.viewTime,
+        signTime: body.signTime,
+        location: body.location,
+        ipAddress: body.ipAddress,
+        signedDate: body.signedDate,
+        data: pdfBase64,
+      }),
+    });
+
+    if (!n8nResponse.ok) {
+      console.error('n8n webhook error:', await n8nResponse.text());
+      throw new Error('Failed to submit signed document');
+    }
+
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    console.error('Error submitting signed document:', error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        error:
+          error instanceof Error
+            ? error.message
+            : 'Failed to submit signed document',
+      },
+      { status: 500 }
+    );
+  }
+}
