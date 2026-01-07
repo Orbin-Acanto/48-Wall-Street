@@ -11,6 +11,23 @@ interface DocumentRequestBody {
 
 export async function POST(request: NextRequest) {
   try {
+    const missingVars = [];
+    if (!process.env.SIGNING_SECRET) missingVars.push('SIGNING_SECRET');
+    if (!process.env.N8N_DOCUSIGN_API) missingVars.push('N8N_DOCUSIGN_API');
+    if (!process.env.N8N_USERNAME) missingVars.push('N8N_USERNAME');
+    if (!process.env.N8N_PASSWORD) missingVars.push('N8N_PASSWORD');
+
+    if (missingVars.length > 0) {
+      console.error('Missing environment variables:', missingVars);
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Missing env vars: ${missingVars.join(', ')}`,
+        },
+        { status: 500 }
+      );
+    }
+
     const body: DocumentRequestBody = await request.json();
 
     if (
