@@ -426,6 +426,14 @@ export default function ClientGuidelinesContent() {
             </div>
           )}
 
+          <button
+            onClick={handleSubmit}
+            disabled={!isReadyToSubmit || isSubmitting}
+            className="bg-primary hover:bg-primary/90 focus:ring-primary mt-6 w-full rounded-lg px-4 py-3 font-medium text-white transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit Authorization'}
+          </button>
+
           {isSubmitting && (
             <div className="mt-6 flex items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 p-4">
               <div className="border-primary h-5 w-5 animate-spin rounded-full border-b-2"></div>
