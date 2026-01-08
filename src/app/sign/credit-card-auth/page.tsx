@@ -411,7 +411,7 @@ function CreditCardAuthContent() {
                 className="focus:ring-primary mx-1 w-32 border-b border-gray-400 bg-transparent px-2 py-1 text-gray-900 focus:border-transparent focus:ring-1 focus:outline-none"
                 placeholder="0.00"
               />{' '}
-              ("the charge").
+              (&quot;the charge&quot;).
             </p>
           </div>
 
@@ -454,7 +454,7 @@ function CreditCardAuthContent() {
         {/* Cardholder's Information */}
         <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:p-8">
           <h2 className="mb-6 border-b pb-2 text-lg font-semibold text-gray-900">
-            CARDHOLDER'S INFORMATION
+            CARDHOLDER&apos;S INFORMATION
           </h2>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
@@ -519,7 +519,7 @@ function CreditCardAuthContent() {
           <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
-                Cardholder's Name *
+                Cardholder&apos;s Name *
               </label>
               <input
                 type="text"

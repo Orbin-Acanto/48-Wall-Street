@@ -6,6 +6,21 @@ import {
   generateCreditCardAuthPDF,
 } from '@/lib/helper';
 
+interface N8NWebhookPayload {
+  clientName: string;
+  clientEmail: string;
+  documentType: string;
+  viewTime: string;
+  signTime: string;
+  location: string;
+  ipAddress: string;
+  signedDate: string;
+  docId: string;
+  data: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  formData?: Record<string, any> | null;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body: SubmitRequestBody = await request.json();
@@ -14,7 +29,8 @@ export async function POST(request: NextRequest) {
       !body.clientName ||
       !body.clientEmail ||
       !body.signature ||
-      !body.signedDate
+      !body.signedDate ||
+      !body.docId
     ) {
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },
@@ -54,7 +70,7 @@ export async function POST(request: NextRequest) {
       'base64'
     );
 
-    const payload: any = {
+    const payload: N8NWebhookPayload = {
       clientName: body.clientName,
       clientEmail: body.clientEmail,
       documentType: body.documentType,
