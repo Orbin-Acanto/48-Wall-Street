@@ -7,101 +7,7 @@ import SignaturePad from '@/components/SignaturePad';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import * as RadioPrimitive from '@radix-ui/react-radio-group';
 import { Check } from 'lucide-react';
-
-interface InitialsData {
-  [sectionId: string]: {
-    initials: string;
-    timestamp: string;
-  };
-}
-
-interface LocationData {
-  city: string;
-  region: string;
-  country: string;
-  ip: string;
-}
-
-interface FormValues {
-  // Client Details
-  nameCompany: string;
-  eventDate: string;
-  email: string;
-  phone: string;
-  // Audio Requirements
-  numberOfMics: string;
-  micTypes: string[];
-  audienceQAMics: string;
-  audienceQAMicsCount: string;
-  liveMusic: string;
-  liveMusicDetails: string;
-  stageMonitor: string;
-  backgroundAudio: string;
-  backgroundAudioSource: string;
-  // Visual Requirements
-  presentations: string;
-  presentationFormat: string[];
-  presentationFormatOther: string;
-  aspectRatio: string;
-  displayEquipment: string[];
-  displayEquipmentOther: string;
-  screenPositioning: string;
-  confidenceMonitor: string;
-  videoPlayback: string;
-  videoPlaybackSource: string;
-  liveVideoIMAG: string;
-  streaming: string;
-  streamingPlatform: string[];
-  streamingPlatformOther: string;
-  multiCamera: string;
-  multiCameraCount: string;
-  multiCameraAngles: string;
-  visualBranding: string;
-  // Lighting Requirements
-  lightingType: string[];
-  lightingTone: string;
-  specialLighting: string;
-  specialLightingDetails: string;
-  lightingAreas: string[];
-  outdoorLighting: string;
-  outdoorLightingDetails: string;
-  // Staging and Rigging
-  stagePlatform: string;
-  stageSizeHeight: string;
-  stageFeatures: string[];
-  stageFeaturesOther: string;
-  maxPeopleOnStage: string;
-  setDesign: string;
-  setDesignDetails: string;
-  stageFurniture: string[];
-  stageFurnitureOther: string;
-  // Technical and Power
-  internetWifi: string;
-  bandwidthSpecs: string;
-  tempPowerOutlets: string;
-  tempPowerPurpose: string;
-  // Event Flow
-  eventSchedule: string;
-  eventScheduleDetails: string;
-  breakoutRooms: string;
-  breakoutRoomsCount: string;
-  breakoutRoomsAV: string;
-  rehearsals: string;
-  rehearsalsTiming: string;
-  specialPerformances: string;
-  specialPerformancesDetails: string;
-  timeSensitiveCues: string;
-  timeSensitiveCuesDetails: string;
-  // Additional Services
-  recordingServices: string;
-  recordingServicesDetails: string;
-  technicalRider: string;
-  technicalRiderDetails: string;
-  onSiteContactName: string;
-  onSiteContactPhone: string;
-  avBudget: string;
-  otherNotes: string;
-}
+import { AVProductionFormData, InitialsData, LocationData } from '@/types';
 
 function AVProductionFormContent() {
   const searchParams = useSearchParams();
@@ -126,7 +32,7 @@ function AVProductionFormContent() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [formValues, setFormValues] = useState<FormValues>({
+  const [formValues, setFormValues] = useState<AVProductionFormData>({
     nameCompany: '',
     eventDate: '',
     email: '',
@@ -316,7 +222,10 @@ function AVProductionFormContent() {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleCheckboxChange = (name: keyof FormValues, value: string) => {
+  const handleCheckboxChange = (
+    name: keyof AVProductionFormData,
+    value: string
+  ) => {
     setFormValues((prev) => {
       const currentValues = prev[name] as string[];
       if (currentValues.includes(value)) {
@@ -327,7 +236,10 @@ function AVProductionFormContent() {
     });
   };
 
-  const handleRadioChange = (name: keyof FormValues, value: string) => {
+  const handleRadioChange = (
+    name: keyof AVProductionFormData,
+    value: string
+  ) => {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -494,7 +406,7 @@ function AVProductionFormContent() {
     value,
     label,
   }: {
-    name: keyof FormValues;
+    name: keyof AVProductionFormData;
     value: string;
     label: string;
   }) => {
@@ -542,7 +454,7 @@ function AVProductionFormContent() {
     value,
     label,
   }: {
-    name: keyof FormValues;
+    name: keyof AVProductionFormData;
     value: string;
     label: string;
   }) => (

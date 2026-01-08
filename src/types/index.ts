@@ -242,6 +242,102 @@ export interface InitialsData {
   };
 }
 
+export interface LocationData {
+  city: string;
+  region: string;
+  country: string;
+  ip: string;
+}
+
+export interface AVProductionFormData {
+  nameCompany: string;
+  eventDate: string;
+  email: string;
+  phone: string;
+  numberOfMics: string;
+  micTypes: string[];
+  audienceQAMics: string;
+  audienceQAMicsCount: string;
+  liveMusic: string;
+  liveMusicDetails: string;
+  stageMonitor: string;
+  backgroundAudio: string;
+  backgroundAudioSource: string;
+  presentations: string;
+  presentationFormat: string[];
+  presentationFormatOther: string;
+  aspectRatio: string;
+  displayEquipment: string[];
+  displayEquipmentOther: string;
+  screenPositioning: string;
+  confidenceMonitor: string;
+  videoPlayback: string;
+  videoPlaybackSource: string;
+  liveVideoIMAG: string;
+  streaming: string;
+  streamingPlatform: string[];
+  streamingPlatformOther: string;
+  multiCamera: string;
+  multiCameraCount: string;
+  multiCameraAngles: string;
+  visualBranding: string;
+  lightingType: string[];
+  lightingTone: string;
+  specialLighting: string;
+  specialLightingDetails: string;
+  lightingAreas: string[];
+  outdoorLighting: string;
+  outdoorLightingDetails: string;
+  stagePlatform: string;
+  stageSizeHeight: string;
+  stageFeatures: string[];
+  stageFeaturesOther: string;
+  maxPeopleOnStage: string;
+  setDesign: string;
+  setDesignDetails: string;
+  stageFurniture: string[];
+  stageFurnitureOther: string;
+  internetWifi: string;
+  bandwidthSpecs: string;
+  tempPowerOutlets: string;
+  tempPowerPurpose: string;
+  eventSchedule: string;
+  eventScheduleDetails: string;
+  breakoutRooms: string;
+  breakoutRoomsCount: string;
+  breakoutRoomsAV: string;
+  rehearsals: string;
+  rehearsalsTiming: string;
+  specialPerformances: string;
+  specialPerformancesDetails: string;
+  timeSensitiveCues: string;
+  timeSensitiveCuesDetails: string;
+  recordingServices: string;
+  recordingServicesDetails: string;
+  technicalRider: string;
+  technicalRiderDetails: string;
+  onSiteContactName: string;
+  onSiteContactPhone: string;
+  avBudget: string;
+  otherNotes: string;
+}
+
+export interface CreditCardAuthFormData {
+  cardType: string;
+  creditCardNumber: string;
+  expirationDate: string;
+  cvvCode: string;
+  cardholderName: string;
+  billingAddress: string;
+  homePhone: string;
+  workPhone: string;
+  cellPhone: string;
+  eventDate: string;
+  typeOfEvent: string;
+  eventLocation: string;
+  authorizedAmount: string;
+}
+
 export interface SubmitRequestBody {
   clientName: string;
   clientEmail: string;
@@ -256,5 +352,6 @@ export interface SubmitRequestBody {
   typedName: string;
   deadline: string;
   docId?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formData?: Record<string, any>;
 }

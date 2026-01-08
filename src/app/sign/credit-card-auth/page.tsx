@@ -3,32 +3,7 @@
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import SignaturePad from '@/components/SignaturePad';
-
-interface LocationData {
-  city: string;
-  region: string;
-  country: string;
-  ip: string;
-}
-
-interface FormValues {
-  // Cardholder Information
-  cardType: string;
-  creditCardNumber: string;
-  expirationDate: string;
-  cvvCode: string;
-  cardholderName: string;
-  billingAddress: string;
-  homePhone: string;
-  workPhone: string;
-  cellPhone: string;
-  // Event Information
-  eventDate: string;
-  typeOfEvent: string;
-  eventLocation: string;
-  // Authorization
-  authorizedAmount: string;
-}
+import { CreditCardAuthFormData, LocationData } from '@/types';
 
 function CreditCardAuthContent() {
   const searchParams = useSearchParams();
@@ -50,7 +25,7 @@ function CreditCardAuthContent() {
   const [error, setError] = useState<string | null>(null);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
 
-  const [formValues, setFormValues] = useState<FormValues>({
+  const [formValues, setFormValues] = useState<CreditCardAuthFormData>({
     cardType: '',
     creditCardNumber: '',
     expirationDate: '',
