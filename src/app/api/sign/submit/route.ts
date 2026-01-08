@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SubmitRequestBody } from '@/types';
-import { generateSignedPDF } from '@/lib/helper';
+import { generateSignedPDF, generateAVProductionPDF } from '@/lib/helper';
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,7 +18,30 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const pdfBase64 = await generateSignedPDF(body);
+    let pdfBase64: string;
+
+    switch (body.documentType) {
+      case 'client_guidelines':
+        pdfBase64 = await generateSignedPDF(body);
+        break;
+      case 'av_production':
+        if (!body.formData) {
+          return NextResponse.json(
+            { success: false, error: 'Missing form data for AV Production' },
+            { status: 400 }
+          );
+        }
+        pdfBase64 = await generateAVProductionPDF(body);
+        break;
+      case 'floor_plan':
+        pdfBase64 = await generateSignedPDF(body);
+        break;
+      case 'credit_card_auth':
+        pdfBase64 = await generateSignedPDF(body);
+        break;
+      default:
+        pdfBase64 = await generateSignedPDF(body);
+    }
 
     const WEBHOOK_URL = process.env.N8N_DOCUSIGN_SUBMIT_API!;
     const username = process.env.N8N_USERNAME!;
@@ -43,6 +66,7 @@ export async function POST(request: NextRequest) {
         ipAddress: body.ipAddress,
         signedDate: body.signedDate,
         docId: body.docId,
+        formData: body.formData || null,
         data: pdfBase64,
       }),
     });

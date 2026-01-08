@@ -47,6 +47,10 @@ function SignContent() {
           router.replace(`/sign/client-guidelines?token=${token}`);
         } else if (data.type === 'floor_plan') {
           router.replace(`/sign/floor-plan?token=${token}`);
+        } else if (data.type === 'credit_card_auth') {
+          router.replace(`/sign/credit-card-auth?token=${token}`);
+        } else if (data.type === 'av_production') {
+          router.replace(`/sign/av-form?token=${token}`);
         } else {
           setError('Unknown document type.');
         }

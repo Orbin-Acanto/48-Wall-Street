@@ -49,6 +49,27 @@ export default function ClientGuidelinesContent() {
 
   const signatureSectionRef = useRef<HTMLDivElement>(null);
 
+  const sectionsRequiringInitials = clientGuidelinesContent.filter(
+    (s) => s.requiresInitials
+  );
+  const totalInitialsRequired = sectionsRequiringInitials.length;
+  const initialsCompleted = Object.keys(initials).length;
+  const progress = Math.round(
+    ((initialsCompleted + (signature ? 1 : 0)) / (totalInitialsRequired + 1)) *
+      100
+  );
+
+  const isReadyToSubmit =
+    initialsCompleted === totalInitialsRequired &&
+    signature &&
+    signedDate &&
+    typedName.trim().length > 0;
+
+  const firstUninitiatedSectionId = sectionsRequiringInitials.find(
+    (s) => !initials[s.id]
+  )?.id;
+
+  // Location Fetching
   useEffect(() => {
     const fetchLocation = async () => {
       try {
@@ -73,6 +94,7 @@ export default function ClientGuidelinesContent() {
     fetchLocation();
   }, []);
 
+  // Verifying Token
   useEffect(() => {
     const verifyToken = async () => {
       if (!token) {
@@ -111,16 +133,6 @@ export default function ClientGuidelinesContent() {
     verifyToken();
   }, [token]);
 
-  const sectionsRequiringInitials = clientGuidelinesContent.filter(
-    (s) => s.requiresInitials
-  );
-  const totalInitialsRequired = sectionsRequiringInitials.length;
-  const initialsCompleted = Object.keys(initials).length;
-  const progress = Math.round(
-    ((initialsCompleted + (signature ? 1 : 0)) / (totalInitialsRequired + 1)) *
-      100
-  );
-
   const handleInitialed = (sectionId: string, initialValue: string) => {
     if (!confirmedInitials) {
       setConfirmedInitials(initialValue);
@@ -150,12 +162,6 @@ export default function ClientGuidelinesContent() {
       setSignedDate(formatted);
     }
   };
-
-  const isReadyToSubmit =
-    initialsCompleted === totalInitialsRequired &&
-    signature &&
-    signedDate &&
-    typedName.trim().length > 0;
 
   const handleSubmit = async () => {
     if (!isReadyToSubmit) return;
@@ -206,10 +212,6 @@ export default function ClientGuidelinesContent() {
       handleSubmit();
     }
   }, [isReadyToSubmit, signature, signedDate, typedName]);
-
-  const firstUninitiatedSectionId = sectionsRequiringInitials.find(
-    (s) => !initials[s.id]
-  )?.id;
 
   if (isSubmitted) {
     return (

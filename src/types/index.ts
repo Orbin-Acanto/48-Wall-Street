@@ -256,4 +256,5 @@ export interface SubmitRequestBody {
   typedName: string;
   deadline: string;
   docId?: string;
+  formData?: Record<string, any>;
 }
