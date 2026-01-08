@@ -4,6 +4,7 @@ import {
   clientGuidelinesContent,
   documentTitle,
 } from './client-guidelines-content';
+import { PDFDocument } from 'pdf-lib';
 
 function createPDFHelpers(doc: jsPDF, data: SubmitRequestBody) {
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -1010,6 +1011,362 @@ export async function generateAVProductionPDF(
   doc.text(`Location: ${data.location}`, margin, getYPos());
   addYPos(5);
   doc.text(`IP Address: ${data.ipAddress}`, margin, getYPos());
+
+  addFooter();
+  addCertificatePage();
+
+  return doc.output('datauristring');
+}
+
+export async function generateCreditCardAuthPDF(
+  data: SubmitRequestBody
+): Promise<string> {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+  });
+
+  const helpers = createPDFHelpers(doc, data);
+  const {
+    margin,
+    contentWidth,
+    goldColor,
+    addFooter,
+    addCertificatePage,
+    pageWidth,
+    pageHeight,
+  } = helpers;
+
+  const formData = data.formData || {};
+
+  // Header for Credit Card Aut=
+  const addCreditCardHeader = () => {
+    // Logo area (left side)
+    doc.setFontSize(24);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(30, 30, 30);
+    doc.text('48', margin, 18);
+
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.text('WALL', margin + 12, 12);
+    doc.text('STREET', margin + 12, 16);
+    doc.setTextColor(...goldColor);
+    doc.text('EVENTS', margin + 12, 20);
+
+    doc.setFontSize(6);
+    doc.setTextColor(...goldColor);
+    doc.text('HISTORIC VENUE LOCATION', margin, 24);
+
+    // Title (right side)
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(30, 30, 30);
+    doc.text('CREDIT CARD AUTHORIZATION FORM', pageWidth - margin, 15, {
+      align: 'right',
+    });
+
+    // Contact info line
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(60, 60, 60);
+    doc.text(
+      '48 Wall St • New York, NY 10005 • LI: 631.777.2244 • NYC: 212.971.5353 • Fax: 631.980.0271',
+      pageWidth / 2,
+      32,
+      { align: 'center' }
+    );
+
+    // Divider line
+    doc.setDrawColor(...goldColor);
+    doc.setLineWidth(0.5);
+    doc.line(margin, 35, pageWidth - margin, 35);
+  };
+
+  let yPos = 40;
+
+  addCreditCardHeader();
+
+  // Form Information Box
+  doc.setDrawColor(...goldColor);
+  doc.setLineWidth(1);
+  doc.rect(margin, yPos, contentWidth, 45);
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(30, 30, 30);
+  doc.text('FORM INFORMATION', margin + 3, yPos + 6);
+
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(50, 50, 50);
+
+  const formInfoY = yPos + 12;
+  doc.text(
+    '1. Fill in all blank spaces. Specify charges to be paid with this card.',
+    margin + 3,
+    formInfoY
+  );
+  doc.setFont('helvetica', 'bold');
+  doc.text('ONLY THE CARDHOLDER CAN SIGN THIS FORM.', margin + 85, formInfoY);
+
+  doc.setFont('helvetica', 'normal');
+  doc.text('2. Please send back to:', margin + 3, formInfoY + 5);
+
+  doc.setFont('helvetica', 'bold');
+  doc.text('48 WALL STREET EVENTS INC.', margin + 8, formInfoY + 10);
+  doc.text('140 Florida St', margin + 8, formInfoY + 14);
+  doc.text('Farmingdale, NY 11735', margin + 8, formInfoY + 18);
+  doc.setFont('helvetica', 'normal');
+  doc.text('LI:    631.777.2244', margin + 8, formInfoY + 22);
+  doc.text('NYC: 212.971.5353', margin + 8, formInfoY + 26);
+  doc.text('FAX:  631.980.0271', margin + 8, formInfoY + 30);
+
+  yPos += 50;
+
+  // Authorization Text
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(30, 30, 30);
+
+  const authText1 = `I, ${formData.cardholderName || '_________________'}, hereby authorize 48 Wall Street Events Inc. to charge the credit card listed below in the amount of $${formData.authorizedAmount || '_______'} ("the charge").`;
+  const authLines1 = doc.splitTextToSize(authText1, contentWidth);
+  doc.text(authLines1, margin, yPos);
+  yPos += authLines1.length * 4 + 4;
+
+  const authText2 =
+    'I further authorize 48 Wall Street Events Inc. to apply my signature to any and all documents required to complete this charge and future charges between myself and 48 Wall Street Events Inc. and indemnify and hold harmless 48 Wall Street Events Inc. for any liability arising herefrom or therefrom. I understand and agree that for a period of two years from the date of signing, I am authorizing 48 Wall Street Events Inc. to charge this credit card for any amounts owed to 48 Wall Street Events Inc., including, among other things, retainer payments, final payments or remaining payments to satisfy a contract balance, debts arising from having additional guests at an event beyond a contracted amount, charges arising from damage to the venue, equipment, or persons at an event, an event lasting beyond its scheduled end time, additional labor required to put on an event, and any additional goods or services requested at an event.';
+  const authLines2 = doc.splitTextToSize(authText2, contentWidth);
+  doc.text(authLines2, margin, yPos);
+  yPos += authLines2.length * 4 + 4;
+
+  const authText3 =
+    'Nothing in this Credit Card Authorization shall cause 48 Wall Street Events Inc. to waive its rights to charge the credit card for any of the amounts owed to 48 Wall Street Events Inc. under any other agreement.';
+  const authLines3 = doc.splitTextToSize(authText3, contentWidth);
+  doc.text(authLines3, margin, yPos);
+  yPos += authLines3.length * 4 + 4;
+
+  // Warning Box
+  doc.setFillColor(255, 240, 240);
+  doc.setDrawColor(200, 50, 50);
+  doc.setLineWidth(0.5);
+  doc.rect(margin, yPos, contentWidth, 12, 'FD');
+
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(180, 0, 0);
+  const warningText =
+    '**Please note, all sales are FINAL and that your credit card billing statement will reflect the above amount, plus the additional 5.85% processing fee for Visa, Discover, Mastercard or a 6.75% processing fee for American Express.**';
+  const warningLines = doc.splitTextToSize(warningText, contentWidth - 6);
+  doc.text(warningLines, pageWidth / 2, yPos + 4, { align: 'center' });
+  yPos += 16;
+
+  // Cardholder's Information Section
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(30, 30, 30);
+  doc.text("CARDHOLDER'S INFORMATION", margin, yPos);
+  yPos += 2;
+
+  // Table for card info
+  const tableStartY = yPos;
+  const cellHeight = 12;
+  const col1Width = 40;
+  const col2Width = 65;
+  const col3Width = 40;
+  const col4Width = 25;
+
+  doc.setDrawColor(150, 150, 150);
+  doc.setLineWidth(0.3);
+
+  // Row 1: Type of Card | Credit Card Number | Expiration Date | CVV
+  doc.rect(margin, yPos, col1Width, cellHeight);
+  doc.rect(margin + col1Width, yPos, col2Width, cellHeight);
+  doc.rect(margin + col1Width + col2Width, yPos, col3Width, cellHeight);
+  doc.rect(
+    margin + col1Width + col2Width + col3Width,
+    yPos,
+    col4Width,
+    cellHeight
+  );
+
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+  doc.text('TYPE OF CARD', margin + 2, yPos + 4);
+  doc.text('CREDIT CARD NUMBER', margin + col1Width + 2, yPos + 4);
+  doc.text('EXPIRATION DATE', margin + col1Width + col2Width + 2, yPos + 4);
+  doc.text(
+    'CVV CODE',
+    margin + col1Width + col2Width + col3Width + 2,
+    yPos + 4
+  );
+
+  doc.setFontSize(9);
+  doc.setTextColor(30, 30, 30);
+  const cardTypeDisplay = formData.cardType
+    ? formData.cardType.charAt(0).toUpperCase() + formData.cardType.slice(1)
+    : '';
+  doc.text(cardTypeDisplay, margin + 2, yPos + 9);
+
+  // card number and cvv
+  const cardNum = formData.creditCardNumber || '';
+  const cvv = formData.cvv || '';
+
+  doc.text(cardNum, margin + col1Width + 2, yPos + 9);
+  doc.text(
+    formData.expirationDate || '',
+    margin + col1Width + col2Width + 2,
+    yPos + 9
+  );
+  doc.text(cvv, margin + col1Width + col2Width + col3Width + 2, yPos + 9);
+
+  yPos += cellHeight;
+
+  // Row 2: Cardholder's Name | Billing Address
+  const col1_2Width = 70;
+  const col2_2Width = 100;
+  doc.rect(margin, yPos, col1_2Width, cellHeight);
+  doc.rect(margin + col1_2Width, yPos, col2_2Width, cellHeight);
+
+  doc.setFontSize(7);
+  doc.setTextColor(100, 100, 100);
+  doc.text("CARDHOLDER'S NAME", margin + 2, yPos + 4);
+  doc.text('BILLING ADDRESS', margin + col1_2Width + 2, yPos + 4);
+
+  doc.setFontSize(9);
+  doc.setTextColor(30, 30, 30);
+  doc.text(formData.cardholderName || '', margin + 2, yPos + 9);
+  const billingLines = doc.splitTextToSize(
+    formData.billingAddress || '',
+    col2_2Width - 4
+  );
+  doc.text(billingLines[0] || '', margin + col1_2Width + 2, yPos + 9);
+
+  yPos += cellHeight;
+
+  // Row 3: Home Phone | Work Phone | Cell Phone
+  const phoneColWidth = 56.67;
+  doc.rect(margin, yPos, phoneColWidth, cellHeight);
+  doc.rect(margin + phoneColWidth, yPos, phoneColWidth, cellHeight);
+  doc.rect(margin + phoneColWidth * 2, yPos, phoneColWidth, cellHeight);
+
+  doc.setFontSize(7);
+  doc.setTextColor(100, 100, 100);
+  doc.text('HOME PHONE', margin + 2, yPos + 4);
+  doc.text('WORK PHONE', margin + phoneColWidth + 2, yPos + 4);
+  doc.text('CELL PHONE', margin + phoneColWidth * 2 + 2, yPos + 4);
+
+  doc.setFontSize(9);
+  doc.setTextColor(30, 30, 30);
+  doc.text(formData.homePhone || '', margin + 2, yPos + 9);
+  doc.text(formData.workPhone || '', margin + phoneColWidth + 2, yPos + 9);
+  doc.text(formData.cellPhone || '', margin + phoneColWidth * 2 + 2, yPos + 9);
+
+  yPos += cellHeight + 5;
+
+  // Signature Row
+  const sigColWidth = 85;
+  doc.rect(margin, yPos, sigColWidth, 20);
+  doc.rect(margin + sigColWidth, yPos, sigColWidth, 20);
+
+  doc.setFontSize(7);
+  doc.setTextColor(100, 100, 100);
+  doc.text('CARDHOLDER SIGNATURE', margin + 2, yPos + 4);
+  doc.text(
+    '48 WALL ST REPRESENTATIVE SIGNATURE',
+    margin + sigColWidth + 2,
+    yPos + 4
+  );
+
+  // Add signature image
+  if (data.signature) {
+    try {
+      doc.addImage(data.signature, 'PNG', margin + 2, yPos + 6, 40, 12);
+    } catch (e) {
+      console.error('Failed to add signature:', e);
+    }
+  }
+
+  yPos += 25;
+
+  // Event Information Section
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(30, 30, 30);
+  doc.text('EVENT INFORMATION', margin, yPos);
+  yPos += 2;
+
+  const eventColWidth = 56.67;
+  doc.setDrawColor(150, 150, 150);
+  doc.rect(margin, yPos, eventColWidth, cellHeight);
+  doc.rect(margin + eventColWidth, yPos, eventColWidth, cellHeight);
+  doc.rect(margin + eventColWidth * 2, yPos, eventColWidth, cellHeight);
+
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+  doc.text('EVENT DATE', margin + 2, yPos + 4);
+  doc.text('TYPE OF EVENT', margin + eventColWidth + 2, yPos + 4);
+  doc.text('EVENT LOCATION', margin + eventColWidth * 2 + 2, yPos + 4);
+
+  doc.setFontSize(9);
+  doc.setTextColor(30, 30, 30);
+
+  // Format event date
+  let eventDateDisplay = formData.eventDate || '';
+  if (eventDateDisplay) {
+    const eventDate = new Date(eventDateDisplay);
+    eventDateDisplay = eventDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  }
+  doc.text(eventDateDisplay, margin + 2, yPos + 9);
+  doc.text(formData.typeOfEvent || '', margin + eventColWidth + 2, yPos + 9);
+  doc.text(
+    formData.eventLocation || '',
+    margin + eventColWidth * 2 + 2,
+    yPos + 9
+  );
+
+  yPos += cellHeight + 10;
+
+  // Signing Details
+  doc.setDrawColor(...goldColor);
+  doc.setLineWidth(0.3);
+  doc.line(margin, yPos, pageWidth - margin, yPos);
+  yPos += 6;
+
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+
+  doc.text('Signed by:', margin, yPos);
+  doc.setTextColor(30, 30, 30);
+  doc.setFont('helvetica', 'bold');
+  doc.text(data.typedName, margin + 22, yPos);
+  yPos += 5;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+  doc.text('Date:', margin, yPos);
+  doc.setTextColor(30, 30, 30);
+  doc.text(data.signedDate, margin + 22, yPos);
+  yPos += 5;
+
+  doc.setTextColor(100, 100, 100);
+  doc.text('Location:', margin, yPos);
+  doc.setTextColor(30, 30, 30);
+  doc.text(data.location, margin + 22, yPos);
+  yPos += 5;
+
+  doc.setTextColor(100, 100, 100);
+  doc.text('IP Address:', margin, yPos);
+  doc.setTextColor(30, 30, 30);
+  doc.text(data.ipAddress, margin + 22, yPos);
 
   addFooter();
   addCertificatePage();

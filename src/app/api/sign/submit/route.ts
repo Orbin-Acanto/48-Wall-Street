@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SubmitRequestBody } from '@/types';
-import { generateSignedPDF, generateAVProductionPDF } from '@/lib/helper';
+import {
+  generateSignedPDF,
+  generateAVProductionPDF,
+  generateCreditCardAuthPDF,
+} from '@/lib/helper';
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,7 +41,7 @@ export async function POST(request: NextRequest) {
         pdfBase64 = await generateSignedPDF(body);
         break;
       case 'credit_card_auth':
-        pdfBase64 = await generateSignedPDF(body);
+        pdfBase64 = await generateCreditCardAuthPDF(body);
         break;
       default:
         pdfBase64 = await generateSignedPDF(body);
@@ -50,26 +54,52 @@ export async function POST(request: NextRequest) {
       'base64'
     );
 
+    const payload: any = {
+      clientName: body.clientName,
+      clientEmail: body.clientEmail,
+      documentType: body.documentType,
+      viewTime: body.viewTime,
+      signTime: body.signTime,
+      location: body.location,
+      ipAddress: body.ipAddress,
+      signedDate: body.signedDate,
+      docId: body.docId,
+      data: pdfBase64,
+    };
+
+    if (body.documentType !== 'credit_card_auth') {
+      payload.formData = body.formData || null;
+    }
+
     const n8nResponse = await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Basic ${credentials}`,
       },
-      body: JSON.stringify({
-        clientName: body.clientName,
-        clientEmail: body.clientEmail,
-        documentType: body.documentType,
-        viewTime: body.viewTime,
-        signTime: body.signTime,
-        location: body.location,
-        ipAddress: body.ipAddress,
-        signedDate: body.signedDate,
-        docId: body.docId,
-        formData: body.formData || null,
-        data: pdfBase64,
-      }),
+      body: JSON.stringify(payload),
     });
+
+    // const n8nResponse = await fetch(WEBHOOK_URL, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Basic ${credentials}`,
+    //   },
+    //   body: JSON.stringify({
+    //     clientName: body.clientName,
+    //     clientEmail: body.clientEmail,
+    //     documentType: body.documentType,
+    //     viewTime: body.viewTime,
+    //     signTime: body.signTime,
+    //     location: body.location,
+    //     ipAddress: body.ipAddress,
+    //     signedDate: body.signedDate,
+    //     docId: body.docId,
+    //     formData: body.formData || null,
+    //     data: pdfBase64,
+    //   }),
+    // });
 
     if (!n8nResponse.ok) {
       console.error('n8n webhook error:', await n8nResponse.text());

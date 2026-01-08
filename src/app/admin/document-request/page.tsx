@@ -3,10 +3,8 @@
 import { useState } from 'react';
 
 type DocumentType =
-  | 'floor_plan'
-  | 'client_guidelines'
-  | 'credit_card_auth'
-  | 'av_production';
+  // | 'floor_plan'
+  'client_guidelines' | 'credit_card_auth' | 'av_production';
 
 interface FormData {
   clientFullName: string;
@@ -187,7 +185,7 @@ export default function DocumentRequestPage() {
                     <option value="client_guidelines">
                       Client Guidelines & Authorization Agreement
                     </option>
-                    <option value="floor_plan">Floor Plan Agreement</option>
+                    {/* <option value="floor_plan">Floor Plan Agreement</option> */}
                     <option value="av_production">AV/Production Form</option>
                     <option value="credit_card_auth">
                       Credit Card Authorization
