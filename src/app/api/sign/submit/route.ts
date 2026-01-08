@@ -15,7 +15,7 @@ interface N8NWebhookPayload {
   location: string;
   ipAddress: string;
   signedDate: string;
-  docId: string;
+  docId?: string | null;
   data: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formData?: Record<string, any> | null;
@@ -29,8 +29,7 @@ export async function POST(request: NextRequest) {
       !body.clientName ||
       !body.clientEmail ||
       !body.signature ||
-      !body.signedDate ||
-      !body.docId
+      !body.signedDate
     ) {
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },
@@ -79,9 +78,13 @@ export async function POST(request: NextRequest) {
       location: body.location,
       ipAddress: body.ipAddress,
       signedDate: body.signedDate,
-      docId: body.docId,
+
       data: pdfBase64,
     };
+
+    if (body.docId) {
+      payload.docId = body.docId || null;
+    }
 
     if (body.documentType !== 'credit_card_auth') {
       payload.formData = body.formData || null;
@@ -95,27 +98,6 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify(payload),
     });
-
-    // const n8nResponse = await fetch(WEBHOOK_URL, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: `Basic ${credentials}`,
-    //   },
-    //   body: JSON.stringify({
-    //     clientName: body.clientName,
-    //     clientEmail: body.clientEmail,
-    //     documentType: body.documentType,
-    //     viewTime: body.viewTime,
-    //     signTime: body.signTime,
-    //     location: body.location,
-    //     ipAddress: body.ipAddress,
-    //     signedDate: body.signedDate,
-    //     docId: body.docId,
-    //     formData: body.formData || null,
-    //     data: pdfBase64,
-    //   }),
-    // });
 
     if (!n8nResponse.ok) {
       console.error('n8n webhook error:', await n8nResponse.text());
