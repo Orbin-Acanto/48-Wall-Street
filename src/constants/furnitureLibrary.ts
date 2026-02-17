@@ -835,7 +835,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     name: 'Stage (8x8)',
     defaultDimensions: { width: 96, height: 96, unit: 'in' },
     svgPath: `<rect x="-48" y="-48" width="96" height="96" fill="#00A651"/>`,
-    groupBy: 'Staging',
+    groupBy: 'Staging-1',
   },
   {
     id: 'stage-2',
@@ -844,7 +844,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     name: 'Stage (8x16)',
     defaultDimensions: { width: 96, height: 192, unit: 'in' },
     svgPath: `<rect x="-48" y="-96" width="96" height="192" fill="#00A651"/>`,
-    groupBy: 'Staging',
+    groupBy: 'Staging-2',
   },
   {
     id: 'stage-3',
@@ -853,7 +853,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     name: 'Stage (8x24)',
     defaultDimensions: { width: 96, height: 288, unit: 'in' },
     svgPath: `<rect x="-48" y="-144" width="96" height="288" fill="#00A651"/>`,
-    groupBy: 'Staging',
+    groupBy: 'Staging-3',
   },
   {
     id: 'camera-platform',

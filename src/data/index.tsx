@@ -3539,8 +3539,18 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
     color: '#D4E157',
   },
   {
-    category: 'Staging',
+    category: 'Staging-1',
+    label: '8’X8’ STAGE',
+    color: '#00A651',
+  },
+  {
+    category: 'Staging-2',
     label: '8’X16’ STAGE',
+    color: '#00A651',
+  },
+  {
+    category: 'Staging-3',
+    label: '8’X24’ STAGE',
     color: '#00A651',
   },
   {
