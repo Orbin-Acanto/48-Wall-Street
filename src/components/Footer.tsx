@@ -103,7 +103,7 @@ export default function Footer() {
                   <p className="font-secondary mt-4 text-sm text-white/70">
                     48 Wall St.
                     <br />
-                    Lobby 1<br />
+                    Lobby 2<br />
                     New York, NY 10005
                     <br />
                     212.971.5353

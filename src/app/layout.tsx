@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     'geo.placename': 'New York City',
     'geo.position': '40.707421;-74.009224',
     ICBM: '40.707421, -74.009224',
-    'business:contact_data:street_address': '48 Wall Street, Lobby 1',
+    'business:contact_data:street_address': '48 Wall Street, Lobby 2',
     'business:contact_data:locality': 'New York',
     'business:contact_data:region': 'NY',
     'business:contact_data:postal_code': '10005',
