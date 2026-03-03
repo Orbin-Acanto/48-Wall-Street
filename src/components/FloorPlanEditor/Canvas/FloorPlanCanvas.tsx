@@ -612,6 +612,23 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     console.log('selectedFurnitureIds', selectedFurnitureIds);
   }, [selectedItemId, selectedFurnitureIds]);
 
+  useEffect(() => {
+    const el = svgRef.current;
+    if (!el) return;
+
+    const onWheelNative = (ev: WheelEvent) => {
+      ev.preventDefault();
+
+      handleWheel(ev);
+    };
+
+    el.addEventListener('wheel', onWheelNative, { passive: false });
+
+    return () => {
+      el.removeEventListener('wheel', onWheelNative as any);
+    };
+  }, [handleWheel]);
+
   return (
     <div
       id="floor-plan-canvas"
@@ -625,7 +642,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
         onMouseMove={handleSvgMouseMove}
         onMouseUp={handleSvgMouseUp}
         onMouseLeave={handleSvgMouseUp}
-        onWheel={handleWheel}
+        // onWheel={handleWheel}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragEnter={handleDragEnter}

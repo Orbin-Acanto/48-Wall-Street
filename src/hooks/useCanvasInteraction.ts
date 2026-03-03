@@ -135,28 +135,68 @@ export const useCanvasInteraction = ({
     setIsDragging(false);
   }, []);
 
+  // const handleWheel = useCallback(
+  //   (e: WheelEvent) => {
+  //     e.preventDefault();
+  //     const delta = e.deltaY > 0 ? 0.9 : 1.1;
+
+  //     setViewport((prev) => {
+  //       const newScale = Math.max(0.1, Math.min(5, prev.scale * delta));
+
+  //       const rect = svgRef.current?.getBoundingClientRect();
+  //       if (!rect) return prev;
+
+  //       const mouseX = e.clientX - rect.left;
+  //       const mouseY = e.clientY - rect.top;
+
+  //       const newX = mouseX - (mouseX - prev.x) * (newScale / prev.scale);
+  //       const newY = mouseY - (mouseY - prev.y) * (newScale / prev.scale);
+
+  //       return {
+  //         x: newX,
+  //         y: newY,
+  //         scale: newScale,
+  //       };
+  //     });
+  //   },
+  //   [svgRef]
+  // );
+
   const handleWheel = useCallback(
-    (e: React.WheelEvent<SVGSVGElement>) => {
+    (e: WheelEvent) => {
       e.preventDefault();
-      const delta = e.deltaY > 0 ? 0.9 : 1.1;
+
+      const rect = svgRef.current?.getBoundingClientRect();
+      if (!rect) return;
+
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      let dy = e.deltaY;
+
+      if (e.deltaMode === 1) dy *= 16;
+      if (e.deltaMode === 2) dy *= rect.height;
+
+      dy = Math.max(-120, Math.min(120, dy));
+
+      const zoomIntensity = 0.0025;
+      const zoomFactor = Math.exp(-dy * zoomIntensity);
 
       setViewport((prev) => {
-        const newScale = Math.max(0.1, Math.min(5, prev.scale * delta));
+        const minScale = 0.1;
+        const maxScale = 5;
 
-        const rect = svgRef.current?.getBoundingClientRect();
-        if (!rect) return prev;
+        const nextScale = Math.max(
+          minScale,
+          Math.min(maxScale, prev.scale * zoomFactor)
+        );
+        if (nextScale === prev.scale) return prev;
 
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+        const scaleRatio = nextScale / prev.scale;
+        const nextX = mouseX - (mouseX - prev.x) * scaleRatio;
+        const nextY = mouseY - (mouseY - prev.y) * scaleRatio;
 
-        const newX = mouseX - (mouseX - prev.x) * (newScale / prev.scale);
-        const newY = mouseY - (mouseY - prev.y) * (newScale / prev.scale);
-
-        return {
-          x: newX,
-          y: newY,
-          scale: newScale,
-        };
+        return { x: nextX, y: nextY, scale: nextScale };
       });
     },
     [svgRef]
