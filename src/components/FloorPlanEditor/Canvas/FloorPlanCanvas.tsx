@@ -618,14 +618,13 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
     const onWheelNative = (ev: WheelEvent) => {
       ev.preventDefault();
-
       handleWheel(ev);
     };
 
     el.addEventListener('wheel', onWheelNative, { passive: false });
 
     return () => {
-      el.removeEventListener('wheel', onWheelNative as any);
+      el.removeEventListener('wheel', onWheelNative);
     };
   }, [handleWheel]);
 
