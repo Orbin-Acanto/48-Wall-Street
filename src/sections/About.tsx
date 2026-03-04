@@ -9,11 +9,14 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 const aboutImages = [
   { src: '/about/aboutHero-1.jpg', alt: '48 Wall Street Venue' },
   { src: '/about/about (3).jpg', alt: 'Lounge Area' },
-  { src: '/about/about (2).jpg', alt: 'Lounge Area' },
+  { src: '/about/c1.jpg', alt: 'Concourse Level' },
+
   {
     src: '/gallery/corporate/ (25).jpg',
     alt: '48 Wall Street Building Exterior',
   },
+  { src: '/about/c1_1.jpg', alt: 'Concourse Level' },
+  { src: '/about/c1_2.jpg', alt: 'Concourse Level' },
 ];
 
 export default function About() {
@@ -126,8 +129,8 @@ export default function About() {
                   }}
                 >
                   <Image
-                    src="/about/about (2).jpg"
-                    alt="Lounge Area"
+                    src="/about/c1.jpg"
+                    alt="Concourse Level"
                     fill
                     quality={100}
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -140,25 +143,67 @@ export default function About() {
             </div>
 
             {/* Right Column - Large Image */}
-            <button
-              onClick={() => openLightbox(3)}
-              className="group relative h-full cursor-pointer overflow-hidden"
-              style={{
-                backfaceVisibility: 'hidden',
-                transform: 'translateZ(0)',
-              }}
-            >
-              <Image
-                src="/gallery/corporate/ (25).jpg"
-                alt="48 Wall Street Building Exterior"
-                fill
-                quality={100}
-                className="scale-105 object-cover transition-transform duration-500 group-hover:scale-115"
+            <div className="grid grid-cols-1 gap-6">
+              <button
+                onClick={() => openLightbox(3)}
+                className="group relative h-96 cursor-pointer overflow-hidden"
                 style={{
-                  imageRendering: '-webkit-optimize-contrast',
+                  backfaceVisibility: 'hidden',
+                  transform: 'translateZ(0)',
                 }}
-              />
-            </button>
+              >
+                <Image
+                  src="/gallery/corporate/ (25).jpg"
+                  alt="48 Wall Street Building Exterior"
+                  fill
+                  quality={100}
+                  className="object-cover transition-transform duration-500 group-hover:scale-115"
+                  style={{
+                    imageRendering: '-webkit-optimize-contrast',
+                  }}
+                />
+              </button>
+              <div className="grid grid-cols-2 gap-6">
+                <button
+                  onClick={() => openLightbox(4)}
+                  className="group relative h-48 cursor-pointer overflow-hidden"
+                  style={{
+                    backfaceVisibility: 'hidden',
+                    transform: 'translateZ(0)',
+                  }}
+                >
+                  <Image
+                    src="/about/c1_1.jpg"
+                    alt="48 Wall Street Building Exterior"
+                    fill
+                    quality={100}
+                    className="object-cover transition-transform duration-500 group-hover:scale-115"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                    }}
+                  />
+                </button>
+                <button
+                  onClick={() => openLightbox(5)}
+                  className="group relative h-48 cursor-pointer overflow-hidden"
+                  style={{
+                    backfaceVisibility: 'hidden',
+                    transform: 'translateZ(0)',
+                  }}
+                >
+                  <Image
+                    src="/about/c1_2.jpg"
+                    alt="48 Wall Street Building Exterior"
+                    fill
+                    quality={100}
+                    className="object-cover transition-transform duration-500 group-hover:scale-115"
+                    style={{
+                      imageRendering: '-webkit-optimize-contrast',
+                    }}
+                  />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div className="mt-18 flex items-center justify-center gap-4">
