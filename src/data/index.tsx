@@ -212,6 +212,8 @@ export const navItems = [
       { name: 'Digital Brochure', href: '/about/digital-brochure' },
       { name: 'Virtual Tour', href: '/about/virtual-tour' },
       { name: 'Floor Plans', href: '/about/floor-plans' },
+      { name: 'Grand Mezzanine', href: '/spaces/grand-mezzanine' },
+      { name: 'Concourse Level', href: '/spaces/concourse-level' },
       { name: 'Create Your Floor Plan', href: '/about/customize-plan' },
       { name: 'Rules & Regulations', href: '/about/rules-regulations' },
     ],
