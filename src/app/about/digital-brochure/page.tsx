@@ -9,9 +9,7 @@ import CustomButton from '@/components/CustomButton';
 export default function DigitalBrochurePage() {
   return (
     <div className="bg-whitesmoke min-h-screen">
-      {/* Hero Section */}
       <section className="relative mt-22 h-[600px] overflow-hidden md:h-[700px] lg:h-[700px]">
-        {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -19,10 +17,8 @@ export default function DigitalBrochurePage() {
           }}
         />
 
-        {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
 
-        {/* Content */}
         <div className="relative flex h-full items-center justify-center">
           <div className="container mx-auto max-w-4xl px-4 text-center">
             <motion.div
@@ -30,12 +26,10 @@ export default function DigitalBrochurePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              {/* Main Title */}
               <h1 className="heading-hero text-white">
                 Discover Our Historic Venue
               </h1>
 
-              {/* Decorative Line */}
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: '200px' }}
@@ -43,7 +37,6 @@ export default function DigitalBrochurePage() {
                 className="bg-primary mx-auto mb-8 h-0.5 w-16"
               />
 
-              {/* Subtitle */}
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -64,40 +57,8 @@ export default function DigitalBrochurePage() {
             </motion.div>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-xs font-medium tracking-widest text-white/70 uppercase">
-              Scroll Down
-            </span>
-            <svg
-              className="h-6 w-6 text-white/70"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </motion.div>
-        </motion.div> */}
       </section>
 
-      {/* Book Reader */}
       <section id="book">
         <BookReader
           pages={brochurePages}
@@ -107,7 +68,6 @@ export default function DigitalBrochurePage() {
         />
       </section>
 
-      {/* CTA Section */}
       <section className="relative overflow-hidden bg-white py-12 md:py-20">
         <div className="relative container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
@@ -127,7 +87,6 @@ export default function DigitalBrochurePage() {
                 <br /> or corporate gathering.
               </p>
 
-              {/* Single CTA Button */}
               <Link href="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
@@ -151,7 +110,6 @@ export default function DigitalBrochurePage() {
                 </motion.button>
               </Link>
 
-              {/* Contact Info */}
               <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <svg
