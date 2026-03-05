@@ -1,4 +1,4 @@
-import SpaceDetailPage from '@/components/Spacedetailpage';
+import SpaceDetails from '@/components/SpaceDetails';
 
 export const metadata = {
   title: 'Grand Mezzanine Banking Hall | 48 Wall Street',
@@ -8,20 +8,29 @@ export const metadata = {
 
 export default function GrandMezzaninePage() {
   return (
-    <SpaceDetailPage
+    <SpaceDetails
       levelLabel="01"
       title="Grand Mezzanine"
       subtitle="Banking Hall"
-      description="An architectural masterpiece of the Jazz Age — soaring ceilings, marble columns, and grand proportions that command attention. Originally the main banking floor of the Bank of New York, this landmarked space has been meticulously restored while infused with modern technical infrastructure. The perfect canvas for galas, weddings, fashion shows, and landmark corporate events that demand a setting as impressive as the occasion itself."
+      description="When entering the 48 Wall Street, you are greeted by a grand marble staircase. Let your eyes gravitate upward toward the impeccably crafted ceiling and oversized chandeliers. This is 48 Wall Street’s Grand Mezzanine Banking Hall. This space has retained much of its original 1920’s architectural detail; from the 30-foot ceilings to its beautiful Palladian windows. The Banking Hall can host and accommodate a variety of events, which include seated dinners for 325 guests or a cocktail reception for 500 guests. The space can also be divided to your liking to create a more intimate setting for smaller events and meetings."
       images={[
-        'https://placehold.co/1600x900/1a1a1a/444444?text=Grand+Mezzanine+Hero',
-        'https://placehold.co/1200x675/1c1c1c/555555?text=Banking+Hall+Wide',
-        'https://placehold.co/800x800/222222/555555?text=Marble+Columns',
-        'https://placehold.co/800x800/1e1e1e/444444?text=Crystal+Chandeliers',
-        'https://placehold.co/800x800/1a1a1a/444444?text=Palladian+Windows',
+        '/venue/4.jpg',
+        '/venue/8.jpg',
+        '/venue/7.jpg',
+        '/venue/3.jpg',
+        '/venue/5.jpg',
+        '/venue/6.jpg',
       ]}
-      videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
-      floorPlanImage="https://placehold.co/1200x700/f5f5f5/999999?text=Grand+Mezzanine+Floor+Plan"
+      lightboxImages={[
+        '/venue/hq/4.jpg',
+        '/venue/hq/8.jpg',
+        '/venue/hq/7.jpg',
+        '/venue/hq/3.jpg',
+        '/venue/hq/5.jpg',
+        '/venue/hq/6.jpg',
+      ]}
+      videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
+      floorPlanImage="/floor_planner/plan/ground.svg"
       features={[
         'Grand dual marble staircase',
         'Oversized Crystal chandeliers',

@@ -1,4 +1,4 @@
-import SpaceDetailPage from '@/components/Spacedetailpage';
+import SpaceDetails from '@/components/SpaceDetails';
 
 export const metadata = {
   title: 'Concourse Level | 48 Wall Street',
@@ -8,33 +8,42 @@ export const metadata = {
 
 export default function ConcourseLevelPage() {
   return (
-    <SpaceDetailPage
+    <SpaceDetails
       levelLabel="02"
       title="Concourse"
       subtitle="Level"
-      description="A refined lower-level retreat offering intimate elegance beneath the grandeur above. The Concourse Level delivers distinctive character through its vaulted ceilings, original architectural details, and versatile flow that adapts seamlessly to cocktail receptions, private dinners, product launches, and exclusive gatherings. A space that feels both historic and contemporary — with all the modern amenities you expect from 48 Wall Street."
+      description="Situated on the lower level, the concourse is designed to hold meetings, breakouts, classes, and events. The space can hold up to 200 guests and can be divided into six smaller rooms for breakout sessions. This level can also be used to host cocktail hours for clients utilizing the Grand Mezzanine for their reception."
       images={[
-        'https://placehold.co/1600x900/111111/333333?text=Concourse+Level+Hero',
-        'https://placehold.co/1200x675/131313/444444?text=Concourse+Wide',
-        'https://placehold.co/800x800/161616/444444?text=Bar+Area',
-        'https://placehold.co/800x800/111111/333333?text=Dining+Setup',
-        'https://placehold.co/800x800/141414/444444?text=Lounge+Area',
+        '/venue/2.jpg',
+        '/venue/11.jpg',
+        '/venue/12.jpg',
+        '/venue/10.jpg',
+        '/venue/13.jpg',
+        '/venue/14.jpg',
       ]}
-      videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ"
-      floorPlanImage="https://placehold.co/1200x700/f5f5f5/999999?text=Concourse+Level+Floor+Plan"
+      lightboxImages={[
+        '/venue/2.jpg',
+        '/venue/11.jpg',
+        '/venue/12.jpg',
+        '/venue/10.jpg',
+        '/venue/13.jpg',
+        '/venue/14.jpg',
+      ]}
+      videoUrl="https://player.vimeo.com/video/192678532?h=c1ec68adce"
+      floorPlanImage="/floor_planner/plan/concourse.svg"
       features={[
-        'Vaulted architectural ceilings',
-        'Private bar and lounge areas',
-        'Intimate dining configurations',
-        'Original 1920s stonework',
-        'Dedicated catering prep area',
-        'AV & lighting infrastructure',
-        'Private entrance access',
-        'Ceiling Height: 18 ft',
+        'Divisible into 6 breakout rooms',
+        'Flexible meeting configurations',
+        'Theater and classroom setups',
+        '200 Guests Capacity',
+        'Professional AV capabilities',
+        'Intimate event space option',
+        'Perfect for workshops and sessions',
+        'Ceiling Height: 14 ft',
       ]}
       stats={{
-        capacity: '150 seated | 250 cocktail reception',
-        sqft: '4,500 sq ft',
+        capacity: '150 seated | 200 cocktail reception',
+        sqft: '3000 sq ft',
       }}
       enquireHref="/contact"
     />
