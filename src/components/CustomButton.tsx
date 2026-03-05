@@ -22,7 +22,7 @@ export default function CustomButton({
 
   const variants = {
     primary:
-      'bg-primary text-dark-black border-2 border-primary hover:bg-primary/90 hover:scale-105 shadow-lg hover:shadow-xl',
+      'bg-primary text-white border-2 border-primary hover:bg-primary/90 hover:scale-105 shadow-lg hover:shadow-xl',
     secondary:
       'bg-white text-dark-black border-2 border-dark-black hover:bg-gray-50 hover:scale-105 shadow-md hover:shadow-lg',
   };

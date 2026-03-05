@@ -8,18 +8,19 @@ import { items, photos } from '@/data';
 import ContactUs from '@/components/ContactUs';
 import CateringParralax from '@/sections/CateringParralax';
 import JourneyTimelineScroll from '@/components/ScrollAnimations/JourneyTimelineScroll';
+import VenueLevels from '@/sections/Venuelevels';
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <HeroSection />
       <About />
+      <VenueLevels />
       <ParallaxSection
         videoSrc="/videos/Lower_Manhattan_Financial_District_Website.mp4"
         title="Lower Manhattan's Premier Event Venue"
         height="h-[70vh]"
       />
-
       <VenueAmenities />
       <JourneyTimelineScroll items={items} />
       <PhotoGallery galleryPhotos={photos} />
