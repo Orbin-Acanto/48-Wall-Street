@@ -449,10 +449,10 @@ const ContactUsSlider: React.FC = () => {
                   />
 
                   <textarea
-                    name="additionalDate"
+                    name="additionalDates"
                     value={formData.additionalDates}
                     onChange={handleInputChange}
-                    placeholder="Additional Date (MM/DD/YYYY) separate multiple dates with commas"
+                    placeholder="Additional Dates (MM/DD/YYYY) separate multiple dates with commas"
                     rows={2}
                     className="focus:border-primary font-secondary text-dark-black w-full resize-none border-b border-gray-400 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
                   />

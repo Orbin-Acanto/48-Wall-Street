@@ -394,7 +394,7 @@ const ContactUs: React.FC = () => {
               />
 
               <textarea
-                name="additionalDate"
+                name="additionalDates"
                 value={formData.additionalDates}
                 onChange={handleInputChange}
                 placeholder="Additional Date (MM/DD/YYYY) separate multiple dates with commas"
