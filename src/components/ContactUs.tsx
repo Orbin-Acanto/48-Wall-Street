@@ -31,7 +31,7 @@ const ContactUs: React.FC = () => {
     attachments: [],
     page: pathname || '/',
     website: '',
-    additionalDate: '',
+    additionalDates: '',
   });
 
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
@@ -180,7 +180,7 @@ const ContactUs: React.FC = () => {
           attachments: [],
           page: pathname || '/',
           website: '',
-          additionalDate: '',
+          additionalDates: '',
         });
 
         recaptchaRef.current?.reset();
@@ -395,7 +395,7 @@ const ContactUs: React.FC = () => {
 
               <textarea
                 name="additionalDate"
-                value={formData.additionalDate}
+                value={formData.additionalDates}
                 onChange={handleInputChange}
                 placeholder="Additional Date (MM/DD/YYYY) separate multiple dates with commas"
                 rows={2}
