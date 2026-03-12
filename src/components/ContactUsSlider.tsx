@@ -34,6 +34,7 @@ const ContactUsSlider: React.FC = () => {
     attachments: [],
     page: pathname || '/',
     website: '',
+    additionalDate: '',
   });
 
   const [submitStatus, setSubmitStatus] = useState<{
@@ -176,6 +177,7 @@ const ContactUsSlider: React.FC = () => {
           attachments: [],
           page: pathname || '/',
           website: '',
+          additionalDate: '',
         });
 
         router.push('/thank-you');
@@ -398,6 +400,13 @@ const ContactUsSlider: React.FC = () => {
                       </option>
                     </select>
                   </div>
+                  <div className="flex justify-center py-4">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      onChange={handleRecaptchaChange}
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -435,7 +444,16 @@ const ContactUsSlider: React.FC = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Message"
-                    rows={4}
+                    rows={2}
+                    className="focus:border-primary font-secondary text-dark-black w-full resize-none border-b border-gray-400 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
+                  />
+
+                  <textarea
+                    name="additionalDate"
+                    value={formData.additionalDate}
+                    onChange={handleInputChange}
+                    placeholder="Additional Date (MM/DD/YYYY) separate multiple dates with commas"
+                    rows={2}
                     className="focus:border-primary font-secondary text-dark-black w-full resize-none border-b border-gray-400 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
                   />
 
@@ -484,14 +502,6 @@ const ContactUsSlider: React.FC = () => {
                           ))}
                         </div>
                       )}
-                  </div>
-
-                  <div className="flex justify-center py-4">
-                    <ReCAPTCHA
-                      ref={recaptchaRef}
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                      onChange={handleRecaptchaChange}
-                    />
                   </div>
 
                   <div className="flex justify-end pt-4">

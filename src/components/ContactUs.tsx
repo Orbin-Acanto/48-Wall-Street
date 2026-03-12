@@ -31,6 +31,7 @@ const ContactUs: React.FC = () => {
     attachments: [],
     page: pathname || '/',
     website: '',
+    additionalDate: '',
   });
 
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
@@ -179,6 +180,7 @@ const ContactUs: React.FC = () => {
           attachments: [],
           page: pathname || '/',
           website: '',
+          additionalDate: '',
         });
 
         recaptchaRef.current?.reset();
@@ -298,6 +300,7 @@ const ContactUs: React.FC = () => {
                 placeholder="Event Start Date (MM/DD/YYYY)"
                 className="text-dark-black focus:border-primary font-secondary w-full border-b border-gray-800 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
               />
+
               <div className="flex gap-2">
                 <select
                   name="eventStartHour"
@@ -341,6 +344,14 @@ const ContactUs: React.FC = () => {
                   </option>
                 </select>
               </div>
+
+              <div className="flex justify-center py-4">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                  onChange={handleRecaptchaChange}
+                />
+              </div>
             </div>
           </div>
 
@@ -378,8 +389,17 @@ const ContactUs: React.FC = () => {
                 value={formData.message}
                 onChange={handleInputChange}
                 placeholder="Message"
-                rows={4}
+                rows={2}
                 className="text-dark-black focus:border-primary font-secondary w-full resize-none border-b border-gray-800 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
+              />
+
+              <textarea
+                name="additionalDate"
+                value={formData.additionalDate}
+                onChange={handleInputChange}
+                placeholder="Additional Date (MM/DD/YYYY) separate multiple dates with commas"
+                rows={2}
+                className="focus:border-primary font-secondary text-dark-black w-full resize-none border-b border-gray-400 bg-transparent px-0 py-3 placeholder-gray-500 transition-colors focus:outline-none"
               />
 
               <div>
@@ -426,14 +446,6 @@ const ContactUs: React.FC = () => {
                     ))}
                   </div>
                 )}
-              </div>
-
-              <div className="flex justify-center py-4">
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                  onChange={handleRecaptchaChange}
-                />
               </div>
 
               <div className="flex justify-end pt-4">

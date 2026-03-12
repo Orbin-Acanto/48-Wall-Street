@@ -48,6 +48,7 @@ export interface FormDataType {
   attachments?: File[];
   page?: string;
   website?: string;
+  additionalDate?: string;
 }
 
 export interface Product {
