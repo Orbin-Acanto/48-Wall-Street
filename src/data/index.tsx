@@ -3113,7 +3113,7 @@ export const eventCateringData = {
   leadTitle: ‘Food That Matches the Occasion’,
   heroImage: ‘/videos/ec.mp4’,
   leadDescription:
-    ‘Good food is not a detail at an event. It is part of what people remember. At 48 Wall Street, our catering partner brings over 30 years of experience delivering exceptional dining for corporate events, galas, weddings, and private celebrations in Lower Manhattan. The culinary team builds menus around your event type, guest count, and preferences, whether that means a formal multi-course seated dinner, a generous cocktail reception with passed hors d\’oeuvres, an energized buffet lunch for a full-day conference, or globally inspired food stations for an immersive evening. Service staff are trained to manage timing and presentation within the specific context of this historic venue so that the dining experience feels seamless rather than catered.’,
+    "Good food is not a detail at an event. It is part of what people remember. At 48 Wall Street, our catering partner brings over 30 years of experience delivering exceptional dining for corporate events, galas, weddings, and private celebrations in Lower Manhattan. The culinary team builds menus around your event type, guest count, and preferences, whether that means a formal multi-course seated dinner, a generous cocktail reception with passed hors d’oeuvres, an energized buffet lunch for a full-day conference, or globally inspired food stations for an immersive evening. Service staff are trained to manage timing and presentation within the specific context of this historic venue so that the dining experience feels seamless rather than catered.",
   sections: [
     {
       id: 'seated-dinner',
