@@ -1603,7 +1603,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'A modern barrel-style chair with a vintage twist — featuring a curved silhouette, rich black velvet, and a gleaming gold base. Comfortable yet chic, it’s a perfect accent for cocktail areas or lounges.',
+      "A modern barrel-style chair with a vintage twist — featuring a curved silhouette, rich black velvet, and a gleaming gold base. Comfortable yet chic, it's a perfect accent for cocktail areas or lounges.",
     features: [
       'Curved barrel design for comfort',
       'Luxurious velvet upholstery',
@@ -2209,58 +2209,58 @@ export const weddingData: EventShowcaseProps = {
     },
   ],
   tags: [
-    ‘Ceremonies’,
-    ‘Receptions’,
-    ‘Full Planning’,
-    ‘Catering’,
-    ‘Custom Decor’,
-    ‘AV Production’,
-    ‘Day-of Coordination’,
-    ‘Rehearsal Dinners’,
+    'Ceremonies',
+    'Receptions',
+    'Full Planning',
+    'Catering',
+    'Custom Decor',
+    'AV Production',
+    'Day-of Coordination',
+    'Rehearsal Dinners',
   ],
   stats: [
-    { value: ‘1000+’, label: ‘Events Hosted’ },
-    { value: ‘30+’, label: ‘Years of Experience’ },
-    { value: ‘500’, label: ‘Guest Capacity’ },
+    { value: '1000+', label: 'Events Hosted' },
+    { value: '30+', label: 'Years of Experience' },
+    { value: '500', label: 'Guest Capacity' },
   ],
   info: [
     {
-      heading: ‘How many guests can 48 Wall Street accommodate for a wedding?’,
-      body: ‘The Grand Mezzanine Banking Hall seats up to 350 guests for a formal dinner reception and accommodates up to 500 for a cocktail style celebration. The Concourse Level can serve as a separate cocktail hour or breakout space, giving you additional flexibility in how you use the venue.’,
+      heading: 'How many guests can 48 Wall Street accommodate for a wedding?',
+      body: 'The Grand Mezzanine Banking Hall seats up to 350 guests for a formal dinner reception and accommodates up to 500 for a cocktail style celebration. The Concourse Level can serve as a separate cocktail hour or breakout space, giving you additional flexibility in how you use the venue.',
     },
     {
-      heading: ‘Can we hold the ceremony and reception in the same venue?’,
-      body: ‘Yes, and many couples choose to do exactly that. The venue has distinct areas that work beautifully as separate ceremony and reception spaces, so your guests never have to leave the building. It makes for a seamless evening and reduces stress on the day.’,
+      heading: 'Can we hold the ceremony and reception in the same venue?',
+      body: 'Yes, and many couples choose to do exactly that. The venue has distinct areas that work beautifully as separate ceremony and reception spaces, so your guests never have to leave the building. It makes for a seamless evening and reduces stress on the day.',
     },
     {
-      heading: ‘How far in advance should we book?’,
-      body: ‘Spring and fall weekends fill up fast, so we recommend reaching out 12 to 18 months ahead if you have a specific date in mind. That said, we do occasionally have availability on shorter notice. Contact us and we will let you know what we have open.’,
+      heading: 'How far in advance should we book?',
+      body: 'Spring and fall weekends fill up fast, so we recommend reaching out 12 to 18 months ahead if you have a specific date in mind. That said, we do occasionally have availability on shorter notice. Contact us and we will let you know what we have open.',
     },
     {
-      heading: ‘What is included in your wedding planning services?’,
-      body: ‘We handle everything from initial venue walkthrough and floor plan design to vendor coordination, catering, AV and production setup, and day-of management. Our goal is to make sure you are not managing logistics on your wedding day. You focus on celebrating while our team handles the details.’,
+      heading: 'What is included in your wedding planning services?',
+      body: 'We handle everything from initial venue walkthrough and floor plan design to vendor coordination, catering, AV and production setup, and day-of management. Our goal is to make sure you are not managing logistics on your wedding day. You focus on celebrating while our team handles the details.',
     },
   ],
   primaryCta: {
-    label: ‘Schedule a Tour’,
-    href: ‘/contact’,
+    label: 'Schedule a Tour',
+    href: '/contact',
   },
   secondaryCta: {
-    label: ‘View Wedding Gallery’,
-    href: ‘/gallery?tab=wedding’,
+    label: 'View Wedding Gallery',
+    href: '/gallery?tab=wedding',
   },
   services: [
     {
-      title: ‘Ceremonies at 48 Wall Street’,
-      body: ‘Walk down the aisle beneath 30-foot ceilings and original 1920s chandeliers. The grand marble staircase makes for a dramatic processional that photographs unlike anything else in New York City. We can configure the Banking Hall for your ceremony and then transition the space into your reception, all within the same historic downtown venue.’,
+      title: 'Ceremonies at 48 Wall Street',
+      body: 'Walk down the aisle beneath 30-foot ceilings and original 1920s chandeliers. The grand marble staircase makes for a dramatic processional that photographs unlike anything else in New York City. We can configure the Banking Hall for your ceremony and then transition the space into your reception, all within the same historic downtown venue.',
     },
     {
-      title: ‘Wedding Receptions’,
-      body: ‘The Grand Mezzanine has held some of the most celebrated events in Lower Manhattan for over 30 years. For your reception, we can arrange round tables for up to 350 seated guests or open the floor for a cocktail celebration of up to 500. Our team coordinates catering, lighting, entertainment, and every detail so the night runs exactly as you imagined.’,
+      title: 'Wedding Receptions',
+      body: 'The Grand Mezzanine has held some of the most celebrated events in Lower Manhattan for over 30 years. For your reception, we can arrange round tables for up to 350 seated guests or open the floor for a cocktail celebration of up to 500. Our team coordinates catering, lighting, entertainment, and every detail so the night runs exactly as you imagined.',
     },
     {
-      title: ‘Photography Worth the Venue Itself’,
-      body: ‘Couples consistently tell us that their 48 Wall Street wedding photos are unlike anything their photographer has shot before. The original Palladian windows, marble columns, crystal chandeliers, and grand staircase give you backgrounds that feel like a film set. You will not need to find a separate portrait location because the venue itself provides more than enough.’,
+      title: 'Photography Worth the Venue Itself',
+      body: 'Couples consistently tell us that their 48 Wall Street wedding photos are unlike anything their photographer has shot before. The original Palladian windows, marble columns, crystal chandeliers, and grand staircase give you backgrounds that feel like a film set. You will not need to find a separate portrait location because the venue itself provides more than enough.',
     },
   ],
 };
@@ -2297,58 +2297,58 @@ export const corporateData: EventShowcaseProps = {
     },
   ],
   tags: [
-    ‘Product Launches’,
-    ‘Annual Conferences’,
-    ‘Awards Ceremonies’,
-    ‘Executive Dinners’,
-    ‘Investor Events’,
-    ‘Town Halls’,
-    ‘Brand Activations’,
-    ‘Client Receptions’,
+    'Product Launches',
+    'Annual Conferences',
+    'Awards Ceremonies',
+    'Executive Dinners',
+    'Investor Events',
+    'Town Halls',
+    'Brand Activations',
+    'Client Receptions',
   ],
   stats: [
-    { value: ‘1000+’, label: ‘Events Hosted’ },
-    { value: ‘30+’, label: ‘Years of Experience’ },
-    { value: ‘500’, label: ‘Guest Capacity’ },
+    { value: '1000+', label: 'Events Hosted' },
+    { value: '30+', label: 'Years of Experience' },
+    { value: '500', label: 'Guest Capacity' },
   ],
   info: [
     {
-      heading: ‘What types of corporate events do you host?’,
-      body: ‘We host the full range of corporate gatherings at 48 Wall Street including product launches, industry conferences, shareholder meetings, executive dinners, company galas, awards ceremonies, investor events, and holiday parties. Each event is planned and produced by our in-house team so you have one point of contact from start to finish.’,
+      heading: 'What types of corporate events do you host?',
+      body: 'We host the full range of corporate gatherings at 48 Wall Street including product launches, industry conferences, shareholder meetings, executive dinners, company galas, awards ceremonies, investor events, and holiday parties. Each event is planned and produced by our in-house team so you have one point of contact from start to finish.',
     },
     {
-      heading: ‘What does the venue include for corporate events?’,
-      body: ‘The Grand Mezzanine Banking Hall gives you 9,000 square feet with 30-foot ceilings, flexible seating for up to 350 at round tables or 500 for a standing reception, and full AV infrastructure including projection, sound, and professional lighting. The Concourse Level adds 3,000 additional square feet with breakout room capability for smaller sessions or a separate registration area.’,
+      heading: 'What does the venue include for corporate events?',
+      body: 'The Grand Mezzanine Banking Hall gives you 9,000 square feet with 30-foot ceilings, flexible seating for up to 350 at round tables or 500 for a standing reception, and full AV infrastructure including projection, sound, and professional lighting. The Concourse Level adds 3,000 additional square feet with breakout room capability for smaller sessions or a separate registration area.',
     },
     {
-      heading: ‘Do you provide AV and production support?’,
-      body: ‘Yes. Our production partner MME Worldwide operates in-house at the venue and handles everything from basic presentation setups to full stage productions with custom lighting rigs, LED walls, and live streaming. You are not hiring an outside crew who has never seen the space. Our team knows the building and can execute your vision efficiently.’,
+      heading: 'Do you provide AV and production support?',
+      body: 'Yes. Our production partner MME Worldwide operates in-house at the venue and handles everything from basic presentation setups to full stage productions with custom lighting rigs, LED walls, and live streaming. You are not hiring an outside crew who has never seen the space. Our team knows the building and can execute your vision efficiently.',
     },
     {
-      heading: ‘How do I get pricing for a corporate event?’,
-      body: ‘Pricing depends on the date, event type, guest count, and services required. The best starting point is a quick conversation with our events team. Contact us through the form on this page or call us directly and we will put together a proposal based on your specific needs.’,
+      heading: 'How do I get pricing for a corporate event?',
+      body: 'Pricing depends on the date, event type, guest count, and services required. The best starting point is a quick conversation with our events team. Contact us through the form on this page or call us directly and we will put together a proposal based on your specific needs.',
     },
   ],
   primaryCta: {
-    label: ‘Request a Proposal’,
-    href: ‘/contact’,
+    label: 'Request a Proposal',
+    href: '/contact',
   },
   secondaryCta: {
-    label: ‘View Corporate Gallery’,
-    href: ‘/gallery?tab=corporate’,
+    label: 'View Corporate Gallery',
+    href: '/gallery?tab=corporate',
   },
   services: [
     {
-      title: ‘Conferences and Summits’,
-      body: ‘The Banking Hall at 48 Wall Street has hosted annual conferences, industry summits, and shareholder meetings for some of the most recognized names in finance, technology, and media. The 9,000 square foot hall accommodates theater-style seating, full staging, and every AV need your program requires. When you hold your conference here, the venue reinforces the message that what you are doing matters.’,
+      title: 'Conferences and Summits',
+      body: 'The Banking Hall at 48 Wall Street has hosted annual conferences, industry summits, and shareholder meetings for some of the most recognized names in finance, technology, and media. The 9,000 square foot hall accommodates theater-style seating, full staging, and every AV need your program requires. When you hold your conference here, the venue reinforces the message that what you are doing matters.',
     },
     {
-      title: ‘Gala Dinners and Awards Evenings’,
-      body: ‘A company gala or awards ceremony deserves a room that rises to the occasion. The grand marble staircase, crystal chandeliers, and Palladian windows of 48 Wall Street create the kind of atmosphere where every guest feels the significance of the evening before they even sit down. Our team handles catering, decor, entertainment, and production so the night exceeds what your team is expecting.’,
+      title: 'Gala Dinners and Awards Evenings',
+      body: 'A company gala or awards ceremony deserves a room that rises to the occasion. The grand marble staircase, crystal chandeliers, and Palladian windows of 48 Wall Street create the kind of atmosphere where every guest feels the significance of the evening before they even sit down. Our team handles catering, decor, entertainment, and production so the night exceeds what your team is expecting.',
     },
     {
-      title: ‘Product Launches and Client Events’,
-      body: ‘First impressions are everything when you are launching something new or hosting your most important clients. 48 Wall Street gives your brand a setting that communicates credibility and ambition. We configure the space around your brand identity, coordinate catering and production, and make sure the logistics are invisible so your guests experience the product, not the event management.’,
+      title: 'Product Launches and Client Events',
+      body: 'First impressions are everything when you are launching something new or hosting your most important clients. 48 Wall Street gives your brand a setting that communicates credibility and ambition. We configure the space around your brand identity, coordinate catering and production, and make sure the logistics are invisible so your guests experience the product, not the event management.',
     },
   ],
 };
@@ -3108,12 +3108,12 @@ export const eventProductionData = {
 };
 
 export const eventCateringData = {
-  title: ‘Event Catering at 48 Wall Street’,
-  subtitle: ‘Thoughtful Dining in a Historic Financial District Setting’,
-  leadTitle: ‘Food That Matches the Occasion’,
-  heroImage: ‘/videos/ec.mp4’,
+  title: 'Event Catering at 48 Wall Street',
+  subtitle: 'Thoughtful Dining in a Historic Financial District Setting',
+  leadTitle: 'Food That Matches the Occasion',
+  heroImage: '/videos/ec.mp4',
   leadDescription:
-    "Good food is not a detail at an event. It is part of what people remember. At 48 Wall Street, our catering partner brings over 30 years of experience delivering exceptional dining for corporate events, galas, weddings, and private celebrations in Lower Manhattan. The culinary team builds menus around your event type, guest count, and preferences, whether that means a formal multi-course seated dinner, a generous cocktail reception with passed hors d’oeuvres, an energized buffet lunch for a full-day conference, or globally inspired food stations for an immersive evening. Service staff are trained to manage timing and presentation within the specific context of this historic venue so that the dining experience feels seamless rather than catered.",
+    "Good food is not a detail at an event. It is part of what people remember. At 48 Wall Street, our catering partner brings over 30 years of experience delivering exceptional dining for corporate events, galas, weddings, and private celebrations in Lower Manhattan. The culinary team builds menus around your event type, guest count, and preferences, whether that means a formal multi-course seated dinner, a generous cocktail reception with passed hors d'oeuvres, an energized buffet lunch for a full-day conference, or globally inspired food stations for an immersive evening. Service staff are trained to manage timing and presentation within the specific context of this historic venue so that the dining experience feels seamless rather than catered.",
   sections: [
     {
       id: 'seated-dinner',
@@ -3557,17 +3557,17 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
   },
   {
     category: 'Staging-1',
-    label: '8’X8’ STAGE',
+    label: "8'X8' STAGE",
     color: '#00A651',
   },
   {
     category: 'Staging-2',
-    label: '8’X16’ STAGE',
+    label: "8'X16' STAGE",
     color: '#00A651',
   },
   {
     category: 'Staging-3',
-    label: '8’X24’ STAGE',
+    label: "8'X24' STAGE",
     color: '#00A651',
   },
   {
@@ -3577,22 +3577,22 @@ export const LEGEND_ITEMS: LegendItemConfig[] = [
   },
   {
     category: "6' Bar",
-    label: '6’ BAR',
+    label: "6' BAR",
     color: '#4B77BE',
   },
   {
     category: "12' Bar",
-    label: '12’ BAR',
+    label: "12' BAR",
     color: '#00A79D',
   },
   {
     category: "18' Bar",
-    label: '18’ BAR',
+    label: "18' BAR",
     color: '#9E1F63',
   },
   {
     category: "24' Bar",
-    label: '24’ BAR',
+    label: "24' BAR",
     color: '#E67E22',
   },
   {
