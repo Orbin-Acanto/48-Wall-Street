@@ -1,7 +1,16 @@
 User-agent: *
 Allow: /
 
+# Legal pages — no SEO value
 Disallow: /privacy-policy
-Disallow: /terms-conditions
+Disallow: /terms-of-service
+
+# Internal client and admin tools — should never be indexed
+Disallow: /admin/
+Disallow: /sign/
+Disallow: /thank-you
+
+# API routes — not pages
+Disallow: /api/
 
 Sitemap: https://www.48wallnyc.com/sitemap.xml
