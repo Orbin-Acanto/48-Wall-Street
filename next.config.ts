@@ -32,9 +32,18 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Long-lived cache for static assets — images, fonts, videos
-        source:
-          '/(:path*\\.(jpg|jpeg|png|webp|avif|gif|svg|ico|mp4|webm|woff|woff2|ttf|otf))',
+        // Long-lived cache for images in public/
+        source: '/:path*.(jpg|jpeg|png|webp|avif|gif|svg|ico)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Long-lived cache for videos and fonts in public/
+        source: '/:path*.(mp4|webm|woff|woff2|ttf|otf)',
         headers: [
           {
             key: 'Cache-Control',
@@ -44,7 +53,7 @@ const nextConfig: NextConfig = {
       },
       {
         // Cache JS/CSS chunks produced by Next.js (they are content-hashed)
-        source: '/_next/static/(.*)',
+        source: '/_next/static/:path*',
         headers: [
           {
             key: 'Cache-Control',
