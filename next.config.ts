@@ -2,6 +2,70 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+
+  async headers() {
+    return [
+      {
+        // Apply security and performance headers to all routes
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+        ],
+      },
+      {
+        // Long-lived cache for static assets — images, fonts, videos
+        source:
+          '/(:path*\\.(jpg|jpeg|png|webp|avif|gif|svg|ico|mp4|webm|woff|woff2|ttf|otf))',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Cache JS/CSS chunks produced by Next.js (they are content-hashed)
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Preconnect hint for Google services — helps font and analytics load faster
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Link',
+            value:
+              '<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin',
+          },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       { source: '/about-48wall.html', destination: '/about', permanent: true },
@@ -20,11 +84,20 @@ const nextConfig: NextConfig = {
         destination: '/about/floor-plans',
         permanent: true,
       },
-      { source: '/grand-mezzanine.html', destination: '/', permanent: true },
-      { source: '/concourse.html', destination: '/', permanent: true },
+      // Fixed: was redirecting to / — now points to the actual space pages
+      {
+        source: '/grand-mezzanine.html',
+        destination: '/spaces/grand-mezzanine',
+        permanent: true,
+      },
+      {
+        source: '/concourse.html',
+        destination: '/spaces/concourse-level',
+        permanent: true,
+      },
       {
         source: '/48wall-brochure.html',
-        destination: '/digital-brochure',
+        destination: '/about/digital-brochure',
         permanent: true,
       },
       {
@@ -39,9 +112,10 @@ const nextConfig: NextConfig = {
         destination: '/events/corporate',
         permanent: true,
       },
+      // Fixed: conferences.html was going to /events/corporate — now goes to /events/conferences
       {
         source: '/conferences.html',
-        destination: '/events/corporate',
+        destination: '/events/conferences',
         permanent: true,
       },
       {
@@ -105,32 +179,32 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/corporate-gallery.html',
-        destination: '/gallery?tab=corporate',
+        destination: '/gallery',
         permanent: true,
       },
       {
         source: '/conferences-meetings-gallery.html',
-        destination: '/gallery?tab=corporate',
+        destination: '/gallery',
         permanent: true,
       },
       {
         source: '/fashion-gallery.html',
-        destination: '/gallery?tab=fashion',
+        destination: '/gallery',
         permanent: true,
       },
       {
         source: '/wedding-gallery.html',
-        destination: '/gallery?tab=wedding',
+        destination: '/gallery',
         permanent: true,
       },
       {
         source: '/mitzvah-gallery.html',
-        destination: '/gallery?tab=bar',
+        destination: '/gallery',
         permanent: true,
       },
       {
         source: '/holiday-gallery.html',
-        destination: '/gallery?tab=holiday',
+        destination: '/gallery',
         permanent: true,
       },
 
@@ -182,8 +256,62 @@ const nextConfig: NextConfig = {
         destination: '/gallery',
         permanent: true,
       },
+      // missing pages that were previously live but not redirected
+      { source: '/index.html', destination: '/', permanent: true },
+      {
+        source: '/event-gallery.html',
+        destination: '/gallery',
+        permanent: true,
+      },
+      {
+        source: '/pdf/Grand-Mezzanine-Floor-Dimensions.pdf',
+        destination: '/about/floor-plans',
+        permanent: true,
+      },
+      {
+        source: '/MeetingEventRulesRegulations.pdf',
+        destination: '/about/rules-regulations',
+        permanent: true,
+      },
+      {
+        source: '/pdf/48wall-rules-and-regulations.pdf',
+        destination: '/about/rules-regulations',
+        permanent: true,
+      },
+      {
+        source: '/pdf/48-C1-Floorplan.pdf',
+        destination: '/about/floor-plans',
+        permanent: true,
+      },
+      {
+        source: '/48wall-holiday-packages.html',
+        destination: '/flipbook/48-wall-street-holiday',
+        permanent: true,
+      },
+      {
+        source: '/events-social.html',
+        destination: '/events/weddings',
+        permanent: true,
+      },
+      {
+        source: '/alexander-hamilton-room.html',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/private-events.html',
+        destination: '/events/weddings',
+        permanent: true,
+      },
+      { source: '/events', destination: '/events/corporate', permanent: true },
+      {
+        source: '/services',
+        destination: '/services/production',
+        permanent: true,
+      },
     ];
   },
+
   images: {
     remotePatterns: [
       {
@@ -194,15 +322,23 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'avatar.iran.liara.run',
       },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
     ],
-    qualities: [75, 100],
+    formats: ['image/avif', 'image/webp'],
+    qualities: [75, 85, 100],
+    minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+
+  compress: true,
+
+  experimental: {
+    optimizePackageImports: [
+      'lucide-react',
+      '@heroicons/react',
+      'framer-motion',
+    ],
   },
 };
 

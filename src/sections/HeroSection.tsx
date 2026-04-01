@@ -67,9 +67,15 @@ export default function HeroSection() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
+        poster="/images/og-home.jpg"
       />
       <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+        <h1 className="sr-only">
+          48 Wall Street — Historic Event Venue in the Financial District, New York City
+        </h1>
+      </div>
     </section>
   );
 }

@@ -1,9 +1,9 @@
 import SpaceDetails from '@/components/SpaceDetails';
 
 export const metadata = {
-  title: 'Grand Mezzanine Banking Hall | 48 Wall Street',
+  title: 'Grand Mezzanine Banking Hall | Historic Event Space NYC | 48 Wall Street',
   description:
-    'An architectural masterpiece of the Jazz Age — soaring ceilings, marble columns, and grand proportions. The premier event space in Lower Manhattan.',
+    'The Grand Mezzanine Banking Hall at 48 Wall Street offers 9,000 sq ft of original 1927 architecture with 30-foot ceilings, a grand marble staircase, and crystal chandeliers. Up to 500 guests in the Financial District.',
 };
 
 export default function GrandMezzaninePage() {
@@ -12,7 +12,7 @@ export default function GrandMezzaninePage() {
       levelLabel="01"
       title="Grand Mezzanine"
       subtitle="Banking Hall"
-      description="When entering the 48 Wall Street, you are greeted by a grand marble staircase. Let your eyes gravitate upward toward the impeccably crafted ceiling and oversized chandeliers. This is 48 Wall Street’s Grand Mezzanine Banking Hall. This space has retained much of its original 1920’s architectural detail; from the 30-foot ceilings to its beautiful Palladian windows. The Banking Hall can host and accommodate a variety of events, which include seated dinners for 325 guests or a cocktail reception for 500 guests. The space can also be divided to your liking to create a more intimate setting for smaller events and meetings."
+      description="The Grand Mezzanine Banking Hall is the heart of 48 Wall Street. At 9,000 square feet with 30-foot soaring ceilings, it makes an immediate impression that sets the tone for every event held here. Original 1920s architectural details have been preserved throughout, including the oversized crystal chandeliers, beautiful Palladian windows, and the grand dual marble staircase that greets guests at the entrance. The Banking Hall accommodates seated dinners for up to 350 guests and cocktail receptions for up to 500. For smaller gatherings, the floor plan divides comfortably to create a more intimate environment without losing the grandeur of the space. Whether you are hosting a corporate conference, a wedding reception, a charity gala, or a fashion show, this is a venue that gives your event genuine presence from the moment guests walk through the door."
       images={[
         '/venue/4.JPG',
         '/venue/8.jpg',

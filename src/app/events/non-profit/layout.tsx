@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     'Host impactful charity galas and fundraisers at 48 Wall Street. A historic downtown venue in the Financial District perfect for non-profit events that inspire generosity.',
   keywords:
-    'wedding venue NYC, Manhattan wedding venue, historic wedding venue NYC, Financial District wedding, elegant wedding space Manhattan, grand wedding venue NYC, wedding venue with history, Lower Manhattan wedding, Wall Street wedding venue, wedding venue with marble staircase, 1920s wedding venue, wedding reception venue NYC, Manhattan wedding ceremony, wedding venue with catering NYC, unique wedding venue Manhattan',
+    'non-profit event venue NYC, fundraising gala venue Manhattan, charity event venue Financial District, nonprofit gala space NYC, fundraiser venue Lower Manhattan, charity gala venue Wall Street, nonprofit event space Manhattan, benefit gala venue NYC, foundation fundraiser venue NYC, advocacy event space NYC, non-profit banquet hall NYC, charity auction venue Manhattan, nonprofit dinner gala NYC, philanthropic event venue, cause-based event space Financial District',
   openGraph: {
     title:
-      'Historic Wedding Venue NYC | Elegant Manhattan Weddings | 48 Wall Street',
+      'Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC | 48 Wall Street',
     description:
-      'Create your dream wedding at 48 Wall Street. Historic 1927 Manhattan venue with grand marble staircase, 30-foot ceilings, original architecture, full wedding planning, and catering for 50-350 guests.',
-    url: 'https://www.48wallnyc.com/events/weddings',
+      'Host impactful charity galas and fundraisers at 48 Wall Street. Historic 1927 Financial District venue with grand architecture for 50-500 guests. Inspire generosity in an unforgettable setting.',
+    url: 'https://www.48wallnyc.com/events/non-profit',
     siteName: '48 Wall Street NYC',
     images: [
       {
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Historic Wedding Venue NYC | 48 Wall Street',
+    title: 'Non-Profit Event Venue NYC | 48 Wall Street Financial District',
     description:
-      'Elegant Manhattan wedding venue. Grand marble staircase, 30-foot ceilings, historic 1920s architecture, full planning & catering.',
+      'Historic Manhattan venue for charity galas, fundraisers & nonprofit events. Grand architecture, full catering, 50-500 guests.',
     images: ['/images/twitter-home.jpg'],
   },
   alternates: {
-    canonical: 'https://www.48wallnyc.com/events/weddings',
+    canonical: 'https://www.48wallnyc.com/events/non-profit',
   },
   other: {
     'geo.region': 'US-NY',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function WeddingsLayout({
+export default function NonProfitLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -55,10 +55,10 @@ export default function WeddingsLayout({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Service',
-            serviceType: 'Wedding Venue',
-            name: 'Weddings at 48 Wall Street',
+            serviceType: 'Non-Profit Event Venue',
+            name: 'Non-Profit & Charity Events at 48 Wall Street',
             description:
-              "Premier historic wedding venue in Manhattan's Financial District featuring elegant 1927 Bank of New York building with Grand Mezzanine, 30-foot ceilings, grand marble staircase, and original 1920s architecture. Full-service wedding planning, customizable decor, professional catering, and expert coordination for ceremonies and receptions accommodating 50-350 seated guests or 500 reception guests.",
+              "Premier historic non-profit event venue in Manhattan's Financial District. 48 Wall Street's 1927 Bank of New York building offers a grand and inspiring setting for charity galas, fundraisers, benefit dinners, and nonprofit celebrations accommodating 50-350 seated guests or 500 reception guests.",
             provider: {
               '@type': 'EventVenue',
               name: '48 Wall Street',
@@ -80,7 +80,7 @@ export default function WeddingsLayout({
             },
             audience: {
               '@type': 'Audience',
-              audienceType: 'Couples planning weddings',
+              audienceType: 'Non-profit organizations and charities',
             },
             offers: {
               '@type': 'Offer',
@@ -88,58 +88,58 @@ export default function WeddingsLayout({
               priceRange: '$$$',
               itemOffered: {
                 '@type': 'Service',
-                name: 'Wedding Event Services',
+                name: 'Non-Profit Event Services',
                 description:
-                  'Complete wedding services including venue rental, ceremony space, reception coordination, full-service catering, event planning, and customizable decor',
+                  'Complete event services for non-profits including venue rental, gala coordination, full-service catering, AV production, fundraising setup, and event planning',
               },
             },
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
-              name: 'Wedding Services',
+              name: 'Non-Profit Event Services',
               itemListElement: [
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Wedding Ceremonies',
+                    name: 'Charity Galas',
                     description:
-                      'Beautiful ceremony space with grand marble staircase backdrop',
+                      'Elegant gala dinners with grand ballroom setting to inspire donor generosity',
                   },
                 },
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Wedding Receptions',
+                    name: 'Fundraising Events',
                     description:
-                      'Elegant reception space with full dining and dancing',
+                      'Full-service fundraising event coordination with auction and donation management support',
                   },
                 },
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Full Wedding Planning',
+                    name: 'Benefit Dinners',
                     description:
-                      'Expert wedding planners with 26+ years experience',
+                      'Formal seated benefit dinners with customizable menus and full bar service',
                   },
                 },
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Wedding Catering',
+                    name: 'Award Ceremonies',
                     description:
-                      'Customizable wedding menus from cocktails to formal dinners',
+                      'Staging, AV, and production support for nonprofit recognition and award events',
                   },
                 },
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Decor & Design',
+                    name: 'Nonprofit Cocktail Receptions',
                     description:
-                      'Customizable decor from classic elegance to modern luxury',
+                      'Cocktail-style networking receptions for up to 500 guests',
                   },
                 },
               ],
@@ -163,8 +163,14 @@ export default function WeddingsLayout({
               {
                 '@type': 'ListItem',
                 position: 2,
-                name: 'Weddings',
-                item: 'https://www.48wallnyc.com/events/weddings',
+                name: 'Events',
+                item: 'https://www.48wallnyc.com/events',
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'Non-Profit Events',
+                item: 'https://www.48wallnyc.com/events/non-profit',
               },
             ],
           }),
@@ -176,9 +182,9 @@ export default function WeddingsLayout({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'EventVenue',
-            name: '48 Wall Street Wedding Venue',
+            name: '48 Wall Street Non-Profit Event Venue',
             description:
-              'Historic 1927 Manhattan wedding venue with grand marble staircase, 30-foot ceilings, and elegant 1920s architecture in Financial District',
+              'Historic 1927 Manhattan venue ideal for charity galas, fundraisers, and nonprofit events in the Financial District',
             address: {
               '@type': 'PostalAddress',
               streetAddress: '48 Wall Street, Lobby 1',
@@ -196,62 +202,39 @@ export default function WeddingsLayout({
             amenityFeature: [
               {
                 '@type': 'LocationFeatureSpecification',
+                name: 'Grand Mezzanine Banking Hall',
+                value:
+                  '9,000 sq ft grand hall with 30-foot ceilings ideal for gala dinners',
+              },
+              {
+                '@type': 'LocationFeatureSpecification',
                 name: 'Grand Marble Staircase',
                 value:
-                  'Stunning dual marble staircase perfect for grand entrances and photos',
+                  'Dramatic staircase for award presentations and donor recognition moments',
               },
               {
                 '@type': 'LocationFeatureSpecification',
-                name: 'Grand Mezzanine',
+                name: 'Fundraising Capacity',
                 value:
-                  '30-foot ceilings with oversized chandeliers creating romantic ambiance',
-              },
-              {
-                '@type': 'LocationFeatureSpecification',
-                name: 'Wedding Capacity',
-                value:
-                  '350 guests for seated dinner, 500 guests for cocktail reception',
+                  '350 guests for seated gala, 500 guests for cocktail reception',
               },
               {
                 '@type': 'LocationFeatureSpecification',
                 name: 'Historic Architecture',
                 value:
-                  'Original 1920s Palladian windows and architectural details',
+                  'National Register of Historic Places building — 1920s grandeur that elevates your cause',
               },
               {
                 '@type': 'LocationFeatureSpecification',
-                name: 'Ceremony & Reception Space',
+                name: 'AV & Production',
                 value:
-                  'Flexible layouts for ceremony and reception in same venue',
-              },
-              {
-                '@type': 'LocationFeatureSpecification',
-                name: 'Full Wedding Planning',
-                value:
-                  'Experienced wedding planners with 26+ years in the industry',
-              },
-              {
-                '@type': 'LocationFeatureSpecification',
-                name: 'Customizable Decor',
-                value:
-                  'Extensive inventory for classic elegance or modern luxury styling',
+                  'Full AV, staging, and lighting for auction, speeches, and live entertainment',
               },
               {
                 '@type': 'LocationFeatureSpecification',
                 name: 'Full-Service Catering',
                 value:
-                  'Customizable wedding menus with cocktail hour and formal dinner options',
-              },
-              {
-                '@type': 'LocationFeatureSpecification',
-                name: 'Professional AV',
-                value:
-                  'Sound system for ceremony, DJ, speeches, and entertainment',
-              },
-              {
-                '@type': 'LocationFeatureSpecification',
-                name: 'Bridal Suite',
-                value: 'Private preparation areas for wedding party',
+                  'Customizable gala menus from cocktail reception to formal seated dinner',
               },
             ],
             publicAccess: true,
@@ -268,58 +251,42 @@ export default function WeddingsLayout({
             mainEntity: [
               {
                 '@type': 'Question',
-                name: 'How many guests can 48 Wall Street accommodate for a wedding?',
+                name: 'Can non-profit organizations host fundraising galas at 48 Wall Street?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '48 Wall Street can accommodate weddings for 50 to 350 guests for seated dinners and up to 500 guests for cocktail-style receptions. Our Grand Mezzanine and flexible spaces allow for various wedding sizes and configurations including ceremony and reception in the same venue.',
+                  text: 'Yes, 48 Wall Street is an ideal venue for non-profit galas, charity fundraisers, and benefit events. Our historic Grand Mezzanine accommodates 350 guests for seated dinners and up to 500 for cocktail receptions, providing a grand setting that inspires generosity and reflects the importance of your cause.',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'Can we have both ceremony and reception at 48 Wall Street?',
+                name: 'Does 48 Wall Street support live auction setups for fundraising events?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Yes, 48 Wall Street is perfect for both ceremony and reception. Our grand marble staircase provides a stunning ceremony backdrop, and the Grand Mezzanine transforms beautifully for your reception. Our event team coordinates seamless transitions between ceremony and reception setups.',
+                  text: 'Yes. Our full AV and production team through MMEink can set up staging, microphones, screens, and lighting specifically designed to support live auction formats, video presentations, and keynote speeches for fundraising events.',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'Does 48 Wall Street provide wedding planning services?',
+                name: 'How many guests can attend a nonprofit gala at 48 Wall Street?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Yes, 48 Wall Street partners with MMEink, our exclusive wedding planning team with 26+ years in the wedding industry. They provide full-service wedding planning including timeline coordination, vendor management, design consultation, and day-of coordination to ensure your wedding is flawless.',
+                  text: '48 Wall Street accommodates 50 to 350 guests for seated gala dinners and up to 500 guests for cocktail-style fundraising receptions. Our spaces can be configured to suit a range of event sizes and formats.',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'What catering options are available for weddings?',
+                name: 'What catering options are available for charity events?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: "48 Wall Street offers full-service wedding catering through our exclusive vendors. We provide customizable menus including cocktail hour with passed hors d'oeuvres, formal plated dinners, buffet options, dessert bars, and full bar service. Menus accommodate all dietary restrictions and preferences.",
+                  text: "Through our partner Tardi's Catering, we offer fully customizable menus for non-profit events — from elegant passed hors d'oeuvres and cocktail receptions to formal multi-course gala dinners with full bar service. We accommodate all dietary requirements.",
                 },
               },
               {
                 '@type': 'Question',
-                name: 'Can we customize the decor for our wedding?',
+                name: 'Does 48 Wall Street offer special pricing for non-profit organizations?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Absolutely! 48 Wall Street offers extensive decor customization from classic elegant weddings to modern minimalistic luxury styles. Our inventory includes thousands of options for centerpieces, linens, lighting, florals, and decorative elements. Our design team works with you to create your perfect wedding aesthetic.',
-                },
-              },
-              {
-                '@type': 'Question',
-                name: 'How far in advance should we book for a wedding?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'We recommend booking your wedding at 48 Wall Street 12-18 months in advance, especially for popular dates like spring and fall weekends. This ensures you secure your preferred date and allows ample time for detailed planning. Contact us at 1.877.885.0705 to schedule a venue tour and check availability.',
-                },
-              },
-              {
-                '@type': 'Question',
-                name: 'What makes 48 Wall Street unique as a wedding venue?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: '48 Wall Street offers a unique combination of historic 1920s architecture with modern amenities. Our grand marble staircase, 30-foot ceilings with chandeliers, Palladian windows, and original Bank of New York details create a romantic, sophisticated backdrop. The venue is listed on the National Register of Historic Places, providing timeless elegance for your wedding photography and memories.',
+                  text: 'We work closely with non-profit organizations to find pricing structures that fit your budget and mission. Contact us at info@48WallNYC.com or call 212.971.5353 to discuss your event and our available options for charitable organizations.',
                 },
               },
             ],
@@ -332,10 +299,10 @@ export default function WeddingsLayout({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'Weddings',
+            name: 'Non-Profit Events',
             description:
-              'Elegant historic wedding venue in Manhattan with grand marble staircase, full-service planning, and romantic 1920s architecture',
-            url: 'https://www.48wallnyc.com/events/weddings',
+              'Historic Financial District venue for charity galas, fundraisers, benefit dinners, and nonprofit events in NYC',
+            url: 'https://www.48wallnyc.com/events/non-profit',
             isPartOf: {
               '@type': 'WebSite',
               name: '48 Wall Street NYC',
@@ -346,12 +313,12 @@ export default function WeddingsLayout({
               name: '48 Wall Street',
             },
             specialty: [
-              'Wedding Ceremonies',
-              'Wedding Receptions',
-              'Historic Wedding Venue',
-              'Elegant Weddings',
-              'Manhattan Weddings',
-              'Full-Service Wedding Planning',
+              'Charity Galas',
+              'Fundraising Events',
+              'Benefit Dinners',
+              'Award Ceremonies',
+              'Non-Profit Receptions',
+              'Foundation Events',
             ],
           }),
         }}

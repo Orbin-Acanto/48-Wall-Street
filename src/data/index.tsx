@@ -2178,10 +2178,10 @@ export const floors = [
 ];
 
 export const weddingData: EventShowcaseProps = {
-  title: 'Unforgettable Wedding Space on Wall Street',
-  subtitle: 'A Historic Downtown Venue for Your Special Day',
+  title: 'Historic Wedding Venue in Lower Manhattan',
+  subtitle: 'A Timeless Backdrop for Your Most Important Day',
   description:
-    'From intimate ceremonies to grand ballroom receptions, orchestrate every detail of your celebration in a historic NYC venue defined by timeless romance. 48 Wall Street transforms your vision into reality, offering a breathtaking wedding space on Wall Street that captivates guests from the moment they arrive. Our expert team ensures seamless coordination and flawless execution, providing a unique event space in Lower Manhattan where your love story takes center stage against a backdrop of marble, gold, and history.',
+    'Some venues are simply settings. 48 Wall Street is a story. Built in 1927 as the Bank of New York and Trust Company, this National Register landmark brings a grandeur to your wedding day that no modern ballroom can replicate. The 30-foot ceilings, grand marble staircase, Palladian windows, and original crystal chandeliers create an atmosphere of genuine historic elegance in the heart of the Financial District. Our experienced team handles every detail from concept to final curtain call, so you and your guests can simply be present for the moments that matter.',
   images: [
     {
       src: '/gallery/wedding/22.jpg',
@@ -2209,66 +2209,67 @@ export const weddingData: EventShowcaseProps = {
     },
   ],
   tags: [
-    'Full-Service Planning',
-    'Venue Sourcing',
-    'Floral Design',
-    'Catering & Bar',
-    'Photography & Video',
-    'Live Entertainment',
-    'Day-of Coordination',
-    'Destination Weddings',
+    ‘Ceremonies’,
+    ‘Receptions’,
+    ‘Full Planning’,
+    ‘Catering’,
+    ‘Custom Decor’,
+    ‘AV Production’,
+    ‘Day-of Coordination’,
+    ‘Rehearsal Dinners’,
   ],
   stats: [
-    { value: '500+', label: 'Weddings' },
-    { value: '50+', label: 'Venues' },
-    { value: '100%', label: 'Satisfaction' },
+    { value: ‘1000+’, label: ‘Events Hosted’ },
+    { value: ‘30+’, label: ‘Years of Experience’ },
+    { value: ‘500’, label: ‘Guest Capacity’ },
   ],
   info: [
     {
-      heading: "What's included in full-service wedding planning?",
-      body: 'Our full-service package covers everything from initial concept development to day-of coordination. This includes venue selection, vendor management, design consultation, budget planning, timeline creation, guest management, and unlimited communication throughout the planning process.',
+      heading: ‘How many guests can 48 Wall Street accommodate for a wedding?’,
+      body: ‘The Grand Mezzanine Banking Hall seats up to 350 guests for a formal dinner reception and accommodates up to 500 for a cocktail style celebration. The Concourse Level can serve as a separate cocktail hour or breakout space, giving you additional flexibility in how you use the venue.’,
     },
     {
-      heading: 'How far in advance should we book?',
-      body: "We recommend booking 12-18 months in advance for peak season dates (May-October). However, we've successfully planned beautiful weddings with as little as 3-6 months notice. The earlier you book, the more venue and vendor options will be available.",
+      heading: ‘Can we hold the ceremony and reception in the same venue?’,
+      body: ‘Yes, and many couples choose to do exactly that. The venue has distinct areas that work beautifully as separate ceremony and reception spaces, so your guests never have to leave the building. It makes for a seamless evening and reduces stress on the day.’,
     },
     {
-      heading: 'Do you handle destination weddings?',
-      body: 'Absolutely! We specialize in destination weddings and have planned celebrations across the globe. We handle all logistics including travel coordination, local vendor sourcing, cultural considerations, and on-site management to ensure your destination wedding is stress-free.',
+      heading: ‘How far in advance should we book?’,
+      body: ‘Spring and fall weekends fill up fast, so we recommend reaching out 12 to 18 months ahead if you have a specific date in mind. That said, we do occasionally have availability on shorter notice. Contact us and we will let you know what we have open.’,
     },
     {
-      heading: 'Can we customize our package?',
-      body: "Yes! Every wedding is unique, and we offer flexible packages that can be tailored to your specific needs and budget. Whether you need full planning, partial coordination, or just day-of management, we'll create a custom solution for you.",
+      heading: ‘What is included in your wedding planning services?’,
+      body: ‘We handle everything from initial venue walkthrough and floor plan design to vendor coordination, catering, AV and production setup, and day-of management. Our goal is to make sure you are not managing logistics on your wedding day. You focus on celebrating while our team handles the details.’,
     },
   ],
   primaryCta: {
-    label: 'Schedule Consultation',
+    label: ‘Schedule a Tour’,
+    href: ‘/contact’,
   },
   secondaryCta: {
-    label: 'View Wedding Gallery',
-    href: '/gallery?tab=wedding',
+    label: ‘View Wedding Gallery’,
+    href: ‘/gallery?tab=wedding’,
   },
   services: [
     {
-      title: 'Elegant Ceremonies',
-      body: "Exchange your vows in an atmosphere of grandeur. Our soaring ceilings and architectural details create a cathedral-like quality perfect for saying 'I do.' As a premier wedding space on Wall Street, we offer the flexibility to host your ceremony and reception in one seamless location, ensuring comfort for your guests and a dramatic aisle for your entrance in this historic downtown venue.",
+      title: ‘Ceremonies at 48 Wall Street’,
+      body: ‘Walk down the aisle beneath 30-foot ceilings and original 1920s chandeliers. The grand marble staircase makes for a dramatic processional that photographs unlike anything else in New York City. We can configure the Banking Hall for your ceremony and then transition the space into your reception, all within the same historic downtown venue.’,
     },
     {
-      title: 'Grand Receptions',
-      body: 'Dance the night away in the best Lower Manhattan event space for an unforgettable celebration. Our ballroom floor plan adapts to your guest count, offering ample room for a band, dining, and dancing. Whether you envision a seated black-tie dinner or a modern cocktail style affair, 48 Wall provides the perfect setting for your wedding day that will be talked about for years to come.',
+      title: ‘Wedding Receptions’,
+      body: ‘The Grand Mezzanine has held some of the most celebrated events in Lower Manhattan for over 30 years. For your reception, we can arrange round tables for up to 350 seated guests or open the floor for a cocktail celebration of up to 500. Our team coordinates catering, lighting, entertainment, and every detail so the night runs exactly as you imagined.’,
     },
     {
-      title: 'Timeless Photography',
-      body: 'Capture your memories against the backdrop of 1920s glamour.. The banking hall’s grand staircase and intricate features make this a one-of-a-kind event space for wedding photography. You won’t need to travel for portraits; the venue itself is a masterpiece. Secure our historic venue and ensure every photo reflects the elegance and joy of your specific occasion.',
+      title: ‘Photography Worth the Venue Itself’,
+      body: ‘Couples consistently tell us that their 48 Wall Street wedding photos are unlike anything their photographer has shot before. The original Palladian windows, marble columns, crystal chandeliers, and grand staircase give you backgrounds that feel like a film set. You will not need to find a separate portrait location because the venue itself provides more than enough.’,
     },
   ],
 };
 
 export const corporateData: EventShowcaseProps = {
-  title: 'Corporate Event Space in the Financial District',
-  subtitle: 'A Historic Downtown Venue for Modern Business',
+  title: 'Corporate Event Venue in the Financial District',
+  subtitle: 'Where Business Gets Done in Historic Style',
   description:
-    'Celebrate your brand at this storied building synonymous with success. As a premier Lower Manhattan corporate event space, 48 Wall Street offers an impressive setting for everything from high-level summits to annual conferences. Whether you need a versatile meeting space on Wall Street or a grand Financial District event venue for a product launch, our team delivers professional experiences that engage audiences and drive business results with precision.',
+    'There is something about 48 Wall Street that makes an impression before anyone in the room says a word. The building itself carries decades of New York business history, and that context sets the tone for every corporate event we host. Whether you are bringing together 50 people for a board meeting or 500 for an annual conference, our Financial District event venue gives your gathering the weight and presence that a hotel ballroom or generic conference center simply cannot offer. We handle production, catering, AV, staging, and coordination so your team can focus on the content, not the logistics.',
   images: [
     {
       src: '/gallery/corporate/ (24).jpg',
@@ -2296,141 +2297,155 @@ export const corporateData: EventShowcaseProps = {
     },
   ],
   tags: [
-    'Product Launches',
-    'Annual Conferences',
-    'Team Building',
-    'Awards Ceremonies',
-    'Executive Retreats',
-    'Trade Shows',
-    'Investor Events',
-    'Brand Activations',
+    ‘Product Launches’,
+    ‘Annual Conferences’,
+    ‘Awards Ceremonies’,
+    ‘Executive Dinners’,
+    ‘Investor Events’,
+    ‘Town Halls’,
+    ‘Brand Activations’,
+    ‘Client Receptions’,
   ],
   stats: [
-    { value: '1000+', label: 'Events' },
-    { value: '250K+', label: 'Attendees' },
-    { value: '95%', label: 'Client Return' },
+    { value: ‘1000+’, label: ‘Events Hosted’ },
+    { value: ‘30+’, label: ‘Years of Experience’ },
+    { value: ‘500’, label: ‘Guest Capacity’ },
   ],
   info: [
     {
-      heading: 'What types of corporate events do you handle?',
-      body: 'We manage the full spectrum of corporate events including product launches, conferences, trade shows, executive retreats, holiday parties, team building experiences, shareholder meetings, and company milestones. Each event is tailored to your brand identity and business objectives.',
+      heading: ‘What types of corporate events do you host?’,
+      body: ‘We host the full range of corporate gatherings at 48 Wall Street including product launches, industry conferences, shareholder meetings, executive dinners, company galas, awards ceremonies, investor events, and holiday parties. Each event is planned and produced by our in-house team so you have one point of contact from start to finish.’,
     },
     {
-      heading: 'How do you handle multi-city or global events?',
-      body: 'Our team has extensive experience coordinating simultaneous events across multiple locations. We use centralized planning systems, local vendor networks, and dedicated regional coordinators to ensure consistency in quality and branding across all venues.',
+      heading: ‘What does the venue include for corporate events?’,
+      body: ‘The Grand Mezzanine Banking Hall gives you 9,000 square feet with 30-foot ceilings, flexible seating for up to 350 at round tables or 500 for a standing reception, and full AV infrastructure including projection, sound, and professional lighting. The Concourse Level adds 3,000 additional square feet with breakout room capability for smaller sessions or a separate registration area.’,
     },
     {
-      heading: 'Can you integrate hybrid and virtual components?',
-      body: 'Yes! We specialize in hybrid events that seamlessly blend in-person and virtual experiences. We provide full AV production, live streaming, interactive platforms, and engagement tools to ensure remote attendees have an equally compelling experience.',
+      heading: ‘Do you provide AV and production support?’,
+      body: ‘Yes. Our production partner MME Worldwide operates in-house at the venue and handles everything from basic presentation setups to full stage productions with custom lighting rigs, LED walls, and live streaming. You are not hiring an outside crew who has never seen the space. Our team knows the building and can execute your vision efficiently.’,
     },
     {
-      heading: 'How do you measure event ROI?',
-      body: 'We work with you to define key performance indicators before the event, then provide comprehensive post-event analytics including attendance metrics, engagement data, lead generation, social media reach, and attendee feedback to demonstrate clear business value.',
+      heading: ‘How do I get pricing for a corporate event?’,
+      body: ‘Pricing depends on the date, event type, guest count, and services required. The best starting point is a quick conversation with our events team. Contact us through the form on this page or call us directly and we will put together a proposal based on your specific needs.’,
     },
   ],
   primaryCta: {
-    label: 'Request Proposal',
-    href: '/contact',
+    label: ‘Request a Proposal’,
+    href: ‘/contact’,
   },
   secondaryCta: {
-    label: 'View Photo Gallery',
-    href: '/gallery?tab=corporate',
+    label: ‘View Corporate Gallery’,
+    href: ‘/gallery?tab=corporate’,
   },
   services: [
     {
-      title: 'Conferences & Summits',
-      body: 'Secure a lower Manhattan conference space that commands attention. Our historic hall offers the perfect acoustic and architectural backdrop for industry summits, shareholder meetings, and executive presentations. With flexible layouts and dedicated meeting space on Wall Street, we ensure your content, and your company, takes center stage.',
+      title: ‘Conferences and Summits’,
+      body: ‘The Banking Hall at 48 Wall Street has hosted annual conferences, industry summits, and shareholder meetings for some of the most recognized names in finance, technology, and media. The 9,000 square foot hall accommodates theater-style seating, full staging, and every AV need your program requires. When you hold your conference here, the venue reinforces the message that what you are doing matters.’,
     },
     {
-      title: 'Gala Dinners & Awards',
-      body: 'Celebrate company milestones in an event venue built for prestige. From black-tie awards dinners to executive galas, the banking hall’s grandeur elevates every toast. We offer a sophisticated corporate event space where your team’s achievements are honored in style, supported by world-class catering and seamless production.',
+      title: ‘Gala Dinners and Awards Evenings’,
+      body: ‘A company gala or awards ceremony deserves a room that rises to the occasion. The grand marble staircase, crystal chandeliers, and Palladian windows of 48 Wall Street create the kind of atmosphere where every guest feels the significance of the evening before they even sit down. Our team handles catering, decor, entertainment, and production so the night exceeds what your team is expecting.’,
     },
     {
-      title: 'Launches & Networking',
-      body: 'Make a lasting impression with a unique event space designed for connection. Perfect for product launches, client mixers, and networking hours, our venue offers a sophisticated environment that sparks conversation. distinct architecture and prime location make us the standout Lower Manhattan corporate event space for impactful brand moments.',
+      title: ‘Product Launches and Client Events’,
+      body: ‘First impressions are everything when you are launching something new or hosting your most important clients. 48 Wall Street gives your brand a setting that communicates credibility and ambition. We configure the space around your brand identity, coordinate catering and production, and make sure the logistics are invisible so your guests experience the product, not the event management.’,
     },
   ],
 };
 
 export const conferenceData: EventShowcaseProps = {
-  title: 'Conferences & Meetings Excellence',
-  subtitle: 'Professional Meeting Management',
+  title: 'Conference Venue in the Financial District',
+  subtitle: 'A Historic Meeting Space on Wall Street',
   description:
-    'Transform your business gatherings into productive, memorable experiences. We handle every aspect of conference planning—from registration and logistics to breakout sessions and networking events—ensuring smooth execution and maximum attendee engagement.',
+    'When a conference is held at 48 Wall Street, attendees notice. The 1927 banking hall carries a gravitas that sets the tone from the moment guests walk through the door, long before the program begins. With 9,000 square feet on the main level and an additional 3,000 square feet of breakout space on the Concourse Level, we accommodate everything from intimate board meetings to full-day industry conferences for up to 500 attendees. Our in-house production team handles all AV, staging, lighting, and catering so your team can focus entirely on the content.',
   images: [
     {
-      src: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Conference main stage',
+      src: '/gallery/corporate/ (24).jpg',
+      alt: 'Conference setup at 48 Wall Street',
     },
     {
-      src: 'https://images.unsplash.com/photo-1511578194003-00c80e42dc9b?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Meeting room setup',
+      src: '/gallery/corporate/ (10).jpg',
+      alt: 'Conference at 48 Wall Street Financial District',
     },
     {
-      src: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Conference attendees networking',
+      src: '/gallery/corporate/ (19).jpg',
+      alt: 'Corporate meeting in historic NYC venue',
     },
     {
-      src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Panel discussion',
+      src: '/gallery/corporate/ (9).jpg',
+      alt: 'Panel discussion at 48 Wall Street',
     },
     {
-      src: 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Registration desk',
+      src: '/gallery/corporate/ (6).jpg',
+      alt: 'Business conference in Lower Manhattan',
     },
     {
-      src: 'https://images.unsplash.com/photo-1503428593586-e225b39bddfe?q=80&w=1600&auto=format&fit=crop',
-      alt: 'Conference breakout session',
+      src: '/gallery/corporate/ (2).jpg',
+      alt: 'Executive meeting at Wall Street venue',
     },
   ],
   tags: [
     'Industry Conferences',
     'Annual Meetings',
+    'Board Meetings',
+    'Panel Discussions',
     'Symposiums',
     'Workshops',
-    'Board Meetings',
     'Summit Events',
     'Training Sessions',
-    'Panel Discussions',
   ],
   stats: [
-    { value: '350+', label: 'Conferences' },
-    { value: '500K+', label: 'Participants' },
-    { value: '4.9/5', label: 'Rating' },
+    { value: '1000+', label: 'Events Hosted' },
+    { value: '30+', label: 'Years of Experience' },
+    { value: '500', label: 'Guest Capacity' },
   ],
   info: [
     {
-      heading: 'What makes a successful conference?',
-      body: 'A successful conference combines clear objectives, engaging content, seamless logistics, and meaningful networking opportunities. We focus on attendee experience, speaker coordination, technology integration, and creating memorable moments that drive knowledge sharing and relationship building.',
+      heading: 'What is the capacity for conferences at 48 Wall Street?',
+      body: 'The Grand Mezzanine Banking Hall accommodates up to 500 guests for a standing conference or networking reception, and up to 350 for a theater or classroom style setup. The Concourse Level beneath it holds up to 200 and divides into six separate breakout rooms, making it ideal for concurrent sessions or smaller working groups running alongside a larger main stage program.',
     },
     {
-      heading: 'How do you handle registration and attendee management?',
-      body: 'We provide comprehensive registration solutions including custom event websites, online ticketing, badge printing, attendee tracking, and mobile event apps. Our systems integrate with CRM platforms and provide real-time analytics on registration trends and attendee behavior.',
+      heading: 'What AV and production capabilities are available?',
+      body: 'Our in-house production team MME Worldwide handles all conference AV needs including main stage sound and presentation systems, projection or LED screens, professional lighting, live streaming setup, and technical support staff on the day. They have worked in this building extensively and can execute complex multi-room setups efficiently.',
     },
     {
-      heading: 'What AV and technology capabilities do you offer?',
-      body: 'Our production team delivers full AV support including main stage production, breakout room setups, live streaming, recording services, interactive displays, audience response systems, and technical support staff. We ensure your message is delivered clearly and professionally.',
+      heading: 'Is catering available for conferences?',
+      body: 'Yes. Our catering partner provides everything from morning continental spreads and working lunches to full seated dinners for end-of-day networking events. We can configure food and beverage service to fit around your program schedule so meals and breaks keep your attendees energized without disrupting the flow of the day.',
     },
     {
-      heading: 'Can you help with speaker management?',
-      body: 'Absolutely! We handle all aspects of speaker coordination including recruitment, travel arrangements, presentation preparation, rehearsals, green room management, and technical support. We ensure every speaker is prepared and positioned for success.',
+      heading: 'How do I request pricing for a conference?',
+      body: 'Pricing is based on your event date, attendee count, program duration, and the services you need. Reach out through our contact form or call us directly. We will follow up with a proposal that reflects your specific requirements.',
     },
   ],
   primaryCta: {
-    label: 'Request Proposal',
+    label: 'Request a Proposal',
     href: '/contact',
   },
   secondaryCta: {
-    label: 'View Photo Gallery',
+    label: 'View Conference Gallery',
     href: '/gallery?tab=corporate',
   },
+  services: [
+    {
+      title: 'Main Stage Conferences',
+      body: 'The Banking Hall at 48 Wall Street is one of the most architecturally distinctive conference venues in New York City. Theater-style seating, full staging, and a ceiling height that makes every room feel significant. Whether you are hosting 100 or 500 attendees, the space commands attention and keeps your audience engaged. Our production team is on site to handle everything from opening remarks to the final Q and A.',
+    },
+    {
+      title: 'Breakout Sessions and Workshops',
+      body: 'The Concourse Level gives your conference a dedicated space for parallel sessions, workshops, and smaller working groups. It divides into six separate rooms and sits directly beneath the main hall, so moving between the two levels is seamless. This setup lets you run a full conference program without needing to rent multiple buildings or shuttle guests across a campus.',
+    },
+    {
+      title: 'Networking and Dining',
+      body: 'Some of the most valuable conversations at any conference happen during the meals and breaks. We configure the Grand Mezzanine to encourage that kind of engagement, whether it is a standing cocktail reception after the final session or a seated dinner that gives your speakers and sponsors time to connect with attendees in a more relaxed setting.',
+    },
+  ],
 };
 
 export const fashionData: EventShowcaseProps = {
-  title: 'NYC Fashion Show Event Space',
-  subtitle: 'A Dramatic Setting for New York Fashion Week',
+  title: 'NYC Fashion Show Event Space on Wall Street',
+  subtitle: 'A Historic Runway Venue in the Financial District',
   description:
-    '48 Wall Street offers a stunning backdrop where historic grandeur meets modern style, making it an ideal choice for New York Fashion Week. With original architecture, elaborate grand marble staircase and 30 foot ceilings, the space provides the perfect backdrop for any fashion event.</br>Our dedicated and professional in-house event services team will provide you with everything you need for your NYC fashion show. From intimate designer presentations to major runway productions, we provide the dramatic staging, impeccable lighting and everything else required to put your collection center stage in a unique event space in New York City. Our in-house event specialists make 48 Wall Street a true turnkey event venue.</br>There is simply no better venue in the financial district to host your fashion show than the iconic 48 Wall Street!',
+    'Fashion is about atmosphere as much as it is about clothing, and few spaces in New York City carry the visual weight of the 48 Wall Street banking hall. The 30-foot ceilings, grand marble staircase, Palladian windows, and original 1920s architecture create a dramatic setting that elevates every collection shown here. Whether you are planning a full New York Fashion Week runway production, an intimate designer presentation, a brand activation, or a showroom event, our in-house team handles staging, lighting, production, and catering so you can focus entirely on the creative work. There is no better runway venue in the Financial District.',
   images: [
     {
       src: '/gallery/fashion/ (6).jpg',
@@ -2458,67 +2473,67 @@ export const fashionData: EventShowcaseProps = {
     },
   ],
   tags: [
-    'Runway Shows',
-    'Fashion Week',
+    'Runway Productions',
+    'Fashion Week Shows',
     'Collection Launches',
     'Trunk Shows',
-    'Pop-Up Events',
     'Brand Activations',
-    'Designer Showcases',
-    'Media Events',
+    'Designer Presentations',
+    'Buyer Showrooms',
+    'Press Events',
   ],
   stats: [
-    { value: '200+', label: 'Shows' },
-    { value: '1500+', label: 'Models' },
-    { value: '50K+', label: 'Audience' },
+    { value: '1000+', label: 'Events Hosted' },
+    { value: '30+', label: 'Years of Experience' },
+    { value: '500', label: 'Guest Capacity' },
   ],
   info: [
     {
-      heading: 'What goes into producing a fashion show?',
-      body: 'Fashion show production is a complex orchestration of runway design, lighting, sound, model casting, choreography, backstage coordination, front row seating, media management, and timing. We handle every detail from concept to curtain call, ensuring your collection makes a powerful statement.',
+      heading: 'What makes 48 Wall Street a strong choice for fashion events?',
+      body: 'The architecture does a lot of the work. The 30-foot ceilings give you the vertical space to design dramatic lighting rigs. The long, open floor plan accommodates a proper runway without compromise. The marble and original detailing creates a backdrop that photographs beautifully regardless of the lighting approach. And because our production team works in this building regularly, the technical execution is efficient.',
     },
     {
-      heading: 'How do you handle model casting and coordination?',
-      body: 'We work with top modeling agencies to cast the perfect faces for your brand. Our team manages all aspects including fittings, rehearsals, backstage logistics, dresser coordination, and real-time show management. We ensure smooth transitions and flawless presentations.',
+      heading: 'Can the venue support a full New York Fashion Week production?',
+      body: 'Yes. We have hosted runway shows, collection presentations, and brand events during Fashion Week at this venue. Our production partner MME Worldwide has extensive experience with fashion event staging including custom runway builds, specialized lighting configurations, backstage coordination areas, and front-of-house guest management.',
     },
     {
-      heading: 'Can you help with Fashion Week events?',
-      body: 'Yes! We have extensive experience producing shows during major fashion weeks in New York, LA, and beyond. We handle venue selection, permit coordination, VIP guest management, press relations, live streaming, and all production elements to ensure your show stands out.',
+      heading: 'What about smaller presentations and showroom events?',
+      body: 'The space works just as well for intimate buyer showrooms, press previews, and collection presentations as it does for full runway productions. We can configure the floor plan around what your event actually needs rather than forcing it into a standard setup.',
     },
     {
-      heading: 'What about intimate or alternative format events?',
-      body: 'We specialize in creative alternatives to traditional runways including pop-up presentations, intimate salon shows, immersive brand experiences, digital fashion shows, and hybrid events. We work with your vision and budget to create impactful fashion moments.',
+      heading: 'Is there space for backstage operations?',
+      body: 'Yes. The Concourse Level below the main hall can serve as a dedicated backstage area with space for wardrobe, hair and makeup, and model staging. This keeps the front-of-house experience clean and professional while giving your team everything they need to run a smooth show.',
     },
   ],
   primaryCta: {
-    label: 'Request Proposal',
+    label: 'Request a Proposal',
     href: '/contact',
   },
   secondaryCta: {
-    label: 'View Photo Gallery',
+    label: 'View Fashion Gallery',
     href: '/gallery?tab=fashion',
   },
   services: [
     {
       title: 'Runway Productions',
-      body: 'Transform our sweeping banking hall into a world-class runway. As a top fashion show event space in NYC, we offer the length and layout necessary for a professional catwalk experience. The soaring ceilings and marble detailing provide a cinematic aesthetic that elevates every look, ensuring your fashion show or presentation is as memorable as the designs themselves.',
+      body: 'The Banking Hall at 48 Wall Street accommodates a full professional runway with room for seated front-row guests and standing audience on either side. The ceiling height allows for serious lighting design, and the marble architecture creates a backdrop that gives every look shown here a different quality than what you see at a standard fashion week venue. Our production team builds the stage, programs the lights, and manages the technical run so the show goes exactly as designed.',
     },
     {
-      title: 'Showrooms & Pop-Ups',
-      body: 'Beyond the runway, utilize our historic downtown venue for immersive brand activations and buyer showrooms. Our versatile floor plan allows for curated displays that invite guests to interact with your brand up close. Whether for a seasonal launch or a press day, this unique event space on Wall Street turns a standard viewing into an exclusive experience.',
+      title: 'Showrooms and Brand Activations',
+      body: 'Not every fashion event is a runway show. Buyer showrooms, press days, and brand activations require a different kind of space, one where guests feel like they are somewhere worth being before they have even looked at the product. The financial district address and the historic character of 48 Wall Street provide that context naturally. We configure the floor plan to suit the format and handle catering and production around it.',
     },
     {
-      title: 'Production & Lighting',
-      body: 'We understand that lighting is everything in fashion. Our event venue is equipped to handle complex audiovisual needs, from dramatic spotlights to ambient moods. We work seamlessly with production teams to ensure that our space highlights the texture, color, and movement of your collection with absolute precision.',
+      title: 'Lighting and Production',
+      body: 'In fashion, lighting is not secondary to the design. It is part of it. Our production partner MME Worldwide specializes in the kind of precise, dramatically designed lighting setups that fashion presentations require, from high-contrast runway spots to full ambient transformation of the hall for a different aesthetic. They work in this space regularly and know how to make the architecture work in your favor.',
     },
   ],
 };
 
 export const nonprofitData: EventShowcaseProps = {
-  title: 'Non-Profit & Fundraising Event Venue',
-  subtitle: 'A Historic Downtown Venue for Meaningful Impact',
+  title: 'Non-Profit Event Venue in Lower Manhattan',
+  subtitle: 'A Historic Setting That Elevates Your Cause',
   description:
-    'Maximize your fundraising potential at a NYC event venue designed to inspire. We understand the unique challenges of non-profit organizations and offer a setting that complements your mission. As a premier Lower Manhattan event venue, 48 Wall Street provides the grandeur necessary to engage donors and amplify your message. From silent auctions to black-tie galas, we deliver experiences that turn a unique event space in Lower Manhattan into a catalyst for generosity.',
+    'The setting of a fundraising gala sends a signal to your donors before the program even begins. At 48 Wall Street, the 1927 banking hall with its grand marble staircase, soaring ceilings, and original architecture communicates that your organization takes itself seriously and your mission deserves to be celebrated with dignity. We have supported non-profit galas, benefit dinners, charity auctions, and awareness events throughout Lower Manhattan for over 30 years. Our team understands the unique demands of fundraising events and works with you to create an atmosphere that inspires generosity.',
   images: [
     {
       src: '/gallery/non/1.jpg',
@@ -2547,66 +2562,66 @@ export const nonprofitData: EventShowcaseProps = {
   ],
   tags: [
     'Charity Galas',
-    'Fundraising Events',
+    'Fundraising Dinners',
     'Benefit Auctions',
-    'Donor Cultivation',
-    'Awards Dinners',
-    'Community Events',
-    'Walkathons',
-    'Volunteer Events',
+    'Donor Receptions',
+    'Awards Evenings',
+    'Awareness Events',
+    'Foundation Events',
+    'Board Receptions',
   ],
   stats: [
-    { value: '$50M+', label: 'Raised' },
-    { value: '400+', label: 'Events' },
-    { value: '150+', label: 'Organizations' },
+    { value: '1000+', label: 'Events Hosted' },
+    { value: '30+', label: 'Years of Experience' },
+    { value: '500', label: 'Guest Capacity' },
   ],
   info: [
     {
-      heading: 'How can you help maximize fundraising results?',
-      body: 'We employ proven fundraising strategies including strategic donor cultivation, compelling program design, effective auction management, paddle raise coordination, and sponsorship development. Our goal is to create emotionally engaging experiences that inspire generosity while keeping costs efficient.',
+      heading: 'What types of non-profit events do you host?',
+      body: 'We host charity galas, fundraising dinners, benefit auctions, donor cultivation receptions, awards ceremonies, foundation events, and awareness evenings at 48 Wall Street. Our team has worked with non-profits of all sizes across many sectors and understands how to structure an event program around both a guest experience and a fundraising goal.',
     },
     {
-      heading: "What's included in non-profit event planning?",
-      body: "Our services include budget development, venue selection, sponsor management, auction procurement, ticketing systems, program design, AV production, volunteer coordination, and post-event reporting. We tailor our approach to your organization's size, mission, and fundraising goals.",
+      heading: 'Do you offer special rates for non-profit organizations?',
+      body: 'We recognize that non-profit budgets require more careful management than corporate ones. Contact our events team directly to discuss your organization and what you are planning. We will work with you honestly on what is possible within your budget.',
     },
     {
-      heading: 'Do you offer discounted rates for non-profits?',
-      body: "Yes! We're passionate about supporting non-profit missions and offer special pricing structures for charitable organizations. We also help identify cost-saving opportunities through in-kind donations, volunteer support, and strategic vendor partnerships.",
+      heading: 'Can the venue support live auctions and award presentations?',
+      body: 'Yes. The Grand Mezzanine is well suited for live auctions and award moments. Our production team can configure staging, sound, and lighting to support a program that moves between dinner service, a live auction, speaker presentations, and entertainment. The grand staircase also makes for a memorable moment during award presentations.',
     },
     {
-      heading: 'Can you help with virtual or hybrid fundraising events?',
-      body: "Absolutely! We've successfully produced virtual galas, hybrid auctions, and online giving campaigns that reach wider audiences and reduce overhead costs. We provide streaming production, virtual bid platforms, and engagement tools that make remote participation meaningful.",
+      heading: 'What is the capacity for a non-profit gala at 48 Wall Street?',
+      body: 'We accommodate seated gala dinners for up to 350 guests and cocktail receptions for up to 500 in the Grand Mezzanine. For smaller donor cultivation events or board receptions, the space can be configured to feel appropriately intimate. We have hosted non-profit events ranging from 75 to 450 guests in this venue.',
     },
   ],
   primaryCta: {
-    label: 'Request Proposal',
+    label: 'Request a Proposal',
     href: '/contact',
   },
   secondaryCta: {
-    label: 'View Photo Gallery',
+    label: 'View Event Gallery',
     href: '/gallery?tab=corporate',
   },
   services: [
     {
-      title: 'Galas & Fundraisers',
-      body: "Set the stage for a successful campaign in a setting that commands respect. Our Grand Mezzanine and ballroom offer the scale and elegance required for major fundraising galas. By hosting your supporters in one of the best Manhattan event spaces, you create an atmosphere of prestige that encourages giving and celebrates your organization's achievements in style.",
+      title: 'Charity Galas and Fundraising Dinners',
+      body: 'A fundraising gala at 48 Wall Street gives your donors an evening that reflects the importance of your cause. The 9,000 square foot Banking Hall seats up to 350 for a formal dinner and accommodates 500 for a cocktail reception. Our catering team builds menus that match the formality of the occasion, and our production team handles lighting and entertainment to keep the energy of the room where it needs to be for a successful evening.',
     },
     {
-      title: 'Donor Receptions',
-      body: 'Cultivate relationships with your most important contributors in an intimate and sophisticated setting. Whether it is a VIP cocktail hour or a seated dinner, our unique event space on Wall Street offers the privacy and ambiance needed for meaningful connection. Impress your board and benefactors with the architectural beauty of a true historic venue.',
+      title: 'Donor Receptions and Cultivation Events',
+      body: 'Maintaining relationships with major donors requires more than an annual gala. Smaller receptions and cultivation dinners give your leadership team and board members a chance to connect personally with the people who support your mission. The architectural character of 48 Wall Street creates a setting that feels worthy of those conversations without requiring a large production budget.',
     },
     {
-      title: 'Auctions & Awareness',
-      body: 'Engage your audience with an event flow designed for interaction. Our flexible floor plans are ideal for silent auctions, guest speakers, and awareness campaigns. As a versatile Financial District event venue, we provide the audio-visual infrastructure and logistical support to ensure your message is heard clearly, helping you drive your mission forward in the heart of NYC.',
+      title: 'Benefit Auctions and Awareness Evenings',
+      body: 'Our floor plan supports live and silent auction formats, with enough space to display auction items, maintain clear sightlines to the stage, and keep guests moving and engaged throughout the evening. Our AV team ensures that every bid call and every speaker moment lands clearly across the full room so the program drives results.',
     },
   ],
 };
 
 export const mitzvahData: EventShowcaseProps = {
-  title: 'Bar & Bat Mitzvah Venue on Wall Street',
-  subtitle: 'A Historic Downtown Venue for Your Milestone',
+  title: 'Bar and Bat Mitzvah Venue in New York City',
+  subtitle: 'A Historic Wall Street Setting for This Sacred Milestone',
   description:
-    "Honor this sacred milestone with a celebration that blends tradition and personal style in a sophisticated event venue. We create unforgettable experiences that reflect your family's values and your teen's personality. As a unique event space in Lower Manhattan, 48 Wall Street offers the perfect balance of grandeur and fun. From the hora to the final dance, host a seamless event in downtown Manhattan that turns a coming-of-age moment into the party of the year.",
+    'A Bar or Bat Mitzvah is one of the most meaningful celebrations a family hosts, and the venue should match that significance. At 48 Wall Street, families find a space that has enough grandeur for the occasion while being flexible enough to become genuinely personal. The 9,000 square foot Grand Mezzanine has hosted Bar and Bat Mitzvahs that range from elegant formal celebrations to high-energy themed parties, and our team has the experience to help you build an event that honors the tradition while reflecting who your teenager actually is. We coordinate every aspect including the service space, decor, catering, entertainment, and production so the day unfolds without you managing logistics.',
   images: [
     {
       src: '/gallery/bar/39.jpg',
@@ -2636,65 +2651,65 @@ export const mitzvahData: EventShowcaseProps = {
   tags: [
     'Bar Mitzvahs',
     'Bat Mitzvahs',
-    'Theme Design',
+    'Custom Themes',
     'Teen Entertainment',
-    'Custom Decor',
-    'Photo Experiences',
-    'Catering Services',
+    'Ceremony and Reception',
+    'Catering',
+    'Decor Design',
     'Full Planning',
   ],
   stats: [
-    { value: '300+', label: 'Celebrations' },
-    { value: '15K+', label: 'Happy Guests' },
-    { value: '4.9/5', label: 'Family Rating' },
+    { value: '1000+', label: 'Events Hosted' },
+    { value: '30+', label: 'Years of Experience' },
+    { value: '500', label: 'Guest Capacity' },
   ],
   info: [
     {
-      heading: 'How do you balance tradition with teen preferences?',
-      body: "We excel at creating celebrations that honor religious traditions while incorporating your teen's interests and style. We work closely with both parents and the bar/bat mitzvah to design an event that feels authentic, age-appropriate, and special—from the service to the party.",
+      heading: 'Can we hold the service and the reception at 48 Wall Street?',
+      body: 'Yes. The venue has distinct areas on separate levels that work well as a service space and a reception space. Your guests can move from one to the other without leaving the building, which simplifies logistics significantly for the family and keeps the energy of the day flowing naturally from ceremony into celebration.',
     },
     {
-      heading: 'What theme and design options are available?',
-      body: "The possibilities are endless! From sports and music themes to elegant soirées, we can bring any vision to life. Popular themes include Hollywood, travel, gaming, music festivals, and custom designs based on your teen's hobbies. We handle all decor, lighting, entertainment, and experiential elements.",
+      heading: 'What theme and decor options are available?',
+      body: 'Our production and decor team has built everything from sports-themed ballrooms to Hollywood glamour setups to classic elegant designs. Because we work in this space regularly, we know how to use the architecture to your advantage and layer your theme on top of it in a way that looks intentional rather than forced. We sit down with the family and the teen early in the planning process to get a real sense of their vision.',
     },
     {
-      heading: 'How do you keep teens and adults entertained?',
-      body: 'We create programming that engages all generations. This includes age-appropriate entertainment for teens (DJs, dancers, photo experiences, games), comfortable spaces for adults to socialize, and moments that bring everyone together. We carefully curate the energy and flow of the entire event.',
+      heading: 'How do you keep both teens and adults engaged throughout the night?',
+      body: 'The best Bar and Bat Mitzvah celebrations have a clear flow that gives each generation what they came for. We help design the programming, entertainment choices, and space configuration so that teens have a high-energy area to celebrate while adults have comfortable space to connect. There are also moments built specifically to bring everyone together.',
     },
     {
-      heading: "What's the typical planning timeline?",
-      body: "We recommend starting 12-18 months ahead, especially for popular dates. This ensures venue availability and allows time for custom design elements. However, we've successfully planned beautiful celebrations with shorter timelines when needed.",
+      heading: 'How far in advance should we book?',
+      body: 'Saturdays in spring and fall go quickly, especially if your date is tied to a religious calendar. We recommend reaching out at least 12 to 18 months before your target date. That also gives our team enough time to properly plan the decor and coordinate all vendors without rushing.',
     },
   ],
   primaryCta: {
-    label: 'Request Proposal',
+    label: 'Request a Proposal',
     href: '/contact',
   },
   secondaryCta: {
-    label: 'View Photo Gallery',
+    label: 'View Event Gallery',
     href: '/gallery?tab=bar',
   },
   services: [
     {
-      title: 'The Ultimate Celebration',
-      body: 'Transform the ballroom into a high-energy club atmosphere that teens love, while maintaining the elegance adults appreciate. As one of the best New York City event spaces, our venue offers high ceilings and state-of-the-art lighting capabilities to match any theme. Create a dynamic environment where generations come together to celebrate in a historic setting unlike any other.',
+      title: 'A Celebration Space Unlike Any Other in New York',
+      body: 'The Grand Mezzanine at 48 Wall Street gives a Bar or Bat Mitzvah a sense of occasion that a banquet hall simply cannot match. The 30-foot ceilings, marble staircase, and original chandeliers are a foundation that our decor team builds on to create something completely specific to your family. Whether you want sleek and modern or warm and traditional, the space can become either.',
     },
     {
-      title: 'Custom Themes & Decor',
-      body: 'Your vision is our blueprint. Whether you are planning a sports-themed bash or a chic sophisticated lounge, our unique Wall Street event space serves as a flexible canvas. The architectural details provide a stunning base that requires minimal dressing, yet allows for total transformation. Make your mark at an event venue that adapts perfectly to your creative concept.',
+      title: 'Custom Themes and Decor',
+      body: 'We have designed Bar and Bat Mitzvah decor around sports, travel, music, gaming, film, and nearly every other theme imaginable. The architectural bones of the 1927 banking hall provide a dramatic base that makes themed decor look more polished and deliberate. Our in-house decor team maintains an inventory of furniture, props, and lighting equipment that can transform the room around whatever vision the family has in mind.',
     },
     {
-      title: 'Ceremony & Reception',
-      body: 'Simplify the day by hosting both the service and the party under one roof. 48 Wall Street offers distinct areas that can be separated for the religious service and the reception. Enjoy the convenience of an event venue where guests can move seamlessly from a meaningful service to a lavish cocktail hour without ever leaving the building.',
+      title: 'Ceremony and Reception Under One Roof',
+      body: 'Hosting the service and the party at 48 Wall Street means the family is not splitting attention between two different venues, coordinating transportation, or worrying about timing. The Concourse Level works well as a ceremony space while the Grand Mezzanine handles the reception, and guests move between the two with ease. It makes for a day that feels cohesive from start to finish.',
     },
   ],
 };
 
 export const holidayData: EventShowcaseProps = {
-  title: 'Holiday Event Venue on Wall Street',
-  subtitle: 'Seasonal Celebrations in a Historic Downtown Landmark',
+  title: 'Corporate Holiday Party Venue on Wall Street',
+  subtitle: 'End the Year in a Setting That Actually Feels Special',
   description:
-    'Transform the season into magical memories at the premier holiday event venue in Lower Manhattan. From spirited corporate holiday parties to grand social gatherings, 48 Wall Street infuses every event with festive elegance. Celebrate in style, where creative themes and meticulous attention to detail capture the joy of the season, ensuring your end-of-year celebration in downtown NYC is as impressive as the year itself.',
+    'Most corporate holiday parties feel like an afterthought. The right venue changes that. At 48 Wall Street, the 1920s banking hall with its crystal chandeliers, gold accents, and 30-foot ceilings does most of the decorating before your team even walks in the door. We have hosted hundreds of company holiday parties and end-of-year galas in the Financial District, and we know exactly how to make a large group feel like they are somewhere worth celebrating. Our team handles decor, catering, entertainment, and production so your company gets credit for throwing the best party of the year.',
   images: [
     {
       src: '/gallery/holiday/54.jpg',
@@ -2722,67 +2737,67 @@ export const holidayData: EventShowcaseProps = {
     },
   ],
   tags: [
-    'Corporate Parties',
-    'Holiday Galas',
+    'Corporate Holiday Parties',
+    'End-of-Year Galas',
+    'Client Receptions',
+    'Company Celebrations',
+    'Themed Decor',
+    'Live Entertainment',
+    'Holiday Catering',
     'New Year Events',
-    'Winter Wonderland',
-    'Seasonal Themes',
-    'Gift Programs',
-    'Entertainment',
-    'Festive Catering',
   ],
   stats: [
-    { value: '600+', label: 'Holiday Events' },
-    { value: '100K+', label: 'Guests Served' },
-    { value: '98%', label: 'Rebook Rate' },
+    { value: '1000+', label: 'Events Hosted' },
+    { value: '30+', label: 'Years of Experience' },
+    { value: '500', label: 'Guest Capacity' },
   ],
   info: [
     {
-      heading: 'What holiday events do you specialize in?',
-      body: "We plan celebrations for all major holidays including Christmas parties, Hanukkah celebrations, New Year's Eve galas, Thanksgiving dinners, Halloween events, and more. We also create custom seasonal experiences for corporate year-end parties, family reunions, and community gatherings.",
+      heading: 'When should we book a holiday party at 48 Wall Street?',
+      body: 'November and December book up faster than any other time of year. If your company event is tied to a specific date in that window, we recommend reaching out before summer to lock in your preferred evening. For spring or fall holiday events there is generally more flexibility, but we still suggest contacting us as early as possible.',
     },
     {
-      heading: 'How early should we book for holiday events?',
-      body: 'Holiday season is our busiest time! We recommend booking by early summer (June-August) for winter holiday events to secure your preferred venue and vendors. For Thanksgiving and Halloween, booking 3-4 months ahead is ideal.',
+      heading: 'Can you handle the decor and entertainment as well?',
+      body: 'Yes. Our in-house production team MME Worldwide coordinates themed decor, lighting, and entertainment so you are not managing multiple vendors. We can build out a full holiday atmosphere using the natural grandeur of the banking hall as a foundation, then layer in your specific vision on top of it.',
     },
     {
-      heading: 'Can you incorporate company branding into holiday events?',
-      body: 'Absolutely! We seamlessly blend holiday themes with corporate branding for professional yet festive experiences. This includes custom decor elements, branded gift programs, company colors in the design, and recognition moments that celebrate your team and business achievements.',
+      heading: 'How many people can attend a holiday party at 48 Wall Street?',
+      body: 'The Grand Mezzanine accommodates up to 500 guests for a cocktail style party and up to 350 for a seated dinner. If your event is smaller we can configure the space to feel appropriately intimate rather than oversized. We have hosted company parties of 80 people and company galas of 450 in the same room.',
     },
     {
-      heading: 'What makes your holiday events special?',
-      body: 'We go beyond typical holiday decorations to create immersive seasonal experiences. Think live ice sculptures, hot chocolate bars, carolers, gift wrapping stations, photo experiences with Santa, interactive activities, and unexpected touches that make your event truly memorable.',
+      heading: 'Can you incorporate company branding into the event design?',
+      body: 'Absolutely. We work with companies that want their logo and brand colors woven into the decor, and we can create branded signage, custom lighting projections, and tailored food and beverage programs that reflect your company identity. The goal is to make the event feel genuinely connected to your team.',
     },
   ],
   primaryCta: {
-    label: 'Request Proposal',
+    label: 'Request a Proposal',
     href: '/contact',
   },
   secondaryCta: {
-    label: 'View Photo Gallery',
+    label: 'View Holiday Gallery',
     href: '/gallery?tab=holiday',
   },
   services: [
     {
       title: 'Corporate Holiday Parties',
-      body: "Toast to the year's success in a corporate event space defined by luxury. Whether it is an employee appreciation night or a client reception, our ballroom offers a sophisticated setting for business celebrations. Secure a holiday event venue on Wall Street that signals prestige and gratitude to your team and partners.",
+      body: 'The end-of-year party is one of the few times the entire company gathers in one room. It deserves a venue that reflects what the team accomplished. The Banking Hall at 48 Wall Street seats up to 350 for a formal dinner or opens up for 500 at a cocktail reception, with the kind of architectural backdrop that makes the evening feel like an event rather than an obligation.',
     },
     {
-      title: 'Historic Holiday Charm',
-      body: 'Escape the ordinary and embrace the warmth of this historic NYC venue during the holidays. The Grand Mezzanine and banking hall provide a naturally festive backdrop with gold accents and soaring architecture. Add in the perfect touch of holiday decor and your celebration will sparkle with glamour and timeless style.',
+      title: 'A Venue That Sets the Mood',
+      body: 'During the holidays, the Grand Mezzanine at 48 Wall Street practically decorates itself. The crystal chandeliers, marble detailing, and warm lighting of the 1920s banking hall create a seasonal atmosphere that most venues spend thousands trying to manufacture. We build on that natural elegance with custom decor, themed lighting, and entertainment that fits your company culture.',
     },
     {
-      title: 'Grand Seasonal Galas',
-      body: 'For large-scale festivities, you need the right event space that can handle the crowd. Our venue comfortably accommodates hundreds of guests for cocktails and dancing. Centrally located in downtown NYC, we are the ideal holiday event venue in Lower Manhattan for gathering diverse groups from across the city to celebrate together.',
+      title: 'End-of-Year Galas',
+      body: 'For companies that want to close the year with something genuinely impressive, a seated gala at 48 Wall Street delivers. We coordinate every element including multi-course catering, live entertainment, awards or recognition moments, and full production so your leadership team can spend the evening celebrating with the rest of the company instead of managing the event.',
     },
   ],
 };
 
 export const filmtvData: EventShowcaseProps = {
-  title: 'Film Shoots, Holding & Industry Events',
-  subtitle: 'A Camera-Ready Historic Downtown Venue',
+  title: 'Film Location and Production Venue in NYC',
+  subtitle: 'A Camera-Ready Historic Building in the Financial District',
   description:
-    'From major motion pictures to television series, 48 Wall Street serves as a versatile historic NYC venue for the entertainment industry. Whether you require a historic event space in Lower Manhattan for an on-location shoot, a spacious holding area for cast and crew, or a stunning setting for a wrap party, our location delivers. We understand the logistical demands of production and offer the flexibility and discretion required for a seamless experience in the Financial District.',
+    'Productions that need authentic New York architecture come to 48 Wall Street because there is very little elsewhere in the city that replicates what this building looks like on camera. The 1927 banking hall with its 30-foot ceilings, marble columns, grand staircase, and original detailing reads as classic New York financial power, the kind of setting that period pieces, prestige dramas, and commercial productions pay significant location fees to find. We accommodate on-location filming, holding space for cast and crew, and industry events including wrap parties, premieres, and screenings. Our team understands production schedules and handles access, logistics, and coordination with the discretion your project requires.',
   images: [
     {
       src: '/gallery/film/ (1).jpg',
@@ -2810,58 +2825,58 @@ export const filmtvData: EventShowcaseProps = {
     },
   ],
   tags: [
-    'Red Carpet Premieres',
+    'Film Location Rentals',
+    'TV Production',
+    'Holding Space',
     'Wrap Parties',
+    'Premieres',
     'Screening Events',
-    'Industry Showcases',
-    'Cast & Crew Events',
-    'Awards Shows',
-    'Press Junkets',
-    'VIP Hospitality',
+    'Commercial Shoots',
+    'Photo Shoots',
   ],
   stats: [
-    { value: '150+', label: 'Productions' },
-    { value: '50+', label: 'Premieres' },
-    { value: '25K+', label: 'VIP Guests' },
+    { value: '1000+', label: 'Events Hosted' },
+    { value: '30+', label: 'Years of Experience' },
+    { value: '9000', label: 'Sq Ft on Main Level' },
   ],
   info: [
     {
-      heading: 'What makes film and TV events unique?',
-      body: 'Entertainment industry events require special expertise in managing high-profile guests, media coordination, security protocols, and creating buzz-worthy moments. We understand the nuances of talent management, press relations, and creating experiences that generate excitement while maintaining professionalism.',
+      heading: 'What kinds of productions has 48 Wall Street been used for?',
+      body: 'The venue has been used for film and television productions, commercial shoots, photo shoots, and music video productions. The 1920s banking hall architecture is particularly sought after for period pieces, financial industry settings, prestige drama sequences, and any production that needs a location that reads as authentically New York.',
     },
     {
-      heading: 'How do you handle red carpet and media logistics?',
-      body: 'We coordinate every aspect of media events including step-and-repeat setup, photographer positioning, press line flow, talent escorts, interview coordination, and live streaming. Our team ensures smooth operations while maximizing media coverage and maintaining VIP guest comfort.',
+      heading: 'Is there space for holding, wardrobe, and hair and makeup?',
+      body: 'Yes. The Concourse Level provides a large separate space below the main hall that works well for production base camp operations including wardrobe, hair and makeup stations, talent holding, and catering. This keeps the filming area clean and organized while giving your crew everything they need in a central location.',
     },
     {
-      heading: 'Can you manage confidential or embargoed events?',
-      body: "Absolutely. We're experienced in handling sensitive projects with strict NDAs, embargoed content, and confidential guest lists. Our team maintains the highest levels of discretion and implements security measures appropriate for high-profile entertainment industry gatherings.",
+      heading: 'Can 48 Wall Street be used for wrap parties and premieres?',
+      body: 'The venue works beautifully for industry events. The grand staircase, high ceilings, and dramatic architecture create the right atmosphere for a premiere or a wrap celebration. We handle catering, lighting, and event production so the crew gets a proper send-off in a space that matches the scale of what they produced.',
     },
     {
-      heading: 'What venues do you work with?',
-      body: "We have relationships with iconic entertainment venues including theaters, soundstages, Hollywood landmarks, rooftop spaces, and exclusive private venues. Whether you need an intimate screening room or a large-scale premiere venue, we'll find the perfect setting for your production celebration.",
+      heading: 'How do I inquire about using the venue for a film or photo shoot?',
+      body: 'Contact our events team with your project details including dates, duration, crew size, and what the space will be used for. We will put together a proposal based on your production needs and timeline.',
     },
   ],
   primaryCta: {
-    label: 'Request Proposal',
+    label: 'Request a Proposal',
     href: '/contact',
   },
   secondaryCta: {
-    label: 'View Photo Gallery',
+    label: 'View Film Gallery',
     href: '/gallery?tab=fashion',
   },
   services: [
     {
-      title: 'On-Location Filming',
-      body: 'Capture the essence of Old New York in a historic downtown venue that radiates authenticity. Our 1920s banking hall features soaring ceilings, marble detailing, and period architecture that serves as a turnkey set for period pieces or high-stakes dramas. It is a unique event space on Wall Street that provides high production value and a cinematic aesthetic ready for the camera.',
+      title: 'On-Location Film and TV Production',
+      body: 'The Banking Hall at 48 Wall Street gives productions immediate access to 9,000 square feet of authentic 1920s New York architecture without the need to build a set. The 30-foot ceilings, marble columns, Palladian windows, and grand staircase provide a level of production value that is genuinely difficult to find anywhere else in downtown Manhattan. Our team coordinates access and logistics around your production schedule.',
     },
     {
-      title: 'Holding & Catering',
-      body: 'Production requires space, and 48 Wall Street offers ample square footage to support your crew. Our space is perfect as a central base camp, featuring designated areas for wardrobe, hair and makeup, and catering. We provide a comfortable, climate-controlled environment that keeps your talent and team ready for action right in the heart of the Financial District.',
+      title: 'Holding Space and Production Support',
+      body: 'The Concourse Level provides a dedicated, climate-controlled base camp area separate from the filming location. It can be configured for talent holding, wardrobe, hair and makeup, and crew catering all in the same building as your set. Keeping the entire production in one location streamlines the day and reduces turnaround time between setups.',
     },
     {
-      title: 'Premieres & Wrap Parties',
-      body: 'When production wraps, celebrate in style. We are a premier Financial District event venue perfectly suited for red carpet premieres, screenings, and cast parties. With a grand entrance and flexible floor plan, we transform from a working set into a high-end social club, offering one of the best NYC event spaces to toast the success of your project.',
+      title: 'Wrap Parties, Premieres, and Industry Events',
+      body: 'When a production is finished, the team deserves a celebration worth the work they put in. The Banking Hall at 48 Wall Street is as impressive for a wrap party as it is for a formal premiere. We configure the space, coordinate catering and entertainment, and handle the event production so your production team can actually enjoy the evening.',
     },
   ],
 };
@@ -2984,12 +2999,12 @@ export const items = [
 ];
 
 export const eventProductionData = {
-  title: 'Event Production Services NYC',
-  subtitle: 'Spectacular Events at 48 Wall Street',
+  title: 'Event Production Services at 48 Wall Street',
+  subtitle: 'Full Service Production in a Historic NYC Venue',
   heroImage: '/videos/ep.mp4',
-  leadTitle: 'Bringing Your Vision to Life',
+  leadTitle: 'Everything Your Event Needs, Under One Roof',
   leadDescription:
-    'MME Worldwide delivers full event production services internally, making us your premier resource when planning your next experience in this historic downtown venue. By providing clients with a turn-key solution, we satisfy all production needs under one roof—from Audio Visual and Staging to Lighting, Decor, and Rentals. As a self-contained event space, our seamless orchestration of services allows us to produce an event that exceeds expectations, ensuring your event in Lower Manhattan is flawless.',
+    'Most event venues require you to hire an outside production company, coordinate their access, manage the relationship between them and the venue, and hope everything works together on the day. At 48 Wall Street, our production partner MME Worldwide operates in-house. They know the building, they know the electrical capacity, they know how the acoustics work, and they have built everything from runway stages to full conference productions in this space. That experience translates directly into cleaner execution and fewer surprises. We offer a complete turn-key solution covering AV, staging, lighting, custom fabrication, decor, and entertainment, all managed by one team in one building.',
   sections: [
     {
       id: 'design',
@@ -3093,12 +3108,12 @@ export const eventProductionData = {
 };
 
 export const eventCateringData = {
-  title: 'Event Catering Services on Wall Street',
-  subtitle: 'A Signature Dining Experience in a Historic Setting',
-  leadTitle: 'Inspired Gourmet Catering',
-  heroImage: '/videos/ec.mp4',
+  title: ‘Event Catering at 48 Wall Street’,
+  subtitle: ‘Thoughtful Dining in a Historic Financial District Setting’,
+  leadTitle: ‘Food That Matches the Occasion’,
+  heroImage: ‘/videos/ec.mp4’,
   leadDescription:
-    'Tardi’s Catering is a creative food studio that delivers a first-class dining experience for guests at our historic downtown venue. With over 30 years of experience, Tardi’s is designed to deliver the very best in hospitality for both Lower Manhattan corporate events and private social celebrations. Developing an exciting food experience requires more than just satisfying an appetite; the culinary team specializes in designing menus that use the freshest ingredients, accompanied by decor accents that complement our unique event space. Whether for a seated dinner, buffet, or globally inspired stations, we bring your creative vision to life in the heart of the Financial District.',
+    ‘Good food is not a detail at an event. It is part of what people remember. At 48 Wall Street, our catering partner brings over 30 years of experience delivering exceptional dining for corporate events, galas, weddings, and private celebrations in Lower Manhattan. The culinary team builds menus around your event type, guest count, and preferences, whether that means a formal multi-course seated dinner, a generous cocktail reception with passed hors d\’oeuvres, an energized buffet lunch for a full-day conference, or globally inspired food stations for an immersive evening. Service staff are trained to manage timing and presentation within the specific context of this historic venue so that the dining experience feels seamless rather than catered.’,
   sections: [
     {
       id: 'seated-dinner',

@@ -19,23 +19,31 @@ export default function ParallaxSection({
   const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
+    let rafId: number;
+
     const handleScroll = () => {
-      if (!sectionRef.current) return;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!sectionRef.current) return;
 
-      const rect = sectionRef.current.getBoundingClientRect();
-      const sectionTop = rect.top;
-      const sectionHeight = rect.height;
-      const windowHeight = window.innerHeight;
+        const rect = sectionRef.current.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const windowHeight = window.innerHeight;
 
-      const scrollProgress =
-        (windowHeight - sectionTop) / (windowHeight + sectionHeight);
-      setScrollPosition(Math.max(0, Math.min(1, scrollProgress)));
+        const scrollProgress =
+          (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+        setScrollPosition(Math.max(0, Math.min(1, scrollProgress)));
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
@@ -47,7 +55,7 @@ export default function ParallaxSection({
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-black/30" />

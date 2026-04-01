@@ -1,9 +1,9 @@
 import SpaceDetails from '@/components/SpaceDetails';
 
 export const metadata = {
-  title: 'Concourse Level | 48 Wall Street',
+  title: 'Concourse Level | Breakout Rooms and Meeting Space NYC | 48 Wall Street',
   description:
-    'A refined lower-level retreat offering intimate elegance for cocktail receptions, private dinners, and exclusive gatherings at 48 Wall Street.',
+    'The Concourse Level at 48 Wall Street offers 3,000 sq ft of flexible meeting and event space with 6 breakout rooms. Ideal for conferences, workshops, and pre-function receptions in the Financial District.',
 };
 
 export default function ConcourseLevelPage() {
@@ -12,7 +12,7 @@ export default function ConcourseLevelPage() {
       levelLabel="02"
       title="Concourse"
       subtitle="Level"
-      description="Situated on the lower level, the concourse is designed to hold meetings, breakouts, classes, and events. The space can hold up to 200 guests and can be divided into six smaller rooms for breakout sessions. This level can also be used to host cocktail hours for clients utilizing the Grand Mezzanine for their reception."
+      description="The Concourse Level sits directly below the Grand Mezzanine Banking Hall and gives 48 Wall Street a versatility that most single-floor venues cannot match. At 3,000 square feet with 14-foot ceilings, it accommodates up to 200 guests for a seated event or reception and divides into six separate breakout rooms for concurrent sessions and workshops. For full-day conferences, the Concourse handles parallel programming while the Grand Mezzanine serves the main stage. For weddings and galas, it works as a pre-function cocktail space or a private dining room. The two levels connect via the grand marble staircase, creating a natural and elegant flow for guests moving between them."
       images={[
         '/venue/2.jpg',
         '/venue/11.jpg',

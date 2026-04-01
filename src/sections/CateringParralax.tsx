@@ -11,29 +11,37 @@ export default function CateringSection() {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
+    let rafId: number;
+
     const handleScroll = () => {
-      if (!sectionRef.current) return;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!sectionRef.current) return;
 
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const sectionTop = rect.top;
-      const sectionHeight = rect.height;
+        const rect = sectionRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
 
-      const progress = Math.max(
-        0,
-        Math.min(
-          1,
-          (windowHeight - sectionTop) / (windowHeight + sectionHeight)
-        )
-      );
+        const progress = Math.max(
+          0,
+          Math.min(
+            1,
+            (windowHeight - sectionTop) / (windowHeight + sectionHeight)
+          )
+        );
 
-      setScrollProgress(progress);
+        setScrollProgress(progress);
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {

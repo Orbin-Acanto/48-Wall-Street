@@ -15,11 +15,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      'Historic Lower Manhattan Venue | Corporate & Weddings | 48 Wall St',
+      'Historic Event Venue NYC | Financial District | 48 Wall Street',
     template: '%s | 48 Wall Street NYC',
   },
   description:
-    'Welcome to 48 Wall Street. The premier historic downtown venue in the Financial District. A unique event space in Lower Manhattan for corporate events, weddings, and fashion shows.',
+    '48 Wall Street is a premier historic event venue in the Financial District of Lower Manhattan. The 1927 Banking Hall offers 12,500 sq ft for corporate events, conferences, weddings, galas, and private celebrations. Up to 500 guests.',
   keywords:
     '48 Wall Street, NYC event venue, Manhattan event space, Financial District venue, historic venue NYC, corporate event space Manhattan, wedding venue NYC, Bar Mitzvah venue, Bat Mitzvah venue, Grand Mezzanine, Wall Street events, Lower Manhattan venue, historic bank building venue, event venue with catering, Financial District wedding, corporate meeting space NYC, Bank of New York building, 1920s architecture venue, Manhattan private events, New York event venue',
   authors: [{ name: '48 Wall Street Events' }],
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     'geo.placename': 'New York City',
     'geo.position': '40.707421;-74.009224',
     ICBM: '40.707421, -74.009224',
-    'business:contact_data:street_address': '48 Wall Street, Lobby 2',
+    'business:contact_data:street_address': '48 Wall Street, Lobby 1',
     'business:contact_data:locality': 'New York',
     'business:contact_data:region': 'NY',
     'business:contact_data:postal_code': '10005',
@@ -95,6 +95,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Preconnect to Google Fonts to eliminate render-blocking latency */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Non-render-blocking font load with font-display:swap built in */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

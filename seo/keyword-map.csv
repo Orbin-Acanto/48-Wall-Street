@@ -1,0 +1,96 @@
+Keyword,Avg Monthly Searches,Group,Search Intent,Page Type,Target URL,Title Idea,Status,Notes
+"corporate event venue nyc","22,200",Main - Corporate,Transactional,Event Type Page,/events/corporate,"Corporate Event Venue Wall Street | Conference Space Financial District NYC",Active,Already set as page title
+"venues for corporate events","22,200",Supporting - Corporate,Transactional,Event Type Page,/events/corporate,"Corporate Event Venue Wall Street | Conference Space Financial District NYC",Active,High volume — reinforce in H1 and body copy
+"corporate party venue","2,400",Supporting - Corporate,Transactional,Event Type Page,/events/corporate,"Corporate Event Venue Wall Street | Conference Space Financial District NYC",Active,Use in first paragraph
+"corporate party venues","2,400",Supporting - Corporate,Transactional,Event Type Page,/events/corporate,"Corporate Event Venue Wall Street | Conference Space Financial District NYC",Active,
+"venues for corporate parties","2,400",Supporting - Corporate,Transactional,Event Type Page,/events/corporate,"Corporate Event Venue Wall Street | Conference Space Financial District NYC",Active,
+"corporate conference venues","2,400",Supporting - Corporate,Transactional,Conferences Page,/events/conferences,"Corporate Conference Venue NYC | Meetings & Events | Financial District",Active,
+"conference venue rental","8,100",Main - Conferences,Transactional,Event Type Page,/events/conferences,"Conference Venue NYC | Meeting Space Rental | 48 Wall Street Financial District",Active,High-value transactional — add to meta description
+"conferences venues","8,100",Supporting - Conferences,Transactional,Event Type Page,/events/conferences,"Conference Venue NYC | Meeting Space Rental | 48 Wall Street Financial District",Active,
+"venue for conference","8,100",Supporting - Conferences,Transactional,Event Type Page,/events/conferences,"Conference Venue NYC | Meeting Space Rental | 48 Wall Street Financial District",Active,
+"meeting venues","18,100",Supporting - Conferences,Transactional,Event Type Page,/events/conferences,"Conference Venue NYC | Meeting Space Rental | 48 Wall Street Financial District",Active,
+"conference centers near me","5,400",Supporting - Conferences,Transactional,Event Type Page,/events/conferences,"Conference Venue NYC | Meeting Space Rental | 48 Wall Street Financial District",Active,
+"meeting spaces","5,400",Supporting - Conferences,Transactional,Event Type Page,/events/conferences,"Conference Venue NYC | Meeting Space Rental | 48 Wall Street Financial District",Active,
+"meeting space rentals near me","5,400",Supporting - Conferences,Transactional,Event Type Page,/events/conferences,"Conference Venue NYC | Meeting Space Rental | 48 Wall Street Financial District",Active,
+"holiday party venue nyc","N/A",Main - Holiday,Transactional,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,In page keywords — reinforce in body
+"corporate holiday party nyc","N/A",Supporting - Holiday,Transactional,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,
+"office holiday party nyc","N/A",Supporting - Holiday,Transactional,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,
+"company holiday event venue","N/A",Supporting - Holiday,Transactional,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,
+"christmas party venue nyc","N/A",Supporting - Holiday,Transactional,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,Seasonal — boost Oct-Dec
+"end of year party venue nyc","N/A",Supporting - Holiday,Transactional,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,
+"holiday gala venue","N/A",Question - Holiday,Informational,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,
+"non-profit event venue nyc","N/A",Main - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,Keywords currently set to wedding keywords — MUST FIX
+"fundraising gala venue nyc","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,Fix keywords in layout.tsx
+"charity event venue manhattan","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,
+"nonprofit gala space nyc","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,
+"fundraiser venue financial district","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,
+"bar mitzvah venue nyc","N/A",Main - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
+"bat mitzvah venue manhattan","N/A",Supporting - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
+"bar mitzvah venue financial district","N/A",Supporting - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
+"jewish celebration venue nyc","N/A",Supporting - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
+"bar mitzvah venue with catering nyc","N/A",Supporting - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
+"wedding venue nyc","9,900",Main - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,Keywords currently generic/mixed — MUST FIX
+"wedding venue new york","9,900",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
+"venues wedding","450,000",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,Highest volume keyword in list — reinforce
+"wedding nyc","1,600",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
+"wedding banquet hall","2,900",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
+"ballrooms for weddings","1,300",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
+"rent venue for wedding","9,900",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
+"book a venue for wedding","2,400",Transactional - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
+"wedding venue booking","2,400",Transactional - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
+"fashion show venue nyc","N/A",Main - Fashion,Transactional,Event Type Page,/events/fashion-shows,"NYC Fashion Show Event Space | New York Fashion Week Venue Wall Street",Active,
+"runway venue manhattan","N/A",Supporting - Fashion,Transactional,Event Type Page,/events/fashion-shows,"NYC Fashion Show Event Space | New York Fashion Week Venue Wall Street",Active,
+"fashion week venue nyc","N/A",Supporting - Fashion,Transactional,Event Type Page,/events/fashion-shows,"NYC Fashion Show Event Space | New York Fashion Week Venue Wall Street",Active,
+"brand launch venue nyc","N/A",Supporting - Fashion,Transactional,Event Type Page,/events/fashion-shows,"NYC Fashion Show Event Space | New York Fashion Week Venue Wall Street",Active,
+"trunk show venue nyc","N/A",Supporting - Fashion,Transactional,Event Type Page,/events/fashion-shows,"NYC Fashion Show Event Space | New York Fashion Week Venue Wall Street",Active,
+"nyc film location","N/A",Main - Film,Transactional,Event Type Page,/events/film-shoots,"Film Shoot Location NYC | Historic Venue & Holding Space Lower Manhattan",Active,
+"manhattan filming location","N/A",Supporting - Film,Transactional,Event Type Page,/events/film-shoots,"Film Shoot Location NYC | Historic Venue & Holding Space Lower Manhattan",Active,
+"historic film set nyc","N/A",Supporting - Film,Transactional,Event Type Page,/events/film-shoots,"Film Shoot Location NYC | Historic Venue & Holding Space Lower Manhattan",Active,
+"space for photoshoot","8,100",Supporting - Film,Transactional,Event Type Page,/events/film-shoots,"Film Shoot Location NYC | Historic Venue & Holding Space Lower Manhattan",Active,8.1k/mo — use in meta description
+"commercial shoot location nyc","N/A",Supporting - Film,Transactional,Event Type Page,/events/film-shoots,"Film Shoot Location NYC | Historic Venue & Holding Space Lower Manhattan",Active,
+"event venue nyc","135,000",Main - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,Highest priority homepage keyword
+"event venue","135,000",Main - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"event venues","135,000",Main - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"event space nyc","40,500",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"event spaces nyc","40,500",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"venues nyc","2,900",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"venues in new york","2,900",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"private events nyc","3,600",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"private event venue manhattan","N/A",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"historic venue nyc","N/A",Supporting - Homepage,Informational,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"grand venue nyc","4,400",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"nyc halls","74,000",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,High volume — use in homepage copy
+"the grand ballroom nyc","2,900",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,Competitor brand — be in same SERP
+"ballrooms near me","6,600",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,Near-me searches — reinforce location schema
+"venue rentals near me","14,800",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"venue events","135,000",Supporting - Homepage,Transactional,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"places to host events","2,900",Informational - Homepage,Informational,Homepage,/,"Historic Event Venue NYC | Financial District | 48 Wall Street",Active,
+"grand mezzanine banking hall","N/A",Main - Spaces,Informational,Spaces Page,/spaces/grand-mezzanine,"Grand Mezzanine Banking Hall | 9000 Sq Ft Historic Event Space NYC",Active,
+"event space financial district","N/A",Supporting - Spaces,Transactional,Spaces Page,/spaces/grand-mezzanine,"Grand Mezzanine Banking Hall | 9000 Sq Ft Historic Event Space NYC",Active,
+"large event space nyc","N/A",Supporting - Spaces,Transactional,Spaces Page,/spaces/grand-mezzanine,"Grand Mezzanine Banking Hall | 9000 Sq Ft Historic Event Space NYC",Active,
+"large venues near me","1,600",Supporting - Spaces,Transactional,Spaces Page,/spaces/grand-mezzanine,"Grand Mezzanine Banking Hall | 9000 Sq Ft Historic Event Space NYC",Active,
+"ballroom rental near me","1,300",Supporting - Spaces,Transactional,Spaces Page,/spaces/grand-mezzanine,"Grand Mezzanine Banking Hall | 9000 Sq Ft Historic Event Space NYC",Active,
+"hotel ballroom nyc","1,600",Supporting - Spaces,Transactional,Spaces Page,/spaces/grand-mezzanine,"Grand Mezzanine Banking Hall | 9000 Sq Ft Historic Event Space NYC",Active,
+"banquet hall rental near me","9,900",Supporting - Spaces,Transactional,Spaces Page,/spaces/grand-mezzanine,"Grand Mezzanine Banking Hall | 9000 Sq Ft Historic Event Space NYC",Active,
+"halls banquet nyc","60,500",Supporting - Spaces,Transactional,Spaces Page,/spaces/grand-mezzanine,"Grand Mezzanine Banking Hall | 9000 Sq Ft Historic Event Space NYC",Active,
+"event catering nyc","N/A",Main - Catering,Transactional,Services Page,/services/catering,"Event Catering Services Wall Street | Corporate Dining & Galas NYC",Active,
+"corporate catering manhattan","N/A",Supporting - Catering,Transactional,Services Page,/services/catering,"Event Catering Services Wall Street | Corporate Dining & Galas NYC",Active,
+"wedding catering nyc","N/A",Supporting - Catering,Transactional,Services Page,/services/catering,"Event Catering Services Wall Street | Corporate Dining & Galas NYC",Active,
+"event vendors near me","5,400",Supporting - Catering,Transactional,Services Page,/services/catering,"Event Catering Services Wall Street | Corporate Dining & Galas NYC",Active,
+"event production nyc","N/A",Main - Production,Transactional,Services Page,/services/production,"Event Production Services NYC | Full Service Venue Wall Street",Active,
+"av production venue nyc","N/A",Supporting - Production,Transactional,Services Page,/services/production,"Event Production Services NYC | Full Service Venue Wall Street",Active,
+"lighting design event nyc","N/A",Supporting - Production,Transactional,Services Page,/services/production,"Event Production Services NYC | Full Service Venue Wall Street",Active,
+"event rentals nyc","N/A",Main - Rentals,Transactional,Services Page,/services/rentals,"Event Equipment & Furniture Rentals NYC | 48 Wall Street",Active,
+"studio space for rent nyc","2,900",Supporting - Rentals,Transactional,Services Page,/services/rentals,"Event Equipment & Furniture Rentals NYC | 48 Wall Street",Active,
+"rental of venue nyc","9,900",Supporting - Rentals,Transactional,Services Page,/services/rentals,"Event Equipment & Furniture Rentals NYC | 48 Wall Street",Active,
+"48 wall street nyc","N/A",Brand,Navigational,Homepage,/,"48 Wall Street NYC | Historic Event Venue Financial District",Active,
+"48 wall street events","N/A",Brand,Navigational,Homepage,/,"48 Wall Street NYC | Historic Event Venue Financial District",Active,
+"48wallnyc","N/A",Brand,Navigational,Homepage,/,"48 Wall Street NYC | Historic Event Venue Financial District",Active,
+"48 wall street venue","N/A",Brand,Navigational,Homepage,/,"48 Wall Street NYC | Historic Event Venue Financial District",Active,
+"48 wall street financial district","N/A",Brand,Navigational,Location Page,/location,"48 Wall Street | Financial District NYC Location & Directions",Active,
+"how much does an event venue cost in nyc","N/A",Question,Informational,FAQ Page,/faq,"How Much Does an Event Venue Cost in NYC? | 48 Wall Street FAQ",Needs Page,No FAQ page exists — use existing FAQ schema or add page
+"how to choose a wedding venue in nyc","N/A",Question,Informational,FAQ Page,/faq,"How to Choose a Wedding Venue in NYC | 48 Wall Street",Needs Page,
+"what to look for in a corporate event venue","N/A",Question,Informational,FAQ Page,/faq,"What to Look for in a Corporate Event Venue NYC | 48 Wall Street",Needs Page,
+"how many guests can 48 wall street hold","N/A",Question,Informational,FAQ Page,/faq,"Venue Capacity & FAQ | 48 Wall Street NYC",Needs Page,
+"does 48 wall street have catering","N/A",Question,Informational,FAQ Page,/faq,"Catering & Services FAQ | 48 Wall Street NYC",Needs Page,
+"best event venues in financial district","N/A",Question,Informational,FAQ Page,/faq,"Best Event Venues in the Financial District NYC",Needs Page,Could be a blog post

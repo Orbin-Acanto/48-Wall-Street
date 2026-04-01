@@ -6,19 +6,20 @@ export const metadata: Metadata = {
   description:
     'Celebrate your love at 48 Wall Street. A stunning historic downtown venue and premier wedding space on Wall Street, offering timeless elegance for ceremonies and receptions.',
   keywords:
-    'NYC corporate events, Manhattan wedding venue, Bar Mitzvah venue NYC, Bat Mitzvah Financial District, conference venue Manhattan, fashion show space NYC, film shoot location, holiday party venue, nonprofit gala space, corporate holiday party NYC',
+    'wedding venue NYC, Manhattan wedding venue, historic wedding venue NYC, Financial District wedding, elegant wedding space Manhattan, grand wedding venue NYC, wedding venue with history, Lower Manhattan wedding, Wall Street wedding venue, wedding venue with marble staircase, 1920s wedding venue, wedding reception venue NYC, Manhattan wedding ceremony, wedding venue with catering NYC, unique wedding venue Manhattan, rent venue for wedding NYC, ballrooms for weddings NYC, wedding banquet hall Manhattan',
   openGraph: {
-    title: 'Events at 48 Wall Street NYC - Historic Venue for Every Occasion',
+    title:
+      'Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan | 48 Wall Street',
     description:
-      "Versatile historic venue for corporate events, weddings, Bar/Bat Mitzvahs, fashion shows, film productions, and celebrations in Manhattan's Financial District.",
-    url: 'https://www.48wallnyc.com/events',
+      'Celebrate your love at 48 Wall Street. A stunning historic downtown venue and premier wedding space on Wall Street, offering timeless elegance for ceremonies and receptions for 50-500 guests.',
+    url: 'https://www.48wallnyc.com/events/weddings',
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/events-hero.jpg',
+        url: '/images/og-home.jpg',
         width: 1200,
         height: 630,
-        alt: 'Diverse Events at 48 Wall Street Historic Venue NYC',
+        alt: '48 Wall Street Historic Wedding Venue Manhattan',
       },
     ],
     locale: 'en_US',
@@ -26,13 +27,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Events - 48 Wall Street NYC',
+    title: 'Historic Wedding Venue NYC | 48 Wall Street Financial District',
     description:
-      "Corporate events, weddings, Bar Mitzvahs, fashion shows & more in Manhattan's premier historic venue.",
-    images: ['/images/events-hero.jpg'],
+      'Elegant Manhattan wedding venue. Grand marble staircase, 30-foot ceilings, historic 1920s architecture, full planning & catering for 50-500 guests.',
+    images: ['/images/twitter-home.jpg'],
   },
   alternates: {
-    canonical: 'https://www.48wallnyc.com/events',
+    canonical: 'https://www.48wallnyc.com/events/weddings',
   },
 };
 

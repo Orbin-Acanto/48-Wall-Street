@@ -2,17 +2,17 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title:
-    'Corporate Event Venue NYC | Meetings & Conferences | 48 Wall Street Financial District',
+    'Conference Venue NYC | Meeting Space Financial District | 48 Wall Street',
   description:
-    "Premier corporate event venue in Manhattan's Financial District. Host meetings, conferences, product launches, and company events at 48 Wall Street's historic 1927 venue. State-of-the-art AV, flexible layouts for 50-500 guests, breakout rooms, and full-service catering. Grand Mezzanine with 30-foot ceilings perfect for impactful business events. Request a quote today.",
+    'Host your next conference at 48 Wall Street in the Financial District. Historic 1927 venue with 9,000 sq ft main hall, 6 breakout rooms, full AV production, and catering for 50 to 500 attendees. Request a quote.',
   keywords:
-    'corporate event venue NYC, Manhattan conference space, Financial District meeting venue, corporate meeting space NYC, business event venue Manhattan, product launch venue NYC, company event space, corporate holiday party venue, business conference NYC, Wall Street meeting space, executive event venue, corporate gathering space NYC, team building venue Manhattan, sales kickoff venue, board meeting space NYC, company town hall venue',
+    'conference venue NYC, meeting space Financial District, conference venue rental Manhattan, meeting venues NYC, corporate conference space Wall Street, conference center near me NYC, venue for conference Manhattan, board meeting venue NYC, meeting space rental Financial District, business conference NYC, Wall Street conference venue, summit venue Manhattan, workshop space NYC, seminar venue Financial District, corporate meeting room NYC',
   openGraph: {
     title:
-      'Corporate Event Venue NYC | Meetings & Conferences | 48 Wall Street',
+      'Conference Venue NYC | Meeting Space Financial District | 48 Wall Street',
     description:
-      'Host impactful corporate events at 48 Wall Street. Historic Financial District venue with state-of-the-art AV, flexible layouts for 50-500 guests, and professional atmosphere perfect for meetings, conferences, and product launches.',
-    url: 'https://www.48wallnyc.com/events/corporate',
+      'Host conferences, meetings, and summits at 48 Wall Street in the Financial District. Historic 1927 venue with 9,000 sq ft, breakout rooms, in-house AV, and catering for 50 to 500 attendees.',
+    url: 'https://www.48wallnyc.com/events/conferences',
     siteName: '48 Wall Street NYC',
     images: [
       {
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Corporate Event Venue NYC | 48 Wall Street',
+    title: 'Conference Venue NYC | 48 Wall Street Financial District',
     description:
-      'Premier Financial District venue for corporate meetings, conferences & events. State-of-the-art AV, flexible layouts, 50-500 capacity.',
+      'Historic Financial District conference venue. 9,000 sq ft main hall, 6 breakout rooms, in-house AV and catering. 50 to 500 attendees.',
     images: ['/images/twitter-home.jpg'],
   },
   alternates: {
-    canonical: 'https://www.48wallnyc.com/events/corporate',
+    canonical: 'https://www.48wallnyc.com/events/conferences',
   },
   other: {
     'geo.region': 'US-NY',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CorporateEventsLayout({
+export default function ConferencesLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -56,10 +56,10 @@ export default function CorporateEventsLayout({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Service',
-            serviceType: 'Corporate Event Venue',
-            name: 'Corporate Events at 48 Wall Street',
+            serviceType: 'Conference Venue',
+            name: 'Conferences and Meetings at 48 Wall Street',
             description:
-              "Premier corporate event venue in Manhattan's Financial District offering meeting spaces, conference facilities, and event services for business gatherings of 50-500 attendees. Features state-of-the-art audiovisual capabilities, flexible seating arrangements, breakout rooms, and full-service catering.",
+              'Premier conference venue in the Financial District of Manhattan. The historic 1927 banking hall at 48 Wall Street offers 9,000 square feet of main conference space with 30-foot ceilings, plus 3,000 square feet of breakout room space on the Concourse Level. Full in-house AV production, professional catering, and event coordination for 50 to 500 attendees.',
             provider: {
               '@type': 'EventVenue',
               name: '48 Wall Street',
@@ -81,7 +81,7 @@ export default function CorporateEventsLayout({
             },
             audience: {
               '@type': 'BusinessAudience',
-              audienceType: 'Corporate',
+              audienceType: 'Corporate and Professional Organizations',
             },
             offers: {
               '@type': 'Offer',
@@ -89,58 +89,58 @@ export default function CorporateEventsLayout({
               priceRange: '$$$',
               itemOffered: {
                 '@type': 'Service',
-                name: 'Corporate Event Services',
+                name: 'Conference and Meeting Services',
                 description:
-                  'Comprehensive corporate event services including venue rental, catering, AV equipment, and event planning',
+                  'Full conference services including venue rental, AV production, breakout rooms, catering, staging, and event coordination',
               },
             },
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
-              name: 'Corporate Event Services',
+              name: 'Conference Services',
               itemListElement: [
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Corporate Meetings',
+                    name: 'Main Stage Conferences',
                     description:
-                      'Professional meeting spaces with AV equipment and flexible seating',
+                      'Full-day or multi-day conferences in the Grand Mezzanine Banking Hall with theater seating for up to 500',
                   },
                 },
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Conferences & Summits',
+                    name: 'Breakout Sessions',
                     description:
-                      'Large-scale conference facilities with breakout rooms and theater seating',
+                      'Concourse Level divisible into 6 breakout rooms for workshops and concurrent sessions',
                   },
                 },
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Product Launches',
+                    name: 'Board Meetings',
                     description:
-                      'Stunning venue for product launches with premium lighting and AV',
+                      'Executive meeting configurations in a prestigious Financial District setting',
                   },
                 },
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Corporate Holiday Parties',
+                    name: 'Panel Discussions and Symposiums',
                     description:
-                      'Elegant space for company celebrations and holiday events',
+                      'Staged panel setups with full AV support and audience seating',
                   },
                 },
                 {
                   '@type': 'Offer',
                   itemOffered: {
                     '@type': 'Service',
-                    name: 'Team Building Events',
+                    name: 'Conference Catering',
                     description:
-                      'Flexible spaces for team building and employee engagement activities',
+                      'Full catering for morning sessions, working lunches, and networking receptions',
                   },
                 },
               ],
@@ -164,8 +164,14 @@ export default function CorporateEventsLayout({
               {
                 '@type': 'ListItem',
                 position: 2,
-                name: 'Corporate Events',
-                item: 'https://www.48wallnyc.com/events/corporate',
+                name: 'Events',
+                item: 'https://www.48wallnyc.com/events',
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'Conferences',
+                item: 'https://www.48wallnyc.com/events/conferences',
               },
             ],
           }),
@@ -177,9 +183,9 @@ export default function CorporateEventsLayout({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'EventVenue',
-            name: '48 Wall Street Corporate Event Venue',
+            name: '48 Wall Street Conference Venue',
             description:
-              'Historic Financial District venue specializing in corporate events, meetings, and conferences with modern amenities and professional atmosphere',
+              'Historic 1927 Financial District conference venue with 9,000 sq ft main hall, breakout rooms, in-house AV production, and full catering',
             address: {
               '@type': 'PostalAddress',
               streetAddress: '48 Wall Street, Lobby 1',
@@ -197,49 +203,39 @@ export default function CorporateEventsLayout({
             amenityFeature: [
               {
                 '@type': 'LocationFeatureSpecification',
-                name: 'State-of-the-Art AV Equipment',
+                name: 'Grand Mezzanine Banking Hall',
                 value:
-                  'Professional audiovisual capabilities including projectors, screens, sound systems, and lighting',
+                  '9,000 sq ft main conference hall with 30-foot ceilings and theater seating for 500',
               },
               {
                 '@type': 'LocationFeatureSpecification',
-                name: 'Flexible Seating Arrangements',
+                name: 'Concourse Level Breakout Rooms',
                 value:
-                  'Theater, classroom, boardroom, banquet, and cocktail configurations',
+                  '3,000 sq ft divisible into 6 separate breakout rooms for concurrent sessions',
               },
               {
                 '@type': 'LocationFeatureSpecification',
-                name: 'Breakout Rooms',
+                name: 'In-House AV Production',
                 value:
-                  'Multiple breakout spaces on Concourse Level divisible into 6 smaller rooms',
+                  'MME Worldwide handles all AV, staging, lighting, and streaming needs',
               },
               {
                 '@type': 'LocationFeatureSpecification',
-                name: 'High-Speed WiFi',
-                value: 'Enterprise-grade wireless internet throughout venue',
-              },
-              {
-                '@type': 'LocationFeatureSpecification',
-                name: 'Full-Service Catering',
+                name: 'Full Catering Service',
                 value:
-                  'Professional catering for breakfast meetings, lunch, dinner, and cocktail receptions',
+                  'Breakfast, lunch, dinner, and reception catering for conference attendees',
               },
               {
                 '@type': 'LocationFeatureSpecification',
-                name: 'Event Planning Services',
-                value: 'Dedicated event coordinators for seamless execution',
-              },
-              {
-                '@type': 'LocationFeatureSpecification',
-                name: 'Grand Mezzanine',
+                name: 'Historic Architecture',
                 value:
-                  '30-foot ceilings with original 1920s architecture for impactful presentations',
+                  '1927 National Register building in the Financial District of Manhattan',
               },
               {
                 '@type': 'LocationFeatureSpecification',
-                name: 'Financial District Location',
+                name: 'Transit Access',
                 value:
-                  'Prime Manhattan location easily accessible for corporate clients',
+                  'Steps from Wall Street (2/3), Broad Street (J/Z), and Rector Street (1) subway stations',
               },
             ],
             publicAccess: true,
@@ -256,18 +252,10 @@ export default function CorporateEventsLayout({
             mainEntity: [
               {
                 '@type': 'Question',
-                name: 'What types of corporate events can 48 Wall Street accommodate?',
+                name: 'What is the capacity for conferences at 48 Wall Street?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '48 Wall Street accommodates all types of corporate events including board meetings, conferences, product launches, company town halls, sales kickoffs, team building events, corporate holiday parties, networking events, and executive dinners. Our flexible spaces can be configured for groups of 50 to 500 attendees.',
-                },
-              },
-              {
-                '@type': 'Question',
-                name: 'What AV equipment is available for corporate meetings?',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: '48 Wall Street offers state-of-the-art audiovisual equipment including professional projectors, large screens, sound systems, wireless microphones, stage lighting, presentation technology, and high-speed WiFi throughout the venue. Our technical team provides full support for seamless presentations.',
+                  text: 'The Grand Mezzanine Banking Hall accommodates up to 500 guests for a standing or theater-style conference and up to 350 for a seated setup. The Concourse Level adds 3,000 square feet of space that divides into six breakout rooms for smaller groups and concurrent sessions.',
                 },
               },
               {
@@ -275,23 +263,31 @@ export default function CorporateEventsLayout({
                 name: 'Does 48 Wall Street have breakout rooms for conferences?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Yes, our Concourse Level can be divided into 6 smaller breakout rooms, perfect for workshops, team sessions, and concurrent meetings during conferences. The Grand Mezzanine and Banking Hall can also be configured for various breakout needs.',
+                  text: 'Yes. The Concourse Level sits directly below the Grand Mezzanine and can be divided into six separate rooms for breakout sessions, workshops, and smaller working groups. It connects to the main hall via the grand marble staircase, making it easy for attendees to move between the main program and breakout sessions.',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'Is catering included for corporate events?',
+                name: 'What AV capabilities are available for conferences?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '48 Wall Street offers full-service catering through our exclusive vendors. We can provide breakfast meetings, working lunches, formal dinners, and cocktail receptions with customizable menus to suit your corporate event needs and dietary requirements.',
+                  text: 'Our in-house production partner MME Worldwide provides full conference AV including sound systems, presentation screens or LED walls, professional lighting, live streaming, recording, and on-site technical support. They work in this building regularly and can execute complex multi-room setups efficiently.',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'How far in advance should we book for a corporate event?',
+                name: 'Is catering available for full-day conferences?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'We recommend booking corporate events 3-6 months in advance, especially for popular dates and peak business seasons. However, we can often accommodate shorter timelines depending on availability. Contact us at 1.877.885.0705 to check availability.',
+                  text: 'Yes. Our catering partner provides full-day conference dining including morning continental service, working lunches, afternoon refreshments, and evening networking receptions. Menus are customized to your event schedule and can accommodate all dietary requirements.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How do I get pricing for a conference at 48 Wall Street?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Contact our events team at info@48WallNYC.com or call 212.971.5353 with your event date, expected attendance, and program details. We will put together a proposal tailored to your specific conference needs.',
                 },
               },
             ],
@@ -304,10 +300,10 @@ export default function CorporateEventsLayout({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'Corporate Events',
+            name: 'Conferences and Meetings',
             description:
-              'Professional corporate event venue in Manhattan Financial District for meetings, conferences, and business gatherings',
-            url: 'https://www.48wallnyc.com/events/corporate',
+              'Historic conference venue in the Financial District of NYC with 9,000 sq ft main hall, 6 breakout rooms, in-house AV, and full catering',
+            url: 'https://www.48wallnyc.com/events/conferences',
             isPartOf: {
               '@type': 'WebSite',
               name: '48 Wall Street NYC',
@@ -318,11 +314,12 @@ export default function CorporateEventsLayout({
               name: '48 Wall Street',
             },
             specialty: [
+              'Industry Conferences',
               'Corporate Meetings',
-              'Business Conferences',
-              'Product Launches',
-              'Company Events',
-              'Executive Gatherings',
+              'Board Meetings',
+              'Panel Discussions',
+              'Workshops and Breakouts',
+              'Annual Summit Events',
             ],
           }),
         }}

@@ -15,7 +15,7 @@ export default function VenueAmenities() {
             Space & Amenities
           </p>
           <h2 className="heading-hero">
-            About Our Lower Manhattan Historic Venue
+            A Lower Manhattan Event Venue Built for Every Occasion
           </h2>
         </div>
 
@@ -53,25 +53,24 @@ export default function VenueAmenities() {
         {/* Description Text */}
         <div className="mx-auto max-w-5xl space-y-6 text-center">
           <p className="font-secondary text-dark-black/80 text-sm leading-relaxed md:text-base">
-            Recent renovations at 48 Wall Street have refined the venue into an
-            even more impressive destination for private and corporate events.
-            The main level now features expanded entertaining areas, enhanced
-            finishes, upgraded lighting, and improved technical infrastructure
-            that bring modern comfort to a historic NYC venue. Generous space
-            for bar service, dining, and dancing allows us to support
-            conferences, galas, fashion shows, weddings, and large-scale
-            celebrations with ease.
+            Recent renovations have brought modern technical infrastructure and
+            enhanced finishes to 48 Wall Street while preserving the original
+            architectural character that makes this venue remarkable. The Grand
+            Mezzanine Banking Hall on the main level offers 9,000 square feet
+            with 30-foot ceilings, expanded bar service areas, professional
+            lighting systems, and full AV infrastructure. Whether you are
+            hosting a seated conference for 300 or a cocktail reception for 500,
+            the space is configured to support it without compromise.
           </p>
 
           <p className="font-secondary text-dark-black/80 text-sm leading-relaxed md:text-base">
             <span className="text-dark-black font-bold">48 Wall Street</span>{' '}
-            offers multiple levels with both elegant interior rooms and access
-            to sweeping views of the city skyline. Host a welcome reception in
-            the grand hall, move guests through dramatic stairways, and utilize
-            our versatile layouts for a seamless flow. With a responsive
-            planning team and a prime location, we provide the setting you need
-            to turn any concept into a memorable experience at the best Lower
-            Manhattan event space.
+            also offers the Concourse Level, an additional 3,000 square feet
+            below the main hall that divides into breakout rooms for conferences,
+            serves as a pre-function cocktail space, or provides a dedicated
+            service and staging area for larger events. The grand marble
+            staircase connects both levels and creates natural moments of arrival
+            and transition that add to the experience for every guest.
           </p>
         </div>
 

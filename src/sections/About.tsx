@@ -62,14 +62,16 @@ export default function About() {
               Welcome to 48 Wall Street
             </p>
             <div className="bg-primary mx-auto mb-8 h-px w-16"></div>
-            <h1 className="heading-hero">HISTORIC Downtown VENUE</h1>
+            <h1 className="heading-hero">Historic Event Venue in Lower Manhattan</h1>
             <p className="text-lead">
-              Located in the heart of the Financial District, 48 Wall Street is
-              a restored historic landmark that now serves as a unique event
-              space in Lower Manhattan. Elegant architecture, soaring ceilings,
-              and flexible floor layouts provide a refined backdrop for
-              corporate gatherings, weddings, and social celebrations of many
-              sizes.
+              Built in 1927 as the Bank of New York and Trust Company, 48 Wall
+              Street has been at the center of New York City history for nearly
+              a century. Today it is one of the most distinctive event venues in
+              the Financial District, offering 12,500 square feet of grand
+              historic space for corporate events, conferences, weddings, galas,
+              and private celebrations. The 30-foot ceilings, grand marble
+              staircase, crystal chandeliers, and original Palladian windows
+              create an atmosphere that no modern venue can manufacture.
             </p>
           </div>
 
