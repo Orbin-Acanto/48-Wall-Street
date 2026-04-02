@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/gallery/holiday/48.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street Historic Event Venue Manhattan',
+        alt: '48 Wall Street corporate holiday party venue NYC — festive gala in the historic Financial District banking hall',
       },
     ],
     locale: 'en_US',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Holiday Party Venue NYC | 48 Wall Street',
     description:
       'Premier Manhattan venue for corporate holiday parties. Historic elegance, festive atmosphere, full catering, 50-500 capacity.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/gallery/holiday/48.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/holiday-events',

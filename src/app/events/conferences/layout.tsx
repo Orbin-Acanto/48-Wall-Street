@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/gallery/corporate/ (4).jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street Historic Event Venue Manhattan',
+        alt: '48 Wall Street historic conference venue Financial District NYC — 9000 sq ft Banking Hall with 30-foot ceilings',
       },
     ],
     locale: 'en_US',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Conference Venue NYC | 48 Wall Street Financial District',
     description:
       'Historic Financial District conference venue. 9,000 sq ft main hall, 6 breakout rooms, in-house AV and catering. 50 to 500 attendees.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/gallery/corporate/ (4).jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/conferences',

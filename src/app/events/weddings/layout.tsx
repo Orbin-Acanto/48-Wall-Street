@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/gallery/wedding/21.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street Historic Wedding Venue Manhattan',
+        alt: '48 Wall Street historic wedding venue NYC — grand marble staircase and 30-foot ceilings in the Financial District',
       },
     ],
     locale: 'en_US',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Historic Wedding Venue NYC | 48 Wall Street Financial District',
     description:
       'Elegant Manhattan wedding venue. Grand marble staircase, 30-foot ceilings, historic 1920s architecture, full planning & catering for 50-500 guests.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/gallery/wedding/21.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/weddings',
@@ -119,6 +119,12 @@ export default function EventsLayout({
                 position: 2,
                 name: 'Events',
                 item: 'https://www.48wallnyc.com/events',
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'Weddings',
+                item: 'https://www.48wallnyc.com/events/weddings',
               },
             ],
           }),

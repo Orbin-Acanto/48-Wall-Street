@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/gallery/fashion/ (1).jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street Historic Event Venue Manhattan',
+        alt: '48 Wall Street fashion show venue NYC — runway event on the grand marble staircase in the Financial District',
       },
     ],
     locale: 'en_US',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Fashion Show Venue NYC | 48 Wall Street',
     description:
       'Premier Manhattan fashion show venue. Grand marble staircase runway, 30-foot ceilings, professional lighting & historic architecture.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/gallery/fashion/ (1).jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/fashion-shows',

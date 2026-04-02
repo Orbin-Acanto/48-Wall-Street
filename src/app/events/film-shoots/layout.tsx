@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/gallery/1.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street Historic Event Venue Manhattan',
+        alt: '48 Wall Street historic 1927 bank building interior NYC — grand architecture for film and TV production',
       },
     ],
     locale: 'en_US',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'NYC Film Location | 48 Wall Street',
     description:
       'Historic 1927 Manhattan location for film, TV & commercial productions. Original architecture, grand spaces, production support.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/gallery/1.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/film-shoots',

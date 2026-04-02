@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/gallery/corporate/ (1).jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street Historic Event Venue Manhattan',
+        alt: '48 Wall Street Grand Mezzanine Banking Hall set for a corporate event in the Financial District',
       },
     ],
     locale: 'en_US',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Corporate Event Venue NYC | 48 Wall Street',
     description:
       'Premier Financial District venue for corporate meetings, conferences & events. State-of-the-art AV, flexible layouts, 50-500 capacity.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/gallery/corporate/ (1).jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/corporate',

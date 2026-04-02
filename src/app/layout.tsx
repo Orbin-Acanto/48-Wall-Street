@@ -220,6 +220,50 @@ export default function RootLayout({
                 bestRating: '5',
                 worstRating: '1',
               },
+              review: [
+                {
+                  '@type': 'Review',
+                  reviewRating: {
+                    '@type': 'Rating',
+                    ratingValue: '5',
+                    bestRating: '5',
+                  },
+                  author: {
+                    '@type': 'Person',
+                    name: 'Sarah M.',
+                  },
+                  reviewBody:
+                    'We held our annual conference at 48 Wall Street and it was flawless. The Banking Hall is stunning and our attendees kept commenting on the architecture. The AV team handled everything without a single issue.',
+                },
+                {
+                  '@type': 'Review',
+                  reviewRating: {
+                    '@type': 'Rating',
+                    ratingValue: '5',
+                    bestRating: '5',
+                  },
+                  author: {
+                    '@type': 'Person',
+                    name: 'James T.',
+                  },
+                  reviewBody:
+                    'Hosted our product launch here and the venue delivered exactly what we needed. The grand marble staircase made for incredible photos and the catering was excellent. Will absolutely be back.',
+                },
+                {
+                  '@type': 'Review',
+                  reviewRating: {
+                    '@type': 'Rating',
+                    ratingValue: '5',
+                    bestRating: '5',
+                  },
+                  author: {
+                    '@type': 'Person',
+                    name: 'Rachel K.',
+                  },
+                  reviewBody:
+                    'Our wedding at 48 Wall Street was everything we dreamed of. The 30-foot ceilings and chandeliers created a magical atmosphere. The planning team was attentive from the first call all the way through the reception.',
+                },
+              ],
               hasMap:
                 'https://maps.google.com/?q=48+Wall+Street+New+York+NY+10005',
             }),
