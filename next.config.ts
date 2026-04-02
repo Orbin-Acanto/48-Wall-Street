@@ -242,7 +242,7 @@ const nextConfig: NextConfig = {
       { source: '/moaf-concourse.html', destination: '/', permanent: true },
       {
         source: '/moaf-grand-mezzanine.html',
-        destination: '/',
+        destination: '/spaces/grand-mezzanine',
         permanent: true,
       },
       {
@@ -274,7 +274,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/pdf/Grand-Mezzanine-Floor-Dimensions.pdf',
-        destination: '/about/floor-plans',
+        destination: '/spaces/grand-mezzanine',
         permanent: true,
       },
       {
@@ -289,7 +289,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/pdf/48-C1-Floorplan.pdf',
-        destination: '/about/floor-plans',
+        destination: '/spaces/concourse-level',
         permanent: true,
       },
       {
