@@ -2442,10 +2442,10 @@ export const conferenceData: EventShowcaseProps = {
 };
 
 export const fashionData: EventShowcaseProps = {
-  title: 'NYC Fashion Show Event Space on Wall Street',
+  title: 'Iconic Fashion Show Venues on Wall Street',
   subtitle: 'A Historic Runway Venue in the Financial District',
   description:
-    'Fashion is about atmosphere as much as it is about clothing, and few spaces in New York City carry the visual weight of the 48 Wall Street banking hall. The 30-foot ceilings, grand marble staircase, Palladian windows, and original 1920s architecture create a dramatic setting that elevates every collection shown here. Whether you are planning a full New York Fashion Week runway production, an intimate designer presentation, a brand activation, or a showroom event, our in-house team handles staging, lighting, production, and catering so you can focus entirely on the creative work. There is no better runway venue in the Financial District.',
+    "Discover the top fashion show venues in NYC, where style transcends boundaries and glamour reigns supreme. Step into the heart of fashion's elite.Fashion is about atmosphere as much as it is about clothing, and few spaces in New York City carry the visual weight of the 48 Wall Street banking hall. The 30-foot ceilings, grand marble staircase, Palladian windows, and original 1920s architecture create a dramatic setting that elevates every collection shown here. Whether you are planning a full New York Fashion Week runway production, an intimate designer presentation, a brand activation, or a showroom event, our in-house team handles staging, lighting, production, and catering so you can focus entirely on the creative work. There is no better runway venue in the Financial District.",
   images: [
     {
       src: '/gallery/fashion/ (6).jpg',
@@ -2673,7 +2673,8 @@ export const mitzvahData: EventShowcaseProps = {
       body: 'Our production and decor team has built everything from sports-themed ballrooms to Hollywood glamour setups to classic elegant designs. Because we work in this space regularly, we know how to use the architecture to your advantage and layer your theme on top of it in a way that looks intentional rather than forced. We sit down with the family and the teen early in the planning process to get a real sense of their vision.',
     },
     {
-      heading: 'How do you keep both teens and adults engaged throughout the night?',
+      heading:
+        'How do you keep both teens and adults engaged throughout the night?',
       body: 'The best Bar and Bat Mitzvah celebrations have a clear flow that gives each generation what they came for. We help design the programming, entertainment choices, and space configuration so that teens have a high-energy area to celebrate while adults have comfortable space to connect. There are also moments built specifically to bring everyone together.',
     },
     {
@@ -2853,7 +2854,8 @@ export const filmtvData: EventShowcaseProps = {
       body: 'The venue works beautifully for industry events. The grand staircase, high ceilings, and dramatic architecture create the right atmosphere for a premiere or a wrap celebration. We handle catering, lighting, and event production so the crew gets a proper send-off in a space that matches the scale of what they produced.',
     },
     {
-      heading: 'How do I inquire about using the venue for a film or photo shoot?',
+      heading:
+        'How do I inquire about using the venue for a film or photo shoot?',
       body: 'Contact our events team with your project details including dates, duration, crew size, and what the space will be used for. We will put together a proposal based on your production needs and timeline.',
     },
   ],

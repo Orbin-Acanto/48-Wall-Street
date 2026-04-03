@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'NYC Fashion Show Event Space | New York Fashion Week Venue Wall Street',
+  title: 'Top Fashion Show Venues in NYC | Where Style Meets Glamour',
   description:
     'Showcase your collection at 48 Wall Street, a premier NYC fashion show event space. Our historic Lower Manhattan venue offers the perfect dramatic backdrop for New York Fashion Week run of shows.',
   keywords:
