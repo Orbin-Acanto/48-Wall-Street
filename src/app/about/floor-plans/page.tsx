@@ -29,27 +29,27 @@ import { getRecommendedSettings } from '@/utils/ThreeDviewerutils';
 
 export default function FloorPlansPage() {
   const [activeFloor, setActiveFloor] = useState('second');
-  const [activeLayout, setActiveLayout] = useState('cocktail');
+  // const [activeLayout, setActiveLayout] = useState('cocktail');
   const [viewMode, setViewMode] = useState('2d');
-  const [sliderPosition, setSliderPosition] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
-  const sliderRef = useRef<HTMLDivElement>(null);
+  // const [sliderPosition, setSliderPosition] = useState(50);
+  // const [isDragging, setIsDragging] = useState(false);
+  // const sliderRef = useRef<HTMLDivElement>(null);
 
   const settings = getRecommendedSettings();
 
   const currentFloor = floors.find((f) => f.id === activeFloor) || floors[0];
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging || !sliderRef.current) return;
+  // const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   if (!isDragging || !sliderRef.current) return;
 
-    const rect = sliderRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const percentage = (x / rect.width) * 100;
-    setSliderPosition(Math.max(0, Math.min(100, percentage)));
-  };
+  //   const rect = sliderRef.current.getBoundingClientRect();
+  //   const x = e.clientX - rect.left;
+  //   const percentage = (x / rect.width) * 100;
+  //   setSliderPosition(Math.max(0, Math.min(100, percentage)));
+  // };
 
-  const handleMouseDown = () => setIsDragging(true);
-  const handleMouseUp = () => setIsDragging(false);
+  // const handleMouseDown = () => setIsDragging(true);
+  // const handleMouseUp = () => setIsDragging(false);
 
   return (
     <div className="bg-whitesmoke min-h-screen">
@@ -58,7 +58,7 @@ export default function FloorPlansPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/misc/p3.jpg')",
+            backgroundImage: "url('/venue/8.jpg')",
           }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
