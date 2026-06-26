@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/venue/2.jpg',
+        url: '/venue/concourse/1.jpg',
         width: 1200,
         height: 630,
         alt: 'Concourse Level at 48 Wall Street — flexible breakout rooms and meeting space NYC',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Concourse Level | 48 Wall Street NYC',
     description:
       '3,000 sq ft with 6 breakout rooms. Perfect for conferences, workshops, and seminars in the Financial District.',
-    images: ['/venue/2.jpg'],
+    images: ['/venue/concourse/1.jpg'],
   },
 };
 
@@ -42,20 +42,20 @@ export default function ConcourseLevelPage() {
       subtitle="Level"
       description="The Concourse Level sits directly below the Grand Mezzanine Banking Hall and gives 48 Wall Street a versatility that most single-floor venues cannot match. At 3,000 square feet with 14-foot ceilings, it accommodates up to 200 guests for a seated event or reception and divides into six separate breakout rooms for concurrent sessions and workshops. For full-day conferences, the Concourse handles parallel programming while the Grand Mezzanine serves the main stage. For weddings and galas, it works as a pre-function cocktail space or a private dining room. The two levels connect via the grand marble staircase, creating a natural and elegant flow for guests moving between them."
       images={[
-        '/venue/2.jpg',
-        '/venue/11.jpg',
-        '/venue/12.jpg',
-        '/venue/10.jpg',
-        '/venue/13.jpg',
-        '/venue/14.jpg',
+        '/venue/concourse/1.jpg',
+        '/venue/concourse/2.jpg',
+        '/venue/concourse/3.jpg',
+        '/venue/concourse/4.jpg',
+        '/venue/concourse/5.jpg',
+        '/venue/concourse/6.jpg',
       ]}
       lightboxImages={[
-        '/venue/2.jpg',
-        '/venue/11.jpg',
-        '/venue/12.jpg',
-        '/venue/10.jpg',
-        '/venue/13.jpg',
-        '/venue/14.jpg',
+        '/venue/concourse/1.jpg',
+        '/venue/concourse/2.jpg',
+        '/venue/concourse/3.jpg',
+        '/venue/concourse/4.jpg',
+        '/venue/concourse/5.jpg',
+        '/venue/concourse/6.jpg',
       ]}
       videoUrl="https://player.vimeo.com/video/192678532?h=c1ec68adce"
       floorPlanImage="/floor_planner/plan/concourse.svg"
