@@ -1,4 +1,19 @@
-import { FileText, DollarSign, Map, UtensilsCrossed, Monitor, Users, Clock, Truck, ClipboardList, Calendar, TrendingUp, Star, Leaf, Download } from 'lucide-react';
+import {
+  FileText,
+  DollarSign,
+  Map,
+  UtensilsCrossed,
+  Monitor,
+  Users,
+  Clock,
+  Truck,
+  ClipboardList,
+  Calendar,
+  TrendingUp,
+  Star,
+  Leaf,
+  Download,
+} from 'lucide-react';
 
 const proposals = [
   { text: 'A customized venue proposal', icon: FileText },
@@ -31,7 +46,7 @@ export default function AIProposalGenerator() {
           <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
             Powered by AI
           </p>
-          <h2 className="heading-hero">AI Proposal Generator</h2>
+          <h2 className="heading-hero">Quick Quote</h2>
           <p className="text-lead">
             Once your selections are complete, the AI Proposal Generator will
             automatically produce:
@@ -40,10 +55,7 @@ export default function AIProposalGenerator() {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {proposals.map(({ text, icon: Icon }, idx) => (
-            <div
-              key={idx}
-              className="group flex items-start gap-4 border border-gray-100 bg-gray-50/30 px-5 py-5 transition-all duration-200 hover:border-gray-200 hover:bg-white hover:shadow-sm"
-            >
+            <div key={idx} className="group flex items-start gap-4 px-5 py-5">
               <div className="bg-primary/10 group-hover:bg-primary flex h-9 w-9 flex-shrink-0 items-center justify-center transition-colors duration-200">
                 <Icon className="text-primary h-4 w-4 group-hover:text-white" />
               </div>
