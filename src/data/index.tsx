@@ -29,68 +29,32 @@ export const testimonials: Testimonial[] = [
   {
     id: 1,
     quote:
-      'We had our company holiday party at 48 Wall Street last night. The space is amazing - large and beautifully decorated, with comfortable seating and great lighting. The staff were outstanding and attentive. Highly recommend!',
-    author: 'Okone M.',
-    event: 'Wedding Reception',
-    details:
-      '"Our operations manager made wedding planning a breeze - attentive, responsive, and focused on every detail to ensure perfection. She coordinated with all vendors, ran the show on our wedding day, and made it absolutely perfect. The venue itself is stunning with rooftop views, an immaculate reception room, and amazing city views. The food and service were exceptional - comparable to fine dining in Manhattan. The staff went above and beyond, ensuring everyone had a great experience. We wholeheartedly recommend 48 Wall Street - they made our dreams come true!"',
-    image: '/testimonial/t_2.jpg',
-    imageLabel: 'SARAH & MICHAEL WEDDING AT 48 WALL ST',
+      'Michael, Lauren, Andrew, and the entire 48 Wall Street event team were absolutely incredible. From day one, they became a true extension of our team while helping us plan our first conference on Wall Street. Their professionalism, experience, and attention to detail played a pivotal role in the enormous success of our event, and we are truly thankful.<br/><br/>Michael&rsquo;s recommendations on everything from sound and staging to the overall vibe and flow of the event were second to none. You can immediately tell why this team has been a leader in the event space for over 30 years. If you&rsquo;re looking to host a world-class event in New York City, there&rsquo;s nobody better.',
+    author: 'Anthony Gallo',
+    event: 'Corporate Conference',
+    details: '',
+    image: '/testimonial/t_1.jpg',
+    imageLabel: 'ANTHONY GALLO',
   },
   {
     id: 2,
     quote:
-      'I was very impressed with the entire 48 Wall Street team. The event always goes so fast and when I replay the evening in my head, what stands out most, are the smiles and support from everyone.',
-    author: 'Rose T.',
-    event: 'Corporate Gala',
-    details:
-      '"48 Wall Street provided an elegant and professional setting for our annual gala. The attention to detail was impeccable, from the stunning ballroom setup to the world-class catering. Our guests were thoroughly impressed with the venue\'s sophistication and the staff\'s professionalism. The event coordination team made the entire process seamless."',
-    image: '/testimonial/t_3.jpg',
-    imageLabel: 'GOLDMAN SACHS CORPORATE GALA',
+      'Cannot recommend enough 48 Wall Street as an event venue. Not only is the space spectacular, but Michael &amp; team could not have been more supportive, helpful and professional throughout the event. The service was exceptional, and we really treated like part of the family. If you&rsquo;re looking for a high class venue in the heart of the financial district &mdash; 48 Wall Street is your best bet.',
+    author: 'Michelle Fotopoulou',
+    event: 'Corporate Event',
+    details: '',
+    image: '/testimonial/t_1.jpg',
+    imageLabel: 'MICHELLE FOTOPOULOU',
   },
   {
     id: 3,
     quote:
-      'We had a lot of elements at play that made our event sort of tricky to navigate. The night itself went off without a hitch. The food was incredible, the entertainment was excellent, and my entire staff is still talking about it. Highly recommend them.',
-    author: 'Taylyn R.',
-    event: 'Bar Mitzvah',
-    details:
-      '"We couldn\'t have asked for a better venue for our son\'s Bar Mitzvah. The team at 48 Wall Street went above and beyond to make our celebration special. The space was beautifully decorated, the food was outstanding, and the service was impeccable. Every guest commented on how amazing the venue was. Thank you for making this milestone so memorable!"',
+      'What an amazing venue. Grand but intimate, this venue offers the best of both worlds. Its old world charm made this the perfect venue for my wife and I to celebrate our wedding. The hospitality team MMEink that runs the venue took care of everything for us from start to finish. MMEink took care of all the hospitality and production needs all the way down to the wedding favors, which made planning an out of state wedding super easy. I highly recommend 48 Wall Street for anyone looking to host a first-class NYC style wedding!',
+    author: 'Joe and C.',
+    event: 'Wedding',
+    details: '',
     image: '/testimonial/t_1.jpg',
-    imageLabel: 'COHEN FAMILY BAR MITZVAH',
-  },
-  {
-    id: 4,
-    quote:
-      '48 Wall Street is beautifully unique and added to the energetic atmosphere.',
-    author: 'Shane C.',
-    event: 'Bar Mitzvah',
-    details:
-      '"We couldn\'t have asked for a better venue for our son\'s Bar Mitzvah. The team at 48 Wall Street went above and beyond to make our celebration special. The space was beautifully decorated, the food was outstanding, and the service was impeccable. Every guest commented on how amazing the venue was. Thank you for making this milestone so memorable!"',
-    image: '/testimonial/t_1.jpg',
-    imageLabel: 'COHEN FAMILY BAR MITZVAH',
-  },
-  {
-    id: 5,
-    quote:
-      'We recently hosted a conference at the historic 48 Wall Street, and it was outstanding. Every detail was meticulously managed, from the seamless setup to the excellent catering.',
-    author: 'Nicholas L.',
-    event: 'Bar Mitzvah',
-    details:
-      '"We couldn\'t have asked for a better venue for our son\'s Bar Mitzvah. The team at 48 Wall Street went above and beyond to make our celebration special. The space was beautifully decorated, the food was outstanding, and the service was impeccable. Every guest commented on how amazing the venue was. Thank you for making this milestone so memorable!"',
-    image: '/testimonial/t_1.jpg',
-    imageLabel: 'COHEN FAMILY BAR MITZVAH',
-  },
-  {
-    id: 6,
-    quote:
-      "We held our daughter's wedding at 48 Wall Street and could not have been happier.",
-    author: 'Helen W.',
-    event: 'Bar Mitzvah',
-    details:
-      '"We couldn\'t have asked for a better venue for our son\'s Bar Mitzvah. The team at 48 Wall Street went above and beyond to make our celebration special. The space was beautifully decorated, the food was outstanding, and the service was impeccable. Every guest commented on how amazing the venue was. Thank you for making this milestone so memorable!"',
-    image: '/testimonial/t_1.jpg',
-    imageLabel: 'COHEN FAMILY BAR MITZVAH',
+    imageLabel: 'A REMARKABLE WEDDING VENUE',
   },
 ];
 
@@ -251,7 +215,6 @@ export const navItems = [
       { name: 'Hamilton Room', href: '/spaces/hamilton-room' },
       { name: 'Banking Hall', href: '/spaces/banking-hall' },
       { name: 'The 5th Floor', href: '/spaces/5th-floor' },
-      { name: 'Hamilton Ballroom', href: '/spaces/hamilton-ballroom' },
     ],
   },
   {
@@ -347,6 +310,30 @@ export const teamMembers: TeamMember[] = [
 ];
 
 export const galleryPhotos: GPhoto[] = [
+  {
+    src: '/gallery/corporate/new-1.jpg',
+    alt: 'corporate',
+    category: 'corporate',
+    size: 'large',
+  },
+  {
+    src: '/gallery/corporate/new-2.jpg',
+    alt: 'corporate',
+    category: 'corporate',
+    size: 'medium',
+  },
+  {
+    src: '/gallery/corporate/new-3.jpg',
+    alt: 'corporate',
+    category: 'corporate',
+    size: 'tall',
+  },
+  {
+    src: '/gallery/corporate/new-4.jpg',
+    alt: 'corporate',
+    category: 'corporate',
+    size: 'wide',
+  },
   {
     src: '/gallery/corporate/ (2).jpg',
     alt: 'corporate',
@@ -610,6 +597,66 @@ export const galleryPhotos: GPhoto[] = [
   },
 
   {
+    src: '/gallery/wedding/new-1.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'large',
+  },
+  {
+    src: '/gallery/wedding/new-2.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'medium',
+  },
+  {
+    src: '/gallery/wedding/new-3.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'tall',
+  },
+  {
+    src: '/gallery/wedding/new-4.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'small',
+  },
+  {
+    src: '/gallery/wedding/new-5.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'wide',
+  },
+  {
+    src: '/gallery/wedding/new-6.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'large',
+  },
+  {
+    src: '/gallery/wedding/new-7.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'medium',
+  },
+  {
+    src: '/gallery/wedding/new-8.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'tall',
+  },
+  {
+    src: '/gallery/wedding/new-9.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'small',
+  },
+  {
+    src: '/gallery/wedding/new-10.jpg',
+    alt: 'wedding',
+    category: 'wedding',
+    size: 'medium',
+  },
+  {
     src: '/gallery/wedding/21.jpg',
     alt: 'wedding',
     category: 'wedding',
@@ -785,6 +832,48 @@ export const galleryPhotos: GPhoto[] = [
   },
 
   {
+    src: '/gallery/bar/new-1.jpg',
+    alt: 'Bar & Bat Mitzvahs img',
+    category: 'bar',
+    size: 'large',
+  },
+  {
+    src: '/gallery/bar/new-2.jpg',
+    alt: 'Bar & Bat Mitzvahs img',
+    category: 'bar',
+    size: 'medium',
+  },
+  {
+    src: '/gallery/bar/new-3.jpg',
+    alt: 'Bar & Bat Mitzvahs img',
+    category: 'bar',
+    size: 'tall',
+  },
+  {
+    src: '/gallery/bar/new-4.jpg',
+    alt: 'Bar & Bat Mitzvahs img',
+    category: 'bar',
+    size: 'small',
+  },
+  {
+    src: '/gallery/bar/new-5.jpg',
+    alt: 'Bar & Bat Mitzvahs img',
+    category: 'bar',
+    size: 'wide',
+  },
+  {
+    src: '/gallery/bar/new-6.jpg',
+    alt: 'Bar & Bat Mitzvahs img',
+    category: 'bar',
+    size: 'medium',
+  },
+  {
+    src: '/gallery/bar/new-7.jpg',
+    alt: 'Bar & Bat Mitzvahs img',
+    category: 'bar',
+    size: 'large',
+  },
+  {
     src: '/gallery/bar/38.jpg',
     alt: 'Bar & Bat Mitzvahs img',
     category: 'bar',
@@ -906,6 +995,30 @@ export const galleryPhotos: GPhoto[] = [
   },
 
   {
+    src: '/gallery/holiday/new-1.jpg',
+    alt: 'Holiday Events img',
+    category: 'holiday',
+    size: 'large',
+  },
+  {
+    src: '/gallery/holiday/new-2.jpg',
+    alt: 'Holiday Events img',
+    category: 'holiday',
+    size: 'tall',
+  },
+  {
+    src: '/gallery/holiday/new-3.jpg',
+    alt: 'Holiday Events img',
+    category: 'holiday',
+    size: 'medium',
+  },
+  {
+    src: '/gallery/holiday/new-4.jpg',
+    alt: 'Holiday Events img',
+    category: 'holiday',
+    size: 'wide',
+  },
+  {
     src: '/gallery/holiday/48.jpg',
     alt: 'Holiday Events img',
     category: 'holiday',
@@ -1019,6 +1132,67 @@ export const galleryPhotos: GPhoto[] = [
     alt: 'Holiday Events img',
     category: 'holiday',
     size: 'small',
+  },
+
+  {
+    src: '/gallery/non/8.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'large',
+  },
+  {
+    src: '/gallery/non/9.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'tall',
+  },
+  {
+    src: '/gallery/non/10.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'medium',
+  },
+  {
+    src: '/gallery/non/1.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'medium',
+  },
+  {
+    src: '/gallery/non/2.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'wide',
+  },
+  {
+    src: '/gallery/non/3.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'large',
+  },
+  {
+    src: '/gallery/non/4.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'small',
+  },
+  {
+    src: '/gallery/non/5.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'medium',
+  },
+  {
+    src: '/gallery/non/6.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'tall',
+  },
+  {
+    src: '/gallery/non/7.jpg',
+    alt: 'Non-Profit Events img',
+    category: 'non-profit',
+    size: 'medium',
   },
 ];
 

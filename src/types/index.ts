@@ -115,7 +115,7 @@ export interface GPhoto {
   src: string;
   alt: string;
   category: string;
-  size: 'large' | 'wide' | 'medium' | 'small';
+  size: 'large' | 'wide' | 'medium' | 'small' | 'tall';
 }
 
 export interface ImageItem {

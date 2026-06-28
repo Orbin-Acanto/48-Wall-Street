@@ -12,7 +12,14 @@ export default function GalleryContent() {
   const router = useRouter();
 
   const tabFromUrl = searchParams.get('tab');
-  const validTabs = ['corporate', 'wedding', 'fashion', 'bar', 'holiday'];
+  const validTabs = [
+    'corporate',
+    'wedding',
+    'fashion',
+    'bar',
+    'holiday',
+    'non-profit',
+  ];
 
   const [activeTab, setActiveTab] = useState(() => {
     return validTabs.includes(tabFromUrl || '') ? tabFromUrl : 'corporate';
@@ -32,6 +39,7 @@ export default function GalleryContent() {
     { id: 'fashion', name: 'Fashion' },
     { id: 'bar', name: 'Bar & Bat Mitzvahs' },
     { id: 'holiday', name: 'Holiday Events' },
+    { id: 'non-profit', name: 'Non-Profit' },
   ];
 
   const filteredPhotos = galleryPhotos.filter(
