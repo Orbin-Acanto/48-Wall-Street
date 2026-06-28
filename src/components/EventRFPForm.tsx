@@ -38,7 +38,7 @@ function StepIndicator({
         {steps.map((label, idx) => (
           <div key={label} className="flex flex-1 flex-col items-center">
             <div className="flex w-full items-center">
-              {idx > 0 && (
+              {idx > 0 ? (
                 <div className="h-px flex-1">
                   <div
                     className={`h-full transition-colors duration-300 ${
@@ -46,6 +46,8 @@ function StepIndicator({
                     }`}
                   />
                 </div>
+              ) : (
+                <div className="flex-1" />
               )}
               <div
                 className={`flex h-10 w-10 flex-shrink-0 items-center justify-center text-sm font-bold transition-all duration-300 ${
@@ -62,7 +64,7 @@ function StepIndicator({
                   <span className="font-secondary">{idx + 1}</span>
                 )}
               </div>
-              {idx < steps.length - 1 && (
+              {idx < steps.length - 1 ? (
                 <div className="h-px flex-1">
                   <div
                     className={`h-full transition-colors duration-300 ${
@@ -70,10 +72,12 @@ function StepIndicator({
                     }`}
                   />
                 </div>
+              ) : (
+                <div className="flex-1" />
               )}
             </div>
             <span
-              className={`font-secondary mt-2 hidden text-[10px] tracking-[0.1em] uppercase sm:block ${
+              className={`font-secondary mt-2 hidden text-center text-[10px] tracking-[0.1em] uppercase sm:block ${
                 idx <= current
                   ? 'text-primary font-semibold'
                   : 'text-gray-400'
@@ -84,6 +88,11 @@ function StepIndicator({
           </div>
         ))}
       </div>
+
+      {/* Mobile-only current step label */}
+      <p className="font-secondary text-primary mt-4 text-center text-xs font-semibold tracking-[0.15em] uppercase sm:hidden">
+        Step {current + 1} of {steps.length} — {steps[current]}
+      </p>
     </div>
   );
 }
@@ -475,7 +484,7 @@ export default function EventRFPForm() {
 
   return (
     <>
-      <section className="bg-whitesmoke px-6 py-20 md:px-12">
+      <section className="bg-white px-6 py-20 md:px-12">
         <div className="mx-auto max-w-7xl">
           <p className="font-secondary text-primary mb-4 text-center text-sm tracking-[0.3em] uppercase">
             Plan Every Detail
@@ -505,7 +514,7 @@ export default function EventRFPForm() {
                   proposal.
                 </p>
 
-                <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
                   <div>
                     <div className="mb-8 flex items-center gap-3">
                       <div className="bg-primary flex h-10 w-10 items-center justify-center">

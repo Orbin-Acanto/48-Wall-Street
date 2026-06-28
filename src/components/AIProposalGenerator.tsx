@@ -37,7 +37,7 @@ const proposals = [
 
 export default function AIProposalGenerator() {
   return (
-    <section className="bg-white px-6 py-20 md:px-12">
+    <section className="bg-whitesmoke px-6 py-20 md:px-12">
       <div className="mx-auto max-w-5xl">
         <div className="mb-16 text-center">
           <div className="bg-primary/10 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full">
