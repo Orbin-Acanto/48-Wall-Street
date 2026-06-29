@@ -100,30 +100,12 @@ export default function FifthFloorPage() {
       images={[
         '/venue/5th-floor/hamilton-room.png',
         '/venue/5th-floor/classroom.png',
-        '/venue/3.jpg',
-        '/venue/5.jpg',
-        '/venue/7.jpg',
-        '/venue/8.jpg',
+        '/venue/5th-floor/hamilton-room.png',
       ]}
       lightboxImages={[
         '/venue/5th-floor/hamilton-room.png',
         '/venue/5th-floor/classroom.png',
-        '/venue/3.jpg',
-        '/venue/5.jpg',
-        '/venue/7.jpg',
-        '/venue/8.jpg',
-      ]}
-      videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
-      floorPlanImage="/floor_planner/plan/ground.svg"
-      features={[
-        '14,444 sq ft of flexible space',
-        'Fifth-floor setting',
-        'Abundant natural light',
-        'Expansive perimeter windows',
-        'Elegant open floor plan',
-        'Customizable layouts',
-        'Intimate to large-scale capacity',
-        'Historic architectural character',
+        '/venue/5th-floor/hamilton-room.png',
       ]}
       stats={{
         capacity: 'Contact for details',
