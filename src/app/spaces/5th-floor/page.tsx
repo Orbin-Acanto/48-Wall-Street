@@ -42,7 +42,61 @@ export default function FifthFloorPage() {
       levelLabel="05"
       title="The Alexander Hamilton"
       subtitle="Ballroom"
-      description="Perched on the fifth floor of the iconic 48 Wall Street, the Alexander Hamilton Ballroom offers an extraordinary setting where New York City's rich history seamlessly blends with contemporary sophistication. Designed to inspire unforgettable experiences, this 14,444-square-foot venue combines timeless architectural character with the flexibility of a modern event space. Bathed in abundant natural light from expansive perimeter windows, the ballroom features an elegant open floor plan that can be customized for executive conferences, luxury weddings, nonprofit galas, fashion presentations, product launches, and private celebrations. The refined interiors provide a sophisticated backdrop while accommodating both intimate gatherings and large-scale productions. Whether hosting an elegant gala, executive summit, corporate reception, or once-in-a-lifetime celebration, the Alexander Hamilton Ballroom delivers a setting where historic elegance, modern innovation, and impeccable service come together to create extraordinary events in the heart of New York City's Financial District."
+      description={
+        <>
+          <p className="font-primary text-dark-black text-xl font-light tracking-wide italic md:text-2xl">
+            Where Historic Prestige Meets Modern Luxury
+          </p>
+          <p>
+            Perched on the fifth floor of the iconic 48 Wall Street, the
+            Alexander Hamilton Ballroom offers an extraordinary setting where
+            New York City&rsquo;s rich history seamlessly blends with
+            contemporary sophistication. Designed to inspire unforgettable
+            experiences, this 14,444-square-foot venue combines timeless
+            architectural character with the flexibility of a modern event
+            space.
+          </p>
+          <p>
+            Bathed in abundant natural light from expansive perimeter windows,
+            the ballroom features an elegant open floor plan that can be
+            customized for executive conferences, luxury weddings, nonprofit
+            galas, fashion presentations, product launches, and private
+            celebrations. The refined interiors provide a sophisticated backdrop
+            while accommodating both intimate gatherings and large-scale
+            productions.
+          </p>
+          <p>
+            Every event at the Alexander Hamilton Ballroom is elevated by 48
+            Wall Street&rsquo;s signature white-glove hospitality, offering a
+            fully integrated experience with:
+          </p>
+          <ul className="space-y-2.5">
+            {[
+              'State-of-the-art Audio, Video & Lighting Production',
+              'High-speed Streaming & Hybrid Event Capabilities',
+              'Award-Winning Culinary & Beverage Services',
+              'Custom Event Design & Décor',
+              'Luxury Furnishings & Lounge Collections',
+              'Dedicated Event Planning & Production Management',
+              'On-Site Technical Support',
+              'Premium Guest Hospitality & Concierge Services',
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <span className="bg-primary mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p>
+            Whether hosting an elegant gala, executive summit, corporate
+            reception, or once-in-a-lifetime celebration, the Alexander Hamilton
+            Ballroom delivers a setting where historic elegance, modern
+            innovation, and impeccable service come together to create
+            extraordinary events in the heart of New York City&rsquo;s Financial
+            District.
+          </p>
+        </>
+      }
       images={[
         '/venue/5th-floor/hamilton-room.png',
         '/venue/5th-floor/classroom.png',
@@ -62,14 +116,14 @@ export default function FifthFloorPage() {
       videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
       floorPlanImage="/floor_planner/plan/ground.svg"
       features={[
-        'State-of-the-art Audio, Video & Lighting',
-        'High-speed Streaming & Hybrid Event Capabilities',
-        'Award-Winning Culinary & Beverage Services',
-        'Custom Event Design & Décor',
-        'Luxury Furnishings & Lounge Collections',
-        'Dedicated Event Planning & Production Management',
-        'On-Site Technical Support',
-        'Premium Guest Hospitality & Concierge Services',
+        '14,444 sq ft of flexible space',
+        'Fifth-floor setting',
+        'Abundant natural light',
+        'Expansive perimeter windows',
+        'Elegant open floor plan',
+        'Customizable layouts',
+        'Intimate to large-scale capacity',
+        'Historic architectural character',
       ]}
       stats={{
         capacity: 'Contact for details',

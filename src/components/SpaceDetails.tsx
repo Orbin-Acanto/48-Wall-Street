@@ -15,7 +15,7 @@ export interface SpaceDetailsProps {
   levelLabel: string;
   title: string;
   subtitle: string;
-  description: string;
+  description: React.ReactNode;
   images: string[];
   lightboxImages?: string[];
   videoUrl: string;
@@ -113,9 +113,9 @@ export default function SpaceDetails({
               <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
                 The Space
               </p>
-              <p className="font-secondary text-dark-black/80 text-base leading-relaxed md:text-lg">
+              <div className="font-secondary text-dark-black/80 space-y-4 text-base leading-relaxed md:text-lg">
                 {description}
-              </p>
+              </div>
 
               <div className="mt-10">
                 <Link href={enquireHref}>
