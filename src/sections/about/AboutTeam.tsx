@@ -13,21 +13,28 @@ export default function AboutTeam() {
             Get to Know Us
           </p>
           <h2 className="heading-hero">MEET OUR TEAM</h2>
-          <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-5xl space-y-6">
             <p className="text-lead">
-              At 48 Wall Street, a dedicated leadership team ensures that every
-              event receives personal attention and professional guidance from
-              start to finish. Owner Micheal Tardi oversees the overall vision
-              of the venue and is committed to maintaining both its historic
-              character and its modern event capabilities. Director of Sales
-              Lauren Leuci partners with planners and clients to understand
-              goals, design layouts, and coordinate proposals and timelines that
-              match each program. Director of Operations Andrew Heaton manages
-              on site logistics, vendor coordination, and event day execution so
-              that service, flow, and technical details run smoothly. Together,
-              this experienced team provides a trusted foundation for corporate
-              events, social celebrations, and weddings in the heart of New York
-              City.
+              At 48 Wall Street, our dedicated leadership team ensures that every
+              event receives personalized attention, strategic planning, and
+              seamless execution from start to finish.
+            </p>
+            <p className="text-lead">
+              Owner Michael Tardi oversees the vision and stewardship of the
+              venue, balancing its rich historic legacy with the modern
+              amenities and capabilities required for today&rsquo;s events.
+              Director of Sales Lauren Leuci collaborates closely with clients
+              and planners to understand event objectives, develop customized
+              layouts, and coordinate proposals and timelines tailored to each
+              occasion. Director of Operations Andrew Heaton leads on-site
+              logistics, vendor management, and event-day operations, ensuring
+              that every detail is executed with precision and professionalism.
+            </p>
+            <p className="text-lead">
+              Together, this experienced team provides a trusted foundation for
+              corporate events, social celebrations, nonprofit galas, and
+              weddings at one of the most distinguished event venues in New York
+              City&rsquo;s Financial District (FiDi).
             </p>
           </div>
         </div>

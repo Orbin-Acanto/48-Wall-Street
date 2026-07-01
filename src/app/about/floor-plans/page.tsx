@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Users,
   Maximize2,
@@ -39,6 +39,16 @@ export default function FloorPlansPage() {
 
   const currentFloor = floors.find((f) => f.id === activeFloor) || floors[0];
 
+  const heroImages = ['/venue/floorplan/1.jpg', '/venue/floorplan/2.avif'];
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
   // const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
   //   if (!isDragging || !sliderRef.current) return;
 
@@ -55,15 +65,19 @@ export default function FloorPlansPage() {
     <div className="bg-whitesmoke min-h-screen">
       {/* Hero Section */}
       <section className="relative mt-22 h-[70vh] overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/venue/8.jpg')",
-          }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5 }}
-        />
+        <AnimatePresence>
+          <motion.div
+            key={heroIndex}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url('${heroImages[heroIndex]}')`,
+            }}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ opacity: { duration: 1.2 }, scale: { duration: 6 } }}
+          />
+        </AnimatePresence>
         <div className="from-dark-black/90 via-dark-black/70 to-primary/20 absolute inset-0 bg-gradient-to-br" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">

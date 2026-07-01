@@ -5,49 +5,54 @@ export default function ContactHero() {
     <section className="mt-8 bg-white px-6 py-20 md:mt-16 xl:mt-36">
       <div className="mx-auto max-w-7xl">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left Content */}
           <div className="space-y-6">
             <h1 className="text-primary">Contact 48 Wall Street</h1>
             <h2 className="heading-hero">
-              Where History
+              Experience
               <br />
-              Meets
+              Timeless Luxury
               <br />
-              Celebration
+              at 48 Wall Street
             </h2>
 
             <div className="bg-primary h-0.5 w-16"></div>
 
             <div className="font-secondary space-y-4 leading-relaxed text-gray-600">
               <p>
-                48 Wall Street provides a unique event space in Lower Manhattan
-                to host your next corporate or milestone celebration. Since
-                1928, our building has stood as a landmark of architectural
-                excellence in the heart of the Financial District. Once home to
-                the Bank of New York, this historic downtown venue retains its
-                original grandeur—from the soaring 30-foot ceilings and
-                Palladian windows to the grand marble staircase that has
-                welcomed generations.
+                Welcome to 48 Wall Street, one of New York City&apos;s most
+                iconic landmark event venues. Nestled in the heart of Lower
+                Manhattan&apos;s Financial District, our extraordinary venue
+                offers an unrivaled setting where timeless architecture, refined
+                elegance, and world-class hospitality create unforgettable
+                experiences.
               </p>
 
               <p>
-                Today, as a premier historic NYC venue, we host the city&lsquo;s
-                most memorable events, blending timeless elegance with modern
-                sophistication. Located at the corner of Wall and William
-                Streets, we are ready to bring your vision to life. Reach out to
-                our team and discover why 48 Wall Street continues to be one of
-                the best Lower Manhattan event spaces for distinguished
-                gatherings.
+                Originally built in 1928 as the headquarters of the Bank of New
+                York, 48 Wall Street is a masterpiece of Beaux-Arts architecture
+                featuring breathtaking 30-foot coffered ceilings, magnificent
+                Palladian windows, and a grand marble staircase. Today, the
+                venue has been reimagined as one of Manhattan&apos;s premier
+                luxury event destinations, seamlessly blending historic prestige
+                with modern innovation.
+              </p>
+
+              <p>
+                Whether hosting an elegant gala, executive conference, luxury
+                wedding, or exclusive private celebration, our experienced
+                hospitality team delivers exceptional white-glove service,
+                personalized event planning, and impeccable execution. We invite
+                you to schedule a private tour and experience the timeless
+                elegance that defines 48 Wall Street.
               </p>
             </div>
           </div>
 
-          {/* Right Image */}
           <div className="flex items-center justify-center">
             <div className="relative h-[650px] w-full overflow-hidden rounded-sm shadow-2xl">
               <Image
                 src="/about/contactHero.jpg"
-                alt="Green architectural detail of Manhattan building"
+                alt="48 Wall Street historic landmark event venue"
                 fill
                 className="object-cover"
               />

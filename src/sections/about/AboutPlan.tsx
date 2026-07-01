@@ -9,12 +9,12 @@ interface CTASectionProps {
   buttonLink?: string;
   imageSrc?: string;
 }
-
+// Main
 export default function AboutPlan({
   title = 'PLAN YOUR EVENT AT 48 WALL STREET',
   buttonText = 'CONTACT US',
   buttonLink = '/contact',
-  imageSrc = '/about/aboutPlan.jpg',
+  imageSrc = '/gallery/wedding/plan-event.avif',
 }: CTASectionProps) {
   return (
     <section className="relative h-[60vh] overflow-hidden md:h-[70vh]">
@@ -24,6 +24,7 @@ export default function AboutPlan({
           src={imageSrc}
           alt="Event venue"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

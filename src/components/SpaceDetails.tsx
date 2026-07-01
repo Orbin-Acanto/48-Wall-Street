@@ -15,12 +15,12 @@ export interface SpaceDetailsProps {
   levelLabel: string;
   title: string;
   subtitle: string;
-  description: string;
+  description: React.ReactNode;
   images: string[];
   lightboxImages?: string[];
-  videoUrl: string;
-  floorPlanImage: string;
-  features: string[];
+  videoUrl?: string;
+  floorPlanImage?: string;
+  features?: string[];
   stats: SpaceStats;
   enquireHref?: string;
 }
@@ -34,7 +34,7 @@ export default function SpaceDetails({
   videoUrl,
   lightboxImages,
   floorPlanImage,
-  features,
+  features = [],
   stats,
   enquireHref = '/contact',
 }: SpaceDetailsProps) {
@@ -113,9 +113,9 @@ export default function SpaceDetails({
               <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
                 The Space
               </p>
-              <p className="font-secondary text-dark-black/80 text-base leading-relaxed md:text-lg">
+              <div className="font-secondary text-dark-black/80 space-y-4 text-base leading-relaxed md:text-lg">
                 {description}
-              </p>
+              </div>
 
               <div className="mt-10">
                 <Link href={enquireHref}>
@@ -125,83 +125,92 @@ export default function SpaceDetails({
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              {[0, 1].map((i) => (
+              {[0, 1].map((i) =>
+                galleryImages[i] ? (
+                  <button
+                    key={i}
+                    onClick={() => openLightbox(i + 1)}
+                    className="group relative aspect-[4/3] cursor-pointer overflow-hidden"
+                    style={{
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                    }}
+                  >
+                    <img
+                      src={galleryImages[i]}
+                      alt={`${title} view ${i + 1}`}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </button>
+                ) : null
+              )}
+
+              {galleryImages[2] && (
                 <button
-                  key={i}
-                  onClick={() => openLightbox(i + 1)}
-                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden"
+                  onClick={() => openLightbox(3)}
+                  className="group relative col-span-2 aspect-[16/9] cursor-pointer overflow-hidden"
                   style={{
                     backfaceVisibility: 'hidden',
                     transform: 'translateZ(0)',
                   }}
                 >
                   <img
-                    src={galleryImages[i]}
-                    alt={`${title} view ${i + 1}`}
+                    src={galleryImages[2]}
+                    alt={`${title} wide view`}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </button>
-              ))}
+              )}
 
-              <button
-                onClick={() => openLightbox(3)}
-                className="group relative col-span-2 aspect-[16/9] cursor-pointer overflow-hidden"
-                style={{
-                  backfaceVisibility: 'hidden',
-                  transform: 'translateZ(0)',
-                }}
-              >
-                <img
-                  src={galleryImages[2]}
-                  alt={`${title} wide view`}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </button>
-
-              {[3, 4].map((i) => (
-                <button
-                  key={i}
-                  onClick={() => openLightbox(i + 1)}
-                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden"
-                  style={{
-                    backfaceVisibility: 'hidden',
-                    transform: 'translateZ(0)',
-                  }}
-                >
-                  <img
-                    src={galleryImages[i]}
-                    alt={`${title} view ${i + 1}`}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </button>
-              ))}
+              {[3, 4].map((i) =>
+                galleryImages[i] ? (
+                  <button
+                    key={i}
+                    onClick={() => openLightbox(i + 1)}
+                    className="group relative aspect-[4/3] cursor-pointer overflow-hidden"
+                    style={{
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                    }}
+                  >
+                    <img
+                      src={galleryImages[i]}
+                      alt={`${title} view ${i + 1}`}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </button>
+                ) : null
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-whitesmoke px-6 py-16 md:px-12">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-10 text-center">
-            <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
-              Take a Tour
-            </p>
-            <h2 className="heading-hero">Virtual Walkthrough</h2>
-          </div>
+      {videoUrl && (
+        <section className="bg-whitesmoke px-6 py-16 md:px-12">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 text-center">
+              <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
+                Take a Tour
+              </p>
+              <h2 className="heading-hero">Virtual Walkthrough</h2>
+            </div>
 
-          <div className="relative aspect-video w-full overflow-hidden bg-black">
-            <iframe
-              src={videoUrl}
-              title={`${title} ${subtitle} virtual tour`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full border-0"
-            />
+            <div className="relative aspect-video w-full overflow-hidden bg-black">
+              <iframe
+                src={videoUrl}
+                title={`${title} ${subtitle} virtual tour`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      <section className="bg-white px-6 pt-16 pb-12 md:pt-12 md:pb-10">
+      {floorPlanImage && (
+        <section className="bg-white px-6 pt-16 pb-12 md:pt-12 md:pb-10">
         <div className="mx-auto max-w-7xl">
           <h2 className="heading-hero text-center">Floor Plans</h2>
           <div className="grid gap-8 lg:grid-cols-3">
@@ -264,6 +273,7 @@ export default function SpaceDetails({
           </div>
         </div>
       </section>
+      )}
 
       {selectedIndex !== null && (
         <div
