@@ -30,8 +30,8 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  const leftItems = navItems.slice(0, 4);
-  const rightItems = navItems.slice(4);
+  const leftItems = navItems.slice(0, 5);
+  const rightItems = navItems.slice(5);
 
   return (
     <>

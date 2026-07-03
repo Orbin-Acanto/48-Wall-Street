@@ -2,14 +2,16 @@ import SpaceDetails from '@/components/SpaceDetails';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Concourse Level | Breakout Rooms and Meeting Space NYC | 48 Wall Street',
+  title:
+    'Concourse Level | Breakout Rooms and Meeting Space NYC | 48 Wall Street',
   description:
     'The Concourse Level at 48 Wall Street offers 3,000 sq ft of flexible meeting and event space with 6 breakout rooms. Ideal for conferences, workshops, and pre-function receptions in the Financial District.',
   alternates: {
     canonical: 'https://www.48wallnyc.com/spaces/concourse-level',
   },
   openGraph: {
-    title: 'Concourse Level | Meeting Space & Breakout Rooms NYC | 48 Wall Street',
+    title:
+      'Concourse Level | Meeting Space & Breakout Rooms NYC | 48 Wall Street',
     description:
       '3,000 sq ft flexible event space with 6 breakout rooms. 14-foot ceilings, 200 guests, conference and workshop configurations. Financial District, NYC.',
     url: 'https://www.48wallnyc.com/spaces/concourse-level',
@@ -44,16 +46,16 @@ export default function ConcourseLevelPage() {
       images={[
         '/venue/concourse/1.jpg',
         '/venue/concourse/2.jpg',
-        '/venue/concourse/3.jpg',
-        '/venue/concourse/4.jpg',
+        '/venue/concourse/8.jpg',
+        '/venue/concourse/7.jpg',
         '/venue/concourse/5.jpg',
         '/venue/concourse/6.jpg',
       ]}
       lightboxImages={[
         '/venue/concourse/1.jpg',
         '/venue/concourse/2.jpg',
-        '/venue/concourse/3.jpg',
-        '/venue/concourse/4.jpg',
+        '/venue/concourse/8.jpg',
+        '/venue/concourse/7.jpg',
         '/venue/concourse/5.jpg',
         '/venue/concourse/6.jpg',
       ]}
