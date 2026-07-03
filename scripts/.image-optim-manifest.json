@@ -1671,5 +1671,96 @@
     "originalBytes": 9766514,
     "finalBytes": 3595019,
     "resized": false
+  },
+  "public/48wallnyc-gallery_files/1.jpg": {
+    "hash": "6fabca68460e2701d8946a362300a7a7ee9d3489",
+    "optimizedAt": "2026-07-03T16:37:22.713Z",
+    "originalBytes": 1191338,
+    "finalBytes": 1191338,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/15.jpg": {
+    "hash": "4b3c152379ee3b320e6776922ef5a827d52f589c",
+    "optimizedAt": "2026-07-03T16:37:23.460Z",
+    "originalBytes": 1003918,
+    "finalBytes": 1003918,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/16.jpg": {
+    "hash": "317fcfc5d385e63d9189674805d0cce96ca50470",
+    "optimizedAt": "2026-07-03T16:37:24.195Z",
+    "originalBytes": 865203,
+    "finalBytes": 865203,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/17.jpg": {
+    "hash": "5d4892d79d6da3cc936066f4a9e7b0baaa0c38d2",
+    "optimizedAt": "2026-07-03T16:37:24.921Z",
+    "originalBytes": 980144,
+    "finalBytes": 980144,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/18.jpg": {
+    "hash": "019a569101f02c5512035007aa9c764545632240",
+    "optimizedAt": "2026-07-03T16:37:25.573Z",
+    "originalBytes": 839606,
+    "finalBytes": 839606,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/19.jpg": {
+    "hash": "19c783c27cc8efd7fb7a0967da8ac0a3256cde9f",
+    "optimizedAt": "2026-07-03T16:37:26.403Z",
+    "originalBytes": 1202853,
+    "finalBytes": 1202853,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/20.jpg": {
+    "hash": "3f6e799a364398a97f586aaa3e51ece50a432fd9",
+    "optimizedAt": "2026-07-03T16:37:27.067Z",
+    "originalBytes": 898700,
+    "finalBytes": 898700,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/21.jpg": {
+    "hash": "3a69170f8ed618930c442b2a37e094de6d77653e",
+    "optimizedAt": "2026-07-03T16:37:27.771Z",
+    "originalBytes": 1138508,
+    "finalBytes": 1138508,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/22.jpg": {
+    "hash": "7aea31f33c28a90e0067b932d78c1dcfc40b95b1",
+    "optimizedAt": "2026-07-03T16:37:28.435Z",
+    "originalBytes": 997877,
+    "finalBytes": 997877,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/23.jpg": {
+    "hash": "69eab78f4fac0b26254aba290bc671d6142007ab",
+    "optimizedAt": "2026-07-03T16:37:29.110Z",
+    "originalBytes": 847847,
+    "finalBytes": 847847,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/26.jpg": {
+    "hash": "f37b75e3897d8ea2027abd51aefde688757d1767",
+    "optimizedAt": "2026-07-03T16:37:29.816Z",
+    "originalBytes": 1014703,
+    "finalBytes": 1014703,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/4.jpg": {
+    "hash": "337c606271c60c4727ea7c102c9044011bb2fb37",
+    "optimizedAt": "2026-07-03T16:37:30.459Z",
+    "originalBytes": 866828,
+    "finalBytes": 866828,
+    "resized": true
+  },
+  "public/48wallnyc-gallery_files/5.jpg": {
+    "hash": "74dae29632a8728c69b8b6557f34575efc699f97",
+    "optimizedAt": "2026-07-03T16:37:31.169Z",
+    "originalBytes": 951282,
+    "finalBytes": 951282,
+    "resized": true
   }
 }
