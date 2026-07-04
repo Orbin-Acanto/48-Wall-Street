@@ -8,24 +8,19 @@ import { galleryPhotos } from '@/data';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 const TABS = [
-  { id: 'welcome', name: 'Welcome to 48 Wall Street' },
   { id: 'corporate', name: 'Corporate' },
   { id: 'wedding', name: 'Wedding' },
   { id: 'fashion', name: 'Fashion' },
   { id: 'bar', name: 'Bar & Bat Mitzvahs' },
   { id: 'holiday', name: 'Holiday Events' },
-  { id: 'food', name: 'Food' },
-  { id: 'setup', name: 'Setup' },
   { id: 'nonprofit', name: 'Non-Profit' },
-  { id: 'hospitality', name: 'Hospitality' },
 ] as const;
 
 type TabId = (typeof TABS)[number]['id'];
-type GalleryTabId = Exclude<TabId, 'welcome'>;
 
-const VALID_TABS: GalleryTabId[] = TABS.map((tab) => tab.id).filter(
-  (id): id is GalleryTabId => id !== 'welcome'
-);
+const DEFAULT_TAB: TabId = TABS[0].id;
+
+const VALID_TABS: TabId[] = TABS.map((tab) => tab.id);
 
 export default function GalleryContent() {
   const searchParams = useSearchParams();
@@ -34,36 +29,30 @@ export default function GalleryContent() {
   const tabFromUrl = searchParams.get('tab');
 
   const [activeTab, setActiveTab] = useState<TabId>(() => {
-    if (tabFromUrl && VALID_TABS.includes(tabFromUrl as GalleryTabId)) {
+    if (tabFromUrl && VALID_TABS.includes(tabFromUrl as TabId)) {
       return tabFromUrl as TabId;
     }
-    return 'welcome';
+    return DEFAULT_TAB;
   });
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    if (tabFromUrl && VALID_TABS.includes(tabFromUrl as GalleryTabId)) {
+    if (tabFromUrl && VALID_TABS.includes(tabFromUrl as TabId)) {
       setActiveTab(tabFromUrl as TabId);
     } else if (!tabFromUrl) {
-      setActiveTab('welcome');
+      setActiveTab(DEFAULT_TAB);
     }
   }, [tabFromUrl]);
 
-  const filteredPhotos =
-    activeTab === 'welcome'
-      ? []
-      : galleryPhotos.filter((photo) => photo.category === activeTab);
+  const filteredPhotos = galleryPhotos.filter(
+    (photo) => photo.category === activeTab
+  );
 
   const handleTabChange = (tabId: TabId) => {
     setActiveTab(tabId);
     setSelectedIndex(null);
     document.body.style.overflow = 'unset';
-
-    if (tabId === 'welcome') {
-      router.push('/gallery', { scroll: false });
-      return;
-    }
 
     router.push(`/gallery?tab=${tabId}`, { scroll: false });
   };
@@ -159,59 +148,7 @@ export default function GalleryContent() {
           ))}
         </div>
 
-        {activeTab === 'welcome' ? (
-          <section
-            className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 pb-8 lg:grid-cols-2 lg:gap-16"
-            aria-labelledby="welcome-title"
-          >
-            <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-gray-800)] shadow-2xl">
-              <Image
-                src="/gallery/welcome/lobby.png"
-                alt="48 Wall Street lobby entrance"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div>
-              <p className="mb-4 text-xs tracking-[0.2em] text-[var(--color-primary)] uppercase">
-                Welcome
-              </p>
-              <h2
-                id="welcome-title"
-                className="font-primary mb-6 text-4xl leading-tight font-normal text-[var(--color-dark-black)] md:text-5xl"
-              >
-                Welcome to{' '}
-                <span className="text-[var(--color-primary)]">
-                  48 Wall Street
-                </span>
-              </h2>
-              <div
-                className="mb-7 h-0.5 w-16 bg-[var(--color-primary)]"
-                aria-hidden="true"
-              />
-              <p className="mb-5 text-[0.975rem] leading-relaxed text-[var(--color-gray-700)]">
-                Step into one of New York City&apos;s most iconic landmarks. Set
-                in the heart of the Financial District, 48 Wall Street pairs
-                historic 1920s architecture — soaring coffered ceilings,
-                Palladian windows, and a grand marble staircase — with the
-                modern infrastructure today&apos;s events demand.
-              </p>
-              <p className="mb-5 text-[0.975rem] leading-relaxed text-[var(--color-gray-700)]">
-                From intimate gatherings on the Concourse Level to galas of
-                350+ on the Grand Mezzanine, every event is hosted in a venue
-                built to leave an impression long after the last guest leaves.
-              </p>
-              <p className="text-[0.975rem] leading-relaxed text-[var(--color-gray-700)]">
-                Explore the categories above to see how our spaces transform
-                for weddings, corporate events, fashion shows, mitzvahs, and
-                holiday celebrations.
-              </p>
-            </div>
-          </section>
-        ) : (
-          <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
               initial={{ opacity: 0, y: 30 }}
@@ -258,7 +195,6 @@ export default function GalleryContent() {
               )}
             </motion.div>
           </AnimatePresence>
-        )}
       </div>
 
       <AnimatePresence>

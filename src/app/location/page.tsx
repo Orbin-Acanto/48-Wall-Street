@@ -78,7 +78,7 @@ export default function LocationPage() {
       </section>
 
       {/* Event Types */}
-      <section className="px-6 py-12 md:px-12 md:py-20 lg:px-20">
+      {/* <section className="px-6 py-12 md:px-12 md:py-20 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -113,10 +113,10 @@ export default function LocationPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Featured Locations */}
-      <section
+      {/* <section
         id="locations"
         className="bg-white px-6 py-12 md:px-12 md:py-20 lg:px-20"
       >
@@ -130,7 +130,6 @@ export default function LocationPage() {
             Our Distinctive Event Spaces
           </motion.h2>
 
-          {/* Location Tabs */}
           <div className="mb-12 flex flex-wrap justify-center gap-4">
             {locations.map((location, index) => (
               <CustomButton
@@ -147,7 +146,6 @@ export default function LocationPage() {
             ))}
           </div>
 
-          {/* Location Details */}
           <motion.div
             key={activeLocation}
             initial={{ opacity: 0, y: 20 }}
@@ -155,7 +153,6 @@ export default function LocationPage() {
             transition={{ duration: 0.5 }}
             className="grid gap-8 lg:grid-cols-2"
           >
-            {/* Image */}
             <div className="relative h-[400px] overflow-hidden rounded-sm lg:h-[600px]">
               <Image
                 src={locations[activeLocation].image}
@@ -172,19 +169,12 @@ export default function LocationPage() {
               </div>
             </div>
 
-            {/* Details */}
             <div className="flex flex-col justify-center">
               <h3 className="text-dark-black font-primary mb-4 text-3xl tracking-wide md:text-4xl">
                 {locations[activeLocation].name}
               </h3>
 
               <div className="mb-6 space-y-3">
-                {/* <div className="flex items-start gap-3">
-                  <MapPin className="text-primary mt-1 h-5 w-5 flex-shrink-0" />
-                  <p className="font-secondary text-gray-600">
-                    {locations[activeLocation].address}
-                  </p>
-                </div> */}
                 <div className="flex items-center gap-3">
                   <Users className="text-primary h-5 w-5" />
                   <p className="font-secondary text-gray-600">
@@ -236,10 +226,10 @@ export default function LocationPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Amenities */}
-      <section className="px-6 py-20 md:px-12 lg:px-20">
+      {/* <section className="px-6 py-20 md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -271,7 +261,8 @@ export default function LocationPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+
       <InteractiveMapSection />
       {/* Contact CTA */}
       <section className="bg-dark-black px-6 py-20 text-center md:px-12 lg:px-20">
