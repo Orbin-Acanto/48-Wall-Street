@@ -265,12 +265,23 @@ export default function LocationPage() {
 
       <InteractiveMapSection />
       {/* Contact CTA */}
-      <section className="bg-dark-black px-6 py-20 text-center md:px-12 lg:px-20">
+      <section className="relative overflow-hidden px-6 py-32 text-center md:px-12 md:py-40 lg:px-20">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/location/wall-street-subway.jpg)',
+          }}
+        />
+        {/* Overlay to keep text legible and mask source quality */}
+        <div className="from-dark-black/90 via-dark-black/80 to-dark-black/90 absolute inset-0 bg-gradient-to-b" />
+        <div className="absolute inset-0 backdrop-blur-[2px]" />
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mx-auto max-w-4xl"
+          className="relative z-10 mx-auto max-w-4xl"
         >
           <h2 className="text-primary heading-hero">
             Ready to Plan Your Event?
