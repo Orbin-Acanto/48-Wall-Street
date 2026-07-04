@@ -2483,7 +2483,13 @@ export const eventCateringData = {
       subtitle: 'An Elevated Fine Dining Experience',
       description:
         "Celebrate life's most memorable occasions with an elegant seated dining experience crafted to impress. At 48 Wall Street, every course is thoughtfully prepared using the finest seasonal ingredients and presented with impeccable attention to detail. From intimate executive dinners and black-tie galas to luxury weddings and charitable celebrations, our culinary team creates bespoke multi-course menus paired with exceptional wines and white-glove service. Surrounded by the timeless grandeur of our historic venue, every dinner becomes an unforgettable expression of sophistication and hospitality.",
-      images: ['/catering/cd1.jpg', '/catering/cd2.jpg', '/catering/cd3.jpg'],
+      images: [
+        '/catering/1.jpg',
+        '/catering/2.jpg',
+        '/catering/3.jpg',
+        '/catering/4.jpg',
+        '/catering/5.jpg',
+      ],
       imageAlts: [
         'Catering display 1',
         'Catering display 2',
@@ -2496,7 +2502,13 @@ export const eventCateringData = {
       subtitle: 'Interactive Culinary Experiences',
       description:
         'Redefine traditional dining with a collection of beautifully designed chef-attended culinary stations that encourage guests to explore, engage, and indulge. From premium carving stations and fresh seafood displays to handcrafted pasta, global cuisine, artisan charcuterie, and decadent dessert presentations, each station is thoughtfully curated to deliver an immersive dining experience.\n\nPerfect for corporate receptions, luxury galas, weddings, and social celebrations, our interactive culinary experiences combine exceptional cuisine with elegant presentation, creating a vibrant atmosphere that inspires conversation and unforgettable moments.',
-      images: ['/catering/cd1.jpg', '/catering/cd2.jpg', '/catering/cd3.jpg'],
+      images: [
+        '/catering/3.jpeg',
+        '/catering/6.jpg',
+        '/catering/7.jpg',
+        '/catering/8.jpg',
+        '/catering/9.jpg',
+      ],
       imageAlts: [
         'Catering display 1',
         'Catering display 2',
