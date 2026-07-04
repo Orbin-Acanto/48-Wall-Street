@@ -37,16 +37,14 @@ const proposals = [
 
 export default function AIProposalGenerator() {
   return (
-    <section className="bg-whitesmoke px-6 py-20 md:px-12">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-16 text-center">
+    <section className="bg-whitesmoke px-6 py-20 md:px-12 lg:py-28">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-14 text-center md:mb-16">
           <div className="bg-primary/10 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full">
             <FileText className="text-primary h-7 w-7" />
           </div>
-          <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
-            Powered by AI
-          </p>
-          <h2 className="heading-hero">Quick Quote</h2>
+          <h2 className="heading-hero mb-4">Quick Quote</h2>
+          <div className="bg-primary mx-auto mb-6 h-[2px] w-20 rounded-full" />
           <p className="text-lead">
             Once your selections are complete, the AI Proposal Generator will
             automatically produce:
@@ -55,9 +53,12 @@ export default function AIProposalGenerator() {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {proposals.map(({ text, icon: Icon }, idx) => (
-            <div key={idx} className="group flex items-start gap-4 px-5 py-5">
-              <div className="bg-primary/10 group-hover:bg-primary flex h-9 w-9 flex-shrink-0 items-center justify-center transition-colors duration-200">
-                <Icon className="text-primary h-4 w-4 group-hover:text-white" />
+            <div
+              key={idx}
+              className="group hover:border-primary/40 flex items-start gap-4 rounded-xl border border-black/[0.06] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]"
+            >
+              <div className="bg-primary/10 group-hover:bg-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg transition-colors duration-300">
+                <Icon className="text-primary h-[18px] w-[18px] transition-colors duration-300 group-hover:text-white" />
               </div>
               <span className="font-secondary text-dark-black/80 pt-1.5 text-sm leading-relaxed">
                 {text}
