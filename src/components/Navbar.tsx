@@ -69,7 +69,7 @@ export default function Navbar() {
                             href={subItem.href}
                             className={`font-primary text-dark-black/70 hover:text-dark-black block px-6 py-3 text-[0.75rem] transition-all duration-200 hover:bg-gray-800/5 ${
                               idx === 0 ? 'rounded-none' : ''
-                            } ${idx === item.dropdown.length - 1 ? 'rounded-none' : ''}`}
+                            } ${idx === (item.dropdown?.length ?? 0) - 1 ? 'rounded-none' : ''}`}
                           >
                             {subItem.name}
                           </Link>
@@ -132,7 +132,7 @@ export default function Navbar() {
                             href={subItem.href}
                             className={`font-primary text-dark-black/70 hover:text-dark-black block px-6 py-3 text-[0.75rem] transition-all duration-200 hover:bg-gray-800/5 ${
                               idx === 0 ? 'rounded-none' : ''
-                            } ${idx === item.dropdown.length - 1 ? 'rounded-none' : ''}`}
+                            } ${idx === (item.dropdown?.length ?? 0) - 1 ? 'rounded-none' : ''}`}
                           >
                             {subItem.name}
                           </Link>

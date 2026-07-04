@@ -2,16 +2,18 @@ import SpaceDetails from '@/components/SpaceDetails';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Hamilton Room | Private Event Space NYC | 48 Wall Street',
+  title:
+    'The Alexander Hamilton Office | Private Executive Salon NYC | 48 Wall Street',
   description:
-    'The Hamilton Room at 48 Wall Street offers an intimate and refined private event space in the Financial District, perfect for executive meetings, private dinners, and exclusive gatherings.',
+    "The Alexander Hamilton Office at 48 Wall Street is a private executive salon inspired by America's financial legacy, ideal for executive meetings, VIP receptions, board discussions, and private dining in the Financial District.",
   alternates: {
     canonical: 'https://www.48wallnyc.com/spaces/hamilton-room',
   },
   openGraph: {
-    title: 'Hamilton Room | Private Event Space NYC | 48 Wall Street',
+    title:
+      'The Alexander Hamilton Office | Private Executive Salon NYC | 48 Wall Street',
     description:
-      'An intimate and refined private event space at 48 Wall Street. Perfect for executive meetings, private dinners, and exclusive gatherings in the Financial District.',
+      "A private executive salon inspired by America's financial legacy. Ideal for executive meetings, VIP receptions, board discussions, and private dining in the Financial District.",
     url: 'https://www.48wallnyc.com/spaces/hamilton-room',
     siteName: '48 Wall Street NYC',
     images: [
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
         url: '/venue/4.JPG',
         width: 1200,
         height: 630,
-        alt: 'Hamilton Room at 48 Wall Street — intimate private event space NYC',
+        alt: 'The Alexander Hamilton Office at 48 Wall Street — private executive salon NYC',
       },
     ],
     locale: 'en_US',
@@ -27,9 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hamilton Room | 48 Wall Street NYC',
+    title: 'The Alexander Hamilton Office | 48 Wall Street NYC',
     description:
-      'Intimate private event space for executive meetings and exclusive gatherings. Financial District, NYC.',
+      'A private executive salon inspired by America’s financial legacy. Executive meetings, VIP receptions, and private dining. Financial District, NYC.',
     images: ['/venue/4.JPG'],
   },
 };
@@ -38,9 +40,49 @@ export default function HamiltonRoomPage() {
   return (
     <SpaceDetails
       levelLabel="03"
-      title="Hamilton"
-      subtitle="Room"
-      description="The Hamilton Room at 48 Wall Street offers an intimate setting for private events that demand discretion and elegance. Named in honor of Alexander Hamilton, this refined space is ideal for executive board meetings, private dinners, and exclusive gatherings. With its classic architectural details and versatile layout, the Hamilton Room brings the historic character of 48 Wall Street into a more personal, focused environment."
+      title="The Alexander Hamilton"
+      subtitle="Office"
+      description={
+        <>
+          <p className="font-primary text-primary text-lg italic md:text-xl">
+            A Private Executive Salon Inspired by America&apos;s Financial
+            Legacy
+          </p>
+          <p>
+            Step into one of 48 Wall Street&apos;s most distinguished private
+            spaces, The Alexander Hamilton Office. Named in honor of
+            America&apos;s first Secretary of the Treasury and the visionary who
+            laid the foundation for the nation&apos;s financial system, this
+            refined executive salon embodies the elegance, prestige, and
+            timeless character of Lower Manhattan&apos;s historic Financial
+            District.
+          </p>
+          <p>
+            Rich in architectural detail, the room showcases soaring ceilings,
+            handcrafted millwork, ornate gilded columns, period-inspired
+            furnishings, a stately fireplace, and expansive windows that
+            overlook the heart of Wall Street. Every element has been
+            thoughtfully preserved to create an atmosphere that reflects the
+            sophistication of New York&apos;s Gilded Age while providing a
+            distinguished setting for today&apos;s executive gatherings.
+          </p>
+          <p>
+            Designed for privacy and meaningful conversation, The Alexander
+            Hamilton Office is ideal for executive meetings, VIP receptions,
+            board discussions, private dining, media interviews, speaker green
+            rooms, and exclusive client engagements. Its intimate scale and
+            historic ambiance offer an unparalleled backdrop where business,
+            history, and hospitality converge.
+          </p>
+          <p>
+            Located within one of New York City&apos;s most iconic landmark
+            buildings, this remarkable space pays tribute to the enduring legacy
+            of Alexander Hamilton and the birthplace of American finance,
+            offering guests the rare opportunity to experience history while
+            creating moments that shape the future.
+          </p>
+        </>
+      }
       images={[
         '/venue/3.jpg',
         '/venue/6.jpg',
@@ -52,14 +94,14 @@ export default function HamiltonRoomPage() {
       videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
       floorPlanImage="/floor_planner/plan/ground.svg"
       features={[
-        'Intimate private setting',
-        'Executive meeting capability',
-        'Classic architectural details',
-        'Flexible layout options',
-        'Professional AV capabilities',
-        'Private dining configurations',
-        'Exclusive event space',
-        'Historic character',
+        'Soaring ceilings & handcrafted millwork',
+        'Ornate gilded columns',
+        'Stately fireplace',
+        'Windows overlooking Wall Street',
+        'Executive meetings & board discussions',
+        'VIP receptions & private dining',
+        'Media interviews & speaker green room',
+        'Exclusive client engagements',
       ]}
       stats={{
         capacity: 'Contact for details',

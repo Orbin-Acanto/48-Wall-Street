@@ -166,7 +166,15 @@ export const portfolioVideos: VideoItem[] = [
   },
 ];
 
-export const navItems = [
+type NavSubItem = { name: string; href: string; external?: boolean };
+type NavItem = {
+  name: string;
+  href: string;
+  external?: boolean;
+  dropdown?: NavSubItem[];
+};
+
+export const navItems: NavItem[] = [
   {
     name: 'About',
     href: '/about',
@@ -186,7 +194,7 @@ export const navItems = [
     dropdown: [
       { name: 'Banking Hall', href: '/spaces/banking-hall' },
       { name: 'Grand Mezzanine', href: '/spaces/grand-mezzanine' },
-      { name: 'Hamilton Room', href: '/spaces/hamilton-room' },
+      { name: 'The Alexander Hamilton Office', href: '/spaces/hamilton-room' },
       { name: '5th Floor', href: '/spaces/5th-floor' },
       { name: 'Concourse Level', href: '/spaces/concourse-level' },
     ],
@@ -223,25 +231,7 @@ export const navItems = [
   },
   {
     name: 'Vendors',
-    href: 'https://www.mmeink.com/',
-    external: true,
-    dropdown: [
-      {
-        name: 'MME Worldwide',
-        href: 'https://www.mmeink.com/',
-        external: true,
-      },
-      {
-        name: 'Mikey Mike Events',
-        href: 'https://www.mikeymikeevents.com/',
-        external: true,
-      },
-      {
-        name: "Tardi's Catering",
-        href: 'https://www.tardiscatering.com/',
-        external: true,
-      },
-    ],
+    href: '/vendors',
   },
   { name: 'Location', href: '/location' },
   { name: 'Contact', href: '/contact' },
@@ -3154,3 +3144,117 @@ export const sidebarSocialLinks = [
     href: 'https://www.instagram.com/48wallst/',
   },
 ];
+
+export const vendorsData = {
+  hero: {
+    image: '/images/services-hero.jpg',
+    eyebrow: '48 Wall Street',
+    title: 'Exclusive Event Partners',
+  },
+  intro: [
+    'At 48 Wall Street, extraordinary events are made possible through an exclusive collection of trusted hospitality, culinary, entertainment, and production partners. Together, our preferred partners deliver a seamless, full-service experience, combining world-class cuisine, award-winning production, innovative design, and exceptional entertainment under one historic roof.',
+    'From intimate executive gatherings to international conferences, luxury weddings, fashion shows, and gala celebrations, our exclusive partners ensure every detail is executed with precision, creativity, and uncompromising excellence.',
+  ],
+  vendors: [
+    {
+      id: 'tardis-catering',
+      name: "Tardi's Catering",
+      tagline: 'Luxury Catering & Culinary Experiences',
+      logo: '/logo/tardis-catering.png',
+      href: 'https://www.tardiscatering.com/',
+      description: [
+        "For more than 30 years, Tardi's Catering has been creating exceptional culinary experiences throughout New York. Renowned for impeccable cuisine and white-glove hospitality, the team specializes in executive meetings, luxury weddings, corporate galas, fundraising events, and private celebrations.",
+        "From elegant plated dinners and chef-curated tasting menus to lavish cocktail receptions and custom culinary concepts, every menu is thoughtfully crafted using the finest seasonal ingredients and tailored to each client's vision.",
+      ],
+      servicesLabel: 'Signature Services',
+      services: [
+        'Luxury Catering',
+        'Corporate Dining',
+        'Weddings & Social Celebrations',
+        'Cocktail Receptions',
+        'Chef Action Stations',
+        'Premium Beverage Programs',
+        'White-Glove Hospitality',
+      ],
+    },
+    {
+      id: 'fidi-hospitality',
+      name: 'FiDi Hospitality',
+      tagline: 'Hospitality Management & Guest Experience',
+      logo: '/logo/fidi-hospitality.png',
+      href: 'https://www.fidihospitality.com/',
+      description: [
+        'FiDi Hospitality is the exclusive hospitality management company for 48 Wall Street, delivering exceptional guest experiences from planning through execution. Every event is supported by experienced hospitality professionals who oversee operations, logistics, staffing, concierge services, and event management with meticulous attention to detail.',
+        'Whether hosting an executive conference, luxury wedding, nonprofit gala, or international product launch, FiDi Hospitality ensures flawless execution and personalized service worthy of one of Manhattan\'s most prestigious event destinations.',
+      ],
+      servicesLabel: 'Services Include',
+      services: [
+        'Event Management',
+        'Hospitality Operations',
+        'Guest Experience',
+        'Venue Logistics',
+        'Concierge Services',
+        'Staffing Solutions',
+        'VIP & Executive Hospitality',
+      ],
+    },
+    {
+      id: 'mme-worldwide',
+      name: 'MME Worldwide',
+      tagline: 'Creative Production • Audio Visual • Design',
+      logo: '/logo/mme-worldwide.png',
+      darkLogoBg: true,
+      href: 'https://www.mmeink.com/',
+      description: [
+        'MME Worldwide is the exclusive creative production partner of 48 Wall Street, providing comprehensive event production, immersive design, and technical execution for extraordinary events. Our award-winning team transforms ideas into unforgettable experiences through innovative technology, custom fabrication, and world-class production services.',
+        'From corporate conferences and fashion shows to luxury weddings, brand activations, and experiential marketing events, MME Worldwide delivers every detail with creativity, precision, and flawless execution.',
+      ],
+      servicesLabel: 'Production & Creative Services',
+      services: [
+        'Audio Visual Production',
+        'Intelligent Lighting Design',
+        'Custom Staging & Runways',
+        'LED Video Walls & Presentation Technology',
+        'Scenic Design & Custom Fabrication',
+        'Large Format Printing & Event Branding',
+        'Floral Design & Luxury Décor',
+        'Event Rentals & Specialty Furnishings',
+        'Custom Props & Scenic Elements',
+        'Rigging & Production Management',
+        'Technical Direction & Show Calling',
+      ],
+    },
+    {
+      id: 'mikey-mike-entertainment',
+      name: 'Mikey Mike Entertainment',
+      tagline: 'Entertainment • Live Music • Interactive Experiences',
+      logo: '/logo/mikey-mike-events.png',
+      href: 'https://www.mikeymikeevents.com/',
+      description: [
+        'Mikey Mike Entertainment delivers unforgettable performances and immersive guest experiences that transform every celebration into a one-of-a-kind event. From sophisticated cocktail entertainment to headline performances, our curated roster features exceptional talent for every occasion.',
+        "Whether you're seeking an elegant jazz trio, an award-winning dance band, celebrity DJ, cultural performers, strolling entertainers, or interactive themed experiences, our entertainment specialists create unforgettable moments that captivate every audience.",
+      ],
+      servicesLabel: 'Entertainment Services',
+      services: [
+        'Live Bands',
+        'Solo Musicians',
+        'Jazz Ensembles & Classical Performers',
+        'International & Celebrity DJs',
+        'Themed Strolling Performers',
+        'Cultural Entertainment',
+        'Interactive Games & Attractions',
+        'Casino Nights',
+        'Specialty Acts & Cirque Performers',
+        'Celebrity Talent & Speakers',
+        "Children's Entertainment",
+        'Holiday & Seasonal Productions',
+        'Custom Entertainment Programming',
+      ],
+    },
+  ],
+  closing: {
+    title: 'One Venue. One Team. Endless Possibilities.',
+    description:
+      'With our exclusive collection of hospitality, culinary, entertainment, and production partners, 48 Wall Street offers a truly turnkey event experience, where every service is thoughtfully curated, expertly managed, and delivered with the highest standards of luxury, creativity, and professionalism.',
+  },
+};
