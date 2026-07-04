@@ -25,6 +25,7 @@ export interface Photo {
 export type ServiceSection = {
   id: string;
   title: string;
+  subtitle?: string;
   description: string;
   images: string[];
   imageAlts: string[];

@@ -2410,18 +2410,35 @@ export const eventProductionData = {
 
 export const eventCateringData = {
   title: 'Event Catering at 48 Wall Street',
-  subtitle: 'Thoughtful Dining in a Historic Financial District Setting',
-  leadTitle: 'Food That Matches the Occasion',
+  subtitle: 'Elevated Dining. Exceptional Hospitality.',
+  leadTitle: 'Culinary Experiences',
+  leadSubtitle: 'Elevated Dining. Exceptional Hospitality.',
   heroImage: '/videos/ec.mp4',
+  justifyLead: true,
   leadDescription:
-    "Good food is not a detail at an event. It is part of what people remember. At 48 Wall Street, our catering partner brings over 30 years of experience delivering exceptional dining for corporate events, galas, weddings, and private celebrations in Lower Manhattan. The culinary team builds menus around your event type, guest count, and preferences, whether that means a formal multi-course seated dinner, a generous cocktail reception with passed hors d'oeuvres, an energized buffet lunch for a full-day conference, or globally inspired food stations for an immersive evening. Service staff are trained to manage timing and presentation within the specific context of this historic venue so that the dining experience feels seamless rather than catered.",
+    "At 48 Wall Street, every menu is thoughtfully crafted to complement the sophistication of your event. In partnership with one of New York City's premier hospitality teams, we deliver refined culinary experiences as memorable as the venue itself.",
+  leadDescription2:
+    'From elegant plated dinners and elevated cocktail receptions to chef-curated tasting menus, immersive international food stations, executive breakfasts, and lavish gala banquets, every offering is customized to reflect your vision, brand, and guest experience. Using the finest seasonal ingredients and impeccable presentation, our culinary team creates dining experiences that seamlessly blend creativity, luxury, and exceptional service.',
+  leadDescription3:
+    'With more than three decades of experience serving distinguished corporate clients, nonprofit organizations, fashion houses, financial institutions, and luxury weddings throughout Lower Manhattan, our hospitality professionals understand that flawless execution extends far beyond the cuisine. Every course is carefully timed, every table meticulously presented, and every guest served with the highest level of professionalism.',
+  leadDescription4:
+    'At 48 Wall Street, dining is more than a meal. It is an unforgettable experience designed to leave a lasting impression.',
+  ctaTitle: "Let's Craft Something Extraordinary",
+  ctaDescription:
+    'At 48 Wall Street, we believe every event should be as distinctive as the people who host it. Our award-winning team combines exceptional hospitality, bespoke culinary experiences, immersive production, and timeless elegance to create celebrations that leave a lasting impression.\n\nSchedule a private consultation and discover the possibilities.',
+  ctaButtonLabel: 'Schedule a Consultation',
   sections: [
     {
-      id: 'seated-dinner',
-      title: 'Seated Dinners',
+      id: 'breakfast',
+      title: 'Breakfast',
+      subtitle: 'Elevate the Morning Experience',
       description:
-        'When hosting a formal dinner at 48 Wall Street, expect a dining experience that matches the grandeur of a historic NYC venue. The executive chef and culinary team will help you create a custom menu tailored to your specific tastes. Whether it is a fundraising gala or an executive banquet, we provide the sophisticated service required for a premier Financial District event venue.',
-      images: ['/catering/cd1.jpg', '/catering/cd2.jpg', '/catering/cd3.jpg'],
+        "Begin the day with a thoughtfully curated breakfast designed to inspire productivity, connection, and conversation. At 48 Wall Street, our culinary team transforms the traditional morning meal into an elevated dining experience, featuring artisanal pastries, seasonal fruits, chef-inspired breakfast specialties, gourmet coffee selections, fresh-pressed juices, and elegant hot breakfast presentations.\n\nWhether hosting an executive board meeting, investor summit, leadership conference, or company-wide gathering, our customized breakfast menus are crafted with the finest ingredients and impeccable presentation, ensuring every guest begins the day with exceptional hospitality in one of New York City's most iconic historic venues.",
+      images: [
+        '/catering/IMG_3248.jpg',
+        '/catering/20221020_093758.jpg',
+        '/catering/IMG_0242.jpg',
+      ],
       imageAlts: [
         'Catering display 1',
         'Catering display 2',
@@ -2429,10 +2446,24 @@ export const eventCateringData = {
       ],
     },
     {
-      id: 'cocktail-events',
-      title: 'Cocktail Events',
+      id: 'lunch',
+      title: 'Lunch',
+      subtitle: 'Elevate the Midday Experience',
       description:
-        "Hosting a reception at 48 Wall Street is a truly remarkable experience. Allow your guests to explore the extraordinary architecture of this unique event space in Lower Manhattan while sipping specialty cocktails and enjoying creative hors d'oeuvres. It is the perfect social setting for networking mixers or holiday toasts in a landmark Wall Street location.",
+        'Transform your luncheon into a memorable culinary occasion where exceptional cuisine meets impeccable hospitality. At 48 Wall Street, our chefs create seasonally inspired lunch menus that balance sophistication with flavor, featuring beautifully presented plated meals, executive buffets, interactive chef stations, globally inspired cuisine, and fresh market selections.\n\nWhether entertaining clients or hosting executive meetings, corporate conferences, nonprofit galas, or full-day summits, we thoughtfully tailor every lunch experience to your event. Paired with refined service and the timeless elegance of our historic venue, each menu is designed to energize your guests, encourage meaningful connections, and leave a lasting impression long after the final course.',
+      images: ['/catering/cl1.jpg', '/catering/cl2.jpg', '/catering/cl3.jpg'],
+      imageAlts: [
+        'Catering display 1',
+        'Catering display 2',
+        'Catering display 3',
+      ],
+    },
+    {
+      id: 'cocktail-reception',
+      title: 'Cocktail Reception ',
+      subtitle: 'Elevate the Cocktail Experience',
+      description:
+        "Celebrate in timeless style with a cocktail reception that blends exceptional cuisine, handcrafted cocktails, and refined hospitality. At 48 Wall Street, our culinary and beverage teams curate sophisticated receptions featuring artfully passed hors d'oeuvres, elegant chef-attended stations, premium charcuterie and seafood displays, seasonal small plates, and expertly crafted signature cocktails.\n\nWhether hosting a corporate reception, product launch, networking event, fashion show, gala, or wedding celebration, every cocktail experience is thoughtfully tailored to reflect your vision and impress your guests. Set against the iconic marble architecture and historic grandeur of 48 Wall Street, our white-glove service, premium bar program, and impeccable presentation create an atmosphere of effortless luxury, where every toast becomes part of an unforgettable evening.",
       images: [
         '/catering/cc1.jpg',
         '/catering/catering1.jpg',
@@ -2447,11 +2478,12 @@ export const eventCateringData = {
       ],
     },
     {
-      id: 'lunch',
-      title: 'Lunch',
+      id: 'seated-dinner',
+      title: 'Seated Dinners',
+      subtitle: 'An Elevated Fine Dining Experience',
       description:
-        'Executing a luncheon at 48 Wall Street is seamless with our trusted partners. We provide a myriad of options, including formal sit-down lunches, flexible buffets, or passed plates for networking hours. Our creative culinary team ensures that the food and beverage options keep your attendees energized and engaged throughout your event.',
-      images: ['/catering/cl1.jpg', '/catering/cl2.jpg', '/catering/cl3.jpg'],
+        "Celebrate life's most memorable occasions with an elegant seated dining experience crafted to impress. At 48 Wall Street, every course is thoughtfully prepared using the finest seasonal ingredients and presented with impeccable attention to detail. From intimate executive dinners and black-tie galas to luxury weddings and charitable celebrations, our culinary team creates bespoke multi-course menus paired with exceptional wines and white-glove service. Surrounded by the timeless grandeur of our historic venue, every dinner becomes an unforgettable expression of sophistication and hospitality.",
+      images: ['/catering/cd1.jpg', '/catering/cd2.jpg', '/catering/cd3.jpg'],
       imageAlts: [
         'Catering display 1',
         'Catering display 2',
@@ -2459,15 +2491,12 @@ export const eventCateringData = {
       ],
     },
     {
-      id: 'breakfast',
-      title: 'Breakfast',
+      id: 'curated-dining-stations',
+      title: 'Curated Dining Stations',
+      subtitle: 'Interactive Culinary Experiences',
       description:
-        'Start your day right with exceptional breakfast catering services at your meeting space on Wall Street. From light continental spreads to full hot breakfast buffets, we provide morning dining solutions that set the tone for successful corporate meetings and summits.',
-      images: [
-        '/catering/IMG_3248.jpg',
-        '/catering/20221020_093758.jpg',
-        '/catering/IMG_0242.jpg',
-      ],
+        'Redefine traditional dining with a collection of beautifully designed chef-attended culinary stations that encourage guests to explore, engage, and indulge. From premium carving stations and fresh seafood displays to handcrafted pasta, global cuisine, artisan charcuterie, and decadent dessert presentations, each station is thoughtfully curated to deliver an immersive dining experience.\n\nPerfect for corporate receptions, luxury galas, weddings, and social celebrations, our interactive culinary experiences combine exceptional cuisine with elegant presentation, creating a vibrant atmosphere that inspires conversation and unforgettable moments.',
+      images: ['/catering/cd1.jpg', '/catering/cd2.jpg', '/catering/cd3.jpg'],
       imageAlts: [
         'Catering display 1',
         'Catering display 2',
@@ -2476,7 +2505,10 @@ export const eventCateringData = {
     },
   ],
   videoSection: {
-    title: 'Sneak Peek Video',
+    title: 'The Art of Exceptional Dining',
+    subtitle: 'Where Culinary Excellence Becomes an Unforgettable Experience.',
+    description:
+      "Every unforgettable event deserves an equally unforgettable culinary experience. Our award-winning chefs and hospitality professionals create refined menus that celebrate craftsmanship, innovation, and impeccable service. Whether hosting a corporate gala, luxury wedding, fundraising event, or private celebration, each dish is designed to elevate your guests' experience while complementing the grandeur of our historic venue.",
     embedUrl: 'https://player.vimeo.com/video/1066736672?h=044c19c168',
     thumbnail: '/service/catering-video-screen-shot.jpg',
   },

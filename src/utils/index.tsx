@@ -10,6 +10,25 @@ import {
 import CustomButton from '@/components/CustomButton';
 import { X } from 'lucide-react';
 
+/**
+ * Renders a string that may contain line breaks expressed as either `\n`
+ * (real or literal "\n") or HTML break tags (`<br>`, `<br/>`, `<br />`) into
+ * React nodes, inserting a real <br /> at each break. Empty segments between
+ * consecutive breaks are preserved so multi-line spacing stays intact.
+ */
+export const renderMultiline = (text?: string): React.ReactNode => {
+  if (!text) return null;
+
+  const lines = text.split(/\r\n|\r|\n|\\n|<br\s*\/?>/i);
+
+  return lines.map((line, i) => (
+    <React.Fragment key={i}>
+      {line}
+      {i < lines.length - 1 && <br />}
+    </React.Fragment>
+  ));
+};
+
 export const useParallax = (offset: [string, string] = ['0%', '-20%']) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({

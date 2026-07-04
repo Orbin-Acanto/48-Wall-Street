@@ -8,20 +8,34 @@ import { ServiceSection } from '@/types';
 import ServiceSectionItem from './ServiceSectionItem';
 import CustomButton from './CustomButton';
 import Link from 'next/link';
+import { renderMultiline } from '@/utils';
 
 type Props = {
   title: string;
   subtitle: string;
   heroImage: string;
   leadTitle: string;
+  leadSubtitle?: string;
   leadDescription: string;
   leadDescription2?: string;
   leadDescription3?: string;
+  leadDescription4?: string;
+  justifyLead?: boolean;
   sections: ServiceSection[];
   logoImage?: string;
   logoLink?: string;
-  videoSection?: { title: string; embedUrl: string; thumbnail: string };
+  videoSection?: {
+    title: string;
+    embedUrl: string;
+    thumbnail: string;
+    eyebrow?: string;
+    subtitle?: string;
+    description?: string;
+  };
   menu?: boolean;
+  ctaTitle?: string;
+  ctaDescription?: string;
+  ctaButtonLabel?: string;
 };
 
 export default function CinematicServicesShowcase({
@@ -29,14 +43,20 @@ export default function CinematicServicesShowcase({
   subtitle,
   heroImage,
   leadTitle,
+  leadSubtitle,
   leadDescription,
   leadDescription2,
   leadDescription3,
+  leadDescription4,
+  justifyLead = false,
   sections,
   logoImage,
   logoLink,
   videoSection,
   menu = false,
+  ctaTitle = 'Ready to Plan Your Event?',
+  ctaDescription = 'Let our expert team bring your vision to life from design to production to unforgettable moments.',
+  ctaButtonLabel = 'Contact US',
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -204,15 +224,39 @@ export default function CinematicServicesShowcase({
             transition={{ duration: 0.9 }}
             className="mx-auto max-w-5xl"
           >
-            <h2 className="font-primary text-primary mb-8 text-[3rem] leading-tight uppercase md:text-[3.6rem]">
+            <h2 className="font-primary text-primary mb-4 text-[3rem] leading-tight uppercase md:text-[3.6rem]">
               {leadTitle}
             </h2>
-            <p className="text-lead mb-2 text-gray-500">{leadDescription}</p>
+            {leadSubtitle && (
+              <p className="text-lead mb-8 text-gray-400">
+                {renderMultiline(leadSubtitle)}
+              </p>
+            )}
+            <p
+              className={`text-lead mb-4 text-gray-500 ${justifyLead ? 'text-justify' : ''}`}
+            >
+              {renderMultiline(leadDescription)}
+            </p>
             {leadDescription2 && (
-              <p className="text-lead mb-2 text-gray-500">{leadDescription2}</p>
+              <p
+                className={`text-lead mb-4 text-gray-500 ${justifyLead ? 'text-justify' : ''}`}
+              >
+                {renderMultiline(leadDescription2)}
+              </p>
             )}
             {leadDescription3 && (
-              <p className="text-lead mb-2 text-gray-500">{leadDescription3}</p>
+              <p
+                className={`text-lead mb-4 text-gray-500 ${justifyLead ? 'text-justify' : ''}`}
+              >
+                {renderMultiline(leadDescription3)}
+              </p>
+            )}
+            {leadDescription4 && (
+              <p
+                className={`text-lead mb-4 text-gray-500 ${justifyLead ? 'text-justify' : ''}`}
+              >
+                {renderMultiline(leadDescription4)}
+              </p>
             )}
           </motion.div>
         </div>
@@ -280,7 +324,7 @@ export default function CinematicServicesShowcase({
 
       {/* VIDEO SECTION CTA (if provided) */}
       {videoSection && (
-        <section className="bg-white py-12 lg:py-20">
+        <section className="bg-[#f5f5f5] py-12 lg:py-20">
           <div className="container mx-auto px-6 lg:px-20">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
@@ -289,12 +333,21 @@ export default function CinematicServicesShowcase({
               transition={{ duration: 0.9 }}
               className="mx-auto max-w-4xl text-center"
             >
-              <h4
-                className="heading-hero"
-                style={{ color: 'var(--color-gray-900)' }}
-              >
+              {videoSection.eyebrow && (
+                <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
+                  {videoSection.eyebrow}
+                </p>
+              )}
+
+              <h4 className="heading-hero text-primary mb-4">
                 {videoSection.title}
               </h4>
+
+              {videoSection.subtitle && (
+                <p className="text-lead mb-10 text-gray-400">
+                  {renderMultiline(videoSection.subtitle)}
+                </p>
+              )}
 
               <div
                 className="relative mx-auto aspect-video max-w-4xl cursor-pointer overflow-hidden rounded-xl"
@@ -330,6 +383,12 @@ export default function CinematicServicesShowcase({
                   </div>
                 </div>
               </div>
+
+              {videoSection.description && (
+                <p className="text-lead mt-10 text-justify text-gray-500">
+                  {renderMultiline(videoSection.description)}
+                </p>
+              )}
             </motion.div>
           </div>
 
@@ -373,16 +432,15 @@ export default function CinematicServicesShowcase({
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
           >
-            <h3 className="font-primary mb-4 text-3xl font-bold text-white uppercase md:text-4xl lg:text-5xl">
-              Ready to Plan Your Event?
+            <h3 className="font-primary text-primary mb-4 text-3xl font-bold tracking-wider uppercase md:text-4xl lg:text-5xl">
+              {ctaTitle}
             </h3>
-            <p className="text-lead mb-8 max-w-2xl text-gray-200">
-              Let our expert team bring your vision to life — from design to
-              production to unforgettable moments.
+            <p className="text-lead mx-auto mb-8 max-w-2xl text-gray-200">
+              {renderMultiline(ctaDescription)}
             </p>
 
             <Link href="/contact">
-              <CustomButton>Contact US</CustomButton>
+              <CustomButton>{ctaButtonLabel}</CustomButton>
             </Link>
           </motion.div>
         </div>

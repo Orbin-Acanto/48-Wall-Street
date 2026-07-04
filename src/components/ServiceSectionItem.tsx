@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import { ServiceSection } from '@/types';
+import { renderMultiline } from '@/utils';
 
 export default function ServiceSectionItem({
   section,
@@ -106,13 +107,19 @@ export default function ServiceSectionItem({
           >
             <h3
               id={`panel-${section.id}`}
-              className="font-primary mb-4 text-[2rem] leading-tight uppercase md:text-[2.6rem]"
+              className="font-primary text-primary mb-3 text-[2rem] leading-tight uppercase md:text-[2.6rem]"
             >
               {section.title}
             </h3>
 
+            {section.subtitle && (
+              <p className="text-lead mb-4 text-gray-400">
+                {renderMultiline(section.subtitle)}
+              </p>
+            )}
+
             <p className="text-lead mb-4 text-gray-500">
-              {section.description}
+              {renderMultiline(section.description)}
             </p>
 
             <div className="text-primary font-secondary flex items-center gap-4">

@@ -74,9 +74,13 @@ export default function EventDetails({
               )}
               <SoftFadeIn delay={0.1} immediate>
                 <div className="text-lead space-y-4">
-                  {description.split('</br>').map((line, index) => (
-                    <p key={index}>{line}</p>
-                  ))}
+                  {description
+                    .split(/\r\n|\r|\n|\\n|<\/?br\s*\/?>/i)
+                    .map((line) => line.trim())
+                    .filter((line) => line.length > 0)
+                    .map((line, index) => (
+                      <p key={index}>{line}</p>
+                    ))}
                 </div>
               </SoftFadeIn>
 
