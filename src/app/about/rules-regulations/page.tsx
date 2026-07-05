@@ -51,6 +51,58 @@ const RulesRegulations = () => {
               consent.
             </p>
           </div>
+
+          <h3 className="font-primary text-dark-black mt-6 text-xl md:text-2xl">
+            Important Information
+          </h3>
+          <p className="font-secondary leading-relaxed text-gray-600">
+            To ensure the highest standards of safety, operational excellence,
+            and preservation of our historic landmark, all clients, event
+            planners, caterers, production companies, vendors, contractors,
+            exhibitors, and service providers are required to review and comply
+            with the following Venue Rules and Regulations.
+          </p>
+          <p className="font-secondary leading-relaxed text-gray-600">
+            These policies have been established to protect the architectural
+            integrity of 48 Wall Street while ensuring a seamless and
+            exceptional event experience for every guest.
+          </p>
+          <p className="font-secondary leading-relaxed text-gray-600">
+            Should you have any questions regarding venue operations, event
+            requirements, production logistics, vendor approvals, or facility
+            policies, please contact the 48 Wall Street Facilities &amp;
+            Operations Management Team. Our experienced professionals are
+            available to assist you throughout the planning process.
+          </p>
+
+          <div className="border-primary bg-whitesmoke border-l-4 p-6">
+            <p className="font-secondary text-dark-black font-semibold">
+              48 Wall Street - Facilities &amp; Operations Management
+            </p>
+            <p className="font-secondary mt-2 text-gray-600">
+              Phone:{' '}
+              <a
+                href="tel:+12129715353"
+                className="text-primary hover:underline"
+              >
+                (212) 971-5353
+              </a>
+            </p>
+            <p className="font-secondary text-gray-600">
+              Email:{' '}
+              <a
+                href="mailto:info@48WallNYC.com"
+                className="text-primary hover:underline"
+              >
+                info@48WallNYC.com
+              </a>
+            </p>
+          </div>
+
+          <p className="font-secondary leading-relaxed text-gray-600">
+            We appreciate your cooperation and look forward to partnering with
+            you to deliver an extraordinary event experience.
+          </p>
         </div>
       ),
     },
@@ -65,7 +117,7 @@ const RulesRegulations = () => {
               Standard Deliveries
             </h4>
             <p className="font-secondary text-gray-600">
-              140 Florida St., Farmingdale, NY 11735
+              Lobby 2, 48 Wall St., New York, NY 10005
             </p>
           </div>
           <div className="border border-gray-200 bg-white p-6 shadow-lg">
@@ -73,7 +125,7 @@ const RulesRegulations = () => {
               Venue Deliveries
             </h4>
             <p className="font-secondary mb-4 text-gray-600">
-              48 Wall St., New York, NY 10005
+              Lobby 2, 48 Wall St., New York, NY 10005
             </p>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
@@ -403,53 +455,148 @@ const RulesRegulations = () => {
     },
     {
       id: 'safety',
-      title: 'Safety & Insurance',
+      title: 'Safety, Fire Code & Insurance Requirements',
       icon: Shield,
       content: (
         <div className="space-y-6">
+          <p className="font-secondary leading-relaxed text-gray-600">
+            To ensure the safety of all guests, vendors, and staff, and to
+            preserve the integrity of the historic 48 Wall Street property, all
+            event professionals, vendors, exhibitors, and contractors must
+            comply with the following safety, fire code, and insurance
+            requirements.
+          </p>
+
           <div className="border-l-4 border-red-500 bg-red-50 p-6">
-            <h4 className="font-secondary text-dark-black mb-4 text-lg font-bold">
+            <h4 className="font-secondary text-dark-black mb-3 text-lg font-bold">
               Prohibited Items
             </h4>
-            <div className="font-secondary space-y-2 text-gray-700">
-              <p className="font-medium">
-                🚫 Pyrotechnics - Not permitted at any time
-              </p>
-              <p className="font-medium">
-                🚫 Open flame - Not permitted at any time
-              </p>
-              <p className="font-medium">
-                🚫 Sterno fuel - Not permitted at any time
-              </p>
-            </div>
+            <p className="font-secondary mb-4 text-gray-700">
+              The following items are strictly prohibited within 48 Wall Street
+              unless expressly authorized in writing by Venue Management and all
+              applicable governing authorities:
+            </p>
+            <ul className="font-secondary space-y-2 text-gray-700">
+              {[
+                'Pyrotechnics of any kind',
+                'Open flames, including candles not enclosed in approved glass containers',
+                'Sterno fuel, butane burners, propane tanks, or other open-flame cooking devices',
+                'Fireworks, sparklers, and flame effects',
+                'Smoke, fog, haze, or atmospheric effects without prior approval',
+                'Confetti cannons, glitter, or similar materials',
+                'Hazardous or combustible materials',
+                'Any item that may damage or compromise the historic building or violate applicable fire and life safety codes',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="mt-0.5 text-red-500">✕</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="font-secondary mt-4 font-medium text-red-800">
+              Any unauthorized use of prohibited items may result in immediate
+              removal from the venue, cancellation of the event, and financial
+              responsibility for any resulting damages or penalties.
+            </p>
           </div>
 
           <div className="border border-gray-200 bg-white p-6 shadow-lg">
-            <h4 className="font-secondary text-dark-black mb-4 text-lg font-bold">
-              Certificates & Insurance
+            <h4 className="font-secondary text-dark-black mb-3 text-lg font-bold">
+              Fire Safety Compliance
             </h4>
+            <p className="font-secondary mb-4 text-gray-600">
+              All decorative materials, drapery, scenic elements, soft goods,
+              and fabrics brought into the venue must:
+            </p>
             <ul className="font-secondary space-y-2 text-gray-600">
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>
-                  All drape and soft goods must have fire retardant certificates
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>COI required from all vendors 3 weeks prior</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>
-                  Performances require liability release and insurance
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span>Email to: info@48WallNYC.com</span>
-              </li>
+              {[
+                'Be inherently flame-resistant or professionally treated with an approved fire-retardant solution.',
+                'Be accompanied by a valid Fire Retardant Certificate upon request.',
+                'Comply with all applicable FDNY regulations and local fire codes.',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="text-primary">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
+            <p className="font-secondary mt-4 text-gray-600">
+              Venue Management reserves the right to inspect and reject any
+              material that does not meet required safety standards.
+            </p>
+          </div>
+
+          <div className="border border-gray-200 bg-white p-6 shadow-lg">
+            <h4 className="font-secondary text-dark-black mb-3 text-lg font-bold">
+              Certificates of Insurance (COI)
+            </h4>
+            <p className="font-secondary mb-4 text-gray-600">
+              All outside vendors, contractors, exhibitors, entertainers, and
+              service providers must provide a Certificate of Insurance (COI)
+              meeting the venue&apos;s insurance requirements. Requirements
+              include:
+            </p>
+            <ul className="font-secondary space-y-2 text-gray-600">
+              {[
+                'COI must be submitted no later than three (3) weeks prior to the event date.',
+                'Coverage limits must meet the minimum insurance requirements established by 48 Wall Street.',
+                '48 Wall Street and its ownership and management entities must be listed as Additional Insured, when required.',
+                'Vendors will not be permitted to access the property without an approved Certificate of Insurance.',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="text-primary">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="font-secondary mt-4 text-gray-600">
+              COIs should be submitted electronically to:{' '}
+              <a
+                href="mailto:info@48WallNYC.com"
+                className="text-primary font-medium hover:underline"
+              >
+                info@48WallNYC.com
+              </a>
+            </p>
+          </div>
+
+          <div className="border border-gray-200 bg-white p-6 shadow-lg">
+            <h4 className="font-secondary text-dark-black mb-3 text-lg font-bold">
+              Entertainment &amp; Performance Insurance
+            </h4>
+            <p className="font-secondary mb-4 text-gray-600">
+              All performers, entertainers, production companies, speakers,
+              exhibitors, specialty acts, and interactive experiences must:
+            </p>
+            <ul className="font-secondary space-y-2 text-gray-600">
+              {[
+                'Provide proof of liability insurance.',
+                'Execute any required venue performance agreements and liability waivers.',
+                'Comply with all applicable safety regulations governing performances and public events.',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="text-primary">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="font-secondary mt-4 text-gray-600">
+              Additional documentation may be required depending upon the nature
+              of the performance.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-amber-400 bg-amber-50 p-6">
+            <h4 className="font-secondary text-dark-black mb-3 text-lg font-bold">
+              Right to Enforce
+            </h4>
+            <p className="font-secondary font-medium text-amber-800">
+              48 Wall Street reserves the right to deny access, suspend
+              activities, or remove any vendor, contractor, or performer who
+              fails to comply with these Safety, Fire Code, and Insurance
+              Requirements. Compliance with these policies is mandatory and is a
+              condition of access to the property.
+            </p>
           </div>
 
           <div className="bg-whitesmoke p-6 shadow-lg">
@@ -633,7 +780,8 @@ const RulesRegulations = () => {
                 2 Weeks Prior
               </h3>
               <p className="font-secondary text-sm text-gray-600">
-                Menu, Graphics, Power, Lighting, Run of Show
+                Final balance, final guest counts, menus, logistics and any
+                updated AV or changes
               </p>
               <div className="bg-primary/80 absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full" />
             </div>
@@ -646,23 +794,26 @@ const RulesRegulations = () => {
                 1 Week Prior
               </h3>
               <p className="font-secondary text-sm text-gray-600">
-                Media Content, Load In/Out Schedule
+                going over final details any type of shipping, special requests,
+                logistics for load in and load out scheduling
               </p>
               <div className="bg-primary/80 absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full" />
             </div>
 
-            <div className="group relative overflow-hidden bg-white p-8 shadow-lg transition-all hover:shadow-2xl">
-              <div className="bg-primary/10 mb-6 inline-flex p-4">
-                <MapPin className="text-primary h-8 w-8" />
+            <Link href="/location">
+              <div className="group relative overflow-hidden bg-white p-8 shadow-lg transition-all hover:shadow-2xl">
+                <div className="bg-primary/10 mb-6 inline-flex p-4">
+                  <MapPin className="text-primary h-8 w-8" />
+                </div>
+                <h3 className="font-secondary text-dark-black mb-3 text-xl font-bold">
+                  Getting There
+                </h3>
+                <p className="font-secondary text-sm text-gray-600">
+                  Located by 2,3 Subway. Parking garages nearby.
+                </p>
+                <div className="bg-primary/80 absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full" />
               </div>
-              <h3 className="font-secondary text-dark-black mb-3 text-xl font-bold">
-                Getting There
-              </h3>
-              <p className="font-secondary text-sm text-gray-600">
-                Located by 2,3 Subway. Parking garages nearby.
-              </p>
-              <div className="bg-primary/80 absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full" />
-            </div>
+            </Link>
           </div>
         </div>
       </section>
