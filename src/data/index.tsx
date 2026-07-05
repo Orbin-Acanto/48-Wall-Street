@@ -218,7 +218,7 @@ export const navItems: NavItem[] = [
     dropdown: [
       { name: 'Event Production', href: '/services/production' },
       { name: 'Event Catering', href: '/services/catering' },
-      { name: 'Event Rentals', href: '/services/rentals' },
+      // { name: 'Event Rentals', href: '/services/rentals' },
     ],
   },
   {
@@ -2420,8 +2420,8 @@ export const eventCateringData = {
     'At 48 Wall Street, dining is more than a meal. It is an unforgettable experience designed to leave a lasting impression.',
   ctaTitle: "Let's Craft Something Extraordinary",
   ctaDescription:
-    'At 48 Wall Street, we believe every event should be as distinctive as the people who host it. Our award-winning team combines exceptional hospitality, bespoke culinary experiences, immersive production, and timeless elegance to create celebrations that leave a lasting impression.\n\nSchedule a private consultation and discover the possibilities.',
-  ctaButtonLabel: 'Schedule a Consultation',
+    'At 48 Wall Street, we believe every event should be as distinctive as the people who host it. Our award-winning team combines exceptional hospitality, bespoke culinary experiences, immersive production, and timeless elegance to create celebrations that leave a lasting impression.',
+  ctaButtonLabel: 'Schedule a private consultation',
   sections: [
     {
       id: 'breakfast',
