@@ -2305,16 +2305,18 @@ export const eventProductionData = {
       description:
         "Our award-winning in-house design team transforms extraordinary spaces into unforgettable experiences. Inspired by the timeless elegance of 48 Wall Street, our designers create bespoke environments that seamlessly complement the venue's historic architecture while reflecting the unique vision, identity, and objectives of every client.<br><br>From exquisite floral installations and custom furnishings to immersive décor, luxury tablescapes, scenic fabrication, and branded environments, every design element is thoughtfully curated to create a sophisticated and memorable guest experience. Whether your event is an executive conference, luxury wedding, gala, fashion show, or brand activation, our creative team crafts distinctive concepts that leave a lasting impression.<br><br>Supported by our in-house production studio and one of the region's most extensive private inventories of premium décor, furnishings, props, and custom event elements, MME Worldwide offers unparalleled creative flexibility and flawless execution. When your vision calls for something truly exceptional, our designers can also source bespoke luxury rentals and fabricate one-of-a-kind installations tailored exclusively to your event.<br><br>The result is more than beautiful décor, it is a fully immersive experience where inspired design, historic grandeur, and impeccable craftsmanship come together to create events as iconic as the venue itself.",
       images: [
-        '/service/design/20231212_155514.jpg',
-        '/service/design/20250821_162023.jpg',
-        '/service/design/IMG_2638.jpg',
-        '/service/design/IMG_2693.jpg',
+        '/service/design/1.jpg',
+        '/service/design/2.jpg',
+        '/service/design/3.jpg',
+        '/service/design/4.jpg',
+        '/service/design/5.jpg',
       ],
       imageAlts: [
         'Production display 1',
         'Production display 2',
         'Production display 3',
         'Production display 4',
+        'Production display 5',
       ],
     },
     {
@@ -2323,14 +2325,18 @@ export const eventProductionData = {
       description:
         'Our team of experienced audiovisual engineers delivers sophisticated production solutions designed to elevate every presentation, conference, and executive gathering. From immersive keynote experiences to seamless panel discussions and hybrid broadcasts, we curate tailored AV solutions that align with your vision, objectives, and investment. Utilizing state-of-the-art technology and meticulous execution, we manage every element with precision, ensuring flawless delivery, crystal-clear communication, and an unforgettable guest experience.',
       images: [
-        '/service/av/20231027_185043.jpg',
-        '/service/av/AE2.jpg',
-        '/service/av/DJI_0323.jpg',
+        '/service/av/1.jpg',
+        '/service/av/2.jpg',
+        '/service/av/3.jpg',
+        '/service/av/4.jpg',
+        '/service/av/5.png',
       ],
       imageAlts: [
         'Production display 1',
         'Production display 2',
         'Production display 3',
+        'Production display 4',
+        'Production display 5',
       ],
     },
     {
@@ -2339,14 +2345,18 @@ export const eventProductionData = {
       description:
         'Lighting is the defining element of every extraordinary event, transforming historic architecture into an unforgettable experience.  Award-winning lighting designers craft bespoke environments that enhance the timeless elegance of 48 Wall Street, accentuating its soaring ceilings, marble finishes, and iconic architectural details. From refined ambient illumination to breathtaking, immersive productions, every lighting design is thoughtfully curated to complement your vision and create an atmosphere of sophistication, drama, and lasting impression. Our state-of-the-art technology and expert production team ensure every moment is flawlessly illuminated, leaving your guests captivated from arrival to the final farewell.',
       images: [
-        '/service/light/20241115_155551.jpg',
-        '/service/light/20250522_170355.jpg',
-        '/service/light/DJI_20231212_162444_1529.jpg',
+        '/service/light/1.jpg',
+        '/service/light/2.jpg',
+        '/service/light/3.jpg',
+        '/service/light/4.jpg',
+        '/service/light/5.jpg',
       ],
       imageAlts: [
         'Production display 1',
         'Production display 2',
         'Production display 3',
+        'Production display 4',
+        'Production display 5',
       ],
     },
     {
@@ -2355,14 +2365,18 @@ export const eventProductionData = {
       description:
         "Every remarkable event begins with a commanding stage. We design and fabricate bespoke staging solutions that become the centerpiece of unforgettable experiences. From elegant presentation platforms and executive conference stages to dramatic fashion runways, custom-built environments, and immersive performance spaces, our production specialists bring your vision to life with exceptional craftsmanship and precision. Every stage is thoughtfully engineered to complement the grandeur of 48 Wall Street's historic architecture while delivering flawless sightlines, seamless functionality, and striking visual impact. Whether hosting a global product launch, luxury gala, fashion show, or keynote presentation, our staging solutions create an extraordinary platform where every moment takes center stage.",
       images: [
-        '/service/stage/20240910_072701.jpg',
-        '/service/stage/IMG_0116.JPG',
-        '/service/stage/IMG_5831.jpg',
+        '/service/staging/1.jpg',
+        '/service/staging/2.jpg',
+        '/service/staging/3.jpg',
+        '/service/staging/4.jpg',
+        '/service/staging/5.jpg',
       ],
       imageAlts: [
         'Production display 1',
         'Production display 2',
         'Production display 3',
+        'Production display 4',
+        'Production display 5',
       ],
     },
     {
@@ -2374,11 +2388,13 @@ export const eventProductionData = {
         '/service/cf/Green Canopy 2.jpg',
         '/service/cf/IMG_2204.jpg',
         '/service/cf/lenovo-stage.jpeg',
+        '/service/cf/IMG_4780.jpg',
       ],
       imageAlts: [
         'Production display 1',
         'Production display 2',
         'Production display 3',
+        'Production display 4',
       ],
     },
     {

@@ -2140,5 +2140,145 @@
     "originalBytes": 4602068,
     "finalBytes": 3427960,
     "resized": true
+  },
+  "public/service/av/1.jpg": {
+    "hash": "a74f43fdd79b30c591a40cb0b19b5bfe46576043",
+    "optimizedAt": "2026-07-05T20:23:13.712Z",
+    "originalBytes": 2670780,
+    "finalBytes": 1657862,
+    "resized": true
+  },
+  "public/service/av/2.jpg": {
+    "hash": "d18bed810fa25e89c8569243a1f5f8bc4e56fc3b",
+    "optimizedAt": "2026-07-05T20:23:14.694Z",
+    "originalBytes": 7330812,
+    "finalBytes": 2062010,
+    "resized": true
+  },
+  "public/service/av/3.jpg": {
+    "hash": "3b2ab434680570367ad2f4f7adbf40fdf331f946",
+    "optimizedAt": "2026-07-05T20:23:15.555Z",
+    "originalBytes": 4017408,
+    "finalBytes": 1549536,
+    "resized": true
+  },
+  "public/service/av/4.jpg": {
+    "hash": "db0cf4cf2621f1f588d5e54a7220c542d116a8b1",
+    "optimizedAt": "2026-07-05T20:23:16.348Z",
+    "originalBytes": 7862488,
+    "finalBytes": 1258075,
+    "resized": true
+  },
+  "public/service/av/5.png": {
+    "hash": "7722ad361fd673b7db068de2d0922b9fcedacd3d",
+    "optimizedAt": "2026-07-05T20:23:23.492Z",
+    "originalBytes": 12640467,
+    "finalBytes": 2530328,
+    "resized": true
+  },
+  "public/service/cf/IMG_4780.jpg": {
+    "hash": "a78817eba796fdc69c7710fee523065573ab3cec",
+    "optimizedAt": "2026-07-05T20:23:24.237Z",
+    "originalBytes": 2044355,
+    "finalBytes": 1009304,
+    "resized": true
+  },
+  "public/service/design/1.jpg": {
+    "hash": "d7b7c7239d1f22df6f316484a3decb7332621125",
+    "optimizedAt": "2026-07-05T20:23:25.229Z",
+    "originalBytes": 11193279,
+    "finalBytes": 1760894,
+    "resized": true
+  },
+  "public/service/design/2.JPG": {
+    "hash": "00fe07a4810c169d0fa7f8100a42cf4d6b6580b5",
+    "optimizedAt": "2026-07-05T20:23:26.016Z",
+    "originalBytes": 3113415,
+    "finalBytes": 1740098,
+    "resized": true
+  },
+  "public/service/design/3.jpg": {
+    "hash": "67f43f3370b634b91ccf8d79b099252c7974d759",
+    "optimizedAt": "2026-07-05T20:23:26.517Z",
+    "originalBytes": 2823023,
+    "finalBytes": 1050080,
+    "resized": false
+  },
+  "public/service/design/4.jpg": {
+    "hash": "56c1aa4854e7d35cdf9eaef0f861025c99c7b374",
+    "optimizedAt": "2026-07-05T20:23:27.568Z",
+    "originalBytes": 8444963,
+    "finalBytes": 2062013,
+    "resized": true
+  },
+  "public/service/design/5.jpg": {
+    "hash": "001e72236aa377ede8126819fef644a6c093943e",
+    "optimizedAt": "2026-07-05T20:23:28.350Z",
+    "originalBytes": 5873930,
+    "finalBytes": 1382368,
+    "resized": true
+  },
+  "public/service/light/1.jpg": {
+    "hash": "5c9e2fbe5feafc8dc2912bf0f0680eff88206545",
+    "optimizedAt": "2026-07-05T20:23:29.087Z",
+    "originalBytes": 2373001,
+    "finalBytes": 1135999,
+    "resized": true
+  },
+  "public/service/light/2.jpg": {
+    "hash": "6587a089abb0c2f2343fa07ee539a916ec0d80db",
+    "optimizedAt": "2026-07-05T20:23:29.777Z",
+    "originalBytes": 1753858,
+    "finalBytes": 1408989,
+    "resized": true
+  },
+  "public/service/light/3.jpg": {
+    "hash": "c16f4e357b6daddaed27cad970ce7c3d66205e1b",
+    "optimizedAt": "2026-07-05T20:23:30.566Z",
+    "originalBytes": 3089129,
+    "finalBytes": 1428008,
+    "resized": true
+  },
+  "public/service/light/4.jpg": {
+    "hash": "936df8d8015b23ac0fa7c14e0b0eaa7a300ee090",
+    "optimizedAt": "2026-07-05T20:23:31.401Z",
+    "originalBytes": 8153903,
+    "finalBytes": 1512323,
+    "resized": true
+  },
+  "public/service/light/5.jpg": {
+    "hash": "d21f0fa20bf49fc6270f928c3094323b11e12152",
+    "optimizedAt": "2026-07-05T20:23:32.186Z",
+    "originalBytes": 6731464,
+    "finalBytes": 1427310,
+    "resized": true
+  },
+  "public/service/staging/1.jpg": {
+    "hash": "cc5663f5dffe5a836dcecb02e6e1c60662616185",
+    "optimizedAt": "2026-07-05T20:23:32.942Z",
+    "originalBytes": 7306472,
+    "finalBytes": 1194927,
+    "resized": true
+  },
+  "public/service/staging/3.jpg": {
+    "hash": "438f349d8afc19866e1e7a84b7d56dea7322453b",
+    "optimizedAt": "2026-07-05T20:23:33.448Z",
+    "originalBytes": 1584720,
+    "finalBytes": 800217,
+    "resized": true
+  },
+  "public/service/staging/4.jpg": {
+    "hash": "46ea04cdecf3b02a1b0cd968d63d0256a0d643ab",
+    "optimizedAt": "2026-07-05T20:23:34.065Z",
+    "originalBytes": 1900907,
+    "finalBytes": 908828,
+    "resized": true
+  },
+  "public/service/staging/5.jpg": {
+    "hash": "846cacc8e511295cb8c9bdd7d43094c0d797dae7",
+    "optimizedAt": "2026-07-05T20:23:34.630Z",
+    "originalBytes": 1988527,
+    "finalBytes": 1058131,
+    "resized": true
   }
 }
