@@ -2290,18 +2290,20 @@ export const items = [
 ];
 
 export const eventProductionData = {
-  title: 'Event Production Services at 48 Wall Street',
-  subtitle: 'Full Service Production in a Historic NYC Venue',
+  title: 'Luxury Event Production at 48 Wall Street',
+  subtitle: 'Where Historic Grandeur Meets World-Class Production',
   heroImage: '/videos/ep.mp4',
   leadTitle: 'Everything Your Event Needs, Under One Roof',
   leadDescription:
+    "From intimate executive gatherings to spectacular galas and large-scale corporate productions, 48 Wall Street delivers a seamless fusion of timeless architecture, innovative event technology, and impeccable white-glove service. Our full-service production team transforms historic spaces into extraordinary experiences. We offer bespoke event design, state-of-the-art audiovisual solutions, luxury furnishings, and flawless execution, all under one iconic roof in the heart of New York City's Financial District.",
+  leadDescription2:
     'Most event venues require you to hire an outside production company, coordinate their access, manage the relationship between them and the venue, and hope everything works together on the day. At 48 Wall Street, our production partner MME Worldwide operates in-house. They know the building, they know the electrical capacity, they know how the acoustics work, and they have built everything from runway stages to full conference productions in this space. That experience translates directly into cleaner execution and fewer surprises. We offer a complete turn-key solution covering AV, staging, lighting, custom fabrication, decor, and entertainment, all managed by one team in one building.',
   sections: [
     {
       id: 'design',
       title: 'Design & Decor',
       description:
-        "MME Worldwide's inspired designers specialize in providing creative floral accents and unique décor that enhance the architecture of our historic NYC venue. Our team fulfills your vision with a wide range of design services, helping you develop an environment that is on-message for your brand. Assisted by an in-house production team, we maintain an exclusive inventory of décor, allowing us to provide an original look that makes your event truly one-of-a-kind.",
+        "Our award-winning in-house design team transforms extraordinary spaces into unforgettable experiences. Inspired by the timeless elegance of 48 Wall Street, our designers create bespoke environments that seamlessly complement the venue's historic architecture while reflecting the unique vision, identity, and objectives of every client.<br><br>From exquisite floral installations and custom furnishings to immersive décor, luxury tablescapes, scenic fabrication, and branded environments, every design element is thoughtfully curated to create a sophisticated and memorable guest experience. Whether your event is an executive conference, luxury wedding, gala, fashion show, or brand activation, our creative team crafts distinctive concepts that leave a lasting impression.<br><br>Supported by our in-house production studio and one of the region's most extensive private inventories of premium décor, furnishings, props, and custom event elements, MME Worldwide offers unparalleled creative flexibility and flawless execution. When your vision calls for something truly exceptional, our designers can also source bespoke luxury rentals and fabricate one-of-a-kind installations tailored exclusively to your event.<br><br>The result is more than beautiful décor, it is a fully immersive experience where inspired design, historic grandeur, and impeccable craftsmanship come together to create events as iconic as the venue itself.",
       images: [
         '/service/design/20231212_155514.jpg',
         '/service/design/20250821_162023.jpg',
@@ -2319,7 +2321,7 @@ export const eventProductionData = {
       id: 'audio-visual',
       title: 'Audio Visual',
       description:
-        'Our engineers provide a wide range of AV services designed to meet the communication needs of modern business. We develop cost-effective plans based on your objectives and budget. Whether for a keynote presentation or a panel discussion, our technology is effectively managed and delivered by our team to ensure your message is heard clearly.',
+        'Our team of experienced audiovisual engineers delivers sophisticated production solutions designed to elevate every presentation, conference, and executive gathering. From immersive keynote experiences to seamless panel discussions and hybrid broadcasts, we curate tailored AV solutions that align with your vision, objectives, and investment. Utilizing state-of-the-art technology and meticulous execution, we manage every element with precision, ensuring flawless delivery, crystal-clear communication, and an unforgettable guest experience.',
       images: [
         '/service/av/20231027_185043.jpg',
         '/service/av/AE2.jpg',
@@ -2335,7 +2337,7 @@ export const eventProductionData = {
       id: 'lighting',
       title: 'Lighting',
       description:
-        "Lighting transforms a room, and MME Worldwide's professionals will help you select the right design to highlight the grandeur of this historic downtown venue. Our services range from simple and sophisticated to extravagant and bold. We use illumination to set the desired ambiance, ensuring the marble and architectural details of our unique event space shine perfectly for your guests.",
+        'Lighting is the defining element of every extraordinary event, transforming historic architecture into an unforgettable experience.  Award-winning lighting designers craft bespoke environments that enhance the timeless elegance of 48 Wall Street, accentuating its soaring ceilings, marble finishes, and iconic architectural details. From refined ambient illumination to breathtaking, immersive productions, every lighting design is thoughtfully curated to complement your vision and create an atmosphere of sophistication, drama, and lasting impression. Our state-of-the-art technology and expert production team ensure every moment is flawlessly illuminated, leaving your guests captivated from arrival to the final farewell.',
       images: [
         '/service/light/20241115_155551.jpg',
         '/service/light/20250522_170355.jpg',
@@ -2351,7 +2353,7 @@ export const eventProductionData = {
       id: 'staging',
       title: 'Staging',
       description:
-        "We carry a complete line of professional staging products, ranging from simple platforms to custom runway installations. Whether you are hosting a fashion show or a corporate panel, our team's extensive knowledge provides the guidance needed to execute your vision. We ensure every angle looks professional within our space.",
+        "Every remarkable event begins with a commanding stage. We design and fabricate bespoke staging solutions that become the centerpiece of unforgettable experiences. From elegant presentation platforms and executive conference stages to dramatic fashion runways, custom-built environments, and immersive performance spaces, our production specialists bring your vision to life with exceptional craftsmanship and precision. Every stage is thoughtfully engineered to complement the grandeur of 48 Wall Street's historic architecture while delivering flawless sightlines, seamless functionality, and striking visual impact. Whether hosting a global product launch, luxury gala, fashion show, or keynote presentation, our staging solutions create an extraordinary platform where every moment takes center stage.",
       images: [
         '/service/stage/20240910_072701.jpg',
         '/service/stage/IMG_0116.JPG',
@@ -2367,7 +2369,7 @@ export const eventProductionData = {
       id: 'custom-fabrication',
       title: 'Custom Fabrication',
       description:
-        'Our creative team, accompanied by an in-house design shop, provides limitless state-of-the-art solutions for our event partners. Let us take your next meeting from ordinary to extraordinary by transforming our unique event space with custom builds. From branded set pieces to immersive environments, we deliver flawless execution that aligns with your specific event goals.',
+        "At 48 Wall Street, custom fabrication and premium printing services allow every event to become a fully branded, immersive experience. Supported by MME Worldwide’s in-house creative team and design shop, we transform ideas into extraordinary environments through custom-built scenic elements, branded installations, large-format graphics, signage, step-and-repeats, dimensional displays, and bespoke décor features. From executive meetings and product launches to luxury galas, fashion presentations, and private celebrations, every detail is thoughtfully designed, expertly produced, and flawlessly installed to complement the venue's historic grandeur while bringing your brand or vision to life with sophistication and impact.",
       images: [
         '/service/cf/Green Canopy 2.jpg',
         '/service/cf/IMG_2204.jpg',
@@ -2383,7 +2385,7 @@ export const eventProductionData = {
       id: 'entertainment',
       title: 'Entertainment',
       description:
-        'Whether your preference is a lively dance band, a jazz ensemble, or a world-renowned DJ, our planning professionals will help you select the perfect sound for your Financial District event venue. Our partners have a proven track record of delivering exceptional musical talent. Furthermore, acquiring a celebrity speaker or performer is a powerful way to deliver your message, and we are equipped to manage the rider and requirements for top-tier talent at your event.',
+        "Extraordinary entertainment transforms an event into an unforgettable experience. At 48 Wall Street, MME Worldwide curates world-class entertainment tailored to the style and sophistication of your occasion. From elegant solo musicians, jazz ensembles, string quartets, and contemporary bands to high-energy dance orchestras, internationally acclaimed DJs, and immersive themed performers, every act is carefully selected to captivate your guests.<br>Our entertainment specialists also produce bespoke performances featuring cultural artists, aerialists, cirque performers, Broadway-caliber talent, strolling entertainers, interactive characters, and custom-themed experiences that seamlessly complement your event's vision. Whether hosting an intimate executive reception, a luxury wedding, a fashion gala, or a large-scale corporate celebration, we create performances that elevate every moment.<br>For clients seeking an exceptional statement, MME Worldwide also manages celebrity talent, keynote speakers, headline performers, and exclusive artist bookings. From contract negotiations and technical riders to backstage logistics and show production, our experienced team oversees every detail with discretion, precision, and white-glove service, delivering a seamless entertainment experience worthy of one of New York City's most iconic historic venues.",
       images: [
         '/service/entertainment/20250821_184731.jpg',
         '/service/entertainment/entertainment.png',
@@ -2396,6 +2398,9 @@ export const eventProductionData = {
       ],
     },
   ],
+  ctaTitle: 'Ready to plan the event',
+  ctaDescription:
+    'Allow our expert event team to transform your vision into an extraordinary experience, from inspired design and seamless production to the unforgettable moments your guests will remember long after the event ends.',
 };
 
 export const eventCateringData = {
@@ -3185,7 +3190,7 @@ export const vendorsData = {
       href: 'https://www.fidihospitality.com/',
       description: [
         'FiDi Hospitality is the exclusive hospitality management company for 48 Wall Street, delivering exceptional guest experiences from planning through execution. Every event is supported by experienced hospitality professionals who oversee operations, logistics, staffing, concierge services, and event management with meticulous attention to detail.',
-        'Whether hosting an executive conference, luxury wedding, nonprofit gala, or international product launch, FiDi Hospitality ensures flawless execution and personalized service worthy of one of Manhattan\'s most prestigious event destinations.',
+        "Whether hosting an executive conference, luxury wedding, nonprofit gala, or international product launch, FiDi Hospitality ensures flawless execution and personalized service worthy of one of Manhattan's most prestigious event destinations.",
       ],
       servicesLabel: 'Services Include',
       services: [
