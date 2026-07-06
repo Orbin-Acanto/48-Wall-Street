@@ -17,6 +17,7 @@ import EmptyPhotoGallery from './EmptyPhotoGallery';
 
 export interface ServiceItem {
   title: string;
+  subtitle?: string;
   body: string;
 }
 
@@ -31,6 +32,7 @@ export interface EventShowcaseProps {
   stats: Stat[];
   info: InfoItem[];
   services?: ServiceItem[];
+  servicesVariant?: 'cards' | 'sections';
 }
 
 export default function EventDetails({
@@ -43,11 +45,12 @@ export default function EventDetails({
   secondaryCta,
   info,
   services,
+  servicesVariant = 'cards',
 }: EventShowcaseProps) {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
   const { ref: heroRef, y: heroY } = useParallax(['0%', '-12%']);
 
-  const displayServices = services || defaultServices;
+  const displayServices: ServiceItem[] = services || defaultServices;
 
   return (
     <div className="mt-16 min-h-screen bg-white text-gray-900 md:mt-10">
@@ -269,34 +272,75 @@ export default function EventDetails({
       </div>
 
       {/* FEATURE STRIP */}
-      <section className="bg-whitesmoke">
-        <div className="container mx-auto px-4 pt-12 pb-12 md:pt-20 md:pb-20">
-          <div className="grid gap-6 lg:grid-cols-3">
-            {displayServices.map((service, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <GlassCard className="h-full p-6 md:p-8">
-                  <div className="flex items-start gap-4">
-                    <div>
-                      <h3 className="font-secondary text-xl text-gray-900 md:text-2xl">
-                        {service.title}
-                      </h3>
-                      <p className="mt-2 text-sm text-gray-700 md:text-base">
-                        {service.body}
-                      </p>
-                    </div>
+      {servicesVariant === 'sections' ? (
+        <section className="bg-whitesmoke">
+          <div className="container mx-auto px-4 py-12 md:py-20">
+            <div className="mx-auto max-w-4xl space-y-14 md:space-y-20">
+              {displayServices.map((service, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <h3 className="font-primary text-primary text-[1.9rem] leading-tight uppercase md:text-[2.4rem]">
+                    {service.title}
+                  </h3>
+                  {service.subtitle && (
+                    <p className="font-secondary mt-2 mb-6 text-sm tracking-[0.15em] text-gray-400 uppercase">
+                      {service.subtitle}
+                    </p>
+                  )}
+                  <div className="text-lead space-y-4 text-left text-gray-600">
+                    {service.body
+                      .split(/\n+/)
+                      .map((p) => p.trim())
+                      .filter(Boolean)
+                      .map((p, idx) => (
+                        <p key={idx}>{p}</p>
+                      ))}
                   </div>
-                </GlassCard>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="bg-whitesmoke">
+          <div className="container mx-auto px-4 pt-12 pb-12 md:pt-20 md:pb-20">
+            <div className="grid gap-6 lg:grid-cols-3">
+              {displayServices.map((service, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <GlassCard className="h-full p-6 md:p-8">
+                    <div className="flex items-start gap-4">
+                      <div>
+                        <h3 className="font-secondary text-xl text-gray-900 md:text-2xl">
+                          {service.title}
+                        </h3>
+                        {service.subtitle && (
+                          <p className="font-secondary text-primary mt-1 text-xs tracking-[0.15em] uppercase">
+                            {service.subtitle}
+                          </p>
+                        )}
+                        <p className="mt-2 text-sm text-gray-700 md:text-base">
+                          {service.body}
+                        </p>
+                      </div>
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* IMMERSIVE Food Service Section */}
       <section className="relative min-h-[500px] overflow-hidden md:min-h-[600px]">
