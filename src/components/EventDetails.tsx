@@ -274,35 +274,70 @@ export default function EventDetails({
       {/* FEATURE STRIP */}
       {servicesVariant === 'sections' ? (
         <section className="bg-whitesmoke">
-          <div className="container mx-auto px-4 py-12 md:py-20">
-            <div className="mx-auto max-w-4xl space-y-14 md:space-y-20">
-              {displayServices.map((service, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <h3 className="font-primary text-primary text-[1.9rem] leading-tight uppercase md:text-[2.4rem]">
-                    {service.title}
-                  </h3>
-                  {service.subtitle && (
-                    <p className="font-secondary mt-2 mb-6 text-sm tracking-[0.15em] text-gray-400 uppercase">
-                      {service.subtitle}
-                    </p>
-                  )}
-                  <div className="text-lead space-y-4 text-left text-gray-600">
-                    {service.body
-                      .split(/\n+/)
-                      .map((p) => p.trim())
-                      .filter(Boolean)
-                      .map((p, idx) => (
-                        <p key={idx}>{p}</p>
-                      ))}
-                  </div>
-                </motion.div>
-              ))}
+          <div className="container mx-auto px-4 py-16 md:py-24">
+            <div className="space-y-20 md:space-y-28">
+              {displayServices.map((service, i) => {
+                const img = images[(i + 1) % images.length];
+                const reverse = i % 2 === 1;
+                const num = String(i + 1).padStart(2, '0');
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7 }}
+                    className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16"
+                  >
+                    {/* Visual */}
+                    <div
+                      className={`lg:sticky lg:top-28 ${reverse ? 'lg:order-last' : ''}`}
+                    >
+                      <div className="relative">
+                        <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-2xl shadow-black/20">
+                          <img
+                            src={img?.src}
+                            alt={img?.alt || service.title}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
+                        </div>
+                        <div className="bg-primary text-dark-black font-primary absolute -top-5 -left-3 flex h-16 w-16 items-center justify-center text-2xl shadow-lg md:-left-5">
+                          {num}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div>
+                      <div className="mb-5 flex items-center gap-3">
+                        <span className="font-secondary text-primary text-xs tracking-[0.3em] uppercase">
+                          {num}
+                        </span>
+                        <span className="bg-primary/40 h-px w-10" />
+                      </div>
+                      <h3 className="font-primary text-primary text-[1.9rem] leading-tight uppercase md:text-[2.4rem]">
+                        {service.title}
+                      </h3>
+                      {service.subtitle && (
+                        <p className="font-secondary mt-2 mb-6 text-sm tracking-[0.15em] text-gray-400 uppercase">
+                          {service.subtitle}
+                        </p>
+                      )}
+                      <div className="text-lead space-y-4 text-left text-gray-600">
+                        {service.body
+                          .split(/\n+/)
+                          .map((p) => p.trim())
+                          .filter(Boolean)
+                          .map((p, idx) => (
+                            <p key={idx}>{p}</p>
+                          ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
