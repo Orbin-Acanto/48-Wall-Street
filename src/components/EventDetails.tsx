@@ -274,12 +274,11 @@ export default function EventDetails({
       {/* FEATURE STRIP */}
       {servicesVariant === 'sections' ? (
         <section className="bg-whitesmoke">
-          <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="space-y-20 md:space-y-28">
+          <div className="container mx-auto px-4 py-16 md:px-8 md:py-20 lg:px-16">
+            <div className="divide-primary/15 divide-y">
               {displayServices.map((service, i) => {
                 const img = images[(i + 1) % images.length];
                 const reverse = i % 2 === 1;
-                const num = String(i + 1).padStart(2, '0');
                 return (
                   <motion.div
                     key={i}
@@ -287,36 +286,25 @@ export default function EventDetails({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ duration: 0.7 }}
-                    className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16"
+                    className="grid items-start gap-10 py-12 first:pt-0 last:pb-0 md:gap-16 md:py-16 lg:grid-cols-2 lg:gap-20"
                   >
                     {/* Visual */}
                     <div
                       className={`lg:sticky lg:top-28 ${reverse ? 'lg:order-last' : ''}`}
                     >
-                      <div className="relative">
-                        <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-2xl shadow-black/20">
-                          <img
-                            src={img?.src}
-                            alt={img?.alt || service.title}
-                            className="h-full w-full object-cover"
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
-                        </div>
-                        <div className="bg-primary text-dark-black font-primary absolute -top-5 -left-3 flex h-16 w-16 items-center justify-center text-2xl shadow-lg md:-left-5">
-                          {num}
-                        </div>
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-2xl shadow-black/20">
+                        <img
+                          src={img?.src}
+                          alt={img?.alt || service.title}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
                       </div>
                     </div>
 
                     {/* Content */}
                     <div>
-                      <div className="mb-5 flex items-center gap-3">
-                        <span className="font-secondary text-primary text-xs tracking-[0.3em] uppercase">
-                          {num}
-                        </span>
-                        <span className="bg-primary/40 h-px w-10" />
-                      </div>
                       <h3 className="font-primary text-primary text-[1.9rem] leading-tight uppercase md:text-[2.4rem]">
                         {service.title}
                       </h3>
