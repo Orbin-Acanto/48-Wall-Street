@@ -14,11 +14,20 @@ import {
 import Link from 'next/link';
 import { emptyFashionVenue, services as defaultServices } from '@/data';
 import EmptyPhotoGallery from './EmptyPhotoGallery';
+import ClientLogos, { ClientLogo } from './ClientLogos';
+import BookReader from './BookReader';
 
 export interface ServiceItem {
   title: string;
   subtitle?: string;
   body: string;
+}
+
+export interface BrochureConfig {
+  pages: { id: number; image: string; alt?: string }[];
+  downloadUrl: string;
+  title?: string;
+  subtitle?: string;
 }
 
 export interface EventShowcaseProps {
@@ -28,11 +37,15 @@ export interface EventShowcaseProps {
   images: ImageItem[];
   tags: string[];
   primaryCta?: CTA;
+  /** When provided, renders multiple primary buttons (each linking to its own href) in place of primaryCta. */
+  primaryCtas?: CTA[];
   secondaryCta?: CTA;
   stats: Stat[];
   info: InfoItem[];
   services?: ServiceItem[];
   servicesVariant?: 'cards' | 'sections';
+  clientLogos?: ClientLogo[];
+  brochure?: BrochureConfig;
 }
 
 export default function EventDetails({
@@ -42,10 +55,13 @@ export default function EventDetails({
   images,
   tags,
   primaryCta,
+  primaryCtas,
   secondaryCta,
   info,
   services,
   servicesVariant = 'cards',
+  clientLogos,
+  brochure,
 }: EventShowcaseProps) {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
   const { ref: heroRef, y: heroY } = useParallax(['0%', '-12%']);
@@ -89,13 +105,21 @@ export default function EventDetails({
 
               <SoftFadeIn delay={0.15} immediate>
                 <div className="flex flex-wrap gap-3 pt-2">
-                  {primaryCta && (
-                    <Link href="/contact">
-                      <CustomButton className="text-dark-black">
-                        {primaryCta.label}
-                      </CustomButton>
-                    </Link>
-                  )}
+                  {primaryCtas && primaryCtas.length > 0
+                    ? primaryCtas.map((cta, i) => (
+                        <Link key={i} href={cta.href || '/contact'}>
+                          <CustomButton className="text-dark-black">
+                            {cta.label}
+                          </CustomButton>
+                        </Link>
+                      ))
+                    : primaryCta && (
+                        <Link href="/contact">
+                          <CustomButton className="text-dark-black">
+                            {primaryCta.label}
+                          </CustomButton>
+                        </Link>
+                      )}
                   {secondaryCta && (
                     <Link href={secondaryCta.href || '/contact'}>
                       <CustomButton variant="secondary" className="border-none">
@@ -494,7 +518,24 @@ export default function EventDetails({
           </motion.div>
         </div>
       </section>
-      <EmptyPhotoGallery galleryPhotos={emptyFashionVenue} />
+      {clientLogos && clientLogos.length > 0 ? (
+        <ClientLogos logos={clientLogos} />
+      ) : (
+        <EmptyPhotoGallery galleryPhotos={emptyFashionVenue} />
+      )}
+
+      {/* BROCHURE */}
+      {brochure && brochure.pages.length > 0 && (
+        <section id="brochure" className="bg-whitesmoke">
+          <BookReader
+            pages={brochure.pages}
+            title={brochure.title || 'View Our Brochure'}
+            subtitle={brochure.subtitle}
+            downloadUrl={brochure.downloadUrl}
+          />
+        </section>
+      )}
+
       {/* ACCORDION */}
       {info?.length > 0 && (
         <section className="bg-white py-12 md:py-20">

@@ -1466,7 +1466,115 @@ export const floors = [
   },
 ];
 
+// ---- Event brochures (flipbook) -------------------------------------------
+const generalBrochurePages = Array.from({ length: 32 }, (_, i) => ({
+  id: i + 1,
+  image: `/brochures/general/page-${String(i + 1).padStart(2, '0')}.jpg`,
+}));
+
+const holidayBrochurePages = Array.from({ length: 36 }, (_, i) => ({
+  id: i + 1,
+  image: `/brochures/holiday/page-${String(i + 1).padStart(2, '0')}.jpg`,
+}));
+
+export const generalBrochure = {
+  title: 'Explore Our Venue',
+  subtitle: '48 Wall Street • Digital Brochure',
+  downloadUrl: '/brochures/general/48-wall-street-brochure.pdf',
+  pages: generalBrochurePages,
+};
+
+export const holidayBrochure = {
+  title: 'Holiday Events Guide',
+  subtitle: '48 Wall Street • Holiday Guide 2026',
+  downloadUrl: '/brochures/holiday/48-wall-holiday-guide-2026.pdf',
+  pages: holidayBrochurePages,
+};
+
+// ---- Client logos ---------------------------------------------------------
+export const brandClientLogos = [
+  { src: '/clients/brands/aarp.webp', name: 'AARP' },
+  { src: '/clients/brands/allianz.png', name: 'Allianz' },
+  { src: '/clients/brands/bank-of-america-logo.png', name: 'Bank of America' },
+  { src: '/clients/brands/botify-logo.png', name: 'Botify' },
+  { src: '/clients/brands/fin-tech-logo.png', name: 'Fin.Tech' },
+  { src: '/clients/brands/fsuite.png', name: 'FSuite' },
+  { src: '/clients/brands/netflix-logo-png.png', name: 'Netflix' },
+  { src: '/clients/brands/okx.png', name: 'OKX' },
+  { src: '/clients/brands/open-text.png', name: 'OpenText' },
+  { src: '/clients/brands/pyramid.jpg', name: 'Pyramid' },
+  {
+    src: '/clients/brands/samsung-smart-tv-logo.png',
+    name: 'Samsung Smart TV',
+  },
+  { src: '/clients/brands/sandmark-logo.jpg', name: 'Sandmark' },
+  { src: '/clients/brands/vml-logo.png', name: 'VML' },
+  { src: '/clients/brands/wells-fargo-logo.jpg', name: 'Wells Fargo' },
+];
+
+export const nonProfitClientLogos = [
+  {
+    src: '/clients/non-profit/american-composers.png',
+    name: 'American Composers',
+  },
+  {
+    src: '/clients/non-profit/answer-the-call-logo.png',
+    name: 'Answer the Call',
+  },
+  {
+    src: '/clients/non-profit/carnegie-mellon-university-logo.png',
+    name: 'Carnegie Mellon University',
+  },
+  {
+    src: '/clients/non-profit/determine-to-educate.jpg',
+    name: 'Determine to Educate',
+  },
+  { src: '/clients/non-profit/family-kind-logo.png', name: 'Family Kind' },
+  { src: '/clients/non-profit/hellenic.png', name: 'Hellenic' },
+  {
+    src: '/clients/non-profit/horace-mann-school.jpg',
+    name: 'Horace Mann School',
+  },
+  { src: '/clients/non-profit/isffa.jpg', name: 'ISFFA' },
+  { src: '/clients/non-profit/jamaica-hospital.png', name: 'Jamaica Hospital' },
+  { src: '/clients/non-profit/jcp-downtown.png', name: 'JCP Downtown' },
+  { src: '/clients/non-profit/jfk.jpg', name: 'JFK' },
+  { src: '/clients/non-profit/maggies-mission.jpg', name: "Maggie's Mission" },
+  { src: '/clients/non-profit/mama-logo.png', name: 'MAMA' },
+  { src: '/clients/non-profit/nest-logo.png', name: 'Nest' },
+  { src: '/clients/non-profit/nyu.png', name: 'NYU' },
+  { src: '/clients/non-profit/pace-university.png', name: 'Pace University' },
+  { src: '/clients/non-profit/pan-nam.png', name: 'Pan Nam' },
+  {
+    src: '/clients/non-profit/parent-child-plus.png',
+    name: 'Parent Child Plus',
+  },
+  {
+    src: '/clients/non-profit/ps-is-battery-park.png',
+    name: 'PS/IS Battery Park',
+  },
+  { src: '/clients/non-profit/sphoe-gerson.png', name: 'Sphoe Gerson' },
+  {
+    src: '/clients/non-profit/stephane-matteau-logo.webp',
+    name: 'Stephane Matteau',
+  },
+  { src: '/clients/non-profit/success-academy.png', name: 'Success Academy' },
+  { src: '/clients/non-profit/the-safe-center.png', name: 'The Safe Center' },
+  {
+    src: '/clients/non-profit/westbury-high-school.jpg',
+    name: 'Westbury High School',
+  },
+  {
+    src: '/clients/non-profit/wings-over-wall-street.png',
+    name: 'Wings Over Wall Street',
+  },
+  { src: '/clients/non-profit/wlda-tech.png', name: 'WLDA Tech' },
+  { src: '/clients/non-profit/women-on-boards.png', name: 'Women on Boards' },
+  { src: '/clients/non-profit/ymca.jpg', name: 'YMCA' },
+];
+
 export const weddingData: EventShowcaseProps = {
+  brochure: generalBrochure,
   title: 'Historic Wedding Venue in Lower Manhattan',
   subtitle: 'A Timeless Backdrop for Your Most Important Day',
   description:
@@ -1555,6 +1663,8 @@ export const weddingData: EventShowcaseProps = {
 };
 
 export const corporateData: EventShowcaseProps = {
+  brochure: generalBrochure,
+  clientLogos: brandClientLogos,
   title: "Corporate Event Venue in New York City's Financial District",
   subtitle: 'Where Business, Innovation & Excellence Come Together',
   servicesVariant: 'sections',
@@ -1566,23 +1676,23 @@ export const corporateData: EventShowcaseProps = {
       alt: 'Corporate conference setup',
     },
     {
+      src: '/gallery/corporate/c25-12.jpg',
+      alt: 'Investor summit conference with theater seating and main stage',
+    },
+    {
+      src: '/gallery/corporate/c25-10.jpg',
+      alt: 'Corporate panel stage with LED screens and cocktail seating',
+    },
+    {
+      src: '/gallery/corporate/c25-11.jpg',
+      alt: 'Corporate networking reception with lounge and cocktail tables',
+    },
+    {
+      src: '/gallery/corporate/c25-13.jpg',
+      alt: 'Sponsor and exhibitor booths at a corporate summit',
+    },
+    {
       src: '/gallery/corporate/ (10).jpg',
-      alt: 'Corporate conference',
-    },
-    {
-      src: '/gallery/corporate/ (19).jpg',
-      alt: 'Corporate conference',
-    },
-    {
-      src: '/gallery/corporate/ (9).jpg',
-      alt: 'Corporate conference',
-    },
-    {
-      src: '/gallery/corporate/ (6).jpg',
-      alt: 'Corporate conference',
-    },
-    {
-      src: '/gallery/corporate/ (2).jpg',
       alt: 'Corporate conference',
     },
   ],
@@ -1619,10 +1729,10 @@ export const corporateData: EventShowcaseProps = {
       body: 'Pricing depends on the date, event type, guest count, and services required. The best starting point is a quick conversation with our events team. Contact us through the form on this page or call us directly and we will put together a proposal based on your specific needs.',
     },
   ],
-  primaryCta: {
-    label: 'Request a Proposal',
-    href: '/contact',
-  },
+  primaryCtas: [
+    { label: 'Audio Visual', href: '/services/production' },
+    { label: 'Food & Beverage', href: '/services/catering' },
+  ],
   secondaryCta: {
     label: 'View Corporate Gallery',
     href: '/gallery?tab=corporate',
@@ -1648,6 +1758,8 @@ export const corporateData: EventShowcaseProps = {
 };
 
 export const conferenceData: EventShowcaseProps = {
+  brochure: generalBrochure,
+  clientLogos: brandClientLogos,
   title: 'Conference Venue in the Financial District',
   subtitle: 'A Historic Meeting Space on Wall Street',
   description:
@@ -1736,6 +1848,8 @@ export const conferenceData: EventShowcaseProps = {
 };
 
 export const fashionData: EventShowcaseProps = {
+  brochure: generalBrochure,
+  clientLogos: brandClientLogos,
   title: 'Iconic Fashion Show Venues on Wall Street',
   subtitle: 'A Historic Runway Venue in the Financial District',
   description:
@@ -1824,6 +1938,8 @@ export const fashionData: EventShowcaseProps = {
 };
 
 export const nonprofitData: EventShowcaseProps = {
+  brochure: generalBrochure,
+  clientLogos: nonProfitClientLogos,
   title: 'Non-Profit Event Venue in Lower Manhattan',
   subtitle: 'A Historic Setting That Elevates Your Cause',
   description:
@@ -1912,6 +2028,8 @@ export const nonprofitData: EventShowcaseProps = {
 };
 
 export const mitzvahData: EventShowcaseProps = {
+  brochure: generalBrochure,
+  clientLogos: brandClientLogos,
   title: 'Bar and Bat Mitzvah Venue in New York City',
   subtitle: 'A Historic Wall Street Setting for This Sacred Milestone',
   description:
@@ -2001,6 +2119,8 @@ export const mitzvahData: EventShowcaseProps = {
 };
 
 export const holidayData: EventShowcaseProps = {
+  brochure: holidayBrochure,
+  clientLogos: brandClientLogos,
   title: 'Corporate Holiday Party Venue on Wall Street',
   subtitle: 'End the Year in a Setting That Actually Feels Special',
   description:
@@ -2089,6 +2209,7 @@ export const holidayData: EventShowcaseProps = {
 };
 
 export const filmtvData: EventShowcaseProps = {
+  brochure: generalBrochure,
   title: 'Film Location and Production Venue in NYC',
   subtitle: 'A Camera-Ready Historic Building in the Financial District',
   description:

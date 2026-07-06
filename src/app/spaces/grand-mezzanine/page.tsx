@@ -2,14 +2,16 @@ import SpaceDetails from '@/components/SpaceDetails';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Grand Mezzanine Banking Hall | Historic Event Space NYC | 48 Wall Street',
+  title:
+    'Grand Mezzanine Banking Hall | Historic Event Space NYC | 48 Wall Street',
   description:
     'The Grand Mezzanine Banking Hall at 48 Wall Street offers 9,000 sq ft of original 1927 architecture with 30-foot ceilings, a grand marble staircase, and crystal chandeliers. Up to 500 guests in the Financial District.',
   alternates: {
     canonical: 'https://www.48wallnyc.com/spaces/grand-mezzanine',
   },
   openGraph: {
-    title: 'Grand Mezzanine Banking Hall | Historic NYC Event Space | 48 Wall Street',
+    title:
+      'Grand Mezzanine Banking Hall | Historic NYC Event Space | 48 Wall Street',
     description:
       '9,000 sq ft of original 1927 architecture. 30-foot ceilings, grand marble staircase, crystal chandeliers. Seats 350, reception up to 500 — Financial District, NYC.',
     url: 'https://www.48wallnyc.com/spaces/grand-mezzanine',
@@ -57,7 +59,7 @@ export default function GrandMezzaninePage() {
         '/venue/hq/5.jpg',
         '/venue/hq/6.jpg',
       ]}
-      videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
+      videoUrl="https://player.vimeo.com/video/1207393496?h=81afd92077"
       floorPlanImage="/floor_planner/plan/ground.svg"
       features={[
         'Grand dual marble staircase',

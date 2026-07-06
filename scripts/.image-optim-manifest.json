@@ -2280,5 +2280,257 @@
     "originalBytes": 1988527,
     "finalBytes": 1058131,
     "resized": true
+  },
+  "public/gallery/corporate/c25-10.jpg": {
+    "hash": "09685ea927d2b28dff7fe2e24e4ca43aeb6e614b",
+    "optimizedAt": "2026-07-06T14:19:08.637Z",
+    "originalBytes": 23377248,
+    "finalBytes": 1068731,
+    "resized": true
+  },
+  "public/gallery/corporate/c25-11.jpg": {
+    "hash": "42c3a55d61907a3c01eba7aef7c2c3450a04d567",
+    "optimizedAt": "2026-07-06T14:19:10.055Z",
+    "originalBytes": 38238468,
+    "finalBytes": 1304396,
+    "resized": true
+  },
+  "public/gallery/corporate/c25-12.jpg": {
+    "hash": "3cdc90edbcbe74f72c97bc9001e70526bc740155",
+    "optimizedAt": "2026-07-06T14:19:11.474Z",
+    "originalBytes": 22730102,
+    "finalBytes": 1344226,
+    "resized": true
+  },
+  "public/gallery/corporate/c25-13.jpg": {
+    "hash": "53a67a21f9285014e964ae6f4cb5aabfff4941c8",
+    "optimizedAt": "2026-07-06T14:19:12.908Z",
+    "originalBytes": 28784491,
+    "finalBytes": 1671642,
+    "resized": true
+  },
+  "public/brochures/general/page-01.jpg": {
+    "hash": "a67a6e7f8a5a1dd7f2b10b9f2bc1a0a01fc3e140",
+    "optimizedAt": "2026-07-06T14:47:19.299Z",
+    "originalBytes": 1544025,
+    "finalBytes": 1106312,
+    "resized": true
+  },
+  "public/brochures/general/page-02.jpg": {
+    "hash": "3a1d974aa9460a68cb93a9f2b1b1b3d00974eb06",
+    "optimizedAt": "2026-07-06T14:47:19.971Z",
+    "originalBytes": 1252100,
+    "finalBytes": 672503,
+    "resized": true
+  },
+  "public/brochures/general/page-03.jpg": {
+    "hash": "21327d17a7eeb8cbd94281de4fbf9099562bd3e8",
+    "optimizedAt": "2026-07-06T14:47:20.813Z",
+    "originalBytes": 2166761,
+    "finalBytes": 1503759,
+    "resized": true
+  },
+  "public/brochures/general/page-04.jpg": {
+    "hash": "48af696f622fba07ec25a9ceff8e6df7fcf89313",
+    "optimizedAt": "2026-07-06T14:47:21.380Z",
+    "originalBytes": 837168,
+    "finalBytes": 424533,
+    "resized": true
+  },
+  "public/brochures/general/page-05.jpg": {
+    "hash": "b164e08fcb7f5580e79e14e1c8e7f8064b14e86e",
+    "optimizedAt": "2026-07-06T14:47:22.101Z",
+    "originalBytes": 1447181,
+    "finalBytes": 880589,
+    "resized": true
+  },
+  "public/brochures/general/page-06.jpg": {
+    "hash": "801fb8b73d8eec3cd24b29546e0920085bfe7c37",
+    "optimizedAt": "2026-07-06T14:47:22.833Z",
+    "originalBytes": 1061143,
+    "finalBytes": 564090,
+    "resized": true
+  },
+  "public/brochures/general/page-07.jpg": {
+    "hash": "182b34fcaa88b5224456655f87b16d01ac7b9ef3",
+    "optimizedAt": "2026-07-06T14:47:23.665Z",
+    "originalBytes": 1781427,
+    "finalBytes": 1166324,
+    "resized": true
+  },
+  "public/brochures/general/page-08.jpg": {
+    "hash": "ca0963966ff55e547fe65e1240dbfc840722eac9",
+    "optimizedAt": "2026-07-06T14:47:24.198Z",
+    "originalBytes": 923154,
+    "finalBytes": 447005,
+    "resized": true
+  },
+  "public/brochures/general/page-09.jpg": {
+    "hash": "d7ed06f9ed8d3d2bba6ec1ba33ef8b4e6271186c",
+    "optimizedAt": "2026-07-06T14:47:24.987Z",
+    "originalBytes": 1781921,
+    "finalBytes": 1218298,
+    "resized": true
+  },
+  "public/brochures/general/page-10.jpg": {
+    "hash": "f2320b3085f7ae66e5dd2eff6cd81cc07c3aca8c",
+    "optimizedAt": "2026-07-06T14:47:25.589Z",
+    "originalBytes": 844509,
+    "finalBytes": 422478,
+    "resized": true
+  },
+  "public/brochures/general/page-11.jpg": {
+    "hash": "fa45cd717b47bedfab8e829bc307c934f165cc96",
+    "optimizedAt": "2026-07-06T14:47:26.477Z",
+    "originalBytes": 1855546,
+    "finalBytes": 1208875,
+    "resized": true
+  },
+  "public/brochures/general/page-12.jpg": {
+    "hash": "18b7663675e069a3989ce259bddf532229a86323",
+    "optimizedAt": "2026-07-06T14:47:27.148Z",
+    "originalBytes": 854088,
+    "finalBytes": 422863,
+    "resized": true
+  },
+  "public/brochures/general/page-13.jpg": {
+    "hash": "335052d82d6d06feb50ef2f2e41e1e7d545f4759",
+    "optimizedAt": "2026-07-06T14:47:27.969Z",
+    "originalBytes": 1709686,
+    "finalBytes": 1137641,
+    "resized": true
+  },
+  "public/brochures/general/page-14.jpg": {
+    "hash": "5bc5ed2a0ce76e9f38e9e9cbc95cfae453795b99",
+    "optimizedAt": "2026-07-06T14:47:28.710Z",
+    "originalBytes": 972335,
+    "finalBytes": 456023,
+    "resized": true
+  },
+  "public/brochures/general/page-15.jpg": {
+    "hash": "a0f51351081611a9485ae65ef9d595c074a14fdc",
+    "optimizedAt": "2026-07-06T14:47:29.662Z",
+    "originalBytes": 2170897,
+    "finalBytes": 1593611,
+    "resized": true
+  },
+  "public/brochures/general/page-16.jpg": {
+    "hash": "f9b85411f6f7f3aa1137f12b6d4236d6b6b44e0e",
+    "optimizedAt": "2026-07-06T14:47:30.310Z",
+    "originalBytes": 1048150,
+    "finalBytes": 572239,
+    "resized": true
+  },
+  "public/brochures/general/page-17.jpg": {
+    "hash": "73a96542ee4f625307bf742cc9d47acefbe9dff3",
+    "optimizedAt": "2026-07-06T14:47:31.046Z",
+    "originalBytes": 1386270,
+    "finalBytes": 972868,
+    "resized": true
+  },
+  "public/brochures/general/page-18.jpg": {
+    "hash": "fc274643f81df5cf125206a3bfd2741388c47c67",
+    "optimizedAt": "2026-07-06T14:47:31.689Z",
+    "originalBytes": 1048679,
+    "finalBytes": 523921,
+    "resized": true
+  },
+  "public/brochures/general/page-19.jpg": {
+    "hash": "44eed57af097e87624298a3978c9e033f178d84f",
+    "optimizedAt": "2026-07-06T14:47:32.810Z",
+    "originalBytes": 2754675,
+    "finalBytes": 1933054,
+    "resized": true
+  },
+  "public/brochures/general/page-20.jpg": {
+    "hash": "f7d96911aa642587a45145edfe5ef1c27bca026d",
+    "optimizedAt": "2026-07-06T14:47:33.486Z",
+    "originalBytes": 1019238,
+    "finalBytes": 514991,
+    "resized": true
+  },
+  "public/brochures/general/page-21.jpg": {
+    "hash": "5fab0c4740a0bf6fd22c9122097c32cfe7487a18",
+    "optimizedAt": "2026-07-06T14:47:34.336Z",
+    "originalBytes": 1925842,
+    "finalBytes": 1348602,
+    "resized": true
+  },
+  "public/brochures/general/page-22.jpg": {
+    "hash": "1a3b31bb1f5bb78b57fec3585eca137361c3a84e",
+    "optimizedAt": "2026-07-06T14:47:35.137Z",
+    "originalBytes": 1385754,
+    "finalBytes": 851223,
+    "resized": true
+  },
+  "public/brochures/general/page-23.jpg": {
+    "hash": "bef2a959c0cd3e6ca6a15ab6ab6e2e447d11340c",
+    "optimizedAt": "2026-07-06T14:47:36.148Z",
+    "originalBytes": 2429768,
+    "finalBytes": 1748389,
+    "resized": true
+  },
+  "public/brochures/general/page-24.jpg": {
+    "hash": "687663616341ebdf7a77d71151383ab70870d9b9",
+    "optimizedAt": "2026-07-06T14:47:36.868Z",
+    "originalBytes": 1074509,
+    "finalBytes": 607317,
+    "resized": true
+  },
+  "public/brochures/general/page-25.jpg": {
+    "hash": "72ddb97788d3e7c610163922cf5f839f82aab531",
+    "optimizedAt": "2026-07-06T14:47:37.821Z",
+    "originalBytes": 1973933,
+    "finalBytes": 1394354,
+    "resized": true
+  },
+  "public/brochures/general/page-26.jpg": {
+    "hash": "ff0bdcc73cecfc6927a6a7d616bed16963820ffc",
+    "optimizedAt": "2026-07-06T14:47:38.501Z",
+    "originalBytes": 1135571,
+    "finalBytes": 597293,
+    "resized": true
+  },
+  "public/brochures/general/page-27.jpg": {
+    "hash": "e2d369cd35172389f28623b21b328a3cdb327a31",
+    "optimizedAt": "2026-07-06T14:47:39.209Z",
+    "originalBytes": 1440261,
+    "finalBytes": 903380,
+    "resized": true
+  },
+  "public/brochures/general/page-28.jpg": {
+    "hash": "f43bf84886c7105a14c26805f5aa1d523b3d7820",
+    "optimizedAt": "2026-07-06T14:47:39.966Z",
+    "originalBytes": 1285879,
+    "finalBytes": 639877,
+    "resized": true
+  },
+  "public/brochures/general/page-29.jpg": {
+    "hash": "6d279ff43d79f2e1a0abd9b259f0fc3d82d3cb2d",
+    "optimizedAt": "2026-07-06T14:47:40.872Z",
+    "originalBytes": 1971869,
+    "finalBytes": 1077544,
+    "resized": true
+  },
+  "public/brochures/general/page-30.jpg": {
+    "hash": "b7ac4160d694c9cf32972d695fd9704597138309",
+    "optimizedAt": "2026-07-06T14:47:42.067Z",
+    "originalBytes": 2600909,
+    "finalBytes": 1868522,
+    "resized": true
+  },
+  "public/brochures/general/page-31.jpg": {
+    "hash": "bfb6e7508ab0f542236909618430accd14af7d37",
+    "optimizedAt": "2026-07-06T14:47:43.261Z",
+    "originalBytes": 2466454,
+    "finalBytes": 1769146,
+    "resized": true
+  },
+  "public/brochures/general/page-32.jpg": {
+    "hash": "946206432e625a6474dc658e03a676891e4fb55b",
+    "optimizedAt": "2026-07-06T14:47:43.902Z",
+    "originalBytes": 993308,
+    "finalBytes": 564939,
+    "resized": true
   }
 }
