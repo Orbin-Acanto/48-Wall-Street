@@ -39,13 +39,15 @@ function MarqueeRow({
   reverse?: boolean;
   duration?: number;
 }) {
-  // Duplicate the row so translateX(-50%) loops seamlessly.
+  // Duplicate the row so animating x by -50% loops seamlessly (the second
+  // copy scrolls into the exact position the first started from).
   const track = [...logos, ...logos];
   return (
-    <div className="logo-marquee overflow-hidden">
-      <div
-        className={`logo-marquee-track flex ${reverse ? 'is-reverse' : ''}`}
-        style={{ '--marquee-duration': `${duration}s` } as React.CSSProperties}
+    <div className="overflow-hidden">
+      <motion.div
+        className="flex w-max"
+        animate={{ x: reverse ? ['-50%', '0%'] : ['0%', '-50%'] }}
+        transition={{ repeat: Infinity, ease: 'linear', duration }}
       >
         {track.map((logo, i) => (
           <div key={`${logo.src}-${i}`} className="flex items-center">
@@ -53,7 +55,7 @@ function MarqueeRow({
             <span className="bg-primary/25 h-10 w-px flex-shrink-0" aria-hidden />
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
