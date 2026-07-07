@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   MapContainer,
   TileLayer,
@@ -10,6 +10,8 @@ import {
   useMap,
 } from 'react-leaflet';
 import L from 'leaflet';
+// Suppress TS error for side-effect CSS import when no type declarations are present
+// @ts-ignore
 import 'leaflet/dist/leaflet.css';
 import {
   TrainFront,
@@ -132,8 +134,16 @@ const mapsUrl = (lat: number, lng: number) =>
 // Recenters/zooms the map to fit the venue plus all currently visible points.
 function FitToVisible({ visible }: { visible: Set<CategoryId> }) {
   const map = useMap();
+  const didInit = useRef(false);
 
   useEffect(() => {
+    // On first load, always open at zoom 16 centered on the venue.
+    if (!didInit.current) {
+      didInit.current = true;
+      map.setView([VENUE.lat, VENUE.lng], 50, { animate: false });
+      return;
+    }
+
     const pts: [number, number][] = [];
     MAP_CATEGORIES.forEach((cat) => {
       if (visible.has(cat.id)) {
@@ -155,8 +165,10 @@ function FitToVisible({ visible }: { visible: Set<CategoryId> }) {
 }
 
 export default function LocationMap() {
-  // Start clean: only the venue is shown until the user opts into categories.
-  const [visible, setVisible] = useState<Set<CategoryId>>(() => new Set());
+  // Show every category by default; users can hide any they don't need.
+  const [visible, setVisible] = useState<Set<CategoryId>>(
+    () => new Set(MAP_CATEGORIES.map((c) => c.id))
+  );
 
   const toggle = (id: CategoryId) =>
     setVisible((prev) => {
@@ -375,7 +387,11 @@ export default function LocationMap() {
           )}
 
           {/* Venue marker — highlighted star, always on top */}
-          <Marker position={[VENUE.lat, VENUE.lng]} icon={venueIcon} zIndexOffset={1000}>
+          <Marker
+            position={[VENUE.lat, VENUE.lng]}
+            icon={venueIcon}
+            zIndexOffset={1000}
+          >
             <Tooltip direction="top" offset={[0, -18]} permanent>
               <span className="font-semibold">48 Wall Street</span>
             </Tooltip>
