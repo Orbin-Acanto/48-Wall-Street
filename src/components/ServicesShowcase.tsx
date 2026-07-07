@@ -181,7 +181,7 @@ export default function CinematicServicesShowcase({
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
-                className="textt-lead font-secondary text-white"
+                className="font-secondary mx-auto max-w-2xl text-sm leading-relaxed text-stone-200/90 md:text-[15px] md:leading-loose"
               >
                 {subtitle}
               </motion.p>
