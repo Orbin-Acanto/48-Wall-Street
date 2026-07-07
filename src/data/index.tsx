@@ -446,7 +446,7 @@ export const products: Product[] = [
     description:
       'Luxurious black leather sofa with contemporary design, perfect for corporate events, lounge areas, and upscale gatherings',
     features: [
-      'Seats 3-4 people',
+      'Seats 3 to 4 people',
       'Premium leather upholstery',
       'Modern aesthetic',
       'Comfortable cushioning',
@@ -493,7 +493,7 @@ export const products: Product[] = [
       'Deep cushioned seat',
       'Pristine white upholstery',
       'Statement piece',
-      'Photo-friendly',
+      'Photo friendly',
     ],
     popular: true,
   },
@@ -552,7 +552,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 156,
     description:
-      'Luxurious highboy table featuring genuine marble top and gold-finished base, adding elegance to any upscale event',
+      'Luxurious highboy table featuring genuine marble top and gold finished base, adding elegance to any upscale event',
     features: [
       'Genuine marble surface',
       'Gold metallic base',
@@ -636,9 +636,9 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'Instagram-worthy champagne wall display with individual glass holders, creating an elegant focal point for cocktail receptions',
+      'Instagram worthy champagne wall display with individual glass holders, creating an elegant focal point for cocktail receptions',
     features: [
-      'Holds 40-60 glasses',
+      'Holds 40 to 60 glasses',
       'Freestanding design',
       'Customizable arrangement',
       'Photo opportunity centerpiece',
@@ -657,9 +657,9 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'A cozy vintage-inspired loveseat upholstered in soft angora fabric, perfect for intimate seating or photo backdrops.',
+      'A cozy vintage inspired loveseat upholstered in soft angora fabric, perfect for intimate seating or photo backdrops.',
     features: [
-      'Plush angora-style upholstery',
+      'Plush angora style upholstery',
       'Seats two comfortably',
       'Elegant vintage frame',
       'Ideal for lounge or bridal setups',
@@ -681,7 +681,7 @@ export const products: Product[] = [
     description:
       'A luxurious white sofa inspired by regal Egyptian style, featuring graceful curves and tufted detailing for a statement look.',
     features: [
-      'Soft velvet-like upholstery',
+      'Soft velvet like upholstery',
       'Tufted backrest with gold accent details',
       'Seats three comfortably',
       'Perfect for luxury and themed events',
@@ -703,10 +703,10 @@ export const products: Product[] = [
     description:
       'A sleek white sofa with classic tufting and bold arms, blending timeless craftsmanship with modern sophistication.',
     features: [
-      'Deep button-tufted design',
+      'Deep button tufted design',
       'Structured silhouette',
       'Premium fabric finish',
-      'Ideal for modern-vintage event themes',
+      'Ideal for modern vintage event themes',
     ],
     popular: false,
   },
@@ -722,9 +722,9 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'A spacious L-shaped white couch offering both comfort and style, ideal for creating cozy lounge areas at events.',
+      'A spacious L shaped white couch offering both comfort and style, ideal for creating cozy lounge areas at events.',
     features: [
-      'L-shaped sectional design',
+      'L shaped sectional design',
       'Soft fabric seating',
       'Spacious layout for group seating',
       'Perfect for lounge or VIP areas',
@@ -747,7 +747,7 @@ export const products: Product[] = [
     features: [
       'Cushioned seat and backrest',
       'Compact and versatile design',
-      'Vintage-inspired upholstery',
+      'Vintage inspired upholstery',
       'Ideal as accent or guest seating',
     ],
     popular: false,
@@ -764,7 +764,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'A modern-vintage white chair inspired by New York sophistication, featuring a clean silhouette and plush seating.',
+      'A modern vintage white chair inspired by New York sophistication, featuring a clean silhouette and plush seating.',
     features: [
       'Minimalist modern design',
       'Soft white upholstery',
@@ -785,7 +785,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'A charming white chair with whimsical design details, bringing a touch of fairy-tale elegance to any event space.',
+      'A charming white chair with whimsical design details, bringing a touch of fairy tale elegance to any event space.',
     features: [
       'Curved backrest with playful design',
       'Compact and lightweight',
@@ -806,7 +806,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'A classic roll-arm chair in pristine white, combining plush comfort and vintage-inspired charm for any setting.',
+      'A classic roll arm chair in pristine white, combining plush comfort and vintage inspired charm for any setting.',
     features: [
       'Rolled arms with tufted details',
       'Sturdy wood frame',
@@ -848,10 +848,10 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'An opulent high-back couch with intricate tufting and carved frame details, ideal for statement lounges and photo ops.',
+      'An opulent high back couch with intricate tufting and carved frame details, ideal for statement lounges and photo ops.',
     features: [
       'High back for dramatic presence',
-      'Deep button-tufted upholstery',
+      'Deep button tufted upholstery',
       'Ornate carved wood detailing',
       'Perfect for weddings and luxury events',
     ],
@@ -869,7 +869,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'A striking vintage-inspired sofa with flared arms and elegant gold accents. Plush black velvet upholstery contrasts beautifully with its gilded frame, making it a centerpiece for any luxurious lounge or photo shoot.',
+      'A striking vintage inspired sofa with flared arms and elegant gold accents. Plush black velvet upholstery contrasts beautifully with its gilded frame, making it a centerpiece for any luxurious lounge or photo shoot.',
     features: [
       'Soft black velvet upholstery',
       'Flared arms with gold detailing',
@@ -894,7 +894,7 @@ export const products: Product[] = [
     features: [
       'Set of two nesting tables',
       'Black lacquered tops with gold frames',
-      'Space-saving and versatile design',
+      'Space saving and versatile design',
       'Ideal for cocktail areas and receptions',
     ],
     popular: false,
@@ -911,7 +911,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      'A glamorous scalloped-back chair wrapped in soft black velvet with gold-trimmed legs. Its seashell silhouette brings a touch of art deco charm to any event space or vanity setup.',
+      'A glamorous scalloped back chair wrapped in soft black velvet with gold trimmed legs. Its seashell silhouette brings a touch of art deco charm to any event space or vanity setup.',
     features: [
       'Distinctive scalloped backrest',
       'Plush velvet upholstery',
@@ -932,7 +932,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 67,
     description:
-      "A modern barrel-style chair with a vintage twist — featuring a curved silhouette, rich black velvet, and a gleaming gold base. Comfortable yet chic, it's a perfect accent for cocktail areas or lounges.",
+      "A modern barrel style chair with a vintage twist, featuring a curved silhouette, rich black velvet, and a gleaming gold base. Comfortable yet chic, it's a perfect accent for cocktail areas or lounges.",
     features: [
       'Curved barrel design for comfort',
       'Luxurious velvet upholstery',
@@ -976,8 +976,8 @@ export const products: Product[] = [
     description:
       'A set of elegant white and gold nesting tables that combine timeless charm with practicality. Their smooth white tops and radiant gold frames complement any sophisticated décor theme.',
     features: [
-      'Two-tier nesting design',
-      'White marble-style surface',
+      'Two tier nesting design',
+      'White marble style surface',
       'Gold metallic base for a luxurious look',
       'Versatile use for modern or vintage events',
     ],
@@ -1016,7 +1016,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 54,
     description:
-      'A striking white leather-look high bench with deep button-tufting and elevated seat height — ideal for VIP lounges or as a stylish ceremony seating option.',
+      'A striking white leather look high bench with deep button tufting and elevated seat height, ideal for VIP lounges or as a stylish ceremony seating option.',
     features: [
       'High bench height for elevated presence',
       'White tufted upholstery with soft padding',
@@ -1037,7 +1037,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 63,
     description:
-      'A graceful chaise lounge in pristine white with ornate carved detailing and deep tufting — the ultimate bridal or luxury lounge piece.',
+      'A graceful chaise lounge in pristine white with ornate carved detailing and deep tufting, the ultimate bridal or luxury lounge piece.',
     features: [
       'Elegant carved wooden frame',
       'Tufted upholstery with plush padding',
@@ -1058,12 +1058,12 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 71,
     description:
-      'An elegant white tufted sofa framed with ornate carving — blending timeless charm and refined luxury for weddings or upscale events.',
+      'An elegant white tufted sofa framed with ornate carving, blending timeless charm and refined luxury for weddings or upscale events.',
     features: [
-      'Button-tufted back and seat',
+      'Button tufted back and seat',
       'Carved ornate frame with antique finish',
-      'Spacious two- to three-seater size',
-      'Ideal for high-end events and ceremonies',
+      'Spacious two to three seater size',
+      'Ideal for high end events and ceremonies',
     ],
     popular: false,
   },
@@ -1079,10 +1079,10 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 42,
     description:
-      'A sculptural white chair featuring a deep scoop shape and tufted upholstery — elegant, comfortable, and versatile for any lounge setup.',
+      'A sculptural white chair featuring a deep scoop shape and tufted upholstery, elegant, comfortable, and versatile for any lounge setup.',
     features: [
       'Curved scoop silhouette for comfort',
-      'White tufted leather-look finish',
+      'White tufted leather look finish',
       'Compact size for flexible arrangements',
       'Perfect for modern lounges and cocktail areas',
     ],
@@ -1101,7 +1101,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 56,
     description:
-      'A sophisticated sofa with classic rolled arms and tufted back detailing — ideal for creating timeless elegance in any event lounge.',
+      'A sophisticated sofa with classic rolled arms and tufted back detailing, ideal for creating timeless elegance in any event lounge.',
     features: [
       'Rolled arm design for traditional charm',
       'Deep tufted cushioning for comfort',
@@ -1143,7 +1143,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 79,
     description:
-      'A show-stopping white tufted couch with dramatic winged sides and plush seating — designed to make a grand statement at weddings and VIP lounges.',
+      'A show stopping white tufted couch with dramatic winged sides and plush seating, designed to make a grand statement at weddings and VIP lounges.',
     features: [
       'Winged back design with high sides',
       'Deep button tufting and rich padding',
@@ -1164,7 +1164,7 @@ export const products: Product[] = [
     rating: 4.4,
     reviews: 22,
     description:
-      'A compact tufted ottoman in white finish — a great accent for lounge setups or intimate seating clusters.',
+      'A compact tufted ottoman in white finish, a great accent for lounge setups or intimate seating clusters.',
     features: [
       'Small footprint fits tight spaces',
       'White tufted upholstery for cohesion',
@@ -1186,7 +1186,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 60,
     description:
-      'A sleek black leather loveseat that balances comfort and modern minimalism — ideal for upscale lounges and VIP spaces.',
+      'A sleek black leather loveseat that balances comfort and modern minimalism, ideal for upscale lounges and VIP spaces.',
     features: [
       'Smooth black leather upholstery',
       'Comfortable seating for two guests',
@@ -1207,9 +1207,9 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 37,
     description:
-      'A bold sled-style bench upholstered in black leather — offering modern lines and versatile seating for any event layout.',
+      'A bold sled style bench upholstered in black leather, offering modern lines and versatile seating for any event layout.',
     features: [
-      'Sled-style low bench design',
+      'Sled style low bench design',
       'Durable leather finish with minimalist look',
       'Perfect for group seating',
       'Pairs with modern tables or lounge pieces',
@@ -1228,11 +1228,11 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 83,
     description:
-      'A circular tufted sofa designed for social seating — luxurious, dramatic, and perfect as a centerpiece in event lounges or clubs.',
+      'A circular tufted sofa designed for social seating, luxurious, dramatic, and perfect as a centerpiece in event lounges or clubs.',
     features: [
       '360° circular seating design',
       'Deep tufted leather upholstery',
-      'Ideal for high-traffic lounges',
+      'Ideal for high traffic lounges',
       'Great as a centerpiece or island seating',
     ],
     popular: true,
@@ -1249,7 +1249,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 41,
     description:
-      'A glamorous tufted leather chair featuring subtle bling accents — a stylish statement for luxury events or fashion-forward lounges.',
+      'A glamorous tufted leather chair featuring subtle bling accents, a stylish statement for luxury events or fashion forward lounges.',
     features: [
       'Tufted leather upholstery with crystal details',
       'Comfortable accent chair size',
@@ -1272,9 +1272,9 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 48,
     description:
-      'A stunning black tufted leather chair with shimmering bling accents — designed to elevate any VIP or high-end event space.',
+      'A stunning black tufted leather chair with shimmering bling accents, designed to elevate any VIP or high end event space.',
     features: [
-      'Black leather with button-tufted finish',
+      'Black leather with button tufted finish',
       'Crystal or metallic bling accents',
       'Perfect as an accent or focal seating piece',
       'Adds sparkle and luxury to décor',
@@ -1293,9 +1293,9 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 33,
     description:
-      'A refined black tufted leather chair offering classic comfort with modern style — versatile for any event setup.',
+      'A refined black tufted leather chair offering classic comfort with modern style, versatile for any event setup.',
     features: [
-      'Single-seater design for flexible layout',
+      'Single seater design for flexible layout',
       'Tufted detailing adds sophistication',
       'Black finish fits most décor styles',
       'Perfect for guest lounges or cocktail spaces',
@@ -1315,7 +1315,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 61,
     description:
-      'A luxurious black leather chaise featuring deep tufting — ideal for elegant lounges, photo sets, or modern receptions.',
+      'A luxurious black leather chaise featuring deep tufting, ideal for elegant lounges, photo sets, or modern receptions.',
     features: [
       'Reclined chaise silhouette',
       'Tufted black leather upholstery',
@@ -1337,7 +1337,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 77,
     description:
-      'A dramatic winged couch upholstered in black tufted leather — the perfect centerpiece for upscale, moody lounge environments.',
+      'A dramatic winged couch upholstered in black tufted leather, the perfect centerpiece for upscale, moody lounge environments.',
     features: [
       'High winged sides with tufted detailing',
       'Spacious and comfortable seating',
@@ -1358,7 +1358,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 51,
     description:
-      'A classic black leather couch offering both style and comfort — perfect for professional or elegant event settings.',
+      'A classic black leather couch offering both style and comfort, perfect for professional or elegant event settings.',
     features: [
       'Smooth black leather surface',
       'Spacious design fits multiple guests',
@@ -1379,10 +1379,10 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 58,
     description:
-      'A charming tufted leather loveseat combining comfort and elegance — perfect for sweetheart seating or boutique lounge layouts.',
+      'A charming tufted leather loveseat combining comfort and elegance, perfect for sweetheart seating or boutique lounge layouts.',
     features: [
       'Tufted detailing on back and seat',
-      'Compact two-seater size',
+      'Compact two seater size',
       'Available in versatile leather finishes',
       'Perfect for wedding lounges or small setups',
     ],
@@ -1400,7 +1400,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 47,
     description:
-      'A modern rectangular low table crafted from clear lucite — ideal for minimalist lounges or high-end receptions.',
+      'A modern rectangular low table crafted from clear lucite, ideal for minimalist lounges or high end receptions.',
     features: [
       'Transparent lucite design for sleek look',
       'Rectangular shape fits multiple chairs',
@@ -1421,7 +1421,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 39,
     description:
-      'A sleek clear lucite cocktail table with clean lines and modern form — perfect for chic event setups or contemporary lounges.',
+      'A sleek clear lucite cocktail table with clean lines and modern form, perfect for chic event setups or contemporary lounges.',
     features: [
       'Clear lucite for seamless styling',
       'Cocktail height ideal for social zones',
@@ -1467,9 +1467,9 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 0,
     description:
-      'Classic New York hotdog cart that brings a fun, interactive food moment to receptions, after-parties, and late-night service.',
+      'Classic New York hotdog cart that brings a fun, interactive food moment to receptions, after parties, and late night service.',
     features: [
-      'Authentic NYC street-food style',
+      'Authentic NYC street food style',
       'Interactive live service',
       'Great for casual and themed events',
       'Staffed service available',
@@ -1488,7 +1488,7 @@ export const products: Product[] = [
     rating: 5,
     reviews: 0,
     description:
-      'Luxurious caviar cart offering an elevated tasting experience — a refined, memorable touch for upscale galas and VIP receptions.',
+      'Luxurious caviar cart offering an elevated tasting experience, a refined, memorable touch for upscale galas and VIP receptions.',
     features: [
       'Premium caviar service',
       'Elegant presentation cart',
@@ -1510,12 +1510,12 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 0,
     description:
-      'Sophisticated black tufted lounge grouping styled inside 48 Wall Street, complete with feathered centerpieces and a mirrored cocktail table — a glamorous VIP seating moment.',
+      'Sophisticated black tufted lounge grouping styled inside 48 Wall Street, complete with feathered centerpieces and a mirrored cocktail table, a glamorous VIP seating moment.',
     features: [
       'Tufted black leather seating',
       'Includes accent chair and cocktail table',
       'Dramatic feathered décor styling',
-      'Perfect for VIP and after-party lounges',
+      'Perfect for VIP and after party lounges',
     ],
     popular: true,
   },
@@ -1531,7 +1531,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 0,
     description:
-      'A charming vintage New York newsstand with period lamp post and signage — a nostalgic scenic installation that transforms any space into old-world Wall Street.',
+      'A charming vintage New York newsstand with period lamp post and signage, a nostalgic scenic installation that transforms any space into old world Wall Street.',
     features: [
       'Authentic vintage newsstand design',
       'Paired with classic street lamp',
@@ -1552,9 +1552,9 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 0,
     description:
-      'Classic five-globe Wall Street lamp post with a custom street sign — an iconic Financial District accent that anchors your event theme.',
+      'Classic five globe Wall Street lamp post with a custom street sign, an iconic Financial District accent that anchors your event theme.',
     features: [
-      'Five-globe vintage lamp design',
+      'Five globe vintage lamp design',
       'Custom "Wall St" street sign',
       'Warm ambient glow',
       'Signature Financial District touch',
@@ -1573,11 +1573,11 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 0,
     description:
-      'A statement clawfoot-tub champagne display styled with premium bottles and gold accents — an unforgettable centerpiece for luxury receptions and toasts.',
+      'A statement clawfoot tub champagne display styled with premium bottles and gold accents, an unforgettable centerpiece for luxury receptions and toasts.',
     features: [
-      'Vintage clawfoot-tub centerpiece',
+      'Vintage clawfoot tub centerpiece',
       'Chills and showcases champagne bottles',
-      'Glamorous gold-accented styling',
+      'Glamorous gold accented styling',
       'A standout focal point for receptions',
     ],
     popular: true,
@@ -1594,12 +1594,12 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 0,
     description:
-      'A romantic fresh-cut flower cart brimming with seasonal blooms — a beautiful interactive moment for guests and a picture-perfect décor accent.',
+      'A romantic fresh cut flower cart brimming with seasonal blooms, a beautiful interactive moment for guests and a picture perfect décor accent.',
     features: [
       'Overflowing seasonal floral display',
       'Charming vintage market cart',
-      'Interactive take-home flower favors',
-      'Elegant photo-ready styling',
+      'Interactive take home flower favors',
+      'Elegant photo ready styling',
     ],
     popular: false,
   },

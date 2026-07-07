@@ -588,7 +588,7 @@ export default function RentalsPage() {
             dedicated event specialists are here to help. Through our extensive
             network of trusted partners and custom fabrication capabilities, we
             can source bespoke rentals, luxury furnishings, specialty décor, and
-            one-of-a-kind experiences tailored exclusively to your event.
+            one of a kind experiences tailored exclusively to your event.
             Whatever your vision, we&apos;ll bring it to life with exceptional
             creativity and flawless execution.
           </p>
