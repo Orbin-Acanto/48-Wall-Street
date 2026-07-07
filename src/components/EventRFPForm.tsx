@@ -409,6 +409,37 @@ export default function EventRFPForm() {
     setOpenAccordion(null);
   };
 
+  const resetForm = () => {
+    setStep(0);
+    setOpenAccordion(null);
+    setSelectedAV([]);
+    setSelectedFB([]);
+    setFields({});
+    setEventType('');
+    setAttendance({});
+    setVenueRequirements([]);
+    setRoomSetup('');
+    setFoodDetailed({
+      breakfast: [],
+      lunch: [],
+      dinner: [],
+      reception: [],
+      beverage: [],
+    });
+    setCulinary([]);
+    setAvProduction({
+      audio: [],
+      video: [],
+      lighting: [],
+      streaming: [],
+      staging: [],
+    });
+    setDecor([]);
+    setEntertainment([]);
+    setBranding([]);
+    setStaffing([]);
+  };
+
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
@@ -473,8 +504,10 @@ export default function EventRFPForm() {
       );
 
       setShowModal(true);
+      resetForm();
     } catch {
       setShowModal(true);
+      resetForm();
     } finally {
       setIsSubmitting(false);
     }
@@ -794,18 +827,6 @@ export default function EventRFPForm() {
                       value={attendance.vipCount || ''}
                       onChange={updateAttendance}
                     />
-                    {/* <CounterCard
-                      label="Staff"
-                      name="staffCount"
-                      value={attendance.staffCount || ''}
-                      onChange={updateAttendance}
-                    />
-                    <CounterCard
-                      label="Vendors"
-                      name="vendorCount"
-                      value={attendance.vendorCount || ''}
-                      onChange={updateAttendance}
-                    /> */}
                     <CounterCard
                       label="Speakers"
                       name="speakerCount"
@@ -843,8 +864,6 @@ export default function EventRFPForm() {
                     items={[
                       'Ballroom',
                       'Historic Banking Hall',
-                      // 'Outdoor Space',
-                      // 'Rooftop',
                       'Breakout Rooms',
                       'Green Rooms',
                       'Bridal Suite',
