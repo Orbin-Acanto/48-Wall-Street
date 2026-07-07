@@ -1789,33 +1789,34 @@ export const nonProfitClientLogos = [
 export const weddingData: EventShowcaseProps = {
   brochure: generalBrochure,
   title: 'Historic Wedding Venue in Lower Manhattan',
-  subtitle: 'A Timeless Backdrop for Your Most Important Day',
+  subtitle: 'A Timeless Setting for the Beginning of Forever',
+  servicesVariant: 'sections',
   description:
-    'Some venues are simply settings. 48 Wall Street is a story. Built in 1927 as the Bank of New York and Trust Company, this National Register landmark brings a grandeur to your wedding day that no modern ballroom can replicate. The 30-foot ceilings, grand marble staircase, Palladian windows, and original crystal chandeliers create an atmosphere of genuine historic elegance in the heart of the Financial District. Our experienced team handles every detail from concept to final curtain call, so you and your guests can simply be present for the moments that matter.',
+    'Some venues simply host a wedding. 48 Wall Street becomes part of your love story.\n\nOriginally built in 1927 as the Bank of New York and Trust Company, this landmark destination offers a level of grandeur, romance, and historic elegance that modern ballrooms simply cannot recreate. From the moment your guests arrive, they are welcomed into a breathtaking setting defined by soaring 30-foot ceilings, a grand marble staircase, Palladian windows, original crystal chandeliers, and timeless architectural details in the heart of Lower Manhattan.\n\nWhether you envision an intimate ceremony, a black-tie seated dinner, a lavish cocktail reception, or a full-scale wedding celebration, 48 Wall Street provides an extraordinary canvas for a day that feels deeply personal and unforgettable. Our experienced hospitality, culinary, design, and production teams thoughtfully curate every detail, from ceremony flow and floral design to lighting, entertainment, dining, and the final send-off.\n\nAt 48 Wall Street, your wedding is more than an event. It is a beautifully orchestrated experience where history, elegance, and modern luxury come together to create moments you and your guests will remember for a lifetime.',
   images: [
     {
-      src: '/gallery/wedding/22.jpg',
-      alt: 'Elegant wedding',
+      src: '/events/wedding/1.jpg',
+      alt: 'Wedding celebration at 48 Wall Street',
     },
     {
-      src: '/gallery/wedding/24.jpg',
-      alt: 'Wedding reception',
+      src: '/events/wedding/2.jpg',
+      alt: 'Elegant wedding reception',
     },
     {
-      src: '/gallery/wedding/23.jpg',
-      alt: 'Elegant wedding',
+      src: '/events/wedding/3.jpg',
+      alt: 'Wedding ceremony in the historic banking hall',
     },
     {
-      src: '/gallery/wedding/26.jpg',
-      alt: 'Elegant wedding',
+      src: '/events/wedding/4.jpg',
+      alt: 'Wedding portrait on the grand marble staircase',
     },
     {
-      src: '/gallery/wedding/27.jpg',
-      alt: 'Elegant wedding',
+      src: '/events/wedding/5.jpg',
+      alt: 'Wedding celebration under crystal chandeliers',
     },
     {
-      src: '/gallery/wedding/29.jpg',
-      alt: 'Elegant wedding',
+      src: '/events/wedding/8.jpg',
+      alt: 'Luxury wedding at 48 Wall Street',
     },
   ],
   tags: [
@@ -1861,16 +1862,19 @@ export const weddingData: EventShowcaseProps = {
   },
   services: [
     {
-      title: 'Ceremonies at 48 Wall Street',
-      body: 'Walk down the aisle beneath 30-foot ceilings and original 1920s chandeliers. The grand marble staircase makes for a dramatic processional that photographs unlike anything else in New York City. We can configure the Banking Hall for your ceremony and then transition the space into your reception, all within the same historic downtown venue.',
+      title: 'Wedding Ceremonies at 48 Wall Street',
+      subtitle:
+        "Exchange Your Vows in One of New York City's Most Iconic Historic Landmarks",
+      body: "Your ceremony is the heart of your wedding day, a moment that deserves a setting as extraordinary as the commitment you are making. At 48 Wall Street, couples exchange their vows surrounded by the timeless beauty of one of Manhattan's most celebrated architectural landmarks.\n\nBeneath soaring 30-foot ceilings, magnificent crystal chandeliers, grand Palladian windows, and elegant marble architecture, every ceremony is framed by an atmosphere of romance, sophistication, and historic grandeur. The iconic marble staircase provides a breathtaking entrance for the bridal procession and creates unforgettable photographic moments that are uniquely New York.\n\nWhether you envision an intimate gathering or a grand celebration, our experienced wedding professionals will thoughtfully design every detail of your ceremony to reflect your personal style and traditions. Following your vows, the space is seamlessly transformed into an elegant cocktail reception and luxury wedding celebration, allowing you and your guests to enjoy a flawless transition without ever leaving the venue.\n\nFrom your first walk down the aisle to your final dance, 48 Wall Street offers an extraordinary setting where timeless architecture, impeccable hospitality, and unforgettable moments come together to create the wedding celebration of a lifetime.",
     },
     {
-      title: 'Wedding Receptions',
-      body: 'The Grand Mezzanine has held some of the most celebrated events in Lower Manhattan for over 30 years. For your reception, we can arrange round tables for up to 350 seated guests or open the floor for a cocktail celebration of up to 500. Our team coordinates catering, lighting, entertainment, and every detail so the night runs exactly as you imagined.',
+      title: 'Luxury Wedding Receptions',
+      subtitle: 'Celebrate Your First Evening Together in Timeless Elegance',
+      body: "Your wedding reception is more than a celebration, it is the beginning of your life's greatest journey together. At 48 Wall Street, every reception is thoughtfully designed to reflect your unique love story, surrounded by the timeless grandeur of one of New York City's most iconic historic landmarks.\n\nFor more than three decades, our magnificent Grand Mezzanine has served as the setting for distinguished galas, elegant celebrations, and unforgettable occasions. Today, it provides an extraordinary backdrop for luxury weddings, where soaring 30-foot ceilings, sparkling crystal chandeliers, grand marble architecture, and breathtaking historic details create an atmosphere of unparalleled romance and sophistication.\n\nWhether you envision an intimate candlelit dinner, an elegant seated reception for up to 350 guests, or a vibrant cocktail celebration for up to 500 guests, our experienced hospitality professionals will curate every detail with impeccable precision. From award-winning culinary experiences and bespoke floral design to immersive lighting, live entertainment, custom staging, and world-class event production, every element is flawlessly orchestrated to reflect your vision.\n\nFrom your grand entrance and first dance to heartfelt toasts and the final farewell, our dedicated team ensures every moment unfolds seamlessly, allowing you to celebrate with family and friends while creating memories that will be cherished for generations.",
     },
     {
-      title: 'Photography Worth the Venue Itself',
-      body: 'Couples consistently tell us that their 48 Wall Street wedding photos are unlike anything their photographer has shot before. The original Palladian windows, marble columns, crystal chandeliers, and grand staircase give you backgrounds that feel like a film set. You will not need to find a separate portrait location because the venue itself provides more than enough.',
+      title: 'A Timeless Setting for Unforgettable Wedding Photography',
+      body: "Your wedding photographs should be as extraordinary as the day itself. At 48 Wall Street, every architectural detail provides a breathtaking backdrop, transforming each moment into a work of art that will be treasured for generations.\n\nFrom the grandeur of the iconic marble staircase and soaring Palladian windows to the elegance of hand-carved marble columns, magnificent crystal chandeliers, and timeless Beaux-Arts architecture, every corner of our historic landmark is designed to inspire unforgettable imagery. The venue offers an exceptional collection of indoor portrait locations, allowing your photographer to capture stunning editorial-style photographs without ever leaving the property.\n\nWhether it's an intimate first look, romantic portraits, family photographs, or your grand entrance, 48 Wall Street offers a setting unlike any other in New York City. Every image reflects the beauty, sophistication, and timeless romance of your celebration, creating a wedding album that is as iconic as the venue itself.\n\nAt 48 Wall Street, your wedding is more than beautifully photographed, it is captured within one of New York City's most celebrated architectural landmarks, where every frame tells a story of elegance, romance, and enduring love.",
     },
   ],
 };
@@ -2062,35 +2066,35 @@ export const conferenceData: EventShowcaseProps = {
 
 export const fashionData: EventShowcaseProps = {
   brochure: generalBrochure,
-  clientLogos: brandClientLogos,
-  title: 'Iconic Fashion Show Venues on Wall Street',
-  subtitle: 'A Historic Runway Venue in the Financial District',
+  title: 'Iconic Fashion Show Venue on Wall Street',
+  subtitle: 'A Historic Runway Destination in the Financial District',
+  servicesVariant: 'sections',
   description:
-    "Discover the top fashion show venues in NYC, where style transcends boundaries and glamour reigns supreme. Step into the heart of fashion's elite.Fashion is about atmosphere as much as it is about clothing, and few spaces in New York City carry the visual weight of the 48 Wall Street banking hall. The 30-foot ceilings, grand marble staircase, Palladian windows, and original 1920s architecture create a dramatic setting that elevates every collection shown here. Whether you are planning a full New York Fashion Week runway production, an intimate designer presentation, a brand activation, or a showroom event, our in-house team handles staging, lighting, production, and catering so you can focus entirely on the creative work. There is no better runway venue in the Financial District.",
+    "Fashion is more than what appears on the runway, it is the atmosphere, architecture, lighting, energy, and story surrounding every look. At 48 Wall Street, designers and brands are welcomed into one of New York City's most visually powerful event spaces, where historic grandeur creates a dramatic stage for unforgettable fashion moments.\n\nSet within a landmark 1920s banking hall in the heart of the Financial District, 48 Wall Street offers a cinematic runway environment defined by soaring 30-foot ceilings, a grand marble staircase, Palladian windows, original crystal chandeliers, and timeless architectural detail. Every entrance, runway walk, and collection reveal is elevated by a setting that feels both iconic and distinctly New York.\n\nWhether producing a full New York Fashion Week runway show, an intimate designer presentation, a luxury showroom experience, a press preview, or a high-profile brand activation, our in-house event and production teams manage every element with precision. From custom staging and runway builds to lighting design, audiovisual production, backstage support, hospitality, catering, and guest flow, every detail is expertly coordinated so your creative team can remain focused on the collection.\n\nAt 48 Wall Street, fashion is presented with scale, sophistication, and impact, making it one of the most distinctive runway and presentation venues in Lower Manhattan.",
   images: [
     {
-      src: '/gallery/fashion/ (6).jpg',
-      alt: 'Fashion show',
+      src: '/events/fashion/3.jpg',
+      alt: 'Runway show at 48 Wall Street',
     },
     {
-      src: '/gallery/fashion/ (1).jpeg',
-      alt: 'Fashion show',
+      src: '/events/fashion/4.jpg',
+      alt: 'Fashion presentation in the historic banking hall',
     },
     {
-      src: '/gallery/fashion/ (4).jpg',
-      alt: 'Fashion show',
+      src: '/events/fashion/5.jpg',
+      alt: 'Runway production under crystal chandeliers',
     },
     {
-      src: '/gallery/fashion/ (7).jpg',
-      alt: 'Fashion show',
+      src: '/events/fashion/6.jpg',
+      alt: 'Designer showcase at 48 Wall Street',
     },
     {
-      src: '/gallery/fashion/ (12).jpg',
-      alt: 'Fashion show',
+      src: '/events/fashion/7.jpg',
+      alt: 'Fashion event on the runway',
     },
     {
-      src: '/gallery/fashion/ (14).jpg',
-      alt: 'Fashion show',
+      src: '/events/fashion/8.jpg',
+      alt: 'Luxury brand activation at 48 Wall Street',
     },
   ],
   tags: [
@@ -2127,7 +2131,7 @@ export const fashionData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Request a Proposal',
+    label: 'Schedule a Tour',
     href: '/contact',
   },
   secondaryCta: {
@@ -2136,16 +2140,20 @@ export const fashionData: EventShowcaseProps = {
   },
   services: [
     {
-      title: 'Runway Productions',
-      body: 'The Banking Hall at 48 Wall Street accommodates a full professional runway with room for seated front-row guests and standing audience on either side. The ceiling height allows for serious lighting design, and the marble architecture creates a backdrop that gives every look shown here a different quality than what you see at a standard fashion week venue. Our production team builds the stage, programs the lights, and manages the technical run so the show goes exactly as designed.',
+      title: 'Luxury Runway Productions',
+      subtitle: 'Where Visionary Collections Meet an Iconic New York Stage',
+      body: "Every exceptional fashion show begins with an extraordinary venue. At 48 Wall Street, the historic Grand Banking Hall provides a dramatic runway environment where architecture and couture come together to create unforgettable fashion experiences.\n\nThe expansive venue comfortably accommodates custom runway installations with front-row seating, VIP hospitality lounges, press platforms, media positions, and standing-room guest experiences, offering complete flexibility for productions of every scale. Framed by soaring 30-foot ceilings, magnificent marble columns, grand staircases, Palladian windows, and sparkling crystal chandeliers, every collection is showcased against one of New York City's most breathtaking architectural backdrops.\n\nOur in-house production professionals provide comprehensive runway solutions, including custom stage and catwalk fabrication, intelligent lighting design, LED video integration, immersive audiovisual production, backstage infrastructure, power distribution, technical rehearsals, and live show management. Every cue, lighting sequence, music transition, and runway reveal is meticulously programmed to ensure flawless execution from the opening walk to the designer's final bow.\n\nWhether producing a New York Fashion Week runway presentation, luxury couture showcase, ready-to-wear collection, international designer debut, or global brand launch, 48 Wall Street delivers a world-class production environment where creativity is elevated by timeless architecture, cutting-edge technology, and unparalleled hospitality.\n\nAt 48 Wall Street, every runway becomes a stage for unforgettable fashion moments, where iconic design meets iconic architecture.",
     },
     {
-      title: 'Showrooms and Brand Activations',
-      body: 'Not every fashion event is a runway show. Buyer showrooms, press days, and brand activations require a different kind of space, one where guests feel like they are somewhere worth being before they have even looked at the product. The financial district address and the historic character of 48 Wall Street provide that context naturally. We configure the floor plan to suit the format and handle catering and production around it.',
+      title: 'Luxury Showrooms & Brand Activations',
+      subtitle:
+        'An Iconic Destination for Fashion, Retail & Experiential Marketing',
+      body: "Not every fashion event takes place on a runway. From luxury showroom presentations and press previews to product launches, retail experiences, influencer events, and immersive brand activations, 48 Wall Street provides an exceptional environment where brands connect with buyers, media, and consumers in one of New York City's most distinguished historic landmarks.\n\nLocated in the heart of the Financial District, our iconic venue combines timeless Beaux-Arts architecture with contemporary production capabilities, creating an atmosphere that immediately elevates every brand experience. The grandeur of soaring 30-foot ceilings, marble columns, grand staircases, Palladian windows, and original crystal chandeliers establishes a sophisticated setting where products, collections, and brand stories become the center of attention.\n\nOur versatile event spaces can be customized to accommodate private buying appointments, wholesale showrooms, media previews, VIP receptions, influencer activations, pop-up retail experiences, experiential marketing campaigns, product unveilings, and luxury brand showcases. Every floor plan is thoughtfully designed to optimize guest flow, product merchandising, networking opportunities, and immersive engagement.\n\nSupported by our full-service production and hospitality teams, we provide custom scenic fabrication, luxury furnishings, audiovisual production, intelligent lighting, branded environments, catering, security, registration services, and event management, ensuring every activation is executed with precision and reflects the highest standards of luxury.\n\nAt 48 Wall Street, your showroom or brand activation becomes more than an event, it becomes an immersive brand experience set within one of New York City's most iconic architectural landmarks.",
     },
     {
-      title: 'Lighting and Production',
-      body: 'In fashion, lighting is not secondary to the design. It is part of it. Our production partner MME Worldwide specializes in the kind of precise, dramatically designed lighting setups that fashion presentations require, from high-contrast runway spots to full ambient transformation of the hall for a different aesthetic. They work in this space regularly and know how to make the architecture work in your favor.',
+      title: 'Lighting & Production',
+      subtitle: 'Where Fashion Is Illuminated with Precision and Drama',
+      body: "In fashion, lighting is never an afterthought, it is an essential part of the creative vision. The right lighting defines texture, movement, silhouette, mood, and the emotional impact of every look. At 48 Wall Street, our exclusive production partner, MME Worldwide, specializes in the sophisticated lighting design and technical execution required for runway shows, designer presentations, luxury brand activations, and high-profile fashion events.\n\nFrom dramatic runway spotlights and high-contrast editorial lighting to immersive ambient transformations, architectural uplighting, video-ready illumination, and full-room scenic design, every lighting concept is carefully crafted to complement both the collection and the historic grandeur of the venue.\n\nWith extensive experience producing events inside 48 Wall Street, MME Worldwide understands how to use the venue's soaring ceilings, marble architecture, grand staircase, and Palladian windows to enhance the visual storytelling of each presentation. Every cue, color, angle, and transition is thoughtfully programmed to support the designer's vision while creating a flawless experience for guests, photographers, press, and production teams.\n\nAt 48 Wall Street, fashion is not simply shown, it is staged, lit, and produced with intention, artistry, and unforgettable impact.",
     },
   ],
 };
@@ -2154,33 +2162,34 @@ export const nonprofitData: EventShowcaseProps = {
   brochure: generalBrochure,
   clientLogos: nonProfitClientLogos,
   title: 'Non-Profit Event Venue in Lower Manhattan',
-  subtitle: 'A Historic Setting That Elevates Your Cause',
+  subtitle: 'A Landmark Setting That Elevates Your Mission',
+  servicesVariant: 'sections',
   description:
-    'The setting of a fundraising gala sends a signal to your donors before the program even begins. At 48 Wall Street, the 1927 banking hall with its grand marble staircase, soaring ceilings, and original architecture communicates that your organization takes itself seriously and your mission deserves to be celebrated with dignity. We have supported non-profit galas, benefit dinners, charity auctions, and awareness events throughout Lower Manhattan for over 30 years. Our team understands the unique demands of fundraising events and works with you to create an atmosphere that inspires generosity.',
+    'Every fundraising event begins with a message. The venue you choose sets the tone before the first welcome remark is made, and at 48 Wall Street, your cause is presented with the dignity, elegance, and importance it deserves.\n\nSet within a historic 1927 banking hall in the heart of Lower Manhattan, 48 Wall Street offers a remarkable backdrop for non-profit galas, benefit dinners, charity auctions, donor receptions, awareness events, and mission-driven celebrations. With its grand marble staircase, soaring ceilings, original architectural details, and timeless New York sophistication, the venue creates an atmosphere that inspires connection, generosity, and impact.\n\nFor more than three decades, our team has supported distinguished non-profit organizations throughout the Financial District, understanding the careful balance between guest experience, donor engagement, program flow, and fundraising goals. From elegant dining and thoughtful room design to audiovisual production, stage moments, auctions, entertainment, and sponsor recognition, every detail is managed with precision and purpose.\n\nAt 48 Wall Street, your event becomes more than a gathering, it becomes a powerful experience that honors your mission, celebrates your supporters, and leaves guests inspired to give.',
   images: [
     {
+      src: '/events/nonprofit/1.jpg',
+      alt: 'Non-profit gala at 48 Wall Street',
+    },
+    {
+      src: '/events/nonprofit/2.jpg',
+      alt: 'Fundraising dinner in the historic banking hall',
+    },
+    {
+      src: '/events/nonprofit/3.jpg',
+      alt: 'Charity benefit reception at 48 Wall Street',
+    },
+    {
       src: '/gallery/non/1.jpg',
-      alt: 'Corporate conference setup',
+      alt: 'Donor reception setup',
     },
     {
       src: '/gallery/non/2.jpg',
-      alt: 'Corporate conference',
-    },
-    {
-      src: '/gallery/non/3.jpg',
-      alt: 'Corporate conference',
-    },
-    {
-      src: '/gallery/non/4.jpg',
-      alt: 'Corporate conference',
+      alt: 'Benefit gala seating',
     },
     {
       src: '/gallery/non/7.jpg',
-      alt: 'Corporate conference',
-    },
-    {
-      src: '/gallery/non/6.jpg',
-      alt: 'Corporate conference',
+      alt: 'Non-profit event stage and lighting',
     },
   ],
   tags: [
@@ -2217,7 +2226,7 @@ export const nonprofitData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Request a Proposal',
+    label: 'Schedule a Tour',
     href: '/contact',
   },
   secondaryCta: {
@@ -2226,50 +2235,53 @@ export const nonprofitData: EventShowcaseProps = {
   },
   services: [
     {
-      title: 'Charity Galas and Fundraising Dinners',
-      body: 'A fundraising gala at 48 Wall Street gives your donors an evening that reflects the importance of your cause. The 9,000 square foot Banking Hall seats up to 350 for a formal dinner and accommodates 500 for a cocktail reception. Our catering team builds menus that match the formality of the occasion, and our production team handles lighting and entertainment to keep the energy of the room where it needs to be for a successful evening.',
+      title: 'Charity Galas & Fundraising Dinners',
+      subtitle: 'Inspire Generosity in an Unforgettable Setting',
+      body: "A successful fundraising gala is about more than bringing people together, it is about creating an experience that inspires generosity, celebrates your mission, and leaves a lasting impression on every guest. At 48 Wall Street, our historic Banking Hall provides an extraordinary backdrop where timeless elegance and purpose come together to elevate your organization's most important events.\n\nThe magnificent 9,000-square-foot Grand Mezzanine accommodates up to 350 guests for an elegant seated gala or 500 guests for a sophisticated cocktail reception, offering the ideal setting for benefit dinners, black-tie galas, donor appreciation events, and philanthropic celebrations. Surrounded by soaring ceilings, magnificent marble architecture, grand staircases, and sparkling crystal chandeliers, your supporters are welcomed into an atmosphere of distinction from the moment they arrive.\n\nOur award-winning hospitality team collaborates with your organization to curate every aspect of the experience, from chef-crafted culinary menus and premium beverage service to custom decor, floral design, immersive lighting, audiovisual production, live entertainment, and seamless event management. We also provide comprehensive support for fundraising initiatives, including live and silent auctions, paddle raises, mission-driven presentations, sponsor recognition, keynote speakers, and multimedia storytelling.\n\nAt 48 Wall Street, every detail is thoughtfully orchestrated to create an elegant and inspiring evening that strengthens donor engagement, celebrates your organization's impact, and helps maximize your fundraising goals.",
     },
     {
-      title: 'Donor Receptions and Cultivation Events',
-      body: 'Maintaining relationships with major donors requires more than an annual gala. Smaller receptions and cultivation dinners give your leadership team and board members a chance to connect personally with the people who support your mission. The architectural character of 48 Wall Street creates a setting that feels worthy of those conversations without requiring a large production budget.',
+      title: 'Donor Receptions & Cultivation Events',
+      subtitle: 'Cultivate Meaningful Relationships in an Inspiring Setting',
+      body: "Strong philanthropic organizations are built on lasting relationships. Donor cultivation events provide a meaningful opportunity to engage benefactors, recognize leadership, and strengthen the connections that advance your mission. At 48 Wall Street, we provide an elegant and intimate setting where every conversation is elevated by the prestige of one of New York City's most iconic historic landmarks.\n\nWhether hosting a private donor appreciation dinner, leadership reception, foundation gathering, board event, or exclusive cultivation experience, our beautifully appointed event spaces offer an atmosphere of sophistication, warmth, and timeless elegance. Surrounded by grand marble architecture, soaring ceilings, and magnificent crystal chandeliers, guests are welcomed into an environment that reflects the significance of your organization's work and the generosity of those who support it.\n\nOur experienced hospitality professionals thoughtfully curate every detail, from chef-inspired culinary experiences and premium beverage service to customized room layouts, audiovisual presentations, branded decor, and personalized guest experiences. Whether your gathering is designed for twenty distinguished guests or several hundred supporters, every event is executed with impeccable service and attention to detail.\n\nAt 48 Wall Street, donor receptions become more than networking events, they become memorable experiences that deepen relationships, celebrate generosity, and inspire continued investment in your mission for years to come.",
     },
     {
-      title: 'Benefit Auctions and Awareness Evenings',
-      body: 'Our floor plan supports live and silent auction formats, with enough space to display auction items, maintain clear sightlines to the stage, and keep guests moving and engaged throughout the evening. Our AV team ensures that every bid call and every speaker moment lands clearly across the full room so the program drives results.',
+      title: 'Benefit Auctions & Mission-Driven Events',
+      subtitle: 'Inspire Giving. Celebrate Impact. Advance Your Mission.',
+      body: 'A successful fundraising event is built on more than an inspiring program, it is designed to engage supporters, encourage participation, and maximize charitable giving. At 48 Wall Street, our historic venue provides the ideal setting for benefit auctions, awareness campaigns, fundraising initiatives, and mission-driven events that leave a lasting impression on every guest.\n\nThe expansive Grand Mezzanine offers exceptional flexibility for live auctions, silent auctions, paddle raises, donor recognition ceremonies, and immersive awareness experiences. Thoughtfully designed floor plans allow for elegant auction displays, sponsor activations, branded exhibits, and seamless guest circulation while maintaining clear sightlines to the stage and presentation areas.\n\nOur award-winning production team delivers flawless audiovisual support, ensuring every keynote address, mission video, beneficiary story, auctioneer presentation, and fundraising appeal is presented with exceptional clarity and impact. From custom staging and theatrical lighting to LED video displays, live streaming, and interactive donor engagement, every production element is carefully orchestrated to elevate your message and inspire generosity.\n\nAt 48 Wall Street, we create more than memorable events, we design transformative experiences that strengthen donor engagement, amplify your mission, and help your organization achieve meaningful fundraising success.',
     },
   ],
 };
 
 export const mitzvahData: EventShowcaseProps = {
   brochure: generalBrochure,
-  clientLogos: brandClientLogos,
-  title: 'Bar and Bat Mitzvah Venue in New York City',
-  subtitle: 'A Historic Wall Street Setting for This Sacred Milestone',
+  title: 'Bar & Bat Mitzvah Celebrations at 48 Wall Street',
+  subtitle: 'Celebrate a Cherished Tradition in an Iconic New York Landmark',
+  servicesVariant: 'sections',
   description:
-    'A Bar or Bat Mitzvah is one of the most meaningful celebrations a family hosts, and the venue should match that significance. At 48 Wall Street, families find a space that has enough grandeur for the occasion while being flexible enough to become genuinely personal. The 9,000 square foot Grand Mezzanine has hosted Bar and Bat Mitzvahs that range from elegant formal celebrations to high-energy themed parties, and our team has the experience to help you build an event that honors the tradition while reflecting who your teenager actually is. We coordinate every aspect including the service space, decor, catering, entertainment, and production so the day unfolds without you managing logistics.',
+    "A Bar or Bat Mitzvah is more than a celebration, it is a once-in-a-lifetime milestone that honors family, faith, and tradition while marking the beginning of an exciting new chapter. At 48 Wall Street, we provide an extraordinary setting where timeless elegance meets personalized celebration, creating an unforgettable experience for every generation.\n\nThe magnificent 9,000-square-foot Grand Mezzanine, with its soaring ceilings, crystal chandeliers, grand marble architecture, and historic banking hall, offers a breathtaking backdrop for celebrations of every style. Whether you envision a sophisticated black-tie reception, a vibrant themed celebration, or an immersive interactive experience, our team will thoughtfully bring your vision to life.\n\nOur experienced hospitality and event professionals manage every detail from beginning to end, allowing your family to focus on celebrating this meaningful occasion. From custom decor and floral design to award-winning catering, entertainment, audiovisual production, lighting, staging, and interactive experiences, every element is carefully curated to reflect your family's traditions, personality, and style.\n\nAt 48 Wall Street, every Bar and Bat Mitzvah is designed to be as unique as the young person being honored, creating an elegant celebration filled with unforgettable memories that will be cherished for generations.",
   images: [
     {
+      src: '/events/mitzvah/1.jpg',
+      alt: 'Bar or Bat Mitzvah celebration at 48 Wall Street',
+    },
+    {
+      src: '/events/mitzvah/2.jpg',
+      alt: 'Themed Mitzvah reception in the Grand Mezzanine',
+    },
+    {
+      src: '/events/mitzvah/3.jpg',
+      alt: 'Mitzvah celebration with custom decor',
+    },
+    {
+      src: '/events/mitzvah/4.jpg',
+      alt: 'Mitzvah party under crystal chandeliers',
+    },
+    {
+      src: '/events/mitzvah/5.jpg',
+      alt: 'Immersive Mitzvah event design',
+    },
+    {
       src: '/gallery/bar/39.jpg',
-      alt: 'Bar Mitzvah celebration at the Western Wall',
-    },
-    {
-      src: '/gallery/bar/48.jpg',
-      alt: 'Bar Mitzvah celebration',
-    },
-    {
-      src: '/gallery/bar/43.jpg',
-      alt: 'Bar Mitzvah celebration',
-    },
-    {
-      src: '/gallery/bar/49.jpg',
-      alt: 'Bar Mitzvah celebration',
-    },
-    {
-      src: '/gallery/bar/46.jpg',
-      alt: 'Bar Mitzvah celebration',
-    },
-    {
-      src: '/gallery/bar/47.jpg',
       alt: 'Bar Mitzvah celebration',
     },
   ],
@@ -2308,7 +2320,7 @@ export const mitzvahData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Request a Proposal',
+    label: 'Schedule a Tour',
     href: '/contact',
   },
   secondaryCta: {
@@ -2318,49 +2330,54 @@ export const mitzvahData: EventShowcaseProps = {
   services: [
     {
       title: 'A Celebration Space Unlike Any Other in New York',
-      body: 'The Grand Mezzanine at 48 Wall Street gives a Bar or Bat Mitzvah a sense of occasion that a banquet hall simply cannot match. The 30-foot ceilings, marble staircase, and original chandeliers are a foundation that our decor team builds on to create something completely specific to your family. Whether you want sleek and modern or warm and traditional, the space can become either.',
+      body: "The Grand Mezzanine at 48 Wall Street offers a Bar or Bat Mitzvah setting with a sense of grandeur, meaning, and celebration that traditional banquet halls simply cannot replicate. With soaring 30-foot ceilings, a dramatic marble staircase, original crystal chandeliers, and timeless architectural details, the space creates an unforgettable backdrop from the moment guests arrive.\n\nOur design and production team builds upon this iconic setting to create a celebration that feels entirely personal to your family. Whether your vision is sleek and modern, warm and traditional, vibrant and themed, or fully immersive, the Grand Mezzanine can be transformed to reflect your style while preserving the elegance of one of New York City's most distinguished historic venues.",
     },
     {
-      title: 'Custom Themes and Decor',
-      body: 'We have designed Bar and Bat Mitzvah decor around sports, travel, music, gaming, film, and nearly every other theme imaginable. The architectural bones of the 1927 banking hall provide a dramatic base that makes themed decor look more polished and deliberate. Our in-house decor team maintains an inventory of furniture, props, and lighting equipment that can transform the room around whatever vision the family has in mind.',
+      title: 'Bespoke Themes & Immersive Event Design',
+      body: "Every Bar and Bat Mitzvah at 48 Wall Street is thoughtfully designed to celebrate the individuality of your child while honoring the significance of this once-in-a-lifetime milestone. Our award-winning creative team specializes in transforming ideas into extraordinary, immersive environments that reflect your family's personality, traditions, and vision.\n\nFrom sophisticated luxury celebrations to imaginative themed experiences inspired by sports, travel, fashion, music, gaming, film, art, and global destinations, every detail is custom designed and flawlessly executed. The timeless architecture of our historic 1927 Banking Hall, with its soaring ceilings, grand marble staircase, crystal chandeliers, and elegant architectural details, provides an iconic canvas that elevates every design concept beyond the ordinary.\n\nSupported by MME Worldwide's in-house design studio, custom fabrication shop, floral atelier, scenic production team, and extensive inventory of luxury furnishings, specialty props, designer decor, intelligent lighting, and custom branding elements, we create one-of-a-kind environments that are as distinctive as the young person being celebrated.\n\nFrom the grand entrance and cocktail reception to interactive lounges, custom dance floors, immersive photo experiences, and breathtaking room reveals, every space is carefully curated to create unforgettable moments for family and guests alike. At 48 Wall Street, we don't simply decorate a room, we design extraordinary celebrations that become cherished memories for generations.",
     },
     {
-      title: 'Ceremony and Reception Under One Roof',
-      body: 'Hosting the service and the party at 48 Wall Street means the family is not splitting attention between two different venues, coordinating transportation, or worrying about timing. The Concourse Level works well as a ceremony space while the Grand Mezzanine handles the reception, and guests move between the two with ease. It makes for a day that feels cohesive from start to finish.',
+      title: 'Ceremony & Celebration, Seamlessly Connected',
+      subtitle: 'One Extraordinary Destination for an Unforgettable Milestone',
+      body: 'Celebrate every meaningful moment in one iconic setting. At 48 Wall Street, families can host both the Bar or Bat Mitzvah ceremony and the reception under one roof, creating a seamless experience that allows everyone to focus on what matters most, celebrating together.\n\nThe elegant Concourse Level provides a sophisticated and intimate setting for religious services, family gatherings, and ceremonial traditions, while the breathtaking Grand Mezzanine welcomes guests into an extraordinary reception surrounded by soaring ceilings, magnificent marble architecture, grand staircases, and crystal chandeliers.\n\nWith every element thoughtfully coordinated by our experienced hospitality and event professionals, transitions between the ceremony, cocktail reception, and celebration are effortless. Guests enjoy a natural flow throughout the day without the need for transportation, multiple venues, or complex logistics, allowing the occasion to unfold with grace, comfort, and timeless elegance.\n\nFrom the first blessing to the final dance, 48 Wall Street offers a refined, all-inclusive experience where tradition, luxury, and exceptional hospitality come together to create memories your family will treasure for generations.',
+    },
+    {
+      title: 'Our Bar & Bat Mitzvah Services Include',
+      body: "Ceremony and reception planning, award-winning kosher and custom catering, luxury cocktail receptions and seated dinners, custom theme design and event styling, floral design and luxury decor, interactive entertainment and games, live bands, DJs and specialty performers, LED video walls and intelligent lighting, custom staging and dance floors, photo booths and interactive guest experiences, custom signage, branding and fabrication, event rentals and designer lounge furniture, and professional event management with white-glove hospitality.\n\nCelebrate tradition with timeless elegance in one of New York City's most prestigious historic venues.",
     },
   ],
 };
 
 export const holidayData: EventShowcaseProps = {
   brochure: holidayBrochure,
-  clientLogos: brandClientLogos,
-  title: 'Corporate Holiday Party Venue on Wall Street',
-  subtitle: 'End the Year in a Setting That Actually Feels Special',
+  title: 'Holiday Event Venue on Wall Street',
+  subtitle: 'Celebrate the Season in Timeless New York Elegance',
+  servicesVariant: 'sections',
   description:
-    'Most corporate holiday parties feel like an afterthought. The right venue changes that. At 48 Wall Street, the 1920s banking hall with its crystal chandeliers, gold accents, and 30-foot ceilings does most of the decorating before your team even walks in the door. We have hosted hundreds of company holiday parties and end-of-year galas in the Financial District, and we know exactly how to make a large group feel like they are somewhere worth celebrating. Our team handles decor, catering, entertainment, and production so your company gets credit for throwing the best party of the year.',
+    'End the year in a setting designed to impress. At 48 Wall Street, holiday celebrations are elevated by the grandeur of a historic 1920s banking hall. Soaring ceilings, Art Deco chandeliers, marble details, and golden architectural accents create an atmosphere of effortless sophistication before the first guest arrives.\n\nFrom corporate holiday parties and client appreciation receptions to year-end galas and festive private celebrations, our team curates every detail with precision and style. Through exquisite catering, custom decor, immersive lighting, live entertainment, and full-scale event production, we transform each holiday gathering into a polished, memorable experience worthy of the season.\n\nWith decades of expertise hosting distinguished celebrations in the Financial District, 48 Wall Street offers more than a venue, it offers a complete holiday experience where your guests feel celebrated, your brand feels elevated, and the evening becomes the event everyone remembers.',
   images: [
+    {
+      src: '/events/holiday/1.jpg',
+      alt: 'Holiday celebration at 48 Wall Street',
+    },
+    {
+      src: '/events/holiday/2.jpg',
+      alt: 'Year-end gala in the historic banking hall',
+    },
+    {
+      src: '/events/holiday/3.jpg',
+      alt: 'Festive holiday reception under crystal chandeliers',
+    },
+    {
+      src: '/events/holiday/4.jpg',
+      alt: 'Corporate holiday party at 48 Wall Street',
+    },
     {
       src: '/gallery/holiday/54.jpg',
       alt: 'Holiday party',
     },
     {
       src: '/gallery/holiday/51.jpg',
-      alt: 'Holiday party',
-    },
-    {
-      src: '/gallery/holiday/50.jpg',
-      alt: 'Holiday party',
-    },
-    {
-      src: '/gallery/holiday/57.jpg',
-      alt: 'Holiday party',
-    },
-    {
-      src: '/gallery/holiday/56.jpg',
-      alt: 'Holiday party',
-    },
-    {
-      src: '/gallery/holiday/60.jpg',
       alt: 'Holiday party',
     },
   ],
@@ -2398,7 +2415,7 @@ export const holidayData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Request a Proposal',
+    label: 'Schedule a Tour',
     href: '/contact',
   },
   secondaryCta: {
@@ -2407,26 +2424,29 @@ export const holidayData: EventShowcaseProps = {
   },
   services: [
     {
-      title: 'Corporate Holiday Parties',
-      body: 'The end-of-year party is one of the few times the entire company gathers in one room. It deserves a venue that reflects what the team accomplished. The Banking Hall at 48 Wall Street seats up to 350 for a formal dinner or opens up for 500 at a cocktail reception, with the kind of architectural backdrop that makes the evening feel like an event rather than an obligation.',
+      title: 'Corporate Holiday Celebrations',
+      subtitle: 'Celebrate a Year of Success in Unparalleled Elegance',
+      body: "A corporate holiday celebration is more than an event, it's an opportunity to recognize achievements, strengthen relationships, and honor the people who drive your organization's success. At 48 Wall Street, we transform year-end gatherings into extraordinary occasions within one of New York City's most iconic historic landmarks.\n\nThe magnificent Banking Hall accommodates up to 350 guests for an elegant seated dinner or 500 guests for a sophisticated cocktail reception, surrounded by soaring 30-foot ceilings, grand marble architecture, shimmering crystal chandeliers, and timeless gilded details. The result is an atmosphere of prestige and celebration that leaves a lasting impression on employees, clients, and distinguished guests alike.\n\nFrom bespoke holiday decor and award-winning culinary experiences to immersive entertainment, premium bar service, and world-class event production, our team orchestrates every detail with impeccable precision. Whether hosting an intimate executive soiree or a grand company gala, 48 Wall Street delivers a seamless celebration where exceptional hospitality, refined luxury, and unforgettable moments come together to conclude the year in spectacular fashion.",
     },
     {
-      title: 'A Venue That Sets the Mood',
-      body: 'During the holidays, the Grand Mezzanine at 48 Wall Street practically decorates itself. The crystal chandeliers, marble detailing, and warm lighting of the 1920s banking hall create a seasonal atmosphere that most venues spend thousands trying to manufacture. We build on that natural elegance with custom decor, themed lighting, and entertainment that fits your company culture.',
+      title: 'A Setting That Captivates',
+      body: "The holiday season comes to life at 48 Wall Street, where the timeless grandeur of the historic Grand Mezzanine creates an atmosphere of effortless elegance. Beneath soaring ceilings, sparkling crystal chandeliers, hand-crafted marble architecture, and rich gilded details, every celebration is surrounded by a setting that embodies the magic and sophistication of New York during the holidays.\n\nOur award-winning design and production team enhances this iconic backdrop with bespoke seasonal decor, dramatic architectural lighting, luxurious floral installations, custom holiday styling, and curated entertainment tailored to your organization's vision. The result is a truly immersive celebration where every detail reflects refinement, warmth, and exceptional hospitality.\n\nWhether hosting an intimate executive gathering or a spectacular company gala, 48 Wall Street provides a breathtaking setting where the spirit of the season is elevated into an unforgettable luxury experience.",
     },
     {
       title: 'End-of-Year Galas',
-      body: 'For companies that want to close the year with something genuinely impressive, a seated gala at 48 Wall Street delivers. We coordinate every element including multi-course catering, live entertainment, awards or recognition moments, and full production so your leadership team can spend the evening celebrating with the rest of the company instead of managing the event.',
+      subtitle: 'Close the Year with Distinction',
+      body: "For organizations looking to conclude the year with elegance, gratitude, and impact, an end-of-year gala at 48 Wall Street offers an unforgettable setting for celebration. Surrounded by the grandeur of our historic Banking Hall, guests are welcomed into an atmosphere of sophistication, prestige, and timeless New York charm.\n\nOur experienced event team manages every element with white-glove precision, including multi-course culinary experiences, premium bar service, live entertainment, awards presentations, recognition moments, staging, lighting, audiovisual production, and custom decor. Every detail is thoughtfully orchestrated to reflect your company's culture, accomplishments, and vision for the year ahead.\n\nFrom executive leadership to valued employees, clients, and partners, your guests can simply enjoy the evening while our team delivers a seamless gala experience worthy of the occasion.",
     },
   ],
 };
 
 export const filmtvData: EventShowcaseProps = {
   brochure: generalBrochure,
-  title: 'Film Location and Production Venue in NYC',
-  subtitle: 'A Camera-Ready Historic Building in the Financial District',
+  title: 'Film Location & Production Venue in New York City',
+  subtitle: 'An Iconic Landmark Designed for the Screen',
+  servicesVariant: 'sections',
   description:
-    'Productions that need authentic New York architecture come to 48 Wall Street because there is very little elsewhere in the city that replicates what this building looks like on camera. The 1927 banking hall with its 30-foot ceilings, marble columns, grand staircase, and original detailing reads as classic New York financial power, the kind of setting that period pieces, prestige dramas, and commercial productions pay significant location fees to find. We accommodate on-location filming, holding space for cast and crew, and industry events including wrap parties, premieres, and screenings. Our team understands production schedules and handles access, logistics, and coordination with the discretion your project requires.',
+    "Few locations in New York City offer the architectural grandeur, authenticity, and cinematic presence of 48 Wall Street. Originally constructed in 1927 as the Bank of New York & Trust Company, this nationally recognized landmark provides filmmakers with an extraordinary backdrop that embodies the timeless elegance and financial legacy of Lower Manhattan.\n\nFrom its soaring 30-foot ceilings, magnificent marble columns, and grand ceremonial staircase to its Palladian windows, original crystal chandeliers, and Beaux-Arts architecture, every space within the building offers a visually compelling setting that captures the unmistakable character of New York City. Whether producing a feature film, television series, streaming production, commercial, fashion campaign, music video, documentary, or editorial photo shoot, 48 Wall Street delivers a cinematic environment rarely found in today's production landscape.\n\nBeyond the location itself, our experienced production team understands the unique demands of the entertainment industry. We provide comprehensive support for on-location filming, production offices, cast and crew holding areas, wardrobe and hair & makeup rooms, green rooms, equipment staging, catering, security, and production logistics. Our team works seamlessly with location managers, producers, and production coordinators to ensure efficient scheduling, discreet operations, and a smooth filming experience.\n\nIn addition to on-location productions, 48 Wall Street is an exceptional destination for film premieres, private screenings, wrap parties, press events, media receptions, cast celebrations, and entertainment industry gatherings. With award-winning hospitality, full-service production capabilities, and one of New York City's most distinguished historic interiors, 48 Wall Street offers filmmakers and storytellers a setting where every frame is elevated by timeless architecture and every production is supported with world-class service.",
   images: [
     {
       src: '/gallery/film/ (1).jpg',
@@ -2488,25 +2508,30 @@ export const filmtvData: EventShowcaseProps = {
     },
   ],
   primaryCta: {
-    label: 'Request a Proposal',
+    label: 'Schedule a Tour',
     href: '/contact',
   },
   secondaryCta: {
-    label: 'View Film Gallery',
-    href: '/gallery?tab=fashion',
+    label: 'View Gallery',
+    href: '/gallery',
   },
   services: [
     {
-      title: 'On-Location Film and TV Production',
-      body: 'The Banking Hall at 48 Wall Street gives productions immediate access to 9,000 square feet of authentic 1920s New York architecture without the need to build a set. The 30-foot ceilings, marble columns, Palladian windows, and grand staircase provide a level of production value that is genuinely difficult to find anywhere else in downtown Manhattan. Our team coordinates access and logistics around your production schedule.',
+      title: 'On-Location Film & Television Production',
+      subtitle: 'A Landmark Location That Delivers Unmatched Production Value',
+      body: "48 Wall Street offers filmmakers, studios, and production companies an extraordinary opportunity to capture the timeless character of New York City within one of its most iconic historic landmarks. The magnificent 9,000-square-foot Banking Hall provides an authentic architectural setting that eliminates the need for costly scenic construction while delivering exceptional production value on screen.\n\nFeaturing 30-foot coffered ceilings, grand marble columns, a monumental ceremonial staircase, Palladian windows, original crystal chandeliers, and meticulously preserved Beaux-Arts architecture, the venue offers a cinematic backdrop rarely found in Lower Manhattan. Every angle of the space has been designed by history, providing directors, cinematographers, and production designers with visually striking environments that elevate feature films, television series, streaming productions, commercials, fashion campaigns, music videos, and editorial photography.\n\nUnderstanding the fast-paced demands of the entertainment industry, our experienced production team works closely with location managers, producers, assistant directors, and studio executives to coordinate every aspect of your production. From location access, load-in logistics, production offices, cast and crew holding areas, wardrobe and hair & makeup rooms to catering, security, parking coordination, and technical support, every detail is professionally managed to maximize efficiency and minimize downtime.\n\nAt 48 Wall Street, we provide more than an exceptional filming location, we deliver a full-service production environment where world-class hospitality, operational expertise, and one of New York City's most recognizable historic interiors come together to support productions of every scale with discretion, flexibility, and uncompromising excellence.",
     },
     {
-      title: 'Holding Space and Production Support',
-      body: 'The Concourse Level provides a dedicated, climate-controlled base camp area separate from the filming location. It can be configured for talent holding, wardrobe, hair and makeup, and crew catering all in the same building as your set. Keeping the entire production in one location streamlines the day and reduces turnaround time between setups.',
+      title: 'Holding Areas & Full-Service Production Support',
+      subtitle:
+        'A Seamless Production Environment Designed for the Entertainment Industry',
+      body: "Successful productions require more than an exceptional filming location, they require a well-organized operational environment that supports every department from call time through wrap. At 48 Wall Street, our dedicated Concourse Level serves as a private, climate-controlled production support area, allowing cast, crew, and production teams to operate efficiently while keeping the primary filming location uninterrupted.\n\nThe flexible space can be configured to accommodate talent holding, green rooms, wardrobe, hair and makeup, production offices, craft services, crew catering, equipment staging, client hospitality, and department workspaces, all within the same secure facility. Housing every aspect of the production under one roof minimizes transportation logistics, streamlines communication, and maximizes valuable production time.\n\nSupported by our experienced venue operations team, 48 Wall Street provides comprehensive logistical coordination, including load-in and load-out management, production scheduling, security, power distribution, internet connectivity, catering, and on-site technical support. Every detail is thoughtfully managed to ensure your production remains efficient, organized, and on schedule.\n\nWhether supporting a feature film, television series, commercial campaign, fashion production, or streaming content, 48 Wall Street delivers a turnkey production environment where historic architecture, modern infrastructure, and world-class operational support come together to meet the demands of today's entertainment industry.",
     },
     {
-      title: 'Wrap Parties, Premieres, and Industry Events',
-      body: 'When a production is finished, the team deserves a celebration worth the work they put in. The Banking Hall at 48 Wall Street is as impressive for a wrap party as it is for a formal premiere. We configure the space, coordinate catering and entertainment, and handle the event production so your production team can actually enjoy the evening.',
+      title: 'Wrap Parties, Film Premieres & Entertainment Industry Events',
+      subtitle:
+        'Celebrate the Success of Every Production in an Iconic New York Landmark',
+      body: 'Every successful production deserves an unforgettable finale. Whether celebrating the completion of a feature film, premiering a highly anticipated project, or hosting an exclusive industry reception, 48 Wall Street provides an extraordinary setting where the entertainment community comes together in timeless style.\n\nThe historic Grand Banking Hall, with its soaring 30-foot ceilings, magnificent marble architecture, grand staircase, and sparkling crystal chandeliers, creates a sophisticated backdrop for wrap parties, red-carpet premieres, cast and crew celebrations, studio receptions, press junkets, media events, and private industry gatherings. The venue offers an atmosphere of prestige and elegance that reflects the creativity and dedication behind every production.\n\nOur experienced hospitality and production professionals manage every aspect of the event, including luxury catering, premium bar service, red carpet arrivals, step-and-repeat installations, custom branding, theatrical lighting, audiovisual production, live entertainment, screening support, staging, decor, security, and guest logistics. From intimate executive receptions to large-scale industry celebrations, every detail is meticulously orchestrated to deliver a seamless and memorable experience.\n\nFrom the final scene to the standing ovation, 48 Wall Street provides an exceptional destination where the film and entertainment industry celebrates its most memorable moments.',
     },
   ],
 };

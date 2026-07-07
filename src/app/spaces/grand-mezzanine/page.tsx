@@ -52,7 +52,7 @@ export default function GrandMezzaninePage() {
         '/venue/6.jpg',
       ]}
       lightboxImages={[
-        '/venue/hq/4.JPG',
+        '/venue/4.JPG',
         '/venue/hq/8.jpg',
         '/venue/hq/7.jpg',
         '/venue/hq/3.jpg',
