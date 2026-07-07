@@ -259,7 +259,7 @@ export default function LocationPage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/location/wall-street-subway.jpg)',
+            backgroundImage: 'url(/location/location-bottom.jpg)',
           }}
         />
         {/* Overlay to keep text legible and mask source quality */}

@@ -23,6 +23,13 @@ export interface SpaceDetailsProps {
   features?: string[];
   stats: SpaceStats;
   enquireHref?: string;
+  thenNow?: {
+    then: string;
+    now: string;
+    caption?: string;
+    thenAlt?: string;
+    nowAlt?: string;
+  }[];
 }
 
 export default function SpaceDetails({
@@ -37,6 +44,7 @@ export default function SpaceDetails({
   features = [],
   stats,
   enquireHref = '/contact',
+  thenNow,
 }: SpaceDetailsProps) {
   const [heroImage, ...galleryImages] = images;
   const lbImages = lightboxImages ?? images;
@@ -186,6 +194,62 @@ export default function SpaceDetails({
         </div>
       </section>
 
+      {thenNow && thenNow.length > 0 && (
+        <section className="bg-white px-6 py-16 md:px-12 md:py-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-12 text-center">
+              <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
+                A Living Landmark
+              </p>
+              <h2 className="heading-hero">Then &amp; Now</h2>
+              <p className="font-secondary text-dark-black/70 mx-auto mt-3 max-w-2xl text-base leading-relaxed md:text-lg">
+                From its Bank of New York era to the present day, this landmark
+                has hosted the story of American finance. See how these historic
+                spaces live on.
+              </p>
+            </div>
+
+            <div className="space-y-10 md:space-y-16">
+              {thenNow.map((pair, i) => (
+                <div
+                  key={i}
+                  className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6"
+                >
+                  {(
+                    [
+                      { label: 'Then', src: pair.then, alt: pair.thenAlt },
+                      { label: 'Now', src: pair.now, alt: pair.nowAlt },
+                    ] as const
+                  ).map((frame) => (
+                    <figure key={frame.label} className="group relative">
+                      <div className="relative aspect-[16/10] overflow-hidden bg-black">
+                        <img
+                          src={frame.src}
+                          alt={
+                            frame.alt ||
+                            `${title} ${subtitle} — ${frame.label.toLowerCase()}`
+                          }
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <span className="font-secondary bg-dark-black/70 absolute top-4 left-4 px-3 py-1 text-[10px] tracking-[0.3em] text-white uppercase backdrop-blur-sm">
+                          {frame.label}
+                        </span>
+                      </div>
+                    </figure>
+                  ))}
+
+                  {pair.caption && (
+                    <p className="font-secondary text-dark-black/60 -mt-1 text-center text-sm md:col-span-2">
+                      {pair.caption}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {videoUrl && (
         <section className="bg-whitesmoke px-6 py-16 md:px-12">
           <div className="mx-auto max-w-7xl">
@@ -211,68 +275,70 @@ export default function SpaceDetails({
 
       {floorPlanImage && (
         <section className="bg-white px-6 pt-16 pb-12 md:pt-12 md:pb-10">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="heading-hero text-center">Floor Plans</h2>
-          <div className="grid gap-8 lg:grid-cols-3">
-            <div className="space-y-6">
-              <div>
-                <p className="font-secondary text-primary mb-1 text-sm tracking-[0.3em] uppercase">
-                  Highlights
-                </p>
-              </div>
+          <div className="mx-auto max-w-7xl">
+            <h2 className="heading-hero text-center">Floor Plans</h2>
+            <div className="grid gap-8 lg:grid-cols-3">
+              <div className="space-y-6">
+                <div>
+                  <p className="font-secondary text-primary mb-1 text-sm tracking-[0.3em] uppercase">
+                    Highlights
+                  </p>
+                </div>
 
-              <div className="space-y-2">
-                {features.map((feature, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3 bg-white p-3 shadow-sm"
-                  >
-                    <span className="font-secondary text-primary w-5 shrink-0 text-[10px] tracking-widest">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="font-secondary text-dark-black/80 text-sm capitalize">
-                      {feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
+                <div className="space-y-2">
+                  {features.map((feature, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-3 bg-white p-3 shadow-sm"
+                    >
+                      <span className="font-secondary text-primary w-5 shrink-0 text-[10px] tracking-widest">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="font-secondary text-dark-black/80 text-sm capitalize">
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
 
-              <div className="border border-black/10 bg-white p-6 shadow-sm">
-                <p className="font-secondary text-primary mb-6 text-[10px] tracking-[0.3em] uppercase">
-                  At a Glance Total Capacity & Size
-                </p>
-                <div className="space-y-4">
-                  <div>
-                    <p className="font-primary text-dark-black text-base font-light">
-                      {stats.capacity} — {stats.sqft}
-                    </p>
+                <div className="border border-black/10 bg-white p-6 shadow-sm">
+                  <p className="font-secondary text-primary mb-6 text-[10px] tracking-[0.3em] uppercase">
+                    At a Glance Total Capacity & Size
+                  </p>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="font-primary text-dark-black text-base font-light">
+                        {stats.capacity} — {stats.sqft}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="lg:col-span-2">
-              <div className="mb-6">
-                <p className="font-secondary text-primary mb-1 text-sm tracking-[0.3em] uppercase">
-                  Layout
-                </p>
-              </div>
-              <div className="overflow-hidden border border-black/10 bg-white p-4 shadow-sm">
-                <img
-                  src={floorPlanImage}
-                  alt={`${title} ${subtitle} floor plan`}
-                  className="h-auto w-full object-contain"
-                />
+              <div className="lg:col-span-2">
+                <div className="mb-6">
+                  <p className="font-secondary text-primary mb-1 text-sm tracking-[0.3em] uppercase">
+                    Layout
+                  </p>
+                </div>
+                <div className="overflow-hidden border border-black/10 bg-white p-4 shadow-sm">
+                  <img
+                    src={floorPlanImage}
+                    alt={`${title} ${subtitle} floor plan`}
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
               </div>
             </div>
+            <div className="mt-8 flex justify-center">
+              <Link href={enquireHref} className="block">
+                <CustomButton variant="primary">
+                  Request a Proposal
+                </CustomButton>
+              </Link>
+            </div>
           </div>
-          <div className="mt-8 flex justify-center">
-            <Link href={enquireHref} className="block">
-              <CustomButton variant="primary">Request a Proposal</CustomButton>
-            </Link>
-          </div>
-        </div>
-      </section>
+        </section>
       )}
 
       {selectedIndex !== null && (

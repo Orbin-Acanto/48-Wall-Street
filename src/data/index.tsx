@@ -1963,12 +1963,17 @@ export const corporateData: EventShowcaseProps = {
     {
       title: 'Gala Dinners & Awards Evenings',
       subtitle: 'Celebrate Achievement in a Setting of Distinction',
+      image: '/events/corporate/gala.jpg',
+      imageAlt:
+        'Formal gala dinner and awards evening in the Banking Hall at 48 Wall Street',
       body: "A company gala or awards evening deserves a venue that reflects the importance of the occasion. At 48 Wall Street, every guest enters an atmosphere of timeless elegance. The grand marble staircase, soaring ceilings, crystal chandeliers, Palladian windows, and historic architectural details create an immediate sense of prestige.\n\nWhether honoring leadership, recognizing top performers, celebrating company milestones, or hosting a formal black-tie dinner, our landmark venue provides a sophisticated backdrop for an unforgettable evening. The grandeur of the space elevates every arrival, toast, presentation, and award moment, ensuring the event feels significant from beginning to end.\n\nOur experienced hospitality and production teams manage every detail with precision, including chef-curated catering, premium bar service, custom décor, floral design, entertainment, staging, lighting, audiovisual production, and seamless event coordination. From the first guest arrival to the final applause, every element is thoughtfully orchestrated to exceed expectations and create a celebration worthy of your organization's success.\n\nAt 48 Wall Street, gala dinners and awards evenings become more than corporate events. They become extraordinary experiences that honor achievement, inspire pride, and leave a lasting impression.",
     },
     {
       title: 'Product Launches & Client Events',
       subtitle:
         "Introduce Your Brand in One of New York City's Most Iconic Landmark Venues",
+      image: '/events/corporate/product.jpg',
+      imageAlt: 'Branded product launch and client reception at 48 Wall Street',
       body: "Every successful product launch begins with an unforgettable first impression. Whether unveiling a new product, introducing an innovative service, hosting an executive client reception, or celebrating a major company milestone, 48 Wall Street provides a prestigious setting that reflects the strength, sophistication, and vision of your brand.\n\nLocated in the heart of Manhattan's Financial District, our historic landmark offers an extraordinary backdrop where timeless architecture meets modern event production. Soaring 30-foot ceilings, grand marble staircases, Palladian windows, and magnificent crystal chandeliers create an atmosphere of distinction that immediately elevates every guest experience and reinforces the value of your brand.\n\nOur experienced event professionals collaborate closely with your marketing, communications, and production teams to transform the venue into a fully branded environment. From custom scenic fabrication, large-format graphics, LED displays, and immersive lighting to audiovisual production, interactive demonstrations, luxury catering, entertainment, and guest registration, every detail is meticulously designed to support your launch objectives and enhance audience engagement.\n\nWhether hosting media representatives, investors, strategic partners, VIP clients, or industry leaders, we ensure every aspect of your event is flawlessly executed. Behind the scenes, our dedicated hospitality and production teams manage every logistical detail with precision, allowing your team to focus on delivering your message, building relationships, and showcasing your brand with confidence.",
     },
   ],
@@ -3533,7 +3538,11 @@ export const sidebarSocialLinks = [
 
 export const vendorsData = {
   hero: {
-    image: '/images/services-hero.jpg',
+    images: [
+      '/vendors/hero-1.jpg',
+      '/vendors/hero-2.jpg',
+      '/vendors/hero-3.jpg',
+    ],
     eyebrow: '48 Wall Street',
     title: 'Exclusive Event Partners',
   },

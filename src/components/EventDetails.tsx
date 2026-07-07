@@ -21,6 +21,9 @@ export interface ServiceItem {
   title: string;
   subtitle?: string;
   body: string;
+  /** Optional dedicated image for this section (sections variant). Falls back to the shared images array when omitted. */
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface BrochureConfig {
@@ -301,7 +304,12 @@ export default function EventDetails({
           <div className="container mx-auto px-4 py-16 md:px-8 md:py-20 lg:px-16">
             <div className="divide-primary/15 divide-y">
               {displayServices.map((service, i) => {
-                const img = images[(i + 1) % images.length];
+                const img = service.image
+                  ? {
+                      src: service.image,
+                      alt: service.imageAlt || service.title,
+                    }
+                  : images[(i + 1) % images.length];
                 const reverse = i % 2 === 1;
                 return (
                   <motion.div

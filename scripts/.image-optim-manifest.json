@@ -2077,5 +2077,12 @@
     "originalBytes": 1740098,
     "finalBytes": 1740098,
     "resized": false
+  },
+  "public/vendors/hero-2.jpg": {
+    "hash": "79c6bf987a8e36da382e3ad7115a58bc0bd76a86",
+    "optimizedAt": "2026-07-07T23:52:17.736Z",
+    "originalBytes": 881160,
+    "finalBytes": 881160,
+    "resized": false
   }
 }

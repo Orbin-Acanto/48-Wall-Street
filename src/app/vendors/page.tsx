@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -10,14 +11,36 @@ import CustomButton from '@/components/CustomButton';
 const { hero, intro, vendors, closing } = vendorsData;
 
 export default function VendorsPage() {
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  useEffect(() => {
+    if (hero.images.length <= 1) return;
+    const interval = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % hero.images.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* HERO */}
       <section className="relative mt-16 flex h-[70vh] items-center overflow-hidden sm:mt-6">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${hero.image})` }}
-        />
+        {hero.images.map((image, i) => (
+          <motion.div
+            key={i}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${image})` }}
+            initial={false}
+            animate={{
+              opacity: heroIndex === i ? 1 : 0,
+              scale: heroIndex === i ? 1.06 : 1,
+            }}
+            transition={{
+              opacity: { duration: 1.6, ease: 'easeInOut' },
+              scale: { duration: 7, ease: 'linear' },
+            }}
+          />
+        ))}
         <div className="from-dark-black/80 via-dark-black/75 to-dark-black/90 absolute inset-0 bg-gradient-to-b" />
 
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
@@ -71,7 +94,7 @@ export default function VendorsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className={`lg:col-span-2 lg:sticky lg:top-28 ${
+              className={`lg:sticky lg:top-28 lg:col-span-2 ${
                 idx % 2 === 1 ? 'lg:order-last' : ''
               }`}
             >
@@ -150,16 +173,14 @@ export default function VendorsPage() {
   );
 }
 
-function VendorLogo({
-  vendor,
-}: {
-  vendor: (typeof vendors)[number];
-}) {
+function VendorLogo({ vendor }: { vendor: (typeof vendors)[number] }) {
   const darkBg = 'darkLogoBg' in vendor && vendor.darkLogoBg;
   const inner = (
     <div
       className={`flex h-44 items-center justify-center rounded-xl border p-8 shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow duration-300 group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.10)] md:h-56 ${
-        darkBg ? 'bg-dark-black border-white/10' : 'border-black/[0.06] bg-white'
+        darkBg
+          ? 'bg-dark-black border-white/10'
+          : 'border-black/[0.06] bg-white'
       }`}
     >
       <div className="relative h-full w-full">
