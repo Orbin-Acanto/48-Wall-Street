@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Search,
   Filter,
@@ -19,8 +19,17 @@ import { useCart } from '@/contexts/CartContext';
 import CartModal from '@/components/CartModal';
 import CustomButton from '@/components/CustomButton';
 
+const HERO_SLIDES = [
+  '/rentals/rentals-hero-1.jpg',
+  '/rentals/rentals-hero-2.jpg',
+  '/rentals/rentals-hero-3.jpg',
+  '/rentals/rentals-hero-4.jpg',
+  '/rentals/rentals-hero-5.jpg',
+];
+
 export default function RentalsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedTheme, setSelectedTheme] = useState('all');
   // const [priceRange, setPriceRange] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,6 +42,14 @@ export default function RentalsPage() {
   const [selectedRentalDays, setSelectedRentalDays] = useState<{
     [key: number]: number;
   }>({});
+
+  useEffect(() => {
+    const timer = setInterval(
+      () => setCurrentSlide((s) => (s + 1) % HERO_SLIDES.length),
+      5000
+    );
+    return () => clearInterval(timer);
+  }, []);
 
   const filteredProducts = products.filter((product) => {
     const matchesCategory =
@@ -63,18 +80,25 @@ export default function RentalsPage() {
 
   return (
     <div className="bg-whitesmoke min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section — venue photo slider */}
       <section className="relative h-[60vh] overflow-hidden">
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/about/rentals.jpg')",
-          }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5 }}
-        />
-        <div className="from-dark-black/70 via-dark-black/70 to-primary/30 absolute inset-0 bg-gradient-to-br" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url('${HERO_SLIDES[currentSlide]}')`,
+            }}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              opacity: { duration: 1 },
+              scale: { duration: 6, ease: 'linear' },
+            }}
+          />
+        </AnimatePresence>
+        <div className="from-dark-black/75 via-dark-black/70 to-primary/30 absolute inset-0 bg-gradient-to-br" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
           <motion.div
@@ -90,6 +114,50 @@ export default function RentalsPage() {
             </p>
           </motion.div>
         </div>
+
+        {/* Slide indicators */}
+        <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+          {HERO_SLIDES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === currentSlide ? 'bg-primary w-8' : 'w-2 bg-white/60'
+              }`}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Intro Copy */}
+      <section className="bg-white px-6 py-16 md:py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto max-w-4xl text-center"
+        >
+          <h2 className="heading-hero text-primary">
+            Curated Event Enhancements
+          </h2>
+          <div className="bg-primary mx-auto mt-4 mb-8 h-[2px] w-24" />
+          <p className="text-lead mb-6">
+            Transform your event at 48 Wall Street with our curated collection
+            of luxury furniture, statement décor, specialty props, and
+            interactive guest experiences. From elegant lounge settings and
+            custom scenic moments to branded installations and immersive
+            activations, our event specialists can help elevate every detail of
+            your celebration.
+          </p>
+          <p className="text-lead">
+            Explore our online catalog to discover available options. If you do
+            not see exactly what you are looking for, please speak with one of
+            our event specialists. Our team can source, customize, and design
+            additional elements to bring your vision to life.
+          </p>
+        </motion.div>
       </section>
 
       {/* Search & Filter Bar */}
@@ -513,14 +581,19 @@ export default function RentalsPage() {
         >
           <Sparkles className="text-primary mx-auto mb-6 h-12 w-12" />
           <h2 className="heading-hero text-white">
-            Can&apos;t Find What You Need?
+            Looking for Something Extraordinary?
           </h2>
           <p className="text-lead mb-8 text-gray-200">
-            Our team can source custom rentals and create bespoke experiences
-            for your event
+            If you don&apos;t see exactly what you&apos;re looking for, our
+            dedicated event specialists are here to help. Through our extensive
+            network of trusted partners and custom fabrication capabilities, we
+            can source bespoke rentals, luxury furnishings, specialty décor, and
+            one-of-a-kind experiences tailored exclusively to your event.
+            Whatever your vision, we&apos;ll bring it to life with exceptional
+            creativity and flawless execution.
           </p>
           <Link href="/contact">
-            <CustomButton>Request Custom Quote</CustomButton>
+            <CustomButton>Speak with an Event Specialist</CustomButton>
           </Link>
         </motion.div>
       </section>
