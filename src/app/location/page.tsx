@@ -263,7 +263,7 @@ export default function LocationPage() {
           }}
         />
         {/* Overlay to keep text legible and mask source quality */}
-        <div className="from-dark-black/60 via-dark-black/50 to-dark-black/60 absolute inset-0 bg-gradient-to-b" />
+        <div className="from-dark-black/75 via-dark-black/70 to-dark-black/75 absolute inset-0 bg-gradient-to-b" />
         {/* <div className="absolute inset-0 backdrop-blur-[2px]" /> */}
 
         <motion.div
