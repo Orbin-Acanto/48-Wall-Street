@@ -20,30 +20,51 @@ export default function ContactHero() {
             <div className="font-secondary space-y-4 leading-relaxed text-gray-600">
               <p>
                 Welcome to 48 Wall Street, one of New York City&apos;s most
-                iconic landmark event venues. Nestled in the heart of Lower
-                Manhattan&apos;s Financial District, our extraordinary venue
-                offers an unrivaled setting where timeless architecture, refined
-                elegance, and world-class hospitality create unforgettable
-                experiences.
+                iconic and prestigious landmark event venues. Nestled in the
+                heart of Lower Manhattan&apos;s historic Financial District, our
+                extraordinary venue offers an unrivaled setting where timeless
+                architecture, refined elegance, and world class hospitality
+                create unforgettable experiences.
               </p>
 
               <p>
-                Originally built in 1928 as the headquarters of the Bank of New
-                York, 48 Wall Street is a masterpiece of Beaux-Arts architecture
-                featuring breathtaking 30-foot coffered ceilings, magnificent
-                Palladian windows, and a grand marble staircase. Today, the
-                venue has been reimagined as one of Manhattan&apos;s premier
-                luxury event destinations, seamlessly blending historic prestige
-                with modern innovation.
+                Originally built in 1928 as the distinguished headquarters of
+                the Bank of New York, 48 Wall Street is a masterpiece of Beaux
+                Arts architecture that has welcomed world leaders, captains of
+                industry, and generations of distinguished guests. From its
+                breathtaking 30 foot coffered ceilings and magnificent Palladian
+                windows to its grand marble staircase and impeccably restored
+                historic interiors, every detail reflects the sophistication and
+                grandeur of a bygone era.
               </p>
 
               <p>
-                Whether hosting an elegant gala, executive conference, luxury
-                wedding, or exclusive private celebration, our experienced
-                hospitality team delivers exceptional white-glove service,
-                personalized event planning, and impeccable execution. We invite
-                you to schedule a private tour and experience the timeless
-                elegance that defines 48 Wall Street.
+                Today, 48 Wall Street has been reimagined as one of
+                Manhattan&apos;s premier luxury event destinations, seamlessly
+                blending historic prestige with modern innovation. Whether
+                hosting an elegant gala, executive conference, luxury wedding,
+                fashion show, product launch, charity fundraiser, or exclusive
+                private celebration, our venue provides a breathtaking backdrop
+                that transforms every occasion into an extraordinary experience.
+              </p>
+
+              <p>
+                Located at the iconic intersection of Wall Street and William
+                Street, just steps from New York&apos;s most celebrated
+                landmarks, 48 Wall Street offers more than a venue, it offers a
+                legacy. Our experienced hospitality team delivers exceptional
+                white glove service, personalized event planning, and impeccable
+                execution, ensuring every event is as distinctive as the guests
+                who attend.
+              </p>
+
+              <p>
+                Discover why the world&apos;s leading corporations, luxury
+                brands, nonprofit organizations, and private clients choose 48
+                Wall Street as the destination for New York City&apos;s most
+                exceptional events. We invite you to schedule a private tour and
+                experience the timeless elegance, historic prestige, and
+                uncompromising luxury that define 48 Wall Street.
               </p>
             </div>
           </div>

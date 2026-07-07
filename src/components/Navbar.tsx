@@ -125,9 +125,15 @@ export default function Navbar() {
                         {item.dropdown.map((subItem, idx) => (
                           <Link
                             key={subItem.name}
-                            target={item.external ? '_blank' : '_self'}
+                            target={
+                              item.external || subItem.external
+                                ? '_blank'
+                                : '_self'
+                            }
                             rel={
-                              item.external ? 'noopener noreferrer' : undefined
+                              item.external || subItem.external
+                                ? 'noopener noreferrer'
+                                : undefined
                             }
                             href={subItem.href}
                             className={`font-primary text-dark-black/70 hover:text-dark-black block px-6 py-3 text-[0.75rem] transition-all duration-200 hover:bg-gray-800/5 ${
@@ -229,6 +235,16 @@ export default function Navbar() {
                         <Link
                           key={subItem.name}
                           href={subItem.href}
+                          target={
+                            item.external || subItem.external
+                              ? '_blank'
+                              : '_self'
+                          }
+                          rel={
+                            item.external || subItem.external
+                              ? 'noopener noreferrer'
+                              : undefined
+                          }
                           className="font-primary text-dark-black/60 hover:text-primary block py-2.5 text-[0.75rem] transition-colors duration-200"
                           onClick={() => setIsOpen(false)}
                         >

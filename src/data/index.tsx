@@ -228,13 +228,50 @@ export const navItems: NavItem[] = [
   {
     name: 'Gallery',
     href: '/gallery',
+    dropdown: [
+      { name: 'Corporate', href: '/gallery?tab=corporate' },
+      { name: 'Wedding', href: '/gallery?tab=wedding' },
+      { name: 'Fashion', href: '/gallery?tab=fashion' },
+      { name: 'Bar & Bat Mitzvahs', href: '/gallery?tab=bar' },
+      { name: 'Holiday Events', href: '/gallery?tab=holiday' },
+      { name: 'Non-Profit', href: '/gallery?tab=nonprofit' },
+    ],
   },
   {
     name: 'Vendors',
     href: '/vendors',
+    dropdown: [
+      {
+        name: "Tardi's Catering",
+        href: 'https://www.tardiscatering.com/',
+        external: true,
+      },
+      {
+        name: 'FiDi Hospitality',
+        href: 'https://www.fidihospitality.com/',
+        external: true,
+      },
+      {
+        name: 'MME Worldwide',
+        href: 'https://www.mmeink.com/',
+        external: true,
+      },
+      {
+        name: 'Mikey Mike Entertainment',
+        href: 'https://www.mikeymikeevents.com/',
+        external: true,
+      },
+    ],
   },
   { name: 'Location', href: '/location' },
-  { name: 'Contact', href: '/contact' },
+  {
+    name: 'Contact',
+    href: '/contact',
+    dropdown: [
+      { name: 'Contact Us', href: '/contact' },
+      { name: 'Build a Proposal', href: '/proposal' },
+    ],
+  },
 ];
 
 export const footerLinks = {
@@ -259,6 +296,7 @@ export const footerLinks = {
     { name: 'Event Catering', href: '/services/catering' },
     { name: 'Event Rentals', href: '/services/rentals' },
     { name: 'Photo Gallery', href: '/gallery' },
+    { name: 'Build a Proposal', href: '/proposal' },
   ],
 };
 
