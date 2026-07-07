@@ -78,9 +78,7 @@ function StepIndicator({
             </div>
             <span
               className={`font-secondary mt-2 hidden text-center text-[10px] tracking-[0.1em] uppercase sm:block ${
-                idx <= current
-                  ? 'text-primary font-semibold'
-                  : 'text-gray-400'
+                idx <= current ? 'text-primary font-semibold' : 'text-gray-400'
               }`}
             >
               {label}
@@ -796,7 +794,7 @@ export default function EventRFPForm() {
                       value={attendance.vipCount || ''}
                       onChange={updateAttendance}
                     />
-                    <CounterCard
+                    {/* <CounterCard
                       label="Staff"
                       name="staffCount"
                       value={attendance.staffCount || ''}
@@ -807,7 +805,7 @@ export default function EventRFPForm() {
                       name="vendorCount"
                       value={attendance.vendorCount || ''}
                       onChange={updateAttendance}
-                    />
+                    /> */}
                     <CounterCard
                       label="Speakers"
                       name="speakerCount"
@@ -845,8 +843,8 @@ export default function EventRFPForm() {
                     items={[
                       'Ballroom',
                       'Historic Banking Hall',
-                      'Outdoor Space',
-                      'Rooftop',
+                      // 'Outdoor Space',
+                      // 'Rooftop',
                       'Breakout Rooms',
                       'Green Rooms',
                       'Bridal Suite',

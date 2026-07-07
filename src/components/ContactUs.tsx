@@ -222,8 +222,21 @@ const ContactUs: React.FC = () => {
       <h1 className="text-primary heading-hero text-center">Enquire</h1>
       <p className="text-lead mb-8 text-center">
         To begin planning your next exceptional event at 48 Wall Street,
-        complete the contact form, email info@48WallNYC.com, or call
-        212-971-5353 to schedule a private site visit with our events team.
+        complete the contact form, email{' '}
+        <a
+          href="mailto:info@48WallNYC.com"
+          className="hover:text-primary font-bold underline transition-colors"
+        >
+          info@48WallNYC.com
+        </a>
+        , or call{' '}
+        <a
+          href="tel:+12129715353"
+          className="hover:text-primary font-bold underline transition-colors"
+        >
+          212-971-5353
+        </a>{' '}
+        to schedule a private site visit with our events team.
       </p>
 
       {submitStatus && (
