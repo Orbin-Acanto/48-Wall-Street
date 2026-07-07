@@ -55,10 +55,10 @@ export default function AIProposalGenerator() {
           {proposals.map(({ text, icon: Icon }, idx) => (
             <div
               key={idx}
-              className="group hover:border-primary/40 flex items-start gap-4 rounded-xl border border-black/[0.06] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]"
+              className="flex items-start gap-4 rounded-xl border border-black/[0.06] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
             >
-              <div className="bg-primary/10 group-hover:bg-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg transition-colors duration-300">
-                <Icon className="text-primary h-[18px] w-[18px] transition-colors duration-300 group-hover:text-white" />
+              <div className="bg-primary/10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg">
+                <Icon className="text-primary h-[18px] w-[18px]" />
               </div>
               <span className="font-secondary text-dark-black/80 pt-1.5 text-sm leading-relaxed">
                 {text}
