@@ -2455,7 +2455,8 @@ export const items = [
 
 export const eventProductionData = {
   title: 'Luxury Event Production at 48 Wall Street',
-  subtitle: 'Where Historic Grandeur Meets World-Class Production',
+  subtitle:
+    "From intimate executive gatherings to spectacular galas and large-scale corporate productions, 48 Wall Street delivers a seamless fusion of timeless architecture, innovative event technology, and impeccable white-glove service. Our full-service production team transforms historic spaces into extraordinary experiences. We offer bespoke event design, state-of-the-art audiovisual solutions, luxury furnishings, and flawless execution—all under one iconic roof in the heart of New York City's Financial District.",
   heroImage: '/videos/ep.mp4',
   leadTitle: 'Everything Your Event Needs, Under One Roof',
   leadDescription:

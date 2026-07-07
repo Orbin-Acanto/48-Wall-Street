@@ -10,8 +10,6 @@ import {
   useMap,
 } from 'react-leaflet';
 import L from 'leaflet';
-// Suppress TS error for side-effect CSS import when no type declarations are present
-// @ts-ignore
 import 'leaflet/dist/leaflet.css';
 import {
   TrainFront,
