@@ -1,22 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  Users,
-  Sparkles,
-  ArrowRight,
-  Phone,
-  Mail,
-  Clock,
-  CheckCircle,
-  MapPin,
-} from 'lucide-react';
+import { ArrowRight, Phone, Mail, Clock, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { locationAmenities, locations, venues } from '@/data';
 import CustomButton from '@/components/CustomButton';
 import Link from 'next/link';
 import InteractiveMapSection from '@/sections/InteractiveMapSection';
-import Image from 'next/image';
 
 export default function LocationPage() {
   const [activeLocation, setActiveLocation] = useState(0);
@@ -61,7 +50,7 @@ export default function LocationPage() {
             </p>
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -73,7 +62,7 @@ export default function LocationPage() {
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </CustomButton>
             </Link>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 
@@ -274,8 +263,8 @@ export default function LocationPage() {
           }}
         />
         {/* Overlay to keep text legible and mask source quality */}
-        <div className="from-dark-black/90 via-dark-black/80 to-dark-black/90 absolute inset-0 bg-gradient-to-b" />
-        <div className="absolute inset-0 backdrop-blur-[2px]" />
+        <div className="from-dark-black/60 via-dark-black/50 to-dark-black/60 absolute inset-0 bg-gradient-to-b" />
+        {/* <div className="absolute inset-0 backdrop-blur-[2px]" /> */}
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
