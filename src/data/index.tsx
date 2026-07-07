@@ -1431,93 +1431,9 @@ export const products: Product[] = [
     popular: true,
   },
   // ── Bars & Food Stations ──────────────────────────────────────────
-  // NOTE: The images below are temporary placeholders (closest existing
-  // photos). Replace `image`/`sceneImage` with real 48 Wall Street photos
-  // of each bar, back bar, cart, and rolling station when available.
-  {
-    id: 48,
-    name: 'Rolling Food Station',
-    category: 'stations',
-    theme: 'modern',
-    price: 450,
-    priceRange: 'premium',
-    image: '/rentals/rental_item/white-bar-table4-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-bar-table4-500x500.jpg',
-    rating: 4.9,
-    reviews: 0,
-    description:
-      'Mobile rolling food station that brings chef-driven service directly to your guests — ideal for interactive dining moments and flexible floor plans.',
-    features: [
-      'Fully mobile rolling design',
-      'Perfect for live-action food service',
-      'Flexible placement anywhere in the venue',
-      'Pairs with our catering and bar packages',
-    ],
-    popular: true,
-  },
-  {
-    id: 49,
-    name: 'Black Bar',
-    category: 'stations',
-    theme: 'modern',
-    price: 400,
-    priceRange: 'premium',
-    image: '/rentals/rental_item/white-bar-table4-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-bar-table4-500x500.jpg',
-    rating: 4.8,
-    reviews: 0,
-    description:
-      'Sleek black service bar with a bold modern profile — a striking centerpiece for cocktail receptions and lounge settings.',
-    features: [
-      'Modern black finish',
-      'Full-service bar front',
-      'Configurable in single or multiple units',
-      'Ideal for cocktail receptions',
-    ],
-    popular: false,
-  },
-  {
-    id: 50,
-    name: 'Brown Bar',
-    category: 'stations',
-    theme: 'vintage',
-    price: 400,
-    priceRange: 'premium',
-    image: '/rentals/rental_item/white-bar-table4-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-bar-table4-500x500.jpg',
-    rating: 4.7,
-    reviews: 0,
-    description:
-      'Warm wood-tone brown bar that adds classic, refined character to any gathering or hospitality space.',
-    features: [
-      'Rich brown wood-tone finish',
-      'Timeless, warm aesthetic',
-      'Full-service bar front',
-      'Pairs with lounge and dining setups',
-    ],
-    popular: false,
-  },
-  {
-    id: 51,
-    name: 'Lucite Bar',
-    category: 'stations',
-    theme: 'modern',
-    price: 550,
-    priceRange: 'premium',
-    image: '/rentals/rental_item/lucite-cocktail-table-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/lucite-cocktail-table-1-500x500.jpg',
-    rating: 4.9,
-    reviews: 0,
-    description:
-      'Elegant clear lucite bar that creates a light, contemporary focal point and can be illuminated for a dramatic evening glow.',
-    features: [
-      'Transparent lucite construction',
-      'Optional LED illumination',
-      'Sleek, high-end statement piece',
-      'Perfect for modern luxury events',
-    ],
-    popular: true,
-  },
+  // NOTE: The image below is a temporary placeholder (closest existing
+  // photo). Replace `image`/`sceneImage` with a real 48 Wall Street photo
+  // of the back bar when available.
   {
     id: 52,
     name: 'Round Gold Back Bar',
@@ -1580,27 +1496,6 @@ export const products: Product[] = [
       'Staffed service available',
     ],
     popular: true,
-  },
-  {
-    id: 55,
-    name: 'Pretzel Cart',
-    category: 'stations',
-    theme: 'modern',
-    price: 350,
-    priceRange: 'mid',
-    image: '/rentals/rental_item/white-bar-table4-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-bar-table4-500x500.jpg',
-    rating: 4.7,
-    reviews: 0,
-    description:
-      'Warm soft-pretzel cart that adds a playful, crowd-pleasing snack station to cocktail hours, activations, and casual celebrations.',
-    features: [
-      'Fresh warm soft pretzels',
-      'Fun interactive snack moment',
-      'Great for cocktail hours and activations',
-      'Staffed service available',
-    ],
-    popular: false,
   },
   // ── Themed Props (photographed inside 48 Wall Street) ─────────────
   {
