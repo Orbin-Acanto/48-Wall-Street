@@ -134,15 +134,17 @@ const mapsUrl = (lat: number, lng: number) =>
 // Recenters/zooms the map to fit the venue plus all currently visible points.
 function FitToVisible({ visible }: { visible: Set<CategoryId> }) {
   const map = useMap();
-  const didInit = useRef(false);
+  const prevVisible = useRef<Set<CategoryId> | null>(null);
 
   useEffect(() => {
-    // On first load, always open at zoom 16 centered on the venue.
-    if (!didInit.current) {
-      didInit.current = true;
-      map.setView([VENUE.lat, VENUE.lng], 50, { animate: false });
+    // Skip the initial mount (and dev Strict Mode's double-invoke) so the map
+    // keeps the default zoom set on MapContainer. Only re-fit when the user
+    // actually toggles a category on/off.
+    if (prevVisible.current === null || prevVisible.current === visible) {
+      prevVisible.current = visible;
       return;
     }
+    prevVisible.current = visible;
 
     const pts: [number, number][] = [];
     MAP_CATEGORIES.forEach((cat) => {
