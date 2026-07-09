@@ -295,12 +295,12 @@ export default function FloorPlansPage() {
                 {viewMode === '2d' && (
                   <div className="relative overflow-hidden bg-white shadow-2xl">
                     <div className="relative aspect-[16/10]">
-                      <div className="absolute inset-0">
+                      <div className="absolute inset-0 p-6 md:p-10">
                         <Image
                           src={currentFloor.blueprint}
                           alt="Floor plan blueprint"
                           fill
-                          className="object-cover"
+                          className="object-contain p-2"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                         <div className="bg-dark-black/80 absolute bottom-4 left-4 px-4 py-2 backdrop-blur-sm">

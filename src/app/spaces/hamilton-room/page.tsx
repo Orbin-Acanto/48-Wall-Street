@@ -110,7 +110,7 @@ export default function HamiltonRoomPage() {
         },
       ]}
       videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
-      floorPlanImage="/floor_planner/plan/ground.svg"
+      floorPlanImage="/floor_planner/plan/hamilton-office.svg"
       features={[
         'Soaring ceilings & handcrafted millwork',
         'Ornate gilded columns',

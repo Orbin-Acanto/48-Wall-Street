@@ -50,7 +50,7 @@ export default function BankingHallPage() {
         '/venue/6.jpg',
       ]}
       videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
-      floorPlanImage="/floor_planner/plan/ground.svg"
+      floorPlanImage="/floor_planner/plan/banking-hall.svg"
       features={[
         'Original 1920s architecture',
         'Soaring ceilings',

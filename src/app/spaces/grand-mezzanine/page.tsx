@@ -60,7 +60,7 @@ export default function GrandMezzaninePage() {
         '/venue/hq/6.jpg',
       ]}
       videoUrl="https://player.vimeo.com/video/1207393496?h=81afd92077"
-      floorPlanImage="/floor_planner/plan/ground.svg"
+      floorPlanImage="/floor_planner/plan/grand-mezzanine.svg"
       features={[
         'Grand dual marble staircase',
         'Oversized Crystal chandeliers',
