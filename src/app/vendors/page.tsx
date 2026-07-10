@@ -21,6 +21,25 @@ export default function VendorsPage() {
     return () => clearInterval(interval);
   }, []);
 
+  // Smoothly scroll to the vendor section referenced by the URL hash, both on
+  // initial load (e.g. arriving from the nav dropdown) and on hash changes.
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = window.location.hash.slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // Defer the initial scroll so layout/images have settled.
+    const timer = window.setTimeout(scrollToHash, 100);
+    window.addEventListener('hashchange', scrollToHash);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('hashchange', scrollToHash);
+    };
+  }, []);
+
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* HERO */}
@@ -83,7 +102,7 @@ export default function VendorsPage() {
         <section
           key={vendor.id}
           id={vendor.id}
-          className={`px-6 py-16 md:px-12 md:py-20 lg:px-20 ${
+          className={`scroll-mt-28 px-6 py-16 md:px-12 md:py-20 lg:px-20 ${
             idx % 2 === 0 ? 'bg-white' : 'bg-whitesmoke'
           }`}
         >

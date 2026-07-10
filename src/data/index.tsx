@@ -244,23 +244,19 @@ export const navItems: NavItem[] = [
     dropdown: [
       {
         name: "Tardi's Catering",
-        href: 'https://www.tardiscatering.com/',
-        external: true,
+        href: '/vendors#tardis-catering',
       },
       {
         name: 'FiDi Hospitality',
-        href: 'https://www.fidihospitality.com/',
-        external: true,
+        href: '/vendors#fidi-hospitality',
       },
       {
         name: 'MME Worldwide',
-        href: 'https://www.mmeink.com/',
-        external: true,
+        href: '/vendors#mme-worldwide',
       },
       {
         name: 'Mikey Mike Entertainment',
-        href: 'https://www.mikeymikeevents.com/',
-        external: true,
+        href: '/vendors#mikey-mike-entertainment',
       },
     ],
   },
