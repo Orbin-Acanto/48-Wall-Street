@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/venue/4.JPG',
+        url: '/spaces/banking-hall/hero-1.jpg',
         width: 1200,
         height: 630,
         alt: 'Banking Hall at 48 Wall Street — historic event venue NYC',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Banking Hall | 48 Wall Street NYC',
     description:
       'Original 1920s architecture with soaring ceilings. Prestigious large-scale event venue in the Financial District, NYC.',
-    images: ['/venue/4.JPG'],
+    images: ['/spaces/banking-hall/hero-1.jpg'],
   },
 };
 
@@ -41,13 +41,17 @@ export default function BankingHallPage() {
       title="Banking"
       subtitle="Hall"
       description="The Banking Hall at 48 Wall Street preserves the grandeur of the original 1920s financial institution that once occupied this landmark building. With soaring ceilings, stately columns, and restored period details, the Banking Hall provides a prestigious backdrop for large-scale corporate events, galas, and celebrations. This space captures the architectural significance of Wall Street's golden age while offering modern amenities and flexible configurations for today's events."
+      heroImages={[
+        '/spaces/banking-hall/hero-1.jpg',
+        '/spaces/banking-hall/hero-2.jpg',
+        '/spaces/banking-hall/hero-3.jpg',
+      ]}
       images={[
-        '/venue/7.jpg',
-        '/venue/4.JPG',
-        '/venue/5.jpg',
-        '/venue/11.jpg',
-        '/venue/3.jpg',
-        '/venue/6.jpg',
+        '/spaces/banking-hall/gallery-1.jpg',
+        '/spaces/banking-hall/gallery-2.jpg',
+        '/spaces/banking-hall/gallery-3.jpg',
+        '/spaces/banking-hall/gallery-4.jpg',
+        '/spaces/banking-hall/hero-1.jpg',
       ]}
       videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
       floorPlanImage="/floor_planner/plan/banking-hall.svg"

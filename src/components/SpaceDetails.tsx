@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import CustomButton from '@/components/CustomButton';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 export interface SpaceStats {
@@ -16,6 +17,8 @@ export interface SpaceDetailsProps {
   title: string;
   subtitle: string;
   description: React.ReactNode;
+  /** Hero slider images. Falls back to images[0] when omitted. */
+  heroImages?: string[];
   images: string[];
   lightboxImages?: string[];
   videoUrl?: string;
@@ -37,6 +40,7 @@ export default function SpaceDetails({
   title,
   subtitle,
   description,
+  heroImages,
   images,
   videoUrl,
   lightboxImages,
@@ -46,10 +50,24 @@ export default function SpaceDetails({
   enquireHref = '/contact',
   thenNow,
 }: SpaceDetailsProps) {
-  const [heroImage, ...galleryImages] = images;
-  const lbImages = lightboxImages ?? images;
+  // When a dedicated hero slider is provided, the full `images` array is the
+  // gallery. Otherwise keep the legacy behavior: images[0] is the hero.
+  const slides =
+    heroImages && heroImages.length > 0 ? heroImages : images.slice(0, 1);
+  const galleryImages = heroImages && heroImages.length > 0 ? images : images.slice(1);
+  const lbImages = lightboxImages ?? galleryImages;
 
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (slides.length <= 1) return;
+    const timer = setInterval(
+      () => setCurrentSlide((s) => (s + 1) % slides.length),
+      5000
+    );
+    return () => clearInterval(timer);
+  }, [slides.length]);
 
   const openLightbox = (index: number) => {
     setSelectedIndex(index);
@@ -76,11 +94,21 @@ export default function SpaceDetails({
   return (
     <main className="bg-white">
       <section className="relative h-[70vh] min-h-[520px] overflow-hidden">
-        <img
-          src={heroImage}
-          alt={`${title} ${subtitle}`}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentSlide}
+            src={slides[currentSlide]}
+            alt={`${title} ${subtitle}`}
+            className="absolute inset-0 h-full w-full object-cover"
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              opacity: { duration: 1 },
+              scale: { duration: 6, ease: 'linear' },
+            }}
+          />
+        </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60" />
 
         <div className="absolute top-8 left-8 md:left-16">
@@ -112,6 +140,21 @@ export default function SpaceDetails({
             </div>
           </div>
         </div>
+
+        {slides.length > 1 && (
+          <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentSlide(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === currentSlide ? 'bg-primary w-8' : 'w-2 bg-white/60'
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="px-6 py-16 md:px-12">
@@ -137,7 +180,7 @@ export default function SpaceDetails({
                 galleryImages[i] ? (
                   <button
                     key={i}
-                    onClick={() => openLightbox(i + 1)}
+                    onClick={() => openLightbox(i)}
                     className="group relative aspect-[4/3] cursor-pointer overflow-hidden"
                     style={{
                       backfaceVisibility: 'hidden',
@@ -155,7 +198,7 @@ export default function SpaceDetails({
 
               {galleryImages[2] && (
                 <button
-                  onClick={() => openLightbox(3)}
+                  onClick={() => openLightbox(2)}
                   className="group relative col-span-2 aspect-[16/9] cursor-pointer overflow-hidden"
                   style={{
                     backfaceVisibility: 'hidden',
@@ -174,7 +217,7 @@ export default function SpaceDetails({
                 galleryImages[i] ? (
                   <button
                     key={i}
-                    onClick={() => openLightbox(i + 1)}
+                    onClick={() => openLightbox(i)}
                     className="group relative aspect-[4/3] cursor-pointer overflow-hidden"
                     style={{
                       backfaceVisibility: 'hidden',
