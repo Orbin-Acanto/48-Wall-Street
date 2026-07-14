@@ -60,7 +60,8 @@ export interface Product {
   price: number;
   priceRange: string;
   image: string;
-  sceneImage: string;
+  // sceneImage temporarily removed with the hover-swap effect; restore when the effect returns
+  sceneImage?: string;
   rating: number;
   reviews: number;
   description: string;

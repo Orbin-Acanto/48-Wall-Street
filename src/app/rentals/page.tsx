@@ -316,12 +316,11 @@ export default function RentalsPage() {
               >
                 {/* Image Container */}
                 <div className="relative h-80 overflow-hidden">
+                  {/* NOTE: hover image-swap disabled for now — we plan to bring
+                      this effect back later. Original swap:
+                      src={hoveredProduct === product.id ? product.sceneImage : product.image} */}
                   <motion.img
-                    src={
-                      hoveredProduct === product.id
-                        ? product.sceneImage
-                        : product.image
-                    }
+                    src={product.image}
                     alt={product.name}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -478,8 +477,9 @@ export default function RentalsPage() {
               <div className="grid md:grid-cols-2">
                 {/* Images */}
                 <div className="relative h-96 md:h-auto">
+                  {/* Was selectedProduct.sceneImage — using single product image for now */}
                   <img
-                    src={selectedProduct.sceneImage}
+                    src={selectedProduct.image}
                     alt={selectedProduct.name}
                     className="h-full w-full object-cover"
                   />

@@ -435,8 +435,6 @@ export const products: Product[] = [
     price: 450,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-leather-sofa-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/black-leather-lounge-3-500x500-500x500.jpg',
     rating: 4.8,
     reviews: 124,
     description:
@@ -457,8 +455,6 @@ export const products: Product[] = [
     price: 12,
     priceRange: 'budget',
     image: '/rentals/rental_item/black-leather-chair-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/black-leather-chair-2-500x500-500x500.jpg',
     rating: 4.9,
     reviews: 287,
     description:
@@ -479,8 +475,6 @@ export const products: Product[] = [
     price: 250,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-cosmo-club-chair-rental-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/white-cosmo-club-chair-rental3-500x500.jpg',
     rating: 4.7,
     reviews: 93,
     description:
@@ -501,8 +495,6 @@ export const products: Product[] = [
     price: 85,
     priceRange: 'budget',
     image: '/rentals/rental_item/lucite-high-boy-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/lucite-high-boy-with-top-1-500x500-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -523,7 +515,6 @@ export const products: Product[] = [
     price: 85,
     priceRange: 'budget',
     image: '/rentals/rental_item/modern-pump-highboy-rental-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-bar-table4-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -544,7 +535,6 @@ export const products: Product[] = [
     price: 85,
     priceRange: 'budget',
     image: '/rentals/rental_item/gold-marble-highboy-rental-500x500.jpg',
-    sceneImage: '/rentals/rental_item/71ZzVLDzWaL._AC_SX679_.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -565,7 +555,6 @@ export const products: Product[] = [
     price: 85,
     priceRange: 'budget',
     image: '/rentals/rental_item/black-scoop-stool-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/3 Vanity Mirror and Chair-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -586,7 +575,6 @@ export const products: Product[] = [
     price: 85,
     priceRange: 'budget',
     image: '/rentals/rental_item/modern-stool-rental-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/modern-stool-rental2-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -607,7 +595,6 @@ export const products: Product[] = [
     price: 85,
     priceRange: 'budget',
     image: '/rentals/rental_item/elegant-dining-chair1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/elegant-dining-chair6-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -628,7 +615,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/champagne.jpg',
-    sceneImage: '/rentals/rental_item/champagne.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -649,7 +635,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-angora-love-seat-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-angora-love-seat-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -670,8 +655,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/cleopatra-chair-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/white-cleopatra-sofa-2-500x500-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -692,8 +675,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-condutor-sofa-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/white-conductor-sofa-3-500x500-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -714,7 +695,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-l-couch-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-l-couch-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -735,7 +715,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-lounge-chair-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-lounge-chair-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -756,7 +735,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/manhattan-chair-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/manhattan-chair-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -777,7 +755,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-pixie-chair1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-pixie-chair3-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -798,7 +775,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-roll-chair-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-roll-chair-1-500x500-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -819,7 +795,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-rolled-arm-bench1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-rolled-arm-bench2-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -840,7 +815,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/ornate-high-back-couch-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/ornate-high-back-couch2-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -861,7 +835,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-gold-couch.jpg',
-    sceneImage: '/rentals/rental_item/black-gold-couch.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -882,7 +855,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/blakc-and-gold-coffee-table.jpg',
-    sceneImage: '/rentals/rental_item/blakc-and-gold-coffee-table.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -903,7 +875,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-gold-scallop-chair.jpg',
-    sceneImage: '/rentals/rental_item/black-gold-scallop-chair.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -924,7 +895,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-and-gold-chair.jpg',
-    sceneImage: '/rentals/rental_item/black-and-gold-chair.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -945,7 +915,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/blck-gold-sofa.jpg',
-    sceneImage: '/rentals/rental_item/blck-gold-sofa.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -966,7 +935,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-gold-coffee-table.jpg',
-    sceneImage: '/rentals/rental_item/white-gold-coffee-table.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -987,7 +955,6 @@ export const products: Product[] = [
     price: 320,
     priceRange: 'mid',
     image: '/rentals/rental_item/Leslie+End+Table-1295136341.jpg',
-    sceneImage: '/rentals/rental_item/Leslie+End+Table-1295136341.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -1008,7 +975,6 @@ export const products: Product[] = [
     price: 300,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-tufted-high-bench-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-tufted-high-bench-1-500x500.jpg',
     rating: 4.8,
     reviews: 54,
     description:
@@ -1029,7 +995,6 @@ export const products: Product[] = [
     price: 350,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-tufted-ornate-chaise-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-tufted-ornate-chaise-1-500x500.jpg',
     rating: 4.9,
     reviews: 63,
     description:
@@ -1050,7 +1015,6 @@ export const products: Product[] = [
     price: 380,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-tufted-ornate-sofa-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-tufted-ornate-sofa-1-500x500.jpg',
     rating: 4.8,
     reviews: 71,
     description:
@@ -1071,7 +1035,6 @@ export const products: Product[] = [
     price: 260,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-tufted-scoop-chair-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-tufted-scoop-chair-1-500x500.jpg',
     rating: 4.6,
     reviews: 42,
     description:
@@ -1092,8 +1055,6 @@ export const products: Product[] = [
     price: 340,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-tufted-rolled-arm-sofa-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/white-tufted-rolled-arm-sofa-1-500x500.jpg',
     rating: 4.7,
     reviews: 56,
     description:
@@ -1114,7 +1075,6 @@ export const products: Product[] = [
     price: 220,
     priceRange: 'budget',
     image: '/rentals/rental_item/white-tufted-ottoman-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-tufted-ottoman-1-500x500.jpg',
     rating: 4.5,
     reviews: 31,
     description:
@@ -1135,7 +1095,6 @@ export const products: Product[] = [
     price: 370,
     priceRange: 'mid',
     image: '/rentals/rental_item/white-tufted-winged-couch-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-tufted-winged-couch-1-500x500.jpg',
     rating: 4.9,
     reviews: 79,
     description:
@@ -1156,7 +1115,6 @@ export const products: Product[] = [
     price: 180,
     priceRange: 'budget',
     image: '/rentals/rental_item/white-tufted-small-ottoman-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/white-tufted-small-ottoman-1-500x500.jpg',
     rating: 4.4,
     reviews: 22,
     description:
@@ -1177,8 +1135,6 @@ export const products: Product[] = [
     price: 310,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-leather-loveseat-rental2-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/black-leather-loveseat-rental2-500x500.jpg',
     rating: 4.7,
     reviews: 60,
     description:
@@ -1199,7 +1155,6 @@ export const products: Product[] = [
     price: 280,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-leather-sled-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/black-leather-sled-1-500x500.jpg',
     rating: 4.5,
     reviews: 37,
     description:
@@ -1220,7 +1175,6 @@ export const products: Product[] = [
     price: 420,
     priceRange: 'high',
     image: '/rentals/rental_item/round-tufted-sofa-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/round-tufted-sofa-1-500x500.jpg',
     rating: 4.9,
     reviews: 83,
     description:
@@ -1241,7 +1195,6 @@ export const products: Product[] = [
     price: 260,
     priceRange: 'mid',
     image: '/rentals/rental_item/bling-tufted-leather-chair-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/bling-tufted-leather-chair-1-500x500.jpg',
     rating: 4.6,
     reviews: 41,
     description:
@@ -1263,8 +1216,6 @@ export const products: Product[] = [
     priceRange: 'mid',
     image:
       '/rentals/rental_item/black-tufted-leather-bling-chair-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/black-tufted-leather-bling-chair-1-500x500.jpg',
     rating: 4.7,
     reviews: 48,
     description:
@@ -1285,7 +1236,6 @@ export const products: Product[] = [
     price: 250,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-tufted-leather-chair-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/black-tufted-leather-chair-1-500x500.jpg',
     rating: 4.5,
     reviews: 33,
     description:
@@ -1306,8 +1256,6 @@ export const products: Product[] = [
     price: 350,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-tufted-leather-chaise-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/black-tufted-leather-chaise-1-500x500.jpg',
     rating: 4.8,
     reviews: 61,
     description:
@@ -1328,8 +1276,6 @@ export const products: Product[] = [
     price: 390,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-tufted-leather-wing-couch-1-500x500.jpg',
-    sceneImage:
-      '/rentals/rental_item/black-tufted-leather-wing-couch-1-500x500.jpg',
     rating: 4.9,
     reviews: 77,
     description:
@@ -1350,7 +1296,6 @@ export const products: Product[] = [
     price: 330,
     priceRange: 'mid',
     image: '/rentals/rental_item/black-leather-tufted-couch-500x500.jpg',
-    sceneImage: '/rentals/rental_item/black-leather-tufted-couch-500x500.jpg',
     rating: 4.6,
     reviews: 51,
     description:
@@ -1371,7 +1316,6 @@ export const products: Product[] = [
     price: 310,
     priceRange: 'mid',
     image: '/rentals/rental_item/tufted-leather-love-seat-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/tufted-leather-love-seat-1-500x500.jpg',
     rating: 4.7,
     reviews: 58,
     description:
@@ -1392,7 +1336,6 @@ export const products: Product[] = [
     price: 290,
     priceRange: 'mid',
     image: '/rentals/rental_item/lucite-low-boy-rectangle-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/lucite-low-boy-rectangle-1-500x500.jpg',
     rating: 4.8,
     reviews: 47,
     description:
@@ -1413,7 +1356,6 @@ export const products: Product[] = [
     price: 270,
     priceRange: 'mid',
     image: '/rentals/rental_item/lucite-cocktail-table-1-500x500.jpg',
-    sceneImage: '/rentals/rental_item/lucite-cocktail-table-1-500x500.jpg',
     rating: 4.7,
     reviews: 39,
     description:
@@ -1438,7 +1380,6 @@ export const products: Product[] = [
     price: 480,
     priceRange: 'premium',
     image: '/rentals/rental_item/gold-marble-highboy-rental-500x500.jpg',
-    sceneImage: '/rentals/rental_item/gold-marble-highboy-rental-500x500.jpg',
     rating: 4.8,
     reviews: 0,
     description:
@@ -1459,7 +1400,6 @@ export const products: Product[] = [
     price: 350,
     priceRange: 'mid',
     image: '/rentals/rental_item/hotdog-cart.jpg',
-    sceneImage: '/rentals/rental_item/hotdog-cart-scene.jpg',
     rating: 4.7,
     reviews: 0,
     description:
@@ -1480,7 +1420,6 @@ export const products: Product[] = [
     price: 650,
     priceRange: 'premium',
     image: '/rentals/rental_item/caviar-cart.jpg',
-    sceneImage: '/rentals/rental_item/caviar-cart-scene.jpg',
     rating: 5,
     reviews: 0,
     description:
@@ -1502,7 +1441,6 @@ export const products: Product[] = [
     price: 900,
     priceRange: 'premium',
     image: '/rentals/rental_item/prop-lounge.jpg',
-    sceneImage: '/rentals/rental_item/prop-lounge.jpg',
     rating: 4.9,
     reviews: 0,
     description:
@@ -1523,7 +1461,6 @@ export const products: Product[] = [
     price: 750,
     priceRange: 'premium',
     image: '/rentals/rental_item/prop-newsstand.jpg',
-    sceneImage: '/rentals/rental_item/prop-newsstand-scene.jpg',
     rating: 4.8,
     reviews: 0,
     description:
@@ -1544,7 +1481,6 @@ export const products: Product[] = [
     price: 300,
     priceRange: 'mid',
     image: '/rentals/rental_item/prop-lamp-post.jpg',
-    sceneImage: '/rentals/rental_item/prop-lamp-post.jpg',
     rating: 4.7,
     reviews: 0,
     description:
@@ -1565,7 +1501,6 @@ export const products: Product[] = [
     price: 550,
     priceRange: 'premium',
     image: '/rentals/rental_item/prop-champagne-bath.jpg',
-    sceneImage: '/rentals/rental_item/prop-champagne-bath-scene.jpg',
     rating: 4.9,
     reviews: 0,
     description:
@@ -1586,7 +1521,6 @@ export const products: Product[] = [
     price: 500,
     priceRange: 'premium',
     image: '/rentals/rental_item/prop-flower-cart.jpg',
-    sceneImage: '/rentals/rental_item/prop-flower-cart.jpg',
     rating: 4.8,
     reviews: 0,
     description:

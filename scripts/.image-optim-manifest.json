@@ -2294,5 +2294,33 @@
     "originalBytes": 969505,
     "finalBytes": 738020,
     "resized": false
+  },
+  "public/about/aboutHero-1.png": {
+    "hash": "74040acf2379a0a9b3657bf84d80521e607221f0",
+    "optimizedAt": "2026-07-14T20:36:29.544Z",
+    "originalBytes": 6060409,
+    "finalBytes": 2985249,
+    "resized": false
+  },
+  "public/misc/vml.png": {
+    "hash": "c40cd6ea48d2bca2ac13eb97f0899d66f1a88d56",
+    "optimizedAt": "2026-07-14T20:36:37.895Z",
+    "originalBytes": 17104772,
+    "finalBytes": 2084318,
+    "resized": true
+  },
+  "public/venue/Grand Mezzanine Hall.jpg": {
+    "hash": "0da4da6137f1f61a8b98b9bc36d26dc426be7965",
+    "optimizedAt": "2026-07-14T20:36:39.032Z",
+    "originalBytes": 2500111,
+    "finalBytes": 1981876,
+    "resized": true
+  },
+  "public/venue/Hero Concourse Level 2.png": {
+    "hash": "dc1f6cd75a6245dbe86e6f0ef89960eb8afb72af",
+    "optimizedAt": "2026-07-14T20:36:42.574Z",
+    "originalBytes": 8020399,
+    "finalBytes": 2807377,
+    "resized": false
   }
 }

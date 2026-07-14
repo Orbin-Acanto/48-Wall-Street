@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const aboutImages = [
-  { src: '/about/aboutHero-1.jpg', alt: '48 Wall Street Venue' },
+  { src: '/about/aboutHero-1.png', alt: '48 Wall Street Venue' },
   { src: '/about/about (3).jpg', alt: 'Lounge Area' },
   { src: '/about/c1.jpg', alt: 'Concourse Level' },
 
@@ -89,7 +89,7 @@ export default function About() {
                 }}
               >
                 <Image
-                  src="/about/aboutHero-1.jpg"
+                  src="/about/aboutHero-1.png"
                   alt="48 Wall Street Venue"
                   fill
                   quality={100}
