@@ -558,6 +558,18 @@ const RulesRegulations = () => {
                 info@48WallNYC.com
               </a>
             </p>
+            <p className="font-secondary mt-4 text-gray-600">
+              Need a reference? View our{' '}
+              <a
+                href="/sample-coi.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary font-medium hover:underline"
+              >
+                Sample COI
+              </a>
+              .
+            </p>
           </div>
 
           <div className="border border-gray-200 bg-white p-6 shadow-lg">
