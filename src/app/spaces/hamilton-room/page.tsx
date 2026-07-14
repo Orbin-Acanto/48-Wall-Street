@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/venue/4.JPG',
+        url: '/spaces/hamilton-room/hero-1.jpg',
         width: 1200,
         height: 630,
         alt: 'The Alexander Hamilton Office at 48 Wall Street — private executive salon NYC',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: 'The Alexander Hamilton Office | 48 Wall Street NYC',
     description:
       'A private executive salon inspired by America’s financial legacy. Executive meetings, VIP receptions, and private dining. Financial District, NYC.',
-    images: ['/venue/4.JPG'],
+    images: ['/spaces/hamilton-room/hero-1.jpg'],
   },
 };
 
@@ -83,31 +83,36 @@ export default function HamiltonRoomPage() {
           </p>
         </>
       }
+      heroImages={[
+        '/spaces/hamilton-room/hero-2.jpg',
+        '/spaces/hamilton-room/hero-1.jpg',
+        '/spaces/hamilton-room/hero-3.jpg',
+      ]}
       images={[
-        '/venue/3.jpg',
-        '/venue/6.jpg',
-        '/venue/10.jpg',
-        '/venue/5.jpg',
-        '/venue/8.jpg',
-        '/venue/7.jpg',
+        '/spaces/hamilton-room/gallery-1.jpg',
+        '/spaces/hamilton-room/gallery-2.jpg',
+        '/spaces/hamilton-room/gallery-3.jpg',
+        '/spaces/hamilton-room/gallery-4.jpg',
+        '/spaces/hamilton-room/gallery-5.jpg',
+        '/spaces/hamilton-room/gallery-6.jpg',
       ]}
       thenNow={[
         {
-          then: '/spaces/hamilton/historic-2.jpg',
-          now: '/venue/7.jpg',
+          then: '/spaces/hamilton-room/hero-1.jpg',
+          now: '/spaces/hamilton-room/gallery-1.jpg',
           thenAlt:
             'The Bank of New York banking hall mezzanine and marble balustrade, circa mid-1900s',
           nowAlt:
             'The same mezzanine and marble balustrade today during an evening reception',
         },
-        {
-          then: '/spaces/hamilton/historic-1.jpg',
-          now: '/venue/3.jpg',
-          thenAlt:
-            'The Bank of New York banking floor with bankers at their desks, mid-1900s',
-          nowAlt:
-            'The historic banking hall today, set for an elegant gala dinner',
-        },
+        // {
+        //   then: '/spaces/hamilton/historic-1.jpg',
+        //   now: '/spaces/hamilton-room/gallery-2.jpg',
+        //   thenAlt:
+        //     'The Bank of New York banking floor with bankers at their desks, mid-1900s',
+        //   nowAlt:
+        //     'The historic banking hall today, set for an elegant gala dinner',
+        // },
       ]}
       videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
       floorPlanImage="/floor_planner/plan/hamilton-office.svg"

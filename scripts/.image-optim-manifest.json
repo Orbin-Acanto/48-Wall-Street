@@ -2084,5 +2084,215 @@
     "originalBytes": 881160,
     "finalBytes": 881160,
     "resized": false
+  },
+  "public/spaces/5th-floor/gallery-1.jpg": {
+    "hash": "0dd1ca9fe9d0701fe931354f2645fafe289dff78",
+    "optimizedAt": "2026-07-10T21:16:16.846Z",
+    "originalBytes": 1029087,
+    "finalBytes": 304015,
+    "resized": false
+  },
+  "public/spaces/5th-floor/gallery-2.jpg": {
+    "hash": "2b03781dab6df7ccacd3c99f12a07fd121e0c3bd",
+    "optimizedAt": "2026-07-10T21:16:17.028Z",
+    "originalBytes": 1116857,
+    "finalBytes": 332847,
+    "resized": false
+  },
+  "public/spaces/5th-floor/gallery-3.jpg": {
+    "hash": "e843e0ea9a25d0f829c1bbbe873aa3c83fddfe56",
+    "optimizedAt": "2026-07-10T21:16:17.202Z",
+    "originalBytes": 924772,
+    "finalBytes": 295839,
+    "resized": false
+  },
+  "public/spaces/5th-floor/gallery-4.jpg": {
+    "hash": "a06fa4f02ace8077308ca34e3eae70be35e11c9b",
+    "optimizedAt": "2026-07-10T21:16:17.383Z",
+    "originalBytes": 1043237,
+    "finalBytes": 257330,
+    "resized": false
+  },
+  "public/spaces/5th-floor/gallery-5.jpg": {
+    "hash": "72e621934ea4c0d04d1724dd58bb1aba6271b300",
+    "optimizedAt": "2026-07-10T21:16:17.573Z",
+    "originalBytes": 973312,
+    "finalBytes": 260605,
+    "resized": false
+  },
+  "public/spaces/5th-floor/hero-1.jpg": {
+    "hash": "918ce8bf50fcf6a04f0240e3979682502afe8fab",
+    "optimizedAt": "2026-07-10T21:16:17.903Z",
+    "originalBytes": 2159228,
+    "finalBytes": 671041,
+    "resized": false
+  },
+  "public/spaces/5th-floor/hero-2.jpg": {
+    "hash": "090d0dc07be5924c67ff8bb1d5218564d6458b93",
+    "optimizedAt": "2026-07-10T21:16:18.095Z",
+    "originalBytes": 1236493,
+    "finalBytes": 356564,
+    "resized": false
+  },
+  "public/spaces/5th-floor/hero-3.jpg": {
+    "hash": "f780c0298315d477b0edb225a6cda1c455ae79fe",
+    "optimizedAt": "2026-07-10T21:16:18.294Z",
+    "originalBytes": 1259285,
+    "finalBytes": 374146,
+    "resized": false
+  },
+  "public/spaces/banking-hall/gallery-1.jpg": {
+    "hash": "524d97668a7f55eb16be5b4c93fbbdee8fd7911b",
+    "optimizedAt": "2026-07-10T21:16:18.588Z",
+    "originalBytes": 2016277,
+    "finalBytes": 638889,
+    "resized": false
+  },
+  "public/spaces/banking-hall/gallery-2.jpg": {
+    "hash": "445a3422fd4ce8473464ac06df62ed2b267d826e",
+    "optimizedAt": "2026-07-10T21:16:18.852Z",
+    "originalBytes": 1758839,
+    "finalBytes": 565959,
+    "resized": false
+  },
+  "public/spaces/banking-hall/gallery-3.jpg": {
+    "hash": "e4fb87d5cb67eb8cb224b6886618c5f2d63cec90",
+    "optimizedAt": "2026-07-10T21:16:19.083Z",
+    "originalBytes": 1344799,
+    "finalBytes": 465780,
+    "resized": false
+  },
+  "public/spaces/banking-hall/gallery-4.jpg": {
+    "hash": "48e7663aae6fcc59af846c2d91c6f133ce08dcce",
+    "optimizedAt": "2026-07-10T21:16:19.390Z",
+    "originalBytes": 2088971,
+    "finalBytes": 668558,
+    "resized": false
+  },
+  "public/spaces/banking-hall/hero-1.jpg": {
+    "hash": "4a1a2e8e3014d60a8b4f4df814ff2aa67cd758d7",
+    "optimizedAt": "2026-07-10T21:16:19.701Z",
+    "originalBytes": 1864143,
+    "finalBytes": 639519,
+    "resized": false
+  },
+  "public/spaces/banking-hall/hero-2.jpg": {
+    "hash": "fbe224818261704d4e1ef095c2aba5763d99ebe1",
+    "optimizedAt": "2026-07-10T21:16:19.982Z",
+    "originalBytes": 1583829,
+    "finalBytes": 535777,
+    "resized": false
+  },
+  "public/spaces/banking-hall/hero-3.jpg": {
+    "hash": "76ac4bdf8b507d97b6de34dbf6f026b255e8d18e",
+    "optimizedAt": "2026-07-10T21:16:20.196Z",
+    "originalBytes": 1086673,
+    "finalBytes": 422832,
+    "resized": false
+  },
+  "public/spaces/concourse-level/gallery-1.jpg": {
+    "hash": "2eee78125066cfcc1451ddfc028027cf1bd96d15",
+    "optimizedAt": "2026-07-10T21:16:20.464Z",
+    "originalBytes": 1607105,
+    "finalBytes": 477654,
+    "resized": false
+  },
+  "public/spaces/concourse-level/gallery-2.jpg": {
+    "hash": "44bf0a26735555aaf00ffd9aee7004b5182780b5",
+    "optimizedAt": "2026-07-10T21:16:20.727Z",
+    "originalBytes": 1619738,
+    "finalBytes": 518811,
+    "resized": false
+  },
+  "public/spaces/concourse-level/gallery-3.jpg": {
+    "hash": "ca71e6015c8166f40cd13a0211ad818cb631de32",
+    "optimizedAt": "2026-07-10T21:16:21.038Z",
+    "originalBytes": 1973064,
+    "finalBytes": 655684,
+    "resized": false
+  },
+  "public/spaces/concourse-level/gallery-4.jpg": {
+    "hash": "499740afed3c7fe9bfe23f132cdb94f9ca139c2c",
+    "optimizedAt": "2026-07-10T21:16:21.355Z",
+    "originalBytes": 2100646,
+    "finalBytes": 731571,
+    "resized": false
+  },
+  "public/spaces/concourse-level/gallery-5.jpg": {
+    "hash": "09e58eadb6591c5d09977511e21bf98f988b3836",
+    "optimizedAt": "2026-07-10T21:16:21.626Z",
+    "originalBytes": 1698356,
+    "finalBytes": 564604,
+    "resized": false
+  },
+  "public/spaces/concourse-level/gallery-6.jpg": {
+    "hash": "b93b885abb5986ccfec5143a283149f7cd6d407e",
+    "optimizedAt": "2026-07-10T21:16:22.000Z",
+    "originalBytes": 2399154,
+    "finalBytes": 871286,
+    "resized": false
+  },
+  "public/spaces/concourse-level/hero-1.jpg": {
+    "hash": "7325fc2f28b8285c74ccf7a49ec4559d79c9cf81",
+    "optimizedAt": "2026-07-10T21:16:22.293Z",
+    "originalBytes": 1829281,
+    "finalBytes": 602124,
+    "resized": false
+  },
+  "public/spaces/concourse-level/hero-2.jpg": {
+    "hash": "ee7fb5f72d5e8c9e9f5ffe85936157a1955eaa95",
+    "optimizedAt": "2026-07-10T21:16:22.635Z",
+    "originalBytes": 2086226,
+    "finalBytes": 753792,
+    "resized": false
+  },
+  "public/spaces/concourse-level/hero-3.jpg": {
+    "hash": "26f096ab9ef08f6d1112eacc2285c113bb566917",
+    "optimizedAt": "2026-07-10T21:16:22.955Z",
+    "originalBytes": 2191550,
+    "finalBytes": 723591,
+    "resized": false
+  },
+  "public/spaces/grand-mezzanine/gallery-2.jpg": {
+    "hash": "30e45b541c65386218684c0d0f65b8e23f64c012",
+    "optimizedAt": "2026-07-10T21:16:23.276Z",
+    "originalBytes": 902926,
+    "finalBytes": 770210,
+    "resized": false
+  },
+  "public/spaces/grand-mezzanine/gallery-5.jpg": {
+    "hash": "3da1711b62f30d95c2764b7a7e6fa8f548be87e9",
+    "optimizedAt": "2026-07-10T21:16:23.615Z",
+    "originalBytes": 1116825,
+    "finalBytes": 813211,
+    "resized": false
+  },
+  "public/spaces/grand-mezzanine/hero-2.jpg": {
+    "hash": "1aef10e983e54caddc76e4f49762c3351384418b",
+    "optimizedAt": "2026-07-10T21:16:23.960Z",
+    "originalBytes": 1030755,
+    "finalBytes": 809942,
+    "resized": false
+  },
+  "public/spaces/hamilton-room/gallery-4.jpg": {
+    "hash": "a69f9058f374a388e078ebdfc172aa2c45eb0870",
+    "optimizedAt": "2026-07-10T21:16:24.266Z",
+    "originalBytes": 979112,
+    "finalBytes": 714626,
+    "resized": false
+  },
+  "public/spaces/hamilton-room/gallery-5.jpg": {
+    "hash": "1c6c44075bba0402df4c086cc4717965b936b43c",
+    "optimizedAt": "2026-07-10T21:16:24.741Z",
+    "originalBytes": 1407358,
+    "finalBytes": 1090327,
+    "resized": false
+  },
+  "public/spaces/hamilton-room/gallery-6.jpg": {
+    "hash": "8c7ec0d7e1a4744435b033388b9ceace13803c5b",
+    "optimizedAt": "2026-07-10T21:16:25.091Z",
+    "originalBytes": 969505,
+    "finalBytes": 738020,
+    "resized": false
   }
 }
