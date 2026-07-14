@@ -4,7 +4,10 @@ import { useState } from 'react';
 
 type DocumentType =
   // | 'floor_plan'
-  'client_guidelines' | 'credit_card_auth' | 'av_production';
+  | 'client_guidelines'
+  | 'credit_card_auth'
+  | 'av_production'
+  | 'rules_regulations';
 
 interface FormData {
   clientFullName: string;
@@ -184,6 +187,9 @@ export default function DocumentRequestPage() {
                     <option value="">Document type</option>
                     <option value="client_guidelines">
                       Client Guidelines & Authorization Agreement
+                    </option>
+                    <option value="rules_regulations">
+                      Rules & Regulations
                     </option>
                     {/* <option value="floor_plan">Floor Plan Agreement</option> */}
                     <option value="av_production">AV/Production Form</option>

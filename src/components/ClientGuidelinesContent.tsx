@@ -46,6 +46,7 @@ export default function ClientGuidelinesContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showErrors, setShowErrors] = useState(false);
 
   const signatureSectionRef = useRef<HTMLDivElement>(null);
 
@@ -163,8 +164,29 @@ export default function ClientGuidelinesContent() {
     }
   };
 
+  const scrollToFirstIncomplete = () => {
+    const targetId = firstUninitiatedSectionId
+      ? `section-${firstUninitiatedSectionId}`
+      : !typedName.trim()
+        ? 'field-typedName'
+        : !signature
+          ? 'field-signature'
+          : !signedDate
+            ? 'field-date'
+            : null;
+    if (targetId) {
+      document
+        .getElementById(targetId)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   const handleSubmit = async () => {
-    if (!isReadyToSubmit) return;
+    if (!isReadyToSubmit) {
+      setShowErrors(true);
+      scrollToFirstIncomplete();
+      return;
+    }
 
     setIsSubmitting(true);
     setError(null);
@@ -318,10 +340,18 @@ export default function ClientGuidelinesContent() {
           </div>
         </div>
 
-        {clientGuidelinesContent.map((section: Section, index: number) => (
+        {clientGuidelinesContent.map((section: Section, index: number) => {
+          const flagIncomplete =
+            showErrors && section.requiresInitials && !initials[section.id];
+          return (
           <div
             key={section.id}
-            className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:p-8"
+            id={`section-${section.id}`}
+            className={`mb-6 rounded-lg border bg-white p-6 shadow-sm md:p-8 ${
+              flagIncomplete
+                ? 'border-red-300 ring-2 ring-red-200'
+                : 'border-gray-200'
+            }`}
           >
             <h2 className="mb-4 flex items-start gap-3 text-xl font-semibold text-gray-900">
               <span className="bg-primary/10 text-primary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold">
@@ -339,8 +369,12 @@ export default function ClientGuidelinesContent() {
             </div>
 
             {section.requiresInitials && (
-              <div className="mt-6 border-t border-gray-100 pt-4 pl-11">
-                <div className="flex items-center gap-4">
+              <div
+                className={`mt-6 border-t pt-4 pl-11 ${
+                  flagIncomplete ? 'border-red-200' : 'border-gray-100'
+                }`}
+              >
+                <div className="flex flex-wrap items-center gap-4">
                   <span className="text-sm text-gray-500">
                     Please initial to acknowledge:
                   </span>
@@ -356,11 +390,18 @@ export default function ClientGuidelinesContent() {
                     }
                     confirmedInitials={confirmedInitials || undefined}
                   />
+                  {flagIncomplete && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-600">
+                      <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                      Initials required
+                    </span>
+                  )}
                 </div>
               </div>
             )}
           </div>
-        ))}
+          );
+        })}
 
         <div
           ref={signatureSectionRef}
@@ -377,41 +418,66 @@ export default function ClientGuidelinesContent() {
           </p>
 
           <div className="space-y-6">
-            <div>
+            <div id="field-typedName">
               <label className="mb-2 block text-sm font-medium text-gray-700">
-                Client Name (Type your full legal name)
+                Client Name (Type your full legal name){' '}
+                <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={typedName}
                 onChange={(e) => setTypedName(e.target.value)}
                 placeholder="Enter your full name"
-                className="focus:ring-primary w-full rounded-lg border border-gray-300 px-4 py-3 text-black focus:border-transparent focus:ring-2 focus:outline-none"
+                className={`focus:ring-primary w-full rounded-lg border px-4 py-3 text-black focus:border-transparent focus:ring-2 focus:outline-none ${
+                  showErrors && !typedName.trim()
+                    ? 'border-red-400 bg-red-50'
+                    : 'border-gray-300'
+                }`}
               />
+              {showErrors && !typedName.trim() && (
+                <p className="mt-1 text-xs font-medium text-red-600">
+                  Please type your full legal name.
+                </p>
+              )}
             </div>
 
-            <div>
+            <div id="field-signature">
               <label className="mb-2 block text-sm font-medium text-gray-700">
-                Signature
+                Signature <span className="text-red-500">*</span>
               </label>
-              <SignaturePad
-                onSignatureChange={setSignature}
-                width={500}
-                height={200}
-              />
+              <div
+                className={
+                  showErrors && !signature
+                    ? 'rounded-lg ring-2 ring-red-300'
+                    : ''
+                }
+              >
+                <SignaturePad
+                  onSignatureChange={setSignature}
+                  width={500}
+                  height={200}
+                />
+              </div>
+              {showErrors && !signature && (
+                <p className="mt-1 text-xs font-medium text-red-600">
+                  Please draw your signature.
+                </p>
+              )}
             </div>
 
             {signature && (
-              <div>
+              <div id="field-date">
                 <label className="mb-2 block text-sm font-medium text-gray-700">
-                  Date
+                  Date <span className="text-red-500">*</span>
                 </label>
                 <div
                   onClick={handleDateClick}
                   className={`w-full cursor-pointer rounded-lg border px-4 py-3 transition-colors ${
                     signedDate
                       ? 'border-gray-300 bg-gray-50 text-gray-900'
-                      : 'hover:border-primary hover:text-primary border-dashed border-gray-300 bg-white text-gray-400'
+                      : showErrors
+                        ? 'border-red-400 bg-red-50 text-red-600'
+                        : 'hover:border-primary hover:text-primary border-dashed border-gray-300 bg-white text-gray-400'
                   }`}
                 >
                   {signedDate || "Click to add today's date and timestamp"}
@@ -428,10 +494,14 @@ export default function ClientGuidelinesContent() {
 
           <button
             onClick={handleSubmit}
-            disabled={!isReadyToSubmit || isSubmitting}
+            disabled={isSubmitting}
             className="bg-primary hover:bg-primary/90 focus:ring-primary mt-6 w-full rounded-lg px-4 py-3 font-medium text-white transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {isSubmitting ? 'Submitting...' : 'Submit Authorization'}
+            {isSubmitting
+              ? 'Submitting...'
+              : isReadyToSubmit
+                ? 'Submit Authorization'
+                : 'Review Required Fields'}
           </button>
 
           {isSubmitting && (
@@ -444,25 +514,34 @@ export default function ClientGuidelinesContent() {
           )}
 
           {!isReadyToSubmit && !isSubmitting && (
-            <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
-              <p className="text-sm text-amber-700">
-                Please complete all sections above to submit:
+            <div className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4">
+              <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-red-700">
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"
+                  />
+                </svg>
+                Complete these to submit:
+              </p>
+              <ul className="space-y-1 text-sm text-red-600">
                 {initialsCompleted < totalInitialsRequired && (
-                  <span className="mt-1 block">
+                  <li>
                     • Initial all {totalInitialsRequired} sections (
                     {totalInitialsRequired - initialsCompleted} remaining)
-                  </span>
+                  </li>
                 )}
-                {!typedName.trim() && (
-                  <span className="mt-1 block">• Type your full name</span>
-                )}
-                {!signature && (
-                  <span className="mt-1 block">• Add your signature</span>
-                )}
-                {!signedDate && signature && (
-                  <span className="mt-1 block">• Click to add the date</span>
-                )}
-              </p>
+                {!typedName.trim() && <li>• Type your full name</li>}
+                {!signature && <li>• Add your signature</li>}
+                {!signedDate && signature && <li>• Click to add the date</li>}
+              </ul>
             </div>
           )}
         </div>

@@ -45,6 +45,8 @@ function SignContent() {
 
         if (data.type === 'client_guidelines') {
           router.replace(`/sign/client-guidelines?token=${token}`);
+        } else if (data.type === 'rules_regulations') {
+          router.replace(`/sign/rules-regulations?token=${token}`);
         } else if (data.type === 'floor_plan') {
           router.replace(`/sign/floor-plan?token=${token}`);
         } else if (data.type === 'credit_card_auth') {

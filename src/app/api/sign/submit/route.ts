@@ -4,6 +4,7 @@ import {
   generateSignedPDF,
   generateAVProductionPDF,
   generateCreditCardAuthPDF,
+  generateRulesRegulationsPDF,
 } from '@/lib/helper';
 
 interface N8NWebhookPayload {
@@ -42,6 +43,9 @@ export async function POST(request: NextRequest) {
     switch (body.documentType) {
       case 'client_guidelines':
         pdfBase64 = await generateSignedPDF(body);
+        break;
+      case 'rules_regulations':
+        pdfBase64 = await generateRulesRegulationsPDF(body);
         break;
       case 'av_production':
         if (!body.formData) {

@@ -3,10 +3,71 @@ import jsPDF from 'jspdf';
 import {
   clientGuidelinesContent,
   documentTitle,
+  type Section,
 } from './client-guidelines-content';
-import { PDFDocument } from 'pdf-lib';
+import {
+  rulesRegulationsContent,
+  rulesRegulationsDocumentTitle,
+} from './rules-regulations-content';
 
-function createPDFHelpers(doc: jsPDF, data: SubmitRequestBody) {
+// ---------------------------------------------------------------------------
+// Shared branding — logo header used across ALL signed PDFs.
+// The logo is rendered from public/logo/48-wall-logo.png (generated from the
+// brand SVG). If it can't be loaded, we fall back to the "48 WALL STREET"
+// wordmark so a PDF is always produced.
+// ---------------------------------------------------------------------------
+const LOGO_ASPECT = 600 / 281; // width / height of the rendered logo PNG
+let logoDataUrlCache: string | null = null;
+
+async function getLogoDataUrl(): Promise<string | null> {
+  if (logoDataUrlCache) return logoDataUrlCache;
+  try {
+    const fs = await import('fs/promises');
+    const path = await import('path');
+    const buf = await fs.readFile(
+      path.join(process.cwd(), 'public', 'logo', '48-wall-logo.png')
+    );
+    logoDataUrlCache = `data:image/png;base64,${buf.toString('base64')}`;
+    return logoDataUrlCache;
+  } catch {
+    return null;
+  }
+}
+
+function drawHeaderLogo(
+  doc: jsPDF,
+  logoDataUrl: string | null,
+  margin: number,
+  headerHeight: number
+) {
+  if (!logoDataUrl) {
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(30, 30, 30);
+    doc.text('48 WALL STREET', margin, 12);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text('Event Venue', margin, 17);
+    return;
+  }
+  const logoH = 11;
+  const logoW = logoH * LOGO_ASPECT;
+  doc.addImage(
+    logoDataUrl,
+    'PNG',
+    margin,
+    (headerHeight - logoH) / 2,
+    logoW,
+    logoH
+  );
+}
+
+function createPDFHelpers(
+  doc: jsPDF,
+  data: SubmitRequestBody,
+  logoDataUrl: string | null = null
+) {
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 15;
@@ -19,15 +80,7 @@ function createPDFHelpers(doc: jsPDF, data: SubmitRequestBody) {
     doc.setFillColor(250, 250, 250);
     doc.rect(0, 0, pageWidth, headerHeight, 'F');
 
-    doc.setFontSize(12);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(30, 30, 30);
-    doc.text('48 WALL STREET', margin, 12);
-
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(100, 100, 100);
-    doc.text('Event Venue', margin, 17);
+    drawHeaderLogo(doc, logoDataUrl, margin, headerHeight);
 
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
@@ -284,13 +337,17 @@ export function formatDateTime(isoString: string): string {
 }
 
 export async function generateSignedPDF(
-  data: SubmitRequestBody
+  data: SubmitRequestBody,
+  content: Section[] = clientGuidelinesContent,
+  title: string = documentTitle
 ): Promise<string> {
   const doc = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
     format: 'a4',
   });
+
+  const logoDataUrl = await getLogoDataUrl();
 
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
@@ -306,17 +363,10 @@ export async function generateSignedPDF(
     doc.setFillColor(250, 250, 250);
     doc.rect(0, 0, pageWidth, headerHeight, 'F');
 
-    doc.setFontSize(12);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(30, 30, 30);
-    doc.text('48 WALL STREET', margin, 12);
+    drawHeaderLogo(doc, logoDataUrl, margin, headerHeight);
 
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
-    doc.setTextColor(100, 100, 100);
-    doc.text('Event Venue', margin, 17);
-
-    doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     const rightX = pageWidth - margin;
     doc.text(data.clientName, rightX, 10, { align: 'right' });
@@ -358,11 +408,11 @@ export async function generateSignedPDF(
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(30, 30, 30);
 
-  const titleLines = doc.splitTextToSize(documentTitle, contentWidth);
+  const titleLines = doc.splitTextToSize(title, contentWidth);
   doc.text(titleLines, pageWidth / 2, yPos, { align: 'center' });
   yPos += titleLines.length * 7 + 10;
 
-  for (const section of clientGuidelinesContent) {
+  for (const section of content) {
     checkPageBreak(30);
 
     doc.setFontSize(11);
@@ -615,7 +665,8 @@ export async function generateAVProductionPDF(
     format: 'a4',
   });
 
-  const helpers = createPDFHelpers(doc, data);
+  const logoDataUrl = await getLogoDataUrl();
+  const helpers = createPDFHelpers(doc, data, logoDataUrl);
   const {
     margin,
     contentWidth,
@@ -1027,7 +1078,8 @@ export async function generateCreditCardAuthPDF(
     format: 'a4',
   });
 
-  const helpers = createPDFHelpers(doc, data);
+  const logoDataUrl = await getLogoDataUrl();
+  const helpers = createPDFHelpers(doc, data, logoDataUrl);
   const {
     margin,
     contentWidth,
@@ -1372,4 +1424,19 @@ export async function generateCreditCardAuthPDF(
   addCertificatePage();
 
   return doc.output('datauristring');
+}
+
+// ---------------------------------------------------------------------------
+// Rules & Regulations — rendered with the shared signed-PDF renderer so it
+// gets the same branded header/footer, per-section initials, signature block,
+// and certificate page as every other signed document.
+// ---------------------------------------------------------------------------
+export async function generateRulesRegulationsPDF(
+  data: SubmitRequestBody
+): Promise<string> {
+  return generateSignedPDF(
+    data,
+    rulesRegulationsContent,
+    rulesRegulationsDocumentTitle
+  );
 }
