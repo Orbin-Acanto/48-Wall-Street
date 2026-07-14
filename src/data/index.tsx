@@ -2579,40 +2579,10 @@ export const filmtvData: EventShowcaseProps = {
   ],
 };
 
-export const brochurePages = [
-  { id: 1, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt.jpg' },
-  { id: 2, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt2.jpg' },
-  { id: 3, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt3.jpg' },
-  { id: 4, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt4.jpg' },
-  { id: 5, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt5.jpg' },
-  { id: 6, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt6.jpg' },
-  { id: 7, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt7.jpg' },
-  { id: 8, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt8.jpg' },
-  { id: 9, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt9.jpg' },
-  { id: 10, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt10.jpg' },
-  { id: 11, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt11.jpg' },
-  { id: 12, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt12.jpg' },
-  { id: 13, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt13.jpg' },
-  { id: 14, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt14.jpg' },
-  { id: 15, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt15.jpg' },
-  { id: 16, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt16.jpg' },
-  { id: 17, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt17.jpg' },
-  { id: 18, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt18.jpg' },
-  { id: 19, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt19.jpg' },
-  { id: 20, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt20.jpg' },
-  { id: 21, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt21.jpg' },
-  { id: 22, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt22.jpg' },
-  { id: 23, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt23.jpg' },
-  { id: 24, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt24.jpg' },
-  { id: 25, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt25.jpg' },
-  { id: 26, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt26.jpg' },
-  { id: 27, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt27.jpg' },
-  { id: 28, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt28.jpg' },
-  { id: 29, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt29.jpg' },
-  { id: 30, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt30.jpg' },
-  { id: 31, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt31.jpg' },
-  { id: 32, image: '/brochures/v1/48Wall.Brochure.9x12.v6-alt32.jpg' },
-];
+export const brochurePages = Array.from({ length: 32 }, (_, i) => ({
+  id: i + 1,
+  image: `/brochures/general/page-${String(i + 1).padStart(2, '0')}.jpg`,
+}));
 
 export const menuPages = [
   { id: 1, image: '/menu/catering_Page_01.jpg' },

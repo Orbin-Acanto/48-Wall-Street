@@ -12,7 +12,7 @@ const levels = [
     description:
       "This space has retained much of its original 1920's architectural detail, from the 30-foot ceilings to its beautiful Palladian windows. The Banking Hall can accommodate a variety of events.",
     href: '/spaces/grand-mezzanine',
-    image: '/venue/1.jpg',
+    image: '/venue/Grand Mezzanine Hall.jpg',
     cta: 'Explore Space',
   },
   {
@@ -23,7 +23,7 @@ const levels = [
     description:
       'Situated on the lower level, the concourse is designed to hold meetings, breakouts, classes, and events.',
     href: '/spaces/concourse-level',
-    image: '/venue/2.jpg',
+    image: '/venue/Hero Concourse Level 2.png',
     cta: 'Explore Space',
   },
 ];
@@ -53,7 +53,7 @@ export default function VenueLevels() {
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-opacity duration-500 group-hover:opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-black/0 transition-opacity duration-500 group-hover:opacity-90" />
 
               <div className="absolute top-6 left-6">
                 <span className="font-secondary border border-white/40 px-3 py-1 text-[10px] tracking-[0.25em] text-white/70 uppercase">

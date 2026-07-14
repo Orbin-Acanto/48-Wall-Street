@@ -51,7 +51,7 @@ export default function DigitalBrochurePage() {
                 celebrations.
               </motion.p>
 
-              <Link href={'/brochures/48Brochure-2025.v7.pdf'} download>
+              <Link href={'/brochures/general/48-wall-street-brochure.pdf'} download>
                 <CustomButton variant="primary">Download Brochure</CustomButton>
               </Link>
             </motion.div>
@@ -64,7 +64,7 @@ export default function DigitalBrochurePage() {
           pages={brochurePages}
           title="48 Wall Street Brochure"
           subtitle="Historic Venue • Modern Events • Unforgettable Moments"
-          downloadUrl="/brochures/48Brochure-2025.v7.pdf"
+          downloadUrl="/brochures/general/48-wall-street-brochure.pdf"
         />
       </section>
 
