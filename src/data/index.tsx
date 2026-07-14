@@ -193,11 +193,11 @@ export const navItems: NavItem[] = [
     name: 'Spaces',
     href: '/spaces/banking-hall',
     dropdown: [
-      { name: 'Banking Hall', href: '/spaces/banking-hall' },
       { name: 'Grand Mezzanine', href: '/spaces/grand-mezzanine' },
+      { name: 'Banking Hall', href: '/spaces/banking-hall' },
       { name: 'The Alexander Hamilton Office', href: '/spaces/hamilton-room' },
-      { name: '5th Floor', href: '/spaces/5th-floor' },
-      { name: 'Concourse Level', href: '/spaces/concourse-level' },
+      { name: 'Concourse Vault Level', href: '/spaces/concourse-level' },
+      { name: 'Alexander Hamilton Ballroom', href: '/spaces/5th-floor' },
     ],
   },
   {
@@ -243,12 +243,12 @@ export const navItems: NavItem[] = [
     href: '/vendors',
     dropdown: [
       {
-        name: "Tardi's Catering",
-        href: '/vendors#tardis-catering',
-      },
-      {
         name: 'FiDi Hospitality',
         href: '/vendors#fidi-hospitality',
+      },
+      {
+        name: "Tardi's Catering",
+        href: '/vendors#tardis-catering',
       },
       {
         name: 'MME Worldwide',
@@ -3481,9 +3481,10 @@ export const sidebarSocialLinks = [
 export const vendorsData = {
   hero: {
     images: [
-      '/vendors/hero-1.jpg',
-      '/vendors/hero-2.jpg',
-      '/vendors/hero-3.jpg',
+      '/vendors/hero-1.png',
+      '/vendors/hero-2.png',
+      '/vendors/hero-3.png',
+      '/vendors/hero-4.png',
     ],
     eyebrow: '48 Wall Street',
     title: 'Exclusive Event Partners',
@@ -3493,27 +3494,6 @@ export const vendorsData = {
     'From intimate executive gatherings to international conferences, luxury weddings, fashion shows, and gala celebrations, our exclusive partners ensure every detail is executed with precision, creativity, and uncompromising excellence.',
   ],
   vendors: [
-    {
-      id: 'tardis-catering',
-      name: "Tardi's Catering",
-      tagline: 'Luxury Catering & Culinary Experiences',
-      logo: '/logo/tardis-catering.png',
-      href: 'https://www.tardiscatering.com/',
-      description: [
-        "For more than 30 years, Tardi's Catering has been creating exceptional culinary experiences throughout New York. Renowned for impeccable cuisine and white-glove hospitality, the team specializes in executive meetings, luxury weddings, corporate galas, fundraising events, and private celebrations.",
-        "From elegant plated dinners and chef-curated tasting menus to lavish cocktail receptions and custom culinary concepts, every menu is thoughtfully crafted using the finest seasonal ingredients and tailored to each client's vision.",
-      ],
-      servicesLabel: 'Signature Services',
-      services: [
-        'Luxury Catering',
-        'Corporate Dining',
-        'Weddings & Social Celebrations',
-        'Cocktail Receptions',
-        'Chef Action Stations',
-        'Premium Beverage Programs',
-        'White-Glove Hospitality',
-      ],
-    },
     {
       id: 'fidi-hospitality',
       name: 'FiDi Hospitality',
@@ -3533,6 +3513,27 @@ export const vendorsData = {
         'Concierge Services',
         'Staffing Solutions',
         'VIP & Executive Hospitality',
+      ],
+    },
+    {
+      id: 'tardis-catering',
+      name: "Tardi's Catering",
+      tagline: 'Luxury Catering & Culinary Experiences',
+      logo: '/logo/tardis-catering.png',
+      href: 'https://www.tardiscatering.com/',
+      description: [
+        "For more than 30 years, Tardi's Catering has been creating exceptional culinary experiences throughout New York. Renowned for impeccable cuisine and white-glove hospitality, the team specializes in executive meetings, luxury weddings, corporate galas, fundraising events, and private celebrations.",
+        "From elegant plated dinners and chef-curated tasting menus to lavish cocktail receptions and custom culinary concepts, every menu is thoughtfully crafted using the finest seasonal ingredients and tailored to each client's vision.",
+      ],
+      servicesLabel: 'Signature Services',
+      services: [
+        'Luxury Catering',
+        'Corporate Dining',
+        'Weddings & Social Celebrations',
+        'Cocktail Receptions',
+        'Chef Action Stations',
+        'Premium Beverage Programs',
+        'White-Glove Hospitality',
       ],
     },
     {

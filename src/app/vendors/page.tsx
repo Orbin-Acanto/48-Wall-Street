@@ -43,7 +43,7 @@ export default function VendorsPage() {
   return (
     <div className="bg-whitesmoke min-h-screen">
       {/* HERO */}
-      <section className="relative mt-16 flex h-[70vh] items-center overflow-hidden sm:mt-6">
+      <section className="relative mt-16 flex h-screen items-center overflow-hidden sm:mt-6">
         {hero.images.map((image, i) => (
           <motion.div
             key={i}
@@ -60,7 +60,7 @@ export default function VendorsPage() {
             }}
           />
         ))}
-        <div className="from-dark-black/80 via-dark-black/75 to-dark-black/90 absolute inset-0 bg-gradient-to-b" />
+        <div className="from-dark-black/40 via-dark-black/50 to-dark-black/40 absolute inset-0 bg-gradient-to-b" />
 
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <motion.div

@@ -13,11 +13,11 @@ export default function DigitalBrochurePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/misc/hv.jpg')",
+            backgroundImage: "url('/misc/digital-brochure-hero.jpg')",
           }}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/30" />
 
         <div className="relative flex h-full items-center justify-center">
           <div className="container mx-auto max-w-4xl px-4 text-center">
@@ -42,6 +42,7 @@ export default function DigitalBrochurePage() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="tex-lead font-secondary mb-8 text-center"
+                style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.7)' }}
               >
                 Take a closer look at 48 Wall Street&apos;s stunning 1920s
                 architecture and versatile event spaces. Our digital brochure
@@ -51,7 +52,10 @@ export default function DigitalBrochurePage() {
                 celebrations.
               </motion.p>
 
-              <Link href={'/brochures/general/48-wall-street-brochure.pdf'} download>
+              <Link
+                href={'/brochures/general/48-wall-street-brochure.pdf'}
+                download
+              >
                 <CustomButton variant="primary">Download Brochure</CustomButton>
               </Link>
             </motion.div>

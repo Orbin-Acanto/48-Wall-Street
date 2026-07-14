@@ -2322,5 +2322,33 @@
     "originalBytes": 8020399,
     "finalBytes": 2807377,
     "resized": false
+  },
+  "public/misc/digital-brochure-hero.jpg": {
+    "hash": "3ea342c496f2cff69ded51c5cd00edbf6d00b24b",
+    "optimizedAt": "2026-07-14T20:59:03.879Z",
+    "originalBytes": 2983250,
+    "finalBytes": 1704637,
+    "resized": true
+  },
+  "public/vendors/hero-1.png": {
+    "hash": "c3c0891ba6355936566649ba6df8b38626da0ea7",
+    "optimizedAt": "2026-07-14T20:59:08.676Z",
+    "originalBytes": 10671278,
+    "finalBytes": 2383522,
+    "resized": true
+  },
+  "public/vendors/hero-3.png": {
+    "hash": "44b2cd261760bb5e116a39e7554ed42a8daf1584",
+    "optimizedAt": "2026-07-14T20:59:11.274Z",
+    "originalBytes": 5074916,
+    "finalBytes": 1502467,
+    "resized": false
+  },
+  "public/vendors/hero-4.png": {
+    "hash": "e3d24ed9ccdf5d90aced0d40778c157b5ac17d82",
+    "optimizedAt": "2026-07-14T20:59:17.591Z",
+    "originalBytes": 12195255,
+    "finalBytes": 2099359,
+    "resized": true
   }
 }
