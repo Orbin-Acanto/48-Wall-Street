@@ -46,7 +46,13 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
   onOpenEventDetails,
   selectedFloor,
   onFloorChange,
-  floors = ['ground', 'concourse'] as FloorKey[],
+  floors = [
+    'banking-hall',
+    'grand-mezzanine',
+    'upper-mezzanine',
+    'hamilton-office',
+    'concourse-vault',
+  ] as FloorKey[],
 }) => {
   return (
     <div className="flex h-16 items-center gap-2 border-b border-gray-200 bg-white px-4">

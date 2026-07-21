@@ -66,10 +66,33 @@ const findLibraryItem = (id: string): LibraryItemLike | undefined =>
 
 export const FLOOR_UNDERLAYS: Record<
   FloorKey,
-  { label: string; svg?: string; href?: string }
+  { label: string; svg?: string; href?: string; scale: number }
 > = {
-  ground: { label: 'Ground', href: '/floor_planner/plan/ground.svg' },
-  concourse: { label: 'Concourse', href: '/floor_planner/plan/concourse.svg' },
+  'banking-hall': {
+    label: 'Banking Hall',
+    href: '/floor-plans/banking-hall.svg',
+    scale: 2.14,
+  },
+  'grand-mezzanine': {
+    label: 'Grand Mezzanine',
+    href: '/floor-plans/grand-mezzanine.svg',
+    scale: 2.25,
+  },
+  'upper-mezzanine': {
+    label: 'Upper Mezzanine',
+    href: '/floor-plans/upper-mezzanine.svg',
+    scale: 2.955,
+  },
+  'hamilton-office': {
+    label: 'Hamilton Office',
+    href: '/floor-plans/hamilton-office.svg',
+    scale: 2.14,
+  },
+  'concourse-vault': {
+    label: 'Concourse Vault',
+    href: '/floor-plans/concourse-vault.svg',
+    scale: 2.27,
+  },
 };
 
 export const FloorPlanEditor: React.FC = () => {
@@ -132,12 +155,12 @@ export const FloorPlanEditor: React.FC = () => {
   const pasteBumpRef = useRef(0);
 
   // ---Underlay UI state ---
-  const [selectedFloor, setSelectedFloor] = useState<FloorKey>('ground');
-  const underlayScale: number = selectedFloor === 'ground' ? 2.955 : 2.27;
+  const [selectedFloor, setSelectedFloor] =
+    useState<FloorKey>('grand-mezzanine');
+  const underlayDef = FLOOR_UNDERLAYS[selectedFloor];
+  const underlayScale: number = underlayDef.scale;
   const underlayOpacity: number = 1;
   const underlayOffset: { x: number; y: number } = { x: 40, y: 40 };
-
-  const underlayDef = FLOOR_UNDERLAYS[selectedFloor];
 
   const lastMouseCanvasPosRef = useRef<Point | null>(null);
 

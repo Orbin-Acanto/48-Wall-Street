@@ -22,6 +22,8 @@ export interface SpaceDetailsProps {
   images: string[];
   lightboxImages?: string[];
   videoUrl?: string;
+  /** Matterport 3D virtual walkthrough URL. Defaults to the venue-wide tour. */
+  matterportUrl?: string;
   floorPlanImage?: string;
   features?: string[];
   stats: SpaceStats;
@@ -42,7 +44,8 @@ export default function SpaceDetails({
   description,
   heroImages,
   images,
-  videoUrl,
+  // videoUrl — walkthrough video temporarily disabled (see commented section below)
+  matterportUrl = 'https://my.matterport.com/show/?m=rfoVgtLiFg5',
   lightboxImages,
   floorPlanImage,
   features = [],
@@ -118,12 +121,14 @@ export default function SpaceDetails({
         </div>
 
         <div className="absolute inset-x-0 bottom-0 px-8 pb-16 md:px-16">
-          <h1 className="font-primary text-5xl leading-none font-light tracking-wide text-white md:text-7xl">
+          <h1 className="font-primary text-5xl leading-none font-light tracking-wide whitespace-pre-line text-white md:text-7xl">
             {title}
           </h1>
-          <h1 className="font-primary text-5xl leading-none font-bold tracking-wide text-white uppercase md:text-7xl">
-            {subtitle}
-          </h1>
+          {subtitle && (
+            <p className="font-secondary mt-4 max-w-2xl text-base leading-snug font-light tracking-[0.12em] text-white/85 uppercase md:text-xl">
+              {subtitle}
+            </p>
+          )}
 
           <div className="mt-6 flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
@@ -293,6 +298,11 @@ export default function SpaceDetails({
         </section>
       )}
 
+      {/*
+        Walkthrough video section — temporarily disabled in favor of the 3D
+        virtual walkthrough below. Kept for later use; `videoUrl` prop is still
+        accepted so re-enabling only requires uncommenting this block.
+
       {videoUrl && (
         <section className="bg-whitesmoke px-6 py-16 md:px-12">
           <div className="mx-auto max-w-7xl">
@@ -308,6 +318,35 @@ export default function SpaceDetails({
                 src={videoUrl}
                 title={`${title} ${subtitle} virtual tour`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+      */}
+
+      {/* 3D Virtual Walkthrough */}
+      {matterportUrl && (
+        <section className="bg-whitesmoke px-6 py-16 md:px-12">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 text-center">
+              <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
+                Take a Tour
+              </p>
+              <h2 className="heading-hero">Virtual Walkthrough</h2>
+              <p className="font-secondary text-dark-black/70 mx-auto mt-3 max-w-2xl text-base leading-relaxed md:text-lg">
+                Explore the space in an immersive 3D tour. Click and drag to look
+                around, and move through the room at your own pace.
+              </p>
+            </div>
+
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-black shadow-2xl">
+              <iframe
+                src={matterportUrl}
+                title={`${title} ${subtitle} 3D virtual walkthrough`}
+                allow="xr-spatial-tracking; fullscreen"
                 allowFullScreen
                 className="absolute inset-0 h-full w-full border-0"
               />
@@ -348,12 +387,13 @@ export default function SpaceDetails({
                   <p className="font-secondary text-primary mb-6 text-[10px] tracking-[0.3em] uppercase">
                     At a Glance Total Capacity & Size
                   </p>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="font-primary text-dark-black text-base font-light">
-                        {stats.capacity} — {stats.sqft}
-                      </p>
-                    </div>
+                  <div className="space-y-2">
+                    <p className="font-primary text-dark-black text-base font-light">
+                      {stats.capacity}
+                    </p>
+                    <p className="font-primary text-dark-black text-base font-light">
+                      {stats.sqft}
+                    </p>
                   </div>
                 </div>
               </div>

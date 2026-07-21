@@ -40,8 +40,8 @@ export default function HamiltonRoomPage() {
   return (
     <SpaceDetails
       levelLabel="03"
-      title="The Alexander Hamilton"
-      subtitle="Office"
+      title={'The Alexander Hamilton\nOffice'}
+      subtitle=""
       description={
         <>
           <p className="font-primary text-primary text-lg italic md:text-xl">
@@ -115,7 +115,7 @@ export default function HamiltonRoomPage() {
         // },
       ]}
       videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
-      floorPlanImage="/floor_planner/plan/hamilton-office.svg"
+      floorPlanImage="/floor-plans/hamilton-office.svg"
       features={[
         'Soaring ceilings & handcrafted millwork',
         'Ornate gilded columns',
@@ -127,8 +127,8 @@ export default function HamiltonRoomPage() {
         'Exclusive client engagements',
       ]}
       stats={{
-        capacity: 'Contact for details',
-        sqft: 'Contact for details',
+        capacity: 'Intimate gatherings | Executive meetings & private dining',
+        sqft: 'Private executive suite',
       }}
       enquireHref="/contact"
     />

@@ -223,7 +223,12 @@ export interface SelectionBox {
 
 export type SidebarType = 'furniture' | 'av' | 'catering' | 'decor' | null;
 export type ModalType = 'event' | 'wall' | 'export' | null;
-export type FloorKey = 'ground' | 'concourse';
+export type FloorKey =
+  | 'banking-hall'
+  | 'grand-mezzanine'
+  | 'upper-mezzanine'
+  | 'hamilton-office'
+  | 'concourse-vault';
 
 export type UnderlayProps = {
   svg?: string;

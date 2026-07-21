@@ -40,8 +40,8 @@ export default function GrandMezzaninePage() {
   return (
     <SpaceDetails
       levelLabel="01"
-      title="Grand Mezzanine"
-      subtitle="Banking Hall"
+      title={'Grand Mezzanine\nBanking Hall'}
+      subtitle=""
       description="The Grand Mezzanine Banking Hall is the heart of 48 Wall Street. At 9,000 square feet with 30-foot soaring ceilings, it makes an immediate impression that sets the tone for every event held here. Original 1920s architectural details have been preserved throughout, including the oversized crystal chandeliers, beautiful Palladian windows, and the grand dual marble staircase that greets guests at the entrance. The Banking Hall accommodates seated dinners for up to 350 guests and cocktail receptions for up to 500. For smaller gatherings, the floor plan divides comfortably to create a more intimate environment without losing the grandeur of the space. Whether you are hosting a corporate conference, a wedding reception, a charity gala, or a fashion show, this is a venue that gives your event genuine presence from the moment guests walk through the door."
       heroImages={[
         '/spaces/grand-mezzanine/hero-1.jpg',
@@ -57,7 +57,7 @@ export default function GrandMezzaninePage() {
         '/spaces/grand-mezzanine/gallery-6.jpg',
       ]}
       videoUrl="https://player.vimeo.com/video/1207393496?h=81afd92077"
-      floorPlanImage="/floor_planner/plan/grand-mezzanine.svg"
+      floorPlanImage="/floor-plans/grand-mezzanine.svg"
       features={[
         'Grand dual marble staircase',
         'Oversized Crystal chandeliers',

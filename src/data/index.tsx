@@ -194,6 +194,7 @@ export const navItems: NavItem[] = [
     href: '/spaces/banking-hall',
     dropdown: [
       { name: 'Grand Mezzanine', href: '/spaces/grand-mezzanine' },
+      { name: 'Upper Mezzanine', href: '/spaces/upper-mezzanine' },
       { name: 'Banking Hall', href: '/spaces/banking-hall' },
       { name: 'The Alexander Hamilton Office', href: '/spaces/hamilton-room' },
       { name: 'Concourse Vault Level', href: '/spaces/concourse-level' },
@@ -1570,9 +1571,9 @@ export const floors = [
   {
     id: 'banking',
     name: 'Banking Hall',
-    size: 'Contact for details',
+    size: 'Grand historic event floor',
     capacity: { max: 0, seated: 0, cocktail: 0 },
-    ceiling: 'Contact for details',
+    ceiling: 'Grand soaring ceilings',
     features: [
       'Original 1920s architecture',
       'Soaring ceilings',
@@ -1609,11 +1610,30 @@ export const floors = [
     model3DFurnished: '/floor-plans/f.glb',
   },
   {
+    id: 'upper',
+    name: 'Upper Mezzanine',
+    size: 'Elevated mezzanine event space',
+    capacity: { max: 0, seated: 0, cocktail: 0 },
+    ceiling: 'Open mezzanine ceilings',
+    features: [
+      'Elevated views over the Grand Banking Hall',
+      'Original 1920s architectural detail',
+      'Intimate receptions & VIP experiences',
+      'Cocktail hours & breakout gatherings',
+      'Refined, private atmosphere',
+      'Full-service catering & AV support',
+    ],
+    blueprint: '/floor-plans/upper-mezzanine.svg',
+    furnished: '/floor-plans/fgm.png',
+    model3DEmpty: '/floor-plans/e.glb',
+    model3DFurnished: '/floor-plans/f.glb',
+  },
+  {
     id: 'hamilton',
     name: 'Hamilton Office',
-    size: 'Contact for details',
+    size: 'Private executive suite',
     capacity: { max: 0, seated: 0, cocktail: 0 },
-    ceiling: 'Contact for details',
+    ceiling: 'Handcrafted period ceilings',
     features: [
       'Soaring ceilings & handcrafted millwork',
       'Ornate gilded columns',

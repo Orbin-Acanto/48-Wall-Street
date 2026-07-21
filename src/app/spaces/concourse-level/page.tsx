@@ -40,8 +40,8 @@ export default function ConcourseLevelPage() {
   return (
     <SpaceDetails
       levelLabel="02"
-      title="The CONCOURSE"
-      subtitle="VAULT LEVEL"
+      title={'The CONCOURSE\nVAULT LEVEL'}
+      subtitle=""
       description="The Concourse Level sits directly below the Grand Mezzanine Banking Hall and gives 48 Wall Street a versatility that most single-floor venues cannot match. At 3,000 square feet with 14-foot ceilings, it accommodates up to 200 guests for a seated event or reception and divides into six separate breakout rooms for concurrent sessions and workshops. For full-day conferences, the Concourse handles parallel programming while the Grand Mezzanine serves the main stage. For weddings and galas, it works as a pre-function cocktail space or a private dining room. The two levels connect via the grand marble staircase, creating a natural and elegant flow for guests moving between them."
       heroImages={[
         '/spaces/concourse-level/hero-1.jpg',
@@ -57,7 +57,7 @@ export default function ConcourseLevelPage() {
         '/spaces/concourse-level/gallery-6.jpg',
       ]}
       videoUrl="https://player.vimeo.com/video/192678532?h=c1ec68adce"
-      floorPlanImage="/floor_planner/plan/concourse-vault.svg"
+      floorPlanImage="/floor-plans/concourse-vault.svg"
       features={[
         'Divisible into 6 breakout rooms',
         'Flexible meeting configurations',

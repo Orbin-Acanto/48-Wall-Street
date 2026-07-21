@@ -40,8 +40,8 @@ export default function FifthFloorPage() {
   return (
     <SpaceDetails
       levelLabel="05"
-      title="The Alexander Hamilton"
-      subtitle="Ballroom"
+      title={'The Alexander Hamilton\nBallroom'}
+      subtitle=""
       description={
         <>
           <p className="font-primary text-dark-black text-xl font-light tracking-wide italic md:text-2xl">
@@ -110,7 +110,7 @@ export default function FifthFloorPage() {
         '/spaces/5th-floor/gallery-5.jpg',
       ]}
       stats={{
-        capacity: 'Contact for details',
+        capacity: 'Grand celebrations | Seated dinners & receptions',
         sqft: '14,444 sq ft',
       }}
       enquireHref="/contact"
