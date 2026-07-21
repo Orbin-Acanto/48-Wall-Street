@@ -1672,7 +1672,7 @@ export const floors = [
 ];
 
 // ---- Event brochures (flipbook) -------------------------------------------
-const generalBrochurePages = Array.from({ length: 32 }, (_, i) => ({
+const generalBrochurePages = Array.from({ length: 38 }, (_, i) => ({
   id: i + 1,
   image: `/brochures/general/page-${String(i + 1).padStart(2, '0')}.jpg`,
 }));
@@ -2533,7 +2533,7 @@ export const filmtvData: EventShowcaseProps = {
   ],
 };
 
-export const brochurePages = Array.from({ length: 32 }, (_, i) => ({
+export const brochurePages = Array.from({ length: 38 }, (_, i) => ({
   id: i + 1,
   image: `/brochures/general/page-${String(i + 1).padStart(2, '0')}.jpg`,
 }));
