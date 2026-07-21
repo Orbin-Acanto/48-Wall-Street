@@ -4695,5 +4695,12 @@
     "originalBytes": 2099359,
     "finalBytes": 1706917,
     "resized": true
+  },
+  "public/rentals/items/1920-theme-props.jpeg": {
+    "hash": "08f6f0ef363f89d17f3b3bfb04938ae278a670c4",
+    "optimizedAt": "2026-07-21T22:42:51.604Z",
+    "originalBytes": 2090802,
+    "finalBytes": 801868,
+    "resized": true
   }
 }

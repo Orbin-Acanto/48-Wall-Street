@@ -1534,6 +1534,26 @@ export const products: Product[] = [
     ],
     popular: false,
   },
+  {
+    id: 61,
+    name: '1920s Theme Props',
+    category: 'props',
+    theme: 'vintage',
+    price: 650,
+    priceRange: 'premium',
+    image: '/rentals/items/1920-theme-props.jpeg',
+    rating: 4.9,
+    reviews: 0,
+    description:
+      'A curated collection of Roaring Twenties themed props that channels 48 Wall Street’s 1920s heritage, perfect for Gatsby galas and vintage glamour receptions.',
+    features: [
+      'Authentic 1920s Art Deco styling',
+      'Curated period accents and décor',
+      'Evokes the venue’s 1927 heritage',
+      'Ideal for Gatsby and vintage themed events',
+    ],
+    popular: false,
+  },
 ];
 
 export const layouts = [
