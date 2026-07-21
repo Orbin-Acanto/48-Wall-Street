@@ -71,27 +71,27 @@ export const FLOOR_UNDERLAYS: Record<
   'banking-hall': {
     label: 'Banking Hall',
     href: '/floor-plans/banking-hall.svg',
-    scale: 2.14,
+    scale: 0.6,
   },
   'grand-mezzanine': {
     label: 'Grand Mezzanine',
     href: '/floor-plans/grand-mezzanine.svg',
-    scale: 2.25,
+    scale: 2.65,
   },
   'upper-mezzanine': {
     label: 'Upper Mezzanine',
     href: '/floor-plans/upper-mezzanine.svg',
-    scale: 2.955,
+    scale: 2.15,
   },
   'hamilton-office': {
     label: 'Hamilton Office',
     href: '/floor-plans/hamilton-office.svg',
-    scale: 2.14,
+    scale: 0.65,
   },
   'concourse-vault': {
     label: 'Concourse Vault',
     href: '/floor-plans/concourse-vault.svg',
-    scale: 2.27,
+    scale: 1.85,
   },
 };
 
