@@ -31,6 +31,7 @@ export interface BrochureConfig {
   downloadUrl: string;
   title?: string;
   subtitle?: string;
+  shareSlug?: string;
 }
 
 export interface EventShowcaseProps {
@@ -540,6 +541,7 @@ export default function EventDetails({
             title={brochure.title || 'View Our Brochure'}
             subtitle={brochure.subtitle}
             downloadUrl={brochure.downloadUrl}
+            shareSlug={brochure.shareSlug}
           />
         </section>
       )}

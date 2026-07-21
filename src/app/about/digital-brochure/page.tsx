@@ -69,6 +69,7 @@ export default function DigitalBrochurePage() {
           title="48 Wall Street Brochure"
           subtitle="Historic Venue • Modern Events • Unforgettable Moments"
           downloadUrl="/brochures/general/48-wall-street-brochure.pdf"
+          shareSlug="explore-our-venue"
         />
       </section>
 

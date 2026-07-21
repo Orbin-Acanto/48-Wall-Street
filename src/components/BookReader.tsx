@@ -16,6 +16,12 @@ interface BookReaderProps {
   downloadUrl?: string;
   className?: string;
   pageColor?: string;
+  /**
+   * When set, a Share button appears that copies a stable public link to this
+   * brochure ({origin}/b/{shareSlug}) — a clean navbar + brochure + footer page
+   * a client can be given. Omit for non-shareable content (menus, etc.).
+   */
+  shareSlug?: string;
 }
 
 interface PageProps {
@@ -67,13 +73,37 @@ export default function BookReader({
   downloadUrl,
   className = '',
   pageColor = 'text-white',
+  shareSlug,
 }: BookReaderProps) {
   const bookRef = useRef<FlipBookRef | null>(null);
   const fullscreenBookRef = useRef<FlipBookRef | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
   const totalPages = pages.length;
+
+  const handleShare = useCallback(async () => {
+    if (!shareSlug) return;
+    const origin =
+      typeof window !== 'undefined' ? window.location.origin : '';
+    const shareUrl = `${origin}/b/${shareSlug}`;
+
+    try {
+      // Prefer the native share sheet on mobile; fall back to clipboard copy.
+      if (navigator.share && isMobile) {
+        await navigator.share({ title, url: shareUrl });
+        return;
+      }
+      await navigator.clipboard.writeText(shareUrl);
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2000);
+    } catch {
+      // Clipboard blocked (e.g. insecure context) — surface the URL so the
+      // user can copy it manually rather than silently failing.
+      window.prompt('Copy this brochure link:', shareUrl);
+    }
+  }, [shareSlug, title, isMobile]);
 
   const nextPage = useCallback(() => {
     const activeBookRef = isFullscreen ? fullscreenBookRef : bookRef;
@@ -182,6 +212,36 @@ export default function BookReader({
 
         <div className="relative mx-auto max-w-[1800px]">
           <div className="absolute top-0 right-0 z-30 flex gap-2">
+            {shareSlug && (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={handleShare}
+                className="relative flex h-10 w-10 cursor-pointer items-center justify-center border-1 border-gray-400 bg-white text-gray-900 shadow-lg transition hover:bg-gray-50"
+                title="Share brochure link"
+                aria-label="Share brochure link"
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                  />
+                </svg>
+                {shareCopied && (
+                  <span className="pointer-events-none absolute top-12 right-0 z-40 whitespace-nowrap rounded bg-gray-900 px-3 py-1.5 text-xs font-medium text-white shadow-lg">
+                    Link copied!
+                  </span>
+                )}
+              </motion.button>
+            )}
+
             {downloadUrl && (
               <motion.a
                 href={downloadUrl}

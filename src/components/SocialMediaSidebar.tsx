@@ -26,6 +26,8 @@ export default function SocialMediaSidebar() {
   }, [isOpen]);
 
   if (pathname === '/about/customize-plan') return null;
+  // Keep shared brochure links (/b/[slug]) minimal: brochure + navbar + footer.
+  if (pathname?.startsWith('/b/')) return null;
 
   return (
     <div className="fixed top-1/2 left-0 z-50 -translate-y-1/2">

@@ -1686,6 +1686,7 @@ export const generalBrochure = {
   title: 'Explore Our Venue',
   subtitle: '48 Wall Street • Digital Brochure',
   downloadUrl: '/brochures/general/48-wall-street-brochure.pdf',
+  shareSlug: 'explore-our-venue',
   pages: generalBrochurePages,
 };
 
@@ -1693,8 +1694,19 @@ export const holidayBrochure = {
   title: 'Holiday Events Guide',
   subtitle: '48 Wall Street • Holiday Guide 2026',
   downloadUrl: '/brochures/holiday/48-wall-holiday-guide-2026.pdf',
+  shareSlug: 'holiday-events-guide',
   pages: holidayBrochurePages,
 };
+
+// Registry of shareable brochures, keyed by their public share slug. The
+// /b/[slug] shared-link viewer looks brochures up here so a client sees a
+// clean navbar + brochure + footer page for the link they were given.
+export const shareableBrochures = {
+  [generalBrochure.shareSlug]: generalBrochure,
+  [holidayBrochure.shareSlug]: holidayBrochure,
+} as const;
+
+export type ShareableBrochureSlug = keyof typeof shareableBrochures;
 
 // ---- Client logos ---------------------------------------------------------
 export const brandClientLogos = [
