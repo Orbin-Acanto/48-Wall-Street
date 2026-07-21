@@ -49,13 +49,16 @@ export const FurnitureItem: React.FC<FurnitureItemProps> = ({
   const isLocked = !!item.locked;
   const isCustom = item.category === 'Customize';
 
-  // Get the color for custom items
+  // Recolor the SVG whenever the user has chosen a color — for custom items and
+  // for tables whose linen color has been set. Items without a chosen color
+  // keep their original artwork untouched.
+  const hasChosenColor = !!item.color;
   const color = item.color || '#8B4789';
 
-  // Replace color in SVG path for custom items
-  const svgPath = isCustom
-    ? item.svgPath.replace(/fill="[^"]*"/g, `fill="${color}"`)
-    : item.svgPath;
+  const svgPath =
+    isCustom || hasChosenColor
+      ? item.svgPath.replace(/fill="[^"]*"/g, `fill="${color}"`)
+      : item.svgPath;
 
   return (
     <g

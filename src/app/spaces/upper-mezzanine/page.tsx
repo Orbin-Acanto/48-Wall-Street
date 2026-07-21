@@ -39,13 +39,48 @@ export default function UpperMezzaninePage() {
     <SpaceDetails
       levelLabel="02"
       title="Upper Mezzanine"
-      subtitle="Where Architectural Heritage Inspires Extraordinary Experiences"
+      subtitle="Where Timeless Architecture Meets Modern Luxury"
       description={
-        <p className="text-lg md:text-xl">
-          An exclusive vantage point where historic grandeur, refined
-          hospitality, and unforgettable moments come together above the Grand
-          Banking Hall.
-        </p>
+        <>
+          <p className="font-primary text-primary text-lg italic md:text-xl">
+            Elevated Sophistication
+          </p>
+          <p>
+            Perched above the iconic Grand Banking Hall, the Upper Mezzanine
+            offers an exclusive vantage point overlooking one of New York
+            City&apos;s most celebrated landmark interiors. Bathed in natural
+            light from soaring arched windows and framed by historic marble
+            columns, this elegant gallery seamlessly blends Beaux-Arts grandeur
+            with contemporary hospitality.
+          </p>
+          <p>
+            Thoughtfully positioned within the venue, the Upper Mezzanine serves
+            as a graceful connection between the magnificent Grand Banking Hall
+            below and the Historic Hamilton Office, creating a natural flow for
+            guests to experience three of 48 Wall Street&apos;s most
+            distinguished event spaces. Whether hosting an elegant cocktail
+            reception, welcoming VIP guests, or transitioning between
+            celebrations, the Upper Mezzanine enhances every moment with
+            sophistication and architectural beauty.
+          </p>
+          <p className="font-primary text-primary text-lg italic md:text-xl">
+            A Grand Connection
+          </p>
+          <p>
+            More than an overlook, the Upper Mezzanine is the architectural
+            bridge that unites the venue&apos;s most iconic spaces. Guests can
+            effortlessly move from the grandeur of the Grand Banking Hall to the
+            intimate elegance of the Historic Hamilton Office, creating a
+            seamless experience for multi-room events, executive gatherings,
+            weddings, galas, and luxury brand activations.
+          </p>
+          <p>
+            Its elevated position provides panoramic views of the Banking Hall
+            while offering direct access to the Historic Hamilton Office,
+            allowing hosts to create dynamic event experiences that flow
+            naturally from one extraordinary setting to the next.
+          </p>
+        </>
       }
       heroImages={[
         '/spaces/upper-mezzanine/hero-1.jpg',
@@ -62,12 +97,15 @@ export default function UpperMezzaninePage() {
       ]}
       floorPlanImage="/floor-plans/upper-mezzanine.svg"
       features={[
-        'Elevated views over the Grand Banking Hall',
-        'Original 1920s architectural detail',
-        'Intimate receptions & VIP experiences',
-        'Cocktail hours & breakout gatherings',
-        'Refined, private atmosphere',
-        'Full-service catering & AV support',
+        'Luxury cocktail receptions',
+        'VIP & executive lounges',
+        'Wedding cocktail hours',
+        'Fashion Week events',
+        'Corporate networking',
+        'Private dining receptions',
+        'Nonprofit galas',
+        'Brand activations',
+        'Multi-room event experiences',
       ]}
       stats={{
         capacity: 'Elevated receptions | Overlooks the Grand Mezzanine',
