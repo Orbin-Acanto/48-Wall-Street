@@ -68,7 +68,7 @@ export default function CateringSection() {
         }}
       >
         <Image
-          src="/catering/c1.jpg"
+          src="/services/catering/gallery-13.jpg"
           alt="Cocktails with city view"
           fill
           className="object-cover"
@@ -98,7 +98,7 @@ export default function CateringSection() {
                 }}
               >
                 <Image
-                  src="/logo/tardis-logo-new.png"
+                  src="/shared/logo/tardis-logo-new.png"
                   alt="Catering Service Logo"
                   fill
                   className="object-contain"
@@ -135,7 +135,7 @@ export default function CateringSection() {
               }}
             >
               <Image
-                src="/catering/c2.jpg"
+                src="/services/catering/gallery-14.jpg"
                 alt="Catering appetizers"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-110"
@@ -151,7 +151,7 @@ export default function CateringSection() {
               }}
             >
               <Image
-                src="/catering/c3.jpg"
+                src="/services/catering/gallery-15.jpg"
                 alt="Caviar dish"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-110"
@@ -167,7 +167,7 @@ export default function CateringSection() {
               }}
             >
               <Image
-                src="/catering/c4.jpg"
+                src="/services/catering/gallery-16.jpg"
                 alt="Sushi platter"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-110"

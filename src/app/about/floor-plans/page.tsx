@@ -39,7 +39,7 @@ export default function FloorPlansPage() {
 
   const currentFloor = floors.find((f) => f.id === activeFloor) || floors[0];
 
-  const heroImages = ['/venue/floorplan/1.jpg', '/venue/floorplan/2.avif'];
+  const heroImages = ['/spaces/floorplan/gallery-01.jpg', '/spaces/floorplan/gallery-02.avif'];
   const [heroIndex, setHeroIndex] = useState(0);
 
   useEffect(() => {
@@ -486,7 +486,7 @@ export default function FloorPlansPage() {
             transition={{ duration: 0.8 }}
           >
             <Image
-              src="/icons/sparkles.svg"
+              src="/shared/icons/sparkles.svg"
               alt="Icon"
               width={64}
               height={64}

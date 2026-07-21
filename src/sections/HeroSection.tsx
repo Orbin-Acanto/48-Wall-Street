@@ -5,7 +5,7 @@
 // export default function HeroSection() {
 //   const [currentIndex, setCurrentIndex] = useState(0);
 
-//   const images = ['/hero/home-slider (5).jpg'];
+//   const images = ['/home/slider-01.jpg'];
 
 //   useEffect(() => {
 //     const interval = setInterval(() => {
@@ -61,14 +61,14 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       <video
-        src="/videos/landing_hero.mp4"
+        src="/home/videos/landing_hero.mp4"
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
         loop
         playsInline
         preload="none"
-        poster="/images/og-home.jpg"
+        poster="/shared/og/og-home.jpg"
       />
       <div className="absolute inset-0 bg-black/40" />
       <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">

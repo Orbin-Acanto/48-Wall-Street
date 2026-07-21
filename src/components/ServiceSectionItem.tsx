@@ -20,7 +20,7 @@ export default function ServiceSectionItem({
   const images =
     section.images && section.images.length > 0
       ? section.images
-      : ['/placeholder.jpg'];
+      : ['/shared/placeholder.jpg'];
 
   const imageAlts =
     section.imageAlts && section.imageAlts.length > 0

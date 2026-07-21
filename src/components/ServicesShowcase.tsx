@@ -304,7 +304,7 @@ export default function CinematicServicesShowcase({
             pages={menuPages}
             title="Tardi's Catering Menu"
             subtitle="Indulge in a Gourmet Dining Experience at Your Next Event"
-            downloadUrl="/menu/48-wall-menu.2025_.pdf"
+            downloadUrl="/menu/page-01.pdf"
             pageColor="text-dark-black"
           />
         </section>

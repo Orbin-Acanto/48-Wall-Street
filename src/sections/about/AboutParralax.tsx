@@ -8,7 +8,7 @@ export default function AboutParralax() {
       {/* Background Container (relative positioning ensures it's scoped to this section only) */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/about/wall_st.jpg"
+          src="/about/wall-st.jpg"
           alt="New York City buildings in black and white"
           fill
           className="object-cover"

@@ -402,9 +402,9 @@ export default function EventDetails({
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0">
             {[
-              '/misc/events1.jpg',
-              '/misc/events2.jpg',
-              '/misc/events3.jpg',
+              '/shared/event-details/gallery-01.jpg',
+              '/shared/event-details/gallery-02.jpg',
+              '/shared/event-details/gallery-03.jpg',
             ].map((url, i) => (
               <motion.div
                 key={i}

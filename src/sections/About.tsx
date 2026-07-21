@@ -7,16 +7,16 @@ import Link from 'next/link';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const aboutImages = [
-  { src: '/about/aboutHero-1.png', alt: '48 Wall Street Venue' },
-  { src: '/about/about (3).jpg', alt: 'Lounge Area' },
-  { src: '/about/c1.jpg', alt: 'Concourse Level' },
+  { src: '/about/hero-01.png', alt: '48 Wall Street Venue' },
+  { src: '/about/gallery-01.jpg', alt: 'Lounge Area' },
+  { src: '/about/gallery-04.jpg', alt: 'Concourse Level' },
 
   {
-    src: '/gallery/corporate/ (25).jpg',
+    src: '/gallery/corporate/gallery-24.jpg',
     alt: '48 Wall Street Building Exterior',
   },
-  { src: '/about/c1_1.jpg', alt: 'Concourse Level' },
-  { src: '/about/c1_2.jpg', alt: 'Concourse Level' },
+  { src: '/about/gallery-02.jpg', alt: 'Concourse Level' },
+  { src: '/about/gallery-03.jpg', alt: 'Concourse Level' },
 ];
 
 export default function About() {
@@ -89,7 +89,7 @@ export default function About() {
                 }}
               >
                 <Image
-                  src="/about/aboutHero-1.png"
+                  src="/about/hero-01.png"
                   alt="48 Wall Street Venue"
                   fill
                   quality={100}
@@ -112,7 +112,7 @@ export default function About() {
                   }}
                 >
                   <Image
-                    src="/about/about (3).jpg"
+                    src="/about/gallery-01.jpg"
                     alt="Lounge Area"
                     fill
                     quality={100}
@@ -131,7 +131,7 @@ export default function About() {
                   }}
                 >
                   <Image
-                    src="/about/c1.jpg"
+                    src="/about/gallery-04.jpg"
                     alt="Concourse Level"
                     fill
                     quality={100}
@@ -155,7 +155,7 @@ export default function About() {
                 }}
               >
                 <Image
-                  src="/gallery/corporate/ (25).jpg"
+                  src="/gallery/corporate/gallery-24.jpg"
                   alt="48 Wall Street Building Exterior"
                   fill
                   quality={100}
@@ -175,7 +175,7 @@ export default function About() {
                   }}
                 >
                   <Image
-                    src="/about/c1_1.jpg"
+                    src="/about/gallery-02.jpg"
                     alt="48 Wall Street Building Exterior"
                     fill
                     quality={100}
@@ -194,7 +194,7 @@ export default function About() {
                   }}
                 >
                   <Image
-                    src="/about/c1_2.jpg"
+                    src="/about/gallery-03.jpg"
                     alt="48 Wall Street Building Exterior"
                     fill
                     quality={100}

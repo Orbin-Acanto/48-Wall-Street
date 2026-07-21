@@ -13,7 +13,7 @@ export default function DigitalBrochurePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/misc/digital-brochure-hero.jpg')",
+            backgroundImage: "url('/about/digital-brochure-hero.jpg')",
           }}
         />
 

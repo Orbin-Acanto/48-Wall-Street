@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street historic corporate and private event venue in Manhattan’s Financial District',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: 'Build Your Event Proposal | 48 Wall Street NYC',
     description:
       'Design your event in minutes with the 48 Wall Street AI-powered RFP Builder and receive a customized proposal, budget, floor plan, and timeline.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   robots: {
     index: true,

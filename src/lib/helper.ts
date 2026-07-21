@@ -12,7 +12,7 @@ import {
 
 // ---------------------------------------------------------------------------
 // Shared branding — logo header used across ALL signed PDFs.
-// The logo is rendered from public/logo/48-wall-logo.png (generated from the
+// The logo is rendered from public/shared/logo/48-wall-logo.png (generated from the
 // brand SVG). If it can't be loaded, we fall back to the "48 WALL STREET"
 // wordmark so a PDF is always produced.
 // ---------------------------------------------------------------------------
@@ -25,7 +25,7 @@ async function getLogoDataUrl(): Promise<string | null> {
     const fs = await import('fs/promises');
     const path = await import('path');
     const buf = await fs.readFile(
-      path.join(process.cwd(), 'public', 'logo', '48-wall-logo.png')
+      path.join(process.cwd(), 'public', 'shared', 'logo', '48-wall-logo.png')
     );
     logoDataUrlCache = `data:image/png;base64,${buf.toString('base64')}`;
     return logoDataUrlCache;

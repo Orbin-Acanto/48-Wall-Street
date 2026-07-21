@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street Historic Event Venue Manhattan',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: 'Exclusive Event Partners | 48 Wall Street NYC',
     description:
       'Trusted hospitality, culinary, entertainment, and production partners for extraordinary events in the Financial District.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/vendors',

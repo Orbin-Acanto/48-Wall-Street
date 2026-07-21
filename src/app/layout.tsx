@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       "Premier historic event venue in Manhattan's Financial District. Host corporate events, weddings & celebrations in our stunning 1927 landmark building featuring 30-foot ceilings, grand marble staircase, and original 1920s architecture. Full-service catering available.",
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street Grand Mezzanine - Historic NYC Event Venue with 30-foot ceilings',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: '48 Wall Street NYC | Historic Event Venue',
     description:
       "Historic 1927 venue in Manhattan's Financial District. Perfect for corporate events, weddings & celebrations with full-service catering.",
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   robots: {
     index: true,
@@ -122,14 +122,14 @@ export default function RootLayout({
               url: siteUrl,
               logo: {
                 '@type': 'ImageObject',
-                url: `${siteUrl}/images/logo.png`,
+                url: `${siteUrl}/shared/logo/48-wall-logo.png`,
                 width: 600,
                 height: 200,
               },
               image: [
-                `${siteUrl}/images/og-home.jpg`,
-                `${siteUrl}/images/grand-mezzanine.jpg`,
-                `${siteUrl}/images/venue-exterior.jpg`,
+                `${siteUrl}/shared/og/og-home.jpg`,
+                `${siteUrl}/spaces/grand-mezzanine/hero-01.jpg`,
+                `${siteUrl}/spaces/banking-hall/hero-01.jpg`,
               ],
               address: {
                 '@type': 'PostalAddress',
@@ -285,7 +285,7 @@ export default function RootLayout({
               url: siteUrl,
               logo: {
                 '@type': 'ImageObject',
-                url: `${siteUrl}/images/logo.png`,
+                url: `${siteUrl}/shared/logo/48-wall-logo.png`,
               },
               foundingDate: '2010',
               description:
@@ -322,7 +322,7 @@ export default function RootLayout({
               '@type': 'LocalBusiness',
               '@id': `${siteUrl}/#localbusiness`,
               name: '48 Wall Street',
-              image: `${siteUrl}/images/venue-exterior.jpg`,
+              image: `${siteUrl}/spaces/banking-hall/hero-01.jpg`,
               url: siteUrl,
               telephone: '212.971.5353',
               priceRange: '$$$',

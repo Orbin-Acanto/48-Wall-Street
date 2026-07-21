@@ -17,7 +17,7 @@ export default function Home() {
       <About />
       <VenueLevels />
       <ParallaxSection
-        videoSrc="/videos/Lower_Manhattan_Financial_District_Website.mp4"
+        videoSrc="/home/videos/lower_manhattan_financial_district_website.mp4"
         title="Lower Manhattan's Premier Event Venue"
         height="h-[70vh]"
       />
@@ -28,7 +28,7 @@ export default function Home() {
       <ContactUs />
       <ImageSection
         text="ENJOY STRESS-FREE EVENT PLANNING WITH FULL SERVICE PRODUCTION, CREATIVE DESIGN AND DEDICATED SUPPORT FROM CONCEPT TO FINAL CURTAIN CALL"
-        imageSrc="/misc/wall-sign.jpg"
+        imageSrc="/home/wall-sign.jpg"
         imageAlt="Wall Street Sign"
       />
     </main>

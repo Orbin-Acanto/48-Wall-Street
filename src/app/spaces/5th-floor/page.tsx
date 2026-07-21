@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/spaces/5th-floor/hero-1.jpg',
+        url: '/spaces/5th-floor/hero-01.jpg',
         width: 1200,
         height: 630,
         alt: 'The Alexander Hamilton Ballroom at 48 Wall Street — 5th floor luxury event space NYC',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: 'The Alexander Hamilton Ballroom | 48 Wall Street NYC',
     description:
       '14,444 sq ft historic luxury event space. Natural light, open floor plan, white-glove hospitality. Financial District, NYC.',
-    images: ['/spaces/5th-floor/hero-1.jpg'],
+    images: ['/spaces/5th-floor/hero-01.jpg'],
   },
 };
 
@@ -98,16 +98,16 @@ export default function FifthFloorPage() {
         </>
       }
       heroImages={[
-        '/spaces/5th-floor/hero-1.jpg',
-        '/spaces/5th-floor/hero-2.jpg',
-        '/spaces/5th-floor/hero-3.jpg',
+        '/spaces/5th-floor/hero-01.jpg',
+        '/spaces/5th-floor/hero-02.jpg',
+        '/spaces/5th-floor/hero-03.jpg',
       ]}
       images={[
-        '/spaces/5th-floor/gallery-1.jpg',
-        '/spaces/5th-floor/gallery-2.jpg',
-        '/spaces/5th-floor/gallery-3.jpg',
-        '/spaces/5th-floor/gallery-4.jpg',
-        '/spaces/5th-floor/gallery-5.jpg',
+        '/spaces/5th-floor/gallery-01.jpg',
+        '/spaces/5th-floor/gallery-02.jpg',
+        '/spaces/5th-floor/gallery-03.jpg',
+        '/spaces/5th-floor/gallery-04.jpg',
+        '/spaces/5th-floor/gallery-05.jpg',
       ]}
       stats={{
         capacity: 'Grand celebrations | Seated dinners & receptions',

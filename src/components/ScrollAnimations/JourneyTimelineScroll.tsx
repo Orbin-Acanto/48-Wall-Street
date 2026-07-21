@@ -25,7 +25,7 @@ export default function JourneyTimelineScroll({ items }: Props) {
       ref={containerRef}
       className={`relative min-h-screen overflow-hidden bg-cover bg-fixed bg-center`}
       style={{
-        backgroundImage: "url('/misc/journey.png')",
+        backgroundImage: "url('/home/journey.png')",
       }}
     >
       <div className="pointer-events-none absolute inset-0 z-0">

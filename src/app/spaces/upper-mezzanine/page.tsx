@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/spaces/upper-mezzanine/hero-1.jpg',
+        url: '/spaces/upper-mezzanine/hero-01.jpg',
         width: 1200,
         height: 630,
         alt: 'Upper Mezzanine at 48 Wall Street',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Upper Mezzanine | 48 Wall Street NYC',
     description:
       'An elevated, intimate event space overlooking the Grand Banking Hall, ideal for VIP receptions and cocktail gatherings. Financial District, NYC.',
-    images: ['/spaces/upper-mezzanine/hero-1.jpg'],
+    images: ['/spaces/upper-mezzanine/hero-01.jpg'],
   },
 };
 
@@ -83,17 +83,17 @@ export default function UpperMezzaninePage() {
         </>
       }
       heroImages={[
-        '/spaces/upper-mezzanine/hero-1.jpg',
-        '/spaces/upper-mezzanine/hero-2.jpg',
-        '/spaces/upper-mezzanine/hero-3.jpg',
+        '/spaces/upper-mezzanine/hero-01.jpg',
+        '/spaces/upper-mezzanine/hero-02.jpg',
+        '/spaces/upper-mezzanine/hero-03.jpg',
       ]}
       images={[
-        '/spaces/upper-mezzanine/gallery-1.jpg',
-        '/spaces/upper-mezzanine/gallery-2.jpg',
-        '/spaces/upper-mezzanine/gallery-3.jpg',
-        '/spaces/upper-mezzanine/gallery-4.jpg',
-        '/spaces/upper-mezzanine/gallery-5.jpg',
-        '/spaces/upper-mezzanine/gallery-6.jpg',
+        '/spaces/upper-mezzanine/gallery-01.jpg',
+        '/spaces/upper-mezzanine/gallery-02.jpg',
+        '/spaces/upper-mezzanine/gallery-03.jpg',
+        '/spaces/upper-mezzanine/gallery-04.jpg',
+        '/spaces/upper-mezzanine/gallery-05.jpg',
+        '/spaces/upper-mezzanine/gallery-06.jpg',
       ]}
       floorPlanImage="/floor-plans/upper-mezzanine.svg"
       features={[

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/spaces/grand-mezzanine/hero-1.jpg',
+        url: '/spaces/grand-mezzanine/hero-01.jpg',
         width: 1200,
         height: 630,
         alt: 'Grand Mezzanine Banking Hall at 48 Wall Street — 30-foot ceilings and grand marble staircase',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: 'Grand Mezzanine Banking Hall | 48 Wall Street NYC',
     description:
       '9,000 sq ft historic banking hall. 30-foot ceilings, marble staircase, seats 350, reception 500. Financial District, NYC.',
-    images: ['/spaces/grand-mezzanine/hero-1.jpg'],
+    images: ['/spaces/grand-mezzanine/hero-01.jpg'],
   },
 };
 
@@ -44,17 +44,17 @@ export default function GrandMezzaninePage() {
       subtitle=""
       description="The Grand Mezzanine Banking Hall is the heart of 48 Wall Street. At 9,000 square feet with 30-foot soaring ceilings, it makes an immediate impression that sets the tone for every event held here. Original 1920s architectural details have been preserved throughout, including the oversized crystal chandeliers, beautiful Palladian windows, and the grand dual marble staircase that greets guests at the entrance. The Banking Hall accommodates seated dinners for up to 350 guests and cocktail receptions for up to 500. For smaller gatherings, the floor plan divides comfortably to create a more intimate environment without losing the grandeur of the space. Whether you are hosting a corporate conference, a wedding reception, a charity gala, or a fashion show, this is a venue that gives your event genuine presence from the moment guests walk through the door."
       heroImages={[
-        '/spaces/grand-mezzanine/hero-1.jpg',
-        '/spaces/grand-mezzanine/hero-2.jpg',
-        '/spaces/grand-mezzanine/hero-3.jpg',
+        '/spaces/grand-mezzanine/hero-01.jpg',
+        '/spaces/grand-mezzanine/hero-02.jpg',
+        '/spaces/grand-mezzanine/hero-03.jpg',
       ]}
       images={[
-        '/spaces/grand-mezzanine/gallery-1.jpg',
-        '/spaces/grand-mezzanine/gallery-2.jpg',
-        '/spaces/grand-mezzanine/gallery-3.jpg',
-        '/spaces/grand-mezzanine/gallery-4.jpg',
-        '/spaces/grand-mezzanine/gallery-5.jpg',
-        '/spaces/grand-mezzanine/gallery-6.jpg',
+        '/spaces/grand-mezzanine/gallery-01.jpg',
+        '/spaces/grand-mezzanine/gallery-02.jpg',
+        '/spaces/grand-mezzanine/gallery-03.jpg',
+        '/spaces/grand-mezzanine/gallery-04.jpg',
+        '/spaces/grand-mezzanine/gallery-05.jpg',
+        '/spaces/grand-mezzanine/gallery-06.jpg',
       ]}
       videoUrl="https://player.vimeo.com/video/1207393496?h=81afd92077"
       floorPlanImage="/floor-plans/grand-mezzanine.svg"

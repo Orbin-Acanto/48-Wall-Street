@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street digital brochure - venue information and event guide',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Digital Brochure | 48 Wall Street NYC',
     description:
       'Download our venue brochure with complete event space information, catering options, and historic venue details.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about/digital-brochure',

@@ -11,7 +11,7 @@ export default function Home() {
       <AboutParralax />
       <AboutTeam />
       <Testimonial />
-      <AboutPlan imageSrc="/misc/vml.png" />
+      <AboutPlan imageSrc="/about/vml.png" />
     </main>
   );
 }

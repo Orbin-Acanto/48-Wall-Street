@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/spaces/hamilton-room/hero-1.jpg',
+        url: '/spaces/hamilton-room/hero-01.jpg',
         width: 1200,
         height: 630,
         alt: 'The Alexander Hamilton Office at 48 Wall Street — private executive salon NYC',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: 'The Alexander Hamilton Office | 48 Wall Street NYC',
     description:
       'A private executive salon inspired by America’s financial legacy. Executive meetings, VIP receptions, and private dining. Financial District, NYC.',
-    images: ['/spaces/hamilton-room/hero-1.jpg'],
+    images: ['/spaces/hamilton-room/hero-01.jpg'],
   },
 };
 
@@ -84,30 +84,30 @@ export default function HamiltonRoomPage() {
         </>
       }
       heroImages={[
-        '/spaces/hamilton-room/hero-2.jpg',
-        '/spaces/hamilton-room/hero-1.jpg',
-        '/spaces/hamilton-room/hero-3.jpg',
+        '/spaces/hamilton-room/hero-02.jpg',
+        '/spaces/hamilton-room/hero-01.jpg',
+        '/spaces/hamilton-room/hero-03.jpg',
       ]}
       images={[
-        '/spaces/hamilton-room/gallery-1.jpg',
-        '/spaces/hamilton-room/gallery-2.jpg',
-        '/spaces/hamilton-room/gallery-3.jpg',
-        '/spaces/hamilton-room/gallery-4.jpg',
-        '/spaces/hamilton-room/gallery-5.jpg',
-        '/spaces/hamilton-room/gallery-6.jpg',
+        '/spaces/hamilton-room/gallery-01.jpg',
+        '/spaces/hamilton-room/gallery-02.jpg',
+        '/spaces/hamilton-room/gallery-03.jpg',
+        '/spaces/hamilton-room/gallery-04.jpg',
+        '/spaces/hamilton-room/gallery-05.jpg',
+        '/spaces/hamilton-room/gallery-06.jpg',
       ]}
       thenNow={[
         {
-          then: '/spaces/hamilton-room/hero-1.jpg',
-          now: '/spaces/hamilton-room/gallery-1.jpg',
+          then: '/spaces/hamilton-room/hero-01.jpg',
+          now: '/spaces/hamilton-room/gallery-01.jpg',
           thenAlt:
             'The Bank of New York banking hall mezzanine and marble balustrade, circa mid-1900s',
           nowAlt:
             'The same mezzanine and marble balustrade today during an evening reception',
         },
         // {
-        //   then: '/spaces/hamilton/historic-1.jpg',
-        //   now: '/spaces/hamilton-room/gallery-2.jpg',
+        //   then: '/spaces/hamilton/gallery-01.jpg',
+        //   now: '/spaces/hamilton-room/gallery-02.jpg',
         //   thenAlt:
         //     'The Bank of New York banking floor with bankers at their desks, mid-1900s',
         //   nowAlt:
