@@ -4606,39 +4606,39 @@
     "resized": false
   },
   "public/spaces/upper-mezzanine/gallery-01.jpg": {
-    "hash": "8c922b06b6ceae6fb3ad3f787bdf254dc94aeb45",
-    "optimizedAt": "2026-07-21T22:02:30.196Z",
-    "originalBytes": 812031,
-    "finalBytes": 679486,
-    "resized": false
+    "hash": "83bdb99b4b7aca392a3737db266780ce1f11eb4b",
+    "optimizedAt": "2026-07-21T22:51:22.909Z",
+    "originalBytes": 2765851,
+    "finalBytes": 920747,
+    "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-02.jpg": {
-    "hash": "30e45b541c65386218684c0d0f65b8e23f64c012",
-    "optimizedAt": "2026-07-21T22:02:30.492Z",
-    "originalBytes": 770210,
-    "finalBytes": 770210,
-    "resized": false
+    "hash": "9b217b63934934d6eb55c329d6f4a78e0c88cd80",
+    "optimizedAt": "2026-07-21T22:51:23.471Z",
+    "originalBytes": 2206944,
+    "finalBytes": 779847,
+    "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-03.jpg": {
-    "hash": "9cb7163f4fb937a94edcb8b2fb3d4d7d28e63be9",
-    "optimizedAt": "2026-07-21T22:02:30.770Z",
-    "originalBytes": 800289,
-    "finalBytes": 667050,
-    "resized": false
+    "hash": "b390cad0ee8ee33c27f699b87b0085f07063160d",
+    "optimizedAt": "2026-07-21T22:51:23.989Z",
+    "originalBytes": 2069453,
+    "finalBytes": 653517,
+    "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-04.jpg": {
-    "hash": "36dc9d581628cd0528774193bdff67e4dae8010e",
-    "optimizedAt": "2026-07-21T22:02:31.023Z",
-    "originalBytes": 700053,
-    "finalBytes": 574481,
-    "resized": false
+    "hash": "ea46e11423770bcdcf999e29c204130c677ccdc5",
+    "optimizedAt": "2026-07-21T22:51:24.356Z",
+    "originalBytes": 1627074,
+    "finalBytes": 602404,
+    "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-05.jpg": {
-    "hash": "3da1711b62f30d95c2764b7a7e6fa8f548be87e9",
-    "optimizedAt": "2026-07-21T22:02:31.338Z",
-    "originalBytes": 813211,
-    "finalBytes": 813211,
-    "resized": false
+    "hash": "47521931e3211a7a16817d2d54e1bc4b8358bda0",
+    "optimizedAt": "2026-07-21T22:51:24.900Z",
+    "originalBytes": 2501553,
+    "finalBytes": 875735,
+    "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-06.jpg": {
     "hash": "c50e8d49bd0a7d01783ab8b6f97c88232d283a25",
@@ -4648,25 +4648,25 @@
     "resized": false
   },
   "public/spaces/upper-mezzanine/hero-01.jpg": {
-    "hash": "4dd7c8b2951e3ac0908e0e2056d84f9794c19ab0",
-    "optimizedAt": "2026-07-21T22:02:31.865Z",
-    "originalBytes": 779165,
-    "finalBytes": 602820,
+    "hash": "021ea0c422a13f531a8fce59a49eb81c8b8b1eeb",
+    "optimizedAt": "2026-07-21T22:51:25.102Z",
+    "originalBytes": 519037,
+    "finalBytes": 519037,
     "resized": false
   },
   "public/spaces/upper-mezzanine/hero-02.jpg": {
-    "hash": "1aef10e983e54caddc76e4f49762c3351384418b",
-    "optimizedAt": "2026-07-21T22:02:32.189Z",
-    "originalBytes": 809942,
-    "finalBytes": 809942,
-    "resized": false
+    "hash": "0429324e26b570104d397d3753efab6b0942a747",
+    "optimizedAt": "2026-07-21T22:51:25.650Z",
+    "originalBytes": 1923264,
+    "finalBytes": 875221,
+    "resized": true
   },
   "public/spaces/upper-mezzanine/hero-03.jpg": {
-    "hash": "8620a1d592bf03e3d8d857b95caa025e7dcbc8c5",
-    "optimizedAt": "2026-07-21T22:02:32.446Z",
-    "originalBytes": 748543,
-    "finalBytes": 582380,
-    "resized": false
+    "hash": "e510b106fb8b151f724a89512d553733286f2a35",
+    "optimizedAt": "2026-07-21T22:51:26.344Z",
+    "originalBytes": 4679200,
+    "finalBytes": 1026172,
+    "resized": true
   },
   "public/vendors/hero-01.png": {
     "hash": "56aedf5cd854efe52b33711b2f3ef217054c87b0",

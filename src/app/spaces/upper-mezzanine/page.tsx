@@ -93,7 +93,6 @@ export default function UpperMezzaninePage() {
         '/spaces/upper-mezzanine/gallery-03.jpg',
         '/spaces/upper-mezzanine/gallery-04.jpg',
         '/spaces/upper-mezzanine/gallery-05.jpg',
-        '/spaces/upper-mezzanine/gallery-06.jpg',
       ]}
       floorPlanImage="/floor-plans/upper-mezzanine.svg"
       features={[
