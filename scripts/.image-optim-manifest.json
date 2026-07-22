@@ -3500,10 +3500,10 @@
     "resized": true
   },
   "public/gallery/wedding/gallery-17.jpg": {
-    "hash": "f85422960e014f2438fef52742c47e97ab78a476",
-    "optimizedAt": "2026-07-21T22:01:20.907Z",
-    "originalBytes": 795585,
-    "finalBytes": 795585,
+    "hash": "d8b8e646ead90c5b987cf6a4bc34979ec90937ff",
+    "optimizedAt": "2026-07-22T00:58:19.925Z",
+    "originalBytes": 984117,
+    "finalBytes": 984117,
     "resized": false
   },
   "public/gallery/wedding/gallery-18.jpg": {
@@ -4396,11 +4396,11 @@
     "resized": false
   },
   "public/spaces/concourse-level/hero-03.jpg": {
-    "hash": "26f096ab9ef08f6d1112eacc2285c113bb566917",
-    "optimizedAt": "2026-07-21T22:02:19.809Z",
-    "originalBytes": 723591,
-    "finalBytes": 723591,
-    "resized": false
+    "hash": "8f392557d3d13ff0e7fda68b17874569f85c93d0",
+    "optimizedAt": "2026-07-22T00:48:50.018Z",
+    "originalBytes": 2933036,
+    "finalBytes": 932118,
+    "resized": true
   },
   "public/spaces/empty-venue/gallery-01.jpg": {
     "hash": "d9d66ef62720d945ff956e2e4107cb658ac40c08",
@@ -4571,10 +4571,10 @@
     "resized": false
   },
   "public/spaces/hamilton-room/gallery-04.jpg": {
-    "hash": "a69f9058f374a388e078ebdfc172aa2c45eb0870",
-    "optimizedAt": "2026-07-21T22:02:28.716Z",
-    "originalBytes": 714626,
-    "finalBytes": 714626,
+    "hash": "7353916a1bef3a8589308f8d94cc151b495ceffb",
+    "optimizedAt": "2026-07-22T00:58:20.358Z",
+    "originalBytes": 988109,
+    "finalBytes": 775931,
     "resized": false
   },
   "public/spaces/hamilton-room/gallery-05.jpg": {
@@ -5114,6 +5114,69 @@
     "optimizedAt": "2026-07-22T00:40:20.360Z",
     "originalBytes": 10154277,
     "finalBytes": 1451109,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-01.jpg": {
+    "hash": "46c32003ceddfa93b3e48fd73164c01e30971a58",
+    "optimizedAt": "2026-07-22T00:58:14.550Z",
+    "originalBytes": 1960327,
+    "finalBytes": 1489926,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-02.jpg": {
+    "hash": "3c8925dc8d120e2e1e6dc3a14faa1d3580f814de",
+    "optimizedAt": "2026-07-22T00:58:15.162Z",
+    "originalBytes": 1874773,
+    "finalBytes": 1387018,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-03.jpg": {
+    "hash": "34c961706f3b2d3ec8099999f78f86726fe129e0",
+    "optimizedAt": "2026-07-22T00:58:15.654Z",
+    "originalBytes": 1373762,
+    "finalBytes": 1006122,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-05.jpg": {
+    "hash": "76292986487ce948a4f42bd0f350b5f6f9bbad0a",
+    "optimizedAt": "2026-07-22T00:58:16.342Z",
+    "originalBytes": 3394235,
+    "finalBytes": 1266105,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-06.jpg": {
+    "hash": "82fb607c81f83e0e11164199787d2752f2bf7b16",
+    "optimizedAt": "2026-07-22T00:58:17.098Z",
+    "originalBytes": 1708177,
+    "finalBytes": 1115085,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-07.jpg": {
+    "hash": "97f1ab7286a6b5f2582bb07677d5aa489966d8df",
+    "optimizedAt": "2026-07-22T00:58:17.758Z",
+    "originalBytes": 3050545,
+    "finalBytes": 1274955,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-08.jpg": {
+    "hash": "1d6a6f2222aa4fa2584f26ba058965a84475577e",
+    "optimizedAt": "2026-07-22T00:58:18.289Z",
+    "originalBytes": 1914537,
+    "finalBytes": 845786,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-09.jpg": {
+    "hash": "f394e5932d6c7f23e9ba2e730239750d8c610fe3",
+    "optimizedAt": "2026-07-22T00:58:18.894Z",
+    "originalBytes": 2421605,
+    "finalBytes": 1067876,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-10.jpg": {
+    "hash": "62adb127b42dad9beea60889f57cdbea50dbf9b2",
+    "optimizedAt": "2026-07-22T00:58:19.471Z",
+    "originalBytes": 2183037,
+    "finalBytes": 981100,
     "resized": true
   }
 }
