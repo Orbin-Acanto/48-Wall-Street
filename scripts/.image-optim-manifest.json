@@ -2387,10 +2387,10 @@
     "resized": false
   },
   "public/about/gallery-04.jpg": {
-    "hash": "456ddc42fb17e72778ddedfe2d4cf3a5c585e043",
-    "optimizedAt": "2026-07-21T22:00:16.109Z",
-    "originalBytes": 2375242,
-    "finalBytes": 1069040,
+    "hash": "c3bf4a27e53b14947bde1e5e8624407930364311",
+    "optimizedAt": "2026-07-21T23:05:44.047Z",
+    "originalBytes": 1229630,
+    "finalBytes": 914230,
     "resized": true
   },
   "public/about/hero-01.png": {

@@ -107,12 +107,36 @@ export const photos: Photo[] = [
 ];
 
 export const emptyFashionVenue: Photo[] = [
-  { src: '/spaces/empty-venue/gallery-03.jpg', alt: 'Empty 48 Wall Street', span: 'small' },
-  { src: '/spaces/empty-venue/gallery-02.jpg', alt: 'Empty 48 Wall Street', span: 'tall' },
-  { src: '/spaces/empty-venue/gallery-01.jpg', alt: 'Empty 48 Wall Street', span: 'large' },
-  { src: '/spaces/empty-venue/gallery-04.jpg', alt: 'Empty 48 Wall Street', span: 'tall' },
-  { src: '/spaces/empty-venue/gallery-06.jpg', alt: 'Empty 48 Wall Street', span: 'wide' },
-  { src: '/spaces/empty-venue/gallery-05.jpg', alt: 'Empty 48 Wall Street', span: 'small' },
+  {
+    src: '/spaces/empty-venue/gallery-03.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'small',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-02.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'tall',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-01.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'large',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-04.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'tall',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-06.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'wide',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-05.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'small',
+  },
 ];
 
 export const portfolioVideos: VideoItem[] = [
@@ -1215,8 +1239,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 270,
     priceRange: 'mid',
-    image:
-      '/rentals/items/black-tufted-leather-bling-chair-1-500x500.jpg',
+    image: '/rentals/items/black-tufted-leather-bling-chair-1-500x500.jpg',
     rating: 4.7,
     reviews: 48,
     description:
@@ -2615,7 +2638,11 @@ export const items = [
     location: 'Cornell',
   },
   {
-    images: ['/events/featured/fpm/gallery-01.jpg', '/events/featured/fpm/gallery-02.jpg', '/events/featured/fpm/gallery-03.jpg'],
+    images: [
+      '/events/featured/fpm/gallery-01.jpg',
+      '/events/featured/fpm/gallery-02.jpg',
+      '/events/featured/fpm/gallery-03.jpg',
+    ],
     title: 'World Of Excellence Fund Raising Gala',
     category: 'Galas',
     location: 'FPM US',
@@ -2810,14 +2837,16 @@ export const eventCateringData = {
       description:
         "Begin the day with a thoughtfully curated breakfast designed to inspire productivity, connection, and conversation. At 48 Wall Street, our culinary team transforms the traditional morning meal into an elevated dining experience, featuring artisanal pastries, seasonal fruits, chef-inspired breakfast specialties, gourmet coffee selections, fresh-pressed juices, and elegant hot breakfast presentations.\n\nWhether hosting an executive board meeting, investor summit, leadership conference, or company-wide gathering, our customized breakfast menus are crafted with the finest ingredients and impeccable presentation, ensuring every guest begins the day with exceptional hospitality in one of New York City's most iconic historic venues.",
       images: [
-        '/services/catering/gallery-24.jpg',
-        '/services/catering/gallery-12.jpg',
-        '/services/catering/gallery-23.jpg',
+        '/services/catering/breakfast/breakfast-01.jpg',
+        '/services/catering/breakfast/breakfast-02.jpg',
+        '/services/catering/breakfast/breakfast-03.jpg',
+        '/services/catering/breakfast/breakfast-04.jpg',
       ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
+        'Elegant breakfast presentation',
+        'Artisanal breakfast pastries',
+        'Gourmet breakfast display',
+        'Executive breakfast spread',
       ],
     },
     {
@@ -2826,11 +2855,15 @@ export const eventCateringData = {
       subtitle: 'Elevate the Midday Experience',
       description:
         'Transform your luncheon into a memorable culinary occasion where exceptional cuisine meets impeccable hospitality. At 48 Wall Street, our chefs create seasonally inspired lunch menus that balance sophistication with flavor, featuring beautifully presented plated meals, executive buffets, interactive chef stations, globally inspired cuisine, and fresh market selections.\n\nWhether entertaining clients or hosting executive meetings, corporate conferences, nonprofit galas, or full-day summits, we thoughtfully tailor every lunch experience to your event. Paired with refined service and the timeless elegance of our historic venue, each menu is designed to energize your guests, encourage meaningful connections, and leave a lasting impression long after the final course.',
-      images: ['/services/catering/gallery-19.jpg', '/services/catering/gallery-20.jpg', '/services/catering/gallery-21.jpg'],
+      images: [
+        '/services/catering/lunch/lunch-01.jpg',
+        '/services/catering/lunch/lunch-02.jpg',
+        '/services/catering/lunch/lunch-03.jpg',
+      ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
+        'Elevated plated lunch',
+        'Executive lunch buffet',
+        'Seasonal lunch presentation',
       ],
     },
     {
@@ -2840,16 +2873,16 @@ export const eventCateringData = {
       description:
         "Celebrate in timeless style with a cocktail reception that blends exceptional cuisine, handcrafted cocktails, and refined hospitality. At 48 Wall Street, our culinary and beverage teams curate sophisticated receptions featuring artfully passed hors d'oeuvres, elegant chef-attended stations, premium charcuterie and seafood displays, seasonal small plates, and expertly crafted signature cocktails.\n\nWhether hosting a corporate reception, product launch, networking event, fashion show, gala, or wedding celebration, every cocktail experience is thoughtfully tailored to reflect your vision and impress your guests. Set against the iconic marble architecture and historic grandeur of 48 Wall Street, our white-glove service, premium bar program, and impeccable presentation create an atmosphere of effortless luxury, where every toast becomes part of an unforgettable evening.",
       images: [
-        '/services/catering/gallery-18.jpg',
-        '/services/catering/gallery-17.jpg',
-        '/services/catering/gallery-01.jpg',
-        '/services/catering/gallery-22.jpg',
+        '/services/catering/cocktail-reception/cocktail-01.jpg',
+        '/services/catering/cocktail-reception/cocktail-02.jpg',
+        '/services/catering/cocktail-reception/cocktail-03.jpg',
+        '/services/catering/cocktail-reception/cocktail-04.jpg',
       ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
-        'Catering display 4',
+        'Cocktail reception at 48 Wall Street',
+        'Elegant cocktail hour setup',
+        'Guests enjoying a cocktail reception',
+        'Signature cocktails and hors d’oeuvres',
       ],
     },
     {
@@ -2859,16 +2892,20 @@ export const eventCateringData = {
       description:
         "Celebrate life's most memorable occasions with an elegant seated dining experience crafted to impress. At 48 Wall Street, every course is thoughtfully prepared using the finest seasonal ingredients and presented with impeccable attention to detail. From intimate executive dinners and black-tie galas to luxury weddings and charitable celebrations, our culinary team creates bespoke multi-course menus paired with exceptional wines and white-glove service. Surrounded by the timeless grandeur of our historic venue, every dinner becomes an unforgettable expression of sophistication and hospitality.",
       images: [
-        '/services/catering/gallery-02.jpg',
-        '/services/catering/gallery-03.jpg',
-        '/services/catering/gallery-05.jpg',
-        '/services/catering/gallery-06.jpg',
-        '/services/catering/gallery-07.jpg',
+        '/services/catering/seated-dinner/dinner-01.jpg',
+        '/services/catering/seated-dinner/dinner-02.jpg',
+        '/services/catering/seated-dinner/dinner-03.jpg',
+        '/services/catering/seated-dinner/dinner-04.jpg',
+        '/services/catering/seated-dinner/dinner-05.jpg',
+        '/services/catering/seated-dinner/dinner-06.jpg',
       ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
+        'Elegant seated dinner service',
+        'Fine dining table setting',
+        'Multi-course plated dinner',
+        'Black-tie gala dinner',
+        'Luxury wedding dinner',
+        'Seated dinner at 48 Wall Street',
       ],
     },
     {
@@ -2878,26 +2915,48 @@ export const eventCateringData = {
       description:
         'Redefine traditional dining with a collection of beautifully designed chef-attended culinary stations that encourage guests to explore, engage, and indulge. From premium carving stations and fresh seafood displays to handcrafted pasta, global cuisine, artisan charcuterie, and decadent dessert presentations, each station is thoughtfully curated to deliver an immersive dining experience.\n\nPerfect for corporate receptions, luxury galas, weddings, and social celebrations, our interactive culinary experiences combine exceptional cuisine with elegant presentation, creating a vibrant atmosphere that inspires conversation and unforgettable moments.',
       images: [
-        '/services/catering/gallery-04.jpeg',
-        '/services/catering/gallery-08.jpg',
-        '/services/catering/gallery-09.jpg',
-        '/services/catering/gallery-10.jpg',
-        '/services/catering/gallery-11.jpg',
+        '/services/catering/curated-dining-stations/station-01.jpg',
+        '/services/catering/curated-dining-stations/station-02.jpg',
+        '/services/catering/curated-dining-stations/station-03.jpg',
+        '/services/catering/curated-dining-stations/station-04.jpg',
+        '/services/catering/curated-dining-stations/station-05.jpg',
       ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
+        'Curated dining station',
+        'Chef-attended culinary station',
+        'Interactive food station display',
+        'Artisan station presentation',
+        'Curated tasting station',
       ],
     },
   ],
-  videoSection: {
-    title: 'The Art of Exceptional Dining',
-    subtitle: 'Where Culinary Excellence Becomes an Unforgettable Experience.',
-    description:
-      "Every unforgettable event deserves an equally unforgettable culinary experience. Our award-winning chefs and hospitality professionals create refined menus that celebrate craftsmanship, innovation, and impeccable service. Whether hosting a corporate gala, luxury wedding, fundraising event, or private celebration, each dish is designed to elevate your guests' experience while complementing the grandeur of our historic venue.",
-    embedUrl: 'https://player.vimeo.com/video/1066736672?h=044c19c168',
-    thumbnail: '/services/catering/catering-video-screen-shot.jpg',
+  gallery: {
+    title: 'Catering Gallery',
+    subtitle:
+      'A glimpse of the culinary experiences and celebrations we’ve crafted at 48 Wall Street.',
+    images: [
+      { src: '/services/catering/gallery/MOAF-0140.jpg', alt: 'Catering at 48 Wall Street', orientation: 'landscape' },
+      { src: '/services/catering/gallery/MOAF-0144.jpg', alt: 'Event dining at 48 Wall Street', orientation: 'landscape' },
+      { src: '/services/catering/gallery/JSV_3775.jpg', alt: 'Elegant catering setup', orientation: 'landscape' },
+      { src: '/services/catering/gallery/IMG_0556.jpeg', alt: 'Catering presentation', orientation: 'landscape' },
+      { src: '/services/catering/gallery/IMG_0665.jpeg', alt: 'Culinary display', orientation: 'landscape' },
+      { src: '/services/catering/gallery/IMG_0667.jpeg', alt: 'Gourmet food display', orientation: 'landscape' },
+      { src: '/services/catering/gallery/IMG_2458.jpeg', alt: 'Plated dish', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_2459.jpeg', alt: 'Signature course', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_2460.jpeg', alt: 'Chef-crafted plate', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_2462.jpeg', alt: 'Culinary creation', orientation: 'landscape' },
+      { src: '/services/catering/gallery/IMG_4522.jpeg', alt: 'Fine dining detail', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_4527.jpeg', alt: 'Elevated dining detail', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_7078.jpeg', alt: 'Catering course', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_7082.jpeg', alt: 'Plated presentation', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_7087.jpeg', alt: 'Gourmet plating', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_7094.jpeg', alt: 'Reception spread', orientation: 'landscape' },
+      { src: '/services/catering/gallery/IMG_7265.jpeg', alt: 'Dining experience', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_7266.jpeg', alt: 'Culinary artistry', orientation: 'portrait' },
+      { src: '/services/catering/gallery/IMG_7267.jpeg', alt: 'Event catering', orientation: 'landscape' },
+      { src: '/services/catering/gallery/IMG_7268.jpeg', alt: 'Catering service', orientation: 'landscape' },
+      { src: '/services/catering/gallery/IMG_7438.jpeg', alt: 'Refined dining moment', orientation: 'portrait' },
+    ] as const,
   },
 };
 

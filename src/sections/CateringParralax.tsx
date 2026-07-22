@@ -68,7 +68,7 @@ export default function CateringSection() {
         }}
       >
         <Image
-          src="/services/catering/gallery-13.jpg"
+          src="/services/catering/gallery/JSV_3775.jpg"
           alt="Cocktails with city view"
           fill
           className="object-cover"
@@ -151,7 +151,7 @@ export default function CateringSection() {
               }}
             >
               <Image
-                src="/services/catering/gallery-15.jpg"
+                src="/services/catering/gallery/IMG_7087.jpeg"
                 alt="Caviar dish"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-110"

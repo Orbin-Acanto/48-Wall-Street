@@ -48,7 +48,7 @@ const has = (name) => args.includes(`--${name}`);
 
 const TARGET_DIR = path.resolve(ROOT, getFlag('dir', 'public'));
 const MIN_KB = Number(getFlag('min', 800)); // only touch files bigger than this
-const MAX_DIM = Number(getFlag('max-dim', 3000)); // cap longest side (px)
+const MAX_DIM = Number(getFlag('max-dim', 2560)); // cap longest side (px)
 const QUALITY = Number(getFlag('quality', 88)); // JPEG quality (visually lossless)
 const DRY_RUN = has('dry');
 const FORCE = has('force');
@@ -123,7 +123,9 @@ async function reencode(absPath, ext) {
 // ---- Main -----------------------------------------------------------------
 async function main() {
   console.log(`\n  Image optimizer`);
-  console.log(`  dir=${relKey(TARGET_DIR)}  min=${MIN_KB}KB  max-dim=${MAX_DIM}px  quality=${QUALITY}${DRY_RUN ? '  [DRY RUN]' : ''}${FORCE ? '  [FORCE]' : ''}\n`);
+  console.log(
+    `  dir=${relKey(TARGET_DIR)}  min=${MIN_KB}KB  max-dim=${MAX_DIM}px  quality=${QUALITY}${DRY_RUN ? '  [DRY RUN]' : ''}${FORCE ? '  [FORCE]' : ''}\n`
+  );
 
   const manifest = await loadManifest();
   const files = await walk(TARGET_DIR);

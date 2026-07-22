@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import { ServiceSection } from '@/types';
@@ -16,6 +16,8 @@ export default function ServiceSectionItem({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const lightboxOpen = lightboxIndex !== null;
 
   const images =
     section.images && section.images.length > 0
@@ -28,14 +30,50 @@ export default function ServiceSectionItem({
       : images.map((_, i) => `${section.title} image ${i + 1}`);
 
   useEffect(() => {
-    if (images.length <= 1) return;
+    if (images.length <= 1 || lightboxOpen) return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
     }, 8000);
 
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [images.length, lightboxOpen]);
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const nextLightbox = useCallback(
+    () =>
+      setLightboxIndex((prev) =>
+        prev === null ? prev : (prev + 1) % images.length,
+      ),
+    [images.length],
+  );
+  const prevLightbox = useCallback(
+    () =>
+      setLightboxIndex((prev) =>
+        prev === null ? prev : (prev - 1 + images.length) % images.length,
+      ),
+    [images.length],
+  );
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.body.style.overflow = lightboxOpen ? 'hidden' : '';
+    }
+    return () => {
+      if (typeof window !== 'undefined') document.body.style.overflow = '';
+    };
+  }, [lightboxOpen]);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextLightbox();
+      if (e.key === 'ArrowLeft') prevLightbox();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxOpen, closeLightbox, nextLightbox, prevLightbox]);
 
   return (
     <section
@@ -160,7 +198,12 @@ export default function ServiceSectionItem({
                 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))',
             }}
           >
-            <div className="relative h-72 md:h-96">
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(currentImageIndex)}
+              className="group relative block h-72 w-full cursor-zoom-in md:h-96"
+              aria-label={`Enlarge ${section.title} image`}
+            >
               {images.map((image, imgIdx) => (
                 <div
                   key={imgIdx}
@@ -190,13 +233,36 @@ export default function ServiceSectionItem({
                 }}
               />
 
+              {/* hover darken + expand icon */}
+              <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/20">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                    />
+                  </svg>
+                </span>
+              </div>
+
               {/* Slideshow indicators */}
               {images.length > 1 && (
                 <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
                   {images.map((_, imgIdx) => (
                     <button
                       key={imgIdx}
-                      onClick={() => setCurrentImageIndex(imgIdx)}
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImageIndex(imgIdx);
+                      }}
                       className="h-2 rounded-full transition-all duration-300 hover:scale-125"
                       style={{
                         backgroundColor:
@@ -210,10 +276,81 @@ export default function ServiceSectionItem({
                   ))}
                 </div>
               )}
-            </div>
+            </button>
           </motion.div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightboxOpen && lightboxIndex !== null && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8"
+          onClick={closeLightbox}
+        >
+          <button
+            onClick={closeLightbox}
+            aria-label="Close image"
+            className="absolute top-4 right-4 z-10 text-3xl text-white/90 transition-opacity hover:opacity-70"
+          >
+            ✕
+          </button>
+
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevLightbox();
+                }}
+                aria-label="Previous image"
+                className="absolute left-2 z-10 flex h-12 w-12 items-center justify-center rounded-full text-2xl text-white/90 transition-colors hover:bg-white/10 sm:left-6"
+              >
+                ‹
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextLightbox();
+                }}
+                aria-label="Next image"
+                className="absolute right-2 z-10 flex h-12 w-12 items-center justify-center rounded-full text-2xl text-white/90 transition-colors hover:bg-white/10 sm:right-6"
+              >
+                ›
+              </button>
+            </>
+          )}
+
+          <motion.div
+            key={lightboxIndex}
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.25 }}
+            className="relative flex max-h-[85vh] w-full max-w-5xl items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={images[lightboxIndex]}
+              alt={
+                imageAlts[lightboxIndex] ||
+                `${section.title} ${lightboxIndex + 1}`
+              }
+              width={1600}
+              height={1067}
+              className="max-h-[85vh] w-auto rounded-lg object-contain"
+              sizes="100vw"
+              priority
+            />
+          </motion.div>
+
+          {images.length > 1 && (
+            <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-sm text-white/70">
+              {lightboxIndex + 1} / {images.length}
+            </p>
+          )}
+        </motion.div>
+      )}
     </section>
   );
 }
