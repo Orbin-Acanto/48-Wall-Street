@@ -4702,5 +4702,229 @@
     "originalBytes": 2090802,
     "finalBytes": 801868,
     "resized": true
+  },
+  "public/services/catering/cocktail-reception/cocktail-01.jpg": {
+    "hash": "a656ca15bc49eba152cfe3162f96f97ac42ad790",
+    "optimizedAt": "2026-07-22T00:30:05.051Z",
+    "originalBytes": 17672228,
+    "finalBytes": 593721,
+    "resized": true
+  },
+  "public/services/catering/cocktail-reception/cocktail-02.jpg": {
+    "hash": "5c4eeeff1335f6d2dfd2133db45a04acce5394ac",
+    "optimizedAt": "2026-07-22T00:30:05.683Z",
+    "originalBytes": 12402982,
+    "finalBytes": 638961,
+    "resized": true
+  },
+  "public/services/catering/cocktail-reception/cocktail-03.jpg": {
+    "hash": "962fe6c89fb9c1ab13a2733b210dcf79b99414e4",
+    "optimizedAt": "2026-07-22T00:30:06.314Z",
+    "originalBytes": 11945000,
+    "finalBytes": 506707,
+    "resized": true
+  },
+  "public/services/catering/cocktail-reception/cocktail-04.jpg": {
+    "hash": "24e86e448198452796aeaf3e4896cbeeef4fc69d",
+    "optimizedAt": "2026-07-22T00:30:06.937Z",
+    "originalBytes": 1323099,
+    "finalBytes": 778059,
+    "resized": true
+  },
+  "public/services/catering/curated-dining-stations/station-01.jpg": {
+    "hash": "598ac11f805943d7e77baf6e6b39e20b32b4b63a",
+    "optimizedAt": "2026-07-22T00:30:07.928Z",
+    "originalBytes": 5042399,
+    "finalBytes": 1660089,
+    "resized": true
+  },
+  "public/services/catering/curated-dining-stations/station-02.jpg": {
+    "hash": "926810fef705e18c7faeb0f72a60910201c7bedf",
+    "optimizedAt": "2026-07-22T00:30:08.331Z",
+    "originalBytes": 1377114,
+    "finalBytes": 406042,
+    "resized": true
+  },
+  "public/services/catering/curated-dining-stations/station-03.jpg": {
+    "hash": "1c10a778ed76e2f49523e39d15cff6237f48fac6",
+    "optimizedAt": "2026-07-22T00:30:08.946Z",
+    "originalBytes": 3128609,
+    "finalBytes": 807393,
+    "resized": true
+  },
+  "public/services/catering/curated-dining-stations/station-04.jpg": {
+    "hash": "987a6cec32586ce9d2e24a78ba829dadc6ad24f4",
+    "optimizedAt": "2026-07-22T00:30:09.350Z",
+    "originalBytes": 943834,
+    "finalBytes": 943834,
+    "resized": false
+  },
+  "public/services/catering/gallery/IMG_0556.jpeg": {
+    "hash": "75102f964a491e265085f62060e71278a1630be7",
+    "optimizedAt": "2026-07-22T00:30:10.070Z",
+    "originalBytes": 1948237,
+    "finalBytes": 1067293,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_0665.jpeg": {
+    "hash": "be5c23e294d8a9d04edd38cfcd4e340b8de4ba57",
+    "optimizedAt": "2026-07-22T00:30:10.847Z",
+    "originalBytes": 2450511,
+    "finalBytes": 1200870,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_0667.jpeg": {
+    "hash": "4d250fcc92afcf22e63aa6820f15b924e42af0a1",
+    "optimizedAt": "2026-07-22T00:30:11.608Z",
+    "originalBytes": 2569159,
+    "finalBytes": 1203903,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_2458.jpeg": {
+    "hash": "4e17274535ef2f5d4a4a5607b6ba65b14ec5f201",
+    "optimizedAt": "2026-07-22T00:30:12.073Z",
+    "originalBytes": 1448565,
+    "finalBytes": 672023,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_2459.jpeg": {
+    "hash": "e8776f098bbb63eb903fa9eafc10d4072a5027b8",
+    "optimizedAt": "2026-07-22T00:30:12.485Z",
+    "originalBytes": 1074135,
+    "finalBytes": 459997,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_2460.jpeg": {
+    "hash": "cced692f2d0012ab6e068f6ddb5d52fdedb55ee3",
+    "optimizedAt": "2026-07-22T00:30:12.898Z",
+    "originalBytes": 1058157,
+    "finalBytes": 468044,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_2462.jpeg": {
+    "hash": "f1bc02267b566c3c3da583464811a9489f84dd9b",
+    "optimizedAt": "2026-07-22T00:30:13.541Z",
+    "originalBytes": 1344905,
+    "finalBytes": 757567,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_4522.jpeg": {
+    "hash": "1c10a778ed76e2f49523e39d15cff6237f48fac6",
+    "optimizedAt": "2026-07-22T00:30:14.171Z",
+    "originalBytes": 3128609,
+    "finalBytes": 807393,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_4527.jpeg": {
+    "hash": "41839ec1a5a3d093175d98a308013a6146024aac",
+    "optimizedAt": "2026-07-22T00:30:14.873Z",
+    "originalBytes": 3860022,
+    "finalBytes": 1031167,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_7078.jpeg": {
+    "hash": "5d46190b61d0bbce24b1a9cdeb01b4a3a649ecd7",
+    "optimizedAt": "2026-07-22T00:30:15.280Z",
+    "originalBytes": 1297407,
+    "finalBytes": 401330,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_7082.jpeg": {
+    "hash": "dd92dba61a700d7840c4c4eea0ff1474c0949c67",
+    "optimizedAt": "2026-07-22T00:30:15.653Z",
+    "originalBytes": 1210475,
+    "finalBytes": 399774,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_7087.jpeg": {
+    "hash": "3296a5efb77053e62dff5b7e76c3a88f0bbe3ad2",
+    "optimizedAt": "2026-07-22T00:30:16.065Z",
+    "originalBytes": 1273728,
+    "finalBytes": 416663,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_7094.jpeg": {
+    "hash": "24e86e448198452796aeaf3e4896cbeeef4fc69d",
+    "optimizedAt": "2026-07-22T00:30:16.678Z",
+    "originalBytes": 1323099,
+    "finalBytes": 778059,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_7265.jpeg": {
+    "hash": "d5c66a57acbfaa1e7f7ffacc1111f7da4b0716e1",
+    "optimizedAt": "2026-07-22T00:30:17.050Z",
+    "originalBytes": 842064,
+    "finalBytes": 381100,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_7266.jpeg": {
+    "hash": "d479284236326c3ed22e0767e42a2e185f82200a",
+    "optimizedAt": "2026-07-22T00:30:17.529Z",
+    "originalBytes": 3680418,
+    "finalBytes": 654501,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_7267.jpeg": {
+    "hash": "d6ecd3dc34ccb50a553bb877c04f3b954542f337",
+    "optimizedAt": "2026-07-22T00:30:18.200Z",
+    "originalBytes": 1370105,
+    "finalBytes": 988650,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_7268.jpeg": {
+    "hash": "ec3a32d7717d468ec17020686662f17689d840d6",
+    "optimizedAt": "2026-07-22T00:30:18.883Z",
+    "originalBytes": 1411909,
+    "finalBytes": 936888,
+    "resized": true
+  },
+  "public/services/catering/gallery/IMG_7438.jpeg": {
+    "hash": "0083b448ac12c49fbc985b16557ebced4ed6911c",
+    "optimizedAt": "2026-07-22T00:30:19.282Z",
+    "originalBytes": 1062388,
+    "finalBytes": 443984,
+    "resized": true
+  },
+  "public/services/catering/gallery/JSV_3775.jpg": {
+    "hash": "962fe6c89fb9c1ab13a2733b210dcf79b99414e4",
+    "optimizedAt": "2026-07-22T00:30:19.894Z",
+    "originalBytes": 11945000,
+    "finalBytes": 506707,
+    "resized": true
+  },
+  "public/services/catering/gallery/MOAF-0140.jpg": {
+    "hash": "a656ca15bc49eba152cfe3162f96f97ac42ad790",
+    "optimizedAt": "2026-07-22T00:30:20.532Z",
+    "originalBytes": 17672228,
+    "finalBytes": 593721,
+    "resized": true
+  },
+  "public/services/catering/gallery/MOAF-0144.jpg": {
+    "hash": "5c4eeeff1335f6d2dfd2133db45a04acce5394ac",
+    "optimizedAt": "2026-07-22T00:30:21.142Z",
+    "originalBytes": 12402982,
+    "finalBytes": 638961,
+    "resized": true
+  },
+  "public/services/catering/lunch/lunch-03.jpg": {
+    "hash": "7fea8b6cdfdcfea3de17ddf6c27a26e55178a12b",
+    "optimizedAt": "2026-07-22T00:30:21.690Z",
+    "originalBytes": 2301083,
+    "finalBytes": 594774,
+    "resized": true
+  },
+  "public/services/catering/seated-dinner/dinner-04.jpg": {
+    "hash": "a656ca15bc49eba152cfe3162f96f97ac42ad790",
+    "optimizedAt": "2026-07-22T00:30:22.332Z",
+    "originalBytes": 17672228,
+    "finalBytes": 593721,
+    "resized": true
+  },
+  "public/services/catering/seated-dinner/dinner-06.jpg": {
+    "hash": "5c4eeeff1335f6d2dfd2133db45a04acce5394ac",
+    "optimizedAt": "2026-07-22T00:30:22.948Z",
+    "originalBytes": 12402982,
+    "finalBytes": 638961,
+    "resized": true
   }
 }
