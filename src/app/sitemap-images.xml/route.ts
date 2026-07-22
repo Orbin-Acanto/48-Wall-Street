@@ -119,12 +119,12 @@ const imageEntries: Array<{
     loc: `${baseUrl}/events/holiday-events`,
     images: [
       {
-        loc: `${baseUrl}/gallery/holiday/gallery-01.jpg`,
+        loc: `${baseUrl}/gallery/holiday/holiday-01.jpg`,
         title: 'Corporate Holiday Party — 48 Wall Street NYC',
         caption: 'Festive corporate holiday party at 48 Wall Street Financial District',
       },
       {
-        loc: `${baseUrl}/gallery/holiday/gallery-11.jpg`,
+        loc: `${baseUrl}/gallery/holiday/holiday-02.jpg`,
         title: 'Holiday Gala Venue NYC — 48 Wall Street',
         caption: 'Holiday gala celebration in the Grand Mezzanine at 48 Wall Street',
       },

@@ -4613,25 +4613,25 @@
     "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-02.jpg": {
-    "hash": "9b217b63934934d6eb55c329d6f4a78e0c88cd80",
-    "optimizedAt": "2026-07-21T22:51:23.471Z",
-    "originalBytes": 2206944,
-    "finalBytes": 779847,
+    "hash": "83bdb99b4b7aca392a3737db266780ce1f11eb4b",
+    "optimizedAt": "2026-07-22T00:40:20.979Z",
+    "originalBytes": 2765851,
+    "finalBytes": 920747,
     "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-03.jpg": {
-    "hash": "b390cad0ee8ee33c27f699b87b0085f07063160d",
-    "optimizedAt": "2026-07-21T22:51:23.989Z",
-    "originalBytes": 2069453,
-    "finalBytes": 653517,
+    "hash": "54776dec25539c6ef9136340e6c06685b1c209df",
+    "optimizedAt": "2026-07-22T00:40:21.512Z",
+    "originalBytes": 2395167,
+    "finalBytes": 838144,
     "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-04.jpg": {
-    "hash": "ea46e11423770bcdcf999e29c204130c677ccdc5",
-    "optimizedAt": "2026-07-21T22:51:24.356Z",
-    "originalBytes": 1627074,
-    "finalBytes": 602404,
-    "resized": true
+    "hash": "e510b106fb8b151f724a89512d553733286f2a35",
+    "optimizedAt": "2026-07-22T00:40:21.925Z",
+    "originalBytes": 1026172,
+    "finalBytes": 1026172,
+    "resized": false
   },
   "public/spaces/upper-mezzanine/gallery-05.jpg": {
     "hash": "47521931e3211a7a16817d2d54e1bc4b8358bda0",
@@ -4662,10 +4662,10 @@
     "resized": true
   },
   "public/spaces/upper-mezzanine/hero-03.jpg": {
-    "hash": "e510b106fb8b151f724a89512d553733286f2a35",
-    "optimizedAt": "2026-07-21T22:51:26.344Z",
-    "originalBytes": 4679200,
-    "finalBytes": 1026172,
+    "hash": "e41bf4364af6d8f205fb70c5aa0e629f177af25b",
+    "optimizedAt": "2026-07-22T00:40:22.302Z",
+    "originalBytes": 1706398,
+    "finalBytes": 829059,
     "resized": true
   },
   "public/vendors/hero-01.png": {
@@ -4925,6 +4925,195 @@
     "optimizedAt": "2026-07-22T00:30:22.948Z",
     "originalBytes": 12402982,
     "finalBytes": 638961,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-01.jpg": {
+    "hash": "6c70b8d4b2f1b592d445888c4a731836701c5f23",
+    "optimizedAt": "2026-07-22T00:40:01.946Z",
+    "originalBytes": 7911444,
+    "finalBytes": 1618869,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-02.jpg": {
+    "hash": "3435e11c9be77b94877c2cbd9db354b9712566a0",
+    "optimizedAt": "2026-07-22T00:40:02.680Z",
+    "originalBytes": 8771870,
+    "finalBytes": 1506991,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-03.jpg": {
+    "hash": "b5290830bcd851f5c2e919189b1a0bbbbf48cb10",
+    "optimizedAt": "2026-07-22T00:40:03.487Z",
+    "originalBytes": 9510443,
+    "finalBytes": 1618020,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-06.jpg": {
+    "hash": "6b02b6ae58789583e63e19debc51a3785e69f054",
+    "optimizedAt": "2026-07-22T00:40:04.192Z",
+    "originalBytes": 9909323,
+    "finalBytes": 1375143,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-07.jpg": {
+    "hash": "e148403af9b1fe9c486b86e2ce9fd043092728d8",
+    "optimizedAt": "2026-07-22T00:40:05.036Z",
+    "originalBytes": 8947837,
+    "finalBytes": 1624266,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-08.jpg": {
+    "hash": "19d57efb5e5fff13dd5b10dba6f025a5f432c431",
+    "optimizedAt": "2026-07-22T00:40:05.644Z",
+    "originalBytes": 1882673,
+    "finalBytes": 1451382,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-09.jpg": {
+    "hash": "4775cae6a6d66bc75527bd2cb370cee9f9380afa",
+    "optimizedAt": "2026-07-22T00:40:06.257Z",
+    "originalBytes": 2253531,
+    "finalBytes": 1548864,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-10.jpg": {
+    "hash": "6fedcb42063046aff62e8ffa35c5c9ae55a5c6f0",
+    "optimizedAt": "2026-07-22T00:40:06.766Z",
+    "originalBytes": 1824520,
+    "finalBytes": 1147398,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-11.jpg": {
+    "hash": "04c0dfa954f085adeb534a904882cd3ad3076583",
+    "optimizedAt": "2026-07-22T00:40:07.430Z",
+    "originalBytes": 2301970,
+    "finalBytes": 1608517,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-12.jpg": {
+    "hash": "90a83a607cab2df407d9698a89536b649ad33f3b",
+    "optimizedAt": "2026-07-22T00:40:07.736Z",
+    "originalBytes": 878531,
+    "finalBytes": 753751,
+    "resized": false
+  },
+  "public/gallery/holiday/holiday-13.jpg": {
+    "hash": "71e64a6466023d458baee1648e72473c2c96299a",
+    "optimizedAt": "2026-07-22T00:40:08.186Z",
+    "originalBytes": 1641220,
+    "finalBytes": 1014367,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-14.jpg": {
+    "hash": "a9c3146222d69dd0cc3a2496f499de606d65e271",
+    "optimizedAt": "2026-07-22T00:40:08.970Z",
+    "originalBytes": 10130178,
+    "finalBytes": 1560628,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-15.jpg": {
+    "hash": "e12297f8ff2f4aff10be518ef5b52043b3b2c56f",
+    "optimizedAt": "2026-07-22T00:40:09.668Z",
+    "originalBytes": 7600608,
+    "finalBytes": 1375969,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-16.jpg": {
+    "hash": "78d4092e1239507055fea6cd6848dd2ddfb97210",
+    "optimizedAt": "2026-07-22T00:40:10.636Z",
+    "originalBytes": 11175124,
+    "finalBytes": 2021286,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-17.jpg": {
+    "hash": "4b17fa1966a287dcd34a9c4b2f8058923c789b34",
+    "optimizedAt": "2026-07-22T00:40:11.699Z",
+    "originalBytes": 15316954,
+    "finalBytes": 2314771,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-18.jpg": {
+    "hash": "a5102a9149b37065184a96fcc1552fb4da44d2cf",
+    "optimizedAt": "2026-07-22T00:40:11.948Z",
+    "originalBytes": 1743641,
+    "finalBytes": 639133,
+    "resized": false
+  },
+  "public/gallery/holiday/holiday-19.jpg": {
+    "hash": "8eec1179a59e3d8e8d35321567ebe35e4bccf964",
+    "optimizedAt": "2026-07-22T00:40:12.674Z",
+    "originalBytes": 8027762,
+    "finalBytes": 1381588,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-20.jpg": {
+    "hash": "00c650f21e176e210542a4d307ae1568b1f8ceea",
+    "optimizedAt": "2026-07-22T00:40:13.571Z",
+    "originalBytes": 11343659,
+    "finalBytes": 1984916,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-21.jpg": {
+    "hash": "1ca65b635b184d7cb67cc3ffb17c4fb1f4252c4f",
+    "optimizedAt": "2026-07-22T00:40:14.400Z",
+    "originalBytes": 10302184,
+    "finalBytes": 1708780,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-22.jpg": {
+    "hash": "c5c738a39f28e7a00962d0f3d0b67f7c8b333fe2",
+    "optimizedAt": "2026-07-22T00:40:15.236Z",
+    "originalBytes": 10723558,
+    "finalBytes": 1742966,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-23.jpg": {
+    "hash": "b495832e409466ca7286ef4eb03263553de18368",
+    "optimizedAt": "2026-07-22T00:40:15.876Z",
+    "originalBytes": 3036218,
+    "finalBytes": 1162812,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-24.jpg": {
+    "hash": "db45b4f360066bf67fbc15fd44ee264aac17522b",
+    "optimizedAt": "2026-07-22T00:40:16.626Z",
+    "originalBytes": 9359715,
+    "finalBytes": 1497735,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-25.jpg": {
+    "hash": "490287d4a45ee6879fccbaa8756f8a8d7f40e779",
+    "optimizedAt": "2026-07-22T00:40:17.212Z",
+    "originalBytes": 2462666,
+    "finalBytes": 981788,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-26.jpg": {
+    "hash": "224f03cbec6e492fee7c4d1bc0b3f01c4ea8d341",
+    "optimizedAt": "2026-07-22T00:40:17.989Z",
+    "originalBytes": 9216886,
+    "finalBytes": 1566551,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-27.jpg": {
+    "hash": "8e07dde69952e9f60ad8b1901cabfdc6403965ad",
+    "optimizedAt": "2026-07-22T00:40:18.683Z",
+    "originalBytes": 7571302,
+    "finalBytes": 1394551,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-28.jpg": {
+    "hash": "c572e0c99c88c90a21c08a849b1ceb988817e57e",
+    "optimizedAt": "2026-07-22T00:40:19.595Z",
+    "originalBytes": 13880156,
+    "finalBytes": 1860514,
+    "resized": true
+  },
+  "public/gallery/holiday/holiday-29.jpg": {
+    "hash": "1d3bad9f9c7b2e0987745d1592ce5552aa007b83",
+    "optimizedAt": "2026-07-22T00:40:20.360Z",
+    "originalBytes": 10154277,
+    "finalBytes": 1451109,
     "resized": true
   }
 }

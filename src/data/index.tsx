@@ -2425,11 +2425,11 @@ export const holidayData: EventShowcaseProps = {
       alt: 'Corporate holiday party at 48 Wall Street',
     },
     {
-      src: '/gallery/holiday/gallery-03.jpg',
+      src: '/gallery/holiday/holiday-03.jpg',
       alt: 'Holiday party',
     },
     {
-      src: '/gallery/holiday/gallery-02.jpg',
+      src: '/gallery/holiday/holiday-02.jpg',
       alt: 'Holiday party',
     },
   ],
