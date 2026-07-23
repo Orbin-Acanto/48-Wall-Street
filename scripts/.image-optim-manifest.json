@@ -4564,11 +4564,11 @@
     "resized": false
   },
   "public/spaces/hamilton-room/gallery-03.jpg": {
-    "hash": "8a484c990932ad0e1dc5b19131c4627033c45b87",
-    "optimizedAt": "2026-07-21T22:02:28.433Z",
-    "originalBytes": 689073,
-    "finalBytes": 519603,
-    "resized": false
+    "hash": "caf2a113d78a457b28035df0f5b0d673826d133f",
+    "optimizedAt": "2026-07-23T05:24:16.091Z",
+    "originalBytes": 1541737,
+    "finalBytes": 937017,
+    "resized": true
   },
   "public/spaces/hamilton-room/gallery-04.jpg": {
     "hash": "7353916a1bef3a8589308f8d94cc151b495ceffb",
@@ -4613,10 +4613,10 @@
     "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-02.jpg": {
-    "hash": "83bdb99b4b7aca392a3737db266780ce1f11eb4b",
-    "optimizedAt": "2026-07-22T00:40:20.979Z",
-    "originalBytes": 2765851,
-    "finalBytes": 920747,
+    "hash": "ea46e11423770bcdcf999e29c204130c677ccdc5",
+    "optimizedAt": "2026-07-23T05:24:16.438Z",
+    "originalBytes": 1627074,
+    "finalBytes": 602404,
     "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-03.jpg": {
@@ -4627,11 +4627,11 @@
     "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-04.jpg": {
-    "hash": "e510b106fb8b151f724a89512d553733286f2a35",
-    "optimizedAt": "2026-07-22T00:40:21.925Z",
-    "originalBytes": 1026172,
-    "finalBytes": 1026172,
-    "resized": false
+    "hash": "9c28ba45df6728f43cc7710735b295951a706a36",
+    "optimizedAt": "2026-07-23T05:24:16.784Z",
+    "originalBytes": 1391187,
+    "finalBytes": 779587,
+    "resized": true
   },
   "public/spaces/upper-mezzanine/gallery-05.jpg": {
     "hash": "47521931e3211a7a16817d2d54e1bc4b8358bda0",
@@ -4929,189 +4929,189 @@
   },
   "public/gallery/holiday/holiday-01.jpg": {
     "hash": "6c70b8d4b2f1b592d445888c4a731836701c5f23",
-    "optimizedAt": "2026-07-22T00:40:01.946Z",
+    "optimizedAt": "2026-07-23T05:23:38.968Z",
     "originalBytes": 7911444,
     "finalBytes": 1618869,
     "resized": true
   },
   "public/gallery/holiday/holiday-02.jpg": {
     "hash": "3435e11c9be77b94877c2cbd9db354b9712566a0",
-    "optimizedAt": "2026-07-22T00:40:02.680Z",
+    "optimizedAt": "2026-07-23T05:23:39.745Z",
     "originalBytes": 8771870,
     "finalBytes": 1506991,
     "resized": true
   },
   "public/gallery/holiday/holiday-03.jpg": {
     "hash": "b5290830bcd851f5c2e919189b1a0bbbbf48cb10",
-    "optimizedAt": "2026-07-22T00:40:03.487Z",
+    "optimizedAt": "2026-07-23T05:23:40.532Z",
     "originalBytes": 9510443,
     "finalBytes": 1618020,
     "resized": true
   },
   "public/gallery/holiday/holiday-06.jpg": {
     "hash": "6b02b6ae58789583e63e19debc51a3785e69f054",
-    "optimizedAt": "2026-07-22T00:40:04.192Z",
+    "optimizedAt": "2026-07-23T05:23:41.217Z",
     "originalBytes": 9909323,
     "finalBytes": 1375143,
     "resized": true
   },
   "public/gallery/holiday/holiday-07.jpg": {
     "hash": "e148403af9b1fe9c486b86e2ce9fd043092728d8",
-    "optimizedAt": "2026-07-22T00:40:05.036Z",
+    "optimizedAt": "2026-07-23T05:23:42.108Z",
     "originalBytes": 8947837,
     "finalBytes": 1624266,
     "resized": true
   },
   "public/gallery/holiday/holiday-08.jpg": {
     "hash": "19d57efb5e5fff13dd5b10dba6f025a5f432c431",
-    "optimizedAt": "2026-07-22T00:40:05.644Z",
+    "optimizedAt": "2026-07-23T05:23:42.763Z",
     "originalBytes": 1882673,
     "finalBytes": 1451382,
     "resized": true
   },
   "public/gallery/holiday/holiday-09.jpg": {
     "hash": "4775cae6a6d66bc75527bd2cb370cee9f9380afa",
-    "optimizedAt": "2026-07-22T00:40:06.257Z",
+    "optimizedAt": "2026-07-23T05:23:43.369Z",
     "originalBytes": 2253531,
     "finalBytes": 1548864,
     "resized": true
   },
   "public/gallery/holiday/holiday-10.jpg": {
     "hash": "6fedcb42063046aff62e8ffa35c5c9ae55a5c6f0",
-    "optimizedAt": "2026-07-22T00:40:06.766Z",
+    "optimizedAt": "2026-07-23T05:23:43.937Z",
     "originalBytes": 1824520,
     "finalBytes": 1147398,
     "resized": true
   },
   "public/gallery/holiday/holiday-11.jpg": {
     "hash": "04c0dfa954f085adeb534a904882cd3ad3076583",
-    "optimizedAt": "2026-07-22T00:40:07.430Z",
+    "optimizedAt": "2026-07-23T05:23:44.583Z",
     "originalBytes": 2301970,
     "finalBytes": 1608517,
     "resized": true
   },
   "public/gallery/holiday/holiday-12.jpg": {
     "hash": "90a83a607cab2df407d9698a89536b649ad33f3b",
-    "optimizedAt": "2026-07-22T00:40:07.736Z",
+    "optimizedAt": "2026-07-23T05:23:44.889Z",
     "originalBytes": 878531,
     "finalBytes": 753751,
     "resized": false
   },
   "public/gallery/holiday/holiday-13.jpg": {
     "hash": "71e64a6466023d458baee1648e72473c2c96299a",
-    "optimizedAt": "2026-07-22T00:40:08.186Z",
+    "optimizedAt": "2026-07-23T05:23:45.334Z",
     "originalBytes": 1641220,
     "finalBytes": 1014367,
     "resized": true
   },
   "public/gallery/holiday/holiday-14.jpg": {
     "hash": "a9c3146222d69dd0cc3a2496f499de606d65e271",
-    "optimizedAt": "2026-07-22T00:40:08.970Z",
+    "optimizedAt": "2026-07-23T05:23:46.097Z",
     "originalBytes": 10130178,
     "finalBytes": 1560628,
     "resized": true
   },
   "public/gallery/holiday/holiday-15.jpg": {
     "hash": "e12297f8ff2f4aff10be518ef5b52043b3b2c56f",
-    "optimizedAt": "2026-07-22T00:40:09.668Z",
+    "optimizedAt": "2026-07-23T05:23:46.779Z",
     "originalBytes": 7600608,
     "finalBytes": 1375969,
     "resized": true
   },
   "public/gallery/holiday/holiday-16.jpg": {
     "hash": "78d4092e1239507055fea6cd6848dd2ddfb97210",
-    "optimizedAt": "2026-07-22T00:40:10.636Z",
+    "optimizedAt": "2026-07-23T05:23:47.709Z",
     "originalBytes": 11175124,
     "finalBytes": 2021286,
     "resized": true
   },
   "public/gallery/holiday/holiday-17.jpg": {
     "hash": "4b17fa1966a287dcd34a9c4b2f8058923c789b34",
-    "optimizedAt": "2026-07-22T00:40:11.699Z",
+    "optimizedAt": "2026-07-23T05:23:48.736Z",
     "originalBytes": 15316954,
     "finalBytes": 2314771,
     "resized": true
   },
   "public/gallery/holiday/holiday-18.jpg": {
     "hash": "a5102a9149b37065184a96fcc1552fb4da44d2cf",
-    "optimizedAt": "2026-07-22T00:40:11.948Z",
+    "optimizedAt": "2026-07-23T05:23:48.983Z",
     "originalBytes": 1743641,
     "finalBytes": 639133,
     "resized": false
   },
   "public/gallery/holiday/holiday-19.jpg": {
     "hash": "8eec1179a59e3d8e8d35321567ebe35e4bccf964",
-    "optimizedAt": "2026-07-22T00:40:12.674Z",
+    "optimizedAt": "2026-07-23T05:23:49.679Z",
     "originalBytes": 8027762,
     "finalBytes": 1381588,
     "resized": true
   },
   "public/gallery/holiday/holiday-20.jpg": {
     "hash": "00c650f21e176e210542a4d307ae1568b1f8ceea",
-    "optimizedAt": "2026-07-22T00:40:13.571Z",
+    "optimizedAt": "2026-07-23T05:23:50.549Z",
     "originalBytes": 11343659,
     "finalBytes": 1984916,
     "resized": true
   },
   "public/gallery/holiday/holiday-21.jpg": {
     "hash": "1ca65b635b184d7cb67cc3ffb17c4fb1f4252c4f",
-    "optimizedAt": "2026-07-22T00:40:14.400Z",
+    "optimizedAt": "2026-07-23T05:23:51.361Z",
     "originalBytes": 10302184,
     "finalBytes": 1708780,
     "resized": true
   },
   "public/gallery/holiday/holiday-22.jpg": {
     "hash": "c5c738a39f28e7a00962d0f3d0b67f7c8b333fe2",
-    "optimizedAt": "2026-07-22T00:40:15.236Z",
+    "optimizedAt": "2026-07-23T05:23:52.171Z",
     "originalBytes": 10723558,
     "finalBytes": 1742966,
     "resized": true
   },
   "public/gallery/holiday/holiday-23.jpg": {
     "hash": "b495832e409466ca7286ef4eb03263553de18368",
-    "optimizedAt": "2026-07-22T00:40:15.876Z",
+    "optimizedAt": "2026-07-23T05:23:52.796Z",
     "originalBytes": 3036218,
     "finalBytes": 1162812,
     "resized": true
   },
   "public/gallery/holiday/holiday-24.jpg": {
     "hash": "db45b4f360066bf67fbc15fd44ee264aac17522b",
-    "optimizedAt": "2026-07-22T00:40:16.626Z",
+    "optimizedAt": "2026-07-23T05:23:53.549Z",
     "originalBytes": 9359715,
     "finalBytes": 1497735,
     "resized": true
   },
   "public/gallery/holiday/holiday-25.jpg": {
     "hash": "490287d4a45ee6879fccbaa8756f8a8d7f40e779",
-    "optimizedAt": "2026-07-22T00:40:17.212Z",
+    "optimizedAt": "2026-07-23T05:23:54.108Z",
     "originalBytes": 2462666,
     "finalBytes": 981788,
     "resized": true
   },
   "public/gallery/holiday/holiday-26.jpg": {
     "hash": "224f03cbec6e492fee7c4d1bc0b3f01c4ea8d341",
-    "optimizedAt": "2026-07-22T00:40:17.989Z",
+    "optimizedAt": "2026-07-23T05:23:54.855Z",
     "originalBytes": 9216886,
     "finalBytes": 1566551,
     "resized": true
   },
   "public/gallery/holiday/holiday-27.jpg": {
     "hash": "8e07dde69952e9f60ad8b1901cabfdc6403965ad",
-    "optimizedAt": "2026-07-22T00:40:18.683Z",
+    "optimizedAt": "2026-07-23T05:23:55.613Z",
     "originalBytes": 7571302,
     "finalBytes": 1394551,
     "resized": true
   },
   "public/gallery/holiday/holiday-28.jpg": {
     "hash": "c572e0c99c88c90a21c08a849b1ceb988817e57e",
-    "optimizedAt": "2026-07-22T00:40:19.595Z",
+    "optimizedAt": "2026-07-23T05:23:56.489Z",
     "originalBytes": 13880156,
     "finalBytes": 1860514,
     "resized": true
   },
   "public/gallery/holiday/holiday-29.jpg": {
     "hash": "1d3bad9f9c7b2e0987745d1592ce5552aa007b83",
-    "optimizedAt": "2026-07-22T00:40:20.360Z",
+    "optimizedAt": "2026-07-23T05:23:57.230Z",
     "originalBytes": 10154277,
     "finalBytes": 1451109,
     "resized": true
@@ -5124,59 +5124,542 @@
     "resized": true
   },
   "public/gallery/non/nonprofit-02.jpg": {
-    "hash": "3c8925dc8d120e2e1e6dc3a14faa1d3580f814de",
-    "optimizedAt": "2026-07-22T00:58:15.162Z",
-    "originalBytes": 1874773,
-    "finalBytes": 1387018,
-    "resized": true
-  },
-  "public/gallery/non/nonprofit-03.jpg": {
-    "hash": "34c961706f3b2d3ec8099999f78f86726fe129e0",
-    "optimizedAt": "2026-07-22T00:58:15.654Z",
-    "originalBytes": 1373762,
-    "finalBytes": 1006122,
-    "resized": true
-  },
-  "public/gallery/non/nonprofit-05.jpg": {
     "hash": "76292986487ce948a4f42bd0f350b5f6f9bbad0a",
-    "optimizedAt": "2026-07-22T00:58:16.342Z",
+    "optimizedAt": "2026-07-23T05:23:57.966Z",
     "originalBytes": 3394235,
     "finalBytes": 1266105,
     "resized": true
   },
-  "public/gallery/non/nonprofit-06.jpg": {
+  "public/gallery/non/nonprofit-03.jpg": {
     "hash": "82fb607c81f83e0e11164199787d2752f2bf7b16",
-    "optimizedAt": "2026-07-22T00:58:17.098Z",
+    "optimizedAt": "2026-07-23T05:23:58.663Z",
     "originalBytes": 1708177,
     "finalBytes": 1115085,
     "resized": true
   },
-  "public/gallery/non/nonprofit-07.jpg": {
-    "hash": "97f1ab7286a6b5f2582bb07677d5aa489966d8df",
-    "optimizedAt": "2026-07-22T00:58:17.758Z",
-    "originalBytes": 3050545,
-    "finalBytes": 1274955,
-    "resized": true
-  },
-  "public/gallery/non/nonprofit-08.jpg": {
+  "public/gallery/non/nonprofit-05.jpg": {
     "hash": "1d6a6f2222aa4fa2584f26ba058965a84475577e",
-    "optimizedAt": "2026-07-22T00:58:18.289Z",
+    "optimizedAt": "2026-07-23T05:23:59.764Z",
     "originalBytes": 1914537,
     "finalBytes": 845786,
     "resized": true
   },
-  "public/gallery/non/nonprofit-09.jpg": {
+  "public/gallery/non/nonprofit-06.jpg": {
     "hash": "f394e5932d6c7f23e9ba2e730239750d8c610fe3",
-    "optimizedAt": "2026-07-22T00:58:18.894Z",
+    "optimizedAt": "2026-07-23T05:24:00.340Z",
     "originalBytes": 2421605,
     "finalBytes": 1067876,
     "resized": true
   },
-  "public/gallery/non/nonprofit-10.jpg": {
+  "public/gallery/non/nonprofit-07.jpg": {
     "hash": "62adb127b42dad9beea60889f57cdbea50dbf9b2",
-    "optimizedAt": "2026-07-22T00:58:19.471Z",
+    "optimizedAt": "2026-07-23T05:24:00.868Z",
     "originalBytes": 2183037,
     "finalBytes": 981100,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-08.jpg": {
+    "hash": "46c32003ceddfa93b3e48fd73164c01e30971a58",
+    "optimizedAt": "2026-07-23T05:24:01.522Z",
+    "originalBytes": 1960327,
+    "finalBytes": 1489926,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-09.jpg": {
+    "hash": "3c8925dc8d120e2e1e6dc3a14faa1d3580f814de",
+    "optimizedAt": "2026-07-23T05:24:02.066Z",
+    "originalBytes": 1874773,
+    "finalBytes": 1387018,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-10.jpg": {
+    "hash": "34c961706f3b2d3ec8099999f78f86726fe129e0",
+    "optimizedAt": "2026-07-23T05:24:02.593Z",
+    "originalBytes": 1373762,
+    "finalBytes": 1006122,
+    "resized": true
+  },
+  "public/events/corporate/gallery-03.jpg": {
+    "hash": "d68797be752cd50367dedf3176db10900e613ce0",
+    "optimizedAt": "2026-07-23T05:23:12.870Z",
+    "originalBytes": 8751339,
+    "finalBytes": 1306906,
+    "resized": true
+  },
+  "public/events/corporate/gallery-04.jpg": {
+    "hash": "24014db2b1b8389c16f4bae29642fe8e6c2f4914",
+    "optimizedAt": "2026-07-23T05:23:13.147Z",
+    "originalBytes": 835365,
+    "finalBytes": 649117,
+    "resized": false
+  },
+  "public/events/nonprofit/gallery-04.jpg": {
+    "hash": "5bb337104f0c0484bd2cb2294799152ee75b8918",
+    "optimizedAt": "2026-07-23T05:23:13.789Z",
+    "originalBytes": 3096865,
+    "finalBytes": 1093305,
+    "resized": true
+  },
+  "public/gallery/bar/bar-01.jpg": {
+    "hash": "b5290830bcd851f5c2e919189b1a0bbbbf48cb10",
+    "optimizedAt": "2026-07-23T05:23:14.610Z",
+    "originalBytes": 9510443,
+    "finalBytes": 1618020,
+    "resized": true
+  },
+  "public/gallery/bar/bar-13.jpg": {
+    "hash": "90af5dac2549312161fec89f4b5ab51ee255f643",
+    "optimizedAt": "2026-07-23T05:23:15.032Z",
+    "originalBytes": 2181587,
+    "finalBytes": 777546,
+    "resized": true
+  },
+  "public/gallery/bar/bar-14.jpg": {
+    "hash": "3b7475c1e1d6c7f953fe4056c9b3654c87ffff96",
+    "optimizedAt": "2026-07-23T05:23:15.568Z",
+    "originalBytes": 1703079,
+    "finalBytes": 1283098,
+    "resized": true
+  },
+  "public/gallery/bar/bar-20.jpg": {
+    "hash": "6b02b6ae58789583e63e19debc51a3785e69f054",
+    "optimizedAt": "2026-07-23T05:23:16.274Z",
+    "originalBytes": 9909323,
+    "finalBytes": 1375143,
+    "resized": true
+  },
+  "public/gallery/bar/bar-21.jpg": {
+    "hash": "e148403af9b1fe9c486b86e2ce9fd043092728d8",
+    "optimizedAt": "2026-07-23T05:23:17.117Z",
+    "originalBytes": 8947837,
+    "finalBytes": 1624266,
+    "resized": true
+  },
+  "public/gallery/bar/bar-22.jpg": {
+    "hash": "6fedcb42063046aff62e8ffa35c5c9ae55a5c6f0",
+    "optimizedAt": "2026-07-23T05:23:17.630Z",
+    "originalBytes": 1824520,
+    "finalBytes": 1147398,
+    "resized": true
+  },
+  "public/gallery/bar/bar-23.jpg": {
+    "hash": "9c1a69f12f514a5b9fb45ae462ba7bb2e7c7372f",
+    "optimizedAt": "2026-07-23T05:23:18.093Z",
+    "originalBytes": 1950615,
+    "finalBytes": 696019,
+    "resized": true
+  },
+  "public/gallery/bar/bar-24.jpg": {
+    "hash": "2103178a20ef1004319e899f3319195656e33058",
+    "optimizedAt": "2026-07-23T05:23:18.537Z",
+    "originalBytes": 1662107,
+    "finalBytes": 558128,
+    "resized": true
+  },
+  "public/gallery/bar/bar-25.jpg": {
+    "hash": "6ef304779be082f5dad389b0e1c3a6a3893c47e0",
+    "optimizedAt": "2026-07-23T05:23:19.161Z",
+    "originalBytes": 1202190,
+    "finalBytes": 805269,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-01.jpg": {
+    "hash": "32c3a36c40e57bec5e52a05b183c5dbcd1afa21e",
+    "optimizedAt": "2026-07-23T05:23:19.750Z",
+    "originalBytes": 2426765,
+    "finalBytes": 1225353,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-05.jpg": {
+    "hash": "a474288b3d374aa1d3cb8d44ef591ddb55a016a1",
+    "optimizedAt": "2026-07-23T05:23:20.317Z",
+    "originalBytes": 2294065,
+    "finalBytes": 1130774,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-06.jpg": {
+    "hash": "0c43580fd2737d05dd1a1ffff76246543f4e5f14",
+    "optimizedAt": "2026-07-23T05:23:20.866Z",
+    "originalBytes": 2363820,
+    "finalBytes": 1092899,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-07.jpg": {
+    "hash": "2fdae9870b17713dbc66c1747d8f28d0ffc2888d",
+    "optimizedAt": "2026-07-23T05:23:21.417Z",
+    "originalBytes": 2519042,
+    "finalBytes": 1114723,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-08.jpg": {
+    "hash": "ab4a88744d8822ea63e27947f7ff1faea07f0634",
+    "optimizedAt": "2026-07-23T05:23:21.909Z",
+    "originalBytes": 2093466,
+    "finalBytes": 967949,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-09.jpg": {
+    "hash": "f6b660080e91f3b6c4dd929071d77c05b1e8de85",
+    "optimizedAt": "2026-07-23T05:23:22.574Z",
+    "originalBytes": 3022648,
+    "finalBytes": 1442754,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-10.jpg": {
+    "hash": "2a229fa896b902e20acf2c18da00142e1a7b3bcb",
+    "optimizedAt": "2026-07-23T05:23:23.015Z",
+    "originalBytes": 1670042,
+    "finalBytes": 819290,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-11.jpg": {
+    "hash": "ecb4c8ec15791cd4a3c89418fcce0a83783a41fb",
+    "optimizedAt": "2026-07-23T05:23:23.523Z",
+    "originalBytes": 2233123,
+    "finalBytes": 1004439,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-12.jpg": {
+    "hash": "d4871d7ebcfb2a43b36f22dbe5489ae79df4c663",
+    "optimizedAt": "2026-07-23T05:23:24.077Z",
+    "originalBytes": 2681200,
+    "finalBytes": 1219529,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-13.jpg": {
+    "hash": "90f3bafa298e54e36b1a376e11ef0e7398706ff8",
+    "optimizedAt": "2026-07-23T05:23:24.564Z",
+    "originalBytes": 2024543,
+    "finalBytes": 988858,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-15.jpg": {
+    "hash": "709f2a8a7c4d03ddbfcb1af227906b8b5d2fdcee",
+    "optimizedAt": "2026-07-23T05:23:25.033Z",
+    "originalBytes": 1759365,
+    "finalBytes": 853237,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-16.jpg": {
+    "hash": "0c13da1baa6f0c58ea2aa005be720eca89028f23",
+    "optimizedAt": "2026-07-23T05:23:25.566Z",
+    "originalBytes": 2189610,
+    "finalBytes": 1073004,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-17.jpg": {
+    "hash": "6005e37e18f2b3b5ffaf61bdc831f901fd6cebe2",
+    "optimizedAt": "2026-07-23T05:23:25.997Z",
+    "originalBytes": 1467939,
+    "finalBytes": 656061,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-18.jpg": {
+    "hash": "a2cc57639cbad5e8aabd2f39b5dcc3d695c241dc",
+    "optimizedAt": "2026-07-23T05:23:26.515Z",
+    "originalBytes": 2191703,
+    "finalBytes": 1011097,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-19.jpg": {
+    "hash": "b9a9d0424223b255e6047225feb9527cd273ff72",
+    "optimizedAt": "2026-07-23T05:23:27.064Z",
+    "originalBytes": 2226663,
+    "finalBytes": 1089741,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-23.jpg": {
+    "hash": "ac2d7be3c57d5355f6f39a7a492e4541a4ebb617",
+    "optimizedAt": "2026-07-23T05:23:27.508Z",
+    "originalBytes": 1344226,
+    "finalBytes": 1031842,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-24.jpg": {
+    "hash": "3ca29c86505b598597343e3921bc254903a1fbf3",
+    "optimizedAt": "2026-07-23T05:23:28.113Z",
+    "originalBytes": 2057271,
+    "finalBytes": 1441852,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-25.jpg": {
+    "hash": "ef39411fe37b2179845fd77f599f8c9e87d9bc17",
+    "optimizedAt": "2026-07-23T05:23:28.494Z",
+    "originalBytes": 1068731,
+    "finalBytes": 813856,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-26.jpg": {
+    "hash": "f3ec375a8fcd0604d7125c256218aaeb57ee1017",
+    "optimizedAt": "2026-07-23T05:23:28.983Z",
+    "originalBytes": 1470205,
+    "finalBytes": 1042962,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-27.jpg": {
+    "hash": "1ca74d848eb2b1e213f7c887d8ef80ffe14cf310",
+    "optimizedAt": "2026-07-23T05:23:29.410Z",
+    "originalBytes": 1304396,
+    "finalBytes": 916825,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-28.jpg": {
+    "hash": "709391ec743cfa27fdc20ef642a4abadf6d06a46",
+    "optimizedAt": "2026-07-23T05:23:30.130Z",
+    "originalBytes": 9073550,
+    "finalBytes": 1276475,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-29.jpg": {
+    "hash": "504a68a258d329daeff2d2aa371a9b0fd2c2b28a",
+    "optimizedAt": "2026-07-23T05:23:30.684Z",
+    "originalBytes": 2424865,
+    "finalBytes": 1021943,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-30.jpg": {
+    "hash": "8fd8d1ca043e3db5015ecb97bac2941263f28b4b",
+    "optimizedAt": "2026-07-23T05:23:31.720Z",
+    "originalBytes": 4589664,
+    "finalBytes": 1858194,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-31.jpg": {
+    "hash": "8f5d30ef47750774cffe75c54af94afa4252e074",
+    "optimizedAt": "2026-07-23T05:23:32.038Z",
+    "originalBytes": 1275369,
+    "finalBytes": 676441,
+    "resized": false
+  },
+  "public/gallery/corporate/corporate-32.jpg": {
+    "hash": "2434444bad75e4abd8b4540b8a95f9932fb994e3",
+    "optimizedAt": "2026-07-23T05:23:32.623Z",
+    "originalBytes": 3189523,
+    "finalBytes": 1149416,
+    "resized": true
+  },
+  "public/gallery/corporate/corporate-33.jpg": {
+    "hash": "7e94048cb56f8a5017534dc204667dbb0a713125",
+    "optimizedAt": "2026-07-23T05:23:33.346Z",
+    "originalBytes": 2243399,
+    "finalBytes": 1155376,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-07.jpg": {
+    "hash": "c427de6fb0773bb6fb1b91c192b1a6772486775f",
+    "optimizedAt": "2026-07-23T05:23:33.788Z",
+    "originalBytes": 1467243,
+    "finalBytes": 804366,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-08.jpg": {
+    "hash": "867159c37371f72de5b9dccf89dd9dc85aaa4d3b",
+    "optimizedAt": "2026-07-23T05:23:34.226Z",
+    "originalBytes": 1634483,
+    "finalBytes": 881071,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-11.jpg": {
+    "hash": "5e10ded8e767951b68f425e2889d26471c711d03",
+    "optimizedAt": "2026-07-23T05:23:34.849Z",
+    "originalBytes": 2224212,
+    "finalBytes": 1382694,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-12.jpg": {
+    "hash": "ec186ff70b8169bca93e27cc59b7cb04c0a14090",
+    "optimizedAt": "2026-07-23T05:23:35.441Z",
+    "originalBytes": 2010264,
+    "finalBytes": 1354097,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-16.jpg": {
+    "hash": "130d87ca01db8986714b1349f72eda53bee3ef5c",
+    "optimizedAt": "2026-07-23T05:23:35.876Z",
+    "originalBytes": 1610854,
+    "finalBytes": 785786,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-17.jpg": {
+    "hash": "8664cd9821eb486ae25f557cd1b8e6288daae356",
+    "optimizedAt": "2026-07-23T05:23:36.368Z",
+    "originalBytes": 1465721,
+    "finalBytes": 1086402,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-18.jpg": {
+    "hash": "d7e0c3903c861a01ee0dcc45a677750e5c460a85",
+    "optimizedAt": "2026-07-23T05:23:36.810Z",
+    "originalBytes": 1345626,
+    "finalBytes": 931826,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-19.jpg": {
+    "hash": "6355c127cc95c14a11a3ba793f75df32e314d029",
+    "optimizedAt": "2026-07-23T05:23:37.318Z",
+    "originalBytes": 1526186,
+    "finalBytes": 1134151,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-20.jpg": {
+    "hash": "7f4268070f811fc9e1899c147f701bdf5b3219ac",
+    "optimizedAt": "2026-07-23T05:23:37.716Z",
+    "originalBytes": 1058002,
+    "finalBytes": 830157,
+    "resized": true
+  },
+  "public/gallery/fashion/fashion-21.jpg": {
+    "hash": "64c063bc8c3a42f88931e13582ed05d4b9244024",
+    "optimizedAt": "2026-07-23T05:23:38.187Z",
+    "originalBytes": 1346637,
+    "finalBytes": 1020612,
+    "resized": true
+  },
+  "public/gallery/non/nonprofit-04.jpg": {
+    "hash": "97f1ab7286a6b5f2582bb07677d5aa489966d8df",
+    "optimizedAt": "2026-07-23T05:23:59.286Z",
+    "originalBytes": 3050545,
+    "finalBytes": 1274955,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-02.jpg": {
+    "hash": "4f50e2eba369421a268782374a686b75926f9225",
+    "optimizedAt": "2026-07-23T05:24:03.523Z",
+    "originalBytes": 22711408,
+    "finalBytes": 1536740,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-05.jpg": {
+    "hash": "2a7bfc7b85b5b5af42298653d5e839880a1c5fd8",
+    "optimizedAt": "2026-07-23T05:24:04.750Z",
+    "originalBytes": 28338491,
+    "finalBytes": 2209972,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-06.jpg": {
+    "hash": "5cd1a6d33a72526fd0113cf4dc7bef2a91aabe24",
+    "optimizedAt": "2026-07-23T05:24:05.982Z",
+    "originalBytes": 26945895,
+    "finalBytes": 2144015,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-07.jpg": {
+    "hash": "ec4fa5c940539b11b12f31ea0e28a428029ecb93",
+    "optimizedAt": "2026-07-23T05:24:06.604Z",
+    "originalBytes": 6618006,
+    "finalBytes": 1445419,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-08.jpg": {
+    "hash": "b934986321fa660ded746e4543179f61347a1cef",
+    "optimizedAt": "2026-07-23T05:24:07.025Z",
+    "originalBytes": 3012456,
+    "finalBytes": 1131075,
+    "resized": false
+  },
+  "public/gallery/wedding/wedding-11.jpg": {
+    "hash": "f675cf96918e5218a1b0a4bd9dc7da0634438a80",
+    "optimizedAt": "2026-07-23T05:24:07.617Z",
+    "originalBytes": 8297043,
+    "finalBytes": 640617,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-12.jpg": {
+    "hash": "c7bbac27d5e5111dca2696eeb8029f60824946dc",
+    "optimizedAt": "2026-07-23T05:24:08.002Z",
+    "originalBytes": 1751703,
+    "finalBytes": 471860,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-14.jpg": {
+    "hash": "1329028ee6e5f2f2a5e89ab7e620ce789495b7d7",
+    "optimizedAt": "2026-07-23T05:24:08.714Z",
+    "originalBytes": 2346049,
+    "finalBytes": 1719493,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-15.jpg": {
+    "hash": "bf7494614b7801d3c1d787869104f7d17a0380ae",
+    "optimizedAt": "2026-07-23T05:24:09.281Z",
+    "originalBytes": 1506103,
+    "finalBytes": 1098291,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-16.jpg": {
+    "hash": "b0b48fe2011f5fd3055136c3f86dafb93e1bb94a",
+    "optimizedAt": "2026-07-23T05:24:09.832Z",
+    "originalBytes": 1735575,
+    "finalBytes": 1232662,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-17.jpg": {
+    "hash": "2ccb91dc94f0983c0df92b0ed3db9f3863923e69",
+    "optimizedAt": "2026-07-23T05:24:10.254Z",
+    "originalBytes": 1143111,
+    "finalBytes": 854147,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-18.jpg": {
+    "hash": "7e7f0ab5df76e868eee4f61e9ed8edcc6e0f786c",
+    "optimizedAt": "2026-07-23T05:24:10.806Z",
+    "originalBytes": 1760894,
+    "finalBytes": 1293534,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-20.jpg": {
+    "hash": "f0683ae67eed7b7d85a0f803062de7de54b7e65d",
+    "optimizedAt": "2026-07-23T05:24:11.338Z",
+    "originalBytes": 1548653,
+    "finalBytes": 1094106,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-21.jpg": {
+    "hash": "709b4561625b2f247323bde3e278471f506c8ec8",
+    "optimizedAt": "2026-07-23T05:24:11.929Z",
+    "originalBytes": 1714625,
+    "finalBytes": 1405248,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-25.jpg": {
+    "hash": "b5b96ac1b3ef5e4340aa4e851fcb1638345bbc44",
+    "optimizedAt": "2026-07-23T05:24:12.555Z",
+    "originalBytes": 1656288,
+    "finalBytes": 1274646,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-26.jpg": {
+    "hash": "df99842a557411c0572e66bd3d91ec9b6ab0eaac",
+    "optimizedAt": "2026-07-23T05:24:13.058Z",
+    "originalBytes": 1497357,
+    "finalBytes": 1123397,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-27.jpg": {
+    "hash": "b6d3b9893627a0942bed4dc38d488af06d54ef3f",
+    "optimizedAt": "2026-07-23T05:24:13.702Z",
+    "originalBytes": 2917691,
+    "finalBytes": 1404160,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-28.jpg": {
+    "hash": "0db555b95378869f3934286450373b1c511d1737",
+    "optimizedAt": "2026-07-23T05:24:14.335Z",
+    "originalBytes": 2734315,
+    "finalBytes": 1311976,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-29.jpg": {
+    "hash": "d8b8e646ead90c5b987cf6a4bc34979ec90937ff",
+    "optimizedAt": "2026-07-23T05:24:14.820Z",
+    "originalBytes": 1855001,
+    "finalBytes": 984117,
+    "resized": true
+  },
+  "public/gallery/wedding/wedding-30.jpg": {
+    "hash": "89d8fcdf314999ff78f1a1f98bd8a258a43d5da4",
+    "optimizedAt": "2026-07-23T05:24:15.570Z",
+    "originalBytes": 3427960,
+    "finalBytes": 1634248,
     "resized": true
   }
 }

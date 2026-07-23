@@ -100,7 +100,7 @@ export const photos: Photo[] = [
   { src: '/gallery/gallery-05.jpg', alt: 'Wedding celebration', span: 'tall' },
   { src: '/gallery/gallery-06.jpg', alt: 'Wedding celebration', span: 'wide' },
   {
-    src: '/gallery/corporate/gallery-03.jpg',
+    src: '/gallery/corporate/corporate-03.jpg',
     alt: 'Wedding celebration',
     span: 'small',
   },
@@ -258,6 +258,7 @@ export const navItems: NavItem[] = [
       { name: 'Corporate', href: '/gallery?tab=corporate' },
       { name: 'Wedding', href: '/gallery?tab=wedding' },
       { name: 'Fashion', href: '/gallery?tab=fashion' },
+      { name: 'Film & TV', href: '/gallery?tab=film' },
       { name: 'Bar & Bat Mitzvahs', href: '/gallery?tab=bar' },
       { name: 'Holiday Events', href: '/gallery?tab=holiday' },
       { name: 'Non-Profit', href: '/gallery?tab=nonprofit' },
@@ -1936,27 +1937,27 @@ export const corporateData: EventShowcaseProps = {
     "The most successful corporate events begin with an exceptional setting. At 48 Wall Street, your meeting, conference, or executive gathering takes place within one of New York City's most prestigious historic landmarks, a venue where timeless architecture, modern technology, and world-class hospitality create an experience that reflects the importance of your organization.\n\nOriginally built in 1927 as the Bank of New York & Trust Company, 48 Wall Street has long stood as a symbol of leadership, commerce, and financial excellence. Today, its magnificent Banking Hall continues that legacy by hosting executive conferences, investor meetings, annual general meetings, product launches, leadership summits, client receptions, shareholder events, award ceremonies, and corporate celebrations in an environment unlike any traditional hotel ballroom or convention center.\n\nFrom intimate executive board meetings to conferences accommodating hundreds of attendees, our versatile event spaces are supported by a full-service team dedicated to flawless execution. We provide comprehensive event planning, award-winning culinary experiences, audiovisual production, intelligent lighting, staging, scenic fabrication, branding, registration services, entertainment, and on-site event management, ensuring every detail is executed with precision and professionalism.\n\nWith soaring 30-foot ceilings, grand marble architecture, Palladian windows, crystal chandeliers, and state-of-the-art production capabilities, 48 Wall Street delivers an atmosphere that inspires collaboration, elevates presentations, and leaves a lasting impression on clients, colleagues, and distinguished guests alike.\n\nAt 48 Wall Street, every corporate event becomes an opportunity to inspire, connect, and lead within one of New York City's most iconic business landmarks.",
   images: [
     {
-      src: '/gallery/corporate/gallery-23.jpg',
+      src: '/gallery/corporate/corporate-11.jpg',
       alt: 'Corporate conference setup',
     },
     {
-      src: '/gallery/corporate/gallery-35.jpg',
+      src: '/gallery/corporate/corporate-15.jpg',
       alt: 'Investor summit conference with theater seating and main stage',
     },
     {
-      src: '/gallery/corporate/gallery-33.jpg',
+      src: '/gallery/corporate/corporate-13.jpg',
       alt: 'Corporate panel stage with LED screens and cocktail seating',
     },
     {
-      src: '/gallery/corporate/gallery-34.jpg',
+      src: '/gallery/corporate/corporate-14.jpg',
       alt: 'Corporate networking reception with lounge and cocktail tables',
     },
     {
-      src: '/gallery/corporate/gallery-36.jpg',
+      src: '/events/corporate/gallery-03.jpg',
       alt: 'Sponsor and exhibitor booths at a corporate summit',
     },
     {
-      src: '/gallery/corporate/gallery-10.jpg',
+      src: '/events/corporate/gallery-04.jpg',
       alt: 'Corporate conference',
     },
   ],
@@ -2035,27 +2036,27 @@ export const conferenceData: EventShowcaseProps = {
     'When a conference is held at 48 Wall Street, attendees notice. The 1927 banking hall carries a gravitas that sets the tone from the moment guests walk through the door, long before the program begins. With 9,000 square feet on the main level and an additional 3,000 square feet of breakout space on the Concourse Level, we accommodate everything from intimate board meetings to full-day industry conferences for up to 500 attendees. Our in-house production team handles all AV, staging, lighting, and catering so your team can focus entirely on the content.',
   images: [
     {
-      src: '/gallery/corporate/gallery-23.jpg',
+      src: '/gallery/corporate/corporate-11.jpg',
       alt: 'Conference setup at 48 Wall Street',
     },
     {
-      src: '/gallery/corporate/gallery-10.jpg',
+      src: '/gallery/corporate/corporate-08.jpg',
       alt: 'Conference at 48 Wall Street Financial District',
     },
     {
-      src: '/gallery/corporate/gallery-19.jpg',
+      src: '/gallery/corporate/corporate-09.jpg',
       alt: 'Corporate meeting in historic NYC venue',
     },
     {
-      src: '/gallery/corporate/gallery-09.jpg',
+      src: '/gallery/corporate/corporate-07.jpg',
       alt: 'Panel discussion at 48 Wall Street',
     },
     {
-      src: '/gallery/corporate/gallery-06.jpg',
+      src: '/gallery/corporate/corporate-06.jpg',
       alt: 'Business conference in Lower Manhattan',
     },
     {
-      src: '/gallery/corporate/gallery-02.jpg',
+      src: '/gallery/corporate/corporate-02.jpg',
       alt: 'Executive meeting at Wall Street venue',
     },
   ],
@@ -2232,15 +2233,15 @@ export const nonprofitData: EventShowcaseProps = {
       alt: 'Charity benefit reception at 48 Wall Street',
     },
     {
-      src: '/gallery/non/gallery-01.jpg',
+      src: '/gallery/non/nonprofit-01.jpg',
       alt: 'Donor reception setup',
     },
     {
-      src: '/gallery/non/gallery-02.jpg',
+      src: '/gallery/non/nonprofit-02.jpg',
       alt: 'Benefit gala seating',
     },
     {
-      src: '/gallery/non/gallery-03.jpg',
+      src: '/events/nonprofit/gallery-04.jpg',
       alt: 'Non-profit event stage and lighting',
     },
   ],
@@ -2333,7 +2334,7 @@ export const mitzvahData: EventShowcaseProps = {
       alt: 'Immersive Mitzvah event design',
     },
     {
-      src: '/gallery/bar/gallery-12.jpg',
+      src: '/gallery/bar/bar-02.jpg',
       alt: 'Bar Mitzvah celebration',
     },
   ],
@@ -2935,27 +2936,111 @@ export const eventCateringData = {
     subtitle:
       'A glimpse of the culinary experiences and celebrations we’ve crafted at 48 Wall Street.',
     images: [
-      { src: '/services/catering/gallery/MOAF-0140.jpg', alt: 'Catering at 48 Wall Street', orientation: 'landscape' },
-      { src: '/services/catering/gallery/MOAF-0144.jpg', alt: 'Event dining at 48 Wall Street', orientation: 'landscape' },
-      { src: '/services/catering/gallery/JSV_3775.jpg', alt: 'Elegant catering setup', orientation: 'landscape' },
-      { src: '/services/catering/gallery/IMG_0556.jpeg', alt: 'Catering presentation', orientation: 'landscape' },
-      { src: '/services/catering/gallery/IMG_0665.jpeg', alt: 'Culinary display', orientation: 'landscape' },
-      { src: '/services/catering/gallery/IMG_0667.jpeg', alt: 'Gourmet food display', orientation: 'landscape' },
-      { src: '/services/catering/gallery/IMG_2458.jpeg', alt: 'Plated dish', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_2459.jpeg', alt: 'Signature course', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_2460.jpeg', alt: 'Chef-crafted plate', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_2462.jpeg', alt: 'Culinary creation', orientation: 'landscape' },
-      { src: '/services/catering/gallery/IMG_4522.jpeg', alt: 'Fine dining detail', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_4527.jpeg', alt: 'Elevated dining detail', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_7078.jpeg', alt: 'Catering course', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_7082.jpeg', alt: 'Plated presentation', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_7087.jpeg', alt: 'Gourmet plating', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_7094.jpeg', alt: 'Reception spread', orientation: 'landscape' },
-      { src: '/services/catering/gallery/IMG_7265.jpeg', alt: 'Dining experience', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_7266.jpeg', alt: 'Culinary artistry', orientation: 'portrait' },
-      { src: '/services/catering/gallery/IMG_7267.jpeg', alt: 'Event catering', orientation: 'landscape' },
-      { src: '/services/catering/gallery/IMG_7268.jpeg', alt: 'Catering service', orientation: 'landscape' },
-      { src: '/services/catering/gallery/IMG_7438.jpeg', alt: 'Refined dining moment', orientation: 'portrait' },
+      {
+        src: '/services/catering/gallery/MOAF-0140.jpg',
+        alt: 'Catering at 48 Wall Street',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/MOAF-0144.jpg',
+        alt: 'Event dining at 48 Wall Street',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/JSV_3775.jpg',
+        alt: 'Elegant catering setup',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_0556.jpeg',
+        alt: 'Catering presentation',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_0665.jpeg',
+        alt: 'Culinary display',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_0667.jpeg',
+        alt: 'Gourmet food display',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_2458.jpeg',
+        alt: 'Plated dish',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_2459.jpeg',
+        alt: 'Signature course',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_2460.jpeg',
+        alt: 'Chef-crafted plate',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_2462.jpeg',
+        alt: 'Culinary creation',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_4522.jpeg',
+        alt: 'Fine dining detail',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_4527.jpeg',
+        alt: 'Elevated dining detail',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7078.jpeg',
+        alt: 'Catering course',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7082.jpeg',
+        alt: 'Plated presentation',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7087.jpeg',
+        alt: 'Gourmet plating',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7094.jpeg',
+        alt: 'Reception spread',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7265.jpeg',
+        alt: 'Dining experience',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7266.jpeg',
+        alt: 'Culinary artistry',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7267.jpeg',
+        alt: 'Event catering',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7268.jpeg',
+        alt: 'Catering service',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7438.jpeg',
+        alt: 'Refined dining moment',
+        orientation: 'portrait',
+      },
     ] as const,
   },
 };

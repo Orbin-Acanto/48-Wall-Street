@@ -12,7 +12,7 @@ const aboutImages = [
   { src: '/about/gallery-04.jpg', alt: 'Concourse Level' },
 
   {
-    src: '/gallery/corporate/gallery-24.jpg',
+    src: '/gallery/corporate/corporate-12.jpg',
     alt: '48 Wall Street Building Exterior',
   },
   { src: '/about/gallery-02.jpg', alt: 'Concourse Level' },
@@ -155,7 +155,7 @@ export default function About() {
                 }}
               >
                 <Image
-                  src="/gallery/corporate/gallery-24.jpg"
+                  src="/gallery/corporate/corporate-12.jpg"
                   alt="48 Wall Street Building Exterior"
                   fill
                   quality={100}

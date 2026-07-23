@@ -11,6 +11,7 @@ const TABS = [
   { id: 'corporate', name: 'Corporate' },
   { id: 'wedding', name: 'Wedding' },
   { id: 'fashion', name: 'Fashion' },
+  { id: 'film', name: 'Film & TV' },
   { id: 'bar', name: 'Bar & Bat Mitzvahs' },
   { id: 'holiday', name: 'Holiday Events' },
   { id: 'nonprofit', name: 'Non-Profit' },
@@ -149,52 +150,52 @@ export default function GalleryContent() {
         </div>
 
         <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-            >
-              {filteredPhotos.length === 0 ? (
-                <p className="py-24 text-center text-base tracking-widest text-[var(--color-gray-600)] uppercase">
-                  Photos coming soon.
-                </p>
-              ) : (
-                <div className="columns-1 gap-4 md:columns-2 lg:columns-3 xl:columns-4">
-                  {filteredPhotos.map((photo, index) => {
-                    const heightClass = getImageHeight(photo.size || 'medium');
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+          >
+            {filteredPhotos.length === 0 ? (
+              <p className="py-24 text-center text-base tracking-widest text-[var(--color-gray-600)] uppercase">
+                Photos coming soon.
+              </p>
+            ) : (
+              <div className="columns-1 gap-4 md:columns-2 lg:columns-3 xl:columns-4">
+                {filteredPhotos.map((photo, index) => {
+                  const heightClass = getImageHeight(photo.size || 'medium');
 
-                    return (
-                      <motion.div
-                        key={photo.src}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.4, delay: index * 0.05 }}
-                        whileHover={{ scale: 1.02 }}
-                        className={`group relative mb-4 cursor-pointer break-inside-avoid overflow-hidden bg-[var(--color-gray-800)] shadow-lg ${heightClass}`}
-                        onClick={() => openLightbox(index)}
-                      >
-                        <Image
-                          src={photo.src}
-                          alt={photo.alt}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                        <div className="absolute right-4 bottom-4 left-4 translate-y-2 text-left opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                          <p className="text-sm font-medium text-white drop-shadow-lg">
-                            {photo.alt}
-                          </p>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
+                  return (
+                    <motion.div
+                      key={photo.src}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      whileHover={{ scale: 1.02 }}
+                      className={`group relative mb-4 cursor-pointer break-inside-avoid overflow-hidden bg-[var(--color-gray-800)] shadow-lg ${heightClass}`}
+                      onClick={() => openLightbox(index)}
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                      <div className="absolute right-4 bottom-4 left-4 translate-y-2 text-left opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                        <p className="text-sm font-medium text-white drop-shadow-lg">
+                          {photo.alt}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <AnimatePresence>

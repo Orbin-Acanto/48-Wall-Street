@@ -63,17 +63,17 @@ const imageEntries: Array<{
     loc: `${baseUrl}/events/corporate`,
     images: [
       {
-        loc: `${baseUrl}/gallery/corporate/gallery-01.jpg`,
+        loc: `${baseUrl}/gallery/corporate/corporate-01.jpg`,
         title: 'Corporate Event at 48 Wall Street Financial District NYC',
         caption: 'Professional corporate event setup in the Grand Mezzanine Banking Hall',
       },
       {
-        loc: `${baseUrl}/gallery/corporate/gallery-04.jpg`,
+        loc: `${baseUrl}/gallery/corporate/corporate-04.jpg`,
         title: 'Conference Setup — 48 Wall Street Corporate Venue NYC',
         caption: 'Theater-style conference configuration at 48 Wall Street',
       },
       {
-        loc: `${baseUrl}/gallery/corporate/gallery-02.jpg`,
+        loc: `${baseUrl}/gallery/corporate/corporate-02.jpg`,
         title: 'Corporate Gala Dinner — 48 Wall Street NYC',
         caption: 'Gala dinner setup at 48 Wall Street historic corporate event venue',
       },
@@ -83,12 +83,12 @@ const imageEntries: Array<{
     loc: `${baseUrl}/events/conferences`,
     images: [
       {
-        loc: `${baseUrl}/gallery/corporate/gallery-05.jpg`,
+        loc: `${baseUrl}/gallery/corporate/corporate-05.jpg`,
         title: 'Conference Venue NYC — 48 Wall Street Financial District',
         caption: 'Industry conference in the Grand Mezzanine at 48 Wall Street',
       },
       {
-        loc: `${baseUrl}/gallery/corporate/gallery-06.jpg`,
+        loc: `${baseUrl}/gallery/corporate/corporate-06.jpg`,
         title: 'Meeting Space Financial District — 48 Wall Street NYC',
         caption: 'Professional conference setup with full AV at 48 Wall Street',
       },
@@ -98,18 +98,18 @@ const imageEntries: Array<{
     loc: `${baseUrl}/events/weddings`,
     images: [
       {
-        loc: `${baseUrl}/gallery/wedding/gallery-01.jpg`,
+        loc: `${baseUrl}/gallery/wedding/wedding-01.jpg`,
         title: 'Wedding at 48 Wall Street NYC — Historic Venue Lower Manhattan',
         caption:
           'Elegant wedding reception at 48 Wall Street with grand marble staircase backdrop',
       },
       {
-        loc: `${baseUrl}/gallery/wedding/gallery-26.jpg`,
+        loc: `${baseUrl}/gallery/wedding/wedding-04.jpg`,
         title: 'Wedding Reception — 48 Wall Street Financial District',
         caption: 'Romantic wedding reception in the Grand Mezzanine Banking Hall',
       },
       {
-        loc: `${baseUrl}/gallery/wedding/gallery-25.jpg`,
+        loc: `${baseUrl}/gallery/wedding/wedding-03.jpg`,
         title: 'Wedding Ceremony — 48 Wall Street NYC',
         caption: 'Historic wedding ceremony beneath 30-foot ceilings at 48 Wall Street',
       },
@@ -134,12 +134,12 @@ const imageEntries: Array<{
     loc: `${baseUrl}/events/bar-bat-mitzvahs`,
     images: [
       {
-        loc: `${baseUrl}/gallery/bar/gallery-11.jpg`,
+        loc: `${baseUrl}/gallery/bar/bar-01.jpg`,
         title: 'Bar Mitzvah Venue NYC — 48 Wall Street Financial District',
         caption: 'Bar Mitzvah celebration at 48 Wall Street historic Manhattan venue',
       },
       {
-        loc: `${baseUrl}/gallery/bar/gallery-12.jpg`,
+        loc: `${baseUrl}/gallery/bar/bar-02.jpg`,
         title: 'Bat Mitzvah Venue NYC — 48 Wall Street',
         caption: 'Bat Mitzvah party setup at 48 Wall Street with custom decor',
       },
@@ -149,13 +149,13 @@ const imageEntries: Array<{
     loc: `${baseUrl}/events/fashion-shows`,
     images: [
       {
-        loc: `${baseUrl}/gallery/fashion/gallery-02.jpg`,
+        loc: `${baseUrl}/gallery/fashion/fashion-01.jpg`,
         title: 'Fashion Show Venue NYC — 48 Wall Street Runway Event',
         caption:
           'Fashion runway show at 48 Wall Street using the grand marble staircase as a runway',
       },
       {
-        loc: `${baseUrl}/gallery/fashion/gallery-04.jpg`,
+        loc: `${baseUrl}/gallery/fashion/fashion-02.jpg`,
         title: 'New York Fashion Week Venue — 48 Wall Street Financial District',
         caption: 'Fashion Week event at 48 Wall Street historic Manhattan venue',
       },
@@ -165,7 +165,7 @@ const imageEntries: Array<{
     loc: `${baseUrl}/events/non-profit`,
     images: [
       {
-        loc: `${baseUrl}/gallery/corporate/gallery-21.jpg`,
+        loc: `${baseUrl}/gallery/corporate/corporate-10.jpg`,
         title: 'Non-Profit Gala Venue NYC — 48 Wall Street',
         caption: 'Charity gala dinner at 48 Wall Street Financial District Manhattan',
       },
