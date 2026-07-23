@@ -126,29 +126,3 @@ export async function createDocumentRequest(
     expiresAt,
   };
 }
-
-export const documentConfigs: Record<
-  DocumentType,
-  {
-    name: string;
-    pdfTemplate: string;
-    requiresInitials: number;
-    requiresSignature: boolean;
-    requiredFields: string[];
-  }
-> = {
-  floor_plan: {
-    name: 'Floor Plan',
-    pdfTemplate: '/templates/floor-plan.pdf',
-    requiresInitials: 2,
-    requiresSignature: true,
-    requiredFields: ['date', 'fullName', 'signature'],
-  },
-  client_guidelines: {
-    name: 'Client Guidelines & Authorization Agreement',
-    pdfTemplate: '/templates/client-guidelines.pdf',
-    requiresInitials: 3,
-    requiresSignature: true,
-    requiredFields: ['date', 'fullName', 'signature'],
-  },
-};
