@@ -94,23 +94,6 @@ export default function GalleryContent() {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [selectedIndex, closeLightbox, goToNext, goToPrevious]);
 
-  const getImageHeight = (size: string) => {
-    switch (size) {
-      case 'large':
-        return 'h-[400px] md:h-[500px]';
-      case 'tall':
-        return 'h-[450px] md:h-[550px]';
-      case 'wide':
-        return 'h-[250px] md:h-[300px]';
-      case 'medium':
-        return 'h-[300px] md:h-[350px]';
-      case 'small':
-        return 'h-[200px] md:h-[250px]';
-      default:
-        return 'h-[300px] md:h-[350px]';
-    }
-  };
-
   return (
     <div className="font-secondary min-h-screen bg-[var(--color-whitesmoke)] pt-32 pb-20">
       <div className="mx-auto px-6 md:px-12 lg:px-20">
@@ -164,8 +147,6 @@ export default function GalleryContent() {
             ) : (
               <div className="columns-1 gap-4 md:columns-2 lg:columns-3 xl:columns-4">
                 {filteredPhotos.map((photo, index) => {
-                  const heightClass = getImageHeight(photo.size || 'medium');
-
                   return (
                     <motion.div
                       key={photo.src}
@@ -173,7 +154,8 @@ export default function GalleryContent() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, delay: index * 0.05 }}
                       whileHover={{ scale: 1.02 }}
-                      className={`group relative mb-4 cursor-pointer break-inside-avoid overflow-hidden bg-[var(--color-gray-800)] shadow-lg ${heightClass}`}
+                      style={{ aspectRatio: photo.aspect }}
+                      className="group relative mb-4 w-full cursor-pointer break-inside-avoid overflow-hidden bg-[var(--color-gray-800)] shadow-lg"
                       onClick={() => openLightbox(index)}
                     >
                       <Image
