@@ -90,9 +90,9 @@ export default function CateringSection() {
             }}
           >
             {/* Logo Watermark - Top Left */}
-            <div className="absolute -top-15 left-0 sm:-top-23 md:-top-31 lg:-top-49 2xl:-top-56">
+            <div className="absolute -top-11 left-0 sm:-top-18 md:-top-24 lg:-top-38 2xl:-top-44">
               <div
-                className="relative h-16 w-16 opacity-100 transition-all duration-500 hover:opacity-85 sm:h-24 sm:w-24 md:h-36 md:w-36 lg:h-48 lg:w-48"
+                className="relative h-14 w-14 opacity-100 transition-all duration-500 hover:opacity-85 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-40 lg:w-40"
                 style={{
                   transform: isLargeScreen ? 'rotate(0deg)' : 'rotate(0deg)',
                 }}
