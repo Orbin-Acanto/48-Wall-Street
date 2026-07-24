@@ -2630,9 +2630,9 @@ export const menuPages = [
 export const items = [
   {
     images: [
-      '/events/featured/cornell/gallery-01.jpg',
-      '/events/featured/cornell/gallery-02.jpg',
-      '/events/featured/cornell/gallery-03.jpg',
+      '/events/featured/cornell/1.jpg',
+      '/events/featured/cornell/2.jpg',
+      '/events/featured/cornell/3.jpg',
     ],
     title: 'Cornell Alumni Conference',
     category: 'Conferences',
@@ -2640,13 +2640,13 @@ export const items = [
   },
   {
     images: [
-      '/events/featured/fpm/gallery-01.jpg',
-      '/events/featured/fpm/gallery-02.jpg',
-      '/events/featured/fpm/gallery-03.jpg',
+      '/events/featured/mc/1.jpg',
+      '/events/featured/mc/2.jpg',
+      '/events/featured/mc/3.jpg',
     ],
-    title: 'World Of Excellence Fund Raising Gala',
-    category: 'Galas',
-    location: 'FPM US',
+    title: 'Market Movers Investor Summit',
+    category: 'Corporate',
+    location: 'Money Channel',
   },
   {
     images: [
@@ -2660,14 +2660,10 @@ export const items = [
   },
 
   {
-    images: [
-      '/events/featured/nordstrom/gallery-01.jpg',
-      '/events/featured/nordstrom/gallery-02.jpg',
-      '/events/featured/nordstrom/gallery-03.jpg',
-    ],
-    title: 'Vintage Department Store Activation',
-    category: 'Event Activation',
-    location: 'Nordstrom',
+    images: ['/events/featured/ymca/1.jpg', '/events/featured/ymca/2.jpg'],
+    title: 'Celebrating Impact in Historic Elegance',
+    category: 'Non-Profit',
+    location: 'YMCA',
   },
   {
     images: [

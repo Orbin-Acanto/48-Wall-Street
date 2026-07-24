@@ -5661,5 +5661,47 @@
     "originalBytes": 3427960,
     "finalBytes": 1634248,
     "resized": true
+  },
+  "public/events/featured/cornell/1.JPG": {
+    "hash": "dada6522c6e55ea172336279703cefcac5b5bf9c",
+    "optimizedAt": "2026-07-24T16:14:17.755Z",
+    "originalBytes": 5734450,
+    "finalBytes": 1375907,
+    "resized": true
+  },
+  "public/events/featured/mc/1.jpg": {
+    "hash": "14d071afa2b360f5a9f7d84ad30c2cc7f5f15453",
+    "optimizedAt": "2026-07-24T16:14:18.031Z",
+    "originalBytes": 830520,
+    "finalBytes": 680137,
+    "resized": false
+  },
+  "public/events/featured/mc/2.jpg": {
+    "hash": "788361d9eb6628383686bb9eb3dac8e8a362e5ef",
+    "optimizedAt": "2026-07-24T16:14:18.562Z",
+    "originalBytes": 2550767,
+    "finalBytes": 713367,
+    "resized": true
+  },
+  "public/events/featured/mc/3.jpg": {
+    "hash": "24014db2b1b8389c16f4bae29642fe8e6c2f4914",
+    "optimizedAt": "2026-07-24T16:14:18.837Z",
+    "originalBytes": 835365,
+    "finalBytes": 649117,
+    "resized": false
+  },
+  "public/events/featured/ymca/1.jpg": {
+    "hash": "f0406dfbdaa2dc4dfd37d4e27683cecc4550f2e7",
+    "optimizedAt": "2026-07-24T16:14:19.170Z",
+    "originalBytes": 990036,
+    "finalBytes": 762510,
+    "resized": false
+  },
+  "public/events/featured/ymca/2.jpg": {
+    "hash": "25dde99c3b2957f1379424a094185f1718196450",
+    "optimizedAt": "2026-07-24T16:14:19.825Z",
+    "originalBytes": 2943570,
+    "finalBytes": 1197091,
+    "resized": true
   }
 }
