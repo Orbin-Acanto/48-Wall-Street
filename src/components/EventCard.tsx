@@ -206,6 +206,12 @@ export const EventCard: React.FC<EventCardProps> = ({
                   {event.location}
                 </p>
               )}
+
+              {event.tagline && (
+                <p className="font-secondary text-sm tracking-wide text-gray-900 italic md:text-base">
+                  {event.tagline}
+                </p>
+              )}
             </div>
 
             {/* Decorative corner element */}

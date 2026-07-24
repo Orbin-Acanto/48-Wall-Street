@@ -2630,13 +2630,14 @@ export const menuPages = [
 export const items = [
   {
     images: [
-      '/events/featured/cornell/1.jpg',
+      '/events/featured/cornell/4.jpg',
       '/events/featured/cornell/2.jpg',
       '/events/featured/cornell/3.jpg',
     ],
     title: 'Cornell Alumni Conference',
     category: 'Conferences',
     location: 'Cornell',
+    tagline: 'Where Great Minds Reunite in Timeless Surroundings',
   },
   {
     images: [
@@ -2647,6 +2648,7 @@ export const items = [
     title: 'Market Movers Investor Summit',
     category: 'Corporate',
     location: 'Money Channel',
+    tagline: "Where Wall Street's Legacy Inspires Extraordinary Events",
   },
   {
     images: [
@@ -2657,13 +2659,15 @@ export const items = [
     title: 'Immersive Fashion Show',
     category: 'Fashion Shows',
     location: 'Alice + Oliva',
+    tagline: 'Where Bold Vision Meets an Iconic Runway',
   },
 
   {
     images: ['/events/featured/ymca/1.jpg', '/events/featured/ymca/2.jpg'],
-    title: 'Celebrating Impact in Historic Elegance',
+    title: 'YMCA Charity Benefit Gala',
     category: 'Non-Profit',
     location: 'YMCA',
+    tagline: 'Celebrating Impact in Historic Elegance',
   },
   {
     images: [
@@ -2673,6 +2677,7 @@ export const items = [
     ],
     title: 'Wedding Ceremony',
     category: 'Wedding',
+    tagline: 'Where Forever Begins in Historic Splendor',
   },
 ];
 

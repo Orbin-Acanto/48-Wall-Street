@@ -183,6 +183,7 @@ export interface JourneyEvent {
   title: string;
   category: string;
   location?: string;
+  tagline?: string;
   href?: string;
 }
 
