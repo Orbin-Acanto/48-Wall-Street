@@ -45,7 +45,7 @@ export default function SpaceDetails({
   heroImages,
   images,
   // videoUrl — walkthrough video temporarily disabled (see commented section below)
-  matterportUrl = 'https://my.matterport.com/show/?m=rfoVgtLiFg5',
+  matterportUrl = 'https://my.matterport.com/show/?m=vqeMP4K1Nru',
   lightboxImages,
   floorPlanImage,
   features = [],
