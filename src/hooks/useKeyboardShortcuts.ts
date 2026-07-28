@@ -8,10 +8,12 @@ interface KeyboardShortcutsHandlers {
   onEscape?: () => void;
   onToggleGrid?: () => void;
   onToggleDimensions?: () => void;
-  onZoomIn?: () => void;
-  onZoomOut?: () => void;
   onCopy?: () => void;
   onPaste?: () => void;
+  /** Nudge the selected item by (dx, dy) canvas units (arrow keys). */
+  onNudge?: (dx: number, dy: number) => void;
+  onDuplicate?: () => void;
+  onSelectAll?: () => void;
 }
 
 export const useKeyboardShortcuts = (handlers: KeyboardShortcutsHandlers) => {
@@ -86,6 +88,50 @@ export const useKeyboardShortcuts = (handlers: KeyboardShortcutsHandlers) => {
         return;
       }
 
+      // Select All (Ctrl/Cmd + A)
+      if (
+        modifier &&
+        e.key.toLowerCase() === 'a' &&
+        handlers.onSelectAll &&
+        !isInputField
+      ) {
+        e.preventDefault();
+        handlers.onSelectAll();
+        return;
+      }
+
+      // Duplicate (Ctrl/Cmd + D)
+      if (
+        modifier &&
+        e.key.toLowerCase() === 'd' &&
+        handlers.onDuplicate &&
+        !isInputField
+      ) {
+        e.preventDefault();
+        handlers.onDuplicate();
+        return;
+      }
+
+      // Nudge selected item with arrow keys. Shift = larger step.
+      if (
+        !isInputField &&
+        !modifier &&
+        handlers.onNudge &&
+        (e.key === 'ArrowUp' ||
+          e.key === 'ArrowDown' ||
+          e.key === 'ArrowLeft' ||
+          e.key === 'ArrowRight')
+      ) {
+        e.preventDefault();
+        const step = e.shiftKey ? 20 : 5;
+        const dx =
+          e.key === 'ArrowLeft' ? -step : e.key === 'ArrowRight' ? step : 0;
+        const dy =
+          e.key === 'ArrowUp' ? -step : e.key === 'ArrowDown' ? step : 0;
+        handlers.onNudge(dx, dy);
+        return;
+      }
+
       // Cancel
       if (e.key === 'Escape' && handlers.onEscape) {
         handlers.onEscape();
@@ -113,22 +159,6 @@ export const useKeyboardShortcuts = (handlers: KeyboardShortcutsHandlers) => {
       ) {
         e.preventDefault();
         handlers.onToggleDimensions();
-        return;
-      }
-      // Zoom Control
-      if (
-        (e.key === '+' || e.key === '=') &&
-        !isInputField &&
-        handlers.onZoomIn
-      ) {
-        e.preventDefault();
-        handlers.onZoomIn();
-        return;
-      }
-
-      if (e.key === '-' && !isInputField && handlers.onZoomOut) {
-        e.preventDefault();
-        handlers.onZoomOut();
         return;
       }
     };

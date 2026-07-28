@@ -8,7 +8,12 @@ import {
 } from '@/types/floorplan.types';
 
 import { useCanvasInteraction } from '@/hooks/useCanvasInteraction';
-import { useDragAndDrop, useFurnitureDrag } from '@/hooks/useDragAndDrop';
+import {
+  useDragAndDrop,
+  useFurnitureDrag,
+  SnapFn,
+  SnapGuide,
+} from '@/hooks/useDragAndDrop';
 
 import { GridOverlay } from './GridOverlay';
 import { Wall as WallComponent } from './Wall';
@@ -29,6 +34,8 @@ interface FloorPlanCanvasProps {
   onCurveWallComplete?: (points: Point[]) => void;
   onFurnitureMove: (id: string, position: Point) => void;
   onFurnitureDrop: (libraryItemId: string, position: Point) => void;
+  /** Called once when a furniture/room drag ends, to commit a single undo step. */
+  onDragCommit?: () => void;
   onAddDoor: (wallId: string, position?: number) => void;
   onAddWindow: (wallId: string, position?: number) => void;
   onDoorSelect: (wallId: string, doorId: string) => void;
@@ -49,6 +56,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   onWallCreate,
   onFurnitureMove,
   onFurnitureDrop,
+  onDragCommit,
   onAddDoor,
   onAddWindow,
   onDoorSelect,
@@ -73,6 +81,9 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   const [marqueeStart, setMarqueeStart] = useState<Point | null>(null);
   const [marqueeEnd, setMarqueeEnd] = useState<Point | null>(null);
   const [isMarqueeActive, setIsMarqueeActive] = useState(false);
+
+  // Alignment guide lines shown while snapping during a furniture drag.
+  const [snapGuides, setSnapGuides] = useState<SnapGuide[]>([]);
 
   const {
     width,
@@ -164,9 +175,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
       const canvasPoint = screenToCanvas(e.clientX, e.clientY);
 
       if (selectedTool === 'curve-wall' && e.button === 0) {
-        const pt = e.altKey
-          ? screenToCanvasRaw(e.clientX, e.clientY)
-          : screenToCanvasRaw(e.clientX, e.clientY);
+        const pt = screenToCanvasRaw(e.clientX, e.clientY);
         e.stopPropagation();
         setCurvePoints((prev) => [...prev, pt]);
         return;
@@ -200,6 +209,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     [
       selectedTool,
       screenToCanvas,
+      screenToCanvasRaw,
       walls,
       onAddDoor,
       onAddWindow,
@@ -215,10 +225,31 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
       const minY = Math.min(start.y, end.y);
       const maxY = Math.max(start.y, end.y);
 
+      const pxPerInch = pixelsPerFoot / 12;
+
+      // An item is selected when its footprint overlaps the marquee, not merely
+      // when its center point falls inside. `position` is the item's center, so
+      // build a half-extent box around it (ignoring rotation for simplicity).
       const selectedIds = furniture
         .filter((item) => {
-          const { x, y } = item.position;
-          return x >= minX && x <= maxX && y >= minY && y <= maxY;
+          const unit = item.dimensions.unit || 'in';
+          const wIn = unit === 'ft' ? item.dimensions.width * 12 : item.dimensions.width;
+          const hIn = unit === 'ft' ? item.dimensions.height * 12 : item.dimensions.height;
+          const halfW = (wIn * pxPerInch) / 2;
+          const halfH = (hIn * pxPerInch) / 2;
+
+          const itemMinX = item.position.x - halfW;
+          const itemMaxX = item.position.x + halfW;
+          const itemMinY = item.position.y - halfH;
+          const itemMaxY = item.position.y + halfH;
+
+          // AABB overlap test.
+          return (
+            itemMinX <= maxX &&
+            itemMaxX >= minX &&
+            itemMinY <= maxY &&
+            itemMaxY >= minY
+          );
         })
         .map((item) => item.id);
 
@@ -226,11 +257,50 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
         onBatchFurnitureSelect(selectedIds);
       }
     },
-    [furniture, onBatchFurnitureSelect]
+    [furniture, onBatchFurnitureSelect, pixelsPerFoot]
+  );
+
+  // Snap the dragged anchor's center to other items' center X / Y when within a
+  // small threshold, and report guide lines to draw. Threshold is in canvas
+  // units and scaled by zoom so it feels consistent at any zoom level.
+  const computeSnap = useCallback<SnapFn>(
+    (anchorId, proposed) => {
+      const THRESHOLD = 8 / viewport.scale;
+      let adjustX = 0;
+      let adjustY = 0;
+      let bestX = THRESHOLD;
+      let bestY = THRESHOLD;
+      const guides: SnapGuide[] = [];
+
+      for (const other of furniture) {
+        if (other.id === anchorId) continue;
+        const dxCenter = Math.abs(other.position.x - proposed.x);
+        if (dxCenter < bestX) {
+          bestX = dxCenter;
+          adjustX = other.position.x - proposed.x;
+        }
+        const dyCenter = Math.abs(other.position.y - proposed.y);
+        if (dyCenter < bestY) {
+          bestY = dyCenter;
+          adjustY = other.position.y - proposed.y;
+        }
+      }
+
+      if (adjustX !== 0) guides.push({ axis: 'x', position: proposed.x + adjustX });
+      if (adjustY !== 0) guides.push({ axis: 'y', position: proposed.y + adjustY });
+
+      setSnapGuides(guides);
+      return { adjust: { x: adjustX, y: adjustY }, guides };
+    },
+    [furniture, viewport.scale]
   );
 
   const renderFurniture = () =>
-    furniture.map((item) => {
+    // Draw in zIndex order (stable for equal values) so layer controls take
+    // effect — SVG paints later elements on top.
+    [...furniture]
+      .sort((a, b) => (a.zIndex ?? 1) - (b.zIndex ?? 1))
+      .map((item) => {
       const isSelected =
         (selectedFurnitureIds?.has?.(item.id) ?? false) ||
         selectedItemId === item.id;
@@ -308,7 +378,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
       }
 
       canvasMouseMove(e);
-      continueDrag(e);
+      continueDrag(e, computeSnap);
 
       if (draggingRoomId && roomDragOffsetRef.current) {
         const { x: ox, y: oy } = roomDragOffsetRef.current;
@@ -318,6 +388,7 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     [
       canvasMouseMove,
       continueDrag,
+      computeSnap,
       draggingRoomId,
       screenToCanvas,
       onRoomMove,
@@ -337,9 +408,17 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     }
 
     canvasMouseUp();
-    endDrag();
+    const furnitureWasDragging = endDrag();
+    const roomWasDragging = draggingRoomId !== null;
     setDraggingRoomId(null);
     roomDragOffsetRef.current = null;
+    setSnapGuides([]);
+
+    // A furniture/room drag streamed transient position updates; commit them
+    // as a single undo step now that the drag has ended.
+    if (furnitureWasDragging || roomWasDragging) {
+      onDragCommit?.();
+    }
   }, [
     isMarqueeActive,
     marqueeStart,
@@ -347,6 +426,8 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     selectFurnitureInMarquee,
     canvasMouseUp,
     endDrag,
+    draggingRoomId,
+    onDragCommit,
   ]);
 
   // const renderRooms = () =>
@@ -427,6 +508,8 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
         const centerX = room.x! + room.width! / 2;
         const centerY = room.y! + room.height! / 2;
+        const fontSize = room.fontSize ?? 18;
+        const rotation = room.rotation ?? 0;
 
         return (
           <g key={room.id} onMouseDown={(e) => handleRoomMouseDown(e, room)}>
@@ -443,10 +526,11 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
               x={centerX}
               y={centerY}
               textAnchor="middle"
-              fontSize={18}
+              fontSize={fontSize}
               fontWeight="bold"
               fill={textColor}
               paintOrder="stroke"
+              transform={`rotate(${rotation} ${centerX} ${centerY})`}
               style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}
             >
               {room.name || 'ROOM'}
@@ -511,6 +595,39 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
         <circle cx={x + width} cy={y} r={3} fill="#3B82F6" />
         <circle cx={x} cy={y + height} r={3} fill="#3B82F6" />
         <circle cx={x + width} cy={y + height} r={3} fill="#3B82F6" />
+      </g>
+    );
+  };
+
+  const renderSnapGuides = () => {
+    if (snapGuides.length === 0) return null;
+    return (
+      <g pointerEvents="none">
+        {snapGuides.map((g, i) =>
+          g.axis === 'x' ? (
+            <line
+              key={i}
+              x1={g.position}
+              y1={-100000}
+              x2={g.position}
+              y2={100000}
+              stroke="#EC4899"
+              strokeWidth={1 / viewport.scale}
+              strokeDasharray={`${4 / viewport.scale} ${3 / viewport.scale}`}
+            />
+          ) : (
+            <line
+              key={i}
+              x1={-100000}
+              y1={g.position}
+              x2={100000}
+              y2={g.position}
+              stroke="#EC4899"
+              strokeWidth={1 / viewport.scale}
+              strokeDasharray={`${4 / viewport.scale} ${3 / viewport.scale}`}
+            />
+          )
+        )}
       </g>
     );
   };
@@ -608,11 +725,6 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   const isAnyDragging = isPanning || isCanvasDragging || isFurnitureDragging;
 
   useEffect(() => {
-    console.log('selectedItemId', selectedItemId);
-    console.log('selectedFurnitureIds', selectedFurnitureIds);
-  }, [selectedItemId, selectedFurnitureIds]);
-
-  useEffect(() => {
     const el = svgRef.current;
     if (!el) return;
 
@@ -627,6 +739,31 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
       el.removeEventListener('wheel', onWheelNative);
     };
   }, [handleWheel]);
+
+  // Keyboard zoom (+ / -). Skipped while typing in a form field.
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable
+      ) {
+        return;
+      }
+
+      if (e.key === '+' || e.key === '=') {
+        e.preventDefault();
+        zoomIn();
+      } else if (e.key === '-' || e.key === '_') {
+        e.preventDefault();
+        zoomOut();
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [zoomIn, zoomOut]);
 
   return (
     <div
@@ -702,6 +839,8 @@ export const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
           {renderCurveDraft()}
 
           {renderDragPreview()}
+
+          {renderSnapGuides()}
 
           {renderMarquee()}
         </g>

@@ -8,7 +8,7 @@ import {
   Room,
 } from '../types/floorplan.types';
 
-const DEFAULT_LOGO_URL = '/logo/48-wall-logo.svg';
+const DEFAULT_LOGO_URL = '/shared/logo/48-wall.svg';
 
 // Primary Helper
 const getSvgContentBounds = (

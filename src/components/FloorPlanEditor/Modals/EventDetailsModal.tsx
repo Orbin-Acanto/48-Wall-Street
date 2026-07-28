@@ -96,7 +96,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
     specialNotes: eventDetails.specialNotes || '',
 
     // Floor
-    floor: selectedFloor || 'ground',
+    floor: selectedFloor || 'grand-mezzanine',
   });
 
   if (!isOpen) return null;

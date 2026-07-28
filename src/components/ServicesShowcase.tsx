@@ -6,6 +6,7 @@ import { menuPages } from '@/data';
 import BookReader from './BookReader';
 import { ServiceSection } from '@/types';
 import ServiceSectionItem from './ServiceSectionItem';
+import ServiceGallery, { ServiceGalleryImage } from './ServiceGallery';
 import CustomButton from './CustomButton';
 import Link from 'next/link';
 import { renderMultiline } from '@/utils';
@@ -24,6 +25,11 @@ type Props = {
   sections: ServiceSection[];
   logoImage?: string;
   logoLink?: string;
+  gallery?: {
+    title: string;
+    subtitle?: string;
+    images: readonly ServiceGalleryImage[];
+  };
   videoSection?: {
     title: string;
     embedUrl: string;
@@ -52,6 +58,7 @@ export default function CinematicServicesShowcase({
   sections,
   logoImage,
   logoLink,
+  gallery,
   videoSection,
   menu = false,
   ctaTitle = 'Ready to Plan Your Event?',
@@ -304,7 +311,7 @@ export default function CinematicServicesShowcase({
             pages={menuPages}
             title="Tardi's Catering Menu"
             subtitle="Indulge in a Gourmet Dining Experience at Your Next Event"
-            downloadUrl="/menu/48-wall-menu.2025_.pdf"
+            downloadUrl="/menu/page-01.pdf"
             pageColor="text-dark-black"
           />
         </section>
@@ -321,6 +328,15 @@ export default function CinematicServicesShowcase({
           />
         ))}
       </main>
+
+      {/* GALLERY SECTION (if provided) */}
+      {gallery && gallery.images.length > 0 && (
+        <ServiceGallery
+          title={gallery.title}
+          subtitle={gallery.subtitle}
+          images={gallery.images}
+        />
+      )}
 
       {/* VIDEO SECTION CTA (if provided) */}
       {videoSection && (

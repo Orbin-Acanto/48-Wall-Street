@@ -561,7 +561,7 @@ const RulesRegulations = () => {
             <p className="font-secondary mt-4 text-gray-600">
               Need a reference? View our{' '}
               <a
-                href="/sample-coi.pdf"
+                href="/shared/sample-coi.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary font-medium hover:underline"
@@ -646,7 +646,7 @@ const RulesRegulations = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/misc/wall-sign.jpg')",
+            backgroundImage: "url('/home/wall-sign.jpg')",
           }}
         />
         <div className="from-dark-black/70 via-dark-black/70 to-dark-black/80 absolute inset-0 bg-gradient-to-b" />
@@ -668,7 +668,7 @@ const RulesRegulations = () => {
             <CustomButton
               onClick={() => {
                 const link = document.createElement('a');
-                link.href = '/brochures/regulations.pdf';
+                link.href = '/brochures/v1/page-01.pdf';
                 link.download = 'regulations.pdf';
                 link.click();
               }}

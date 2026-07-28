@@ -100,7 +100,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
                 : 'Concourse Level',
             clientName: headerClient,
             eventDate: headerDate,
-            logoUrl: '/logo/48-wall-logo.svg',
+            logoUrl: '/shared/logo/48-wall.svg',
             clientLogo: clientLogo ?? null,
           });
         }
@@ -118,7 +118,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
                 : 'Concourse Level',
             clientName: headerClient,
             eventDate: headerDate,
-            logoUrl: '/logo/48-wall-logo.svg',
+            logoUrl: '/shared/logo/48-wall.svg',
             clientLogo: clientLogo ?? null,
             legendItems: legendItems,
           });

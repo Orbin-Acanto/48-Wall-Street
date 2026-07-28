@@ -1,6 +1,7 @@
 import { tools } from '@/data';
 import { FloorKey, Tool } from '@/types/floorplan.types';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ChevronDown, Check } from 'lucide-react';
 import { FLOOR_UNDERLAYS } from '..';
 
 interface TopToolbarProps {
@@ -24,6 +25,8 @@ interface TopToolbarProps {
   selectedFloor: FloorKey;
   onFloorChange: (floor: FloorKey) => void;
   floors?: FloorKey[];
+  seatsPlaced?: number;
+  guestCount?: number;
 }
 
 export const TopToolbar: React.FC<TopToolbarProps> = ({
@@ -46,8 +49,35 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
   onOpenEventDetails,
   selectedFloor,
   onFloorChange,
-  floors = ['ground', 'concourse'] as FloorKey[],
+  floors = [
+    'banking-hall',
+    'grand-mezzanine',
+    'upper-mezzanine',
+    'hamilton-office',
+    'concourse-vault',
+  ] as FloorKey[],
+  seatsPlaced = 0,
+  guestCount = 0,
 }) => {
+  const [floorMenuOpen, setFloorMenuOpen] = useState(false);
+  const floorMenuRef = useRef<HTMLDivElement>(null);
+
+  // Close the floor dropdown on outside click.
+  useEffect(() => {
+    if (!floorMenuOpen) return;
+    const onDown = (e: MouseEvent) => {
+      if (
+        floorMenuRef.current &&
+        !floorMenuRef.current.contains(e.target as Node)
+      ) {
+        setFloorMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onDown);
+    return () => document.removeEventListener('mousedown', onDown);
+  }, [floorMenuOpen]);
+
+  const overCapacity = guestCount > 0 && seatsPlaced > guestCount;
   return (
     <div className="flex h-16 items-center gap-2 border-b border-gray-200 bg-white px-4">
       {/* File Operations */}
@@ -235,22 +265,81 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
         </button>
       </div>
 
-      <div className="mx-4 mt-2 mb-2 flex items-center gap-3">
-        <div className="flex items-center gap-2">
-          {floors.map((key) => (
-            <button
-              key={key}
-              onClick={() => onFloorChange(key)}
-              className={`rounded-md px-3 py-1 text-sm ${
-                selectedFloor === key
-                  ? 'bg-primary text-white'
-                  : 'bg-gray-200 text-gray-800'
+      {/* Floor selector (dropdown) */}
+      <div className="border-r border-gray-300 pr-3" ref={floorMenuRef}>
+        <div className="relative">
+          <button
+            onClick={() => setFloorMenuOpen((o) => !o)}
+            className="flex min-w-[11rem] cursor-pointer items-center justify-between gap-2 rounded-md border border-gray-300 px-3 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-50"
+            title="Select floor"
+          >
+            <span className="truncate">
+              {FLOOR_UNDERLAYS[selectedFloor].label}
+            </span>
+            <ChevronDown
+              className={`h-4 w-4 shrink-0 text-gray-500 transition-transform ${
+                floorMenuOpen ? 'rotate-180' : ''
               }`}
-            >
-              {FLOOR_UNDERLAYS[key].label}
-            </button>
-          ))}
+            />
+          </button>
+
+          {floorMenuOpen && (
+            <div className="absolute left-0 z-50 mt-1 w-56 overflow-hidden rounded-lg border border-gray-200 bg-white py-1 shadow-xl">
+              <p className="px-3 py-1.5 text-[10px] font-semibold tracking-wide text-gray-400 uppercase">
+                Floor
+              </p>
+              {floors.map((key) => (
+                <button
+                  key={key}
+                  onClick={() => {
+                    onFloorChange(key);
+                    setFloorMenuOpen(false);
+                  }}
+                  className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors hover:bg-gray-100 ${
+                    selectedFloor === key
+                      ? 'font-semibold text-gray-900'
+                      : 'text-gray-700'
+                  }`}
+                >
+                  <span>{FLOOR_UNDERLAYS[key].label}</span>
+                  {selectedFloor === key && (
+                    <Check className="text-primary h-4 w-4" />
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
+      </div>
+
+      {/* Capacity badge */}
+      <div
+        className={`ml-3 flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm ${
+          overCapacity
+            ? 'border-red-200 bg-red-50 text-red-700'
+            : 'border-gray-200 bg-gray-50 text-gray-700'
+        }`}
+        title="Guest capacity placed vs. expected guest count"
+      >
+        <svg
+          className="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-1.13a4 4 0 10-4-4 4 4 0 004 4z"
+          />
+        </svg>
+        <span className="font-medium whitespace-nowrap">
+          Capacity {seatsPlaced}
+          {guestCount > 0 && (
+            <span className="text-gray-400"> / {guestCount}</span>
+          )}
+        </span>
       </div>
 
       {/* Right-aligned Actions */}

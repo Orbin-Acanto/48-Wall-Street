@@ -150,6 +150,8 @@ export default function ChatbotWidget() {
 
   const pathname = usePathname();
   if (pathname === '/about/customize-plan') return null;
+  // Keep shared brochure links (/b/[slug]) minimal: brochure + navbar + footer.
+  if (pathname?.startsWith('/b/')) return null;
 
   return (
     <>

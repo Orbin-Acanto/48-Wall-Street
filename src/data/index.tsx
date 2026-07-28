@@ -61,58 +61,82 @@ export const testimonials: Testimonial[] = [
 
 export const amenities: Amenity[] = [
   {
-    icon: '/icons/square-icon.svg',
+    icon: '/shared/icons/square-icon.svg',
     title: '30,000 SQFT.',
     description: 'Usable Space',
   },
   {
-    icon: '/icons/ceiling-icon.svg',
+    icon: '/shared/icons/ceiling-icon.svg',
     title: 'HIGH CEILING +',
     description: 'pin spot lighting system',
   },
   {
-    icon: '/icons/additional-space.svg',
+    icon: '/shared/icons/additional-space.svg',
     title: 'ADDITIONAL SPACE',
     description: 'concourse level',
   },
   {
-    icon: '/icons/coat-icon.svg',
+    icon: '/shared/icons/coat-icon.svg',
     title: 'COAT CHECK',
     description: 'attendants',
   },
   {
-    icon: '/icons/door-icon.svg',
+    icon: '/shared/icons/door-icon.svg',
     title: 'PRIVATE ENTRANCE',
     description: 'attended elevators',
   },
 
   {
-    icon: '/icons/people-icon.svg',
+    icon: '/shared/icons/people-icon.svg',
     title: 'EVENT MANAGER',
     description: 'on-site',
   },
 ];
 
 export const photos: Photo[] = [
-  { src: '/gallery/6.jpg', alt: 'Wedding celebration', span: 'small' },
-  { src: '/gallery/5.jpg', alt: 'Wedding celebration', span: 'tall' },
-  { src: '/gallery/4.jpg', alt: 'Wedding celebration', span: 'large' },
-  { src: '/gallery/7.jpg', alt: 'Wedding celebration', span: 'tall' },
-  { src: '/gallery/8.jpg', alt: 'Wedding celebration', span: 'wide' },
+  { src: '/gallery/gallery-04.jpg', alt: 'Wedding celebration', span: 'small' },
+  { src: '/gallery/gallery-03.jpg', alt: 'Wedding celebration', span: 'tall' },
+  { src: '/gallery/gallery-02.jpg', alt: 'Wedding celebration', span: 'large' },
+  { src: '/gallery/gallery-05.jpg', alt: 'Wedding celebration', span: 'tall' },
+  { src: '/gallery/gallery-06.jpg', alt: 'Wedding celebration', span: 'wide' },
   {
-    src: '/gallery/corporate/ (3).jpg',
+    src: '/gallery/corporate/corporate-03.jpg',
     alt: 'Wedding celebration',
     span: 'small',
   },
 ];
 
 export const emptyFashionVenue: Photo[] = [
-  { src: '/empty/3.jpg', alt: 'Empty 48 Wall Street', span: 'small' },
-  { src: '/empty/2.jpg', alt: 'Empty 48 Wall Street', span: 'tall' },
-  { src: '/empty/1.jpg', alt: 'Empty 48 Wall Street', span: 'large' },
-  { src: '/empty/4.jpg', alt: 'Empty 48 Wall Street', span: 'tall' },
-  { src: '/empty/6.jpg', alt: 'Empty 48 Wall Street', span: 'wide' },
-  { src: '/empty/5.jpg', alt: 'Empty 48 Wall Street', span: 'small' },
+  {
+    src: '/spaces/empty-venue/gallery-03.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'small',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-02.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'tall',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-01.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'large',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-04.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'tall',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-06.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'wide',
+  },
+  {
+    src: '/spaces/empty-venue/gallery-05.jpg',
+    alt: 'Empty 48 Wall Street',
+    span: 'small',
+  },
 ];
 
 export const portfolioVideos: VideoItem[] = [
@@ -194,6 +218,7 @@ export const navItems: NavItem[] = [
     href: '/spaces/banking-hall',
     dropdown: [
       { name: 'Grand Mezzanine', href: '/spaces/grand-mezzanine' },
+      { name: 'Upper Mezzanine', href: '/spaces/upper-mezzanine' },
       { name: 'Banking Hall', href: '/spaces/banking-hall' },
       { name: 'The Alexander Hamilton Office', href: '/spaces/hamilton-room' },
       { name: 'Concourse Vault Level', href: '/spaces/concourse-level' },
@@ -233,6 +258,7 @@ export const navItems: NavItem[] = [
       { name: 'Corporate', href: '/gallery?tab=corporate' },
       { name: 'Wedding', href: '/gallery?tab=wedding' },
       { name: 'Fashion', href: '/gallery?tab=fashion' },
+      { name: 'Film & TV', href: '/gallery?tab=film' },
       { name: 'Bar & Bat Mitzvahs', href: '/gallery?tab=bar' },
       { name: 'Holiday Events', href: '/gallery?tab=holiday' },
       { name: 'Non-Profit', href: '/gallery?tab=nonprofit' },
@@ -299,18 +325,18 @@ export const footerLinks = {
 
 export const socialLinks = [
   {
-    icon: '/icons/facebook.svg',
+    icon: '/shared/icons/facebook.svg',
     href: 'https://www.facebook.com/48wallst/',
     label: 'Facebook',
   },
-  // { icon: '/icons/x.svg', href: 'https://x.com', label: 'X' },
+  // { icon: '/shared/icons/x.svg', href: 'https://x.com', label: 'X' },
   {
-    icon: '/icons/instagram.svg',
+    icon: '/shared/icons/instagram.svg',
     href: 'https://www.instagram.com/48wallst/',
     label: 'Instagram',
   },
   // {
-  //   icon: '/icons/youtube.svg',
+  //   icon: '/shared/icons/youtube.svg',
   //   href: 'https://www.youtube.com/@Mmeink1',
   //   label: 'YouTube',
   // },
@@ -320,17 +346,17 @@ export const teamMembers: TeamMember[] = [
   {
     name: 'Micheal Tardi',
     title: 'Owner',
-    image: '/headshots/michael.jpg',
+    image: '/about/team/michael.jpg',
   },
   {
     name: 'Lauren Leuci',
     title: 'Director of Sales',
-    image: '/headshots/Lauren.png',
+    image: '/about/team/lauren.png',
   },
   {
     name: 'Andrew Heaton',
     title: 'Director of Operations',
-    image: '/headshots/Andy.png',
+    image: '/about/team/andy.png',
   },
 ];
 
@@ -347,7 +373,7 @@ export const locations = [
       'Grand marble staircase entrance',
       '1920s architectural details',
     ],
-    image: '/about/about (3).jpg',
+    image: '/about/gallery-01.jpg',
     type: 'Explore Grand Ballroom',
     sqft: '9,000 sq ft',
   },
@@ -361,7 +387,7 @@ export const locations = [
       'Perfect for cocktail hours and VIP lounges',
       'Climate-controlled environment',
     ],
-    image: '/about/c1.jpg',
+    image: '/about/gallery-04.jpg',
     type: 'Discover Breakout Spaces',
     sqft: '3,500 sq ft',
   },
@@ -434,7 +460,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 450,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-leather-sofa-1-500x500.jpg',
+    image: '/rentals/items/black-leather-sofa-1-500x500.jpg',
     rating: 4.8,
     reviews: 124,
     description:
@@ -454,7 +480,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 12,
     priceRange: 'budget',
-    image: '/rentals/rental_item/black-leather-chair-1-500x500.jpg',
+    image: '/rentals/items/black-leather-chair-1-500x500.jpg',
     rating: 4.9,
     reviews: 287,
     description:
@@ -474,7 +500,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 250,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-cosmo-club-chair-rental-1-500x500.jpg',
+    image: '/rentals/items/white-cosmo-club-chair-rental-1-500x500.jpg',
     rating: 4.7,
     reviews: 93,
     description:
@@ -494,7 +520,7 @@ export const products: Product[] = [
     theme: 'rustic',
     price: 85,
     priceRange: 'budget',
-    image: '/rentals/rental_item/lucite-high-boy-1-500x500.jpg',
+    image: '/rentals/items/lucite-high-boy-1-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -514,7 +540,7 @@ export const products: Product[] = [
     theme: 'rustic',
     price: 85,
     priceRange: 'budget',
-    image: '/rentals/rental_item/modern-pump-highboy-rental-500x500.jpg',
+    image: '/rentals/items/modern-pump-highboy-rental-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -534,7 +560,7 @@ export const products: Product[] = [
     theme: 'rustic',
     price: 85,
     priceRange: 'budget',
-    image: '/rentals/rental_item/gold-marble-highboy-rental-500x500.jpg',
+    image: '/rentals/items/gold-marble-highboy-rental-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -554,7 +580,7 @@ export const products: Product[] = [
     theme: 'rustic',
     price: 85,
     priceRange: 'budget',
-    image: '/rentals/rental_item/black-scoop-stool-1-500x500.jpg',
+    image: '/rentals/items/black-scoop-stool-1-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -574,7 +600,7 @@ export const products: Product[] = [
     theme: 'rustic',
     price: 85,
     priceRange: 'budget',
-    image: '/rentals/rental_item/modern-stool-rental-1-500x500.jpg',
+    image: '/rentals/items/modern-stool-rental-1-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -594,7 +620,7 @@ export const products: Product[] = [
     theme: 'rustic',
     price: 85,
     priceRange: 'budget',
-    image: '/rentals/rental_item/elegant-dining-chair1-500x500.jpg',
+    image: '/rentals/items/elegant-dining-chair1-500x500.jpg',
     rating: 4.6,
     reviews: 156,
     description:
@@ -614,7 +640,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/champagne.jpg',
+    image: '/rentals/items/champagne.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -634,7 +660,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-angora-love-seat-1-500x500.jpg',
+    image: '/rentals/items/white-angora-love-seat-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -654,7 +680,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/cleopatra-chair-1-500x500.jpg',
+    image: '/rentals/items/cleopatra-chair-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -674,7 +700,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-condutor-sofa-1-500x500.jpg',
+    image: '/rentals/items/white-condutor-sofa-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -694,7 +720,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-l-couch-1-500x500.jpg',
+    image: '/rentals/items/white-l-couch-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -714,7 +740,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-lounge-chair-1-500x500.jpg',
+    image: '/rentals/items/white-lounge-chair-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -734,7 +760,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/manhattan-chair-1-500x500.jpg',
+    image: '/rentals/items/manhattan-chair-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -754,7 +780,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-pixie-chair1-500x500.jpg',
+    image: '/rentals/items/white-pixie-chair1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -774,7 +800,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-roll-chair-1-500x500.jpg',
+    image: '/rentals/items/white-roll-chair-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -794,7 +820,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-rolled-arm-bench1-500x500.jpg',
+    image: '/rentals/items/white-rolled-arm-bench1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -814,7 +840,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/ornate-high-back-couch-1-500x500.jpg',
+    image: '/rentals/items/ornate-high-back-couch-1-500x500.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -834,7 +860,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-gold-couch.jpg',
+    image: '/rentals/items/black-gold-couch.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -854,7 +880,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/blakc-and-gold-coffee-table.jpg',
+    image: '/rentals/items/blakc-and-gold-coffee-table.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -874,7 +900,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-gold-scallop-chair.jpg',
+    image: '/rentals/items/black-gold-scallop-chair.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -894,7 +920,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-and-gold-chair.jpg',
+    image: '/rentals/items/black-and-gold-chair.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -914,7 +940,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/blck-gold-sofa.jpg',
+    image: '/rentals/items/blck-gold-sofa.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -934,7 +960,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-gold-coffee-table.jpg',
+    image: '/rentals/items/white-gold-coffee-table.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -954,7 +980,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 320,
     priceRange: 'mid',
-    image: '/rentals/rental_item/Leslie+End+Table-1295136341.jpg',
+    image: '/rentals/items/leslie-end-table.jpg',
     rating: 4.7,
     reviews: 67,
     description:
@@ -974,7 +1000,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 300,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-tufted-high-bench-1-500x500.jpg',
+    image: '/rentals/items/white-tufted-high-bench-1-500x500.jpg',
     rating: 4.8,
     reviews: 54,
     description:
@@ -994,7 +1020,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 350,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-tufted-ornate-chaise-1-500x500.jpg',
+    image: '/rentals/items/white-tufted-ornate-chaise-1-500x500.jpg',
     rating: 4.9,
     reviews: 63,
     description:
@@ -1014,7 +1040,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 380,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-tufted-ornate-sofa-1-500x500.jpg',
+    image: '/rentals/items/white-tufted-ornate-sofa-1-500x500.jpg',
     rating: 4.8,
     reviews: 71,
     description:
@@ -1034,7 +1060,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 260,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-tufted-scoop-chair-1-500x500.jpg',
+    image: '/rentals/items/white-tufted-scoop-chair-1-500x500.jpg',
     rating: 4.6,
     reviews: 42,
     description:
@@ -1054,7 +1080,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 340,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-tufted-rolled-arm-sofa-1-500x500.jpg',
+    image: '/rentals/items/white-tufted-rolled-arm-sofa-1-500x500.jpg',
     rating: 4.7,
     reviews: 56,
     description:
@@ -1074,7 +1100,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 220,
     priceRange: 'budget',
-    image: '/rentals/rental_item/white-tufted-ottoman-1-500x500.jpg',
+    image: '/rentals/items/white-tufted-ottoman-1-500x500.jpg',
     rating: 4.5,
     reviews: 31,
     description:
@@ -1094,7 +1120,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 370,
     priceRange: 'mid',
-    image: '/rentals/rental_item/white-tufted-winged-couch-1-500x500.jpg',
+    image: '/rentals/items/white-tufted-winged-couch-1-500x500.jpg',
     rating: 4.9,
     reviews: 79,
     description:
@@ -1114,7 +1140,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 180,
     priceRange: 'budget',
-    image: '/rentals/rental_item/white-tufted-small-ottoman-1-500x500.jpg',
+    image: '/rentals/items/white-tufted-small-ottoman-1-500x500.jpg',
     rating: 4.4,
     reviews: 22,
     description:
@@ -1134,7 +1160,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 310,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-leather-loveseat-rental2-500x500.jpg',
+    image: '/rentals/items/black-leather-loveseat-rental2-500x500.jpg',
     rating: 4.7,
     reviews: 60,
     description:
@@ -1154,7 +1180,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 280,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-leather-sled-1-500x500.jpg',
+    image: '/rentals/items/black-leather-sled-1-500x500.jpg',
     rating: 4.5,
     reviews: 37,
     description:
@@ -1174,7 +1200,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 420,
     priceRange: 'high',
-    image: '/rentals/rental_item/round-tufted-sofa-1-500x500.jpg',
+    image: '/rentals/items/round-tufted-sofa-1-500x500.jpg',
     rating: 4.9,
     reviews: 83,
     description:
@@ -1194,7 +1220,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 260,
     priceRange: 'mid',
-    image: '/rentals/rental_item/bling-tufted-leather-chair-1-500x500.jpg',
+    image: '/rentals/items/bling-tufted-leather-chair-1-500x500.jpg',
     rating: 4.6,
     reviews: 41,
     description:
@@ -1214,8 +1240,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 270,
     priceRange: 'mid',
-    image:
-      '/rentals/rental_item/black-tufted-leather-bling-chair-1-500x500.jpg',
+    image: '/rentals/items/black-tufted-leather-bling-chair-1-500x500.jpg',
     rating: 4.7,
     reviews: 48,
     description:
@@ -1235,7 +1260,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 250,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-tufted-leather-chair-1-500x500.jpg',
+    image: '/rentals/items/black-tufted-leather-chair-1-500x500.jpg',
     rating: 4.5,
     reviews: 33,
     description:
@@ -1255,7 +1280,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 350,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-tufted-leather-chaise-1-500x500.jpg',
+    image: '/rentals/items/black-tufted-leather-chaise-1-500x500.jpg',
     rating: 4.8,
     reviews: 61,
     description:
@@ -1275,7 +1300,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 390,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-tufted-leather-wing-couch-1-500x500.jpg',
+    image: '/rentals/items/black-tufted-leather-wing-couch-1-500x500.jpg',
     rating: 4.9,
     reviews: 77,
     description:
@@ -1295,7 +1320,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 330,
     priceRange: 'mid',
-    image: '/rentals/rental_item/black-leather-tufted-couch-500x500.jpg',
+    image: '/rentals/items/black-leather-tufted-couch-500x500.jpg',
     rating: 4.6,
     reviews: 51,
     description:
@@ -1315,7 +1340,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 310,
     priceRange: 'mid',
-    image: '/rentals/rental_item/tufted-leather-love-seat-1-500x500.jpg',
+    image: '/rentals/items/tufted-leather-love-seat-1-500x500.jpg',
     rating: 4.7,
     reviews: 58,
     description:
@@ -1335,7 +1360,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 290,
     priceRange: 'mid',
-    image: '/rentals/rental_item/lucite-low-boy-rectangle-1-500x500.jpg',
+    image: '/rentals/items/lucite-low-boy-rectangle-1-500x500.jpg',
     rating: 4.8,
     reviews: 47,
     description:
@@ -1355,7 +1380,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 270,
     priceRange: 'mid',
-    image: '/rentals/rental_item/lucite-cocktail-table-1-500x500.jpg',
+    image: '/rentals/items/lucite-cocktail-table-1-500x500.jpg',
     rating: 4.7,
     reviews: 39,
     description:
@@ -1379,7 +1404,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 480,
     priceRange: 'premium',
-    image: '/rentals/rental_item/gold-marble-highboy-rental-500x500.jpg',
+    image: '/rentals/items/gold-marble-highboy-rental-500x500.jpg',
     rating: 4.8,
     reviews: 0,
     description:
@@ -1399,7 +1424,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 350,
     priceRange: 'mid',
-    image: '/rentals/rental_item/hotdog-cart.jpg',
+    image: '/rentals/items/hotdog-cart.jpg',
     rating: 4.7,
     reviews: 0,
     description:
@@ -1419,7 +1444,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 650,
     priceRange: 'premium',
-    image: '/rentals/rental_item/caviar-cart.jpg',
+    image: '/rentals/items/caviar-cart.jpg',
     rating: 5,
     reviews: 0,
     description:
@@ -1440,7 +1465,7 @@ export const products: Product[] = [
     theme: 'modern',
     price: 900,
     priceRange: 'premium',
-    image: '/rentals/rental_item/prop-lounge.jpg',
+    image: '/rentals/items/prop-lounge.jpg',
     rating: 4.9,
     reviews: 0,
     description:
@@ -1460,7 +1485,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 750,
     priceRange: 'premium',
-    image: '/rentals/rental_item/prop-newsstand.jpg',
+    image: '/rentals/items/prop-newsstand.jpg',
     rating: 4.8,
     reviews: 0,
     description:
@@ -1480,7 +1505,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 300,
     priceRange: 'mid',
-    image: '/rentals/rental_item/prop-lamp-post.jpg',
+    image: '/rentals/items/prop-lamp-post.jpg',
     rating: 4.7,
     reviews: 0,
     description:
@@ -1500,7 +1525,7 @@ export const products: Product[] = [
     theme: 'vintage',
     price: 550,
     priceRange: 'premium',
-    image: '/rentals/rental_item/prop-champagne-bath.jpg',
+    image: '/rentals/items/prop-champagne-bath.jpg',
     rating: 4.9,
     reviews: 0,
     description:
@@ -1520,7 +1545,7 @@ export const products: Product[] = [
     theme: 'rustic',
     price: 500,
     priceRange: 'premium',
-    image: '/rentals/rental_item/prop-flower-cart.jpg',
+    image: '/rentals/items/prop-flower-cart.jpg',
     rating: 4.8,
     reviews: 0,
     description:
@@ -1530,6 +1555,26 @@ export const products: Product[] = [
       'Charming vintage market cart',
       'Interactive take home flower favors',
       'Elegant photo ready styling',
+    ],
+    popular: false,
+  },
+  {
+    id: 61,
+    name: '1920s Theme Props',
+    category: 'props',
+    theme: 'vintage',
+    price: 650,
+    priceRange: 'premium',
+    image: '/rentals/items/1920-theme-props.jpeg',
+    rating: 4.9,
+    reviews: 0,
+    description:
+      'A curated collection of Roaring Twenties themed props that channels 48 Wall Street’s 1920s heritage, perfect for Gatsby galas and vintage glamour receptions.',
+    features: [
+      'Authentic 1920s Art Deco styling',
+      'Curated period accents and décor',
+      'Evokes the venue’s 1927 heritage',
+      'Ideal for Gatsby and vintage themed events',
     ],
     popular: false,
   },
@@ -1570,9 +1615,9 @@ export const floors = [
   {
     id: 'banking',
     name: 'Banking Hall',
-    size: 'Contact for details',
+    size: 'Grand historic event floor',
     capacity: { max: 0, seated: 0, cocktail: 0 },
-    ceiling: 'Contact for details',
+    ceiling: 'Grand soaring ceilings',
     features: [
       'Original 1920s architecture',
       'Soaring ceilings',
@@ -1609,11 +1654,30 @@ export const floors = [
     model3DFurnished: '/floor-plans/f.glb',
   },
   {
+    id: 'upper',
+    name: 'Upper Mezzanine',
+    size: 'Elevated mezzanine event space',
+    capacity: { max: 0, seated: 0, cocktail: 0 },
+    ceiling: 'Open mezzanine ceilings',
+    features: [
+      'Elevated views over the Grand Banking Hall',
+      'Original 1920s architectural detail',
+      'Intimate receptions & VIP experiences',
+      'Cocktail hours & breakout gatherings',
+      'Refined, private atmosphere',
+      'Full-service catering & AV support',
+    ],
+    blueprint: '/floor-plans/upper-mezzanine.svg',
+    furnished: '/floor-plans/fgm.png',
+    model3DEmpty: '/floor-plans/e.glb',
+    model3DFurnished: '/floor-plans/f.glb',
+  },
+  {
     id: 'hamilton',
     name: 'Hamilton Office',
-    size: 'Contact for details',
+    size: 'Private executive suite',
     capacity: { max: 0, seated: 0, cocktail: 0 },
-    ceiling: 'Contact for details',
+    ceiling: 'Handcrafted period ceilings',
     features: [
       'Soaring ceilings & handcrafted millwork',
       'Ornate gilded columns',
@@ -1652,7 +1716,7 @@ export const floors = [
 ];
 
 // ---- Event brochures (flipbook) -------------------------------------------
-const generalBrochurePages = Array.from({ length: 32 }, (_, i) => ({
+const generalBrochurePages = Array.from({ length: 38 }, (_, i) => ({
   id: i + 1,
   image: `/brochures/general/page-${String(i + 1).padStart(2, '0')}.jpg`,
 }));
@@ -1666,6 +1730,7 @@ export const generalBrochure = {
   title: 'Explore Our Venue',
   subtitle: '48 Wall Street • Digital Brochure',
   downloadUrl: '/brochures/general/48-wall-street-brochure.pdf',
+  shareSlug: 'explore-our-venue',
   pages: generalBrochurePages,
 };
 
@@ -1673,28 +1738,39 @@ export const holidayBrochure = {
   title: 'Holiday Events Guide',
   subtitle: '48 Wall Street • Holiday Guide 2026',
   downloadUrl: '/brochures/holiday/48-wall-holiday-guide-2026.pdf',
+  shareSlug: 'holiday-events-guide',
   pages: holidayBrochurePages,
 };
+
+// Registry of shareable brochures, keyed by their public share slug. The
+// /b/[slug] shared-link viewer looks brochures up here so a client sees a
+// clean navbar + brochure + footer page for the link they were given.
+export const shareableBrochures = {
+  [generalBrochure.shareSlug]: generalBrochure,
+  [holidayBrochure.shareSlug]: holidayBrochure,
+} as const;
+
+export type ShareableBrochureSlug = keyof typeof shareableBrochures;
 
 // ---- Client logos ---------------------------------------------------------
 export const brandClientLogos = [
   { src: '/clients/brands/aarp.webp', name: 'AARP' },
   { src: '/clients/brands/allianz.png', name: 'Allianz' },
-  { src: '/clients/brands/bank-of-america-logo.png', name: 'Bank of America' },
-  { src: '/clients/brands/botify-logo.png', name: 'Botify' },
-  { src: '/clients/brands/fin-tech-logo.png', name: 'Fin.Tech' },
+  { src: '/clients/brands/bank-of-america.png', name: 'Bank of America' },
+  { src: '/clients/brands/botify.png', name: 'Botify' },
+  { src: '/clients/brands/fin-tech.png', name: 'Fin.Tech' },
   { src: '/clients/brands/fsuite.png', name: 'FSuite' },
-  { src: '/clients/brands/netflix-logo-png.png', name: 'Netflix' },
+  { src: '/clients/brands/netflix-logo.png', name: 'Netflix' },
   { src: '/clients/brands/okx.png', name: 'OKX' },
   { src: '/clients/brands/open-text.png', name: 'OpenText' },
   { src: '/clients/brands/pyramid.jpg', name: 'Pyramid' },
   {
-    src: '/clients/brands/samsung-smart-tv-logo.png',
+    src: '/clients/brands/samsung-smart-tv.png',
     name: 'Samsung Smart TV',
   },
-  { src: '/clients/brands/sandmark-logo.jpg', name: 'Sandmark' },
-  { src: '/clients/brands/vml-logo.png', name: 'VML' },
-  { src: '/clients/brands/wells-fargo-logo.jpg', name: 'Wells Fargo' },
+  { src: '/clients/brands/sandmark.jpg', name: 'Sandmark' },
+  { src: '/clients/brands/vml.png', name: 'VML' },
+  { src: '/clients/brands/wells-fargo.jpg', name: 'Wells Fargo' },
 ];
 
 export const nonProfitClientLogos = [
@@ -1703,18 +1779,18 @@ export const nonProfitClientLogos = [
     name: 'American Composers',
   },
   {
-    src: '/clients/non-profit/answer-the-call-logo.png',
+    src: '/clients/non-profit/answer-the-call.png',
     name: 'Answer the Call',
   },
   {
-    src: '/clients/non-profit/carnegie-mellon-university-logo.png',
+    src: '/clients/non-profit/carnegie-mellon-university.png',
     name: 'Carnegie Mellon University',
   },
   {
     src: '/clients/non-profit/determine-to-educate.jpg',
     name: 'Determine to Educate',
   },
-  { src: '/clients/non-profit/family-kind-logo.png', name: 'Family Kind' },
+  { src: '/clients/non-profit/family-kind.png', name: 'Family Kind' },
   { src: '/clients/non-profit/hellenic.png', name: 'Hellenic' },
   {
     src: '/clients/non-profit/horace-mann-school.jpg',
@@ -1725,8 +1801,8 @@ export const nonProfitClientLogos = [
   { src: '/clients/non-profit/jcp-downtown.png', name: 'JCP Downtown' },
   { src: '/clients/non-profit/jfk.jpg', name: 'JFK' },
   { src: '/clients/non-profit/maggies-mission.jpg', name: "Maggie's Mission" },
-  { src: '/clients/non-profit/mama-logo.png', name: 'MAMA' },
-  { src: '/clients/non-profit/nest-logo.png', name: 'Nest' },
+  { src: '/clients/non-profit/mama.png', name: 'MAMA' },
+  { src: '/clients/non-profit/nest.png', name: 'Nest' },
   { src: '/clients/non-profit/nyu.png', name: 'NYU' },
   { src: '/clients/non-profit/pace-university.png', name: 'Pace University' },
   { src: '/clients/non-profit/pan-nam.png', name: 'Pan Nam' },
@@ -1740,7 +1816,7 @@ export const nonProfitClientLogos = [
   },
   { src: '/clients/non-profit/sphoe-gerson.png', name: 'Sphoe Gerson' },
   {
-    src: '/clients/non-profit/stephane-matteau-logo.webp',
+    src: '/clients/non-profit/stephane-matteau.webp',
     name: 'Stephane Matteau',
   },
   { src: '/clients/non-profit/success-academy.png', name: 'Success Academy' },
@@ -1767,27 +1843,27 @@ export const weddingData: EventShowcaseProps = {
     'Some venues simply host a wedding. 48 Wall Street becomes part of your love story.\n\nOriginally built in 1927 as the Bank of New York and Trust Company, this landmark destination offers a level of grandeur, romance, and historic elegance that modern ballrooms simply cannot recreate. From the moment your guests arrive, they are welcomed into a breathtaking setting defined by soaring 30-foot ceilings, a grand marble staircase, Palladian windows, original crystal chandeliers, and timeless architectural details in the heart of Lower Manhattan.\n\nWhether you envision an intimate ceremony, a black-tie seated dinner, a lavish cocktail reception, or a full-scale wedding celebration, 48 Wall Street provides an extraordinary canvas for a day that feels deeply personal and unforgettable. Our experienced hospitality, culinary, design, and production teams thoughtfully curate every detail, from ceremony flow and floral design to lighting, entertainment, dining, and the final send-off.\n\nAt 48 Wall Street, your wedding is more than an event. It is a beautifully orchestrated experience where history, elegance, and modern luxury come together to create moments you and your guests will remember for a lifetime.',
   images: [
     {
-      src: '/events/wedding/1.jpg',
+      src: '/events/wedding/gallery-01.jpg',
       alt: 'Wedding celebration at 48 Wall Street',
     },
     {
-      src: '/events/wedding/2.jpg',
+      src: '/events/wedding/gallery-02.jpg',
       alt: 'Elegant wedding reception',
     },
     {
-      src: '/events/wedding/3.jpg',
+      src: '/events/wedding/gallery-03.jpg',
       alt: 'Wedding ceremony in the historic banking hall',
     },
     {
-      src: '/events/wedding/4.jpg',
+      src: '/events/wedding/gallery-04.jpg',
       alt: 'Wedding portrait on the grand marble staircase',
     },
     {
-      src: '/events/wedding/5.jpg',
+      src: '/events/wedding/gallery-05.jpg',
       alt: 'Wedding celebration under crystal chandeliers',
     },
     {
-      src: '/events/wedding/8.jpg',
+      src: '/events/wedding/gallery-06.jpg',
       alt: 'Luxury wedding at 48 Wall Street',
     },
   ],
@@ -1861,27 +1937,27 @@ export const corporateData: EventShowcaseProps = {
     "The most successful corporate events begin with an exceptional setting. At 48 Wall Street, your meeting, conference, or executive gathering takes place within one of New York City's most prestigious historic landmarks, a venue where timeless architecture, modern technology, and world-class hospitality create an experience that reflects the importance of your organization.\n\nOriginally built in 1927 as the Bank of New York & Trust Company, 48 Wall Street has long stood as a symbol of leadership, commerce, and financial excellence. Today, its magnificent Banking Hall continues that legacy by hosting executive conferences, investor meetings, annual general meetings, product launches, leadership summits, client receptions, shareholder events, award ceremonies, and corporate celebrations in an environment unlike any traditional hotel ballroom or convention center.\n\nFrom intimate executive board meetings to conferences accommodating hundreds of attendees, our versatile event spaces are supported by a full-service team dedicated to flawless execution. We provide comprehensive event planning, award-winning culinary experiences, audiovisual production, intelligent lighting, staging, scenic fabrication, branding, registration services, entertainment, and on-site event management, ensuring every detail is executed with precision and professionalism.\n\nWith soaring 30-foot ceilings, grand marble architecture, Palladian windows, crystal chandeliers, and state-of-the-art production capabilities, 48 Wall Street delivers an atmosphere that inspires collaboration, elevates presentations, and leaves a lasting impression on clients, colleagues, and distinguished guests alike.\n\nAt 48 Wall Street, every corporate event becomes an opportunity to inspire, connect, and lead within one of New York City's most iconic business landmarks.",
   images: [
     {
-      src: '/gallery/corporate/ (24).jpg',
+      src: '/gallery/corporate/corporate-11.jpg',
       alt: 'Corporate conference setup',
     },
     {
-      src: '/gallery/corporate/c25-12.jpg',
+      src: '/gallery/corporate/corporate-15.jpg',
       alt: 'Investor summit conference with theater seating and main stage',
     },
     {
-      src: '/gallery/corporate/c25-10.jpg',
+      src: '/gallery/corporate/corporate-13.jpg',
       alt: 'Corporate panel stage with LED screens and cocktail seating',
     },
     {
-      src: '/gallery/corporate/c25-11.jpg',
+      src: '/gallery/corporate/corporate-14.jpg',
       alt: 'Corporate networking reception with lounge and cocktail tables',
     },
     {
-      src: '/gallery/corporate/c25-13.jpg',
+      src: '/events/corporate/gallery-03.jpg',
       alt: 'Sponsor and exhibitor booths at a corporate summit',
     },
     {
-      src: '/gallery/corporate/ (10).jpg',
+      src: '/events/corporate/gallery-04.jpg',
       alt: 'Corporate conference',
     },
   ],
@@ -1935,7 +2011,7 @@ export const corporateData: EventShowcaseProps = {
     {
       title: 'Gala Dinners & Awards Evenings',
       subtitle: 'Celebrate Achievement in a Setting of Distinction',
-      image: '/events/corporate/gala.jpg',
+      image: '/events/corporate/gallery-01.jpg',
       imageAlt:
         'Formal gala dinner and awards evening in the Banking Hall at 48 Wall Street',
       body: "A company gala or awards evening deserves a venue that reflects the importance of the occasion. At 48 Wall Street, every guest enters an atmosphere of timeless elegance. The grand marble staircase, soaring ceilings, crystal chandeliers, Palladian windows, and historic architectural details create an immediate sense of prestige.\n\nWhether honoring leadership, recognizing top performers, celebrating company milestones, or hosting a formal black-tie dinner, our landmark venue provides a sophisticated backdrop for an unforgettable evening. The grandeur of the space elevates every arrival, toast, presentation, and award moment, ensuring the event feels significant from beginning to end.\n\nOur experienced hospitality and production teams manage every detail with precision, including chef-curated catering, premium bar service, custom décor, floral design, entertainment, staging, lighting, audiovisual production, and seamless event coordination. From the first guest arrival to the final applause, every element is thoughtfully orchestrated to exceed expectations and create a celebration worthy of your organization's success.\n\nAt 48 Wall Street, gala dinners and awards evenings become more than corporate events. They become extraordinary experiences that honor achievement, inspire pride, and leave a lasting impression.",
@@ -1944,7 +2020,7 @@ export const corporateData: EventShowcaseProps = {
       title: 'Product Launches & Client Events',
       subtitle:
         "Introduce Your Brand in One of New York City's Most Iconic Landmark Venues",
-      image: '/events/corporate/product.jpg',
+      image: '/events/corporate/gallery-02.jpg',
       imageAlt: 'Branded product launch and client reception at 48 Wall Street',
       body: "Every successful product launch begins with an unforgettable first impression. Whether unveiling a new product, introducing an innovative service, hosting an executive client reception, or celebrating a major company milestone, 48 Wall Street provides a prestigious setting that reflects the strength, sophistication, and vision of your brand.\n\nLocated in the heart of Manhattan's Financial District, our historic landmark offers an extraordinary backdrop where timeless architecture meets modern event production. Soaring 30-foot ceilings, grand marble staircases, Palladian windows, and magnificent crystal chandeliers create an atmosphere of distinction that immediately elevates every guest experience and reinforces the value of your brand.\n\nOur experienced event professionals collaborate closely with your marketing, communications, and production teams to transform the venue into a fully branded environment. From custom scenic fabrication, large-format graphics, LED displays, and immersive lighting to audiovisual production, interactive demonstrations, luxury catering, entertainment, and guest registration, every detail is meticulously designed to support your launch objectives and enhance audience engagement.\n\nWhether hosting media representatives, investors, strategic partners, VIP clients, or industry leaders, we ensure every aspect of your event is flawlessly executed. Behind the scenes, our dedicated hospitality and production teams manage every logistical detail with precision, allowing your team to focus on delivering your message, building relationships, and showcasing your brand with confidence.",
     },
@@ -1960,27 +2036,27 @@ export const conferenceData: EventShowcaseProps = {
     'When a conference is held at 48 Wall Street, attendees notice. The 1927 banking hall carries a gravitas that sets the tone from the moment guests walk through the door, long before the program begins. With 9,000 square feet on the main level and an additional 3,000 square feet of breakout space on the Concourse Level, we accommodate everything from intimate board meetings to full-day industry conferences for up to 500 attendees. Our in-house production team handles all AV, staging, lighting, and catering so your team can focus entirely on the content.',
   images: [
     {
-      src: '/gallery/corporate/ (24).jpg',
+      src: '/gallery/corporate/corporate-11.jpg',
       alt: 'Conference setup at 48 Wall Street',
     },
     {
-      src: '/gallery/corporate/ (10).jpg',
+      src: '/gallery/corporate/corporate-08.jpg',
       alt: 'Conference at 48 Wall Street Financial District',
     },
     {
-      src: '/gallery/corporate/ (19).jpg',
+      src: '/gallery/corporate/corporate-09.jpg',
       alt: 'Corporate meeting in historic NYC venue',
     },
     {
-      src: '/gallery/corporate/ (9).jpg',
+      src: '/gallery/corporate/corporate-07.jpg',
       alt: 'Panel discussion at 48 Wall Street',
     },
     {
-      src: '/gallery/corporate/ (6).jpg',
+      src: '/gallery/corporate/corporate-06.jpg',
       alt: 'Business conference in Lower Manhattan',
     },
     {
-      src: '/gallery/corporate/ (2).jpg',
+      src: '/gallery/corporate/corporate-02.jpg',
       alt: 'Executive meeting at Wall Street venue',
     },
   ],
@@ -2050,27 +2126,27 @@ export const fashionData: EventShowcaseProps = {
     "Fashion is more than what appears on the runway, it is the atmosphere, architecture, lighting, energy, and story surrounding every look. At 48 Wall Street, designers and brands are welcomed into one of New York City's most visually powerful event spaces, where historic grandeur creates a dramatic stage for unforgettable fashion moments.\n\nSet within a landmark 1920s banking hall in the heart of the Financial District, 48 Wall Street offers a cinematic runway environment defined by soaring 30-foot ceilings, a grand marble staircase, Palladian windows, original crystal chandeliers, and timeless architectural detail. Every entrance, runway walk, and collection reveal is elevated by a setting that feels both iconic and distinctly New York.\n\nWhether producing a full New York Fashion Week runway show, an intimate designer presentation, a luxury showroom experience, a press preview, or a high-profile brand activation, our in-house event and production teams manage every element with precision. From custom staging and runway builds to lighting design, audiovisual production, backstage support, hospitality, catering, and guest flow, every detail is expertly coordinated so your creative team can remain focused on the collection.\n\nAt 48 Wall Street, fashion is presented with scale, sophistication, and impact, making it one of the most distinctive runway and presentation venues in Lower Manhattan.",
   images: [
     {
-      src: '/events/fashion/3.jpg',
+      src: '/events/fashion/gallery-01.jpg',
       alt: 'Runway show at 48 Wall Street',
     },
     {
-      src: '/events/fashion/4.jpg',
+      src: '/events/fashion/gallery-02.jpg',
       alt: 'Fashion presentation in the historic banking hall',
     },
     {
-      src: '/events/fashion/5.jpg',
+      src: '/events/fashion/gallery-03.jpg',
       alt: 'Runway production under crystal chandeliers',
     },
     {
-      src: '/events/fashion/6.jpg',
+      src: '/events/fashion/gallery-04.jpg',
       alt: 'Designer showcase at 48 Wall Street',
     },
     {
-      src: '/events/fashion/7.jpg',
+      src: '/events/fashion/gallery-05.jpg',
       alt: 'Fashion event on the runway',
     },
     {
-      src: '/events/fashion/8.jpg',
+      src: '/events/fashion/gallery-06.jpg',
       alt: 'Luxury brand activation at 48 Wall Street',
     },
   ],
@@ -2145,27 +2221,27 @@ export const nonprofitData: EventShowcaseProps = {
     'Every fundraising event begins with a message. The venue you choose sets the tone before the first welcome remark is made, and at 48 Wall Street, your cause is presented with the dignity, elegance, and importance it deserves.\n\nSet within a historic 1927 banking hall in the heart of Lower Manhattan, 48 Wall Street offers a remarkable backdrop for non-profit galas, benefit dinners, charity auctions, donor receptions, awareness events, and mission-driven celebrations. With its grand marble staircase, soaring ceilings, original architectural details, and timeless New York sophistication, the venue creates an atmosphere that inspires connection, generosity, and impact.\n\nFor more than three decades, our team has supported distinguished non-profit organizations throughout the Financial District, understanding the careful balance between guest experience, donor engagement, program flow, and fundraising goals. From elegant dining and thoughtful room design to audiovisual production, stage moments, auctions, entertainment, and sponsor recognition, every detail is managed with precision and purpose.\n\nAt 48 Wall Street, your event becomes more than a gathering, it becomes a powerful experience that honors your mission, celebrates your supporters, and leaves guests inspired to give.',
   images: [
     {
-      src: '/events/nonprofit/1.jpg',
+      src: '/events/nonprofit/gallery-01.jpg',
       alt: 'Non-profit gala at 48 Wall Street',
     },
     {
-      src: '/events/nonprofit/2.jpg',
+      src: '/events/nonprofit/gallery-02.jpg',
       alt: 'Fundraising dinner in the historic banking hall',
     },
     {
-      src: '/events/nonprofit/3.jpg',
+      src: '/events/nonprofit/gallery-03.jpg',
       alt: 'Charity benefit reception at 48 Wall Street',
     },
     {
-      src: '/gallery/non/1.jpg',
+      src: '/gallery/non/nonprofit-01.jpg',
       alt: 'Donor reception setup',
     },
     {
-      src: '/gallery/non/2.jpg',
+      src: '/gallery/non/nonprofit-02.jpg',
       alt: 'Benefit gala seating',
     },
     {
-      src: '/gallery/non/7.jpg',
+      src: '/events/nonprofit/gallery-04.jpg',
       alt: 'Non-profit event stage and lighting',
     },
   ],
@@ -2238,27 +2314,27 @@ export const mitzvahData: EventShowcaseProps = {
     "A Bar or Bat Mitzvah is more than a celebration, it is a once-in-a-lifetime milestone that honors family, faith, and tradition while marking the beginning of an exciting new chapter. At 48 Wall Street, we provide an extraordinary setting where timeless elegance meets personalized celebration, creating an unforgettable experience for every generation.\n\nThe magnificent 9,000-square-foot Grand Mezzanine, with its soaring ceilings, crystal chandeliers, grand marble architecture, and historic banking hall, offers a breathtaking backdrop for celebrations of every style. Whether you envision a sophisticated black-tie reception, a vibrant themed celebration, or an immersive interactive experience, our team will thoughtfully bring your vision to life.\n\nOur experienced hospitality and event professionals manage every detail from beginning to end, allowing your family to focus on celebrating this meaningful occasion. From custom decor and floral design to award-winning catering, entertainment, audiovisual production, lighting, staging, and interactive experiences, every element is carefully curated to reflect your family's traditions, personality, and style.\n\nAt 48 Wall Street, every Bar and Bat Mitzvah is designed to be as unique as the young person being honored, creating an elegant celebration filled with unforgettable memories that will be cherished for generations.",
   images: [
     {
-      src: '/events/mitzvah/1.jpg',
+      src: '/events/mitzvah/gallery-01.jpg',
       alt: 'Bar or Bat Mitzvah celebration at 48 Wall Street',
     },
     {
-      src: '/events/mitzvah/2.jpg',
+      src: '/events/mitzvah/gallery-02.jpg',
       alt: 'Themed Mitzvah reception in the Grand Mezzanine',
     },
     {
-      src: '/events/mitzvah/3.jpg',
+      src: '/events/mitzvah/gallery-03.jpg',
       alt: 'Mitzvah celebration with custom decor',
     },
     {
-      src: '/events/mitzvah/4.jpg',
+      src: '/events/mitzvah/gallery-04.jpg',
       alt: 'Mitzvah party under crystal chandeliers',
     },
     {
-      src: '/events/mitzvah/5.jpg',
+      src: '/events/mitzvah/gallery-05.jpg',
       alt: 'Immersive Mitzvah event design',
     },
     {
-      src: '/gallery/bar/39.jpg',
+      src: '/gallery/bar/bar-02.jpg',
       alt: 'Bar Mitzvah celebration',
     },
   ],
@@ -2334,27 +2410,27 @@ export const holidayData: EventShowcaseProps = {
     'End the year in a setting designed to impress. At 48 Wall Street, holiday celebrations are elevated by the grandeur of a historic 1920s banking hall. Soaring ceilings, Art Deco chandeliers, marble details, and golden architectural accents create an atmosphere of effortless sophistication before the first guest arrives.\n\nFrom corporate holiday parties and client appreciation receptions to year-end galas and festive private celebrations, our team curates every detail with precision and style. Through exquisite catering, custom decor, immersive lighting, live entertainment, and full-scale event production, we transform each holiday gathering into a polished, memorable experience worthy of the season.\n\nWith decades of expertise hosting distinguished celebrations in the Financial District, 48 Wall Street offers more than a venue, it offers a complete holiday experience where your guests feel celebrated, your brand feels elevated, and the evening becomes the event everyone remembers.',
   images: [
     {
-      src: '/events/holiday/1.jpg',
+      src: '/events/holiday/gallery-01.jpg',
       alt: 'Holiday celebration at 48 Wall Street',
     },
     {
-      src: '/events/holiday/2.jpg',
+      src: '/events/holiday/gallery-02.jpg',
       alt: 'Year-end gala in the historic banking hall',
     },
     {
-      src: '/events/holiday/3.jpg',
+      src: '/events/holiday/gallery-03.jpg',
       alt: 'Festive holiday reception under crystal chandeliers',
     },
     {
-      src: '/events/holiday/4.jpg',
+      src: '/events/holiday/gallery-04.jpg',
       alt: 'Corporate holiday party at 48 Wall Street',
     },
     {
-      src: '/gallery/holiday/54.jpg',
+      src: '/gallery/holiday/holiday-03.jpg',
       alt: 'Holiday party',
     },
     {
-      src: '/gallery/holiday/51.jpg',
+      src: '/gallery/holiday/holiday-02.jpg',
       alt: 'Holiday party',
     },
   ],
@@ -2426,27 +2502,27 @@ export const filmtvData: EventShowcaseProps = {
     "Few locations in New York City offer the architectural grandeur, authenticity, and cinematic presence of 48 Wall Street. Originally constructed in 1927 as the Bank of New York & Trust Company, this nationally recognized landmark provides filmmakers with an extraordinary backdrop that embodies the timeless elegance and financial legacy of Lower Manhattan.\n\nFrom its soaring 30-foot ceilings, magnificent marble columns, and grand ceremonial staircase to its Palladian windows, original crystal chandeliers, and Beaux-Arts architecture, every space within the building offers a visually compelling setting that captures the unmistakable character of New York City. Whether producing a feature film, television series, streaming production, commercial, fashion campaign, music video, documentary, or editorial photo shoot, 48 Wall Street delivers a cinematic environment rarely found in today's production landscape.\n\nBeyond the location itself, our experienced production team understands the unique demands of the entertainment industry. We provide comprehensive support for on-location filming, production offices, cast and crew holding areas, wardrobe and hair & makeup rooms, green rooms, equipment staging, catering, security, and production logistics. Our team works seamlessly with location managers, producers, and production coordinators to ensure efficient scheduling, discreet operations, and a smooth filming experience.\n\nIn addition to on-location productions, 48 Wall Street is an exceptional destination for film premieres, private screenings, wrap parties, press events, media receptions, cast celebrations, and entertainment industry gatherings. With award-winning hospitality, full-service production capabilities, and one of New York City's most distinguished historic interiors, 48 Wall Street offers filmmakers and storytellers a setting where every frame is elevated by timeless architecture and every production is supported with world-class service.",
   images: [
     {
-      src: '/gallery/film/ (1).jpg',
+      src: '/gallery/film/film-01.jpg',
       alt: 'Red carpet premiere',
     },
     {
-      src: '/gallery/film/ (2).jpg',
+      src: '/gallery/film/film-02.jpg',
       alt: 'Film screening event',
     },
     {
-      src: '/gallery/film/ (3).jpg',
+      src: '/gallery/film/film-03.jpg',
       alt: 'Entertainment industry party',
     },
     {
-      src: '/gallery/film/ (4).jpg',
+      src: '/gallery/film/film-04.jpg',
       alt: 'Movie theater premiere',
     },
     {
-      src: '/gallery/film/ (5).jpg',
+      src: '/gallery/film/film-05.jpg',
       alt: 'VIP after party',
     },
     {
-      src: '/gallery/film/ (6).jpg',
+      src: '/gallery/film/film-06.jpg',
       alt: 'Production wrap party',
     },
   ],
@@ -2513,90 +2589,95 @@ export const filmtvData: EventShowcaseProps = {
   ],
 };
 
-export const brochurePages = Array.from({ length: 32 }, (_, i) => ({
+export const brochurePages = Array.from({ length: 38 }, (_, i) => ({
   id: i + 1,
   image: `/brochures/general/page-${String(i + 1).padStart(2, '0')}.jpg`,
 }));
 
 export const menuPages = [
-  { id: 1, image: '/menu/catering_Page_01.jpg' },
-  { id: 2, image: '/menu/catering_Page_02.jpg' },
-  { id: 3, image: '/menu/catering_Page_03.jpg' },
-  { id: 4, image: '/menu/catering_Page_04.jpg' },
-  { id: 5, image: '/menu/catering_Page_05.jpg' },
-  { id: 6, image: '/menu/catering_Page_06.jpg' },
-  { id: 7, image: '/menu/catering_Page_07.jpg' },
-  { id: 8, image: '/menu/catering_Page_08.jpg' },
-  { id: 9, image: '/menu/catering_Page_09.jpg' },
-  { id: 10, image: '/menu/catering_Page_10.jpg' },
-  { id: 11, image: '/menu/catering_Page_11.jpg' },
-  { id: 12, image: '/menu/catering_Page_12.jpg' },
-  { id: 13, image: '/menu/catering_Page_13.jpg' },
-  { id: 14, image: '/menu/catering_Page_14.jpg' },
-  { id: 15, image: '/menu/catering_Page_15.jpg' },
-  { id: 16, image: '/menu/catering_Page_16.jpg' },
-  { id: 17, image: '/menu/catering_Page_17.jpg' },
-  { id: 18, image: '/menu/catering_Page_18.jpg' },
-  { id: 19, image: '/menu/catering_Page_19.jpg' },
-  { id: 20, image: '/menu/catering_Page_20.jpg' },
-  { id: 21, image: '/menu/catering_Page_21.jpg' },
-  { id: 22, image: '/menu/catering_Page_22.jpg' },
-  { id: 23, image: '/menu/catering_Page_23.jpg' },
-  { id: 24, image: '/menu/catering_Page_24.jpg' },
-  { id: 25, image: '/menu/catering_Page_25.jpg' },
-  { id: 26, image: '/menu/catering_Page_26.jpg' },
-  { id: 27, image: '/menu/catering_Page_27.jpg' },
-  { id: 28, image: '/menu/catering_Page_28.jpg' },
-  { id: 29, image: '/menu/catering_Page_29.jpg' },
-  { id: 30, image: '/menu/catering_Page_30.jpg' },
+  { id: 1, image: '/menu/page-02.jpg' },
+  { id: 2, image: '/menu/page-03.jpg' },
+  { id: 3, image: '/menu/page-04.jpg' },
+  { id: 4, image: '/menu/page-05.jpg' },
+  { id: 5, image: '/menu/page-06.jpg' },
+  { id: 6, image: '/menu/page-07.jpg' },
+  { id: 7, image: '/menu/page-08.jpg' },
+  { id: 8, image: '/menu/page-09.jpg' },
+  { id: 9, image: '/menu/page-10.jpg' },
+  { id: 10, image: '/menu/page-11.jpg' },
+  { id: 11, image: '/menu/page-12.jpg' },
+  { id: 12, image: '/menu/page-13.jpg' },
+  { id: 13, image: '/menu/page-14.jpg' },
+  { id: 14, image: '/menu/page-15.jpg' },
+  { id: 15, image: '/menu/page-16.jpg' },
+  { id: 16, image: '/menu/page-17.jpg' },
+  { id: 17, image: '/menu/page-18.jpg' },
+  { id: 18, image: '/menu/page-19.jpg' },
+  { id: 19, image: '/menu/page-20.jpg' },
+  { id: 20, image: '/menu/page-21.jpg' },
+  { id: 21, image: '/menu/page-22.jpg' },
+  { id: 22, image: '/menu/page-23.jpg' },
+  { id: 23, image: '/menu/page-24.jpg' },
+  { id: 24, image: '/menu/page-25.jpg' },
+  { id: 25, image: '/menu/page-26.jpg' },
+  { id: 26, image: '/menu/page-27.jpg' },
+  { id: 27, image: '/menu/page-28.jpg' },
+  { id: 28, image: '/menu/page-29.jpg' },
+  { id: 29, image: '/menu/page-30.jpg' },
+  { id: 30, image: '/menu/page-31.jpg' },
 ];
 
 export const items = [
   {
     images: [
-      '/event/Cornell/1.jpg',
-      '/event/Cornell/2.jpg',
-      '/event/Cornell/3.jpg',
+      '/events/featured/cornell/4.jpg',
+      '/events/featured/cornell/2.jpg',
+      '/events/featured/cornell/3.jpg',
     ],
     title: 'Cornell Alumni Conference',
     category: 'Conferences',
     location: 'Cornell',
-  },
-  {
-    images: ['/event/FPM/1.jpg', '/event/FPM/2.jpg', '/event/FPM/3.jpg'],
-    title: 'World Of Excellence Fund Raising Gala',
-    category: 'Galas',
-    location: 'FPM US',
+    tagline: 'Where Great Minds Reunite in Timeless Surroundings',
   },
   {
     images: [
-      '/event/Alice_Oliva/1.jpg',
-      '/event/Alice_Oliva/2.jpg',
-      '/event/Alice_Oliva/3.jpg',
+      '/events/featured/mc/1.jpg',
+      '/events/featured/mc/2.jpg',
+      '/events/featured/mc/3.jpg',
+    ],
+    title: 'Market Movers Investor Summit',
+    category: 'Corporate',
+    location: 'Money Channel',
+    tagline: "Where Wall Street's Legacy Inspires Extraordinary Events",
+  },
+  {
+    images: [
+      '/events/featured/alice-oliva/gallery-01.jpg',
+      '/events/featured/alice-oliva/gallery-02.jpg',
+      '/events/featured/alice-oliva/gallery-03.jpg',
     ],
     title: 'Immersive Fashion Show',
     category: 'Fashion Shows',
     location: 'Alice + Oliva',
+    tagline: 'Where Bold Vision Meets an Iconic Runway',
   },
 
   {
-    images: [
-      '/event/Nordstrom/1.jpg',
-      '/event/Nordstrom/2.jpg',
-      '/event/Nordstrom/3.jpg',
-    ],
-    title: 'Vintage Department Store Activation',
-    category: 'Event Activation',
-    location: 'Nordstrom',
+    images: ['/events/featured/ymca/1.jpg', '/events/featured/ymca/2.jpg'],
+    title: 'YMCA Charity Benefit Gala',
+    category: 'Non-Profit',
+    location: 'YMCA',
+    tagline: 'Celebrating Impact in Historic Elegance',
   },
   {
     images: [
-      '/event/Wedding/1.jpg',
-      '/event/Wedding/2.jpg',
-      '/event/Wedding/3.jpg',
+      '/events/featured/wedding/gallery-01.jpg',
+      '/events/featured/wedding/gallery-02.jpg',
+      '/events/featured/wedding/gallery-03.jpg',
     ],
     title: 'Wedding Ceremony',
     category: 'Wedding',
+    tagline: 'Where Forever Begins in Historic Splendor',
   },
 ];
 
@@ -2604,7 +2685,7 @@ export const eventProductionData = {
   title: 'Luxury Event Production at 48 Wall Street',
   subtitle:
     "From intimate executive gatherings to spectacular galas and large-scale corporate productions, 48 Wall Street delivers a seamless fusion of timeless architecture, innovative event technology, and impeccable white-glove service. Our full-service production team transforms historic spaces into extraordinary experiences. We offer bespoke event design, state-of-the-art audiovisual solutions, luxury furnishings, and flawless execution all under one iconic roof in the heart of New York City's Financial District.",
-  heroImage: '/videos/ep.mp4',
+  heroImage: '/home/videos/ep.mp4',
   leadTitle: 'Everything Your Event Needs, Under One Roof',
   leadDescription:
     "From intimate executive gatherings to spectacular galas and large scale corporate productions, 48 Wall Street seamlessly blends timeless architecture, innovative event technology, and impeccable white glove service. Our full service production partner transforms this historic landmark into extraordinary experiences with bespoke event design, state of the art audiovisual solutions, luxury furnishings, and flawless execution all under one iconic roof in the heart of New York City's Financial District.",
@@ -2617,11 +2698,11 @@ export const eventProductionData = {
       description:
         "Our award-winning in-house design team transforms historic spaces into unforgettable experiences. Inspired by the timeless elegance of 48 Wall Street, our designers create bespoke environments that complement the venue's iconic architecture while reflecting each client's unique vision and brand.<br><br>From exquisite floral installations and luxury furnishings to immersive décor, scenic fabrication, and branded environments, every detail is thoughtfully curated to elevate executive conferences, luxury weddings, galas, fashion shows, and brand activations.<br><br>Backed by our in-house production studio and one of the region's largest private inventories of premium décor, furnishings, props, and custom scenic elements, MME Worldwide delivers exceptional creative flexibility, bespoke fabrication, and flawless execution. The result is an immersive event experience where inspired design, historic grandeur, and impeccable craftsmanship come together to create celebrations as iconic as the venue itself.",
       images: [
-        '/service/design/1.jpg',
-        '/service/design/2.jpg',
-        '/service/design/3.jpg',
-        '/service/design/4.jpg',
-        '/service/design/5.jpg',
+        '/services/production/design/gallery-01.jpg',
+        '/services/production/design/gallery-02.jpg',
+        '/services/production/design/gallery-03.jpg',
+        '/services/production/design/gallery-04.jpg',
+        '/services/production/design/gallery-05.jpg',
       ],
       imageAlts: [
         'Production display 1',
@@ -2637,11 +2718,11 @@ export const eventProductionData = {
       description:
         'Our team of experienced audiovisual engineers delivers sophisticated production solutions designed to elevate every presentation, conference, and executive gathering. From immersive keynote experiences to seamless panel discussions and hybrid broadcasts, we curate tailored AV solutions that align with your vision, objectives, and investment. Utilizing state-of-the-art technology and meticulous execution, we manage every element with precision, ensuring flawless delivery, crystal-clear communication, and an unforgettable guest experience.',
       images: [
-        '/service/av/1.jpg',
-        '/service/av/2.jpg',
-        '/service/av/3.jpg',
-        '/service/av/4.jpg',
-        '/service/av/5.png',
+        '/services/production/av/gallery-01.jpg',
+        '/services/production/av/gallery-02.jpg',
+        '/services/production/av/gallery-03.jpg',
+        '/services/production/av/gallery-04.jpg',
+        '/services/production/av/gallery-05.png',
       ],
       imageAlts: [
         'Production display 1',
@@ -2657,11 +2738,11 @@ export const eventProductionData = {
       description:
         'Lighting is the defining element of every extraordinary event, transforming historic architecture into an unforgettable experience.  Award-winning lighting designers craft bespoke environments that enhance the timeless elegance of 48 Wall Street, accentuating its soaring ceilings, marble finishes, and iconic architectural details. From refined ambient illumination to breathtaking, immersive productions, every lighting design is thoughtfully curated to complement your vision and create an atmosphere of sophistication, drama, and lasting impression. Our state-of-the-art technology and expert production team ensure every moment is flawlessly illuminated, leaving your guests captivated from arrival to the final farewell.',
       images: [
-        '/service/light/1.jpg',
-        '/service/light/2.jpg',
-        '/service/light/3.jpg',
-        '/service/light/4.jpg',
-        '/service/light/5.jpg',
+        '/services/production/light/gallery-01.jpg',
+        '/services/production/light/gallery-02.jpg',
+        '/services/production/light/gallery-03.jpg',
+        '/services/production/light/gallery-04.jpg',
+        '/services/production/light/gallery-05.jpg',
       ],
       imageAlts: [
         'Production display 1',
@@ -2677,11 +2758,11 @@ export const eventProductionData = {
       description:
         "Every remarkable event begins with a commanding stage. We design and fabricate bespoke staging solutions that become the centerpiece of unforgettable experiences. From elegant presentation platforms and executive conference stages to dramatic fashion runways, custom-built environments, and immersive performance spaces, our production specialists bring your vision to life with exceptional craftsmanship and precision. Every stage is thoughtfully engineered to complement the grandeur of 48 Wall Street's historic architecture while delivering flawless sightlines, seamless functionality, and striking visual impact. Whether hosting a global product launch, luxury gala, fashion show, or keynote presentation, our staging solutions create an extraordinary platform where every moment takes center stage.",
       images: [
-        '/service/staging/1.jpg',
-        '/service/staging/2.jpg',
-        '/service/staging/3.jpg',
-        '/service/staging/4.jpg',
-        '/service/staging/5.jpg',
+        '/services/production/staging/gallery-01.jpg',
+        '/services/production/staging/gallery-02.jpg',
+        '/services/production/staging/gallery-03.jpg',
+        '/services/production/staging/gallery-04.jpg',
+        '/services/production/staging/gallery-05.jpg',
       ],
       imageAlts: [
         'Production display 1',
@@ -2697,10 +2778,10 @@ export const eventProductionData = {
       description:
         "At 48 Wall Street, custom fabrication and premium printing services allow every event to become a fully branded, immersive experience. Supported by MME Worldwide’s in-house creative team and design shop, we transform ideas into extraordinary environments through custom-built scenic elements, branded installations, large-format graphics, signage, step-and-repeats, dimensional displays, and bespoke décor features. From executive meetings and product launches to luxury galas, fashion presentations, and private celebrations, every detail is thoughtfully designed, expertly produced, and flawlessly installed to complement the venue's historic grandeur while bringing your brand or vision to life with sophistication and impact.",
       images: [
-        '/service/cf/Green Canopy 2.jpg',
-        '/service/cf/IMG_2204.jpg',
-        '/service/cf/lenovo-stage.jpeg',
-        '/service/cf/IMG_4780.jpg',
+        '/services/production/cf/gallery-01.jpg',
+        '/services/production/cf/gallery-02.jpg',
+        '/services/production/cf/gallery-04.jpeg',
+        '/services/production/cf/gallery-03.jpg',
       ],
       imageAlts: [
         'Production display 1',
@@ -2715,9 +2796,9 @@ export const eventProductionData = {
       description:
         "Extraordinary entertainment transforms an event into an unforgettable experience. As the Exclusive Venue Partner, MME Worldwide curates world-class entertainment tailored to your occasion's style and sophistication. From elegant solo musicians, jazz ensembles, string quartets, contemporary bands, and high-energy dance orchestras to internationally acclaimed DJs and immersive themed performers, every act is carefully selected to captivate your guests.<br><br>Our entertainment specialists produce bespoke performances featuring cultural artists, aerialists, cirque performers, Broadway-caliber talent, strolling entertainers, interactive characters, and custom-themed experiences that seamlessly complement your event's vision. Whether hosting an intimate executive reception, a luxury wedding, a fashion gala, or a large-scale corporate celebration, we create performances that elevate every moment.<br><br>For clients seeking an exceptional statement, MME Worldwide also manages celebrity talent, keynote speakers, headline performers, and exclusive artist bookings. From contract negotiations and technical riders to backstage logistics and show production, our experienced team oversees every detail with discretion, precision, and white-glove service, delivering a seamless entertainment experience worthy of one of New York City's most iconic historic venues.",
       images: [
-        '/service/entertainment/20250821_184731.jpg',
-        '/service/entertainment/entertainment.png',
-        '/service/entertainment/IMG_1278.jpg',
+        '/services/production/entertainment/gallery-01.jpg',
+        '/services/production/entertainment/gallery-02.png',
+        '/services/production/entertainment/gallery-03.jpg',
       ],
       imageAlts: [
         'Production display 1',
@@ -2736,7 +2817,7 @@ export const eventCateringData = {
   subtitle: 'Elevated Dining. Exceptional Hospitality.',
   leadTitle: 'Culinary Experiences',
   leadSubtitle: 'Elevated Dining. Exceptional Hospitality.',
-  heroImage: '/videos/ec.mp4',
+  heroImage: '/home/videos/ec.mp4',
   justifyLead: true,
   leadDescription:
     "At 48 Wall Street, every menu is thoughtfully crafted to complement the sophistication of your event. In partnership with one of New York City's premier hospitality teams, we deliver refined culinary experiences as memorable as the venue itself.",
@@ -2758,14 +2839,16 @@ export const eventCateringData = {
       description:
         "Begin the day with a thoughtfully curated breakfast designed to inspire productivity, connection, and conversation. At 48 Wall Street, our culinary team transforms the traditional morning meal into an elevated dining experience, featuring artisanal pastries, seasonal fruits, chef-inspired breakfast specialties, gourmet coffee selections, fresh-pressed juices, and elegant hot breakfast presentations.\n\nWhether hosting an executive board meeting, investor summit, leadership conference, or company-wide gathering, our customized breakfast menus are crafted with the finest ingredients and impeccable presentation, ensuring every guest begins the day with exceptional hospitality in one of New York City's most iconic historic venues.",
       images: [
-        '/catering/IMG_3248.jpg',
-        '/catering/20221020_093758.jpg',
-        '/catering/IMG_0242.jpg',
+        '/services/catering/breakfast/breakfast-01.jpg',
+        '/services/catering/breakfast/breakfast-02.jpg',
+        '/services/catering/breakfast/breakfast-03.jpg',
+        '/services/catering/breakfast/breakfast-04.jpg',
       ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
+        'Elegant breakfast presentation',
+        'Artisanal breakfast pastries',
+        'Gourmet breakfast display',
+        'Executive breakfast spread',
       ],
     },
     {
@@ -2774,11 +2857,15 @@ export const eventCateringData = {
       subtitle: 'Elevate the Midday Experience',
       description:
         'Transform your luncheon into a memorable culinary occasion where exceptional cuisine meets impeccable hospitality. At 48 Wall Street, our chefs create seasonally inspired lunch menus that balance sophistication with flavor, featuring beautifully presented plated meals, executive buffets, interactive chef stations, globally inspired cuisine, and fresh market selections.\n\nWhether entertaining clients or hosting executive meetings, corporate conferences, nonprofit galas, or full-day summits, we thoughtfully tailor every lunch experience to your event. Paired with refined service and the timeless elegance of our historic venue, each menu is designed to energize your guests, encourage meaningful connections, and leave a lasting impression long after the final course.',
-      images: ['/catering/cl1.jpg', '/catering/cl2.jpg', '/catering/cl3.jpg'],
+      images: [
+        '/services/catering/lunch/lunch-01.jpg',
+        '/services/catering/lunch/lunch-02.jpg',
+        '/services/catering/lunch/lunch-03.jpg',
+      ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
+        'Elevated plated lunch',
+        'Executive lunch buffet',
+        'Seasonal lunch presentation',
       ],
     },
     {
@@ -2788,16 +2875,16 @@ export const eventCateringData = {
       description:
         "Celebrate in timeless style with a cocktail reception that blends exceptional cuisine, handcrafted cocktails, and refined hospitality. At 48 Wall Street, our culinary and beverage teams curate sophisticated receptions featuring artfully passed hors d'oeuvres, elegant chef-attended stations, premium charcuterie and seafood displays, seasonal small plates, and expertly crafted signature cocktails.\n\nWhether hosting a corporate reception, product launch, networking event, fashion show, gala, or wedding celebration, every cocktail experience is thoughtfully tailored to reflect your vision and impress your guests. Set against the iconic marble architecture and historic grandeur of 48 Wall Street, our white-glove service, premium bar program, and impeccable presentation create an atmosphere of effortless luxury, where every toast becomes part of an unforgettable evening.",
       images: [
-        '/catering/cc1.jpg',
-        '/catering/catering1.jpg',
-        '/catering/_WWL8154.JPG',
-        '/catering/DSC_4304.jpg',
+        '/services/catering/cocktail-reception/cocktail-01.jpg',
+        '/services/catering/cocktail-reception/cocktail-02.jpg',
+        '/services/catering/cocktail-reception/cocktail-03.jpg',
+        '/services/catering/cocktail-reception/cocktail-04.jpg',
       ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
-        'Catering display 4',
+        'Cocktail reception at 48 Wall Street',
+        'Elegant cocktail hour setup',
+        'Guests enjoying a cocktail reception',
+        'Signature cocktails and hors d’oeuvres',
       ],
     },
     {
@@ -2807,16 +2894,20 @@ export const eventCateringData = {
       description:
         "Celebrate life's most memorable occasions with an elegant seated dining experience crafted to impress. At 48 Wall Street, every course is thoughtfully prepared using the finest seasonal ingredients and presented with impeccable attention to detail. From intimate executive dinners and black-tie galas to luxury weddings and charitable celebrations, our culinary team creates bespoke multi-course menus paired with exceptional wines and white-glove service. Surrounded by the timeless grandeur of our historic venue, every dinner becomes an unforgettable expression of sophistication and hospitality.",
       images: [
-        '/catering/1.jpg',
-        '/catering/2.jpg',
-        '/catering/3.jpg',
-        '/catering/4.jpg',
-        '/catering/5.jpg',
+        '/services/catering/seated-dinner/dinner-01.jpg',
+        '/services/catering/seated-dinner/dinner-02.jpg',
+        '/services/catering/seated-dinner/dinner-03.jpg',
+        '/services/catering/seated-dinner/dinner-04.jpg',
+        '/services/catering/seated-dinner/dinner-05.jpg',
+        '/services/catering/seated-dinner/dinner-06.jpg',
       ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
+        'Elegant seated dinner service',
+        'Fine dining table setting',
+        'Multi-course plated dinner',
+        'Black-tie gala dinner',
+        'Luxury wedding dinner',
+        'Seated dinner at 48 Wall Street',
       ],
     },
     {
@@ -2826,26 +2917,132 @@ export const eventCateringData = {
       description:
         'Redefine traditional dining with a collection of beautifully designed chef-attended culinary stations that encourage guests to explore, engage, and indulge. From premium carving stations and fresh seafood displays to handcrafted pasta, global cuisine, artisan charcuterie, and decadent dessert presentations, each station is thoughtfully curated to deliver an immersive dining experience.\n\nPerfect for corporate receptions, luxury galas, weddings, and social celebrations, our interactive culinary experiences combine exceptional cuisine with elegant presentation, creating a vibrant atmosphere that inspires conversation and unforgettable moments.',
       images: [
-        '/catering/3.jpeg',
-        '/catering/6.jpg',
-        '/catering/7.jpg',
-        '/catering/8.jpg',
-        '/catering/9.jpg',
+        '/services/catering/curated-dining-stations/station-01.jpg',
+        '/services/catering/curated-dining-stations/station-02.jpg',
+        '/services/catering/curated-dining-stations/station-03.jpg',
+        '/services/catering/curated-dining-stations/station-04.jpg',
+        '/services/catering/curated-dining-stations/station-05.jpg',
       ],
       imageAlts: [
-        'Catering display 1',
-        'Catering display 2',
-        'Catering display 3',
+        'Curated dining station',
+        'Chef-attended culinary station',
+        'Interactive food station display',
+        'Artisan station presentation',
+        'Curated tasting station',
       ],
     },
   ],
-  videoSection: {
-    title: 'The Art of Exceptional Dining',
-    subtitle: 'Where Culinary Excellence Becomes an Unforgettable Experience.',
-    description:
-      "Every unforgettable event deserves an equally unforgettable culinary experience. Our award-winning chefs and hospitality professionals create refined menus that celebrate craftsmanship, innovation, and impeccable service. Whether hosting a corporate gala, luxury wedding, fundraising event, or private celebration, each dish is designed to elevate your guests' experience while complementing the grandeur of our historic venue.",
-    embedUrl: 'https://player.vimeo.com/video/1066736672?h=044c19c168',
-    thumbnail: '/service/catering-video-screen-shot.jpg',
+  gallery: {
+    title: 'Catering Gallery',
+    subtitle:
+      'A glimpse of the culinary experiences and celebrations we’ve crafted at 48 Wall Street.',
+    images: [
+      {
+        src: '/services/catering/gallery/MOAF-0140.jpg',
+        alt: 'Catering at 48 Wall Street',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/MOAF-0144.jpg',
+        alt: 'Event dining at 48 Wall Street',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/JSV_3775.jpg',
+        alt: 'Elegant catering setup',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_0556.jpeg',
+        alt: 'Catering presentation',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_0665.jpeg',
+        alt: 'Culinary display',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_0667.jpeg',
+        alt: 'Gourmet food display',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_2458.jpeg',
+        alt: 'Plated dish',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_2459.jpeg',
+        alt: 'Signature course',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_2460.jpeg',
+        alt: 'Chef-crafted plate',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_2462.jpeg',
+        alt: 'Culinary creation',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_4522.jpeg',
+        alt: 'Fine dining detail',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_4527.jpeg',
+        alt: 'Elevated dining detail',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7078.jpeg',
+        alt: 'Catering course',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7082.jpeg',
+        alt: 'Plated presentation',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7087.jpeg',
+        alt: 'Gourmet plating',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7094.jpeg',
+        alt: 'Reception spread',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7265.jpeg',
+        alt: 'Dining experience',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7266.jpeg',
+        alt: 'Culinary artistry',
+        orientation: 'portrait',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7267.jpeg',
+        alt: 'Event catering',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7268.jpeg',
+        alt: 'Catering service',
+        orientation: 'landscape',
+      },
+      {
+        src: '/services/catering/gallery/IMG_7438.jpeg',
+        alt: 'Refined dining moment',
+        orientation: 'portrait',
+      },
+    ] as const,
   },
 };
 
@@ -2853,7 +3050,7 @@ export const eventRentalsData = {
   title: 'Event Rentals & Decor in Lower Manhattan',
   subtitle: 'Transforming a Historic Downtown Venue',
   leadTitle: 'Premium Event Rentals',
-  heroImage: '/videos/er.mp4',
+  heroImage: '/home/videos/er.mp4',
   leadDescription:
     'MME Worldwide is an industry leader for exclusive furniture and prop rentals, bringing over three decades of expertise to our historic downtown venue. They possess an inventory of unique props that can transform 48 Wall Street into anything from a winter wonderland to a tropical escape. Whether you envision a vibrant, modern setting or a sleek, elegant atmosphere, we understand how to complement the architecture of this unique event space. The space is as vast as our imagination, allowing us to outfit your corporate or private event on Wall Street with luxurious furniture and design elements that set the perfect stage.',
   sections: [
@@ -2863,9 +3060,9 @@ export const eventRentalsData = {
       description:
         'When it comes to transforming the space at 48 Wall Street, our team knows how to deliver a breathtaking experience for your guests. With a variety of décor accents and life-like props, MMEink will help you customize the look for your event. MMEink maintains an elite line of scenic décor that allows us to take your event to the next level. Our exclusive inventory is composed of chic lounges and décor accents that offer a variety of exciting furnishings to choose from. With a complete line of luxury rentals our fashionable décor items make styling your next event stress-free.',
       images: [
-        '/service/decor/20231214_123920.jpg',
-        '/service/decor/DJI_0923.JPG',
-        '/service/decor/IMG_3420.jpg',
+        '/services/production/decor/gallery-01.jpg',
+        '/services/production/decor/gallery-02.jpg',
+        '/services/production/decor/gallery-03.jpg',
       ],
       imageAlts: ['decor display 1', 'decor display 2', 'decor display 3'],
     },
@@ -2875,9 +3072,9 @@ export const eventRentalsData = {
       description:
         'We provide a variety of staging services essential for a professional conference space in NYC. Whether it is a basic platform for a keynote speaker, a runway for a fashion show, or an elaborate setup for a musical performance, our design team and in-house custom fabrication shop handcraft the perfect solution. We help you determine the perfect look, ensuring that the focal point of your event commands attention.',
       images: [
-        '/service/staging/20240229_134449.jpg',
-        '/service/staging/DSC_0248.jpg',
-        '/service/staging/IMG_2222.JPG',
+        '/services/production/staging/gallery-06.jpg',
+        '/services/production/staging/gallery-07.jpg',
+        '/services/production/staging/gallery-08.jpg',
       ],
       imageAlts: [
         'staging display 1',
@@ -2893,11 +3090,11 @@ export const eventRentalsData = {
       description:
         '48 Wall Street accommodates all your service needs with a full line of catering rentals. We provide turnkey solutions for events, ranging from "back of the house" kitchen equipment like ovens and warmers to "front of the house" necessities. We ensure that your linens, tables, chairs, flatware, and stemware exude the style and elegance expected of a premier historic downtown venue, ensuring a seamless dining experience for your guests.',
       images: [
-        '/service/catering/20240229_163524.jpg',
-        '/service/catering/20241112_164451.jpg',
-        '/service/catering/DJI_20231130_164612_1061.jpg',
-        '/service/catering/IMG_7900.jpg',
-        '/service/catering/JSV_3463.jpg',
+        '/services/catering/gallery-25.jpg',
+        '/services/catering/gallery-26.jpg',
+        '/services/catering/gallery-27.jpg',
+        '/services/catering/gallery-28.jpg',
+        '/services/catering/gallery-29.jpg',
       ],
       imageAlts: [
         'catering display 1',
@@ -3468,12 +3665,12 @@ export const tools: { id: Tool; label: string; icon: React.ReactElement }[] = [
 export const sidebarSocialLinks = [
   {
     name: 'Facebook',
-    icon: '/icons/facebook.svg',
+    icon: '/shared/icons/facebook.svg',
     href: 'https://www.facebook.com/48wallst/',
   },
   {
     name: 'Instagram',
-    icon: '/icons/instagram.svg',
+    icon: '/shared/icons/instagram.svg',
     href: 'https://www.instagram.com/48wallst/',
   },
 ];
@@ -3481,10 +3678,10 @@ export const sidebarSocialLinks = [
 export const vendorsData = {
   hero: {
     images: [
-      '/vendors/hero-1.png',
-      '/vendors/hero-2.png',
-      '/vendors/hero-3.png',
-      '/vendors/hero-4.png',
+      '/vendors/hero-01.png',
+      '/vendors/hero-02.png',
+      '/vendors/hero-03.png',
+      '/vendors/hero-04.png',
     ],
     eyebrow: '48 Wall Street',
     title: 'Exclusive Event Partners',
@@ -3498,7 +3695,7 @@ export const vendorsData = {
       id: 'fidi-hospitality',
       name: 'FiDi Hospitality',
       tagline: 'Hospitality Management & Guest Experience',
-      logo: '/logo/fidi-hospitality.png',
+      logo: '/shared/logo/fidi-hospitality.png',
       href: 'https://www.fidihospitality.com/',
       description: [
         'FiDi Hospitality is the exclusive hospitality management company for 48 Wall Street, delivering exceptional guest experiences from planning through execution. Every event is supported by experienced hospitality professionals who oversee operations, logistics, staffing, concierge services, and event management with meticulous attention to detail.',
@@ -3519,7 +3716,7 @@ export const vendorsData = {
       id: 'tardis-catering',
       name: "Tardi's Catering",
       tagline: 'Luxury Catering & Culinary Experiences',
-      logo: '/logo/tardis-catering.png',
+      logo: '/shared/logo/tardis-catering.png',
       href: 'https://www.tardiscatering.com/',
       description: [
         "For more than 30 years, Tardi's Catering has been creating exceptional culinary experiences throughout New York. Renowned for impeccable cuisine and white-glove hospitality, the team specializes in executive meetings, luxury weddings, corporate galas, fundraising events, and private celebrations.",
@@ -3540,7 +3737,7 @@ export const vendorsData = {
       id: 'mme-worldwide',
       name: 'MME Worldwide',
       tagline: 'Creative Production • Audio Visual • Design',
-      logo: '/logo/mme-worldwide.png',
+      logo: '/shared/logo/mme-worldwide.png',
       darkLogoBg: true,
       href: 'https://www.mmeink.com/',
       description: [
@@ -3566,7 +3763,7 @@ export const vendorsData = {
       id: 'mikey-mike-entertainment',
       name: 'Mikey Mike Entertainment',
       tagline: 'Entertainment • Live Music • Interactive Experiences',
-      logo: '/logo/mikey-mike-events.png',
+      logo: '/shared/logo/mikey-mike-events.png',
       href: 'https://www.mikeymikeevents.com/',
       description: [
         'Mikey Mike Entertainment delivers unforgettable performances and immersive guest experiences that transform every celebration into a one-of-a-kind event. From sophisticated cocktail entertainment to headline performances, our curated roster features exceptional talent for every occasion.',

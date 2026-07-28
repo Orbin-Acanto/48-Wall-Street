@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street event videos showcasing corporate events, weddings and celebrations',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Event Videos | 48 Wall Street NYC',
     description:
       "Watch event videos from Manhattan's premier historic venue. Corporate events, weddings & celebrations in our stunning 1927 landmark.",
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about/event-video',

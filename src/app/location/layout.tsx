@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street historic event venue in Manhattan’s Financial District',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       '48 Wall Street Location | NYC Event Venue in the Financial District',
     description:
       'Find 48 Wall Street in the heart of Manhattan’s Financial District. View venue floors, nearby parking, hotels, and transit options for your NYC event.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   robots: {
     index: true,

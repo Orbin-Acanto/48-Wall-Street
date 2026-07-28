@@ -72,7 +72,7 @@ export default function ContactHero() {
           <div className="flex items-center justify-center">
             <div className="relative h-[650px] w-full overflow-hidden rounded-sm shadow-2xl">
               <Image
-                src="/about/contactHero.jpg"
+                src="/about/contact-hero.jpg"
                 alt="48 Wall Street historic landmark event venue"
                 fill
                 className="object-cover"

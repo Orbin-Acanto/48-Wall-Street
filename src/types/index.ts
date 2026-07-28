@@ -117,7 +117,8 @@ export interface GPhoto {
   src: string;
   alt: string;
   category: string;
-  size: 'large' | 'tall' | 'wide' | 'medium' | 'small';
+  /** Real width / height ratio of the image, used to size masonry tiles. */
+  aspect: number;
 }
 
 export interface ImageItem {
@@ -183,6 +184,7 @@ export interface JourneyEvent {
   title: string;
   category: string;
   location?: string;
+  tagline?: string;
   href?: string;
 }
 

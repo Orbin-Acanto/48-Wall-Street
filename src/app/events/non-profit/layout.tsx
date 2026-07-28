@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/gallery/corporate/ (21).jpg',
+        url: '/gallery/corporate/corporate-10.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street gala event setup — ideal non-profit fundraising venue in the Financial District NYC',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Non-Profit Event Venue NYC | 48 Wall Street Financial District',
     description:
       'Historic Manhattan venue for charity galas, fundraisers & nonprofit events. Grand architecture, full catering, 50-500 guests.',
-    images: ['/gallery/corporate/ (21).jpg'],
+    images: ['/gallery/corporate/corporate-10.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/non-profit',

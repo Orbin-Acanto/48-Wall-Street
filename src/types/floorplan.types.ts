@@ -73,6 +73,10 @@ export interface Room {
   height?: number;
   area?: number;
   color?: string;
+  /** Label text rotation in degrees. */
+  rotation?: number;
+  /** Label text size in px. */
+  fontSize?: number;
 }
 
 export type SelectedType =
@@ -98,6 +102,8 @@ export interface FurnitureItem {
   groupBy?: string;
   color?: string;
   customName?: string;
+  /** Seats this table provides; carried from the library item for capacity totals. */
+  seats?: number;
 }
 
 export interface EventDetails {
@@ -208,6 +214,10 @@ export interface DraggableLibraryItem {
   thumbnail?: string;
   groupBy?: string;
   color?: string;
+  /** Number of seats this item provides (tables). Used for capacity totals. */
+  seats?: number;
+  /** Search keywords/synonyms to broaden matching beyond the display name. */
+  keywords?: string[];
 }
 
 export interface ViewportTransform {
@@ -222,8 +232,13 @@ export interface SelectionBox {
 }
 
 export type SidebarType = 'furniture' | 'av' | 'catering' | 'decor' | null;
-export type ModalType = 'event' | 'wall' | 'export' | null;
-export type FloorKey = 'ground' | 'concourse';
+export type ModalType = 'event' | 'wall' | 'export' | 'reset' | null;
+export type FloorKey =
+  | 'banking-hall'
+  | 'grand-mezzanine'
+  | 'upper-mezzanine'
+  | 'hamilton-office'
+  | 'concourse-vault';
 
 export type UnderlayProps = {
   svg?: string;
@@ -241,6 +256,8 @@ export interface LibraryItemLike {
   defaultDimensions: FurnitureItem['dimensions'];
   svgPath: string;
   groupBy?: string;
+  seats?: number;
+  keywords?: string[];
 }
 
 export type Tool =

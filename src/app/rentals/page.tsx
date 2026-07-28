@@ -20,11 +20,11 @@ import CartModal from '@/components/CartModal';
 import CustomButton from '@/components/CustomButton';
 
 const HERO_SLIDES = [
-  '/rentals/rentals-hero-1.jpg',
-  '/rentals/rentals-hero-2.jpg',
-  '/rentals/rentals-hero-3.jpg',
-  '/rentals/rentals-hero-4.jpg',
-  '/rentals/rentals-hero-5.jpg',
+  '/rentals/hero-01.jpg',
+  '/rentals/hero-02.jpg',
+  '/rentals/hero-03.jpg',
+  '/rentals/hero-04.jpg',
+  '/rentals/hero-05.jpg',
 ];
 
 export default function RentalsPage() {

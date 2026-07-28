@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street NYC Event Venue',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: 'Thank You | 48 Wall Street NYC',
     description:
       'Thank you for contacting 48 Wall Street. Our team will be in touch soon.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   robots: {
     index: false,

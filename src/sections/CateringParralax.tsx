@@ -68,7 +68,7 @@ export default function CateringSection() {
         }}
       >
         <Image
-          src="/catering/c1.jpg"
+          src="/services/catering/gallery/JSV_3775.jpg"
           alt="Cocktails with city view"
           fill
           className="object-cover"
@@ -90,34 +90,46 @@ export default function CateringSection() {
             }}
           >
             {/* Logo Watermark - Top Left */}
-            <div className="absolute -top-22 left-0 sm:-top-30 md:-top-40 lg:-top-60 2xl:-top-67">
+            <div className="absolute -top-11 left-0 sm:-top-18 md:-top-24 lg:-top-38 2xl:-top-44">
               <div
-                className="relative h-24 w-24 opacity-100 transition-all duration-500 hover:opacity-85 sm:h-32 sm:w-32 md:h-48 md:w-48 lg:h-64 lg:w-64"
+                className="relative h-14 w-14 opacity-100 transition-all duration-500 hover:opacity-85 sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-40 lg:w-40"
                 style={{
                   transform: isLargeScreen ? 'rotate(0deg)' : 'rotate(0deg)',
                 }}
               >
                 <Image
-                  src="/logo/tardis-logo-new.png"
-                  alt="Catering Service Logo"
+                  src="/shared/logo/fidi-hospitality.png"
+                  alt="FiDi Hospitality Logo"
                   fill
                   className="object-contain"
                 />
               </div>
             </div>
 
+            <div className="relative mb-4 h-12 w-32 md:h-16 md:w-44">
+              <Image
+                src="/shared/logo/tardis-catering.png"
+                alt="Tardis Catering Logo"
+                fill
+                className="object-contain object-left"
+              />
+            </div>
+
             <h2 className="font-primary text-primary mb-6 text-3xl tracking-wide uppercase md:text-4xl lg:text-6xl">
               OUR CATERING PARTNER
             </h2>
             <p className="text-lead mb-8">
-              Experience thoughtful culinary service with a team that
-              understands how important food is to the overall success of your
-              event. Our trusted catering partner design seasonal menus tailored
-              to your tastes, style, and guest preferences, from elegant plated
-              dinners to generous reception stations and memorable late night
-              bites. Service staff manage timing, presentation, and flow with
-              care, so you can focus on hosting while guests enjoy a refined
-              dining experience in the heart of Lower Manhattan.
+              Experience exceptional cuisine and service with Tardis Catering,
+              the exclusive catering partner of 48 Wall Street. Our team creates
+              seasonal, customized menus tailored to your event, from elegant
+              plated dinners and cocktail receptions to interactive stations and
+              late-night bites.
+              <br />
+              <br />
+              With a focus on quality, presentation, and seamless service,
+              Tardis Catering ensures every detail is executed with care,
+              allowing you to enjoy your event while your guests experience
+              refined dining in one of Lower Manhattan&apos;s most iconic venues.
             </p>
             <Link href="/services/catering">
               <CustomButton variant="primary">VIEW OUR MENU</CustomButton>
@@ -135,7 +147,7 @@ export default function CateringSection() {
               }}
             >
               <Image
-                src="/catering/c2.jpg"
+                src="/services/catering/gallery-14.jpg"
                 alt="Catering appetizers"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-110"
@@ -151,7 +163,7 @@ export default function CateringSection() {
               }}
             >
               <Image
-                src="/catering/c3.jpg"
+                src="/services/catering/gallery/IMG_7087.jpeg"
                 alt="Caviar dish"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-110"
@@ -167,7 +179,7 @@ export default function CateringSection() {
               }}
             >
               <Image
-                src="/catering/c4.jpg"
+                src="/services/catering/gallery-16.jpg"
                 alt="Sushi platter"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-110"

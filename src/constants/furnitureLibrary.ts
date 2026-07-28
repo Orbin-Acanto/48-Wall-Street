@@ -1367,3 +1367,76 @@ export const getAllCategories = (): string[] => {
   const categories = new Set(FURNITURE_LIBRARY.map((item) => item.category));
   return Array.from(categories).sort();
 };
+
+// ---------------------------------------------------------------------------
+// Guest-capacity metadata.
+//
+// Every item that holds guests contributes to the capacity total, not just
+// dining tables:
+//   - Dining tables encode seats in the name ("Round Table 8 Seat"), parsed
+//     below; a few are listed explicitly.
+//   - Seating (chairs, sofas, benches, ottomans) and lounge pieces count their
+//     actual seats.
+//   - Cocktail / highboy tables are standing tables with a nominal capacity.
+// Everything else (decor, AV, catering, staging, dance floors) counts 0.
+// ---------------------------------------------------------------------------
+const SEAT_OVERRIDES: Record<string, number> = {
+  // Dining tables without a number in the name
+  'Round Table 36"': 4,
+  'Round Table': 8,
+  'Communal Farm Table': 10,
+  'Conference Table': 8,
+  'Square Table': 4,
+  'Serpentine Table': 0,
+
+  // Seating category
+  'Standard Chair 1': 1,
+  'Standard Chair 2': 1,
+  'Arm Chair': 1,
+  '2-Seat Sofa': 2,
+  '3-Seat Sofa': 3,
+  Bench: 2,
+  Ottoman: 1,
+
+  // Lounge category (loose seating)
+  'VIP Booth (Curved)': 6,
+  'L-Shaped Lounge Sofa': 4,
+  'Modular Sofa Blocks': 3,
+  'Chaise Lounge (Left Arm)': 1,
+  'Chaise Lounge (Right Arm)': 1,
+};
+
+// Nominal standing capacity for whole categories (used when the item has no
+// explicit override and no "N seat" in its name).
+const CATEGORY_STANDING_CAPACITY: Record<string, number> = {
+  Cocktail: 4, // highboy / cocktail tables — standing
+};
+
+const deriveSeats = (category?: string, name?: string): number => {
+  if (name && name in SEAT_OVERRIDES) return SEAT_OVERRIDES[name];
+  if (name) {
+    const match = name.match(/(\d+)\s*seat/i);
+    if (match) return parseInt(match[1], 10);
+  }
+  if (category && category in CATEGORY_STANDING_CAPACITY) {
+    return CATEGORY_STANDING_CAPACITY[category];
+  }
+  return 0;
+};
+
+/** Guests a given library/placed item accommodates (seated or standing). */
+export const getItemSeats = (item: {
+  category?: string;
+  name?: string;
+  seats?: number;
+}): number => {
+  if (typeof item.seats === 'number') return item.seats;
+  return deriveSeats(item.category, item.name);
+};
+
+// Stamp seats onto every library item so drops carry it forward.
+FURNITURE_LIBRARY.forEach((item) => {
+  if (item.seats === undefined) {
+    item.seats = getItemSeats(item);
+  }
+});

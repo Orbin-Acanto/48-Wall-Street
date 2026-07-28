@@ -226,6 +226,8 @@ const ContactUsSlider: React.FC = () => {
 
   if (pathname === '/about/customize-plan' || pathname === '/thank-you')
     return null;
+  // Keep shared brochure links (/b/[slug]) minimal: brochure + navbar + footer.
+  if (pathname?.startsWith('/b/')) return null;
 
   return (
     <>

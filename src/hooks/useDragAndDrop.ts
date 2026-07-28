@@ -97,11 +97,28 @@ export const useDragAndDrop = ({
   };
 };
 
+/**
+ * Given the anchor item's proposed center, returns a snap adjustment (an extra
+ * delta to apply to the whole group) plus the guide lines to draw. Supplied by
+ * the canvas, which knows every item's position.
+ */
+export type SnapFn = (
+  anchorId: string,
+  proposed: Point
+) => { adjust: Point; guides: SnapGuide[] };
+
+export interface SnapGuide {
+  axis: 'x' | 'y';
+  /** Canvas coordinate of the guide line (x for vertical, y for horizontal). */
+  position: number;
+}
+
 export const useFurnitureDrag = ({
   onMove,
   screenToCanvas,
 }: UseFurnitureDragProps) => {
   const isDraggingRef = useRef(false);
+  const anchorIdRef = useRef<string | null>(null);
   const anchorStartRef = useRef<Point | null>(null);
   const groupStartPosRef = useRef<Map<string, Point> | null>(null);
   const groupIdsRef = useRef<string[]>([]);
@@ -119,6 +136,7 @@ export const useFurnitureDrag = ({
         const p = getPos(id);
         if (p) startMap.set(id, { x: p.x, y: p.y });
       });
+      anchorIdRef.current = anchorId;
       anchorStartRef.current = startPt;
       groupStartPosRef.current = startMap;
       groupIdsRef.current = ids;
@@ -128,7 +146,7 @@ export const useFurnitureDrag = ({
   );
 
   const continueDrag = useCallback(
-    (e: React.MouseEvent) => {
+    (e: React.MouseEvent, snap?: SnapFn) => {
       if (
         !isDraggingRef.current ||
         !anchorStartRef.current ||
@@ -136,8 +154,19 @@ export const useFurnitureDrag = ({
       )
         return;
       const pt = screenToCanvas(e.clientX, e.clientY);
-      const dx = pt.x - anchorStartRef.current.x;
-      const dy = pt.y - anchorStartRef.current.y;
+      let dx = pt.x - anchorStartRef.current.x;
+      let dy = pt.y - anchorStartRef.current.y;
+
+      // Optional snapping: nudge the whole group by the anchor's snap delta.
+      if (snap && anchorIdRef.current) {
+        const anchorStart = groupStartPosRef.current.get(anchorIdRef.current);
+        if (anchorStart) {
+          const proposed = { x: anchorStart.x + dx, y: anchorStart.y + dy };
+          const { adjust } = snap(anchorIdRef.current, proposed);
+          dx += adjust.x;
+          dy += adjust.y;
+        }
+      }
 
       groupStartPosRef.current.forEach((startPos, id) => {
         onMove(id, { x: startPos.x + dx, y: startPos.y + dy });
@@ -146,11 +175,16 @@ export const useFurnitureDrag = ({
     [screenToCanvas, onMove]
   );
 
-  const endDrag = useCallback(() => {
+  // Returns whether a drag was actually in progress, so callers can decide
+  // whether to commit an undo-history entry.
+  const endDrag = useCallback((): boolean => {
+    const wasDragging = isDraggingRef.current;
     isDraggingRef.current = false;
+    anchorIdRef.current = null;
     anchorStartRef.current = null;
     groupStartPosRef.current = null;
     groupIdsRef.current = [];
+    return wasDragging;
   }, []);
 
   return {

@@ -12,7 +12,7 @@ const levels = [
     description:
       "This space has retained much of its original 1920's architectural detail, from the 30-foot ceilings to its beautiful Palladian windows. The Banking Hall can accommodate a variety of events.",
     href: '/spaces/grand-mezzanine',
-    image: '/venue/Grand Mezzanine Hall.jpg',
+    image: '/spaces/grand-mezzanine/featured.jpg',
     cta: 'Explore Space',
   },
   {
@@ -23,7 +23,7 @@ const levels = [
     description:
       'Situated on the lower level, the concourse is designed to hold meetings, breakouts, classes, and events.',
     href: '/spaces/concourse-level',
-    image: '/venue/Hero Concourse Level 2.png',
+    image: '/spaces/concourse-level/featured.png',
     cta: 'Explore Space',
   },
 ];

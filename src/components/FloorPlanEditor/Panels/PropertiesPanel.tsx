@@ -36,6 +36,12 @@ interface PropertiesPanelProps {
   furnitureItems?: FurnitureItem[];
   pixelsPerFoot?: number;
   onLegendUpdate: (items: LegendItemWithCount[]) => void;
+  onChangeLayer?: (mode: 'front' | 'back' | 'forward' | 'backward') => void;
+  onDuplicate?: () => void;
+  onAlign?: (
+    mode: 'left' | 'hcenter' | 'right' | 'top' | 'vcenter' | 'bottom'
+  ) => void;
+  selectionCount?: number;
 }
 
 export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
@@ -48,6 +54,10 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
   furnitureItems = [],
   pixelsPerFoot,
   onLegendUpdate,
+  onChangeLayer,
+  onDuplicate,
+  onAlign,
+  selectionCount = 0,
 }) => {
   const getLegendItems = () => {
     const items: Array<{
@@ -526,6 +536,8 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
     const itemLocked = !!item.locked || isLocked;
     const dims = item.dimensions;
     const isCustomizable = item.category === 'Customize';
+    const isTable = item.category === 'Tables';
+    const defaultColor = isCustomizable ? '#8B4789' : '#FFFFFF';
 
     const handleUnitChange = (nextUnit: 'in' | 'ft') => {
       if (nextUnit === dims.unit) return;
@@ -666,6 +678,55 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           </button>
         </div>
 
+        {/* Multi-selection banner + alignment */}
+        {selectionCount > 1 && (
+          <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
+            <p className="mb-2 text-xs font-medium text-blue-800">
+              {selectionCount} items selected — edits apply to all
+            </p>
+            {onAlign && (
+              <div>
+                <p className="mb-1 text-[10px] font-semibold tracking-wide text-blue-700 uppercase">
+                  Align
+                </p>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {(
+                    [
+                      ['left', 'Left'],
+                      ['hcenter', 'Center'],
+                      ['right', 'Right'],
+                      ['top', 'Top'],
+                      ['vcenter', 'Middle'],
+                      ['bottom', 'Bottom'],
+                    ] as const
+                  ).map(([mode, label]) => (
+                    <button
+                      key={mode}
+                      type="button"
+                      onClick={() => onAlign(mode)}
+                      className="rounded-md border border-blue-200 bg-white px-2 py-1 text-[11px] font-medium text-blue-700 hover:bg-blue-100"
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Duplicate */}
+        {onDuplicate && (
+          <button
+            type="button"
+            onClick={onDuplicate}
+            disabled={itemLocked}
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Duplicate {selectionCount > 1 ? `(${selectionCount})` : ''} · Ctrl+D
+          </button>
+        )}
+
         {isCustomizable && (
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -685,31 +746,71 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
           </div>
         )}
 
-        {isCustomizable && (
+        {(isCustomizable || isTable) && (
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
-              Color
+              {isTable ? 'Linen Color' : 'Color'}
             </label>
             <div className="flex items-center gap-2">
               <input
                 type="color"
-                value={item.color || '#8B4789'}
+                value={item.color || defaultColor}
                 onChange={(e) => updateColor(e.target.value)}
                 disabled={itemLocked}
-                className="h-10 w-16 cursor-pointer rounded-lg border border-gray-300 disabled:cursor-not-allowed disabled:opacity-50"
+                className="h-10 w-10 shrink-0 cursor-pointer rounded-lg border border-gray-300 disabled:cursor-not-allowed disabled:opacity-50"
               />
               <input
                 type="text"
-                value={item.color || '#8B4789'}
+                value={item.color || defaultColor}
                 onChange={(e) => updateColor(e.target.value)}
-                placeholder="#8B4789"
+                placeholder={defaultColor}
                 disabled={itemLocked}
-                className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 font-mono text-sm text-gray-900 uppercase placeholder:text-gray-400 focus:ring-2 focus:ring-[#CBA35C]/50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
+                className="w-24 rounded-lg border border-gray-300 bg-white px-2 py-2 font-mono text-xs text-gray-900 uppercase placeholder:text-gray-400 focus:ring-2 focus:ring-[#CBA35C]/50 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100"
               />
+              {isTable && item.color && (
+                <button
+                  type="button"
+                  onClick={() => updateColor('')}
+                  disabled={itemLocked}
+                  title="Reset linen color"
+                  className="rounded-lg border border-gray-300 px-2 py-2 text-xs text-gray-600 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Reset
+                </button>
+              )}
             </div>
             <p className="mt-1 text-[10px] text-gray-500">
-              This color will appear in the legend
+              {isTable
+                ? 'Sets the table linen color on the plan.'
+                : 'This color will appear in the legend'}
             </p>
+          </div>
+        )}
+
+        {/* Layer ordering */}
+        {onChangeLayer && (
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              Layer
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => onChangeLayer('front')}
+                disabled={itemLocked}
+                className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Front
+              </button>
+              <button
+                type="button"
+                onClick={() => onChangeLayer('back')}
+                disabled={itemLocked}
+                className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Back
+              </button>
+            </div>
           </div>
         )}
 
@@ -1150,6 +1251,64 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
             onChange={(e) => onUpdate({ color: e.target.value })}
             className="h-9 w-16 cursor-pointer rounded border border-gray-300 bg-white"
           />
+        </div>
+
+        {/* Text size */}
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            Text Size
+          </label>
+          <div className="flex items-center gap-3">
+            <input
+              type="range"
+              min={8}
+              max={72}
+              step={1}
+              value={room.fontSize ?? 18}
+              onChange={(e) =>
+                onUpdate({ fontSize: parseInt(e.target.value, 10) })
+              }
+              className="accent-primary flex-1"
+            />
+            <span className="w-10 text-right text-sm text-gray-600">
+              {room.fontSize ?? 18}px
+            </span>
+          </div>
+        </div>
+
+        {/* Rotation */}
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            Text Rotation
+          </label>
+          <div className="flex items-center gap-3">
+            <input
+              type="range"
+              min={0}
+              max={360}
+              step={1}
+              value={room.rotation ?? 0}
+              onChange={(e) =>
+                onUpdate({ rotation: parseInt(e.target.value, 10) })
+              }
+              className="accent-primary flex-1"
+            />
+            <span className="w-10 text-right text-sm text-gray-600">
+              {room.rotation ?? 0}°
+            </span>
+          </div>
+          <div className="mt-2 flex gap-2">
+            {[0, 45, 90, 180].map((deg) => (
+              <button
+                key={deg}
+                type="button"
+                onClick={() => onUpdate({ rotation: deg })}
+                className="rounded-md border border-gray-300 px-2 py-1 text-xs text-gray-600 hover:bg-gray-50"
+              >
+                {deg}°
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     );

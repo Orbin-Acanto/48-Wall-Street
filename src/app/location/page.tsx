@@ -17,7 +17,7 @@ export default function LocationPage() {
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/location/historic_location.jpg)',
+            backgroundImage: 'url(/location/historic-location.jpg)',
           }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}

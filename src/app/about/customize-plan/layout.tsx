@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street Historic Event Venue Manhattan',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Customize Event Plan | 48 Wall Street NYC',
     description:
       'Design your event with our interactive floor plan tool. Customize layouts and export your plan as PDF.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about/customize-plan',

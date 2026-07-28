@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street historic corporate and private event venue in Manhattan’s Financial District',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: 'Contact 48 Wall Street | NYC Event Venue',
     description:
       'Plan your next corporate event, wedding, or private celebration at 48 Wall Street in NYC’s Financial District. Call 1.877.885.0705 or email info@48WallNYC.com.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   robots: {
     index: true,

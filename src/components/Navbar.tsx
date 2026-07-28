@@ -85,7 +85,7 @@ export default function Navbar() {
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
                 <Image
-                  src="/logo/48-wall-logo.svg"
+                  src="/shared/logo/48-wall.svg"
                   alt="48 Wall Street"
                   width={200}
                   height={60}

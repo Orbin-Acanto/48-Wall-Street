@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street Historic Event Venue Manhattan',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Floor Plans | 48 Wall Street NYC',
     description:
       'View Grand Mezzanine and Concourse Level floor plans. Explore venue amenities and capacity information for your NYC event.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/about/floor-plans',

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/images/og-home.jpg',
+        url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street Historic Event Venue Manhattan',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Browse Event Rentals | 48 Wall Street NYC',
     description:
       'Explore thousands of rental items. Browse, add to cart, request proposals for your Manhattan event.',
-    images: ['/images/twitter-home.jpg'],
+    images: ['/shared/og/twitter-home.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/rentals',

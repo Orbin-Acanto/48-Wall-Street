@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: '48 Wall Street NYC',
     images: [
       {
-        url: '/gallery/bar/38.jpg',
+        url: '/gallery/bar/bar-01.jpg',
         width: 1200,
         height: 630,
         alt: '48 Wall Street Bar and Bat Mitzvah venue NYC — grand historic setting in the Financial District',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Bar & Bat Mitzvah Venue NYC | 48 Wall Street',
     description:
       "Celebrate your Bar/Bat Mitzvah in Manhattan's premier historic venue. Customizable themes, full catering, 50-500 guests.",
-    images: ['/gallery/bar/38.jpg'],
+    images: ['/gallery/bar/bar-01.jpg'],
   },
   alternates: {
     canonical: 'https://www.48wallnyc.com/events/bar-bat-mitzvahs',
