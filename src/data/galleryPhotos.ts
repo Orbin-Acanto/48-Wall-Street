@@ -44,12 +44,6 @@ export const galleryPhotos: GPhoto[] = [
     aspect: 1.7794,
   },
   {
-    src: '/gallery/corporate/corporate-08.jpg',
-    alt: 'Corporate event 8',
-    category: 'corporate',
-    aspect: 1.3338,
-  },
-  {
     src: '/gallery/corporate/corporate-09.jpg',
     alt: 'Corporate event 9',
     category: 'corporate',
@@ -127,23 +121,12 @@ export const galleryPhotos: GPhoto[] = [
     category: 'corporate',
     aspect: 1.3333,
   },
+
   {
-    src: '/gallery/corporate/corporate-22.jpg',
-    alt: 'Corporate event 22',
-    category: 'corporate',
-    aspect: 1.333,
-  },
-  {
-    src: '/gallery/corporate/corporate-23.jpg',
+    src: '/events/featured/mc/1.jpg',
     alt: 'Corporate event 23',
     category: 'corporate',
-    aspect: 1.5,
-  },
-  {
-    src: '/gallery/corporate/corporate-24.jpg',
-    alt: 'Corporate event 24',
-    category: 'corporate',
-    aspect: 1.5,
+    aspect: 1.333,
   },
   {
     src: '/gallery/corporate/corporate-25.jpg',
@@ -160,12 +143,6 @@ export const galleryPhotos: GPhoto[] = [
   {
     src: '/gallery/corporate/corporate-27.jpg',
     alt: 'Corporate event 27',
-    category: 'corporate',
-    aspect: 1.5,
-  },
-  {
-    src: '/gallery/corporate/corporate-28.jpg',
-    alt: 'Corporate event 28',
     category: 'corporate',
     aspect: 1.5,
   },
@@ -199,17 +176,18 @@ export const galleryPhotos: GPhoto[] = [
     category: 'corporate',
     aspect: 1.3333,
   },
-  {
-    src: '/gallery/corporate/corporate-34.jpg',
-    alt: 'Corporate event 34',
-    category: 'corporate',
-    aspect: 1.3333,
-  },
+
   {
     src: '/gallery/corporate/corporate-35.jpg',
     alt: 'Corporate event 35',
     category: 'corporate',
     aspect: 1.3333,
+  },
+  {
+    src: '/gallery/corporate/corporate-22.jpg',
+    alt: 'Corporate event 22',
+    category: 'corporate',
+    aspect: 1.333,
   },
   {
     src: '/gallery/corporate/corporate-36.jpg',
@@ -240,6 +218,12 @@ export const galleryPhotos: GPhoto[] = [
     alt: 'Corporate event 40',
     category: 'corporate',
     aspect: 1.7778,
+  },
+  {
+    src: '/gallery/corporate/corporate-34.jpg',
+    alt: 'Corporate event 34',
+    category: 'corporate',
+    aspect: 1.3333,
   },
   {
     src: '/gallery/wedding/wedding-01.jpg',
@@ -312,12 +296,6 @@ export const galleryPhotos: GPhoto[] = [
     alt: 'Wedding celebration 12',
     category: 'wedding',
     aspect: 1.5,
-  },
-  {
-    src: '/gallery/wedding/wedding-13.jpg',
-    alt: 'Wedding celebration 13',
-    category: 'wedding',
-    aspect: 1.4996,
   },
   {
     src: '/gallery/wedding/wedding-14.jpg',
@@ -398,11 +376,17 @@ export const galleryPhotos: GPhoto[] = [
     aspect: 0.75,
   },
   {
-    src: '/gallery/fashion/fashion-01.jpg',
-    alt: 'Fashion show 1',
-    category: 'fashion',
+    src: '/spaces/banking-hall/gallery-01.jpg',
+    alt: 'Wedding celebration 27',
+    category: 'wedding',
     aspect: 1.3333,
   },
+  // {
+  //     src: '/gallery/fashion/fashion-01.jpg',
+  //     alt: 'Wedding celebration 27',
+  //     category: 'wedding',
+  //     aspect: 1.3333,
+  //   },
   {
     src: '/gallery/fashion/fashion-02.jpg',
     alt: 'Fashion show 2',
@@ -530,12 +514,6 @@ export const galleryPhotos: GPhoto[] = [
     aspect: 1.328,
   },
   {
-    src: '/gallery/bar/bar-01.jpg',
-    alt: 'Bar & Bat Mitzvahs 1',
-    category: 'bar',
-    aspect: 1.3333,
-  },
-  {
     src: '/gallery/bar/bar-02.jpg',
     alt: 'Bar & Bat Mitzvahs 2',
     category: 'bar',
@@ -638,20 +616,8 @@ export const galleryPhotos: GPhoto[] = [
     aspect: 1.3333,
   },
   {
-    src: '/gallery/bar/bar-19.jpg',
-    alt: 'Bar & Bat Mitzvahs 19',
-    category: 'bar',
-    aspect: 1.3332,
-  },
-  {
     src: '/gallery/bar/bar-20.jpg',
     alt: 'Bar & Bat Mitzvahs 20',
-    category: 'bar',
-    aspect: 1.3333,
-  },
-  {
-    src: '/gallery/bar/bar-21.jpg',
-    alt: 'Bar & Bat Mitzvahs 21',
     category: 'bar',
     aspect: 1.3333,
   },
@@ -700,18 +666,6 @@ export const galleryPhotos: GPhoto[] = [
   {
     src: '/gallery/holiday/holiday-06.jpg',
     alt: 'Holiday event 6',
-    category: 'holiday',
-    aspect: 1.3333,
-  },
-  {
-    src: '/gallery/holiday/holiday-07.jpg',
-    alt: 'Holiday event 7',
-    category: 'holiday',
-    aspect: 1.3332,
-  },
-  {
-    src: '/gallery/holiday/holiday-08.jpg',
-    alt: 'Holiday event 8',
     category: 'holiday',
     aspect: 1.3333,
   },
@@ -806,12 +760,6 @@ export const galleryPhotos: GPhoto[] = [
     aspect: 1.3333,
   },
   {
-    src: '/gallery/holiday/holiday-24.jpg',
-    alt: 'Holiday event 24',
-    category: 'holiday',
-    aspect: 1.3333,
-  },
-  {
     src: '/gallery/holiday/holiday-25.jpg',
     alt: 'Holiday event 25',
     category: 'holiday',
@@ -848,7 +796,7 @@ export const galleryPhotos: GPhoto[] = [
     aspect: 1.3333,
   },
   {
-    src: '/gallery/non/nonprofit-01.jpg',
+    src: '/gallery/non/nonprofit-06.jpg',
     alt: 'Non-profit event 1',
     category: 'nonprofit',
     aspect: 0.75,
@@ -865,12 +813,7 @@ export const galleryPhotos: GPhoto[] = [
     category: 'nonprofit',
     aspect: 1.3333,
   },
-  {
-    src: '/gallery/non/nonprofit-04.jpg',
-    alt: 'Non-profit event 4',
-    category: 'nonprofit',
-    aspect: 1.3333,
-  },
+
   {
     src: '/gallery/non/nonprofit-05.jpg',
     alt: 'Non-profit event 5',
@@ -878,7 +821,7 @@ export const galleryPhotos: GPhoto[] = [
     aspect: 1.3333,
   },
   {
-    src: '/gallery/non/nonprofit-06.jpg',
+    src: '/gallery/non/nonprofit-01.jpg',
     alt: 'Non-profit event 6',
     category: 'nonprofit',
     aspect: 1.3333,
@@ -886,6 +829,12 @@ export const galleryPhotos: GPhoto[] = [
   {
     src: '/gallery/non/nonprofit-07.jpg',
     alt: 'Non-profit event 7',
+    category: 'nonprofit',
+    aspect: 1.5,
+  },
+  {
+    src: '/gallery/non/nonprofit-04.jpg',
+    alt: 'Non-profit event 4',
     category: 'nonprofit',
     aspect: 1.5,
   },

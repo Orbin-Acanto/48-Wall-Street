@@ -47,7 +47,7 @@ export default function BankingHallPage() {
         '/spaces/banking-hall/hero-03.jpg',
       ]}
       images={[
-        '/spaces/banking-hall/gallery-01.jpg',
+        '/gallery/fashion/fashion-01.jpg',
         '/spaces/banking-hall/gallery-02.jpg',
         '/spaces/banking-hall/gallery-03.jpg',
         '/spaces/banking-hall/gallery-04.jpg',
