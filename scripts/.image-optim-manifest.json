@@ -4032,11 +4032,11 @@
     "resized": true
   },
   "public/services/production/cf/gallery-01.jpg": {
-    "hash": "b6820395c69229bddc18ca4660fcf9048fbed402",
-    "optimizedAt": "2026-07-21T22:01:58.273Z",
-    "originalBytes": 683396,
-    "finalBytes": 683396,
-    "resized": false
+    "hash": "b3894408b9e935851a4798abea3e809ddb39f6c8",
+    "optimizedAt": "2026-08-04T22:34:04.080Z",
+    "originalBytes": 9421994,
+    "finalBytes": 742796,
+    "resized": true
   },
   "public/services/production/cf/gallery-02.jpg": {
     "hash": "f854e38fc0138c44b16e188fbffe516e80eb5b75",
@@ -4053,10 +4053,10 @@
     "resized": true
   },
   "public/services/production/cf/gallery-04.jpeg": {
-    "hash": "050bd9eb1ccc44cc2816d1b4930113f6a3183f36",
-    "optimizedAt": "2026-07-21T22:01:59.274Z",
-    "originalBytes": 636139,
-    "finalBytes": 474294,
+    "hash": "65f9f70faf8c5f4339274da24c1143521ebff211",
+    "optimizedAt": "2026-08-04T22:34:04.281Z",
+    "originalBytes": 2309151,
+    "finalBytes": 467245,
     "resized": false
   },
   "public/services/production/decor/gallery-01.jpg": {
@@ -4109,18 +4109,18 @@
     "resized": true
   },
   "public/services/production/design/gallery-05.jpg": {
-    "hash": "cec09923df0cfb5be9e8827db98251ebc34556f5",
-    "optimizedAt": "2026-07-21T22:02:04.039Z",
-    "originalBytes": 1382368,
-    "finalBytes": 999213,
-    "resized": true
+    "hash": "1eca8ec0a118f521c17258096c222072a697d03f",
+    "optimizedAt": "2026-08-04T22:34:04.395Z",
+    "originalBytes": 1058446,
+    "finalBytes": 197811,
+    "resized": false
   },
   "public/services/production/entertainment/gallery-01.jpg": {
-    "hash": "245f48ca0e095da48861f34fa542e38329cbeeb0",
-    "optimizedAt": "2026-07-21T22:02:04.855Z",
-    "originalBytes": 3614174,
-    "finalBytes": 1694818,
-    "resized": true
+    "hash": "888d86aed4e7824637017f6b751012697443863d",
+    "optimizedAt": "2026-08-04T22:34:04.649Z",
+    "originalBytes": 3075243,
+    "finalBytes": 633470,
+    "resized": false
   },
   "public/services/production/entertainment/gallery-03.jpg": {
     "hash": "857b14bd91bb1c7ee5cbb18742f9fd730a792b3d",
@@ -4137,11 +4137,11 @@
     "resized": true
   },
   "public/services/production/light/gallery-02.jpg": {
-    "hash": "3f79a90d7213c8b0388eb1fb7e955291804ce90c",
-    "optimizedAt": "2026-07-21T22:02:06.103Z",
-    "originalBytes": 1408989,
-    "finalBytes": 1079147,
-    "resized": true
+    "hash": "41d5fb0ee043b2a602b1971b2c776702e7b09302",
+    "optimizedAt": "2026-08-04T22:34:05.095Z",
+    "originalBytes": 1096989,
+    "finalBytes": 1096989,
+    "resized": false
   },
   "public/services/production/light/gallery-03.jpg": {
     "hash": "1f542880f4775c6ee92eff8f9ea3c60eb7e906cc",
@@ -4151,18 +4151,18 @@
     "resized": true
   },
   "public/services/production/light/gallery-04.jpg": {
-    "hash": "80f1472db07ee3062791629bc8d5ac5a0e8c8f77",
-    "optimizedAt": "2026-07-21T22:02:07.127Z",
-    "originalBytes": 1512323,
-    "finalBytes": 1127170,
-    "resized": true
+    "hash": "5dbe874ae498f4d03f88a38dbc73ffe241faff5e",
+    "optimizedAt": "2026-08-04T22:34:05.409Z",
+    "originalBytes": 3312390,
+    "finalBytes": 715301,
+    "resized": false
   },
   "public/services/production/light/gallery-05.jpg": {
-    "hash": "41d5fb0ee043b2a602b1971b2c776702e7b09302",
-    "optimizedAt": "2026-07-21T22:02:07.628Z",
-    "originalBytes": 1427310,
-    "finalBytes": 1096989,
-    "resized": true
+    "hash": "3f79a90d7213c8b0388eb1fb7e955291804ce90c",
+    "optimizedAt": "2026-08-04T22:34:05.867Z",
+    "originalBytes": 1079147,
+    "finalBytes": 1079147,
+    "resized": false
   },
   "public/services/production/staging/gallery-01.jpg": {
     "hash": "0884d0d662ab12799006f6f29269016307af866b",
@@ -4172,10 +4172,10 @@
     "resized": true
   },
   "public/services/production/staging/gallery-02.jpg": {
-    "hash": "22a3a7e16bf02f973b3ed803eb6fc1b8bb4b0c1d",
-    "optimizedAt": "2026-07-21T22:02:08.315Z",
-    "originalBytes": 698799,
-    "finalBytes": 552136,
+    "hash": "42db3a85db11a2ec565d480ec804a57eb173fb06",
+    "optimizedAt": "2026-08-04T22:34:06.058Z",
+    "originalBytes": 1942669,
+    "finalBytes": 364118,
     "resized": false
   },
   "public/services/production/staging/gallery-03.jpg": {
@@ -4186,11 +4186,11 @@
     "resized": true
   },
   "public/services/production/staging/gallery-04.jpg": {
-    "hash": "067e022a9a340034763cd50e45224969bfa9a090",
-    "optimizedAt": "2026-07-21T22:02:09.062Z",
-    "originalBytes": 908828,
-    "finalBytes": 696996,
-    "resized": true
+    "hash": "07da82e168a06ae9fabb6ff88df4e6a21e7aa878",
+    "optimizedAt": "2026-08-04T22:34:06.298Z",
+    "originalBytes": 2909658,
+    "finalBytes": 517025,
+    "resized": false
   },
   "public/services/production/staging/gallery-05.jpg": {
     "hash": "fc268a423fc1361d41a52844beb58e3f031c55dd",
@@ -5334,11 +5334,11 @@
     "resized": true
   },
   "public/gallery/corporate/corporate-15.jpg": {
-    "hash": "ee947a9d1ebc4f6d269a9da909f5d3a7c0354842",
-    "optimizedAt": "2026-07-24T21:07:44.366Z",
-    "originalBytes": 2738827,
-    "finalBytes": 943498,
-    "resized": true
+    "hash": "07da82e168a06ae9fabb6ff88df4e6a21e7aa878",
+    "optimizedAt": "2026-08-04T22:34:03.472Z",
+    "originalBytes": 2909658,
+    "finalBytes": 517025,
+    "resized": false
   },
   "public/gallery/corporate/corporate-16.jpg": {
     "hash": "3b6dad7751bf75113c83e8cb2865a101e3729eb5",
