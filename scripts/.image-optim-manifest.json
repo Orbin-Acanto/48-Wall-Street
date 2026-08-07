@@ -5941,5 +5941,33 @@
     "originalBytes": 4068487,
     "finalBytes": 1373811,
     "resized": true
+  },
+  "public/about/gallery-02.png": {
+    "hash": "73177c3dc8627bd928ae3e531e2c2573557f12bb",
+    "optimizedAt": "2026-08-07T19:34:03.866Z",
+    "originalBytes": 2204393,
+    "finalBytes": 639503,
+    "resized": false
+  },
+  "public/about/gallery-03.png": {
+    "hash": "e638053ad6b4fc7d417eec4efb7e2d7f49b98899",
+    "optimizedAt": "2026-08-07T19:34:04.791Z",
+    "originalBytes": 1869957,
+    "finalBytes": 689534,
+    "resized": false
+  },
+  "public/spaces/concourse-level/gallery-02.png": {
+    "hash": "73177c3dc8627bd928ae3e531e2c2573557f12bb",
+    "optimizedAt": "2026-08-07T19:34:06.679Z",
+    "originalBytes": 2204393,
+    "finalBytes": 639503,
+    "resized": false
+  },
+  "public/spaces/concourse-level/gallery-04.png": {
+    "hash": "66417525d3b543425015f17be75926f6d3dfb93b",
+    "optimizedAt": "2026-08-07T19:34:07.838Z",
+    "originalBytes": 1903748,
+    "finalBytes": 642625,
+    "resized": false
   }
 }

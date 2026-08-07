@@ -51,9 +51,9 @@ export default function ConcourseLevelPage() {
       ]}
       images={[
         '/spaces/concourse-level/featured.png',
-        '/spaces/concourse-level/gallery-02.jpg',
+        '/spaces/concourse-level/gallery-02.png',
         '/spaces/concourse-level/gallery-03.jpg',
-        '/spaces/concourse-level/gallery-04.jpg',
+        '/spaces/concourse-level/gallery-04.png',
         '/spaces/concourse-level/gallery-05.jpg',
         '/spaces/concourse-level/gallery-06.jpg',
       ]}

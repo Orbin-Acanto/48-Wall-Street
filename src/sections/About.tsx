@@ -15,8 +15,8 @@ const aboutImages = [
     src: '/gallery/corporate/corporate-12.jpg',
     alt: '48 Wall Street Building Exterior',
   },
-  { src: '/about/gallery-02.jpg', alt: 'Concourse Level' },
-  { src: '/about/gallery-03.jpg', alt: 'Concourse Level' },
+  { src: '/about/gallery-02.png', alt: 'Concourse Level' },
+  { src: '/about/gallery-03.png', alt: 'Concourse Level' },
 ];
 
 export default function About() {
@@ -62,7 +62,9 @@ export default function About() {
               Welcome to 48 Wall Street
             </p>
             <div className="bg-primary mx-auto mb-8 h-px w-16"></div>
-            <h1 className="heading-hero">Historic Event Venue in Lower Manhattan</h1>
+            <h1 className="heading-hero">
+              Historic Event Venue in Lower Manhattan
+            </h1>
             <p className="text-lead">
               Built in 1927 as the Bank of New York and Trust Company, 48 Wall
               Street has been at the center of New York City history for nearly
@@ -175,8 +177,8 @@ export default function About() {
                   }}
                 >
                   <Image
-                    src="/about/gallery-02.jpg"
-                    alt="48 Wall Street Building Exterior"
+                    src="/about/gallery-02.png"
+                    alt="Concourse Level"
                     fill
                     quality={100}
                     className="object-cover transition-transform duration-500 group-hover:scale-115"
@@ -194,8 +196,8 @@ export default function About() {
                   }}
                 >
                   <Image
-                    src="/about/gallery-03.jpg"
-                    alt="48 Wall Street Building Exterior"
+                    src="/about/gallery-03.png"
+                    alt="Concourse Level"
                     fill
                     quality={100}
                     className="object-cover transition-transform duration-500 group-hover:scale-115"
