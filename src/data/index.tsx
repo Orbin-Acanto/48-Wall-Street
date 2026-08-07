@@ -97,7 +97,7 @@ export const photos: Photo[] = [
   { src: '/gallery/gallery-04.jpg', alt: 'Wedding celebration', span: 'small' },
   { src: '/gallery/gallery-03.jpg', alt: 'Wedding celebration', span: 'tall' },
   { src: '/gallery/gallery-02.jpg', alt: 'Wedding celebration', span: 'large' },
-  { src: '/gallery/gallery-05.jpg', alt: 'Wedding celebration', span: 'tall' },
+  { src: '/gallery/gallery-05.png', alt: 'Wedding celebration', span: 'tall' },
   { src: '/gallery/gallery-06.jpg', alt: 'Wedding celebration', span: 'wide' },
   {
     src: '/gallery/corporate/corporate-03.jpg',
@@ -2812,7 +2812,7 @@ export const eventProductionData = {
       images: [
         '/services/production/entertainment/gallery-01.jpg',
         '/services/production/entertainment/gallery-02.png',
-        '/services/production/entertainment/gallery-03.jpg',
+        '/services/production/entertainment/gallery-03.png',
       ],
       imageAlts: [
         'Production display 1',

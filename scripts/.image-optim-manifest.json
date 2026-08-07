@@ -5969,5 +5969,19 @@
     "originalBytes": 1903748,
     "finalBytes": 642625,
     "resized": false
+  },
+  "public/gallery/gallery-05.png": {
+    "hash": "fd6c52b34824e96c9593ffcd6f7771d3e55b904a",
+    "optimizedAt": "2026-08-07T20:05:44.649Z",
+    "originalBytes": 1742262,
+    "finalBytes": 555023,
+    "resized": false
+  },
+  "public/services/production/entertainment/gallery-03.png": {
+    "hash": "12110296d85a049a5ef80a70fdad65c1035c1dd6",
+    "optimizedAt": "2026-08-07T20:05:47.633Z",
+    "originalBytes": 2206724,
+    "finalBytes": 626088,
+    "resized": false
   }
 }
