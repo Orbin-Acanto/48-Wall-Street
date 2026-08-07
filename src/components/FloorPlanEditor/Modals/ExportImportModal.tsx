@@ -12,6 +12,13 @@ import {
 } from '@/utils/exportUtils';
 import { exportFormats } from '@/data';
 
+// Header title printed on exported PNG/PDF sheets, per floor level.
+const FLOOR_LEVEL_LABELS: Record<FloorLevel, string> = {
+  grand_mezzanine: 'Ground Floor & Mezzanine',
+  concourse: 'Concourse Level',
+  hamilton_ballroom: 'Alexander Hamilton Ballroom — 5th Floor',
+};
+
 export const ExportImportModal: React.FC<ExportImportModalProps> = ({
   isOpen,
   floorPlan,
@@ -94,10 +101,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
           await exportToPNG(floorPlan, svgElement, {
             filename: `${fileName}_${formattedDate}.png`,
             hideGrid: true,
-            headerTitle:
-              selectedFloor === 'grand_mezzanine'
-                ? 'Ground Floor & Mezzanine'
-                : 'Concourse Level',
+            headerTitle: FLOOR_LEVEL_LABELS[selectedFloor],
             clientName: headerClient,
             eventDate: headerDate,
             logoUrl: '/shared/logo/48-wall.svg',
@@ -112,10 +116,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
           await exportToPDF(floorPlan, svgElement, {
             filename: `${fileName}_${formattedDate}.pdf`,
             hideGrid: true,
-            headerTitle:
-              selectedFloor === 'grand_mezzanine'
-                ? 'Ground Floor & Mezzanine'
-                : 'Concourse Level',
+            headerTitle: FLOOR_LEVEL_LABELS[selectedFloor],
             clientName: headerClient,
             eventDate: headerDate,
             logoUrl: '/shared/logo/48-wall.svg',
@@ -245,10 +246,13 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
                       }
                       className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 focus:border-[#CBA35C] focus:ring-2 focus:ring-[#CBA35C]/30 focus:outline-none"
                     >
-                      <option value="ground_mezzanine">
+                      <option value="grand_mezzanine">
                         Ground Floor &amp; Mezzanine
                       </option>
                       <option value="concourse">Concourse Level</option>
+                      <option value="hamilton_ballroom">
+                        Alexander Hamilton Ballroom &mdash; 5th Floor
+                      </option>
                     </select>
                   </div>
 

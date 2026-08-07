@@ -1726,6 +1726,11 @@ const holidayBrochurePages = Array.from({ length: 36 }, (_, i) => ({
   image: `/brochures/holiday/page-${String(i + 1).padStart(2, '0')}.jpg`,
 }));
 
+const vaultBrochurePages = Array.from({ length: 28 }, (_, i) => ({
+  id: i + 1,
+  image: `/brochures/vault/page-${String(i + 1).padStart(2, '0')}.jpg`,
+}));
+
 export const generalBrochure = {
   title: 'Explore Our Venue',
   subtitle: '48 Wall Street • Digital Brochure',
@@ -1742,12 +1747,21 @@ export const holidayBrochure = {
   pages: holidayBrochurePages,
 };
 
+export const vaultBrochure = {
+  title: 'The Vault on Wall Street',
+  subtitle: 'A Historic Space, Reimagined for Extraordinary Events',
+  downloadUrl: '/brochures/vault/the-vault-on-wall-street.pdf',
+  shareSlug: 'the-vault-on-wall-street',
+  pages: vaultBrochurePages,
+};
+
 // Registry of shareable brochures, keyed by their public share slug. The
 // /b/[slug] shared-link viewer looks brochures up here so a client sees a
 // clean navbar + brochure + footer page for the link they were given.
 export const shareableBrochures = {
   [generalBrochure.shareSlug]: generalBrochure,
   [holidayBrochure.shareSlug]: holidayBrochure,
+  [vaultBrochure.shareSlug]: vaultBrochure,
 } as const;
 
 export type ShareableBrochureSlug = keyof typeof shareableBrochures;

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import BookReader from '@/components/BookReader';
 
 export interface SpaceStats {
   capacity: string;
@@ -24,6 +25,17 @@ export interface SpaceDetailsProps {
   videoUrl?: string;
   /** Matterport 3D virtual walkthrough URL. Defaults to the venue-wide tour. */
   matterportUrl?: string;
+  /**
+   * Flipbook brochure for this space, rendered between the virtual walkthrough
+   * and the floor plans. Pass an entry from `@/data` (e.g. `vaultBrochure`).
+   */
+  brochure?: {
+    title: string;
+    subtitle?: string;
+    downloadUrl?: string;
+    shareSlug?: string;
+    pages: { id: number; image: string; alt?: string }[];
+  };
   floorPlanImage?: string;
   features?: string[];
   stats: SpaceStats;
@@ -46,6 +58,7 @@ export default function SpaceDetails({
   images,
   // videoUrl — walkthrough video temporarily disabled (see commented section below)
   matterportUrl = 'https://my.matterport.com/show/?m=vqeMP4K1Nru',
+  brochure,
   lightboxImages,
   floorPlanImage,
   features = [],
@@ -57,7 +70,8 @@ export default function SpaceDetails({
   // gallery. Otherwise keep the legacy behavior: images[0] is the hero.
   const slides =
     heroImages && heroImages.length > 0 ? heroImages : images.slice(0, 1);
-  const galleryImages = heroImages && heroImages.length > 0 ? images : images.slice(1);
+  const galleryImages =
+    heroImages && heroImages.length > 0 ? images : images.slice(1);
   const lbImages = lightboxImages ?? galleryImages;
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -327,31 +341,16 @@ export default function SpaceDetails({
       )}
       */}
 
-      {/* 3D Virtual Walkthrough */}
-      {matterportUrl && (
-        <section className="bg-whitesmoke px-6 py-16 md:px-12">
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-10 text-center">
-              <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
-                Take a Tour
-              </p>
-              <h2 className="heading-hero">Virtual Walkthrough</h2>
-              <p className="font-secondary text-dark-black/70 mx-auto mt-3 max-w-2xl text-base leading-relaxed md:text-lg">
-                Explore the space in an immersive 3D tour. Click and drag to look
-                around, and move through the room at your own pace.
-              </p>
-            </div>
-
-            <div className="relative aspect-[16/10] w-full overflow-hidden bg-black shadow-2xl">
-              <iframe
-                src={matterportUrl}
-                title={`${title} ${subtitle} 3D virtual walkthrough`}
-                allow="xr-spatial-tracking; fullscreen"
-                allowFullScreen
-                className="absolute inset-0 h-full w-full border-0"
-              />
-            </div>
-          </div>
+      {/* Brochure flipbook */}
+      {brochure && brochure.pages.length > 0 && (
+        <section id="brochure">
+          <BookReader
+            pages={brochure.pages}
+            title={brochure.title}
+            subtitle={brochure.subtitle}
+            downloadUrl={brochure.downloadUrl}
+            shareSlug={brochure.shareSlug}
+          />
         </section>
       )}
 
@@ -419,6 +418,34 @@ export default function SpaceDetails({
                   Request a Proposal
                 </CustomButton>
               </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 3D Virtual Walkthrough */}
+      {matterportUrl && (
+        <section className="bg-whitesmoke px-6 py-16 md:px-12">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 text-center">
+              <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
+                Take a Tour
+              </p>
+              <h2 className="heading-hero">Virtual Walkthrough</h2>
+              <p className="font-secondary text-dark-black/70 mx-auto mt-3 max-w-2xl text-base leading-relaxed md:text-lg">
+                Explore the space in an immersive 3D tour. Click and drag to
+                look around, and move through the room at your own pace.
+              </p>
+            </div>
+
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-black shadow-2xl">
+              <iframe
+                src={matterportUrl}
+                title={`${title} ${subtitle} 3D virtual walkthrough`}
+                allow="xr-spatial-tracking; fullscreen"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
             </div>
           </div>
         </section>

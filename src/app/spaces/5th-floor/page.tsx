@@ -109,6 +109,16 @@ export default function FifthFloorPage() {
         '/spaces/5th-floor/gallery-04.jpg',
         '/spaces/5th-floor/gallery-05.jpg',
       ]}
+      floorPlanImage="/floor-plans/alexander-hamilton-ballroom.png"
+      features={[
+        'Open, column-spaced ballroom floor',
+        'Expansive perimeter windows',
+        'Adjoining Historical Hamilton Suite',
+        'Dedicated guest and main entrances',
+        'On-floor coatcheck and pantry',
+        'Nine passenger elevators plus freight',
+        'Restrooms on floor',
+      ]}
       stats={{
         capacity: 'Grand celebrations | Seated dinners & receptions',
         sqft: '14,444 sq ft',

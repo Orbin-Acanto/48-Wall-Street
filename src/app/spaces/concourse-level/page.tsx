@@ -1,4 +1,5 @@
 import SpaceDetails from '@/components/SpaceDetails';
+import { vaultBrochure } from '@/data';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -58,6 +59,7 @@ export default function ConcourseLevelPage() {
         '/spaces/concourse-level/gallery-06.jpg',
       ]}
       videoUrl="https://player.vimeo.com/video/192678532?h=c1ec68adce"
+      brochure={vaultBrochure}
       floorPlanImage="/floor-plans/concourse-vault.svg"
       features={[
         'Divisible into 6 breakout rooms',

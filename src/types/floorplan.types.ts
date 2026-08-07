@@ -175,7 +175,10 @@ export interface ExportImportModalProps {
   legendItems: LegendItemWithCount[];
 }
 
-export type FloorLevel = 'grand_mezzanine' | 'concourse';
+export type FloorLevel =
+  | 'grand_mezzanine'
+  | 'concourse'
+  | 'hamilton_ballroom';
 
 export type ExportFormat = 'json' | 'svg' | 'png' | 'pdf';
 
@@ -238,7 +241,8 @@ export type FloorKey =
   | 'grand-mezzanine'
   | 'upper-mezzanine'
   | 'hamilton-office'
-  | 'concourse-vault';
+  | 'concourse-vault'
+  | 'hamilton-ballroom';
 
 export type UnderlayProps = {
   svg?: string;

@@ -55,6 +55,7 @@ export const TopToolbar: React.FC<TopToolbarProps> = ({
     'upper-mezzanine',
     'hamilton-office',
     'concourse-vault',
+    'hamilton-ballroom',
   ] as FloorKey[],
   seatsPlaced = 0,
   guestCount = 0,
