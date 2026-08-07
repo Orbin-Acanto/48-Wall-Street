@@ -65,7 +65,13 @@ const findLibraryItem = (id: string): LibraryItemLike | undefined =>
 
 export const FLOOR_UNDERLAYS: Record<
   FloorKey,
-  { label: string; svg?: string; href?: string; scale: number }
+  {
+    label: string;
+    svg?: string;
+    href?: string;
+    scale: number;
+    opacity?: number;
+  }
 > = {
   'banking-hall': {
     label: 'Banking Hall',
@@ -91,6 +97,12 @@ export const FLOOR_UNDERLAYS: Record<
     label: 'Concourse Vault',
     href: '/floor-plans/concourse-vault.svg',
     scale: 1.85,
+  },
+  'hamilton-ballroom': {
+    label: '5th Floor Ballroom',
+    href: '/floor-plans/alexander-hamilton-ballroom.png',
+    scale: 1.6,
+    opacity: 0.65,
   },
 };
 
@@ -160,7 +172,7 @@ export const FloorPlanEditor: React.FC = () => {
     useState<FloorKey>('grand-mezzanine');
   const underlayDef = FLOOR_UNDERLAYS[selectedFloor];
   const underlayScale: number = underlayDef.scale;
-  const underlayOpacity: number = 1;
+  const underlayOpacity: number = underlayDef.opacity ?? 1;
   const underlayOffset: { x: number; y: number } = { x: 40, y: 40 };
 
   const lastMouseCanvasPosRef = useRef<Point | null>(null);
@@ -515,9 +527,7 @@ export const FloorPlanEditor: React.FC = () => {
     (mode: 'left' | 'hcenter' | 'right' | 'top' | 'vcenter' | 'bottom') => {
       if (floorPlan.isLocked) return;
       const ids =
-        selectedFurnitureIds.size > 1
-          ? Array.from(selectedFurnitureIds)
-          : [];
+        selectedFurnitureIds.size > 1 ? Array.from(selectedFurnitureIds) : [];
       if (ids.length < 2) return;
 
       const items = ids
@@ -546,10 +556,8 @@ export const FloorPlanEditor: React.FC = () => {
       const maxRight = Math.max(...rights);
       const minTop = Math.min(...tops);
       const maxBottom = Math.max(...bottoms);
-      const avgX =
-        items.reduce((s, f) => s + f.position.x, 0) / items.length;
-      const avgY =
-        items.reduce((s, f) => s + f.position.y, 0) / items.length;
+      const avgX = items.reduce((s, f) => s + f.position.x, 0) / items.length;
+      const avgY = items.reduce((s, f) => s + f.position.y, 0) / items.length;
 
       items.forEach((f) => {
         let { x, y } = f.position;
@@ -967,7 +975,6 @@ export const FloorPlanEditor: React.FC = () => {
         </div>
 
         <div className="relative h-full w-full flex-1">
-
           <FloorPlanCanvas
             floorPlan={floorPlan}
             selectedTool={selectedTool}
