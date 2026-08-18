@@ -6067,5 +6067,68 @@
     "originalBytes": 1160668,
     "finalBytes": 941677,
     "resized": true
+  },
+  "../../Users/mmein/OneDrive/Desktop/New folder/mme fall folder/mme fall folder/images/MMEfall-2_01.jpg": {
+    "hash": "1c0bf212b63aa9ead6b15e2f65f1ab2b0e07e953",
+    "optimizedAt": "2026-08-11T20:37:50.131Z",
+    "originalBytes": 7290678,
+    "finalBytes": 1038878,
+    "resized": true
+  },
+  "../../Users/mmein/OneDrive/Desktop/New folder/mme fall folder/mme fall folder/images/MMEfall-2_02.jpg": {
+    "hash": "d809b22cce5bd52939466ace64372f30e75308de",
+    "optimizedAt": "2026-08-11T20:37:50.627Z",
+    "originalBytes": 4439306,
+    "finalBytes": 642007,
+    "resized": true
+  },
+  "../../Users/mmein/OneDrive/Desktop/New folder/mme fall folder/mme fall folder/images/MMEfall-2_03.jpg": {
+    "hash": "bf11e59b7692fca9c51ac3fb98815169d6562ac7",
+    "optimizedAt": "2026-08-11T20:37:51.201Z",
+    "originalBytes": 5835695,
+    "finalBytes": 806320,
+    "resized": true
+  },
+  "../../Users/mmein/OneDrive/Desktop/New folder/Holidayflyer Folder/Holidayflyer Folder/images/Holidayflyer_01-Create Holiday Experiences That Guests Remember.jpg": {
+    "hash": "f46367a0c18ef2b94c8c1049c9f3e17cd542fdf5",
+    "optimizedAt": "2026-08-11T20:40:32.801Z",
+    "originalBytes": 9086283,
+    "finalBytes": 1270504,
+    "resized": true
+  },
+  "../../Users/mmein/OneDrive/Desktop/New folder/Holidayflyer Folder/Holidayflyer Folder/images/Holidayflyer_02-Luxury Holiday Design.jpg": {
+    "hash": "ae96a03639035e44e4fc705861be8b29d5cf4e97",
+    "optimizedAt": "2026-08-11T20:40:33.085Z",
+    "originalBytes": 2221746,
+    "finalBytes": 328344,
+    "resized": true
+  },
+  "../../Users/mmein/OneDrive/Desktop/New folder/Holidayflyer Folder/Holidayflyer Folder/images/Holidayflyer_03-Our Services Include.jpg": {
+    "hash": "71a9fccf0e808f0510a51de3c775b4e732d41630",
+    "optimizedAt": "2026-08-11T20:40:33.560Z",
+    "originalBytes": 5205821,
+    "finalBytes": 795266,
+    "resized": true
+  },
+  "../../Users/mmein/OneDrive/Desktop/New folder/MMEHoliday Folder/MMEHoliday Folder/images/MMEfall-2_01.jpg": {
+    "hash": "76a1f144ce71c9da4c136ef7a54e4eb530a05328",
+    "optimizedAt": "2026-08-11T20:43:25.872Z",
+    "originalBytes": 7288094,
+    "finalBytes": 1039453,
+    "resized": true
+  },
+  "../../Users/mmein/OneDrive/Desktop/New folder/MMEHoliday Folder/MMEHoliday Folder/images/MMEfall-2_02.jpg": {
+    "hash": "73369c12d63dd41aec7178e7c124f59b6e1799ac",
+    "optimizedAt": "2026-08-11T20:43:26.281Z",
+    "originalBytes": 4456930,
+    "finalBytes": 636765,
+    "resized": true
+  },
+  "../../Users/mmein/OneDrive/Desktop/New folder/MMEHoliday Folder/MMEHoliday Folder/images/MMEfall-2_03.jpg": {
+    "hash": "4c38c57ef5afd4779acab68f77d66e61e1d0c2e5",
+    "optimizedAt": "2026-08-11T20:43:26.744Z",
+    "originalBytes": 5813932,
+    "finalBytes": 803728,
+    "resized": true
   }
 }
