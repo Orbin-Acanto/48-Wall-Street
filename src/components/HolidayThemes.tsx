@@ -1,8 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import WinterWonderlandModal from './WinterWonderlandModal';
 
 interface HolidayThemesProps {
   /** Section background. Alternate against the neighbouring section. */
@@ -19,14 +21,14 @@ interface HolidayThemesProps {
 const THEMES = [
   {
     id: 'winter-wonderland',
-    // PLACEHOLDER copy
     name: 'Winter Wonderland',
-    tagline: 'Silver, Frost & Candlelight',
+    tagline: 'A Private World Beneath Wall Street',
     description:
-      'A cool, luminous palette of silver, crystal, and soft white light. Frosted installations and mirrored details turn the historic vault into a glittering winter retreat.',
-    image: '/gallery/holiday/holiday-05.jpg',
+      'Luminous snowflakes, glowing winter trees, ambient candlelight and elegantly appointed lounge settings transform The Vault into an intimate seasonal escape.',
+    image: '/gallery/holiday/themes/winter-wonderland.png',
     imageAlt:
-      'Winter themed holiday decor with lights and seasonal installation at 48 Wall Street, NYC',
+      'Winter Wonderland installation in The Vault at 48 Wall Street: illuminated winter trees, suspended snowflakes and candlelit lounge seating',
+    hasDetail: true,
   },
   {
     id: 'golden-christmas',
@@ -38,6 +40,7 @@ const THEMES = [
     image: '/gallery/holiday/holiday-08.jpg',
     imageAlt:
       'Classic gold and evergreen holiday decor with decorated tree at 48 Wall Street, Financial District NYC',
+    hasDetail: false,
   },
 ];
 
@@ -45,6 +48,7 @@ export default function HolidayThemes({
   background = 'white',
 }: HolidayThemesProps) {
   const bg = background === 'white' ? 'bg-white' : 'bg-whitesmoke';
+  const [winterOpen, setWinterOpen] = useState(false);
 
   return (
     <section
@@ -96,9 +100,9 @@ export default function HolidayThemes({
                 ease: [0.2, 0.8, 0.2, 1],
               }}
             >
-              <Link
-                href="/contact?inquiry=holiday-theme"
-                className="group block h-full"
+              <CardShell
+                hasDetail={theme.hasDetail}
+                onOpen={() => setWinterOpen(true)}
               >
                 <article className="bg-dark-black ring-primary/15 hover:ring-primary/45 flex h-full flex-col overflow-hidden shadow-xl ring-1 shadow-black/15 transition-all duration-500 hover:shadow-2xl">
                   {/* Image */}
@@ -128,7 +132,7 @@ export default function HolidayThemes({
                     </p>
 
                     <span className="font-secondary text-primary inline-flex items-center gap-3 text-xs font-semibold tracking-[0.18em] uppercase">
-                      Learn More
+                      {theme.hasDetail ? 'View the Experience' : 'Learn More'}
                       <svg
                         className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1.5"
                         viewBox="0 0 24 24"
@@ -143,11 +147,48 @@ export default function HolidayThemes({
                     </span>
                   </div>
                 </article>
-              </Link>
+              </CardShell>
             </motion.div>
           ))}
         </div>
       </div>
+
+      <WinterWonderlandModal
+        open={winterOpen}
+        onClose={() => setWinterOpen(false)}
+      />
     </section>
+  );
+}
+
+/**
+ * Wraps a theme card in a button when it has a detail modal, or a contact link
+ * when it does not, so both variants share identical card markup.
+ */
+function CardShell({
+  hasDetail,
+  onOpen,
+  children,
+}: {
+  hasDetail?: boolean;
+  onOpen: () => void;
+  children: React.ReactNode;
+}) {
+  if (hasDetail) {
+    return (
+      <button
+        type="button"
+        onClick={onOpen}
+        className="group block h-full w-full cursor-pointer text-left"
+      >
+        {children}
+      </button>
+    );
+  }
+
+  return (
+    <Link href="/contact?inquiry=holiday-theme" className="group block h-full">
+      {children}
+    </Link>
   );
 }

@@ -202,10 +202,9 @@ export default function SpeakeasyPromoBanner() {
               </h3>
               <p className="font-secondary mb-4 text-[13px] leading-relaxed text-gray-400">
                 More than just an event space, the Hidden Holiday Speakeasy
-                creates a second destination within your celebration &mdash; a
-                surprise experience that encourages guests to stay longer,
-                socialize, and enjoy the evening in a completely different
-                atmosphere.
+                creates a second destination within your celebration, a surprise
+                experience that encourages guests to stay longer, socialize, and
+                enjoy the evening in a completely different atmosphere.
               </p>
               <p className="font-secondary mb-7 text-[13px] leading-relaxed text-gray-400">
                 Whether entertaining executives, clients, or employees, the
@@ -244,7 +243,7 @@ export default function SpeakeasyPromoBanner() {
               </div>
 
               <p className="font-secondary text-primary mb-6 text-[11px] tracking-[0.16em] uppercase">
-                Don&apos;t end the night &ndash; elevate it
+                Don&apos;t end the night, elevate it
               </p>
 
               {/* Actions */}

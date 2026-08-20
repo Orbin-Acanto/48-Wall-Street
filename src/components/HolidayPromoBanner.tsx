@@ -142,15 +142,14 @@ export default function HolidayPromoBanner() {
               <p className="font-secondary mb-6 text-[13.5px] leading-relaxed text-gray-300">
                 Host your year-end celebration inside a 1927 landmark.
                 Thirty-foot ceilings, original marble, and crystal chandeliers
-                set a tone no ballroom can replicate &mdash; with full-service
-                catering and a dedicated event team from first walkthrough to
-                last dance.
+                set a tone no ballroom can replicate, with full-service catering
+                and a dedicated event team from first walkthrough to last dance.
               </p>
 
               {/* Stats */}
               <div className="border-primary/25 grid grid-cols-3 border-t border-b">
                 {[
-                  { value: '50–500', label: 'Guests' },
+                  { value: '50 to 500', label: 'Guests' },
                   { value: "30'", label: 'Ceilings' },
                   { value: '1927', label: 'Landmark' },
                 ].map((stat, i) => (
