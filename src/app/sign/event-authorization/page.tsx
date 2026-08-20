@@ -13,7 +13,7 @@
  * booking API, which flips the booking from held to confirmed.
  */
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useId, useState } from 'react';
 import Image from 'next/image';
 import {
   type BookingStatus,
@@ -650,12 +650,19 @@ function Input({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   invalid?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>) {
+  // Tie the label to the input so screen readers and autofill can pair them.
+  const id = useId();
+
   return (
     <div>
-      <label className="mb-2 block text-xs tracking-[0.1em] text-gray-500 uppercase">
+      <label
+        htmlFor={id}
+        className="mb-2 block text-xs tracking-[0.1em] text-gray-500 uppercase"
+      >
         {label}
       </label>
       <input
+        id={id}
         value={value}
         onChange={onChange}
         className={`w-full rounded border px-4 py-3 text-sm text-gray-900 transition-colors outline-none focus:border-gray-900 ${

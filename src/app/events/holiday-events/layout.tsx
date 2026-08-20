@@ -2,16 +2,18 @@ import type { Metadata } from 'next';
 // import SpeakeasyPromoBanner from '@/components/SpeakeasyPromoBanner';
 
 export const metadata: Metadata = {
-  title:
-    'Holiday Event Venue on Wall Street | Corporate Holiday Party Space NYC',
+  // A root layout template appends "| 48 Wall Street NYC", so keep this short
+  // enough that the combined title survives Google's ~60 character truncation.
+  title: 'Santa Visits, Private Dinners & Holiday Speakeasy',
   description:
-    'Celebrate the season at 48 Wall Street. The premier holiday event venue in Lower Manhattan offering historic charm for corporate parties and seasonal galas.',
+    'Book Sit Down With Santa from $35 per person, a private dinner from $500 per person, or the Hidden Holiday Speakeasy at 48 Wall Street. Reserve a time online in the landmark 1927 Financial District venue.',
   keywords:
-    'holiday party venue NYC, corporate holiday party Manhattan, company holiday event venue, Christmas party venue NYC, holiday gala venue, end of year party venue NYC, corporate holiday celebration, holiday party space Manhattan, Financial District holiday venue, office holiday party NYC, seasonal event venue, holiday networking event, company Christmas party venue, holiday party with catering NYC, Manhattan holiday venue, holiday party venue rental NYC, corporate christmas party venue Manhattan, holiday party venues near me, company holiday party space NYC, winter party venue NYC, holiday party venue 500 guests NYC, December event venue NYC, festive event space Manhattan',
+    'sit down with santa NYC, santa photos NYC, visit santa Financial District, santa experience Manhattan, book santa NYC, holiday speakeasy NYC, private speakeasy event NYC, winter wonderland event space NYC, private dinner Wall Street, intimate private dining NYC, holiday party venue NYC, corporate holiday party Manhattan, company holiday event venue, Christmas party venue NYC, holiday gala venue, end of year party venue NYC, corporate holiday celebration, holiday party space Manhattan, Financial District holiday venue, office holiday party NYC, seasonal event venue, holiday networking event, company Christmas party venue, holiday party with catering NYC, Manhattan holiday venue, holiday party venue rental NYC, corporate christmas party venue Manhattan, holiday party venues near me, company holiday party space NYC, winter party venue NYC, holiday party venue 500 guests NYC, December event venue NYC, festive event space Manhattan',
   openGraph: {
-    title: 'Holiday Party Venue NYC | Corporate Celebrations | 48 Wall Street',
+    title:
+      'Holiday Events at 48 Wall Street | Santa, Private Dinners, Speakeasy',
     description:
-      'Celebrate the holidays at 48 Wall Street. Historic Manhattan venue perfect for corporate holiday parties with festive atmosphere, elegant 1920s architecture, full catering, and capacity for 50-500 guests.',
+      'Book a 20 minute visit with Santa from $35 per person, an exclusive private dinner from $500 per person, or the Hidden Holiday Speakeasy in the 1927 bank vault. Reserve your time online.',
     url: 'https://www.48wallnyc.com/events/holiday-events',
     siteName: '48 Wall Street NYC',
     images: [
@@ -27,9 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Holiday Party Venue NYC | 48 Wall Street',
+    title: 'Holiday Events at 48 Wall Street NYC',
     description:
-      'Premier Manhattan venue for corporate holiday parties. Historic elegance, festive atmosphere, full catering, 50-500 capacity.',
+      'Sit Down With Santa from $35 per person, private dinners from $500 per person, and the Hidden Holiday Speakeasy. Book online at the landmark 1927 venue.',
     images: ['/gallery/holiday/holiday-01.jpg'],
   },
   alternates: {
@@ -253,6 +255,38 @@ export default function HolidayEventsLayout({
             mainEntity: [
               {
                 '@type': 'Question',
+                name: 'How much does it cost to visit Santa at 48 Wall Street?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Sit Down With Santa costs $35 per person, plus a 24% administrative fee and 8.875% New York sales tax. A family of four pays $189.01 in total. Each visit lasts 20 minutes and includes time with Santa, a professionally lit keepsake portrait on the grand marble staircase, hot cocoa and holiday treats, and a gift for every child. Visits run on Saturdays and Sundays from October 15 to December 23, 2026, between 10am and 4pm.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'How do I book a private dinner at 48 Wall Street?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'The Alexander Hamilton Private Dinner can be reserved online at 48wallnyc.com. It costs $500 per person, plus a 24% administrative fee and 8.875% New York sales tax, so a party of six pays $4,050.15 in total. The room seats 4 to 8 guests and is never shared. Two hour seatings begin at 4pm, 6pm or 8pm on Mondays, Tuesdays and Saturdays from September 23 to December 30, 2026.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is the Hidden Holiday Speakeasy at 48 Wall Street?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'The Hidden Holiday Speakeasy is a Prohibition inspired private event space in The Vault, the original 1927 bank vault level beneath the Banking Hall. It features a custom wooden bar, premium craft cocktails, authentic barrel highboy tables, plush lounge seating, a black and white dance floor and professional entertainment. It holds up to 200 guests and is available from November 1, 2026 for corporate holiday celebrations, client appreciation events and private receptions.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is the cancellation policy for holiday bookings at 48 Wall Street?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Cancel 48 hours or more before your start time for a full refund. Cancellations inside 48 hours are non refundable. 48 Wall Street may cancel up to 24 hours before for operational or safety reasons, in which case you receive a full refund. Your reservation is held for 24 hours while the credit card authorization is completed; if it is not completed in that time the slot is released automatically and nothing is charged.',
+                },
+              },
+              {
+                '@type': 'Question',
                 name: 'What types of holiday events can 48 Wall Street accommodate?',
                 acceptedAnswer: {
                   '@type': 'Answer',
@@ -337,6 +371,223 @@ export default function HolidayEventsLayout({
           Re-enable by uncommenting this and its import above.
       <SpeakeasyPromoBanner />
       */}
+      {/*
+        Bookable holiday experiences. Event + Offer schema is what makes these
+        eligible for Google event rich results and gives answer engines the
+        concrete price, date and capacity facts they need to cite us.
+      */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Bookable Holiday Experiences at 48 Wall Street',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                item: {
+                  '@type': 'Event',
+                  name: 'Sit Down With Santa at 48 Wall Street',
+                  description:
+                    'A 20 minute private visit with Santa in the holiday decorated Grand Mezzanine Banking Hall, including a professionally lit keepsake portrait on the grand marble staircase, hot cocoa and treats, and a gift for every child.',
+                  eventStatus: 'https://schema.org/EventScheduled',
+                  eventAttendanceMode:
+                    'https://schema.org/OfflineEventAttendanceMode',
+                  startDate: '2026-10-15T10:00:00-04:00',
+                  endDate: '2026-12-23T16:00:00-05:00',
+                  maximumAttendeeCapacity: 8,
+                  image: [
+                    'https://www.48wallnyc.com/gallery/holiday/themes/santa-01.jpg',
+                  ],
+                  location: {
+                    '@type': 'Place',
+                    name: '48 Wall Street',
+                    address: {
+                      '@type': 'PostalAddress',
+                      streetAddress: '48 Wall Street, Lobby 1',
+                      addressLocality: 'New York',
+                      addressRegion: 'NY',
+                      postalCode: '10005',
+                      addressCountry: 'US',
+                    },
+                    geo: {
+                      '@type': 'GeoCoordinates',
+                      latitude: 40.707421,
+                      longitude: -74.009224,
+                    },
+                  },
+                  organizer: {
+                    '@type': 'Organization',
+                    name: '48 Wall Street',
+                    url: 'https://www.48wallnyc.com',
+                  },
+                  offers: {
+                    '@type': 'Offer',
+                    price: '35.00',
+                    priceCurrency: 'USD',
+                    availability: 'https://schema.org/InStock',
+                    validFrom: '2026-09-01T00:00:00-04:00',
+                    url: 'https://www.48wallnyc.com/events/holiday-events',
+                    description:
+                      '$35 per person, plus a 24% administrative fee and 8.875% New York sales tax.',
+                  },
+                  audience: {
+                    '@type': 'Audience',
+                    audienceType: 'Families with children',
+                  },
+                },
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                item: {
+                  '@type': 'Event',
+                  name: 'The Alexander Hamilton Private Dinner',
+                  description:
+                    'Exclusive use of The Alexander Hamilton Office for a two hour private dinner seating overlooking Wall Street, with a bespoke menu planned with the culinary team and dedicated service throughout.',
+                  eventStatus: 'https://schema.org/EventScheduled',
+                  eventAttendanceMode:
+                    'https://schema.org/OfflineEventAttendanceMode',
+                  startDate: '2026-09-23T16:00:00-04:00',
+                  endDate: '2026-12-30T22:00:00-05:00',
+                  maximumAttendeeCapacity: 8,
+                  image: [
+                    'https://www.48wallnyc.com/spaces/hamilton-room/gallery-02.jpg',
+                  ],
+                  location: {
+                    '@type': 'Place',
+                    name: 'The Alexander Hamilton Office at 48 Wall Street',
+                    address: {
+                      '@type': 'PostalAddress',
+                      streetAddress: '48 Wall Street, Lobby 1',
+                      addressLocality: 'New York',
+                      addressRegion: 'NY',
+                      postalCode: '10005',
+                      addressCountry: 'US',
+                    },
+                  },
+                  organizer: {
+                    '@type': 'Organization',
+                    name: '48 Wall Street',
+                    url: 'https://www.48wallnyc.com',
+                  },
+                  offers: {
+                    '@type': 'Offer',
+                    price: '500.00',
+                    priceCurrency: 'USD',
+                    availability: 'https://schema.org/InStock',
+                    validFrom: '2026-09-01T00:00:00-04:00',
+                    url: 'https://www.48wallnyc.com/spaces/hamilton-room',
+                    eligibleQuantity: {
+                      '@type': 'QuantitativeValue',
+                      minValue: 4,
+                      maxValue: 8,
+                      unitText: 'guests',
+                    },
+                    description:
+                      '$500 per person, plus a 24% administrative fee and 8.875% New York sales tax. The room seats 4 to 8 guests and is never shared.',
+                  },
+                },
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                item: {
+                  '@type': 'Event',
+                  name: 'Hidden Holiday Speakeasy at The Vault',
+                  description:
+                    'A Prohibition inspired private speakeasy in the original 1927 bank vault beneath the Banking Hall, with a custom wooden bar, craft cocktails, barrel highboy tables, a black and white dance floor and live entertainment.',
+                  eventStatus: 'https://schema.org/EventScheduled',
+                  eventAttendanceMode:
+                    'https://schema.org/OfflineEventAttendanceMode',
+                  startDate: '2026-11-01T18:00:00-04:00',
+                  endDate: '2026-12-31T23:00:00-05:00',
+                  maximumAttendeeCapacity: 200,
+                  image: [
+                    'https://www.48wallnyc.com/gallery/holiday/themes/speakeasy-01.jpg',
+                  ],
+                  location: {
+                    '@type': 'Place',
+                    name: 'The Vault at 48 Wall Street',
+                    address: {
+                      '@type': 'PostalAddress',
+                      streetAddress: '48 Wall Street, Lobby 1',
+                      addressLocality: 'New York',
+                      addressRegion: 'NY',
+                      postalCode: '10005',
+                      addressCountry: 'US',
+                    },
+                  },
+                  organizer: {
+                    '@type': 'Organization',
+                    name: '48 Wall Street',
+                    url: 'https://www.48wallnyc.com',
+                  },
+                  offers: {
+                    '@type': 'Offer',
+                    availability: 'https://schema.org/InStock',
+                    priceCurrency: 'USD',
+                    priceSpecification: {
+                      '@type': 'PriceSpecification',
+                      priceCurrency: 'USD',
+                      minPrice: 5000,
+                    },
+                    url: 'https://www.48wallnyc.com/spaces/concourse-level',
+                    description:
+                      'Private event pricing on request. Contact info@48wallnyc.com.',
+                  },
+                },
+              },
+              {
+                '@type': 'ListItem',
+                position: 4,
+                item: {
+                  '@type': 'Event',
+                  name: 'Winter Wonderland at The Vault',
+                  description:
+                    'The Vault transformed into an immersive winter installation with luminous snowflakes, illuminated winter trees, ambient candlelight and layered blue lighting, for up to 200 guests.',
+                  eventStatus: 'https://schema.org/EventScheduled',
+                  eventAttendanceMode:
+                    'https://schema.org/OfflineEventAttendanceMode',
+                  startDate: '2026-11-01T17:00:00-04:00',
+                  endDate: '2026-12-31T23:00:00-05:00',
+                  maximumAttendeeCapacity: 200,
+                  image: [
+                    'https://www.48wallnyc.com/gallery/holiday/themes/winter-wonderland.jpg',
+                  ],
+                  location: {
+                    '@type': 'Place',
+                    name: 'The Vault at 48 Wall Street',
+                    address: {
+                      '@type': 'PostalAddress',
+                      streetAddress: '48 Wall Street, Lobby 1',
+                      addressLocality: 'New York',
+                      addressRegion: 'NY',
+                      postalCode: '10005',
+                      addressCountry: 'US',
+                    },
+                  },
+                  organizer: {
+                    '@type': 'Organization',
+                    name: '48 Wall Street',
+                    url: 'https://www.48wallnyc.com',
+                  },
+                  offers: {
+                    '@type': 'Offer',
+                    availability: 'https://schema.org/InStock',
+                    priceCurrency: 'USD',
+                    url: 'https://www.48wallnyc.com/spaces/concourse-level',
+                    description:
+                      'Private event pricing on request. Contact info@48wallnyc.com.',
+                  },
+                },
+              },
+            ],
+          }),
+        }}
+      />
       {children}
     </>
   );
