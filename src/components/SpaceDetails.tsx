@@ -289,7 +289,7 @@ export default function SpaceDetails({
                           src={frame.src}
                           alt={
                             frame.alt ||
-                            `${title} ${subtitle} — ${frame.label.toLowerCase()}`
+                            `${title} ${subtitle} ${frame.label.toLowerCase()}`
                           }
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
@@ -313,7 +313,7 @@ export default function SpaceDetails({
       )}
 
       {/*
-        Walkthrough video section — temporarily disabled in favor of the 3D
+        Walkthrough video section: temporarily disabled in favor of the 3D
         virtual walkthrough below. Kept for later use; `videoUrl` prop is still
         accepted so re-enabling only requires uncommenting this block.
 

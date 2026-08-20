@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: '/spaces/banking-hall/hero-01.jpg',
         width: 1200,
         height: 630,
-        alt: 'Banking Hall at 48 Wall Street — historic event venue NYC',
+        alt: 'Banking Hall at 48 Wall Street: historic event venue NYC',
       },
     ],
     locale: 'en_US',

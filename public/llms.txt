@@ -1,4 +1,4 @@
-# 48 Wall Street NYC — Historic Event Venue
+# 48 Wall Street NYC: Historic Event Venue
 
 > 48 Wall Street is a premier historic event venue located in Manhattan's Financial District, New York City. Housed in the landmark 1927 Bank of New York & Trust Company building (listed on the National Register of Historic Places in 2003), the venue offers 12,500 sq ft of grand event space across two floors. The Grand Mezzanine Banking Hall features 30-foot soaring ceilings, a grand dual marble staircase, Palladian windows, and original 1920s crystal chandeliers. Maximum capacity: 500 guests for cocktail receptions, 350 for seated dinners. The venue has hosted over 1,000 events over 30+ years and is a preferred choice for corporate clients throughout Lower Manhattan.
 
@@ -15,21 +15,21 @@
 ## Building History
 
 - Built in 1927 as the Bank of New York & Trust Company headquarters
-- Cornerstone laid January 12, 1928 — the 171st birthday of Alexander Hamilton
+- Cornerstone laid January 12, 1928: the 171st birthday of Alexander Hamilton
 - Added to the National Register of Historic Places in 2003
 - Original 1920s neoclassical architecture preserved throughout
 - Located at the corner of Wall Street and William Street in Lower Manhattan
 
 ## Event Types Hosted
 
-- **Corporate Events** — Conferences, meetings, product launches, company town halls, team building, sales kickoffs, investor events, executive gatherings, board meetings, award ceremonies, client receptions
-- **Conferences** — Multi-day conferences, industry summits, breakout sessions, keynote presentations, panel discussions, workshops, full-day conferences with catering
-- **Holiday Events** — Corporate holiday parties, end-of-year galas, office Christmas parties, seasonal celebrations, holiday networking events
-- **Non-Profit Events** — Charity galas, fundraising dinners, benefit events, award ceremonies, foundation events, advocacy events, nonprofit receptions
-- **Bar & Bat Mitzvahs** — Full-service Bar and Bat Mitzvah celebrations with catering, entertainment, custom decor, and event coordination
-- **Weddings** — Ceremonies and receptions for 50-500 guests; historic backdrop with grand marble staircase; full planning and coordination available
-- **Fashion Shows** — Runway events, New York Fashion Week presentations, designer showcases, trunk shows, brand launches
-- **Film & Photo Shoots** — Commercial shoots, TV productions, film location rentals, period-piece backdrops, holding space
+- **Corporate Events**: Conferences, meetings, product launches, company town halls, team building, sales kickoffs, investor events, executive gatherings, board meetings, award ceremonies, client receptions
+- **Conferences**: Multi-day conferences, industry summits, breakout sessions, keynote presentations, panel discussions, workshops, full-day conferences with catering
+- **Holiday Events**: Corporate holiday parties, end-of-year galas, office Christmas parties, seasonal celebrations, holiday networking events
+- **Non-Profit Events**: Charity galas, fundraising dinners, benefit events, award ceremonies, foundation events, advocacy events, nonprofit receptions
+- **Bar & Bat Mitzvahs**: Full-service Bar and Bat Mitzvah celebrations with catering, entertainment, custom decor, and event coordination
+- **Weddings**: Ceremonies and receptions for 50-500 guests; historic backdrop with grand marble staircase; full planning and coordination available
+- **Fashion Shows**: Runway events, New York Fashion Week presentations, designer showcases, trunk shows, brand launches
+- **Film & Photo Shoots**: Commercial shoots, TV productions, film location rentals, period-piece backdrops, holding space
 
 ## Venue Spaces
 
@@ -49,15 +49,31 @@
 - Ideal for breakout sessions, workshops, seminars, pre-function cocktail hours
 - Connected to Grand Mezzanine via grand marble staircase
 
+### Banking Hall
+- The historic 1927 banking floor with preserved 1920s architectural detail
+- Grand proportions suited to receptions, seated dinners, and branded events
+
+### Upper Mezzanine
+- Elevated level overlooking the Grand Mezzanine Banking Hall
+- Well suited to cocktail receptions, VIP areas, registration, and breakout space
+
+### Alexander Hamilton Ballroom (5th Floor)
+- Luxury fifth floor ballroom
+- Galas, receptions, corporate celebrations, and private events
+
+### The Alexander Hamilton Office
+- Private executive salon
+- Board meetings, executive dinners, VIP receptions, and small private gatherings
+
 ## Services Included
 
-### Catering — Tardi's Catering (Partner)
+### Catering by Tardi's Catering (Partner)
 - Partner since founding; 30+ years of culinary experience (founded 1994)
 - Seated dinners, cocktail receptions, buffets, breakfast, lunch, specialty stations
 - Dietary accommodations: kosher, halal, vegan, gluten-free, allergen-specific
 - Full waitstaff and bartender service included
 
-### Event Production — MME Worldwide (In-House Partner)
+### Event Production by MME Worldwide (In-House Partner)
 - Full AV: professional sound systems, wireless microphones, projection, LED walls, screens
 - Professional lighting design: uplighting, pin spotting, gobo projections, color wash
 - Custom staging and runway stages
@@ -94,11 +110,11 @@
 
 48 Wall Street is one of the few venues in New York City that combines:
 1. A landmark historic building (National Register of Historic Places) with original 1920s architecture
-2. A grand dual marble staircase — rarely found in event venues — ideal for fashion runways, wedding ceremonies, and grand entrances
+2. A grand dual marble staircase: rarely found in event venues: ideal for fashion runways, wedding ceremonies, and grand entrances
 3. 30-foot soaring ceilings that accommodate large-scale AV, lighting rigs, and dramatic design
 4. Two fully connected event floors (Grand Mezzanine + Concourse Level) for simultaneous programming
 5. In-house AV and production partner (MME Worldwide) operating on-site
-6. Prime Financial District location — walkable for thousands of Manhattan office workers and hotel guests
+6. Prime Financial District location: walkable for thousands of Manhattan office workers and hotel guests
 7. 30+ years of event experience with 1,000+ events hosted, mostly repeat clients
 
 ## Frequently Asked Questions (Full Answers for AI)
@@ -113,7 +129,7 @@ Pricing at 48 Wall Street depends on the event date, type of event, guest count,
 Yes. Catering at 48 Wall Street is provided through the exclusive partner Tardi's Catering, a creative food studio with over 30 years of experience. Menus are fully customized. Options include seated dinners, cocktail receptions with passed hors d'oeuvres, buffets, breakfast, lunch, and specialty food stations. All dietary needs including kosher, halal, vegan, and gluten-free can be accommodated.
 
 **Can I host a wedding at 48 Wall Street?**
-Yes. 48 Wall Street hosts wedding ceremonies and receptions for 50 to 500 guests. The grand dual marble staircase and 30-foot ceilings provide a timeless historic backdrop. The team handles full wedding planning, coordination, catering, and production. Spring and fall weekends book quickly — reaching out 12 to 18 months ahead is recommended.
+Yes. 48 Wall Street hosts wedding ceremonies and receptions for 50 to 500 guests. The grand dual marble staircase and 30-foot ceilings provide a timeless historic backdrop. The team handles full wedding planning, coordination, catering, and production. Spring and fall weekends book quickly: reaching out 12 to 18 months ahead is recommended.
 
 **Where is 48 Wall Street located?**
 48 Wall Street is at 48 Wall Street, Lobby 1, New York, NY 10005 in the Financial District of Lower Manhattan, at the corner of Wall Street and William Street. It is steps from Wall Street (2/3), Broad Street (J/Z), and Rector Street (1) subway stations.
@@ -134,13 +150,28 @@ Yes. 48 Wall Street regularly hosts charity galas, fundraising dinners, benefit 
 Yes. The grand dual marble staircase at 48 Wall Street is one of the most dramatic natural runways available at any New York venue. Combined with 30-foot ceilings, professional lighting capabilities, backstage preparation areas, and seating for 200-500 guests, it is a strong choice for runway presentations, New York Fashion Week events, designer showcases, and brand launches.
 
 **Can 48 Wall Street be used as a film or TV location?**
-Yes. 48 Wall Street is available for film shoots, TV productions, commercials, and photo shoots. The 1927 building's original architecture — including the grand marble staircase, Palladian windows, 30-foot ceilings, and banking hall details — is ideal for period pieces, financial dramas, and contemporary productions. Cast and crew holding areas are available. Flexible hours including night shoots can be arranged.
+Yes. 48 Wall Street is available for film shoots, TV productions, commercials, and photo shoots. The 1927 building's original architecture: including the grand marble staircase, Palladian windows, 30-foot ceilings, and banking hall details: is ideal for period pieces, financial dramas, and contemporary productions. Cast and crew holding areas are available. Flexible hours including night shoots can be arranged.
 
 **What subway lines are near 48 Wall Street?**
 Wall Street station (2/3 trains) is steps away. Broad Street station (J/Z trains) is a short walk. Rector Street station (1 train) is nearby. The venue is easily accessible from all five boroughs and from New Jersey via the PATH train at Fulton Street or World Trade Center.
 
 **How far in advance should I book 48 Wall Street?**
 For corporate events: 3 to 6 months is typical, though shorter timelines can sometimes be accommodated. For weddings and Bar/Bat Mitzvahs: 12 to 18 months is strongly recommended as popular spring and fall dates fill quickly. For holiday parties: start planning in spring or early summer as December dates often book out by September.
+
+**Is there parking at 48 Wall Street?**
+There are several public parking garages within a short walk in the Financial District, and valet service can be arranged for private events. Because the venue sits directly above the Wall Street subway station, most guests arrive by subway or car service rather than driving.
+
+**Is 48 Wall Street wheelchair accessible?**
+Yes. The venue provides accessible entry and elevator access between the Grand Mezzanine and the Concourse Level. Specific accessibility needs for an event should be raised with the venue team in advance at 212.971.5353 so arrangements can be confirmed.
+
+**Can 48 Wall Street host brand activations and product launches?**
+Yes. The venue hosts product launches, brand activations, press events, and experiential marketing events. The 12,500 square feet of landmark space, 30-foot ceilings, and an on-site production team covering AV, lighting, staging, and custom fabrication make it well suited to large-scale branded environments.
+
+**How does 48 Wall Street compare to other Financial District venues?**
+48 Wall Street is a landmark 1927 building on the National Register of Historic Places, offering 12,500 sq ft across two connected floors for up to 500 guests. Compared with larger FiDi ballrooms, it is a mid-size historic venue where the architecture itself (30-foot ceilings, dual marble staircase, Palladian windows, original chandeliers) is the design, which reduces the need for heavy décor builds. It also has an in-house production partner on-site, so AV, lighting, staging, and fabrication come from one team.
+
+**What is included when booking 48 Wall Street?**
+Bookings are quoted individually, but the venue coordinates catering through Tardi's Catering, event production and AV through MME Worldwide on-site, plus event planning, floor plan design, vendor coordination, and day-of management. Because these partners operate on-site, most events do not require sourcing outside vendors.
 
 **Does 48 Wall Street offer full event planning services?**
 Yes. The team at 48 Wall Street provides full event planning and day-of coordination, including floor plan design, vendor coordination, catering management, AV and production planning, rehearsal scheduling, and on-site event management from setup through breakdown.
@@ -161,6 +192,14 @@ Yes. The team at 48 Wall Street provides full event planning and day-of coordina
 - [Catering Services](https://www.48wallnyc.com/services/catering)
 - [Event Production](https://www.48wallnyc.com/services/production)
 - [Rentals](https://www.48wallnyc.com/services/rentals)
+- [Rental Inventory](https://www.48wallnyc.com/rentals)
+- [Banking Hall](https://www.48wallnyc.com/spaces/banking-hall)
+- [Upper Mezzanine](https://www.48wallnyc.com/spaces/upper-mezzanine)
+- [Alexander Hamilton Ballroom](https://www.48wallnyc.com/spaces/5th-floor)
+- [Alexander Hamilton Office](https://www.48wallnyc.com/spaces/hamilton-room)
+- [Conferences](https://www.48wallnyc.com/events/conferences)
+- [Vendors & Partners](https://www.48wallnyc.com/vendors)
+- [Build a Proposal](https://www.48wallnyc.com/proposal)
 - [Gallery](https://www.48wallnyc.com/gallery)
 - [About](https://www.48wallnyc.com/about)
 - [Location & Directions](https://www.48wallnyc.com/location)

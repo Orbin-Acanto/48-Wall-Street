@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         url: '/spaces/5th-floor/hero-01.jpg',
         width: 1200,
         height: 630,
-        alt: 'The Alexander Hamilton Ballroom at 48 Wall Street — 5th floor luxury event space NYC',
+        alt: 'The Alexander Hamilton Ballroom at 48 Wall Street, 5th floor luxury event space NYC',
       },
     ],
     locale: 'en_US',

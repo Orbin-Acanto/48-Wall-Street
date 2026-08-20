@@ -265,7 +265,7 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
     id: 'carpet-runner-red',
     type: 'decor',
     category: 'Carpet',
-    name: 'Carpet Runner – Red',
+    name: 'Carpet Runner, Red',
     defaultDimensions: { width: 48, height: 240, unit: 'in' },
     svgPath:
       "<rect x='-24' y='-120' width='48' height='240' fill='#B22222' stroke='#700000' stroke-width='2'/>" +
@@ -275,7 +275,7 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
     id: 'carpet-runner-white',
     type: 'decor',
     category: 'Carpet',
-    name: 'Carpet Runner – White',
+    name: 'Carpet Runner, White',
     defaultDimensions: { width: 48, height: 240, unit: 'in' },
     svgPath:
       "<rect x='-24' y='-120' width='48' height='240' fill='#F8F8F8' stroke='#CCCCCC' stroke-width='2'/>" +
@@ -285,7 +285,7 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
     id: 'carpet-runner-blue',
     type: 'decor',
     category: 'Carpet',
-    name: 'Carpet Runner – Blue',
+    name: 'Carpet Runner, Blue',
     defaultDimensions: { width: 48, height: 240, unit: 'in' },
     svgPath:
       "<rect x='-24' y='-120' width='48' height='240' fill='#0000FF' stroke='#000000' stroke-width='2'/>" +
@@ -296,7 +296,7 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
     id: 'carpet-runner-black',
     type: 'decor',
     category: 'Carpet',
-    name: 'Carpet Runner – Black',
+    name: 'Carpet Runner, Black',
     defaultDimensions: { width: 48, height: 240, unit: 'in' },
     svgPath:
       "<rect x='-24' y='-120' width='48' height='240' fill='#111111' stroke='#555555' stroke-width='2'/>" +
@@ -309,7 +309,7 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
     id: 'backdrop-arch',
     type: 'decor',
     category: 'Backdrops',
-    name: 'Backdrop – Arch',
+    name: 'Backdrop, Arch',
     defaultDimensions: { width: 96, height: 24, unit: 'in' },
     svgPath:
       "<path d='M-48,12 A48,48 0 0 1 48,12 L40,12 A40,40 0 0 0 -40,12 Z' fill='#F5E1E1' stroke='#AA7777' stroke-width='1.5'/>",
@@ -318,7 +318,7 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
     id: 'backdrop-circle',
     type: 'decor',
     category: 'Backdrops',
-    name: 'Backdrop – Circle',
+    name: 'Backdrop, Circle',
     defaultDimensions: { width: 72, height: 12, unit: 'in' },
     svgPath:
       "<circle cx='0' cy='0' r='30' fill='none' stroke='#AA88CC' stroke-width='3'/>",
@@ -327,7 +327,7 @@ export const DECOR_LIBRARY: DraggableLibraryItem[] = [
     id: 'backdrop-square',
     type: 'decor',
     category: 'Backdrops',
-    name: 'Backdrop – Square Frame',
+    name: 'Backdrop, Square Frame',
     defaultDimensions: { width: 96, height: 12, unit: 'in' },
     svgPath:
       "<rect x='-36' y='-36' width='72' height='72' fill='none' stroke='#8899AA' stroke-width='3' stroke-dasharray='6,4'/>",

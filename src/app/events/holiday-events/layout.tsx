@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Celebrate the season at 48 Wall Street. The premier holiday event venue in Lower Manhattan offering historic charm for corporate parties and seasonal galas.',
   keywords:
-    'holiday party venue NYC, corporate holiday party Manhattan, company holiday event venue, Christmas party venue NYC, holiday gala venue, end of year party venue NYC, corporate holiday celebration, holiday party space Manhattan, Financial District holiday venue, office holiday party NYC, seasonal event venue, holiday networking event, company Christmas party venue, holiday party with catering NYC, Manhattan holiday venue',
+    'holiday party venue NYC, corporate holiday party Manhattan, company holiday event venue, Christmas party venue NYC, holiday gala venue, end of year party venue NYC, corporate holiday celebration, holiday party space Manhattan, Financial District holiday venue, office holiday party NYC, seasonal event venue, holiday networking event, company Christmas party venue, holiday party with catering NYC, Manhattan holiday venue, holiday party venue rental NYC, corporate christmas party venue Manhattan, holiday party venues near me, company holiday party space NYC, winter party venue NYC, holiday party venue 500 guests NYC, December event venue NYC, festive event space Manhattan',
   openGraph: {
     title: 'Holiday Party Venue NYC | Corporate Celebrations | 48 Wall Street',
     description:
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: '/gallery/holiday/holiday-01.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street corporate holiday party venue NYC — festive gala in the historic Financial District banking hall',
+        alt: '48 Wall Street corporate holiday party venue NYC: festive gala in the historic Financial District banking hall',
       },
     ],
     locale: 'en_US',

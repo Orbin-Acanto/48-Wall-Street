@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Host your next conference at 48 Wall Street in the Financial District. Historic 1927 venue with 9,000 sq ft main hall, 6 breakout rooms, full AV production, and catering for 50 to 500 attendees. Request a quote.',
   keywords:
-    'conference venue NYC, meeting space Financial District, conference venue rental Manhattan, meeting venues NYC, corporate conference space Wall Street, conference center near me NYC, venue for conference Manhattan, board meeting venue NYC, meeting space rental Financial District, business conference NYC, Wall Street conference venue, summit venue Manhattan, workshop space NYC, seminar venue Financial District, corporate meeting room NYC',
+    'conference venue NYC, meeting space Financial District, conference venue rental Manhattan, meeting venues NYC, corporate conference space Wall Street, conference center near me NYC, venue for conference Manhattan, board meeting venue NYC, meeting space rental Financial District, business conference NYC, Wall Street conference venue, summit venue Manhattan, workshop space NYC, seminar venue Financial District, corporate meeting room NYC, conference space NYC, conference venue rental Manhattan, corporate meeting venue NYC, conference venues near me, breakout room venue NYC, summit venue NYC, full day conference venue NYC, conference venue with catering NYC, seminar venue Manhattan, symposium venue NYC, conference venue 350 guests',
   openGraph: {
     title:
       'Conference Venue NYC | Meeting Space Financial District | 48 Wall Street',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: '/gallery/corporate/corporate-04.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street historic conference venue Financial District NYC — 9000 sq ft Banking Hall with 30-foot ceilings',
+        alt: '48 Wall Street historic conference venue Financial District NYC, 9000 sq ft Banking Hall with 30-foot ceilings',
       },
     ],
     locale: 'en_US',

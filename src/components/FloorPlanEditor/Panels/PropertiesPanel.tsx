@@ -682,7 +682,7 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
         {selectionCount > 1 && (
           <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
             <p className="mb-2 text-xs font-medium text-blue-800">
-              {selectionCount} items selected — edits apply to all
+              {selectionCount} items selected: edits apply to all
             </p>
             {onAlign && (
               <div>

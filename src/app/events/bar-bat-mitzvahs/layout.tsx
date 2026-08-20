@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     'Celebrate this milestone at 48 Wall Street. A premier historic downtown venue offering a unique event space in Lower Manhattan for unforgettable Bar and Bat Mitzvahs.',
   keywords:
-    'Bar Mitzvah venue NYC, Bat Mitzvah venue Manhattan, Bar Mitzvah venue Financial District, Bat Mitzvah venue New York, Jewish celebration venue NYC, Bar Mitzvah party venue, Bat Mitzvah party space, Manhattan Bar Mitzvah venue, NYC Bat Mitzvah location, historic Bar Mitzvah venue, elegant Bat Mitzvah space, Bar Mitzvah venue with catering, customizable Bar Mitzvah venue, Lower Manhattan Bar Mitzvah, Wall Street Bar Mitzvah venue',
+    'Bar Mitzvah venue NYC, Bat Mitzvah venue Manhattan, Bar Mitzvah venue Financial District, Bat Mitzvah venue New York, Jewish celebration venue NYC, Bar Mitzvah party venue, Bat Mitzvah party space, Manhattan Bar Mitzvah venue, NYC Bat Mitzvah location, historic Bar Mitzvah venue, elegant Bat Mitzvah space, Bar Mitzvah venue with catering, customizable Bar Mitzvah venue, Lower Manhattan Bar Mitzvah, Wall Street Bar Mitzvah venue, mitzvah venue rental NYC, bar mitzvah venues near me, bat mitzvah party venue Manhattan, mitzvah reception space NYC, mitzvah venue 300 guests NYC, downtown mitzvah venue',
   openGraph: {
     title:
       'Bar & Bat Mitzvah Venue NYC | Manhattan Celebration | 48 Wall Street',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: '/gallery/bar/bar-01.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street Bar and Bat Mitzvah venue NYC — grand historic setting in the Financial District',
+        alt: '48 Wall Street Bar and Bat Mitzvah venue NYC: grand historic setting in the Financial District',
       },
     ],
     locale: 'en_US',

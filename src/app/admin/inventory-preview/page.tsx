@@ -85,7 +85,7 @@ export default function InventoryPreviewPage() {
             Event Planner Inventory
           </h1>
           <p className="text-sm text-neutral-600">
-            Furniture, decor, catering & AV — grouped by type and category.
+            Furniture, decor, catering & AV: grouped by type and category.
           </p>
         </div>
         <div className="hidden text-xs text-neutral-500 print:block">

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Experience signature dining at 48 Wall Street. Partnering with Tardi's Catering to deliver gourmet menus for corporate and social events in a historic downtown venue.",
   keywords:
-    "catering services NYC, Manhattan catering, event catering NYC, corporate catering Manhattan, wedding catering NYC, Tardi's Catering, 48 Wall Street catering, seated dinner catering, cocktail catering NYC, buffet catering, breakfast catering NYC, lunch catering Manhattan, kosher catering NYC, event food service, gala catering, party catering NYC, Financial District catering, full-service catering NYC, creative catering Manhattan",
+    "catering services NYC, Manhattan catering, event catering NYC, corporate catering Manhattan, wedding catering NYC, Tardi's Catering, 48 Wall Street catering, seated dinner catering, cocktail catering NYC, buffet catering, breakfast catering NYC, lunch catering Manhattan, kosher catering NYC, event food service, gala catering, party catering NYC, Financial District catering, full-service catering NYC, creative catering Manhattan, catering near me, gala catering NYC, wedding catering Financial District, kosher catering NYC venue, event catering with venue NYC, corporate lunch catering NYC, holiday party catering NYC, catering for 500 guests NYC",
   openGraph: {
     title:
       "Catering Services NYC | Tardi's Catering | 48 Wall Street Manhattan",

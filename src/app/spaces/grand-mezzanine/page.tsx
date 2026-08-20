@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title:
       'Grand Mezzanine Banking Hall | Historic NYC Event Space | 48 Wall Street',
     description:
-      '9,000 sq ft of original 1927 architecture. 30-foot ceilings, grand marble staircase, crystal chandeliers. Seats 350, reception up to 500 — Financial District, NYC.',
+      '9,000 sq ft of original 1927 architecture. 30-foot ceilings, grand marble staircase, crystal chandeliers. Seats 350, reception up to 500. Financial District, NYC.',
     url: 'https://www.48wallnyc.com/spaces/grand-mezzanine',
     siteName: '48 Wall Street NYC',
     images: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         url: '/spaces/grand-mezzanine/hero-01.jpg',
         width: 1200,
         height: 630,
-        alt: 'Grand Mezzanine Banking Hall at 48 Wall Street — 30-foot ceilings and grand marble staircase',
+        alt: 'Grand Mezzanine Banking Hall at 48 Wall Street, 30-foot ceilings and grand marble staircase',
       },
     ],
     locale: 'en_US',

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         url: '/spaces/concourse-level/hero-01.jpg',
         width: 1200,
         height: 630,
-        alt: 'Concourse Level at 48 Wall Street — flexible breakout rooms and meeting space NYC',
+        alt: 'Concourse Level at 48 Wall Street: flexible breakout rooms and meeting space NYC',
       },
     ],
     locale: 'en_US',

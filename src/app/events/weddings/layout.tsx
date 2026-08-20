@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Celebrate your love at 48 Wall Street. A stunning historic downtown venue and premier wedding space on Wall Street, offering timeless elegance for ceremonies and receptions.',
   keywords:
-    'wedding venue NYC, Manhattan wedding venue, historic wedding venue NYC, Financial District wedding, elegant wedding space Manhattan, grand wedding venue NYC, wedding venue with history, Lower Manhattan wedding, Wall Street wedding venue, wedding venue with marble staircase, 1920s wedding venue, wedding reception venue NYC, Manhattan wedding ceremony, wedding venue with catering NYC, unique wedding venue Manhattan, rent venue for wedding NYC, ballrooms for weddings NYC, wedding banquet hall Manhattan',
+    'wedding venue NYC, Manhattan wedding venue, historic wedding venue NYC, Financial District wedding, elegant wedding space Manhattan, grand wedding venue NYC, wedding venue with history, Lower Manhattan wedding, Wall Street wedding venue, wedding venue with marble staircase, 1920s wedding venue, wedding reception venue NYC, Manhattan wedding ceremony, wedding venue with catering NYC, unique wedding venue Manhattan, rent venue for wedding NYC, ballrooms for weddings NYC, wedding banquet hall Manhattan, wedding venue rental NYC, wedding venues near me, historic wedding venue Manhattan, wedding reception space NYC, NYC wedding venue 300 guests, downtown wedding venue NYC, landmark wedding venue NYC, wedding venue with marble staircase NYC, FiDi wedding venue, best historic wedding venues in NYC',
   openGraph: {
     title:
       'Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan | 48 Wall Street',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: '/gallery/wedding/wedding-01.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street historic wedding venue NYC — grand marble staircase and 30-foot ceilings in the Financial District',
+        alt: '48 Wall Street historic wedding venue NYC: grand marble staircase and 30-foot ceilings in the Financial District',
       },
     ],
     locale: 'en_US',

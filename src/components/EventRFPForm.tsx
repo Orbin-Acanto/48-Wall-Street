@@ -89,7 +89,7 @@ function StepIndicator({
 
       {/* Mobile-only current step label */}
       <p className="font-secondary text-primary mt-4 text-center text-xs font-semibold tracking-[0.15em] uppercase sm:hidden">
-        Step {current + 1} of {steps.length} — {steps[current]}
+        Step {current + 1} of {steps.length}: {steps[current]}
       </p>
     </div>
   );

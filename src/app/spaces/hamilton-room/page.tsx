@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         url: '/spaces/hamilton-room/hero-01.jpg',
         width: 1200,
         height: 630,
-        alt: 'The Alexander Hamilton Office at 48 Wall Street — private executive salon NYC',
+        alt: 'The Alexander Hamilton Office at 48 Wall Street: private executive salon NYC',
       },
     ],
     locale: 'en_US',

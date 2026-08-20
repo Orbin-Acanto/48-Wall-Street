@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     'Showcase your collection at 48 Wall Street, a premier NYC fashion show event space. Our historic Lower Manhattan venue offers the perfect dramatic backdrop for New York Fashion Week run of shows.',
   keywords:
-    'fashion show venue NYC, runway venue Manhattan, fashion event space NYC, designer showcase venue, fashion week venue NYC, runway event space, Manhattan fashion show location, Financial District fashion venue, fashion presentation space, trunk show venue NYC, brand launch venue, fashion industry events NYC, designer runway NYC, fashion show space Manhattan, New York fashion venue, historic fashion venue',
+    'fashion show venue NYC, runway venue Manhattan, fashion event space NYC, designer showcase venue, fashion week venue NYC, runway event space, Manhattan fashion show location, Financial District fashion venue, fashion presentation space, trunk show venue NYC, brand launch venue, fashion industry events NYC, designer runway NYC, fashion show space Manhattan, New York fashion venue, historic fashion venue, fashion show venue rental NYC, runway venue NYC, NYFW venue rental, fashion presentation space Manhattan, designer showcase venue NYC, fashion venue with runway NYC, downtown fashion show space',
   openGraph: {
     title: 'Fashion Show Venue NYC | Runway Events Manhattan | 48 Wall Street',
     description:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         url: '/gallery/fashion/fashion-01.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street fashion show venue NYC — runway event on the grand marble staircase in the Financial District',
+        alt: '48 Wall Street fashion show venue NYC: runway event on the grand marble staircase in the Financial District',
       },
     ],
     locale: 'en_US',

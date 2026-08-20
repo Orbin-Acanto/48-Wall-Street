@@ -21,11 +21,11 @@ export async function generateMetadata({
 
   return {
     title: `${brochure.title} | 48 Wall Street NYC`,
-    description: brochure.subtitle || `${brochure.title} — 48 Wall Street`,
+    description: brochure.subtitle || `${brochure.title}, 48 Wall Street`,
     alternates: { canonical: `/b/${slug}` },
     openGraph: {
       title: `${brochure.title} | 48 Wall Street NYC`,
-      description: brochure.subtitle || `${brochure.title} — 48 Wall Street`,
+      description: brochure.subtitle || `${brochure.title}, 48 Wall Street`,
       url: `/b/${slug}`,
       images: brochure.pages[0]?.image ? [brochure.pages[0].image] : undefined,
     },

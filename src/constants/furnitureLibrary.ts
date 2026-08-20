@@ -1068,7 +1068,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     id: 'cocktail-table-round-low',
     type: 'furniture',
     category: 'Cocktail',
-    name: 'Cocktail Table – Round (Low)',
+    name: 'Cocktail Table, Round (Low)',
     defaultDimensions: { width: 30, height: 30, unit: 'in' },
     svgPath:
       "<circle cx='0' cy='0' r='15' fill='#D8D8D8' stroke='#666' stroke-width='1.5'/>" +
@@ -1078,7 +1078,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     id: 'cocktail-table-round-high',
     type: 'furniture',
     category: 'Cocktail',
-    name: 'Cocktail Table – Round (Highboy)',
+    name: 'Cocktail Table, Round (Highboy)',
     defaultDimensions: { width: 30, height: 30, unit: 'in' },
     svgPath:
       "<circle cx='0' cy='0' r='15' fill='#F3F3F3' stroke='#555' stroke-width='1.5'/>" +
@@ -1089,7 +1089,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     id: 'cocktail-table-square-low',
     type: 'furniture',
     category: 'Cocktail',
-    name: 'Cocktail Table – Square (Low)',
+    name: 'Cocktail Table, Square (Low)',
     defaultDimensions: { width: 30, height: 30, unit: 'in' },
     svgPath:
       "<rect x='-15' y='-15' width='30' height='30' fill='#D8D8D8' stroke='#666' stroke-width='1.5'/>" +
@@ -1099,7 +1099,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     id: 'cocktail-table-square-high',
     type: 'furniture',
     category: 'Cocktail',
-    name: 'Cocktail Table – Square (Highboy)',
+    name: 'Cocktail Table, Square (Highboy)',
     defaultDimensions: { width: 30, height: 30, unit: 'in' },
     svgPath:
       "<rect x='-15' y='-15' width='30' height='30' fill='#F3F3F3' stroke='#555' stroke-width='1.5'/>" +
@@ -1113,7 +1113,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     id: 'dance-floor-white',
     type: 'furniture',
     category: 'Dance',
-    name: 'Dance Floor – White',
+    name: 'Dance Floor, White',
     defaultDimensions: { width: 192, height: 192, unit: 'in' },
     svgPath:
       "<rect x='-96' y='-96' width='192' height='192' fill='#FDFDFD' stroke='#BBBBBB' stroke-width='2'/>",
@@ -1122,7 +1122,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     id: 'dance-floor-black',
     type: 'furniture',
     category: 'Dance',
-    name: 'Dance Floor – Black',
+    name: 'Dance Floor, Black',
     defaultDimensions: { width: 192, height: 192, unit: 'in' },
     svgPath:
       "<rect x='-96' y='-96' width='192' height='192' fill='#111111' stroke='#444444' stroke-width='2'/>",
@@ -1131,7 +1131,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     id: 'dance-floor-checker',
     type: 'furniture',
     category: 'Dance',
-    name: 'Dance Floor – Checkerboard',
+    name: 'Dance Floor, Checkerboard',
     defaultDimensions: { width: 192, height: 192, unit: 'in' },
     svgPath:
       "<rect x='-96' y='-96' width='192' height='192' fill='#FFFFFF' stroke='#555555' stroke-width='2'/>" +
@@ -1155,7 +1155,7 @@ export const FURNITURE_LIBRARY: DraggableLibraryItem[] = [
     id: 'dance-floor-led',
     type: 'furniture',
     category: 'Dance',
-    name: 'Dance Floor – LED',
+    name: 'Dance Floor, LED',
     defaultDimensions: { width: 192, height: 192, unit: 'in' },
     svgPath:
       "<rect x='-96' y='-96' width='192' height='192' fill='#000015' stroke='#6666FF' stroke-width='2'/>" +
@@ -1409,7 +1409,7 @@ const SEAT_OVERRIDES: Record<string, number> = {
 // Nominal standing capacity for whole categories (used when the item has no
 // explicit override and no "N seat" in its name).
 const CATEGORY_STANDING_CAPACITY: Record<string, number> = {
-  Cocktail: 4, // highboy / cocktail tables — standing
+  Cocktail: 4, // highboy / cocktail tables: standing
 };
 
 const deriveSeats = (category?: string, name?: string): number => {

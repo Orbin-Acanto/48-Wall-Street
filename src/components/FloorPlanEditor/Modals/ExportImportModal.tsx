@@ -16,7 +16,7 @@ import { exportFormats } from '@/data';
 const FLOOR_LEVEL_LABELS: Record<FloorLevel, string> = {
   grand_mezzanine: 'Ground Floor & Mezzanine',
   concourse: 'Concourse Level',
-  hamilton_ballroom: 'Alexander Hamilton Ballroom — 5th Floor',
+  hamilton_ballroom: 'Alexander Hamilton Ballroom, 5th Floor',
 };
 
 export const ExportImportModal: React.FC<ExportImportModalProps> = ({

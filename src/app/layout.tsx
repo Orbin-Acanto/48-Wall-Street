@@ -18,14 +18,13 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default:
-      'Historic Event Venue NYC | Financial District | 48 Wall Street',
+    default: 'Historic Event Venue NYC | Financial District | 48 Wall Street',
     template: '%s | 48 Wall Street NYC',
   },
   description:
     '48 Wall Street is a premier historic event venue in the Financial District of Lower Manhattan. The 1927 Banking Hall offers 12,500 sq ft for corporate events, conferences, weddings, galas, and private celebrations. Up to 500 guests.',
   keywords:
-    '48 Wall Street, NYC event venue, Manhattan event space, Financial District venue, historic venue NYC, corporate event space Manhattan, wedding venue NYC, Bar Mitzvah venue, Bat Mitzvah venue, Grand Mezzanine, Wall Street events, Lower Manhattan venue, historic bank building venue, event venue with catering, Financial District wedding, corporate meeting space NYC, Bank of New York building, 1920s architecture venue, Manhattan private events, New York event venue',
+    '48 Wall Street, NYC event venue, Manhattan event space, Financial District venue, historic venue NYC, corporate event space Manhattan, wedding venue NYC, Bar Mitzvah venue, Bat Mitzvah venue, Grand Mezzanine, Wall Street events, Lower Manhattan venue, historic bank building venue, event venue with catering, Financial District wedding, corporate meeting space NYC, Bank of New York building, 1920s architecture venue, Manhattan private events, New York event venue, event space NYC, event space rental NYC, venue rental NYC, event venues near me, banquet hall NYC, private event space Manhattan, gala venue NYC, landmark venue NYC, event venue with 500 capacity NYC, downtown Manhattan event space, FiDi event venue, product launch venue NYC, brand activation venue NYC, conference venue Financial District, large event venue NYC',
   authors: [{ name: '48 Wall Street Events' }],
   creator: '48 Wall Street Events',
   publisher: '48 Wall Street Events',
@@ -101,7 +100,11 @@ export default function RootLayout({
       <head>
         {/* Preconnect to Google Fonts to eliminate render-blocking latency */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         {/* Non-render-blocking font load with font-display:swap built in */}
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
@@ -367,6 +370,100 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
+              '@type': 'ItemList',
+              '@id': `${siteUrl}/#venue-spaces`,
+              name: 'Event Spaces at 48 Wall Street',
+              description:
+                'Bookable event spaces at 48 Wall Street, a historic 1927 landmark venue in the Financial District of Lower Manhattan.',
+              numberOfItems: 6,
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  item: {
+                    '@type': 'Room',
+                    name: 'Grand Mezzanine Banking Hall',
+                    description:
+                      'The main event hall at 48 Wall Street. 9,000 square feet with 30-foot ceilings, original crystal chandeliers, Palladian windows, and a grand dual marble staircase. Seats 350 for dinner or 500 for a cocktail reception.',
+                    url: `${siteUrl}/spaces/grand-mezzanine`,
+                    floorSize: {
+                      '@type': 'QuantitativeValue',
+                      value: 9000,
+                      unitCode: 'FTK',
+                    },
+                    maximumAttendeeCapacity: 500,
+                  },
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  item: {
+                    '@type': 'Room',
+                    name: 'Concourse Vault Level',
+                    description:
+                      'A 3,000 square foot lower level with 14-foot ceilings, divisible into six separate breakout rooms. Accommodates 150 seated or 200 for a reception. Connected to the Grand Mezzanine by the marble staircase.',
+                    url: `${siteUrl}/spaces/concourse-level`,
+                    floorSize: {
+                      '@type': 'QuantitativeValue',
+                      value: 3000,
+                      unitCode: 'FTK',
+                    },
+                    maximumAttendeeCapacity: 200,
+                  },
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  item: {
+                    '@type': 'Room',
+                    name: 'Banking Hall',
+                    description:
+                      'The historic 1927 banking floor at 48 Wall Street, featuring preserved 1920s architectural detail and grand proportions for receptions, dinners, and branded events.',
+                    url: `${siteUrl}/spaces/banking-hall`,
+                  },
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 4,
+                  item: {
+                    '@type': 'Room',
+                    name: 'Upper Mezzanine',
+                    description:
+                      'An elevated mezzanine level overlooking the Grand Mezzanine Banking Hall, suited to cocktail receptions, VIP areas, and breakout space.',
+                    url: `${siteUrl}/spaces/upper-mezzanine`,
+                  },
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 5,
+                  item: {
+                    '@type': 'Room',
+                    name: 'Alexander Hamilton Ballroom',
+                    description:
+                      'A luxury fifth floor ballroom at 48 Wall Street for galas, receptions, and corporate celebrations.',
+                    url: `${siteUrl}/spaces/5th-floor`,
+                  },
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 6,
+                  item: {
+                    '@type': 'Room',
+                    name: 'The Alexander Hamilton Office',
+                    description:
+                      'A private executive salon at 48 Wall Street for intimate board meetings, executive dinners, and VIP receptions.',
+                    url: `${siteUrl}/spaces/hamilton-room`,
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
               '@type': 'WebSite',
               '@id': `${siteUrl}/#website`,
               url: siteUrl,
@@ -432,6 +529,54 @@ export default function RootLayout({
                   acceptedAnswer: {
                     '@type': 'Answer',
                     text: 'Yes, 48 Wall Street offers comprehensive event services through exclusive vendors including full-service catering, audiovisual equipment, event planning, decor, floral design, and event rentals.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How much does it cost to rent 48 Wall Street?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Pricing depends on the event date, event type, guest count, day of the week, and services required such as catering, audio visual, and production. There is no fixed published rate because every event is quoted individually. For a quote, contact 48 Wall Street at 212.971.5353 or info@48WallNYC.com with your event details.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How far in advance should I book 48 Wall Street?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'For corporate events, 3 to 6 months is typical, though shorter timelines can often be accommodated. For weddings and Bar or Bat Mitzvahs, 12 to 18 months is recommended because popular spring and fall dates fill quickly. For December holiday parties, planning should begin in spring or early summer.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What subway lines are near 48 Wall Street?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Wall Street station on the 2 and 3 trains is steps away. Broad Street station on the J and Z trains is a short walk, and Rector Street station on the 1 train is nearby. The venue is also reachable from New Jersey via the PATH train at Fulton Street or World Trade Center.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Is 48 Wall Street available for weddings?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes. 48 Wall Street hosts wedding ceremonies and receptions for 50 to 500 guests. The grand dual marble staircase and 30-foot ceilings provide a historic backdrop, and the team handles planning, coordination, catering, and production. Spring and fall weekends book quickly, so 12 to 18 months of lead time is recommended.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Does 48 Wall Street have parking or valet?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'There are several public parking garages within a short walk of 48 Wall Street in the Financial District, and valet service can be arranged for private events. Because the venue sits directly on top of the Wall Street subway station, most guests arrive by subway or car service.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Can 48 Wall Street host brand activations and product launches?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes. 48 Wall Street hosts product launches, brand activations, press events, and experiential marketing events. The 12,500 square feet of landmark space, 30-foot ceilings, and on-site production team supporting AV, lighting, staging, and custom fabrication make it well suited to large-scale branded environments.',
                   },
                 },
               ],
