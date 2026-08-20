@@ -77,7 +77,7 @@ const THEMES: Record<Experience, ExperienceTheme> = {
     title: 'A Private Dinner Experience',
     intro:
       'Reserve an intimate evening in one of New York\u2019s most distinguished private rooms, set beneath soaring ceilings, gilded columns and a stately fireplace overlooking Wall Street.',
-    image: '/spaces/hamilton-room/gallery-02.jpg',
+    image: '/gallery/holiday/themes/hamilton-01.jpg',
     imageAlt:
       'Private dinner setting in The Alexander Hamilton Office at 48 Wall Street, Financial District NYC',
     detailHeading: 'The Evening',
@@ -828,27 +828,41 @@ export default function BookingModal({
                           >
                             Number of guests
                           </label>
-                          <select
-                            id={`${formId}-party`}
-                            value={partySize}
-                            onChange={(e) =>
-                              setPartySize(Number(e.target.value))
-                            }
-                            className="font-secondary border-primary/25 focus:border-primary w-full border bg-white/[0.03] px-4 py-3.5 text-[14px] text-white transition-colors outline-none"
-                          >
-                            {Array.from(
-                              { length: partyMax - partyMin + 1 },
-                              (_, i) => partyMin + i
-                            ).map((n) => (
-                              <option
-                                key={n}
-                                value={n}
-                                className="bg-dark-black text-white"
-                              >
-                                {n} {n === 1 ? 'guest' : 'guests'}
-                              </option>
-                            ))}
-                          </select>
+                          <div className="relative">
+                            <select
+                              id={`${formId}-party`}
+                              value={partySize}
+                              onChange={(e) =>
+                                setPartySize(Number(e.target.value))
+                              }
+                              className="font-secondary border-primary/25 focus:border-primary w-full appearance-none border bg-white/[0.03] py-3.5 pr-11 pl-4 text-[14px] text-white transition-colors outline-none"
+                            >
+                              {Array.from(
+                                { length: partyMax - partyMin + 1 },
+                                (_, i) => partyMin + i
+                              ).map((n) => (
+                                <option
+                                  key={n}
+                                  value={n}
+                                  className="bg-dark-black text-white"
+                                >
+                                  {n} {n === 1 ? 'guest' : 'guests'}
+                                </option>
+                              ))}
+                            </select>
+                            <svg
+                              aria-hidden="true"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth={1.5}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="text-primary/70 pointer-events-none absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2"
+                            >
+                              <path d="m6 9 6 6 6-6" />
+                            </svg>
+                          </div>
                         </div>
 
                         {theme.asksChildren && (
@@ -859,27 +873,41 @@ export default function BookingModal({
                             >
                               How many are children
                             </label>
-                            <select
-                              id={`${formId}-children`}
-                              value={children}
-                              onChange={(e) =>
-                                setChildren(Number(e.target.value))
-                              }
-                              className="font-secondary border-primary/25 focus:border-primary w-full border bg-white/[0.03] px-4 py-3.5 text-[14px] text-white transition-colors outline-none"
-                            >
-                              {Array.from(
-                                { length: partySize + 1 },
-                                (_, i) => i
-                              ).map((n) => (
-                                <option
-                                  key={n}
-                                  value={n}
-                                  className="bg-dark-black text-white"
-                                >
-                                  {n}
-                                </option>
-                              ))}
-                            </select>
+                            <div className="relative">
+                              <select
+                                id={`${formId}-children`}
+                                value={children}
+                                onChange={(e) =>
+                                  setChildren(Number(e.target.value))
+                                }
+                                className="font-secondary border-primary/25 focus:border-primary w-full appearance-none border bg-white/[0.03] py-3.5 pr-11 pl-4 text-[14px] text-white transition-colors outline-none"
+                              >
+                                {Array.from(
+                                  { length: partySize + 1 },
+                                  (_, i) => i
+                                ).map((n) => (
+                                  <option
+                                    key={n}
+                                    value={n}
+                                    className="bg-dark-black text-white"
+                                  >
+                                    {n}
+                                  </option>
+                                ))}
+                              </select>
+                              <svg
+                                aria-hidden="true"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth={1.5}
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="text-primary/70 pointer-events-none absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2"
+                              >
+                                <path d="m6 9 6 6 6-6" />
+                              </svg>
+                            </div>
                           </div>
                         )}
                       </div>

@@ -25,6 +25,7 @@ function CreditCardAuthContent() {
   const [error, setError] = useState<string | null>(null);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
+  const [alreadySigned, setAlreadySigned] = useState(false);
 
   const [formValues, setFormValues] = useState<CreditCardAuthFormData>({
     cardType: '',
@@ -62,7 +63,18 @@ function CreditCardAuthContent() {
         });
 
         if (!response.ok) {
-          setError('Invalid or tampered signing link.');
+          const body = await response.json().catch(() => ({}));
+          if (response.status === 409) {
+            setAlreadySigned(true);
+            setError(
+              body.message ??
+                'This document has already been signed and submitted.'
+            );
+          } else if (response.status === 410) {
+            setError(body.message ?? 'This signing link has expired.');
+          } else {
+            setError('Invalid or tampered signing link.');
+          }
           setIsLoading(false);
           return;
         }
@@ -132,31 +144,74 @@ function CreditCardAuthContent() {
     >
   ) => {
     const { name, value } = e.target;
-    setFormValues((prev) => ({ ...prev, [name]: value }));
+    setFormValues((prev) => {
+      const next = { ...prev, [name]: value };
+      if (name === 'cardType') {
+        // Re-mask the number against the new brand's length/grouping.
+        const limit = value === 'amex' ? 15 : 16;
+        const digits = prev.creditCardNumber
+          .replace(/\D/g, '')
+          .substring(0, limit);
+        next.creditCardNumber =
+          value === 'amex'
+            ? [
+                digits.substring(0, 4),
+                digits.substring(4, 10),
+                digits.substring(10, 15),
+              ]
+                .filter(Boolean)
+                .join(' ')
+            : (digits.match(/.{1,4}/g)?.join(' ') ?? digits);
+      }
+      return next;
+    });
+  };
+
+  // Amex runs 15 digits grouped 4-6-5; every other brand we accept is 16 as
+  // four groups of four. Grouping follows the selected card type so the mask
+  // matches what the client is actually holding.
+  const cardDigitLimit = formValues.cardType === 'amex' ? 15 : 16;
+
+  const groupCardDigits = (digits: string) => {
+    if (formValues.cardType === 'amex') {
+      return [
+        digits.substring(0, 4),
+        digits.substring(4, 10),
+        digits.substring(10, 15),
+      ]
+        .filter(Boolean)
+        .join(' ');
+    }
+    return digits.match(/.{1,4}/g)?.join(' ') ?? digits;
   };
 
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
-    const formatted = value.match(/.{1,4}/g)?.join(' ') || value;
+    const digits = e.target.value
+      .replace(/\D/g, '')
+      .substring(0, cardDigitLimit);
     setFormValues((prev) => ({
       ...prev,
-      creditCardNumber: formatted.substring(0, 19),
+      creditCardNumber: groupCardDigits(digits),
     }));
   };
 
   const handleExpDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length >= 2) {
-      value = value.substring(0, 2) + '/' + value.substring(2, 4);
-    }
-    setFormValues((prev) => ({
-      ...prev,
-      expirationDate: value.substring(0, 5),
-    }));
+    const digits = e.target.value.replace(/\D/g, '').substring(0, 4);
+    // Auto-insert "/" once the month is complete, but only while the user is
+    // adding digits — otherwise backspacing over the slash re-adds it and the
+    // month can never be edited.
+    const isDeleting = e.target.value.length < formValues.expirationDate.length;
+    const formatted =
+      digits.length > 2 || (digits.length === 2 && !isDeleting)
+        ? `${digits.substring(0, 2)}/${digits.substring(2)}`
+        : digits;
+    setFormValues((prev) => ({ ...prev, expirationDate: formatted }));
   };
 
+  const cvvLength = formValues.cardType === 'amex' ? 4 : 3;
+
   const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, '').substring(0, 4);
+    const value = e.target.value.replace(/\D/g, '').substring(0, cvvLength);
     setFormValues((prev) => ({ ...prev, cvvCode: value }));
   };
 
@@ -178,9 +233,9 @@ function CreditCardAuthContent() {
 
   const isFormComplete =
     formValues.cardType &&
-    formValues.creditCardNumber.replace(/\s/g, '').length >= 15 &&
+    formValues.creditCardNumber.replace(/\s/g, '').length === cardDigitLimit &&
     formValues.expirationDate.length === 5 &&
-    formValues.cvvCode.length >= 3 &&
+    formValues.cvvCode.length === cvvLength &&
     formValues.cardholderName &&
     formValues.billingAddress &&
     formValues.cellPhone &&
@@ -198,11 +253,12 @@ function CreditCardAuthContent() {
 
   const missingFormFields: string[] = [];
   if (!formValues.cardType) missingFormFields.push('Card type');
-  if (formValues.creditCardNumber.replace(/\s/g, '').length < 15)
+  if (formValues.creditCardNumber.replace(/\s/g, '').length !== cardDigitLimit)
     missingFormFields.push('Credit card number');
   if (formValues.expirationDate.length !== 5)
     missingFormFields.push('Expiration date');
-  if (formValues.cvvCode.length < 3) missingFormFields.push('CVV code');
+  if (formValues.cvvCode.length !== cvvLength)
+    missingFormFields.push('CVV code');
   if (!formValues.cardholderName) missingFormFields.push('Cardholder name');
   if (!formValues.billingAddress) missingFormFields.push('Billing address');
   if (!formValues.cellPhone) missingFormFields.push('Cell phone');
@@ -246,12 +302,22 @@ function CreditCardAuthContent() {
           typedName,
           deadline,
           docId,
+          token,
           formData: formValues,
         }),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
+        const errorData = await response.json().catch(() => ({}));
+        if (response.status === 409) {
+          setAlreadySigned(true);
+          setError(
+            errorData.message ??
+              'This document has already been signed and submitted.'
+          );
+          setIsSubmitting(false);
+          return;
+        }
         throw new Error(errorData.error || 'Failed to submit document');
       }
 
@@ -275,6 +341,42 @@ function CreditCardAuthContent() {
         <div className="text-center">
           <div className="border-primary mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-b-2"></div>
           <p className="text-gray-600">Loading your document...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // A consumed or expired link must never fall through to the form, even if
+  // the client's name was already populated.
+  if (alreadySigned) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
+        <div className="w-full max-w-md rounded-lg border border-gray-200 bg-white p-8 text-center shadow-sm">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+            <svg
+              className="h-6 w-6 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <h1 className="mb-2 text-xl font-semibold text-gray-900">
+            Already Signed
+          </h1>
+          <p className="text-gray-600">
+            {error ?? 'This document has already been signed and submitted.'}
+          </p>
+          <p className="mt-4 text-sm text-gray-500">
+            A copy was emailed to you. If you need to make a change, please
+            contact our events team.
+          </p>
         </div>
       </div>
     );
@@ -505,6 +607,9 @@ function CreditCardAuthContent() {
               </label>
               <input
                 type="text"
+                inputMode="numeric"
+                autoComplete="cc-number"
+                maxLength={cardDigitLimit === 15 ? 17 : 19}
                 value={formValues.creditCardNumber}
                 onChange={handleCardNumberChange}
                 placeholder="1234 5678 9012 3456"
@@ -518,6 +623,9 @@ function CreditCardAuthContent() {
                 </label>
                 <input
                   type="text"
+                  inputMode="numeric"
+                  autoComplete="cc-exp"
+                  maxLength={5}
                   value={formValues.expirationDate}
                   onChange={handleExpDateChange}
                   placeholder="MM/YY"
@@ -530,9 +638,12 @@ function CreditCardAuthContent() {
                 </label>
                 <input
                   type="text"
+                  inputMode="numeric"
+                  autoComplete="cc-csc"
+                  maxLength={cvvLength}
                   value={formValues.cvvCode}
                   onChange={handleCvvChange}
-                  placeholder="123"
+                  placeholder={cvvLength === 4 ? '1234' : '123'}
                   className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
                 />
               </div>

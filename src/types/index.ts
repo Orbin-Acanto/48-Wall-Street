@@ -357,6 +357,8 @@ export interface SubmitRequestBody {
   typedName: string;
   deadline: string;
   docId?: string;
+  /** Raw signing link token, used to enforce one-time use. */
+  token?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formData?: Record<string, any>;
 }
