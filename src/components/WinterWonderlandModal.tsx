@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -92,18 +92,26 @@ const PAGES = [
 
 const TOTAL = PAGES.length;
 
-/** Drifting snow, rendered once and reused across pages. */
+/**
+ * Drifting snow. Two layers at different depths so the fall reads as three
+ * dimensional: small blurred flakes behind, larger crisper ones in front.
+ */
 function Snowfall() {
   const flakes = useMemo(
     () =>
-      Array.from({ length: 26 }, (_, i) => ({
-        id: i,
-        left: (i * 37) % 100,
-        size: 1.5 + ((i * 7) % 4),
-        delay: (i * 0.83) % 9,
-        duration: 11 + ((i * 3) % 9),
-        drift: ((i % 5) - 2) * 22,
-      })),
+      Array.from({ length: 54 }, (_, i) => {
+        const front = i % 3 === 0;
+        return {
+          id: i,
+          left: (i * 31.7) % 100,
+          size: front ? 2.5 + ((i * 5) % 4) : 1.2 + ((i * 3) % 3),
+          delay: (i * 0.47) % 12,
+          duration: front ? 9 + ((i * 3) % 7) : 14 + ((i * 5) % 10),
+          drift: ((i % 7) - 3) * 26,
+          opacity: front ? 0.75 : 0.4,
+          blur: front ? 0 : 1,
+        };
+      }),
     []
   );
 
@@ -115,11 +123,11 @@ function Snowfall() {
       {flakes.map((f) => (
         <motion.span
           key={f.id}
-          initial={{ y: '-10%', x: 0, opacity: 0 }}
+          initial={{ y: '-8%', x: 0, opacity: 0 }}
           animate={{
-            y: '110%',
-            x: [0, f.drift, 0],
-            opacity: [0, 0.55, 0.55, 0],
+            y: '108%',
+            x: [0, f.drift, -f.drift * 0.6, 0],
+            opacity: [0, f.opacity, f.opacity, 0],
           }}
           transition={{
             duration: f.duration,
@@ -131,9 +139,193 @@ function Snowfall() {
             left: `${f.left}%`,
             width: f.size,
             height: f.size,
+            filter: f.blur ? `blur(${f.blur}px)` : undefined,
           }}
-          className="absolute rounded-full bg-white/70 blur-[0.5px]"
+          className="absolute rounded-full bg-white"
         />
+      ))}
+    </div>
+  );
+}
+
+/** A single illuminated winter tree, built from stacked tiers of light. */
+function WinterTree({
+  className = '',
+  delay = 0,
+  scale = 1,
+}: {
+  className?: string;
+  delay?: number;
+  scale?: number;
+}) {
+  // Gradient ids must be unique per instance, otherwise every tree paints with
+  // whichever definition rendered last.
+  const gradientId = useId();
+
+  return (
+    <motion.svg
+      aria-hidden
+      viewBox="0 0 100 150"
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.2, delay, ease: [0.2, 0.8, 0.2, 1] }}
+      style={{ transform: `scale(${scale})` }}
+      className={`pointer-events-none ${className}`}
+    >
+      <defs>
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="rgba(186,230,253,0.85)" />
+          <stop offset="100%" stopColor="rgba(56,120,200,0.15)" />
+        </linearGradient>
+      </defs>
+
+      {/* Tiers */}
+      {[
+        { y: 34, w: 26 },
+        { y: 62, w: 36 },
+        { y: 92, w: 46 },
+      ].map((tier, i) => (
+        <motion.path
+          key={tier.y}
+          d={`M50 ${tier.y - 30} L${50 + tier.w} ${tier.y} L${50 - tier.w} ${tier.y} Z`}
+          fill={`url(#${gradientId})`}
+          stroke="rgba(186,230,253,0.55)"
+          strokeWidth="0.8"
+          initial={{ opacity: 0.5 }}
+          animate={{ opacity: [0.5, 0.9, 0.5] }}
+          transition={{
+            duration: 4 + i,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: delay + i * 0.4,
+          }}
+        />
+      ))}
+
+      {/* Trunk */}
+      <rect x="46" y="92" width="8" height="22" fill="rgba(120,170,230,0.35)" />
+
+      {/* Star */}
+      <motion.circle
+        cx="50"
+        cy="2"
+        r="3"
+        fill="rgba(255,255,255,0.95)"
+        animate={{ opacity: [0.5, 1, 0.5], r: [2.5, 3.6, 2.5] }}
+        transition={{ duration: 2.6, repeat: Infinity, delay }}
+      />
+    </motion.svg>
+  );
+}
+
+/** Slow twinkling points of light, like distant bulbs. */
+function Twinkles() {
+  const points = useMemo(
+    () =>
+      Array.from({ length: 16 }, (_, i) => ({
+        id: i,
+        left: (i * 61) % 96,
+        top: (i * 37) % 88,
+        delay: (i * 0.6) % 5,
+        size: 1.5 + ((i * 3) % 3),
+      })),
+    []
+  );
+
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0">
+      {points.map((pt) => (
+        <motion.span
+          key={pt.id}
+          animate={{ opacity: [0, 0.9, 0], scale: [0.6, 1.25, 0.6] }}
+          transition={{
+            duration: 3.4,
+            delay: pt.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          style={{
+            left: `${pt.left}%`,
+            top: `${pt.top}%`,
+            width: pt.size,
+            height: pt.size,
+          }}
+          className="absolute rounded-full bg-sky-100 shadow-[0_0_6px_2px_rgba(186,230,253,0.6)]"
+        />
+      ))}
+    </div>
+  );
+}
+
+/** Decorative snowflake glyph, used as a section ornament. */
+function SnowflakeGlyph({ className = '' }: { className?: string }) {
+  return (
+    <motion.svg
+      aria-hidden
+      viewBox="0 0 24 24"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 46, repeat: Infinity, ease: 'linear' }}
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.1"
+      strokeLinecap="round"
+    >
+      <path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1" />
+      <path d="M12 6.5l-2 2M12 6.5l2 2M12 17.5l-2-2M12 17.5l2-2M6.5 12l2-2M6.5 12l2 2M17.5 12l-2-2M17.5 12l-2 2" />
+    </motion.svg>
+  );
+}
+
+/** A row of hanging ornaments that sway gently. */
+function Ornaments({ className = '' }: { className?: string }) {
+  const items = useMemo(
+    () => [
+      { id: 0, x: 12, drop: 34, size: 9, delay: 0 },
+      { id: 1, x: 32, drop: 54, size: 7, delay: 0.5 },
+      { id: 2, x: 54, drop: 28, size: 11, delay: 1.1 },
+      { id: 3, x: 74, drop: 48, size: 8, delay: 0.3 },
+      { id: 4, x: 90, drop: 38, size: 6, delay: 0.8 },
+    ],
+    []
+  );
+
+  return (
+    <div
+      aria-hidden
+      className={`pointer-events-none absolute inset-x-0 top-0 h-32 overflow-hidden ${className}`}
+    >
+      {items.map((o) => (
+        <motion.div
+          key={o.id}
+          style={{ left: `${o.x}%` }}
+          className="absolute top-0 origin-top"
+          animate={{ rotate: [-3.5, 3.5, -3.5] }}
+          transition={{
+            duration: 5 + o.id,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: o.delay,
+          }}
+        >
+          {/* Thread */}
+          <span
+            style={{ height: o.drop }}
+            className="mx-auto block w-px bg-gradient-to-b from-sky-200/50 to-sky-200/20"
+          />
+          {/* Bauble */}
+          <motion.span
+            style={{ width: o.size, height: o.size }}
+            className="mx-auto block rounded-full bg-gradient-to-br from-white/90 to-sky-300/50 shadow-[0_0_8px_2px_rgba(186,230,253,0.35)]"
+            animate={{ opacity: [0.65, 1, 0.65] }}
+            transition={{
+              duration: 3.2,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: o.delay,
+            }}
+          />
+        </motion.div>
       ))}
     </div>
   );
@@ -142,7 +334,8 @@ function Snowfall() {
 /** Section label in frosted small caps. */
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-secondary text-[10px] font-semibold tracking-[0.3em] text-sky-200/90 uppercase">
+    <p className="font-secondary flex items-center gap-3 text-[10px] font-semibold tracking-[0.3em] text-sky-200/90 uppercase">
+      <SnowflakeGlyph className="h-3.5 w-3.5 shrink-0 text-sky-300/80" />
       {children}
     </p>
   );
@@ -267,6 +460,20 @@ export default function WinterWonderlandModal({
                   'radial-gradient(120% 80% at 15% 0%, rgba(56,120,200,0.28), transparent 55%), radial-gradient(90% 70% at 100% 100%, rgba(120,170,230,0.18), transparent 60%)',
               }}
             />
+            <Twinkles />
+
+            {/* Illuminated treeline along the base of the book */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden h-56 items-end justify-between px-8 opacity-[0.22] sm:flex"
+            >
+              <WinterTree className="h-40 w-24" delay={0.2} />
+              <WinterTree className="h-28 w-16" delay={0.6} />
+              <WinterTree className="h-48 w-28" delay={0.4} />
+              <WinterTree className="h-24 w-14" delay={0.9} />
+              <WinterTree className="h-36 w-20" delay={0.75} />
+            </div>
+
             <Snowfall />
 
             {/* Close */}
@@ -328,8 +535,10 @@ export default function WinterWonderlandModal({
                         initial="hidden"
                         animate="show"
                         variants={stagger}
-                        className="flex flex-col justify-center px-8 py-12 sm:px-14 lg:py-0"
+                        className="relative flex flex-col justify-center px-8 py-12 sm:px-14 lg:py-0"
                       >
+                        <Ornaments />
+
                         <motion.p
                           variants={fadeUp}
                           className="font-secondary mb-5 text-[10px] font-semibold tracking-[0.34em] text-sky-200/90 uppercase"
@@ -352,6 +561,12 @@ export default function WinterWonderlandModal({
                         <motion.span
                           variants={fadeUp}
                           className="mt-7 mb-6 block h-px w-24 bg-gradient-to-r from-sky-200/90 to-transparent"
+                        />
+
+                        {/* Feature tree, brighter than the ambient treeline */}
+                        <WinterTree
+                          className="absolute right-6 bottom-8 hidden h-44 w-28 opacity-60 lg:block"
+                          delay={1.4}
                         />
 
                         <motion.p
@@ -448,7 +663,12 @@ export default function WinterWonderlandModal({
                             variants={fadeUp}
                             className="group relative overflow-hidden border border-sky-200/15 bg-white/[0.03] p-7 backdrop-blur-sm transition-all duration-500 hover:border-sky-200/40 hover:bg-white/[0.06]"
                           >
-                            <span className="font-secondary block text-[10px] tracking-[0.24em] text-sky-300/70">
+                            <span
+                              aria-hidden
+                              className="pointer-events-none absolute -top-16 -right-16 h-32 w-32 rounded-full bg-sky-200/10 opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-100"
+                            />
+                            <SnowflakeGlyph className="pointer-events-none absolute top-5 right-5 h-8 w-8 text-sky-200/15 transition-colors duration-500 group-hover:text-sky-200/35" />
+                            <span className="font-secondary relative block text-[10px] tracking-[0.24em] text-sky-300/70">
                               {pillar.number}
                             </span>
                             <h3 className="font-primary mt-3 mb-3 text-[1.35rem] text-white">
@@ -637,6 +857,10 @@ export default function WinterWonderlandModal({
                         animate="show"
                         variants={stagger}
                       >
+                        <motion.div variants={fadeUp}>
+                          <SnowflakeGlyph className="mx-auto mb-6 h-10 w-10 text-sky-200/70" />
+                        </motion.div>
+
                         <motion.p
                           variants={fadeUp}
                           className="font-secondary mb-5 text-[10px] font-semibold tracking-[0.32em] text-sky-200/90 uppercase"
