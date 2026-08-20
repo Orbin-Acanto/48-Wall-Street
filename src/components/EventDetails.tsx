@@ -398,6 +398,20 @@ export default function EventDetails({
         </section>
       )}
 
+      {/* BROCHURE, placed ahead of the immersive CTA section.
+          White background so it alternates against the section above it. */}
+      {brochure && brochure.pages.length > 0 && (
+        <section id="brochure" className="bg-white">
+          <BookReader
+            pages={brochure.pages}
+            title={brochure.title || 'View Our Brochure'}
+            subtitle={brochure.subtitle}
+            downloadUrl={brochure.downloadUrl}
+            shareSlug={brochure.shareSlug}
+          />
+        </section>
+      )}
+
       {/* IMMERSIVE Food Service Section */}
       <section className="relative min-h-[500px] overflow-hidden md:min-h-[600px]">
         <div className="absolute inset-0 z-0">
@@ -531,19 +545,6 @@ export default function EventDetails({
         <ClientLogos logos={clientLogos} />
       ) : (
         <EmptyPhotoGallery galleryPhotos={emptyFashionVenue} />
-      )}
-
-      {/* BROCHURE */}
-      {brochure && brochure.pages.length > 0 && (
-        <section id="brochure" className="bg-whitesmoke">
-          <BookReader
-            pages={brochure.pages}
-            title={brochure.title || 'View Our Brochure'}
-            subtitle={brochure.subtitle}
-            downloadUrl={brochure.downloadUrl}
-            shareSlug={brochure.shareSlug}
-          />
-        </section>
       )}
 
       {/* ACCORDION */}

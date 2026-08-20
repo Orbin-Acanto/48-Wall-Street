@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Navbar from '@/components/Navbar';
-import SocialMediaSidebar from '@/components/SocialMediaSidebar';
+// Social media sidebar temporarily disabled: the holiday banner now occupies
+// the left-slide position. Re-enable by uncommenting this import and the
+// <SocialMediaSidebar /> usage in the body below.
+// import SocialMediaSidebar from '@/components/SocialMediaSidebar';
+import HolidayPromoBanner from '@/components/HolidayPromoBanner';
 import ChatbotWidget from '@/components/ChatBotWidget';
 import Footer from '@/components/Footer';
 import ContactUsSlider from '@/components/ContactUsSlider';
@@ -648,7 +652,8 @@ export default function RootLayout({
           `}
         </Script>
         <Navbar />
-        <SocialMediaSidebar />
+        {/* <SocialMediaSidebar /> */}
+        <HolidayPromoBanner />
         <ChatbotWidget />
         <ContactUsSlider />
         {children}
