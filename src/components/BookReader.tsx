@@ -85,8 +85,7 @@ export default function BookReader({
 
   const handleShare = useCallback(async () => {
     if (!shareSlug) return;
-    const origin =
-      typeof window !== 'undefined' ? window.location.origin : '';
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const shareUrl = `${origin}/b/${shareSlug}`;
 
     try {
@@ -191,8 +190,16 @@ export default function BookReader({
     return () => clearTimeout(syncTimeout);
   }, [isFullscreen, currentPage]);
 
+  // Background is resolved once so the page shell and the panel directly
+  // behind the book always agree. A caller's `bg-*` class overrides both;
+  // otherwise both fall back to whitesmoke. Only the background is shared
+  // with the inner panel -- the rest of `className` stays on the root.
+  const classes = className.split(/\s+/).filter(Boolean);
+  const surfaceBg = classes.find((c) => c.startsWith('bg-')) || 'bg-whitesmoke';
+  const restClasses = classes.filter((c) => !c.startsWith('bg-')).join(' ');
+
   return (
-    <div className={`bg-whitesmoke min-h-screen ${className}`}>
+    <div className={`min-h-screen ${surfaceBg} ${restClasses}`}>
       <div className="container mx-auto px-4 py-12 md:py-20">
         {/* Header */}
         <motion.div
@@ -235,7 +242,7 @@ export default function BookReader({
                   />
                 </svg>
                 {shareCopied && (
-                  <span className="pointer-events-none absolute top-12 right-0 z-40 whitespace-nowrap rounded bg-gray-900 px-3 py-1.5 text-xs font-medium text-white shadow-lg">
+                  <span className="pointer-events-none absolute top-12 right-0 z-40 rounded bg-gray-900 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-white shadow-lg">
                     Link copied!
                   </span>
                 )}
@@ -322,7 +329,7 @@ export default function BookReader({
                 className="relative"
               >
                 {/* Flip Book */}
-                <div className="bg-whitesmoke">
+                <div className={surfaceBg}>
                   <HTMLFlipBook
                     ref={bookRef}
                     width={isMobile ? 350 : 550}

@@ -308,25 +308,27 @@ export default function EventDetails({
 
       {/* FEATURE STRIP */}
       {servicesVariant === 'sections' ? (
-        <section className="bg-whitesmoke">
-          <div className="container mx-auto px-4 py-16 md:px-8 md:py-20 lg:px-16">
-            <div className="divide-primary/15 divide-y">
-              {displayServices.map((service, i) => {
-                const img = service.image
-                  ? {
-                      src: service.image,
-                      alt: service.imageAlt || service.title,
-                    }
-                  : images[(i + 1) % images.length];
-                const reverse = i % 2 === 1;
-                return (
+        <>
+          {displayServices.map((service, i) => {
+            const img = service.image
+              ? {
+                  src: service.image,
+                  alt: service.imageAlt || service.title,
+                }
+              : images[(i + 1) % images.length];
+            const reverse = i % 2 === 1;
+            return (
+              <section
+                key={i}
+                className={reverse ? 'bg-white' : 'bg-whitesmoke'}
+              >
+                <div className="container mx-auto px-4 py-16 md:px-8 md:py-20 lg:px-16">
                   <motion.div
-                    key={i}
                     initial={{ opacity: 0, y: 28 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ duration: 0.7 }}
-                    className="grid items-start gap-10 py-12 first:pt-0 last:pb-0 md:gap-16 md:py-16 lg:grid-cols-2 lg:gap-20"
+                    className="grid items-start gap-10 md:gap-16 lg:grid-cols-2 lg:gap-20"
                   >
                     {/* Visual */}
                     <div
@@ -364,11 +366,11 @@ export default function EventDetails({
                       </div>
                     </div>
                   </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+                </div>
+              </section>
+            );
+          })}
+        </>
       ) : (
         <section className="bg-whitesmoke">
           <div className="container mx-auto px-4 pt-12 pb-12 md:pt-20 md:pb-20">
@@ -410,6 +412,7 @@ export default function EventDetails({
       {brochure && brochure.pages.length > 0 && (
         <section id="brochure" className="bg-white">
           <BookReader
+            className="bg-white"
             pages={brochure.pages}
             title={brochure.title || 'View Our Brochure'}
             subtitle={brochure.subtitle}
@@ -559,7 +562,7 @@ export default function EventDetails({
 
       {/* ACCORDION */}
       {info?.length > 0 && (
-        <section className="bg-white py-12 md:py-20">
+        <section className="bg-whitesmoke py-12 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl">
               {/* Section Header */}

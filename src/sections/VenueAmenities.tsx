@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function VenueAmenities() {
   return (
-    <section className="bg-whitesmoke px-6 py-20">
+    <section className="bg-white px-6 py-20">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-16 text-center">
@@ -66,11 +66,11 @@ export default function VenueAmenities() {
           <p className="font-secondary text-dark-black/80 text-sm leading-relaxed md:text-base">
             <span className="text-dark-black font-bold">48 Wall Street</span>{' '}
             also offers the Concourse Level, an additional 3,000 square feet
-            below the main hall that divides into breakout rooms for conferences,
-            serves as a pre-function cocktail space, or provides a dedicated
-            service and staging area for larger events. The grand marble
-            staircase connects both levels and creates natural moments of arrival
-            and transition that add to the experience for every guest.
+            below the main hall that divides into breakout rooms for
+            conferences, serves as a pre-function cocktail space, or provides a
+            dedicated service and staging area for larger events. The grand
+            marble staircase connects both levels and creates natural moments of
+            arrival and transition that add to the experience for every guest.
           </p>
         </div>
 

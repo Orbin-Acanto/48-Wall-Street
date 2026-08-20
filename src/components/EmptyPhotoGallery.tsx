@@ -56,7 +56,7 @@ export default function EmptyPhotoGallery({
   };
 
   return (
-    <section className="bg-whitesmoke/25 px-6 py-20">
+    <section className="bg-white px-6 py-20">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-2 flex items-center justify-between">

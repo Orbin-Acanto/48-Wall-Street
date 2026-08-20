@@ -37,6 +37,16 @@ export interface SpaceDetailsProps {
     pages: { id: number; image: string; alt?: string }[];
   };
   floorPlanImage?: string;
+  /**
+   * Floor plan section background. Defaults to white, alternating against
+   * the whitesmoke walkthrough below; pass 'whitesmoke' to flip a page.
+   */
+  floorPlanBackground?: 'white' | 'whitesmoke';
+  /**
+   * Virtual walkthrough section background. Defaults to whitesmoke,
+   * alternating against the white Floor Plans above; pass 'white' to flip.
+   */
+  virtualTourBackground?: 'white' | 'whitesmoke';
   features?: string[];
   stats: SpaceStats;
   enquireHref?: string;
@@ -73,6 +83,8 @@ export default function SpaceDetails({
   brochure,
   lightboxImages,
   floorPlanImage,
+  floorPlanBackground = 'white',
+  virtualTourBackground = 'whitesmoke',
   features = [],
   stats,
   enquireHref = '/contact',
@@ -190,7 +202,7 @@ export default function SpaceDetails({
         )}
       </section>
 
-      <section className="px-6 py-16 md:px-12">
+      <section className="bg-whitesmoke px-6 py-16 md:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-start">
             <div className="lg:sticky lg:top-32">
@@ -271,7 +283,7 @@ export default function SpaceDetails({
       </section>
 
       {thenNow && thenNow.length > 0 && (
-        <section className="bg-white px-6 py-16 md:px-12 md:py-20">
+        <section className="bg-gray-50 px-6 py-16 md:px-12 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-12 text-center">
               <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">
@@ -357,8 +369,9 @@ export default function SpaceDetails({
 
       {/* Brochure flipbook */}
       {brochure && brochure.pages.length > 0 && (
-        <section id="brochure">
+        <section id="brochure" className="bg-white">
           <BookReader
+            className="bg-white"
             pages={brochure.pages}
             title={brochure.title}
             subtitle={brochure.subtitle}
@@ -372,7 +385,11 @@ export default function SpaceDetails({
       {afterBrochure}
 
       {floorPlanImage && (
-        <section className="bg-white px-6 pt-16 pb-12 md:pt-12 md:pb-10">
+        <section
+          className={`${
+            floorPlanBackground === 'white' ? 'bg-white' : 'bg-whitesmoke'
+          } px-6 pt-16 pb-12 md:pt-12 md:pb-10`}
+        >
           <div className="mx-auto max-w-7xl">
             <h2 className="heading-hero text-center">Floor Plans</h2>
             <div className="grid gap-8 lg:grid-cols-3">
@@ -445,7 +462,13 @@ export default function SpaceDetails({
 
       {/* 3D Virtual Walkthrough */}
       {matterportUrl && (
-        <section className="bg-whitesmoke px-6 py-16 md:px-12">
+        <section
+          className={`${
+            virtualTourBackground === 'whitesmoke'
+              ? 'bg-whitesmoke'
+              : 'bg-white'
+          } px-6 py-16 md:px-12`}
+        >
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 text-center">
               <p className="font-secondary text-primary mb-4 text-sm tracking-[0.3em] uppercase">

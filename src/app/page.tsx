@@ -24,15 +24,18 @@ export default function Home() {
       <VenueLevels />
       {/* White alternates against VenueLevels (bg-gray-100) above */}
       <PrivateDinnerBanner background="white" />
+      <VenueAmenities />
       <ParallaxSection
         videoSrc="/home/videos/lower_manhattan_financial_district_website.mp4"
         title="Lower Manhattan's Premier Event Venue"
         height="h-[70vh]"
       />
-      {/* Drives discovery of the Vault Level from the homepage */}
+      {/* Drives discovery of the Vault Level from the homepage. White,
+          image-free block breaks up the dark ParallaxSection above and the
+          dark JourneyTimelineScroll below. */}
       <VaultDiscoverBanner />
-      <VenueAmenities />
       <JourneyTimelineScroll items={items} />
+
       <PhotoGallery galleryPhotos={photos} />
       <CateringParralax />
       <ContactUs />
