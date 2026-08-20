@@ -309,7 +309,7 @@ export default function CinematicServicesShowcase({
         <section>
           <BookReader
             pages={menuPages}
-            title="Tardi's Catering Menu"
+            title="Catering Menu"
             subtitle="Indulge in a Gourmet Dining Experience at Your Next Event"
             downloadUrl="/menu/page-01.pdf"
             pageColor="text-dark-black"
