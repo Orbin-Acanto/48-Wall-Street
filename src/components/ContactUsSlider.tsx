@@ -233,8 +233,8 @@ const ContactUsSlider: React.FC = () => {
     <>
       <button
         onClick={toggleForm}
-        className="bg-primary font-secondary hover:bg-primary/80 fixed top-1/2 right-0 z-50 -translate-y-1/2 cursor-pointer px-4 py-2.5 text-sm font-semibold tracking-widest text-white uppercase shadow-lg transition-all"
-        style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
+        className="bg-primary font-secondary hover:bg-primary/80 fixed top-1/2 left-0 z-50 -translate-y-1/2 cursor-pointer px-4 py-2.5 text-sm font-semibold tracking-widest text-white uppercase shadow-lg transition-all"
+        style={{ writingMode: 'vertical-lr', textOrientation: 'mixed' }}
       >
         Enquire
       </button>
@@ -247,8 +247,8 @@ const ContactUsSlider: React.FC = () => {
       )}
 
       <div
-        className={`bg-whitesmoke fixed top-0 right-0 z-50 h-full w-full transform overflow-y-auto shadow-2xl transition-transform duration-500 ease-in-out md:w-[85vw] lg:w-[75vw] xl:w-[65vw] ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`bg-whitesmoke fixed top-0 left-0 z-50 h-full w-full transform overflow-y-auto shadow-2xl transition-transform duration-500 ease-in-out md:w-[85vw] lg:w-[75vw] xl:w-[65vw] ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <button

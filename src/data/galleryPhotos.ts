@@ -796,6 +796,18 @@ export const galleryPhotos: GPhoto[] = [
     aspect: 1.3333,
   },
   {
+    src: '/gallery/holiday/holiday-31.jpg',
+    alt: 'Winter wonderland holiday lounge with photo booth and snowflake decor at 48 Wall Street, NYC',
+    category: 'holiday',
+    aspect: 1.3333,
+  },
+  {
+    src: '/gallery/holiday/holiday-32.jpg',
+    alt: 'Holiday party dessert bar and flocked trees under blue uplighting at 48 Wall Street, Financial District',
+    category: 'holiday',
+    aspect: 1.3333,
+  },
+  {
     src: '/gallery/non/nonprofit-06.jpg',
     alt: 'Charity gala in the Grand Mezzanine at 48 Wall Street, Financial District NYC',
     category: 'nonprofit',

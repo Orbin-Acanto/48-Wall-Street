@@ -20,6 +20,14 @@
   --font-secondary: 'Montserrat', sans-serif;
 }
 
+/*
+ * Fixed navbar height (88px bar + 2px gold rule). Full-height overlays that
+ * must sit below the navbar offset by this and subtract it from 100vh.
+ */
+:root {
+  --navbar-height: 90px;
+}
+
 html {
   scroll-behavior: smooth;
 }

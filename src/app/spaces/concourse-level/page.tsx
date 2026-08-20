@@ -1,6 +1,7 @@
 import SpaceDetails from '@/components/SpaceDetails';
 import HolidayThemes from '@/components/HolidayThemes';
 import VaultDiscoverBanner from '@/components/VaultDiscoverBanner';
+import SpeakeasyPromoBanner from '@/components/SpeakeasyPromoBanner';
 import { vaultBrochure } from '@/data';
 import type { Metadata } from 'next';
 
@@ -84,6 +85,8 @@ export default function ConcourseLevelPage() {
         afterBrochure={<HolidayThemes background="whitesmoke" />}
       />
       <VaultDiscoverBanner />
+      {/* Holiday-related page: the speakeasy occupies this very level. */}
+      <SpeakeasyPromoBanner />
     </>
   );
 }
