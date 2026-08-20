@@ -12,10 +12,13 @@ import VenueLevels from '@/sections/Venuelevels';
 import PrivateDinnerBanner from '@/components/PrivateDinnerBanner';
 import HolidayHomeBanner from '@/components/HolidayHomeBanner';
 import VaultDiscoverBanner from '@/components/VaultDiscoverBanner';
+import HolidayPromoBanner from '@/components/HolidayPromoBanner';
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* Homepage only: the single promo popup for the whole site. */}
+      <HolidayPromoBanner />
       <HeroSection />
       <About />
       {/* Holiday feature sits high on the page for seasonal visibility.

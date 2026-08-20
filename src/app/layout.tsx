@@ -5,7 +5,6 @@ import Navbar from '@/components/Navbar';
 // the left-slide position. Re-enable by uncommenting this import and the
 // <SocialMediaSidebar /> usage in the body below.
 // import SocialMediaSidebar from '@/components/SocialMediaSidebar';
-import HolidayPromoBanner from '@/components/HolidayPromoBanner';
 import ChatbotWidget from '@/components/ChatBotWidget';
 import Footer from '@/components/Footer';
 import ContactUsSlider from '@/components/ContactUsSlider';
@@ -653,7 +652,8 @@ export default function RootLayout({
         </Script>
         <Navbar />
         {/* <SocialMediaSidebar /> */}
-        <HolidayPromoBanner />
+        {/* Promo banner is mounted on the homepage only (see app/page.tsx),
+            so it no longer appears site wide. */}
         <ChatbotWidget />
         <ContactUsSlider />
         {children}

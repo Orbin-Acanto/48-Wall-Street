@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import SpeakeasyPromoBanner from '@/components/SpeakeasyPromoBanner';
+// import SpeakeasyPromoBanner from '@/components/SpeakeasyPromoBanner';
 
 export const metadata: Metadata = {
   title:
@@ -333,9 +333,10 @@ export default function HolidayEventsLayout({
           }),
         }}
       />
-      {/* Right-edge speakeasy panel, dismissed independently of the
-          left-edge HolidayPromoBanner in the root layout. */}
+      {/* Temporarily disabled: only the homepage promo banner should show.
+          Re-enable by uncommenting this and its import above.
       <SpeakeasyPromoBanner />
+      */}
       {children}
     </>
   );

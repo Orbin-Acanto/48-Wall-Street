@@ -190,7 +190,7 @@ export default function HolidayPromoBanner() {
               {/* Actions */}
               <div className="mt-auto pt-2">
                 <Link
-                  href="/events/holiday-events"
+                  href="/contact?inquiry=holiday-celebration"
                   onClick={dismiss}
                   className="font-secondary bg-primary hover:bg-primary/90 text-dark-black block w-full px-6 py-4 text-center text-[11px] font-semibold tracking-[0.18em] uppercase shadow-lg transition-all duration-300 hover:shadow-xl"
                 >
