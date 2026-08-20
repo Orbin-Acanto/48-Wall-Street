@@ -83,10 +83,12 @@ const PAGES = [
   'Cover',
   'A Season Transformed',
   'Winter, Reimagined',
+  'The Setting in View',
   'The Vault Setting',
   'Designed for Celebration',
   'An Extraordinary Setting',
   'Hospitality',
+  'An Evening to Remember',
   'Reserve',
 ];
 
@@ -353,6 +355,65 @@ function Rule() {
   );
 }
 
+/**
+ * Full-bleed photographic spread. Used for the interstitial image pages that
+ * break up the text sections, with a slow push-in and a caption anchored to
+ * the bottom over a legibility gradient.
+ */
+function PhotoPage({
+  src,
+  alt,
+  eyebrow,
+  caption,
+}: {
+  src: string;
+  alt: string;
+  eyebrow: string;
+  caption: string;
+}) {
+  return (
+    <div className="relative h-full w-full overflow-hidden">
+      <motion.div
+        initial={{ scale: 1.12, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2.4, ease: [0.2, 0.8, 0.2, 1] }}
+        className="absolute inset-0"
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover object-center"
+          sizes="(max-width: 1024px) 100vw, 1100px"
+        />
+      </motion.div>
+
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050d1a] via-[#050d1a]/25 to-transparent" />
+
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={stagger}
+        className="absolute right-0 bottom-0 left-0 px-8 pb-10 sm:px-14 sm:pb-12"
+      >
+        <motion.p
+          variants={fadeUp}
+          className="font-secondary mb-3 flex items-center gap-3 text-[10px] font-semibold tracking-[0.3em] text-sky-200/90 uppercase"
+        >
+          <SnowflakeGlyph className="h-3.5 w-3.5 shrink-0 text-sky-300/80" />
+          {eyebrow}
+        </motion.p>
+        <motion.p
+          variants={fadeUp}
+          className="font-primary max-w-2xl text-[1.5rem] leading-[1.3] text-white sm:text-[2rem]"
+        >
+          {caption}
+        </motion.p>
+      </motion.div>
+    </div>
+  );
+}
+
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
   show: { opacity: 1, y: 0 },
@@ -380,6 +441,9 @@ export default function WinterWonderlandModal({
 }: WinterWonderlandModalProps) {
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState(1);
+  // The Next control pulses until the reader turns a page for the first time,
+  // so it is obvious there is more of the story than the current spread.
+  const [hasNavigated, setHasNavigated] = useState(false);
 
   const handleClose = useCallback(() => onClose(), [onClose]);
 
@@ -388,6 +452,7 @@ export default function WinterWonderlandModal({
       const clamped = Math.max(0, Math.min(TOTAL - 1, next));
       setDirection(clamped >= page ? 1 : -1);
       setPage(clamped);
+      setHasNavigated(true);
     },
     [page]
   );
@@ -400,6 +465,7 @@ export default function WinterWonderlandModal({
     if (open) {
       setPage(0);
       setDirection(1);
+      setHasNavigated(false);
     }
   }, [open]);
 
@@ -423,6 +489,8 @@ export default function WinterWonderlandModal({
   }, [open, handleClose, next, prev]);
 
   const isCover = page === 0;
+  const isLast = page === TOTAL - 1;
+  const nudge = !hasNavigated && !isLast;
 
   return (
     <AnimatePresence>
@@ -520,7 +588,7 @@ export default function WinterWonderlandModal({
                           className="absolute inset-0"
                         >
                           <Image
-                            src="/gallery/holiday/themes/winter-wonderland.png"
+                            src="/gallery/holiday/themes/winter-wonderland.jpg"
                             alt="Winter Wonderland installation in The Vault at 48 Wall Street: illuminated winter trees, suspended snowflakes and candlelit lounge seating"
                             fill
                             className="object-cover object-center"
@@ -582,7 +650,7 @@ export default function WinterWonderlandModal({
                           onClick={next}
                           className="font-secondary mt-10 inline-flex w-fit items-center gap-4 border border-sky-200/40 px-8 py-4 text-[11px] font-semibold tracking-[0.2em] text-white uppercase transition-all duration-300 hover:border-sky-200/80 hover:bg-sky-200/10"
                         >
-                          Begin the Story
+                          Begin the Celebration
                           <svg
                             className="h-3.5 w-3.5"
                             viewBox="0 0 24 24"
@@ -683,8 +751,18 @@ export default function WinterWonderlandModal({
                     </div>
                   )}
 
-                  {/* 3. The Vault Setting */}
+                  {/* 3. The Setting in View */}
                   {page === 3 && (
+                    <PhotoPage
+                      src="/gallery/holiday/themes/winter-wonderland-2.jpg"
+                      alt="The Vault at 48 Wall Street dressed for Winter Wonderland: illuminated winter trees, suspended snowflakes and layered blue lighting across the historic hall"
+                      eyebrow="The Setting in View"
+                      caption="Light, snow and stone, brought together beneath Wall Street."
+                    />
+                  )}
+
+                  {/* 4. The Vault Setting */}
+                  {page === 4 && (
                     <div className="mx-auto flex h-full max-w-3xl flex-col justify-center px-8 py-14 sm:px-14">
                       <Eyebrow>The Vault Setting</Eyebrow>
                       <Rule />
@@ -736,8 +814,8 @@ export default function WinterWonderlandModal({
                     </div>
                   )}
 
-                  {/* 4. Designed for Celebration */}
-                  {page === 4 && (
+                  {/* 5. Designed for Celebration */}
+                  {page === 5 && (
                     <div className="mx-auto flex h-full max-w-4xl flex-col justify-center px-8 py-14 sm:px-14">
                       <Eyebrow>Designed for Celebration</Eyebrow>
                       <Rule />
@@ -769,8 +847,8 @@ export default function WinterWonderlandModal({
                     </div>
                   )}
 
-                  {/* 5. An Extraordinary Setting */}
-                  {page === 5 && (
+                  {/* 6. An Extraordinary Setting */}
+                  {page === 6 && (
                     <div className="mx-auto flex h-full max-w-4xl flex-col justify-center px-8 py-14 sm:px-14">
                       <Eyebrow>An Extraordinary Setting</Eyebrow>
                       <Rule />
@@ -798,8 +876,8 @@ export default function WinterWonderlandModal({
                     </div>
                   )}
 
-                  {/* 6. Hospitality */}
-                  {page === 6 && (
+                  {/* 7. Hospitality */}
+                  {page === 7 && (
                     <div className="mx-auto flex h-full max-w-3xl flex-col justify-center px-8 py-14 sm:px-14">
                       <Eyebrow>Hospitality as Memorable as the Setting</Eyebrow>
                       <Rule />
@@ -849,8 +927,18 @@ export default function WinterWonderlandModal({
                     </div>
                   )}
 
-                  {/* 7. Reserve */}
-                  {page === 7 && (
+                  {/* 8. An Evening to Remember */}
+                  {page === 8 && (
+                    <PhotoPage
+                      src="/gallery/holiday/themes/winter-wonderland-3.jpg"
+                      alt="Guests gathered in The Vault during a Winter Wonderland celebration: candlelit lounges, crystal accents and warm winter illumination"
+                      eyebrow="An Evening to Remember"
+                      caption="Every detail arranged for the moment guests walk in."
+                    />
+                  )}
+
+                  {/* 9. Reserve */}
+                  {page === 9 && (
                     <div className="mx-auto flex h-full max-w-2xl flex-col justify-center px-8 py-14 text-center sm:px-14">
                       <motion.div
                         initial="hidden"
@@ -921,64 +1009,150 @@ export default function WinterWonderlandModal({
               </AnimatePresence>
             </div>
 
+            {/* Large side arrows: desktop only, floating over the spread. */}
+            <button
+              onClick={prev}
+              disabled={isCover}
+              aria-hidden
+              tabIndex={-1}
+              className="absolute top-1/2 left-4 z-30 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-sky-200/25 bg-[#050d1a]/70 text-sky-100 backdrop-blur-md transition-all duration-300 hover:border-sky-200/70 hover:bg-[#050d1a]/90 hover:text-white disabled:pointer-events-none disabled:opacity-0 lg:flex"
+            >
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2.2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            <motion.button
+              onClick={next}
+              aria-hidden
+              tabIndex={-1}
+              animate={nudge ? { x: [0, 5, 0] } : { x: 0 }}
+              transition={{
+                duration: 1.6,
+                repeat: nudge ? Infinity : 0,
+                ease: 'easeInOut',
+              }}
+              className={`absolute top-1/2 right-4 z-30 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border backdrop-blur-md transition-colors duration-300 lg:flex ${
+                nudge
+                  ? 'border-sky-200/70 bg-white text-[#071122] shadow-lg'
+                  : 'border-sky-200/25 bg-[#050d1a]/70 text-sky-100 hover:border-sky-200/70 hover:bg-[#050d1a]/90 hover:text-white'
+              } ${isLast ? 'pointer-events-none opacity-0' : ''}`}
+            >
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2.2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </motion.button>
+
             {/* Footer navigation */}
-            <div className="relative z-20 flex shrink-0 items-center justify-between gap-4 border-t border-sky-200/15 bg-[#050d1a]/80 px-5 py-3.5 backdrop-blur-md sm:px-8">
+            <div className="relative z-20 flex shrink-0 items-center justify-between gap-2 border-t border-sky-200/15 bg-[#050d1a]/90 px-3 py-3 backdrop-blur-md sm:gap-4 sm:px-8 sm:py-4">
               <button
                 onClick={prev}
                 disabled={isCover}
                 aria-label="Previous page"
-                className="font-secondary flex items-center gap-2.5 text-[10px] font-semibold tracking-[0.2em] text-sky-100/80 uppercase transition-all duration-300 hover:text-white disabled:pointer-events-none disabled:opacity-25"
+                className="font-secondary flex shrink-0 items-center gap-2 rounded-full border border-sky-200/30 px-4 py-2.5 text-[10px] font-semibold tracking-[0.18em] text-sky-100 uppercase transition-all duration-300 hover:border-sky-200/70 hover:bg-white/10 hover:text-white disabled:pointer-events-none disabled:opacity-20 sm:px-5"
               >
                 <svg
-                  className="h-3.5 w-3.5"
+                  className="h-4 w-4"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth={2}
+                  strokeWidth={2.2}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
                   <path d="M19 12H5M11 18l-6-6 6-6" />
                 </svg>
-                <span className="hidden sm:inline">Back</span>
+                <span>Back</span>
               </button>
 
-              {/* Page rail */}
-              <div className="flex items-center gap-2">
-                {PAGES.map((label, i) => (
-                  <button
-                    key={label}
-                    onClick={() => goTo(i)}
-                    aria-label={`Go to ${label}`}
-                    aria-current={i === page}
-                    className={`h-1.5 rounded-full transition-all duration-500 ${
-                      i === page
-                        ? 'w-7 bg-sky-200'
-                        : 'w-1.5 bg-sky-200/30 hover:bg-sky-200/60'
-                    }`}
-                  />
-                ))}
+              {/* Page rail + counter */}
+              <div className="flex min-w-0 flex-col items-center gap-2">
+                <div className="hidden items-center gap-1.5 min-[420px]:flex sm:gap-2">
+                  {PAGES.map((label, i) => (
+                    <button
+                      key={label}
+                      onClick={() => goTo(i)}
+                      aria-label={`Go to ${label}`}
+                      aria-current={i === page}
+                      className={`h-1.5 rounded-full transition-all duration-500 ${
+                        i === page
+                          ? 'w-6 bg-sky-200 sm:w-7'
+                          : 'w-1.5 bg-sky-200/30 hover:bg-sky-200/60'
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span className="font-secondary text-[9px] tracking-[0.24em] whitespace-nowrap text-sky-100/50 uppercase">
+                  {page + 1} / {TOTAL}
+                </span>
               </div>
 
-              <button
-                onClick={next}
-                disabled={page === TOTAL - 1}
-                aria-label="Next page"
-                className="font-secondary flex items-center gap-2.5 text-[10px] font-semibold tracking-[0.2em] text-sky-100/80 uppercase transition-all duration-300 hover:text-white disabled:pointer-events-none disabled:opacity-25"
-              >
-                <span className="hidden sm:inline">Next</span>
-                <svg
-                  className="h-3.5 w-3.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+              {isLast ? (
+                <button
+                  onClick={handleClose}
+                  aria-label="Close"
+                  className="font-secondary flex shrink-0 items-center gap-2 rounded-full border border-sky-200/30 px-4 py-2.5 text-[10px] font-semibold tracking-[0.18em] text-sky-100 uppercase transition-all duration-300 hover:border-sky-200/70 hover:bg-white/10 hover:text-white sm:px-5"
                 >
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </button>
+                  <span>Close</span>
+                </button>
+              ) : (
+                <motion.button
+                  onClick={next}
+                  aria-label={`Next page: ${PAGES[page + 1]}`}
+                  animate={
+                    nudge
+                      ? {
+                          boxShadow: [
+                            '0 0 0 0 rgba(186,230,253,0)',
+                            '0 0 0 8px rgba(186,230,253,0.18)',
+                            '0 0 0 0 rgba(186,230,253,0)',
+                          ],
+                        }
+                      : { boxShadow: '0 0 0 0 rgba(186,230,253,0)' }
+                  }
+                  transition={{
+                    duration: 1.6,
+                    repeat: nudge ? Infinity : 0,
+                    ease: 'easeOut',
+                  }}
+                  className="font-secondary flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[10px] font-semibold tracking-[0.18em] text-[#071122] uppercase shadow-lg transition-colors duration-300 hover:bg-sky-100 sm:px-6"
+                >
+                  <span>Next</span>
+                  <motion.svg
+                    className="h-4 w-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2.4}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    animate={nudge ? { x: [0, 4, 0] } : { x: 0 }}
+                    transition={{
+                      duration: 1.4,
+                      repeat: nudge ? Infinity : 0,
+                      ease: 'easeInOut',
+                    }}
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </motion.svg>
+                </motion.button>
+              )}
             </div>
           </motion.div>
         </div>

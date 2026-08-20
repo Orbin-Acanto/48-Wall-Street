@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import WinterWonderlandModal from './WinterWonderlandModal';
+import HiddenSpeakeasyModal from './HiddenSpeakeasyModal';
 
 interface HolidayThemesProps {
   /** Section background. Alternate against the neighbouring section. */
@@ -25,22 +26,21 @@ const THEMES = [
     tagline: 'A Private World Beneath Wall Street',
     description:
       'Luminous snowflakes, glowing winter trees, ambient candlelight and elegantly appointed lounge settings transform The Vault into an intimate seasonal escape.',
-    image: '/gallery/holiday/themes/winter-wonderland.png',
+    image: '/gallery/holiday/themes/winter-wonderland.jpg',
     imageAlt:
       'Winter Wonderland installation in The Vault at 48 Wall Street: illuminated winter trees, suspended snowflakes and candlelit lounge seating',
     hasDetail: true,
   },
   {
-    id: 'golden-christmas',
-    // PLACEHOLDER copy
-    name: 'Golden Christmas',
-    tagline: 'Gold, Evergreen & Firelight',
+    id: 'hidden-speakeasy',
+    name: 'Hidden Holiday Speakeasy',
+    tagline: 'An Exclusive After Hours Experience',
     description:
-      'Deep evergreen garland, warm gold accents, and rich firelight tones. A classic, opulent holiday setting that plays directly to the venue&apos;s 1920s architecture.',
-    image: '/gallery/holiday/holiday-08.jpg',
+      'Dark wood, candlelit tables and plush lounge seating turn The Vault into a private speakeasy inspired by the glamour and mystery of another era.',
+    image: '/gallery/holiday/themes/speakeasy-01.jpg',
     imageAlt:
-      'Classic gold and evergreen holiday decor with decorated tree at 48 Wall Street, Financial District NYC',
-    hasDetail: false,
+      'The Hidden Holiday Speakeasy beneath 48 Wall Street: dark wood bar, candlelight and barrel highboy tables',
+    hasDetail: true,
   },
 ];
 
@@ -48,7 +48,7 @@ export default function HolidayThemes({
   background = 'white',
 }: HolidayThemesProps) {
   const bg = background === 'white' ? 'bg-white' : 'bg-whitesmoke';
-  const [winterOpen, setWinterOpen] = useState(false);
+  const [openTheme, setOpenTheme] = useState<string | null>(null);
 
   return (
     <section
@@ -102,7 +102,7 @@ export default function HolidayThemes({
             >
               <CardShell
                 hasDetail={theme.hasDetail}
-                onOpen={() => setWinterOpen(true)}
+                onOpen={() => setOpenTheme(theme.id)}
               >
                 <article className="bg-dark-black ring-primary/15 hover:ring-primary/45 flex h-full flex-col overflow-hidden shadow-xl ring-1 shadow-black/15 transition-all duration-500 hover:shadow-2xl">
                   {/* Image */}
@@ -154,8 +154,13 @@ export default function HolidayThemes({
       </div>
 
       <WinterWonderlandModal
-        open={winterOpen}
-        onClose={() => setWinterOpen(false)}
+        open={openTheme === 'winter-wonderland'}
+        onClose={() => setOpenTheme(null)}
+      />
+
+      <HiddenSpeakeasyModal
+        open={openTheme === 'hidden-speakeasy'}
+        onClose={() => setOpenTheme(null)}
       />
     </section>
   );
