@@ -8,7 +8,7 @@ export interface Section {
 export const clientGuidelinesContent: Section[] = [
   {
     id: 'about',
-    title: 'About 48 Wall Street – A Historic Venue',
+    title: 'About 48 Wall Street: A Historic Venue',
     content: [
       "48 Wall Street offers a distinctive event destination in Lower Manhattan, defined by legacy, prestige, and architectural grandeur. Located in the heart of the Financial District, the Venue spans three remarkable floors of the former Bank of New York & Trust Company Building. The building's cornerstone was laid on January 12, 1928, the 171st birthday of Alexander Hamilton, the bank's founder.",
       'Today, 48 Wall Street remains a preserved architectural landmark featuring soaring ceilings, intricate marble detailing, and the original Grand Mezzanine. The Venue blends 1920s elegance with modern production capabilities, providing clients with a rare combination of historic character and contemporary convenience for corporate summits, private celebrations, and social galas.',
@@ -29,11 +29,11 @@ export const clientGuidelinesContent: Section[] = [
     id: 'venue-contacts',
     title: 'Venue Contacts',
     content: [
-      'Venue Sales Director: Lauren Leuci — Corporate Office: 877.885.0705 | Direct: 631.980.0239 | Email: lleuci@mmeink.com',
-      'Director of Operations: Andrew Heaton — Corporate Office: 877.885.0705 | Direct: 631.980.3637 | Mobile: 347.295.5501 | Email: aheaton@mmeink.com',
-      'Event Manager – Catering & Event Support: Andrea Palacio — Corporate Office: 877.885.0705 | Direct: 631.267.1324 | Email: apalacio@mmeink.com',
-      'Manager of Digital Content & Audio Visual: Philip Bianco — Corporate Office: 877.885.0705 | Direct: 631.980.0237 | Email: pbianco@mmeink.com',
-      'Production Manager: Juan Fuentes — Corporate Office: 877.885.0705 | Email: jfuentes@mmeink.com',
+      'Venue Sales Director: Lauren Leuci | Corporate Office: 877.885.0705 | Direct: 631.980.0239 | Email: lleuci@mmeink.com',
+      'Director of Operations: Andrew Heaton | Corporate Office: 877.885.0705 | Direct: 631.980.3637 | Mobile: 347.295.5501 | Email: aheaton@mmeink.com',
+      'Event Manager, Catering & Event Support: Andrea Palacio | Corporate Office: 877.885.0705 | Direct: 631.267.1324 | Email: apalacio@mmeink.com',
+      'Manager of Digital Content & Audio Visual: Philip Bianco | Corporate Office: 877.885.0705 | Direct: 631.980.0237 | Email: pbianco@mmeink.com',
+      'Production Manager: Juan Fuentes | Corporate Office: 877.885.0705 | Email: jfuentes@mmeink.com',
     ],
     requiresInitials: false,
   },
@@ -58,8 +58,8 @@ export const clientGuidelinesContent: Section[] = [
     title: 'Deliveries',
     content: [
       'Standard deliveries should be sent to the 48 Wall Street Events corporate office: 140 Florida St., Farmingdale, NY 11735',
-      'Venue deliveries (Lobby 2): 48 Wall St., New York, NY 10005 — All Venue deliveries must be scheduled in advance and coordinated through the William Street service entrance, subject to building operations.',
-      'Delivery Hours: Monday–Friday, 10:00 AM–5:00 PM (EST) only.',
+      'Venue deliveries (Lobby 2): 48 Wall St., New York, NY 10005. All Venue deliveries must be scheduled in advance and coordinated through the William Street service entrance, subject to building operations.',
+      'Delivery Hours: Monday to Friday, 10:00 AM to 5:00 PM (EST) only.',
       'After-Hours Deliveries: After-hours delivery access may be arranged at an additional cost of $1,800 for deliveries scheduled after 5:00 PM, covering delivery access up to 7:00 PM (EST).',
       'Advance Delivery Requirements: All advance deliveries require prior written approval from Venue management. Client must provide a written inventory list of all items/materials, including the total number of boxes. All items must be removed by 5:00 PM (EST) on the following business day. If items are not removed by the deadline, the Client authorizes a charge of $1,000 per day to the credit card on file until removal. Client is responsible for all shipping labels, arrangements, and item handling.',
       'Release of Liability: The Client hereby releases, indemnifies, defends, and holds harmless 48 Wall Street and its affiliated entities, officers, directors, employees, agents, and management from and against any and all claims, losses, or liabilities arising out of or related to late deliveries, damage to property, or any lost or stolen packages.',
@@ -75,7 +75,7 @@ export const clientGuidelinesContent: Section[] = [
       'Additional Time: Any additional load-in or load-out time required beyond the approved schedule shall be billed at $7,500 per hour.',
       'Venue Access Times (General Guidelines): If the event begins at 8:00 AM, Venue doors open at 7:00 AM. For evening events, access is provided beginning at 2:00 PM, unless otherwise approved in writing.',
       'Guest Entrance Only: The front entrance is for guest entry and exit only. No load-in or load-out is permitted through the front doors.',
-      'Service Entrance and Hours: Access for load-in/load-out is limited to Monday–Friday, 10:00 AM–5:00 PM, via the William Street service entrance, unless otherwise approved.',
+      'Service Entrance and Hours: Access for load-in/load-out is limited to Monday to Friday, 10:00 AM to 5:00 PM, via the William Street service entrance, unless otherwise approved.',
       'Freight Elevator: Use of the freight elevator requires prior approval and building personnel. Additional fees may apply and will be billed separately.',
       'Passenger Elevator Restriction: The passenger elevator is for passenger use only. Use of the passenger elevator for equipment or product movement without prior written consent from Venue management is prohibited and may result in immediate removal from the premises.',
       'Damage Responsibility: The Client is solely responsible for any damage caused by Client, guests, vendors (if approved), or any third parties. The Client authorizes the Venue to charge the credit card on file for any and all damages.',
@@ -101,7 +101,7 @@ export const clientGuidelinesContent: Section[] = [
       'All emergency exits and egress paths must remain clear at all times.',
       'Any permitted drapery/soft goods must include fire-retardant certification (if allowed by Venue).',
       'Marble floors must be fully protected beneath any equipment or décor.',
-      'No dragging or pushing items—items must be carried.',
+      'No dragging or pushing items. Items must be carried.',
       'Balloons and confetti are prohibited.',
       'No outside food is permitted without prior written approval from Venue management. Violation may result in immediate event termination without refund, and Client waives claims against the Venue for enforcement.',
       'No outside alcohol (spirits, wine, beer, liquor) is permitted and may violate New York State SLA rules. Violation may result in immediate event termination without refund, and Client waives claims against the Venue for enforcement.',
@@ -320,7 +320,7 @@ export const clientGuidelinesContent: Section[] = [
     title: 'Getting Here',
     content: [
       "48 Wall Street is centrally located in Manhattan's Financial District and is easily accessible by public transportation, nearby parking facilities, and ride-share services.",
-      'Subway Access: The Venue is within walking distance of several subway lines, including: 2 and 3 trains – Wall Street Station | 4 and 5 trains – Wall Street Station | J and Z trains – Broad Street Station | 1 train – Rector Street Station',
+      'Subway Access: The Venue is within walking distance of several subway lines, including: 2 and 3 trains to Wall Street Station | 4 and 5 trains to Wall Street Station | J and Z trains to Broad Street Station | 1 train to Rector Street Station',
       'ADA-Accessible Subway Stations: The following nearby subway stations offer ADA-accessible entrances and elevators (subject to MTA service availability): Fulton Street Station (multiple lines including 2, 3, 4, 5, A, C, J, Z) | Bowling Green Station (4 and 5 trains). Guests are encouraged to check the MTA website or app for real-time elevator status and accessibility updates prior to travel.',
       'Bus Service: Several MTA bus routes serve the Financial District and provide accessible service with wheelchair-accessible buses.',
       'Parking: Multiple public parking garages are located within walking distance of 48 Wall Street, some of which offer ADA-accessible parking spaces. Parking availability, rates, and accessibility features vary by garage and are not guaranteed. The Venue does not own, operate, or manage parking facilities.',
@@ -331,6 +331,6 @@ export const clientGuidelinesContent: Section[] = [
 ];
 
 export const documentTitle =
-  '48 Wall Street – Event & Show Client Guidelines & Authorization Agreement';
+  '48 Wall Street: Event & Show Client Guidelines & Authorization Agreement';
 export const documentIntro =
   'Please review the following guidelines carefully. These policies are designed to ensure a seamless event experience while preserving this historic property. For questions or assistance, please contact our event team at 212.971.5353.';

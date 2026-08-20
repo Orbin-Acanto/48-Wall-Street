@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: '/gallery/corporate/corporate-10.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street gala event setup — ideal non-profit fundraising venue in the Financial District NYC',
+        alt: '48 Wall Street gala event setup, ideal non-profit fundraising venue in the Financial District NYC',
       },
     ],
     locale: 'en_US',
@@ -222,7 +222,7 @@ export default function NonProfitLayout({
                 '@type': 'LocationFeatureSpecification',
                 name: 'Historic Architecture',
                 value:
-                  'National Register of Historic Places building — 1920s grandeur that elevates your cause',
+                  'National Register of Historic Places building with 1920s grandeur that elevates your cause',
               },
               {
                 '@type': 'LocationFeatureSpecification',
@@ -278,7 +278,7 @@ export default function NonProfitLayout({
                 name: 'What catering options are available for charity events?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: "Through our partner Tardi's Catering, we offer fully customizable menus for non-profit events — from elegant passed hors d'oeuvres and cocktail receptions to formal multi-course gala dinners with full bar service. We accommodate all dietary requirements.",
+                  text: "Through our partner Tardi's Catering, we offer fully customizable menus for non-profit events, from elegant passed hors d'oeuvres and cocktail receptions to formal multi-course gala dinners with full bar service. We accommodate all dietary requirements.",
                 },
               },
               {

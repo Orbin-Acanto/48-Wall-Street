@@ -202,7 +202,7 @@ export default function LocationLayout({
           name: 'Are there hotels within walking distance of the venue?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes, the venue is surrounded by a variety of hotels within a 5–10 minute walk. Our location page includes an interactive map showing nearby hotel options for out-of-town guests.',
+            text: 'Yes, the venue is surrounded by a variety of hotels within a 5 to 10 minute walk. Our location page includes an interactive map showing nearby hotel options for out-of-town guests.',
           },
         },
         {

@@ -27,6 +27,7 @@ export type ServiceSection = {
   title: string;
   subtitle?: string;
   description: string;
+  closer?: string;
   images: string[];
   imageAlts: string[];
   link?: { text: string; url: string };

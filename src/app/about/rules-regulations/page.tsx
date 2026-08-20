@@ -131,7 +131,7 @@ const RulesRegulations = () => {
               <div className="flex items-start gap-3">
                 <Clock className="text-primary mt-0.5 h-5 w-5 flex-shrink-0" />
                 <span className="font-secondary text-gray-600">
-                  Monday to Friday, 10 AM – 5 PM only
+                  Monday to Friday, 10 AM to 5 PM only
                 </span>
               </div>
               <div className="flex items-start gap-3">

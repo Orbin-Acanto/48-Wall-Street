@@ -43,16 +43,16 @@ export default function ServiceSectionItem({
   const nextLightbox = useCallback(
     () =>
       setLightboxIndex((prev) =>
-        prev === null ? prev : (prev + 1) % images.length,
+        prev === null ? prev : (prev + 1) % images.length
       ),
-    [images.length],
+    [images.length]
   );
   const prevLightbox = useCallback(
     () =>
       setLightboxIndex((prev) =>
-        prev === null ? prev : (prev - 1 + images.length) % images.length,
+        prev === null ? prev : (prev - 1 + images.length) % images.length
       ),
-    [images.length],
+    [images.length]
   );
 
   useEffect(() => {
@@ -159,6 +159,12 @@ export default function ServiceSectionItem({
             <p className="text-lead mb-4 text-gray-500">
               {renderMultiline(section.description)}
             </p>
+
+            {section.closer && (
+              <p className="font-primary text-primary mt-6 mb-4 border-l-2 border-[rgba(210,179,113,0.5)] pl-4 text-base tracking-[0.12em] uppercase md:text-lg">
+                {section.closer}
+              </p>
+            )}
 
             <div className="text-primary font-secondary flex items-center gap-4">
               {/* <button
