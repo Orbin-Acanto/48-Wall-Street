@@ -5,10 +5,11 @@ import { holidayData } from '@/data';
 
 export default function HolidayPage() {
   return (
-    <>
-      <EventDetails {...holidayData} />
-      {/* Alternates against the white section that closes EventDetails */}
-      <SantaSection background="whitesmoke" />
-    </>
+    <EventDetails
+      {...holidayData}
+      // Rendered directly after the brochure. Whitesmoke alternates against
+      // the brochure section's white background above it.
+      afterBrochure={<SantaSection background="whitesmoke" />}
+    />
   );
 }

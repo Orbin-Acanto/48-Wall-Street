@@ -50,6 +50,12 @@ export interface EventShowcaseProps {
   servicesVariant?: 'cards' | 'sections';
   clientLogos?: ClientLogo[];
   brochure?: BrochureConfig;
+  /**
+   * Optional full-width content rendered immediately after the brochure
+   * section. Used for page-specific features such as the holiday Santa
+   * experience.
+   */
+  afterBrochure?: React.ReactNode;
 }
 
 export default function EventDetails({
@@ -66,6 +72,7 @@ export default function EventDetails({
   servicesVariant = 'cards',
   clientLogos,
   brochure,
+  afterBrochure,
 }: EventShowcaseProps) {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
   const { ref: heroRef, y: heroY } = useParallax(['0%', '-12%']);
@@ -411,6 +418,9 @@ export default function EventDetails({
           />
         </section>
       )}
+
+      {/* Page-specific full-width feature, rendered after the brochure */}
+      {afterBrochure}
 
       {/* IMMERSIVE Food Service Section */}
       <section className="relative min-h-[500px] overflow-hidden md:min-h-[600px]">

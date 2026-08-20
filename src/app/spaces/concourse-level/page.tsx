@@ -79,9 +79,10 @@ export default function ConcourseLevelPage() {
           sqft: '3000 sq ft',
         }}
         enquireHref="/contact"
+        // Rendered directly after the brochure flipbook. Whitesmoke alternates
+        // against the white Floor Plans section that follows it.
+        afterBrochure={<HolidayThemes background="whitesmoke" />}
       />
-      {/* Alternates against the whitesmoke section that closes SpaceDetails */}
-      <HolidayThemes background="white" />
       <VaultDiscoverBanner />
     </>
   );

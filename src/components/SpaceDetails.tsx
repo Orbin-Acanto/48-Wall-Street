@@ -40,6 +40,18 @@ export interface SpaceDetailsProps {
   features?: string[];
   stats: SpaceStats;
   enquireHref?: string;
+  /**
+   * Optional full-width content rendered immediately before the 3D virtual
+   * walkthrough section. Used for page-specific features such as the
+   * Alexander Hamilton private dinner banner.
+   */
+  beforeVirtualTour?: React.ReactNode;
+  /**
+   * Optional full-width content rendered immediately after the brochure
+   * flipbook. Used for page-specific features such as the Vault Level
+   * holiday themes.
+   */
+  afterBrochure?: React.ReactNode;
   thenNow?: {
     then: string;
     now: string;
@@ -65,6 +77,8 @@ export default function SpaceDetails({
   stats,
   enquireHref = '/contact',
   thenNow,
+  beforeVirtualTour,
+  afterBrochure,
 }: SpaceDetailsProps) {
   // When a dedicated hero slider is provided, the full `images` array is the
   // gallery. Otherwise keep the legacy behavior: images[0] is the hero.
@@ -354,6 +368,9 @@ export default function SpaceDetails({
         </section>
       )}
 
+      {/* Page-specific full-width feature, rendered after the brochure */}
+      {afterBrochure}
+
       {floorPlanImage && (
         <section className="bg-white px-6 pt-16 pb-12 md:pt-12 md:pb-10">
           <div className="mx-auto max-w-7xl">
@@ -422,6 +439,9 @@ export default function SpaceDetails({
           </div>
         </section>
       )}
+
+      {/* Page-specific full-width feature, rendered ahead of the tour */}
+      {beforeVirtualTour}
 
       {/* 3D Virtual Walkthrough */}
       {matterportUrl && (
