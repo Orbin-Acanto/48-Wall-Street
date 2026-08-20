@@ -4,6 +4,7 @@ import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import ShareThemeButton from './ShareThemeButton';
 
 interface WinterWonderlandModalProps {
   open: boolean;
@@ -544,23 +545,29 @@ export default function WinterWonderlandModal({
 
             <Snowfall />
 
-            {/* Close */}
-            <button
-              onClick={handleClose}
-              aria-label="Close Winter Wonderland details"
-              className="absolute top-5 right-5 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/25 backdrop-blur-md transition-all duration-300 hover:bg-white/20 hover:ring-white/50"
-            >
-              <svg
-                className="h-4 w-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
+            {/* Share and close, in one row so they never overlap. */}
+            <div className="absolute top-5 right-5 z-40 flex items-center gap-2.5">
+              <ShareThemeButton
+                themeId="winter-wonderland"
+                className="border-sky-200/25 bg-[#050d1a]/70 text-sky-100 hover:border-sky-200/60 hover:bg-[#050d1a]/90 hover:text-white"
+              />
+              <button
+                onClick={handleClose}
+                aria-label="Close Winter Wonderland details"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/25 backdrop-blur-md transition-all duration-300 hover:bg-white/20 hover:ring-white/50"
               >
-                <path d="M18 6 6 18M6 6l12 12" />
-              </svg>
-            </button>
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                >
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
             {/* Pages */}
             <div className="relative z-10 flex-1 overflow-hidden">

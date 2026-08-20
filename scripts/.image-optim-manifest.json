@@ -6130,5 +6130,12 @@
     "originalBytes": 5813932,
     "finalBytes": 803728,
     "resized": true
+  },
+  "public/spaces/hamilton-room/hamilton-small.jpg": {
+    "hash": "9544986fe1e03144a20b673474b6e73f69e4cb98",
+    "optimizedAt": "2026-08-20T22:18:55.058Z",
+    "originalBytes": 2711486,
+    "finalBytes": 758166,
+    "resized": false
   }
 }

@@ -53,7 +53,7 @@ export default function PrivateDinnerBanner({
           className="relative h-80 w-full sm:h-[28rem] lg:h-auto lg:min-h-[40rem]"
         >
           <Image
-            src="/spaces/hamilton-room/gallery-02.jpg"
+            src="/spaces/hamilton-room/hamilton-small.jpg"
             alt="Private dinner setting in The Alexander Hamilton Office at 48 Wall Street, Financial District NYC"
             fill
             className="object-cover object-center"

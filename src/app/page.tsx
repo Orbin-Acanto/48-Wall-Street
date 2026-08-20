@@ -13,6 +13,7 @@ import PrivateDinnerBanner from '@/components/PrivateDinnerBanner';
 import HolidayHomeBanner from '@/components/HolidayHomeBanner';
 import VaultDiscoverBanner from '@/components/VaultDiscoverBanner';
 import HolidayPromoBanner from '@/components/HolidayPromoBanner';
+import SantaSection from '@/components/SantaSection';
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
           image-free block breaks up the dark ParallaxSection above and the
           dark JourneyTimelineScroll below. */}
       <VaultDiscoverBanner />
+      <SantaSection background="whitesmoke" />
       <JourneyTimelineScroll items={items} />
 
       <PhotoGallery galleryPhotos={photos} />

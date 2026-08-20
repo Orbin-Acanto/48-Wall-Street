@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   type Availability,
+  type PriceTier,
   type Experience,
   type Slot,
   BookingApiError,
@@ -109,6 +110,30 @@ const THEMES: Record<Experience, ExperienceTheme> = {
     slotNoun: 'seating',
   },
 };
+
+/** Shown before confirming, and repeated in the confirmation email. */
+const BOOKING_TERMS = [
+  {
+    title: 'Holding your slot',
+    body: 'Your place is held for 24 hours while you complete the credit card authorization we email you. It is released automatically if that is not completed.',
+  },
+  {
+    title: 'Cancelling',
+    body: 'Cancel 48 hours or more before your start time for a full refund. Cancellations inside 48 hours are non refundable.',
+  },
+  {
+    title: 'If we cancel',
+    body: 'We may cancel up to 24 hours before for operational or safety reasons. If we do, you receive a full refund.',
+  },
+  {
+    title: 'Changes',
+    body: 'Date, time and guest count changes are subject to availability and must be requested at least 48 hours before.',
+  },
+  {
+    title: 'Your guests',
+    body: 'You are responsible for the conduct of your party and for any damage to the venue during your visit.',
+  },
+];
 
 type Step = 'details' | 'slot' | 'form' | 'done';
 
@@ -224,6 +249,15 @@ export default function BookingModal({
 
   const partyMin = availability?.party_min ?? 1;
   const partyMax = availability?.party_max ?? 8;
+
+  // The price for the currently chosen party size, quoted by the API so the
+  // modal, the email and the authorization form can never disagree.
+  const tier: PriceTier | null = useMemo(() => {
+    if (!availability) return null;
+    return (
+      availability.pricing.tiers.find((t) => t.party_size === partySize) ?? null
+    );
+  }, [availability, partySize]);
 
   const activeDay = useMemo(
     () => availability?.days.find((d) => d.slot_date === activeDate) ?? null,
@@ -521,17 +555,56 @@ export default function BookingModal({
                     {availability && !loading && !loadError && (
                       <>
                         {availability.days.length === 0 && (
-                          <p className="font-secondary text-[13.5px] text-gray-400">
-                            There are no dates open at the moment. Please check
-                            back soon or contact our team.
-                          </p>
+                          <div className="border-primary/30 bg-primary/5 border p-6">
+                            <p className="font-secondary mb-4 text-[13.5px] leading-relaxed text-gray-300">
+                              No dates are open for booking just yet. We release
+                              availability in stages, so please check back when
+                              more dates open.
+                            </p>
+                            <p className="font-secondary text-[13.5px] leading-relaxed text-gray-400">
+                              If you need a date sooner, email{' '}
+                              <a
+                                href="mailto:info@48wallnyc.com"
+                                className="text-primary underline underline-offset-4 transition-opacity hover:opacity-70"
+                              >
+                                info@48wallnyc.com
+                              </a>{' '}
+                              about VIP availability and our team will help.
+                            </p>
+                          </div>
                         )}
 
                         {availability.days.length > 0 && (
                           <>
                             {/* Dates */}
+                            {availability.pricing && (
+                              <div className="border-primary/25 mb-7 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-b py-4">
+                                <span className="font-primary text-primary text-[1.5rem] leading-none">
+                                  {availability.pricing.rate}
+                                </span>
+                                <span className="font-secondary text-[11px] tracking-[0.18em] text-gray-400 uppercase">
+                                  per guest
+                                </span>
+                                <span className="font-secondary ml-auto text-[11.5px] text-gray-500">
+                                  plus 24% administrative fee and 8.875% NY
+                                  sales tax
+                                </span>
+                              </div>
+                            )}
+
                             <p className="font-secondary text-primary mb-3 text-[9.5px] font-semibold tracking-[0.24em] uppercase">
                               Date
+                            </p>
+                            <p className="font-secondary mb-4 text-[12px] leading-relaxed text-gray-500">
+                              These are the dates open right now. More are
+                              released as the season approaches, or email{' '}
+                              <a
+                                href="mailto:info@48wallnyc.com"
+                                className="text-primary underline underline-offset-4 transition-opacity hover:opacity-70"
+                              >
+                                info@48wallnyc.com
+                              </a>{' '}
+                              about VIP availability.
                             </p>
                             <div className="mb-9 flex flex-wrap gap-2.5">
                               {availability.days.map((day) => {
@@ -670,6 +743,41 @@ export default function BookingModal({
                         Change
                       </button>
                     </div>
+
+                    {/* Charge breakdown, updating with the guest count */}
+                    {tier && (
+                      <div className="border-primary/25 mb-8 border p-5">
+                        <p className="font-secondary text-primary mb-4 text-[9.5px] font-semibold tracking-[0.24em] uppercase">
+                          Your Charges
+                        </p>
+                        <dl className="space-y-2.5">
+                          <ChargeRow
+                            label={`${availability?.pricing.rate} per guest x ${partySize}`}
+                            value={tier.subtotal}
+                          />
+                          <ChargeRow
+                            label="Administrative fee (24%)"
+                            value={tier.admin_fee}
+                          />
+                          <ChargeRow
+                            label="NY sales tax (8.875%)"
+                            value={tier.sales_tax}
+                          />
+                          <div className="border-primary/25 flex items-baseline justify-between border-t pt-3">
+                            <dt className="font-secondary text-[11px] font-semibold tracking-[0.16em] text-white uppercase">
+                              Total
+                            </dt>
+                            <dd className="font-primary text-primary text-[1.35rem] leading-none">
+                              {tier.total}
+                            </dd>
+                          </div>
+                        </dl>
+                        <p className="font-secondary mt-4 text-[11.5px] leading-relaxed text-gray-500">
+                          Authorized against your card when you complete the
+                          authorization form. Nothing is charged before that.
+                        </p>
+                      </div>
+                    )}
 
                     <form onSubmit={handleSubmit} className="space-y-5">
                       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -812,6 +920,29 @@ export default function BookingModal({
                         </ul>
                       </div>
 
+                      {/* Booking terms */}
+                      <div className="border-primary/20 border-t pt-5">
+                        <p className="font-secondary text-primary mb-3 text-[9.5px] font-semibold tracking-[0.24em] uppercase">
+                          Booking Terms
+                        </p>
+                        <ul className="space-y-2.5">
+                          {BOOKING_TERMS.map((term) => (
+                            <li
+                              key={term.title}
+                              className="font-secondary text-[12px] leading-relaxed text-gray-400"
+                            >
+                              <span className="text-gray-200">
+                                {term.title}.
+                              </span>{' '}
+                              {term.body}
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="font-secondary mt-4 text-[11.5px] leading-relaxed text-gray-500">
+                          By confirming you agree to these terms.
+                        </p>
+                      </div>
+
                       {submitError && (
                         <p className="font-secondary border border-red-500/40 bg-red-500/10 px-4 py-3 text-[13px] text-red-200">
                           {submitError}
@@ -871,16 +1002,22 @@ export default function BookingModal({
                     </motion.div>
 
                     <p className="font-secondary text-primary mb-4 text-[10px] font-semibold tracking-[0.3em] uppercase">
-                      Booking Confirmed
+                      Your Place Is Held
                     </p>
 
                     <h2 className="font-primary mb-5 text-[2rem] leading-tight text-white sm:text-[2.5rem]">
-                      We look forward to welcoming you
+                      One more step to secure it
                     </h2>
 
-                    <p className="font-secondary mb-8 text-[14px] leading-[1.85] text-gray-300">
-                      A confirmation is on its way to {email}. Please keep your
-                      reference for your records.
+                    <p className="font-secondary mb-6 text-[14px] leading-[1.85] text-gray-300">
+                      We have emailed {email} with a link to the credit card
+                      authorization. Complete it within 24 hours and your
+                      booking is confirmed.
+                    </p>
+
+                    <p className="font-secondary mb-8 text-[12.5px] leading-relaxed text-gray-500">
+                      If it is not completed in time, the slot is released for
+                      other guests and nothing is charged.
                     </p>
 
                     <div className="border-primary/30 bg-primary/5 mb-8 border p-6">
@@ -890,6 +1027,14 @@ export default function BookingModal({
                       <p className="font-primary text-[1.6rem] tracking-[0.08em] text-white">
                         {reference}
                       </p>
+                      {tier && (
+                        <p className="font-secondary border-primary/25 mt-4 border-t pt-4 text-[12.5px] text-gray-400">
+                          Total to authorize{' '}
+                          <span className="text-primary font-semibold">
+                            {tier.total}
+                          </span>
+                        </p>
+                      )}
                     </div>
 
                     <button
@@ -906,6 +1051,18 @@ export default function BookingModal({
         </div>
       )}
     </AnimatePresence>
+  );
+}
+
+/** One line of the charge breakdown. */
+function ChargeRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-baseline justify-between gap-4">
+      <dt className="font-secondary text-[12.5px] text-gray-400">{label}</dt>
+      <dd className="font-secondary text-[13px] text-gray-200 tabular-nums">
+        {value}
+      </dd>
+    </div>
   );
 }
 

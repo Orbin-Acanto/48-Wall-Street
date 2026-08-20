@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import BookingModal from './BookingModal';
+import SantaExperienceModal from './SantaExperienceModal';
 
 interface SantaSectionProps {
   /** Section background. Alternate against the neighbouring section. */
@@ -13,16 +13,16 @@ interface SantaSectionProps {
 
 const HIGHLIGHTS = [
   {
-    title: 'Meet & Greet',
-    body: 'Guests of all ages meet Santa in a warm, unhurried setting beneath the landmark architecture of the Banking Hall.',
+    title: 'Time With Santa',
+    body: 'An unhurried visit in a beautifully appointed setting, with room for every wish list and no sense of being rushed along.',
   },
   {
-    title: 'Keepsake Photo',
-    body: 'A professionally lit holiday portrait on the grand marble staircase, captured and delivered as a lasting memento.',
+    title: 'Keepsake Portrait',
+    body: 'A professionally lit holiday photograph on the grand marble staircase, captured and delivered as a lasting memento.',
   },
   {
-    title: 'Festive Setting',
-    body: 'Towering trees, garland-wrapped balustrades, and thousands of lights transform the venue into a holiday landmark.',
+    title: 'A Landmark Setting',
+    body: 'Towering trees, garland wrapped balustrades and thousands of lights beneath thirty foot ceilings and original 1920s detail.',
   },
 ];
 
@@ -38,6 +38,7 @@ export default function SantaSection({
 }: SantaSectionProps) {
   const bg = background === 'white' ? 'bg-white' : 'bg-whitesmoke';
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [storyOpen, setStoryOpen] = useState(false);
 
   return (
     <section className={`${bg} py-16 md:py-24`} aria-labelledby="santa-heading">
@@ -62,14 +63,14 @@ export default function SantaSection({
             id="santa-heading"
             className="heading-hero mb-6 text-[2.4rem] md:text-[3.2rem]"
           >
-            Santa Lands on Wall Street
+            Sit Down With Santa
           </h2>
 
           <p className="text-lead text-gray-600">
-            Santa makes his Financial District arrival at 48 Wall Street. Bring
-            the family for a meet and greet beneath the grand marble staircase,
-            and take home a holiday photo set against one of New York&apos;s
-            most iconic landmark interiors.
+            Turn a visit with Santa into a landmark holiday tradition. Step
+            inside 48 Wall Street for a beautifully appointed visit, gather the
+            family, share a wish list and capture a memory in one of Lower
+            Manhattan&apos;s most distinctive settings.
           </p>
         </motion.div>
 
@@ -84,8 +85,8 @@ export default function SantaSection({
             className="relative min-h-[420px] overflow-hidden shadow-2xl shadow-black/20 lg:min-h-[560px]"
           >
             <Image
-              src="/gallery/holiday/holiday-03.jpg"
-              alt="Festive holiday setting with decorated tree and garland at 48 Wall Street, Financial District NYC"
+              src="/gallery/holiday/themes/santa-01.jpg"
+              alt="Santa welcoming a family in the holiday decorated lobby of 48 Wall Street, New York"
               fill
               className="object-cover object-center"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -142,16 +143,24 @@ export default function SantaSection({
                 >
                   Reserve Your Visit
                 </button>
-                <Link href="/contact">
-                  <span className="font-secondary border-dark-black/30 hover:border-dark-black inline-block w-full border px-9 py-4 text-center text-xs font-semibold tracking-[0.18em] text-gray-900 uppercase transition-all duration-300 hover:bg-gray-900/5 sm:w-auto">
-                    Request Details
-                  </span>
-                </Link>
+                <button
+                  type="button"
+                  onClick={() => setStoryOpen(true)}
+                  className="font-secondary border-dark-black/30 hover:border-dark-black inline-block w-full cursor-pointer border px-9 py-4 text-center text-xs font-semibold tracking-[0.18em] text-gray-900 uppercase transition-all duration-300 hover:bg-gray-900/5 sm:w-auto"
+                >
+                  View the Experience
+                </button>
               </div>
             </div>
           </motion.div>
         </div>
       </div>
+
+      <SantaExperienceModal
+        open={storyOpen}
+        onClose={() => setStoryOpen(false)}
+        onReserve={() => setBookingOpen(true)}
+      />
 
       <BookingModal
         experience="santa"

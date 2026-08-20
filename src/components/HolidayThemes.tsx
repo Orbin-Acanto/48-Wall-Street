@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import WinterWonderlandModal from './WinterWonderlandModal';
 import HiddenSpeakeasyModal from './HiddenSpeakeasyModal';
+import { syncThemeParam, useSharedTheme } from '@/lib/shareTheme';
 
 interface HolidayThemesProps {
   /** Section background. Alternate against the neighbouring section. */
@@ -44,11 +45,27 @@ const THEMES = [
   },
 ];
 
+/** Valid deep link targets, derived so they cannot drift from THEMES. */
+const THEME_IDS = THEMES.map((t) => t.id);
+
 export default function HolidayThemes({
   background = 'white',
 }: HolidayThemesProps) {
   const bg = background === 'white' ? 'bg-white' : 'bg-whitesmoke';
   const [openTheme, setOpenTheme] = useState<string | null>(null);
+
+  // A shared link such as ?experience=hidden-speakeasy opens that modal on
+  // arrival, so a manager can send a client straight to one theme.
+  const sharedTheme = useSharedTheme(THEME_IDS);
+  useEffect(() => {
+    if (sharedTheme) setOpenTheme(sharedTheme);
+  }, [sharedTheme]);
+
+  // Keep the URL in step with what is open, so the share button always copies
+  // a link to the modal the reader is actually looking at.
+  useEffect(() => {
+    syncThemeParam(openTheme);
+  }, [openTheme]);
 
   return (
     <section

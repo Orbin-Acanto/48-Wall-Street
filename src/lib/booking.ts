@@ -27,11 +27,29 @@ export interface Day {
   total_remaining: number;
 }
 
+export interface PriceTier {
+  party_size: number;
+  subtotal: string;
+  admin_fee: string;
+  sales_tax: string;
+  total: string;
+  total_cents: number;
+}
+
+export interface Pricing {
+  rate: string;
+  rate_cents: number;
+  admin_fee_rate: number;
+  sales_tax_rate: number;
+  tiers: PriceTier[];
+}
+
 export interface Availability {
   experience: Experience;
   days: Day[];
   party_min: number;
   party_max: number;
+  pricing: Pricing;
 }
 
 export interface BookingRequest {
@@ -143,5 +161,71 @@ export function formatSlotTime(value: string): string {
   const [hRaw, mRaw] = value.split(':').map(Number);
   const suffix = hRaw < 12 ? 'am' : 'pm';
   const hour = hRaw % 12 || 12;
-  return mRaw ? `${hour}:${String(mRaw).padStart(2, '0')}${suffix}` : `${hour}${suffix}`;
+  return mRaw
+    ? `${hour}:${String(mRaw).padStart(2, '0')}${suffix}`
+    : `${hour}${suffix}`;
+}
+
+/**
+ * Tells the booking API that the credit card authorization was signed, which
+ * moves the booking from held to confirmed and stops it being released.
+ *
+ * Returns false rather than throwing: the client has already signed, so a
+ * transport failure must not present as a failed signature.
+ */
+export async function reportAuthorizationSigned(
+  reference: string,
+  signature: string
+): Promise<boolean> {
+  if (!BASE) return false;
+
+  try {
+    const res = await fetch(`${BASE}/api/authorizations`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({ reference, signature }),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
+/** Booking details shown on the authorization page. */
+export interface BookingStatus {
+  reference: string;
+  experience: Experience;
+  slot_date: string;
+  start_time: string;
+  end_time: string;
+  party_size: number;
+  first_name: string;
+  last_name: string;
+  status: string;
+  authorization_signed: boolean;
+  /** Itemised charge, quoted by the API so the form cannot disagree with it. */
+  rate?: string | null;
+  subtotal?: string | null;
+  admin_fee?: string | null;
+  sales_tax?: string | null;
+  total?: string | null;
+}
+
+export async function fetchBookingStatus(
+  reference: string
+): Promise<BookingStatus | null> {
+  if (!BASE) return null;
+
+  try {
+    const res = await fetch(`${BASE}/api/bookings/${reference}/status`, {
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  }
 }
