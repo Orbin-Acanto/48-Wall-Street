@@ -1,8 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import BookingModal from './BookingModal';
 
 interface PrivateDinnerBannerProps {
   /**
@@ -24,6 +25,7 @@ const AVAILABLE_DAYS = ['Monday', 'Tuesday', 'Saturday'];
 export default function PrivateDinnerBanner({
   background = 'dark',
 }: PrivateDinnerBannerProps) {
+  const [bookingOpen, setBookingOpen] = useState(false);
   const isDark = background === 'dark';
   const panelBg = isDark
     ? 'bg-dark-black'
@@ -127,14 +129,22 @@ export default function PrivateDinnerBanner({
               </div>
             </div>
 
-            <Link href="/contact?inquiry=hamilton-private-dinner">
-              <span className="font-secondary bg-primary hover:bg-primary/90 text-dark-black inline-block px-10 py-4 text-xs font-semibold tracking-[0.18em] uppercase shadow-lg transition-all duration-300 hover:shadow-xl">
-                Reserve Now
-              </span>
-            </Link>
+            <button
+              type="button"
+              onClick={() => setBookingOpen(true)}
+              className="font-secondary bg-primary hover:bg-primary/90 text-dark-black inline-block cursor-pointer px-10 py-4 text-xs font-semibold tracking-[0.18em] uppercase shadow-lg transition-all duration-300 hover:shadow-xl"
+            >
+              Reserve Now
+            </button>
           </div>
         </motion.div>
       </div>
+
+      <BookingModal
+        experience="hamilton"
+        open={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+      />
     </section>
   );
 }

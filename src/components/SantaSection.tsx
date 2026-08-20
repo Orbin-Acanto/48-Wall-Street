@@ -1,8 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import BookingModal from './BookingModal';
 
 interface SantaSectionProps {
   /** Section background. Alternate against the neighbouring section. */
@@ -35,6 +37,7 @@ export default function SantaSection({
   background = 'whitesmoke',
 }: SantaSectionProps) {
   const bg = background === 'white' ? 'bg-white' : 'bg-whitesmoke';
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   return (
     <section className={`${bg} py-16 md:py-24`} aria-labelledby="santa-heading">
@@ -132,11 +135,13 @@ export default function SantaSection({
             {/* CTA */}
             <div className="border-primary/30 mt-10 border-t pt-9">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Link href="/contact?inquiry=santa-experience">
-                  <span className="font-secondary bg-primary hover:bg-primary/90 text-dark-black inline-block w-full px-9 py-4 text-center text-xs font-semibold tracking-[0.18em] uppercase shadow-lg transition-all duration-300 hover:shadow-xl sm:w-auto">
-                    Reserve Your Visit
-                  </span>
-                </Link>
+                <button
+                  type="button"
+                  onClick={() => setBookingOpen(true)}
+                  className="font-secondary bg-primary hover:bg-primary/90 text-dark-black inline-block w-full cursor-pointer px-9 py-4 text-center text-xs font-semibold tracking-[0.18em] uppercase shadow-lg transition-all duration-300 hover:shadow-xl sm:w-auto"
+                >
+                  Reserve Your Visit
+                </button>
                 <Link href="/contact">
                   <span className="font-secondary border-dark-black/30 hover:border-dark-black inline-block w-full border px-9 py-4 text-center text-xs font-semibold tracking-[0.18em] text-gray-900 uppercase transition-all duration-300 hover:bg-gray-900/5 sm:w-auto">
                     Request Details
@@ -147,6 +152,12 @@ export default function SantaSection({
           </motion.div>
         </div>
       </div>
+
+      <BookingModal
+        experience="santa"
+        open={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+      />
     </section>
   );
 }
