@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import BookingModal from './BookingModal';
+import HamiltonDinnerModal from './HamiltonDinnerModal';
 
 interface PrivateDinnerBannerProps {
   /**
@@ -26,6 +27,7 @@ export default function PrivateDinnerBanner({
   background = 'dark',
 }: PrivateDinnerBannerProps) {
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [storyOpen, setStoryOpen] = useState(false);
   const isDark = background === 'dark';
   const panelBg = isDark
     ? 'bg-dark-black'
@@ -53,7 +55,7 @@ export default function PrivateDinnerBanner({
           className="relative h-80 w-full sm:h-[28rem] lg:h-auto lg:min-h-[40rem]"
         >
           <Image
-            src="/spaces/hamilton-room/hamilton-small.jpg"
+            src="/gallery/holiday/themes/hamilton-card.jpg"
             alt="Private dinner setting in The Alexander Hamilton Office at 48 Wall Street, Financial District NYC"
             fill
             className="object-cover object-center"
@@ -129,16 +131,36 @@ export default function PrivateDinnerBanner({
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setBookingOpen(true)}
-              className="font-secondary bg-primary hover:bg-primary/90 text-dark-black inline-block cursor-pointer px-10 py-4 text-xs font-semibold tracking-[0.18em] uppercase shadow-lg transition-all duration-300 hover:shadow-xl"
-            >
-              Reserve Now
-            </button>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <button
+                type="button"
+                onClick={() => setBookingOpen(true)}
+                className="font-secondary bg-primary hover:bg-primary/90 text-dark-black inline-block w-full cursor-pointer px-10 py-4 text-center text-xs font-semibold tracking-[0.18em] uppercase shadow-lg transition-all duration-300 hover:shadow-xl sm:w-auto"
+              >
+                Reserve Now
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setStoryOpen(true)}
+                className={`font-secondary inline-block w-full cursor-pointer border px-10 py-4 text-center text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 sm:w-auto ${
+                  isDark
+                    ? 'border-white/30 text-white hover:border-white/70 hover:bg-white/5'
+                    : 'border-dark-black/30 hover:border-dark-black text-gray-900 hover:bg-gray-900/5'
+                }`}
+              >
+                View the Experience
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>
+
+      <HamiltonDinnerModal
+        open={storyOpen}
+        onClose={() => setStoryOpen(false)}
+        onReserve={() => setBookingOpen(true)}
+      />
 
       <BookingModal
         experience="hamilton"

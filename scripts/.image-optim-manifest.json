@@ -6137,5 +6137,12 @@
     "originalBytes": 2711486,
     "finalBytes": 758166,
     "resized": false
+  },
+  "public/gallery/holiday/317bab31-135a-4268-a4a9-834bf23f01c6.png": {
+    "hash": "29de13ff489cd0044ab2e8aa2bd57a471b09a599",
+    "optimizedAt": "2026-08-20T23:14:21.679Z",
+    "originalBytes": 1900914,
+    "finalBytes": 552840,
+    "resized": false
   }
 }

@@ -761,7 +761,7 @@ export default function WinterWonderlandModal({
                   {/* 3. The Setting in View */}
                   {page === 3 && (
                     <PhotoPage
-                      src="/gallery/holiday/themes/winter-wonderland-2.jpg"
+                      src="/gallery/holiday/themes/317bab31-135a-4268-a4a9-834bf23f01c6.png"
                       alt="The Vault at 48 Wall Street dressed for Winter Wonderland: illuminated winter trees, suspended snowflakes and layered blue lighting across the historic hall"
                       eyebrow="The Setting in View"
                       caption="Light, snow and stone, brought together beneath Wall Street."
