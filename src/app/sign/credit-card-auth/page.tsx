@@ -234,7 +234,13 @@ function CreditCardAuthContent() {
 
   /** Digits only, masked as (XXX) XXX-XXXX. Non-digits are dropped outright. */
   const formatPhone = (raw: string) => {
-    const digits = raw.replace(/\D/g, '').substring(0, 10);
+    let digits = raw.replace(/\D/g, '');
+    // A pasted "+1 212..." would otherwise shift every digit left and silently
+    // corrupt the number, so drop a leading US country code.
+    if (digits.length === 11 && digits.startsWith('1')) {
+      digits = digits.slice(1);
+    }
+    digits = digits.substring(0, 10);
     if (digits.length <= 3) return digits;
     if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
     return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
@@ -759,7 +765,7 @@ function CreditCardAuthContent() {
                   'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
                 )}
               />
-                <FieldError field="creditCardNumber" />
+              <FieldError field="creditCardNumber" />
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
@@ -775,11 +781,11 @@ function CreditCardAuthContent() {
                   onChange={handleExpDateChange}
                   placeholder="MM/YY"
                   className={fieldClass(
-                  'expirationDate',
-                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
-                )}
+                    'expirationDate',
+                    'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                  )}
                 />
-                  <FieldError field="expirationDate" />
+                <FieldError field="expirationDate" />
               </div>
               <div>
                 <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -794,11 +800,11 @@ function CreditCardAuthContent() {
                   onChange={handleCvvChange}
                   placeholder={cvvLength === 4 ? '1234' : '123'}
                   className={fieldClass(
-                  'cvvCode',
-                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
-                )}
+                    'cvvCode',
+                    'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                  )}
                 />
-                  <FieldError field="cvvCode" />
+                <FieldError field="cvvCode" />
               </div>
             </div>
           </div>
