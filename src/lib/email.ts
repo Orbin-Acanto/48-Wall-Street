@@ -20,10 +20,24 @@ export function staffRecipients(): string[] {
 }
 
 export interface EmailAttachment {
-  /** Base64-encoded file content (no data: prefix). */
+  /**
+   * File content as base64. A full `data:` URI is also accepted — jsPDF's
+   * `output('datauristring')` returns one — and is normalised to bare base64
+   * before sending, since mail clients cannot decode a prefixed payload.
+   */
   data: string;
   filename: string;
   contentType?: string;
+}
+
+/** Strip any `data:<type>;...;base64,` prefix, leaving bare base64. */
+function toBareBase64(data: string): string {
+  const marker = ';base64,';
+  const index = data.indexOf(marker);
+  if (data.startsWith('data:') && index !== -1) {
+    return data.slice(index + marker.length);
+  }
+  return data;
 }
 
 export interface EmailMessage {
@@ -56,7 +70,7 @@ export async function sendEmail(
 
   if (message.attachment) {
     // n8n reads the file from `data`, matching the existing submit webhook.
-    payload.data = message.attachment.data;
+    payload.data = toBareBase64(message.attachment.data);
     payload.filename = message.attachment.filename;
     payload.contentType = message.attachment.contentType ?? 'application/pdf';
   }

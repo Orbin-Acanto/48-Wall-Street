@@ -26,6 +26,12 @@ function CreditCardAuthContent() {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
   const [alreadySigned, setAlreadySigned] = useState(false);
+  const [booking, setBooking] = useState({
+    bookingReference: '',
+    experienceName: '',
+    slotTime: '',
+    partySize: '' as string | number,
+  });
 
   const [formValues, setFormValues] = useState<CreditCardAuthFormData>({
     cardType: '',
@@ -84,9 +90,20 @@ function CreditCardAuthContent() {
         setClientEmail(data.email || '');
         setDeadline(data.deadline || '');
         setDocId(data.docId || '');
+        setBooking({
+          bookingReference: data.bookingReference || '',
+          experienceName: data.experienceName || '',
+          slotTime: data.slotTime || '',
+          partySize: data.partySize || '',
+        });
         setFormValues((prev) => ({
           ...prev,
           cardholderName: data.name || '',
+          // Prefill event details from the booking so the client is not
+          // retyping what we already know. Still editable.
+          eventDate: data.eventDate || prev.eventDate,
+          typeOfEvent: data.experienceName || prev.typeOfEvent,
+          eventLocation: data.eventLocation || prev.eventLocation,
         }));
         setIsLoading(false);
       } catch (err) {
@@ -303,7 +320,7 @@ function CreditCardAuthContent() {
           deadline,
           docId,
           token,
-          formData: formValues,
+          formData: { ...formValues, ...booking },
         }),
       });
 
