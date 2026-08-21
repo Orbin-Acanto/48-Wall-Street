@@ -143,6 +143,31 @@ const STEP_LABELS: Record<Exclude<Step, 'done'>, string> = {
   form: 'Your Details',
 };
 
+/**
+ * Scarcity wording for a bookable slot.
+ *
+ * We deliberately never print the exact remaining count or the capacity —
+ * exposing "2 of 6 left" tells guests how large the room is and how empty it
+ * is. The thresholds are proportional so they read sensibly whether a slot
+ * seats four or forty.
+ */
+function availabilityLabel(slot: Slot): string {
+  const { remaining, capacity } = slot;
+
+  if (remaining <= 0) return 'Fully booked';
+  if (capacity <= 1) return 'Available';
+
+  // Down to the final seat or two, or under a quarter of the room.
+  if (remaining <= 2 || remaining / capacity <= 0.25) {
+    return 'Last few remaining';
+  }
+
+  // Past the halfway mark.
+  if (remaining / capacity <= 0.5) return 'Filling up';
+
+  return 'Available';
+}
+
 interface BookingModalProps {
   experience: Experience;
   open: boolean;
@@ -672,9 +697,7 @@ export default function BookingModal({
                                         >
                                           {s.is_sold_out
                                             ? 'Fully booked'
-                                            : s.capacity === 1
-                                              ? 'Available'
-                                              : `${s.remaining} of ${s.capacity} left`}
+                                            : availabilityLabel(s)}
                                         </span>
                                       </button>
                                     );

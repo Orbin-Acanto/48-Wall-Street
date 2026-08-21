@@ -232,34 +232,99 @@ function CreditCardAuthContent() {
     setFormValues((prev) => ({ ...prev, cvvCode: value }));
   };
 
+  /** Digits only, masked as (XXX) XXX-XXXX. Non-digits are dropped outright. */
+  const formatPhone = (raw: string) => {
+    const digits = raw.replace(/\D/g, '').substring(0, 10);
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({ ...prev, [name]: formatPhone(value) }));
+  };
+
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/[^0-9.]/g, '');
 
+    // Collapse any extra decimal points into the first one.
     const parts = value.split('.');
     if (parts.length > 2) {
       value = parts[0] + '.' + parts.slice(1).join('');
     }
 
-    const decimalParts = value.split('.');
-    if (decimalParts.length === 2 && decimalParts[1].length > 3) {
-      value = decimalParts[0] + '.' + decimalParts[1].substring(0, 3);
-    }
+    // Currency: at most two decimal places, and keep the whole part sane.
+    const [whole, decimals] = value.split('.');
+    const cappedWhole = whole.substring(0, 9);
+    value =
+      decimals === undefined
+        ? cappedWhole
+        : `${cappedWhole}.${decimals.substring(0, 2)}`;
 
     setFormValues((prev) => ({ ...prev, authorizedAmount: value }));
   };
 
+  /** Reject a card number that fails the Luhn checksum (catches typos). */
+  const passesLuhn = (digits: string) => {
+    let sum = 0;
+    let double = false;
+    for (let i = digits.length - 1; i >= 0; i -= 1) {
+      let d = Number(digits[i]);
+      if (double) {
+        d *= 2;
+        if (d > 9) d -= 9;
+      }
+      sum += d;
+      double = !double;
+    }
+    return sum % 10 === 0;
+  };
+
+  const cardDigits = formValues.creditCardNumber.replace(/\D/g, '');
+  const cardNumberValid =
+    cardDigits.length === cardDigitLimit && passesLuhn(cardDigits);
+
+  /** Expiry must be a real month and not already past. */
+  const expiryValid = (() => {
+    const match = /^(\d{2})\/(\d{2})$/.exec(formValues.expirationDate);
+    if (!match) return false;
+    const month = Number(match[1]);
+    const year = 2000 + Number(match[2]);
+    if (month < 1 || month > 12) return false;
+    const now = new Date();
+    // Card is valid through the last day of its expiry month.
+    const expiryEnd = new Date(year, month, 1);
+    return expiryEnd > now;
+  })();
+
+  const phoneDigits = (value: string) => value.replace(/\D/g, '').length;
+  const cellPhoneValid = phoneDigits(formValues.cellPhone) === 10;
+  const homePhoneValid =
+    !formValues.homePhone || phoneDigits(formValues.homePhone) === 10;
+  const workPhoneValid =
+    !formValues.workPhone || phoneDigits(formValues.workPhone) === 10;
+
+  const amountValue = Number(formValues.authorizedAmount);
+  const amountValid =
+    formValues.authorizedAmount.trim() !== '' &&
+    Number.isFinite(amountValue) &&
+    amountValue > 0;
+
   const isFormComplete =
     formValues.cardType &&
-    formValues.creditCardNumber.replace(/\s/g, '').length === cardDigitLimit &&
-    formValues.expirationDate.length === 5 &&
+    cardNumberValid &&
+    expiryValid &&
     formValues.cvvCode.length === cvvLength &&
-    formValues.cardholderName &&
-    formValues.billingAddress &&
-    formValues.cellPhone &&
+    formValues.cardholderName.trim().length > 1 &&
+    formValues.billingAddress.trim().length > 4 &&
+    cellPhoneValid &&
+    homePhoneValid &&
+    workPhoneValid &&
     formValues.eventDate &&
-    formValues.typeOfEvent &&
-    formValues.eventLocation &&
-    formValues.authorizedAmount;
+    formValues.typeOfEvent.trim() &&
+    formValues.eventLocation.trim() &&
+    amountValid;
 
   const isReadyToSubmit =
     isFormComplete &&
@@ -268,21 +333,70 @@ function CreditCardAuthContent() {
     typedName.trim().length > 0 &&
     agreedToTerms;
 
-  const missingFormFields: string[] = [];
-  if (!formValues.cardType) missingFormFields.push('Card type');
-  if (formValues.creditCardNumber.replace(/\s/g, '').length !== cardDigitLimit)
-    missingFormFields.push('Credit card number');
-  if (formValues.expirationDate.length !== 5)
-    missingFormFields.push('Expiration date');
-  if (formValues.cvvCode.length !== cvvLength)
-    missingFormFields.push('CVV code');
-  if (!formValues.cardholderName) missingFormFields.push('Cardholder name');
-  if (!formValues.billingAddress) missingFormFields.push('Billing address');
-  if (!formValues.cellPhone) missingFormFields.push('Cell phone');
-  if (!formValues.eventDate) missingFormFields.push('Event date');
-  if (!formValues.typeOfEvent) missingFormFields.push('Type of event');
-  if (!formValues.eventLocation) missingFormFields.push('Event location');
-  if (!formValues.authorizedAmount) missingFormFields.push('Authorized amount');
+  // Field-level messages say what is wrong, not merely that something is.
+  const fieldErrors: Record<string, string> = {};
+  if (!formValues.cardType) fieldErrors.cardType = 'Select a card type';
+
+  if (cardDigits.length === 0) {
+    fieldErrors.creditCardNumber = 'Enter the card number';
+  } else if (cardDigits.length !== cardDigitLimit) {
+    fieldErrors.creditCardNumber = `Card number must be ${cardDigitLimit} digits`;
+  } else if (!passesLuhn(cardDigits)) {
+    fieldErrors.creditCardNumber = 'Check the card number — it looks incorrect';
+  }
+
+  if (!formValues.expirationDate) {
+    fieldErrors.expirationDate = 'Enter the expiry';
+  } else if (!expiryValid) {
+    fieldErrors.expirationDate = 'Enter a valid, unexpired date (MM/YY)';
+  }
+
+  if (formValues.cvvCode.length !== cvvLength) {
+    fieldErrors.cvvCode = `${cvvLength}-digit security code`;
+  }
+
+  if (formValues.cardholderName.trim().length <= 1) {
+    fieldErrors.cardholderName = "Enter the cardholder's full name";
+  }
+  if (formValues.billingAddress.trim().length <= 4) {
+    fieldErrors.billingAddress = 'Enter the billing address';
+  }
+  if (!cellPhoneValid) {
+    fieldErrors.cellPhone = 'Enter a 10-digit phone number';
+  }
+  if (!homePhoneValid) {
+    fieldErrors.homePhone = 'Enter a 10-digit phone number';
+  }
+  if (!workPhoneValid) {
+    fieldErrors.workPhone = 'Enter a 10-digit phone number';
+  }
+  if (!formValues.eventDate) fieldErrors.eventDate = 'Select the event date';
+  if (!formValues.typeOfEvent.trim()) {
+    fieldErrors.typeOfEvent = 'Enter the type of event';
+  }
+  if (!formValues.eventLocation.trim()) {
+    fieldErrors.eventLocation = 'Enter the event location';
+  }
+  if (!amountValid) {
+    fieldErrors.authorizedAmount = 'Enter an amount greater than zero';
+  }
+
+  const missingFormFields: string[] = Object.values(fieldErrors);
+
+  /** Red ring on an invalid field once the user has attempted to submit. */
+  const fieldClass = (field: string, base: string) =>
+    `${base} ${
+      showErrors && fieldErrors[field]
+        ? 'border-red-400 bg-red-50'
+        : 'border-gray-300'
+    }`;
+
+  const FieldError = ({ field }: { field: string }) =>
+    showErrors && fieldErrors[field] ? (
+      <p className="mt-1 text-xs font-medium text-red-600">
+        {fieldErrors[field]}
+      </p>
+    ) : null;
 
   const handleSubmit = async () => {
     if (!isReadyToSubmit) {
@@ -547,10 +661,16 @@ function CreditCardAuthContent() {
               card listed below in the amount of $
               <input
                 type="text"
+                inputMode="decimal"
+                maxLength={12}
                 name="authorizedAmount"
                 value={formValues.authorizedAmount}
                 onChange={handleAmountChange}
-                className="focus:ring-primary mx-1 w-32 border-b border-gray-400 bg-transparent px-2 py-1 text-gray-900 focus:border-transparent focus:ring-1 focus:outline-none"
+                className={`focus:ring-primary mx-1 w-32 border-b bg-transparent px-2 py-1 text-gray-900 focus:border-transparent focus:ring-1 focus:outline-none ${
+                  showErrors && fieldErrors.authorizedAmount
+                    ? 'border-red-400 bg-red-50'
+                    : 'border-gray-400'
+                }`}
                 placeholder="0.00"
               />{' '}
               (&quot;the charge&quot;).
@@ -609,7 +729,10 @@ function CreditCardAuthContent() {
                 value={formValues.cardType}
                 onChange={handleInputChange}
                 required
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                className={fieldClass(
+                  'cardType',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               >
                 <option value="">Select Card</option>
                 <option value="visa">Visa</option>
@@ -617,6 +740,7 @@ function CreditCardAuthContent() {
                 <option value="amex">American Express</option>
                 <option value="discover">Discover</option>
               </select>
+              <FieldError field="cardType" />
             </div>
             <div className="md:col-span-2">
               <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -630,8 +754,12 @@ function CreditCardAuthContent() {
                 value={formValues.creditCardNumber}
                 onChange={handleCardNumberChange}
                 placeholder="1234 5678 9012 3456"
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                className={fieldClass(
+                  'creditCardNumber',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               />
+                <FieldError field="creditCardNumber" />
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
@@ -646,8 +774,12 @@ function CreditCardAuthContent() {
                   value={formValues.expirationDate}
                   onChange={handleExpDateChange}
                   placeholder="MM/YY"
-                  className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                  className={fieldClass(
+                  'expirationDate',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
                 />
+                  <FieldError field="expirationDate" />
               </div>
               <div>
                 <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -661,8 +793,12 @@ function CreditCardAuthContent() {
                   value={formValues.cvvCode}
                   onChange={handleCvvChange}
                   placeholder={cvvLength === 4 ? '1234' : '123'}
-                  className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                  className={fieldClass(
+                  'cvvCode',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
                 />
+                  <FieldError field="cvvCode" />
               </div>
             </div>
           </div>
@@ -677,8 +813,12 @@ function CreditCardAuthContent() {
                 name="cardholderName"
                 value={formValues.cardholderName}
                 onChange={handleInputChange}
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                className={fieldClass(
+                  'cardholderName',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               />
+              <FieldError field="cardholderName" />
             </div>
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -689,8 +829,12 @@ function CreditCardAuthContent() {
                 name="billingAddress"
                 value={formValues.billingAddress}
                 onChange={handleInputChange}
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                className={fieldClass(
+                  'billingAddress',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               />
+              <FieldError field="billingAddress" />
             </div>
           </div>
 
@@ -701,11 +845,18 @@ function CreditCardAuthContent() {
               </label>
               <input
                 type="tel"
+                inputMode="numeric"
+                autoComplete="tel"
+                maxLength={14}
                 name="homePhone"
                 value={formValues.homePhone}
-                onChange={handleInputChange}
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                onChange={handlePhoneChange}
+                className={fieldClass(
+                  'homePhone',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               />
+              <FieldError field="homePhone" />
             </div>
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -713,11 +864,18 @@ function CreditCardAuthContent() {
               </label>
               <input
                 type="tel"
+                inputMode="numeric"
+                autoComplete="tel"
+                maxLength={14}
                 name="workPhone"
                 value={formValues.workPhone}
-                onChange={handleInputChange}
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                onChange={handlePhoneChange}
+                className={fieldClass(
+                  'workPhone',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               />
+              <FieldError field="workPhone" />
             </div>
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -725,11 +883,18 @@ function CreditCardAuthContent() {
               </label>
               <input
                 type="tel"
+                inputMode="numeric"
+                autoComplete="tel"
+                maxLength={14}
                 name="cellPhone"
                 value={formValues.cellPhone}
-                onChange={handleInputChange}
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                onChange={handlePhoneChange}
+                className={fieldClass(
+                  'cellPhone',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               />
+              <FieldError field="cellPhone" />
             </div>
           </div>
         </div>
@@ -750,8 +915,12 @@ function CreditCardAuthContent() {
                 name="eventDate"
                 value={formValues.eventDate}
                 onChange={handleInputChange}
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                className={fieldClass(
+                  'eventDate',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               />
+              <FieldError field="eventDate" />
             </div>
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -763,8 +932,12 @@ function CreditCardAuthContent() {
                 value={formValues.typeOfEvent}
                 onChange={handleInputChange}
                 placeholder="e.g., Wedding, Corporate Event"
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                className={fieldClass(
+                  'typeOfEvent',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               />
+              <FieldError field="typeOfEvent" />
             </div>
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -776,8 +949,12 @@ function CreditCardAuthContent() {
                 value={formValues.eventLocation}
                 onChange={handleInputChange}
                 placeholder="e.g., 48 Wall Street"
-                className="focus:ring-primary w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1"
+                className={fieldClass(
+                  'eventLocation',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
               />
+              <FieldError field="eventLocation" />
             </div>
           </div>
         </div>
