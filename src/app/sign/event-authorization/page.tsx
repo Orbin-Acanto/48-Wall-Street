@@ -178,16 +178,115 @@ export default function EventAuthorizationPage() {
     []
   );
 
+  // Amex is 15 digits grouped 4-6-5 with a 4-digit CID; every other brand we
+  // take is 16 as four groups of four with a 3-digit CVV.
+  const isAmex = /^3[47]/.test(card.cardNumber.replace(/\D/g, ''));
+  const cardDigitLimit = isAmex ? 15 : 16;
+  const cvvLength = isAmex ? 4 : 3;
+
+  /** Digits only, grouped to match the detected brand. */
+  const setCardNumber = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const raw = e.target.value.replace(/\D/g, '');
+      const amex = /^3[47]/.test(raw);
+      const capped = raw.substring(0, amex ? 15 : 16);
+      const grouped = amex
+        ? [capped.slice(0, 4), capped.slice(4, 10), capped.slice(10, 15)]
+            .filter(Boolean)
+            .join(' ')
+        : (capped.match(/.{1,4}/g)?.join(' ') ?? capped);
+      setCard((c) => ({ ...c, cardNumber: grouped }));
+    },
+    []
+  );
+
+  /** Digits only, with the slash inserted after the month. */
+  const setExpiry = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value;
+    const d = raw.replace(/\D/g, '').substring(0, 4);
+    setCard((c) => {
+      const deleting = raw.length < c.expiry.length;
+      const next =
+        d.length > 2 || (d.length === 2 && !deleting)
+          ? `${d.slice(0, 2)}/${d.slice(2)}`
+          : d;
+      return { ...c, expiry: next };
+    });
+  }, []);
+
+  const setCvv = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      setCard((c) => ({
+        ...c,
+        cvv: e.target.value.replace(/\D/g, '').substring(0, 4),
+      })),
+    []
+  );
+
+  /** ZIP: digits with an optional +4, e.g. 11735 or 11735-1234. */
+  const setZip = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const d = e.target.value.replace(/\D/g, '').substring(0, 9);
+    setCard((c) => ({
+      ...c,
+      billingZip: d.length > 5 ? `${d.slice(0, 5)}-${d.slice(5)}` : d,
+    }));
+  }, []);
+
+  /** State: letters only, upper-cased, two-letter code. */
+  const setState = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      setCard((c) => ({
+        ...c,
+        billingState: e.target.value
+          .replace(/[^a-zA-Z]/g, '')
+          .toUpperCase()
+          .substring(0, 2),
+      })),
+    []
+  );
+
   const digits = card.cardNumber.replace(/\D/g, '');
+
+  /** Luhn checksum — catches transposed or invented card numbers. */
+  const passesLuhn = (value: string) => {
+    let sum = 0;
+    let double = false;
+    for (let i = value.length - 1; i >= 0; i -= 1) {
+      let d = Number(value[i]);
+      if (double) {
+        d *= 2;
+        if (d > 9) d -= 9;
+      }
+      sum += d;
+      double = !double;
+    }
+    return sum % 10 === 0;
+  };
+
+  const cardValid = digits.length === cardDigitLimit && passesLuhn(digits);
+
+  /** Expiry must be a real month, and valid through its final day. */
+  const expiryValid = (() => {
+    const m = /^(\d{2})\/(\d{2})$/.exec(card.expiry.trim());
+    if (!m) return false;
+    const month = Number(m[1]);
+    if (month < 1 || month > 12) return false;
+    return new Date(2000 + Number(m[2]), month, 1) > new Date();
+  })();
+
+  const cvvValid = card.cvv.trim().length === cvvLength;
+  const zipValid = /^\d{5}(-\d{4})?$/.test(card.billingZip.trim());
+  const stateValid = /^[A-Z]{2}$/.test(card.billingState.trim());
+
   const complete =
-    card.cardholderName.trim() !== '' &&
-    digits.length >= 13 &&
-    /^\d{2}\s*\/\s*\d{2,4}$/.test(card.expiry.trim()) &&
-    /^\d{3,4}$/.test(card.cvv.trim()) &&
-    card.billingAddress.trim() !== '' &&
+    card.cardholderName.trim().length > 1 &&
+    cardValid &&
+    expiryValid &&
+    cvvValid &&
+    card.billingAddress.trim().length > 4 &&
     card.billingCity.trim() !== '' &&
-    card.billingState.trim() !== '' &&
-    /^\d{5}(-\d{4})?$/.test(card.billingZip.trim()) &&
+    stateValid &&
+    zipValid &&
     typedName.trim() !== '' &&
     agreed;
 
@@ -372,7 +471,12 @@ export default function EventAuthorizationPage() {
             label="Cardholder name"
             value={card.cardholderName}
             onChange={set('cardholderName')}
-            invalid={showErrors && !card.cardholderName.trim()}
+            invalid={showErrors && card.cardholderName.trim().length <= 1}
+            error={
+              showErrors && card.cardholderName.trim().length <= 1
+                ? "Enter the cardholder's full name"
+                : undefined
+            }
             autoComplete="cc-name"
           />
           <Input
@@ -385,31 +489,50 @@ export default function EventAuthorizationPage() {
             <Input
               label="Card number"
               value={card.cardNumber}
-              onChange={set('cardNumber')}
-              invalid={showErrors && digits.length < 13}
+              onChange={setCardNumber}
+              invalid={showErrors && !cardValid}
+              error={
+                showErrors && !cardValid
+                  ? digits.length !== cardDigitLimit
+                    ? `Card number must be ${cardDigitLimit} digits`
+                    : 'Check the card number — it looks incorrect'
+                  : undefined
+              }
               inputMode="numeric"
               autoComplete="cc-number"
+              maxLength={isAmex ? 17 : 19}
               placeholder="0000 0000 0000 0000"
             />
           </div>
           <Input
             label="Expiry (MM / YY)"
             value={card.expiry}
-            onChange={set('expiry')}
-            invalid={
-              showErrors && !/^\d{2}\s*\/\s*\d{2,4}$/.test(card.expiry.trim())
+            onChange={setExpiry}
+            invalid={showErrors && !expiryValid}
+            error={
+              showErrors && !expiryValid
+                ? 'Enter a valid, unexpired date (MM/YY)'
+                : undefined
             }
+            inputMode="numeric"
             autoComplete="cc-exp"
-            placeholder="MM / YY"
+            maxLength={5}
+            placeholder="MM/YY"
           />
           <Input
             label="Security code"
             value={card.cvv}
-            onChange={set('cvv')}
-            invalid={showErrors && !/^\d{3,4}$/.test(card.cvv.trim())}
+            onChange={setCvv}
+            invalid={showErrors && !cvvValid}
+            error={
+              showErrors && !cvvValid
+                ? `${cvvLength}-digit security code`
+                : undefined
+            }
             inputMode="numeric"
             autoComplete="cc-csc"
-            placeholder="123"
+            maxLength={cvvLength}
+            placeholder={cvvLength === 4 ? '1234' : '123'}
           />
         </div>
       </Section>
@@ -422,7 +545,12 @@ export default function EventAuthorizationPage() {
               label="Street address"
               value={card.billingAddress}
               onChange={set('billingAddress')}
-              invalid={showErrors && !card.billingAddress.trim()}
+              invalid={showErrors && card.billingAddress.trim().length <= 4}
+              error={
+                showErrors && card.billingAddress.trim().length <= 4
+                  ? 'Enter the billing street address'
+                  : undefined
+              }
               autoComplete="address-line1"
             />
           </div>
@@ -432,6 +560,11 @@ export default function EventAuthorizationPage() {
               value={card.billingCity}
               onChange={set('billingCity')}
               invalid={showErrors && !card.billingCity.trim()}
+              error={
+                showErrors && !card.billingCity.trim()
+                  ? 'Enter the city'
+                  : undefined
+              }
               autoComplete="address-level2"
             />
           </div>
@@ -439,9 +572,11 @@ export default function EventAuthorizationPage() {
             <Input
               label="State"
               value={card.billingState}
-              onChange={set('billingState')}
-              invalid={showErrors && !card.billingState.trim()}
+              onChange={setState}
+              invalid={showErrors && !stateValid}
+              error={showErrors && !stateValid ? 'Two-letter state' : undefined}
               autoComplete="address-level1"
+              maxLength={2}
               placeholder="NY"
             />
           </div>
@@ -449,12 +584,14 @@ export default function EventAuthorizationPage() {
             <Input
               label="ZIP code"
               value={card.billingZip}
-              onChange={set('billingZip')}
-              invalid={
-                showErrors && !/^\d{5}(-\d{4})?$/.test(card.billingZip.trim())
+              onChange={setZip}
+              invalid={showErrors && !zipValid}
+              error={
+                showErrors && !zipValid ? 'Enter a 5-digit ZIP' : undefined
               }
               inputMode="numeric"
               autoComplete="postal-code"
+              maxLength={10}
               placeholder="11735"
             />
           </div>
@@ -643,12 +780,15 @@ function Input({
   value,
   onChange,
   invalid = false,
+  error,
   ...rest
 }: {
   label: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   invalid?: boolean;
+  /** Shown beneath the field so the guest knows what to correct. */
+  error?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   // Tie the label to the input so screen readers and autofill can pair them.
   const id = useId();
@@ -665,11 +805,15 @@ function Input({
         id={id}
         value={value}
         onChange={onChange}
+        aria-invalid={invalid || undefined}
         className={`w-full rounded border px-4 py-3 text-sm text-gray-900 transition-colors outline-none focus:border-gray-900 ${
           invalid ? 'border-red-400 bg-red-50' : 'border-gray-300'
         }`}
         {...rest}
       />
+      {error ? (
+        <p className="mt-1 text-xs font-medium text-red-600">{error}</p>
+      ) : null}
     </div>
   );
 }
