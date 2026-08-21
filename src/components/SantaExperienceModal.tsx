@@ -715,6 +715,29 @@ export default function SantaExperienceModal({
                           grand lobby of 48 Wall Street.
                         </motion.p>
 
+                        {/* Pricing */}
+                        <motion.div
+                          variants={fadeUp}
+                          className="mx-auto mb-10 max-w-sm border border-amber-200/25 px-6 py-6"
+                        >
+                          <p className="font-primary text-[2.6rem] leading-none text-amber-100">
+                            $125
+                          </p>
+                          <p className="font-secondary mt-2 text-[10px] font-semibold tracking-[0.24em] text-amber-100/60 uppercase">
+                            Per person &middot; plus applicable tax
+                          </p>
+                          <div className="mt-5 border-t border-amber-200/20 pt-4">
+                            <p className="font-secondary text-[10px] font-semibold tracking-[0.22em] text-amber-200/80 uppercase">
+                              Alexander Hamilton Upgrade
+                            </p>
+                            <p className="font-secondary mt-1.5 text-[13px] text-amber-50/70">
+                              &plus;$59.99 per child, in the Official Alexander
+                              Hamilton Offices. Subject to availability and must
+                              be selected when booking.
+                            </p>
+                          </div>
+                        </motion.div>
+
                         <motion.div variants={fadeUp}>
                           <button
                             type="button"

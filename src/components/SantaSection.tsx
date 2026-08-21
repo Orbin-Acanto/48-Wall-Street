@@ -135,6 +135,22 @@ export default function SantaSection({
 
             {/* CTA */}
             <div className="border-primary/30 mt-10 border-t pt-9">
+              {/* Pricing */}
+              <div className="mb-7">
+                <p className="font-primary text-dark-black text-[2rem] leading-none">
+                  $125
+                  <span className="font-secondary ml-2 align-middle text-[11px] font-semibold tracking-[0.2em] text-gray-500 uppercase">
+                    Per person &middot; plus applicable tax
+                  </span>
+                </p>
+                <p className="font-secondary mt-2.5 text-sm leading-relaxed text-gray-600">
+                  The Alexander Hamilton Santa Experience upgrade is
+                  &plus;$59.99 per child, held in the Official Alexander
+                  Hamilton Offices. Subject to availability and must be selected
+                  when booking.
+                </p>
+              </div>
+
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <button
                   type="button"

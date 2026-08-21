@@ -6,14 +6,14 @@ export const metadata: Metadata = {
   // enough that the combined title survives Google's ~60 character truncation.
   title: 'Santa Visits, Private Dinners & Holiday Speakeasy',
   description:
-    'Book Sit Down With Santa from $35 per person, a private dinner from $500 per person, or the Hidden Holiday Speakeasy at 48 Wall Street. Reserve a time online in the landmark 1927 Financial District venue.',
+    'Book Sit Down With Santa from $125 per person, a private dinner from $500 per person, or the Hidden Holiday Speakeasy at 48 Wall Street. Reserve a time online in the landmark 1927 Financial District venue.',
   keywords:
     'sit down with santa NYC, santa photos NYC, visit santa Financial District, santa experience Manhattan, book santa NYC, holiday speakeasy NYC, private speakeasy event NYC, winter wonderland event space NYC, private dinner Wall Street, intimate private dining NYC, holiday party venue NYC, corporate holiday party Manhattan, company holiday event venue, Christmas party venue NYC, holiday gala venue, end of year party venue NYC, corporate holiday celebration, holiday party space Manhattan, Financial District holiday venue, office holiday party NYC, seasonal event venue, holiday networking event, company Christmas party venue, holiday party with catering NYC, Manhattan holiday venue, holiday party venue rental NYC, corporate christmas party venue Manhattan, holiday party venues near me, company holiday party space NYC, winter party venue NYC, holiday party venue 500 guests NYC, December event venue NYC, festive event space Manhattan',
   openGraph: {
     title:
       'Holiday Events at 48 Wall Street | Santa, Private Dinners, Speakeasy',
     description:
-      'Book a 20 minute visit with Santa from $35 per person, an exclusive private dinner from $500 per person, or the Hidden Holiday Speakeasy in the 1927 bank vault. Reserve your time online.',
+      'Book a visit with Santa from $125 per person, an exclusive private dinner from $500 per person, or the Hidden Holiday Speakeasy in the 1927 bank vault. Reserve your time online.',
     url: 'https://www.48wallnyc.com/events/holiday-events',
     siteName: '48 Wall Street NYC',
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Holiday Events at 48 Wall Street NYC',
     description:
-      'Sit Down With Santa from $35 per person, private dinners from $500 per person, and the Hidden Holiday Speakeasy. Book online at the landmark 1927 venue.',
+      'Sit Down With Santa from $125 per person, private dinners from $500 per person, and the Hidden Holiday Speakeasy. Book online at the landmark 1927 venue.',
     images: ['/gallery/holiday/holiday-01.jpg'],
   },
   alternates: {
@@ -258,7 +258,7 @@ export default function HolidayEventsLayout({
                 name: 'How much does it cost to visit Santa at 48 Wall Street?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Sit Down With Santa costs $35 per person, plus a 24% administrative fee and 8.875% New York sales tax. A family of four pays $189.01 in total. Each visit lasts 20 minutes and includes time with Santa, a professionally lit keepsake portrait on the grand marble staircase, hot cocoa and holiday treats, and a gift for every child. Visits run on Saturdays and Sundays from October 15 to December 23, 2026, between 10am and 4pm.',
+                  text: 'Sit Down With Santa costs $125 per person, plus a 24% administrative fee and 8.875% New York sales tax. A family of four pays $675.03 in total. Each visit includes a personal meet-and-greet with Santa, a reserved holiday appointment, one professionally selected family portrait on the grand marble staircase, and one framed 5 x 7 keepsake print. The Alexander Hamilton Santa Experience upgrade, held in the Official Alexander Hamilton Offices, is available for an additional $59.99 per child and must be selected when booking. Visits run on Saturdays and Sundays from October 15 to December 23, 2026, between 10am and 4pm.',
                 },
               },
               {
@@ -391,7 +391,7 @@ export default function HolidayEventsLayout({
                   '@type': 'Event',
                   name: 'Sit Down With Santa at 48 Wall Street',
                   description:
-                    'A 20 minute private visit with Santa in the holiday decorated Grand Mezzanine Banking Hall, including a professionally lit keepsake portrait on the grand marble staircase, hot cocoa and treats, and a gift for every child.',
+                    'A private visit with Santa in the holiday decorated Grand Mezzanine Banking Hall, including a personal meet-and-greet, a reserved appointment, one professionally selected family portrait on the grand marble staircase, and one framed 5 x 7 keepsake print.',
                   eventStatus: 'https://schema.org/EventScheduled',
                   eventAttendanceMode:
                     'https://schema.org/OfflineEventAttendanceMode',
@@ -425,13 +425,13 @@ export default function HolidayEventsLayout({
                   },
                   offers: {
                     '@type': 'Offer',
-                    price: '35.00',
+                    price: '125.00',
                     priceCurrency: 'USD',
                     availability: 'https://schema.org/InStock',
                     validFrom: '2026-09-01T00:00:00-04:00',
                     url: 'https://www.48wallnyc.com/events/holiday-events',
                     description:
-                      '$35 per person, plus a 24% administrative fee and 8.875% New York sales tax.',
+                      '$125 per person, plus a 24% administrative fee and 8.875% New York sales tax. The Alexander Hamilton Santa Experience upgrade is an additional $59.99 per child.',
                   },
                   audience: {
                     '@type': 'Audience',

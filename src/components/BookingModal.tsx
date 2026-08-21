@@ -47,11 +47,11 @@ const THEMES: Record<Experience, ExperienceTheme> = {
     details: [
       {
         name: 'Meet and Greet',
-        body: 'An unhurried twenty minute visit with Santa in a warm, beautifully dressed setting.',
+        body: 'A personal meet-and-greet with Santa in a warm, beautifully dressed setting.',
       },
       {
         name: 'Keepsake Portrait',
-        body: 'A professionally lit holiday photograph on the grand marble staircase, delivered digitally.',
+        body: 'One professionally selected family portrait on the grand marble staircase, with a framed 5 x 7 print to take home.',
       },
       {
         name: 'Festive Setting',
@@ -59,10 +59,10 @@ const THEMES: Record<Experience, ExperienceTheme> = {
       },
     ],
     includes: [
-      'Twenty minute visit with Santa',
-      'Professional keepsake photograph',
-      'Hot cocoa and holiday treats',
-      'A small gift for every child',
+      'Personal meet-and-greet with Santa',
+      'Reserved holiday appointment',
+      'One professionally selected family portrait',
+      'One framed 5 x 7 keepsake print',
     ],
     knowBefore: [
       'Please arrive ten minutes before your time.',
