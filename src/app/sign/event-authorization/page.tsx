@@ -141,8 +141,14 @@ export default function EventAuthorizationPage() {
   // Reference arrives from the confirmation email.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const value = new URLSearchParams(window.location.search).get('ref');
+    const params = new URLSearchParams(window.location.search);
+    const value = params.get('ref');
     setReference(value ? value.trim().toUpperCase() : null);
+
+    // The confirmation email can pass the guest's address so they never have
+    // to retype it. The booking status endpoint does not return one.
+    const emailParam = params.get('email');
+    if (emailParam) setClientEmail(emailParam.trim());
   }, []);
 
   useEffect(() => {

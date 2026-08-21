@@ -13,7 +13,7 @@ const EMAIL_WEBHOOK_URL =
 
 /** Internal recipients. Comma-separated env override, sensible default. */
 export function staffRecipients(): string[] {
-  return (process.env.STAFF_NOTIFICATION_EMAILS ?? 'events@mmeink.com')
+  return (process.env.STAFF_NOTIFICATION_EMAILS ?? 'mtardi@mmeink.com')
     .split(',')
     .map((address) => address.trim())
     .filter(Boolean);
