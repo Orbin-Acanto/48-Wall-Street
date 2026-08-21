@@ -129,8 +129,8 @@ export default function HolidayPromoBanner() {
               {/* Image */}
               <div className="relative h-64 w-full shrink-0 overflow-hidden sm:h-52">
                 <Image
-                  src="/gallery/holiday/holiday-01.jpg"
-                  alt="Holiday celebration at 48 Wall Street, historic Financial District venue NYC"
+                  src="/gallery/holiday/holiday-grand-mezz.jpg"
+                  alt="The Grand Mezzanine at 48 Wall Street decorated with holiday wreaths, historic Financial District venue NYC"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 55vw, 40vw"

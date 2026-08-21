@@ -1721,7 +1721,7 @@ const generalBrochurePages = Array.from({ length: 38 }, (_, i) => ({
   image: `/brochures/general/page-${String(i + 1).padStart(2, '0')}.jpg`,
 }));
 
-const holidayBrochurePages = Array.from({ length: 36 }, (_, i) => ({
+const holidayBrochurePages = Array.from({ length: 42 }, (_, i) => ({
   id: i + 1,
   image: `/brochures/holiday/page-${String(i + 1).padStart(2, '0')}.jpg`,
 }));

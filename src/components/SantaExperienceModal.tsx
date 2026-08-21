@@ -17,22 +17,22 @@ const INCLUDES = [
   {
     number: '01',
     name: 'Time With Santa',
-    body: 'An unhurried visit in a beautifully appointed setting, with room for every wish list.',
+    body: 'A personal meet-and-greet in a beautifully appointed setting, with room for every wish list.',
   },
   {
     number: '02',
-    name: 'Keepsake Portrait',
-    body: 'A professionally lit photograph on the grand marble staircase, delivered digitally.',
+    name: 'Reserved Appointment',
+    body: 'A holiday appointment held in your name, so the room is ready when you arrive.',
   },
   {
     number: '03',
-    name: 'A Gift for Every Child',
-    body: 'Each child leaves with a small something to remember the morning by.',
+    name: 'Family Portrait',
+    body: 'One professionally selected family portrait on the grand marble staircase.',
   },
   {
     number: '04',
-    name: 'Cocoa and Treats',
-    body: 'Hot cocoa and holiday treats served while you wait for your turn.',
+    name: 'Framed Keepsake',
+    body: 'One framed 5 x 7 print to carry home with you.',
   },
 ];
 
@@ -46,17 +46,17 @@ const JOURNEY = [
   {
     number: '02',
     name: 'Settle In',
-    body: 'Cocoa in hand, the children take in the room while your party is welcomed.',
+    body: 'The children take in the room while your party is welcomed for your reserved appointment.',
   },
   {
     number: '03',
     name: 'Meet Santa',
-    body: 'Twenty unhurried minutes to share wish lists and talk about the year.',
+    body: 'An unhurried meet-and-greet to share wish lists and talk about the year.',
   },
   {
     number: '04',
     name: 'Take It Home',
-    body: 'A portrait on the marble staircase and a gift to carry out with you.',
+    body: 'A family portrait on the marble staircase and a framed 5 x 7 print to carry out with you.',
   },
 ];
 

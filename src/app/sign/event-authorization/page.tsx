@@ -13,7 +13,7 @@
  * booking API, which flips the booking from held to confirmed.
  */
 
-import { useCallback, useEffect, useId, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import Image from 'next/image';
 import {
   type BookingStatus,
@@ -23,6 +23,7 @@ import {
   isBookingConfigured,
   reportAuthorizationSigned,
 } from '@/lib/booking';
+import SignaturePad from '@/components/SignaturePad';
 
 const COMPANY = {
   name: 'FiDi Hospitality',
@@ -124,6 +125,11 @@ export default function EventAuthorizationPage() {
 
   const [card, setCard] = useState<CardForm>(EMPTY_CARD);
   const [typedName, setTypedName] = useState('');
+  const [signature, setSignature] = useState<string | null>(null);
+  // The booking API does not return the guest's email, so we collect it here
+  // in order to send the countersigned PDF to the cardholder.
+  const [clientEmail, setClientEmail] = useState('');
+  const viewTime = useRef(new Date().toISOString());
   const [agreed, setAgreed] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
@@ -276,6 +282,7 @@ export default function EventAuthorizationPage() {
 
   const cvvValid = card.cvv.trim().length === cvvLength;
   const zipValid = /^\d{5}(-\d{4})?$/.test(card.billingZip.trim());
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientEmail.trim());
   const stateValid = /^[A-Z]{2}$/.test(card.billingState.trim());
 
   const complete =
@@ -288,6 +295,8 @@ export default function EventAuthorizationPage() {
     stateValid &&
     zipValid &&
     typedName.trim() !== '' &&
+    signature !== null &&
+    emailValid &&
     agreed;
 
   const handleSubmit = async () => {
@@ -305,12 +314,71 @@ export default function EventAuthorizationPage() {
     );
 
     if (ok) {
-      setSignedAt(
-        new Date().toLocaleString('en-US', {
-          dateStyle: 'long',
-          timeStyle: 'short',
-        })
-      );
+      const signedDate = new Date().toLocaleString('en-US', {
+        dateStyle: 'long',
+        timeStyle: 'short',
+      });
+
+      // Recording the authorization only writes a row in the booking API — it
+      // does not build the signed PDF or email anyone. Hand the same data to
+      // the document pipeline so the cardholder and the events team both get a
+      // copy. A failure here must not lose an authorization we already
+      // recorded, so it only surfaces as a console warning.
+      try {
+        const response = await fetch('/api/sign/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            clientName: card.cardholderName.trim(),
+            clientEmail: clientEmail.trim(),
+            documentType: 'credit_card_auth',
+            viewTime: viewTime.current,
+            signTime: new Date().toISOString(),
+            location: 'Signed online',
+            ipAddress: 'Not recorded',
+            initials: {},
+            signature,
+            signedDate,
+            typedName: typedName.trim(),
+            deadline: '',
+            docId: booking.reference,
+            formData: {
+              cardType: '',
+              creditCardNumber: card.cardNumber,
+              expirationDate: card.expiry,
+              cvvCode: card.cvv,
+              cardholderName: card.cardholderName.trim(),
+              billingAddress: [
+                card.billingAddress,
+                card.billingCity,
+                `${card.billingState} ${card.billingZip}`.trim(),
+              ]
+                .filter(Boolean)
+                .join(', '),
+              cellPhone: '',
+              eventDate: booking.slot_date,
+              typeOfEvent:
+                EXPERIENCE_NAMES[booking.experience] ?? booking.experience,
+              eventLocation: '48 Wall Street, New York, NY',
+              authorizedAmount: booking.total ?? '',
+              bookingReference: booking.reference,
+              experienceName:
+                EXPERIENCE_NAMES[booking.experience] ?? booking.experience,
+              slotTime: booking.start_time
+                ? formatSlotTime(booking.start_time)
+                : '',
+              partySize: booking.party_size ?? '',
+            },
+          }),
+        });
+        if (!response.ok) {
+          console.error('Authorization PDF/email failed:', response.status);
+        }
+      } catch (err) {
+        console.error('Authorization PDF/email request failed:', err);
+      }
+
+      setSignedAt(signedDate);
       setSubmitted(true);
     } else {
       setSubmitError(
@@ -638,17 +706,63 @@ export default function EventAuthorizationPage() {
 
         <div className="max-w-md">
           <Input
+            label="Email for your copy"
+            value={clientEmail}
+            onChange={(e) => setClientEmail(e.target.value)}
+            invalid={showErrors && !emailValid}
+            error={
+              showErrors && !emailValid
+                ? 'Enter a valid email address'
+                : undefined
+            }
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div className="mt-5 max-w-md">
+          <Input
             label="Type your full legal name to sign"
             value={typedName}
             onChange={(e) => setTypedName(e.target.value)}
             invalid={showErrors && !typedName.trim()}
+            error={
+              showErrors && !typedName.trim()
+                ? 'Type your full legal name'
+                : undefined
+            }
             autoComplete="name"
           />
         </div>
 
+        {/* Drawn signature — reproduced on the authorization PDF. */}
+        <div className="mt-6">
+          <p className="mb-2 text-xs tracking-[0.1em] text-gray-500 uppercase">
+            Cardholder signature
+          </p>
+          <div
+            className={`inline-block rounded border bg-white p-1 ${
+              showErrors && !signature ? 'border-red-400' : 'border-gray-300'
+            }`}
+          >
+            <SignaturePad onSignatureChange={setSignature} />
+          </div>
+          {showErrors && !signature ? (
+            <p className="mt-1 text-xs font-medium text-red-600">
+              Please sign in the box above
+            </p>
+          ) : (
+            <p className="mt-1 text-xs text-gray-500">
+              Draw your signature with a mouse, trackpad or finger.
+            </p>
+          )}
+        </div>
+
         {showErrors && !complete && (
           <p className="mt-4 rounded border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-            Please complete every required field, including the ZIP code, and
+            Please complete every required field, sign in the box above, and
             accept the terms before signing.
           </p>
         )}
@@ -669,8 +783,8 @@ export default function EventAuthorizationPage() {
         </button>
 
         <p className="mt-4 text-xs leading-relaxed text-gray-500">
-          Typing your name above constitutes an electronic signature with the
-          same legal effect as a handwritten signature.
+          Typing your name and signing above constitute an electronic signature
+          with the same legal effect as a handwritten signature.
         </p>
       </Section>
     </Shell>
