@@ -30,6 +30,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* The navbar is fixed, so anything scrolled to the top of the viewport lands
+     underneath it — including buttons, which then swallow their own clicks.
+     Keep every scroll target clear of it. */
+  scroll-padding-top: calc(var(--navbar-height) + 1rem);
 }
 
 @layer base {

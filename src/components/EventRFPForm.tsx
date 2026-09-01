@@ -101,17 +101,28 @@ function FieldCard({
   type = 'text',
   value,
   onChange,
+  required = false,
+  error,
 }: {
   label: string;
   name: string;
   type?: string;
   value: string;
   onChange: (name: string, value: string) => void;
+  required?: boolean;
+  error?: string;
 }) {
   return (
-    <div className="group rounded border border-gray-200 bg-white px-4 py-4 transition-all duration-200 hover:border-gray-300 hover:shadow-sm">
+    <div
+      className={`group rounded border bg-white px-4 py-4 transition-all duration-200 hover:shadow-sm ${
+        error
+          ? 'border-red-400'
+          : 'border-gray-200 hover:border-gray-300'
+      }`}
+    >
       <label className="font-secondary mb-2 flex items-center gap-2 text-[10px] tracking-[0.15em] text-gray-400 uppercase">
         {label}
+        {required && <span className="text-primary">*</span>}
       </label>
       <input
         type={type}
@@ -119,8 +130,12 @@ function FieldCard({
         value={value}
         onChange={(e) => onChange(name, e.target.value)}
         placeholder={`Enter ${label.toLowerCase()}`}
+        aria-invalid={!!error}
         className="text-dark-black focus:border-primary font-secondary w-full border-b border-gray-200 bg-transparent px-0 py-1 text-sm placeholder-gray-400 transition-colors focus:outline-none"
       />
+      {error && (
+        <p className="font-secondary mt-2 text-xs text-red-600">{error}</p>
+      )}
     </div>
   );
 }
@@ -333,6 +348,8 @@ export default function EventRFPForm() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [showContactErrors, setShowContactErrors] = useState(false);
 
   // Step 1 state
   const [selectedAV, setSelectedAV] = useState<string[]>([]);
@@ -400,7 +417,31 @@ export default function EventRFPForm() {
     });
   };
 
+  // An RFP with no way to reply to it is not a lead. Contact details live on
+  // step 2, so that is where they are enforced.
+  const CONTACT_STEP = 1;
+
+  const contactErrors: Record<string, string> = {};
+  if (!fields.contactName?.trim())
+    contactErrors.contactName = 'Please enter a contact name';
+  if (!fields.emailAddress?.trim())
+    contactErrors.emailAddress = 'Please enter an email address';
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.emailAddress.trim()))
+    contactErrors.emailAddress = 'Please enter a valid email address';
+  if (!fields.phoneNumber?.trim())
+    contactErrors.phoneNumber = 'Please enter a phone number';
+
+  const hasContactDetails = Object.keys(contactErrors).length === 0;
+
   const nextStep = () => {
+    if (step === CONTACT_STEP && !hasContactDetails) {
+      setShowContactErrors(true);
+      document
+        .getElementById('rfp-contact-details')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    setShowContactErrors(false);
     setStep((s) => Math.min(s + 1, STEP_LABELS.length - 1));
     setOpenAccordion(null);
   };
@@ -412,6 +453,8 @@ export default function EventRFPForm() {
   const resetForm = () => {
     setStep(0);
     setOpenAccordion(null);
+    setSubmitError(null);
+    setShowContactErrors(false);
     setSelectedAV([]);
     setSelectedFB([]);
     setFields({});
@@ -441,7 +484,17 @@ export default function EventRFPForm() {
   };
 
   const handleSubmit = async () => {
+    if (!hasContactDetails) {
+      setShowContactErrors(true);
+      setSubmitError(
+        'Please add your contact name, email and phone before submitting.'
+      );
+      setStep(CONTACT_STEP);
+      return;
+    }
+
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
       const payload = {
         services: { av: selectedAV, foodBeverage: selectedFB },
@@ -494,20 +547,27 @@ export default function EventRFPForm() {
         },
       };
 
-      await fetch(
-        'https://primary-production-f807.up.railway.app/webhook/35339c3d-5ccf-4015-b6c6-458109f44a89',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        }
-      );
+      const response = await fetch('/api/rfp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || !result?.success) {
+        throw new Error(result?.message || 'Failed to submit RFP');
+      }
 
       setShowModal(true);
       resetForm();
-    } catch {
-      setShowModal(true);
-      resetForm();
+    } catch (error) {
+      // Never claim a submission was received when it wasn't, and never clear
+      // what the client typed — they should be able to retry, not retype.
+      console.error('RFP submission error:', error);
+      setSubmitError(
+        'We could not send your request. Please check your connection and try again, or email info@48WallNYC.com — your answers are still here.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -686,7 +746,7 @@ export default function EventRFPForm() {
             {/* ── Step 2: Event Info ───────────────────────── */}
             {step === 1 && (
               <div className="space-y-14">
-                <div>
+                <div id="rfp-contact-details">
                   <h4 className="font-secondary text-primary mb-6 text-xs font-semibold tracking-[0.2em] uppercase">
                     Contact Details
                   </h4>
@@ -708,6 +768,10 @@ export default function EventRFPForm() {
                       name="contactName"
                       value={fields.contactName || ''}
                       onChange={updateField}
+                      required
+                      error={
+                        showContactErrors ? contactErrors.contactName : undefined
+                      }
                     />
                     <FieldCard
                       label="Email Address"
@@ -715,6 +779,12 @@ export default function EventRFPForm() {
                       type="email"
                       value={fields.emailAddress || ''}
                       onChange={updateField}
+                      required
+                      error={
+                        showContactErrors
+                          ? contactErrors.emailAddress
+                          : undefined
+                      }
                     />
                     <FieldCard
                       label="Phone Number"
@@ -722,6 +792,12 @@ export default function EventRFPForm() {
                       type="tel"
                       value={fields.phoneNumber || ''}
                       onChange={updateField}
+                      required
+                      error={
+                        showContactErrors
+                          ? contactErrors.phoneNumber
+                          : undefined
+                      }
                     />
                     <FieldCard
                       label="Preferred Venue"
@@ -1443,6 +1519,17 @@ export default function EventRFPForm() {
               </div>
             )}
 
+            {submitError && (
+              <div
+                role="alert"
+                className="mt-10 rounded border border-red-200 bg-red-50 px-5 py-4"
+              >
+                <p className="font-secondary text-sm leading-relaxed text-red-800">
+                  {submitError}
+                </p>
+              </div>
+            )}
+
             {/* ── Navigation ───────────────────────────────── */}
             <div className="mt-12 flex items-center justify-between">
               <div>
@@ -1456,7 +1543,20 @@ export default function EventRFPForm() {
                   </button>
                 )}
               </div>
-              <div>
+              <div className="flex flex-col items-end gap-2">
+                {step === STEP_LABELS.length - 1 && !hasContactDetails && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowContactErrors(true);
+                      setStep(CONTACT_STEP);
+                    }}
+                    className="font-secondary cursor-pointer text-right text-xs text-red-600 underline underline-offset-2"
+                  >
+                    Add your contact name, email and phone in Event Info to
+                    submit
+                  </button>
+                )}
                 {step < STEP_LABELS.length - 1 ? (
                   <CustomButton variant="primary" onClick={nextStep}>
                     Continue
@@ -1465,7 +1565,7 @@ export default function EventRFPForm() {
                   <CustomButton
                     variant="primary"
                     onClick={handleSubmit}
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !hasContactDetails}
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit RFP Request'}
                   </CustomButton>

@@ -45,20 +45,15 @@ export async function POST(request: NextRequest) {
 
     const ip = realIp ?? cfIp ?? forwardedIp ?? 'unknown';
 
-    const { success: allowed } = await ratelimit.limit(`contact:${ip}`);
-
-    if (!allowed) {
+    let formData: FormData;
+    try {
+      formData = await request.formData();
+    } catch {
       return NextResponse.json(
-        {
-          success: false,
-          message:
-            'Too many submissions from your network. Please try again tomorrow.',
-        },
-        { status: 429 }
+        { success: false, message: 'Invalid form submission.' },
+        { status: 400 }
       );
     }
-
-    const formData = await request.formData();
 
     const startedAtRaw = formData.get('formStartedAt') as string | null;
     const startedAt = startedAtRaw ? Number(startedAtRaw) : 0;
@@ -118,6 +113,22 @@ export async function POST(request: NextRequest) {
           message: 'Name and Email are required fields',
         },
         { status: 400 }
+      );
+    }
+
+    // Throttle only once the submission is known to be genuine. Counting
+    // rejected attempts would mean a mistyped email or a failed captcha spends
+    // part of the visitor's allowance.
+    const { success: allowed } = await ratelimit.limit(`contact:${ip}`);
+
+    if (!allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            'Too many submissions from your network. Please try again in an hour, or email info@48WallNYC.com.',
+        },
+        { status: 429 }
       );
     }
 

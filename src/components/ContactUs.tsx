@@ -290,6 +290,7 @@ const ContactUs: React.FC = () => {
               <input
                 type="tel"
                 name="phone"
+                required
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="Phone*"
