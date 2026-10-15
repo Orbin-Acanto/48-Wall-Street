@@ -78,3 +78,44 @@ export async function listPackets(limit = 40): Promise<PacketRecord[]> {
     return [];
   }
 }
+
+/** What we remember about a sealed PDF, keyed by its SHA-256. */
+export interface SealedDocumentRecord {
+  title: string;
+  reference: string;
+  signerName: string;
+  signedAt: string;
+  sealed: boolean;
+}
+
+const HASH_KEY = (sha256: string) => `doc-hash:${sha256}`;
+// Executed documents must stay verifiable for years.
+const HASH_TTL_SECONDS = 60 * 60 * 24 * 365 * 7;
+
+export async function recordSealedDocument(
+  sha256: string,
+  record: SealedDocumentRecord
+): Promise<void> {
+  const redis = getRedis();
+  if (!redis) return;
+  try {
+    await redis.set(HASH_KEY(sha256), JSON.stringify(record), {
+      ex: HASH_TTL_SECONDS,
+    });
+  } catch (error) {
+    console.error('document hash save failed:', error);
+  }
+}
+
+export async function findSealedDocument(
+  sha256: string
+): Promise<SealedDocumentRecord | null> {
+  const redis = getRedis();
+  if (!redis) return null;
+  try {
+    return await redis.get<SealedDocumentRecord>(HASH_KEY(sha256));
+  } catch (error) {
+    console.error('document hash lookup failed:', error);
+    return null;
+  }
+}

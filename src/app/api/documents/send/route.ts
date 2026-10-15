@@ -4,6 +4,7 @@ import { packetInvitationEmail } from '@/lib/email-templates';
 import { signToken } from '@/lib/documents/signing-tokens';
 import { normalizePacketTypes, packetDocument } from '@/lib/documents/catalog';
 import { savePacket } from '@/lib/documents/packets';
+import { logSentDocuments } from '@/lib/documents/delivery';
 
 interface SendPacketBody {
   clientName?: string;
@@ -80,6 +81,7 @@ export async function POST(request: NextRequest) {
     exp: deadline,
     eventDate: body.eventDate || undefined,
     docId: packetId,
+    iat: new Date().toISOString(),
     by: sentBy.email,
     byName: sentBy.name,
   });
@@ -116,6 +118,17 @@ export async function POST(request: NextRequest) {
     status: 'sent',
     signingUrl,
     token,
+  });
+
+  await logSentDocuments({
+    clientName,
+    clientEmail,
+    deadline,
+    docsURL: signingUrl,
+    documents: documents.map((documentType, i) => ({
+      documentType,
+      docId: `${packetId}-${i + 1}`,
+    })),
   });
 
   if (!result.success) {

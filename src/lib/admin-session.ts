@@ -4,7 +4,8 @@
  * Edge-safe (Web Crypto only) because middleware imports it.
  *
  * Who can sign in:
- *   - STAFF_ACCOUNTS       personal logins, "jane@48wallnyc.com:pass,john@mmeink.com:pass2"
+ *   - STAFF_ACCOUNTS       personal logins, comma separated, each
+ *                          "Jane Doe <jane@48wallnyc.com>:pass" (name optional)
  *   - ADMIN_PASSWORD       the shared team password, with any email on a company
  *                          domain (STAFF_EMAIL_DOMAINS, default 48wallnyc.com,mmeink.com)
  *   - ADMIN_USERNAME       the legacy shared username still works with ADMIN_PASSWORD
@@ -111,16 +112,24 @@ export async function readSession(
   }
 }
 
-function staffAccounts(): Map<string, string> {
-  const accounts = new Map<string, string>();
-  for (const entry of (process.env.STAFF_ACCOUNTS ?? '').split(',')) {
-    const separator = entry.indexOf(':');
-    if (separator === -1) continue;
-    const email = entry.slice(0, separator).trim().toLowerCase();
-    const password = entry.slice(separator + 1).trim();
-    if (email && password) accounts.set(email, password);
+/** "Jane Doe <jane@x.com>:pass" or "jane@x.com:pass" → email → account. */
+export function parseStaffAccounts(
+  raw: string
+): Map<string, { password: string; name: string }> {
+  const accounts = new Map<string, { password: string; name: string }>();
+  for (const entry of raw.split(',')) {
+    const match = /^\s*(?:(.*?)\s*<([^>]+)>|([^:<>\s]+))\s*:(.+)$/.exec(entry);
+    if (!match) continue;
+    const email = (match[2] ?? match[3]).trim().toLowerCase();
+    const password = match[4].trim();
+    const name = match[1]?.trim() || nameFromEmail(email);
+    if (email && password) accounts.set(email, { password, name });
   }
   return accounts;
+}
+
+function staffAccounts() {
+  return parseStaffAccounts(process.env.STAFF_ACCOUNTS ?? '');
 }
 
 function staffDomains(): string[] {
@@ -148,8 +157,8 @@ export function checkStaffLogin(
   const personal = staffAccounts().get(email);
   if (personal !== undefined) {
     // A personal account never falls back to the team password.
-    return safeEqual(password, personal)
-      ? { email, name: nameFromEmail(email) }
+    return safeEqual(password, personal.password)
+      ? { email, name: personal.name }
       : null;
   }
 

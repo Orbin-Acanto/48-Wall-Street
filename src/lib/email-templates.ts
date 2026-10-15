@@ -437,7 +437,11 @@ export interface SignedPacketContext {
   ipAddress?: string;
   reference: string;
   sentByName?: string;
+  /** SHA-256 of the sealed PDF attached to the email. */
+  fingerprint?: string;
 }
+
+const VERIFY_NOTE = `The attached PDF is digitally sealed with a SHA-256 signature and trusted timestamp. Any change to it is detectable &mdash; you can confirm it is authentic at <a href="${SITE_URL}/verify" style="color:${GOLD};">48wallnyc.com/verify</a>.`;
 
 /** Confirmation sent to the client after signing a packet. */
 export function signedPacketClientEmail(ctx: SignedPacketContext) {
@@ -455,8 +459,9 @@ export function signedPacketClientEmail(ctx: SignedPacketContext) {
         { label: 'Signed by', value: ctx.clientName },
         { label: 'Date signed', value: ctx.signedDate },
         { label: 'Reference', value: ctx.reference },
+        { label: 'SHA-256', value: ctx.fingerprint ?? '' },
       ],
-      note: 'Our Event Services team will follow up shortly with next steps. If anything looks incorrect, reply to this email and we will take care of it.',
+      note: `${VERIFY_NOTE}<br><br>Our Event Services team will follow up shortly with next steps. If anything looks incorrect, reply to this email and we will take care of it.`,
     }),
   };
 }
@@ -478,8 +483,9 @@ export function signedPacketStaffEmail(ctx: SignedPacketContext) {
         { label: 'IP address', value: ctx.ipAddress ?? '' },
         { label: 'Sent by', value: ctx.sentByName ?? '' },
         { label: 'Reference', value: ctx.reference },
+        { label: 'SHA-256', value: ctx.fingerprint ?? '' },
       ],
-      note: 'Generated automatically on submission. Card details are never included in email — they appear only inside the attached PDF.',
+      note: `${VERIFY_NOTE} The last page is the audit certificate. Card details are never included in the email body &mdash; only inside the attached PDF.`,
     }),
   };
 }

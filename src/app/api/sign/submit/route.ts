@@ -5,6 +5,13 @@ import {
   postSignedDocument,
 } from '@/lib/documents/delivery';
 import { consumeToken, releaseToken } from '@/lib/documents/signing-tokens';
+import { recordSealedDocument } from '@/lib/documents/packets';
+import {
+  pdfBytes,
+  sealPdf,
+  sealingConfigured,
+  sha256Hex,
+} from '@/lib/documents/seal';
 import { sendEmails, staffRecipients } from '@/lib/email';
 import {
   signedClientEmail,
@@ -60,8 +67,19 @@ export async function POST(request: NextRequest) {
       claimedToken = token;
     }
 
-    const pdfBase64 = await generateDocumentPDF(body);
+    const sealedPdf = await sealPdf(
+      pdfBytes(await generateDocumentPDF(body)),
+      `${documentLabel(body.documentType)} signed by ${body.typedName || body.clientName}`
+    );
+    const pdfBase64 = `data:application/pdf;base64,${sealedPdf.toString('base64')}`;
     await postSignedDocument(body, pdfBase64);
+    await recordSealedDocument(sha256Hex(sealedPdf), {
+      title: documentLabel(body.documentType),
+      reference: body.docId ?? '',
+      signerName: body.clientName,
+      signedAt: new Date().toISOString(),
+      sealed: sealingConfigured(),
+    });
 
     // Confirmation to the client and a copy to the events team, both with the
     // executed PDF attached. Email failures are logged but never fail the

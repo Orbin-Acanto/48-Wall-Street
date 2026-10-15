@@ -72,6 +72,23 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      ...['/sign/:path*', '/sign', '/admin/:path*', '/verify'].map(
+        (source) => ({
+          // Signing links carry a token in the URL: never cache, index, frame
+          // or leak them through the Referer header. Listed last so these win.
+          source,
+          headers: [
+            { key: 'Cache-Control', value: 'no-store, max-age=0' },
+            { key: 'Referrer-Policy', value: 'no-referrer' },
+            { key: 'X-Frame-Options', value: 'DENY' },
+            { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+            {
+              key: 'Strict-Transport-Security',
+              value: 'max-age=63072000; includeSubDomains',
+            },
+          ],
+        })
+      ),
     ];
   },
 
