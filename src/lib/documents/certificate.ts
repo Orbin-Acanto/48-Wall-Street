@@ -20,7 +20,15 @@ export interface CompletionDetails {
   sentAt?: string;
   viewedAt?: string;
   signedAt: string;
-  documents: { label: string; pages: number; sha256: string }[];
+  consentAt?: string;
+  /** sha256 is of the sealed PDF the client receives, so /verify matches it. */
+  documents: {
+    label: string;
+    pages: number;
+    sha256: string;
+    signedAt: string;
+    filename: string;
+  }[];
   initialsPlaced: number;
   verifyUrl: string;
 }
@@ -188,7 +196,7 @@ export async function appendCompletionCertificate(
   y = height - 118;
 
   text(
-    `This certificate records the electronic signing of the documents listed below. Each document is fingerprinted with SHA-256 and the complete file is digitally sealed by 48 Wall Street Events with a trusted timestamp; any change to the file invalidates the seal. To confirm this copy matches our records, upload it at ${details.verifyUrl}, or inspect the signature in Adobe Acrobat's Signature Panel.`,
+    `This certificate records the electronic signing of the documents listed below. Each document is attached as its own PDF, digitally sealed by 48 Wall Street Events with a SHA-256 signature and trusted timestamp; any change to a file invalidates its seal. To confirm a copy matches our records, upload it at ${details.verifyUrl}, or inspect the signature in Adobe Acrobat's Signature Panel.`,
     { size: 9.5, color: MUTED }
   );
 
@@ -252,18 +260,23 @@ export async function appendCompletionCertificate(
     `${formatTime(details.sentAt)}${details.sentBy ? ` by ${details.sentBy}` : ''}`
   );
   row('Opened', formatTime(details.viewedAt));
-  row('Signed', formatTime(details.signedAt));
   row(
-    'Consent',
-    'Agreed to sign electronically and to the terms of each document listed.'
+    'E-sign consent',
+    `${formatTime(details.consentAt)} - agreed to sign electronically`
   );
+  row('Submitted', formatTime(details.signedAt));
 
-  heading('Documents (SHA-256 fingerprints)');
+  heading('Signed documents (SHA-256 of each attached PDF)');
   details.documents.forEach((doc, i) => {
     text(
       `${i + 1}. ${doc.label}  (${doc.pages} page${doc.pages === 1 ? '' : 's'})`,
       { font: bold, size: 9 }
     );
+    text(`Signed & initialed ${formatTime(doc.signedAt)}  -  ${doc.filename}`, {
+      size: 8,
+      color: MUTED,
+      x: margin + 12,
+    });
     text(doc.sha256, {
       font: mono,
       size: 7.5,

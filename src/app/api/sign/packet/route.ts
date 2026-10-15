@@ -23,7 +23,7 @@ import {
   sha256Hex,
 } from '@/lib/documents/seal';
 import { appendCompletionCertificate } from '@/lib/documents/certificate';
-import { sendEmails, staffRecipients } from '@/lib/email';
+import { sendEmails, staffCc, staffRecipients } from '@/lib/email';
 import {
   signedPacketClientEmail,
   signedPacketStaffEmail,
@@ -37,6 +37,10 @@ interface PacketSubmitBody {
   initials?: string;
   signature?: string;
   viewTime?: string;
+  /** When the client agreed to sign electronically (their device clock). */
+  consentAt?: string;
+  /** When each document was signed on the client's device, by type. */
+  documentSignedAt?: Record<string, string>;
   location?: string;
   ipAddress?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -70,10 +74,24 @@ function cardFormProblem(form: Record<string, any> | undefined): string | null {
   return null;
 }
 
+/** A client-reported time, accepted only if it falls inside this signing session. */
+function sessionTime(value: unknown, notBefore: number): string | null {
+  const time = Date.parse(String(value ?? ''));
+  const slack = 5 * 60 * 1000;
+  return Number.isFinite(time) &&
+    time >= notBefore - slack &&
+    time <= Date.now() + slack
+    ? new Date(time).toISOString()
+    : null;
+}
+
+const slug = (value: string) =>
+  value.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '');
+
 /**
- * Sign every document in a packet at once. The client adopts their initials
- * and signature a single time; we place them on every section and document
- * that asks for them.
+ * Submit a packet the client has signed document by document. The adopted
+ * initials and signature are placed on every section and document that asks
+ * for them; each document is sealed and delivered as its own PDF.
  */
 export async function POST(request: NextRequest) {
   const body: PacketSubmitBody = await request.json().catch(() => ({}));
@@ -92,6 +110,13 @@ export async function POST(request: NextRequest) {
   const typedName = body.typedName?.trim() ?? '';
   const initials = body.initials?.trim().toUpperCase() ?? '';
   const signature = body.signature ?? '';
+  const sessionStart = Date.parse(data.iat ?? '') || 0;
+  const docSignedAt = Object.fromEntries(
+    documents.map((type) => [
+      type,
+      sessionTime(body.documentSignedAt?.[type], sessionStart),
+    ])
+  );
 
   const problem =
     documents.length === 0
@@ -103,9 +128,11 @@ export async function POST(request: NextRequest) {
           : !signature.startsWith('data:image/png;base64,') ||
               signature.length > MAX_SIGNATURE_BYTES
             ? 'Add your signature'
-            : documents.includes('credit_card_auth')
-              ? cardFormProblem(body.formData?.credit_card_auth)
-              : null;
+            : Object.values(docSignedAt).some((t) => !t)
+              ? 'Please sign each document before submitting'
+              : documents.includes('credit_card_auth')
+                ? cardFormProblem(body.formData?.credit_card_auth)
+                : null;
   if (problem) {
     return NextResponse.json(
       { success: false, error: problem },
@@ -151,12 +178,20 @@ export async function POST(request: NextRequest) {
       process.env.NEXT_PUBLIC_SITE_URL || 'https://www.48wallnyc.com';
     const sealed = sealingConfigured();
 
-    const originals: Buffer[] = [];
-    const fingerprints: { label: string; pages: number; sha256: string }[] = [];
+    const clientSlug = slug(String(data.name));
+    const signedFiles: {
+      label: string;
+      filename: string;
+      bytes: Buffer;
+      pages: number;
+      sha256: string;
+      signedAt: string;
+    }[] = [];
     for (const [index, documentType] of documents.entries()) {
       const placed: InitialsData = {};
+      const signedAt = docSignedAt[documentType]!;
       for (const id of initialPlacements(documentType)) {
-        placed[id] = { initials, timestamp: signTime };
+        placed[id] = { initials, timestamp: signedAt };
       }
 
       const submission: SubmitRequestBody = {
@@ -176,7 +211,8 @@ export async function POST(request: NextRequest) {
         formData: body.formData?.[documentType] ?? {},
       };
 
-      // Each document is sealed on its own for the records (n8n / S3)...
+      // Each document is sealed on its own: for the records (n8n / S3) and
+      // as its own attachment for the client.
       const label = packetDocument(documentType)!.label;
       const original = pdfBytes(await generateDocumentPDF(submission));
       const sealedDoc = await sealPdf(
@@ -187,19 +223,22 @@ export async function POST(request: NextRequest) {
         submission,
         `data:application/pdf;base64,${sealedDoc.toString('base64')}`
       );
-      await recordSealedDocument(sha256Hex(sealedDoc), {
+      const sha256 = sha256Hex(sealedDoc);
+      await recordSealedDocument(sha256, {
         title: label,
         reference: submission.docId ?? reference,
         signerName: data.name,
-        signedAt: signTime,
+        signedAt,
         sealed,
       });
 
-      originals.push(original);
-      fingerprints.push({
+      signedFiles.push({
         label,
+        filename: `48WallSt-${index + 1}-${slug(label)}-${clientSlug}.pdf`,
+        bytes: sealedDoc,
         pages: (await PDFDocument.load(original)).getPageCount(),
-        sha256: sha256Hex(original),
+        sha256,
+        signedAt,
       });
     }
 
@@ -213,22 +252,16 @@ export async function POST(request: NextRequest) {
       ipAddress,
       reference,
       sentByName: data.byName,
-      fingerprint: undefined as string | undefined,
     };
 
-    // ...and the client's copy is every document plus the audit certificate,
-    // sealed as one file. Best effort: the documents are already delivered.
+    // One email with every signed document as its own PDF, plus the audit
+    // certificate. Best effort: the documents are already delivered.
     try {
-      const combined = await PDFDocument.create();
-      combined.setTitle(`Executed documents — ${data.name}`);
-      combined.setAuthor('48 Wall Street Events');
-      combined.setSubject(reference);
-      for (const original of originals) {
-        const source = await PDFDocument.load(original);
-        const pages = await combined.copyPages(source, source.getPageIndices());
-        pages.forEach((page) => combined.addPage(page));
-      }
-      await appendCompletionCertificate(combined, {
+      const certificate = await PDFDocument.create();
+      certificate.setTitle(`Certificate of Completion — ${data.name}`);
+      certificate.setAuthor('48 Wall Street Events');
+      certificate.setSubject(reference);
+      await appendCompletionCertificate(certificate, {
         reference,
         clientName: data.name,
         clientEmail: data.email,
@@ -241,47 +274,63 @@ export async function POST(request: NextRequest) {
         sentBy: data.byName,
         sentAt: data.iat,
         viewedAt: body.viewTime,
+        consentAt: sessionTime(body.consentAt, sessionStart) ?? undefined,
         signedAt: signTime,
-        documents: fingerprints,
+        documents: signedFiles.map(
+          ({ label, pages, sha256, signedAt, filename }) => ({
+            label,
+            pages,
+            sha256,
+            signedAt,
+            filename,
+          })
+        ),
         initialsPlaced: documents.reduce(
           (sum, type) => sum + initialPlacements(type).length,
           0
         ),
         verifyUrl: `${siteUrl}/verify`,
       });
-      const executed = await sealPdf(
-        await combined.save(),
-        `Executed packet ${reference} signed by ${typedName}`
+      const sealedCertificate = await sealPdf(
+        await certificate.save(),
+        `Certificate of Completion ${reference}`
       );
-      const fingerprint = sha256Hex(executed);
-      await recordSealedDocument(fingerprint, {
-        title: 'Executed document packet',
+      await recordSealedDocument(sha256Hex(sealedCertificate), {
+        title: 'Certificate of Completion',
         reference,
         signerName: data.name,
         signedAt: signTime,
         sealed,
       });
-      emailContext.fingerprint = fingerprint;
 
-      const attachment = {
-        data: executed.toString('base64'),
-        filename: `48-Wall-Street-Signed-Documents-${String(data.name).replace(/[^a-z0-9]+/gi, '-')}.pdf`,
-        contentType: 'application/pdf',
-      };
-      const staff = [
-        ...new Set(
-          [...staffRecipients(), data.by]
-            .filter(
-              (a): a is string => typeof a === 'string' && a.includes('@')
-            )
-            .map((a) => a.toLowerCase())
-        ),
+      const attachments = [
+        ...signedFiles.map((file) => ({
+          data: file.bytes.toString('base64'),
+          filename: file.filename,
+          contentType: 'application/pdf',
+        })),
+        {
+          data: sealedCertificate.toString('base64'),
+          filename: `48WallSt-Certificate-of-Completion-${clientSlug}.pdf`,
+          contentType: 'application/pdf',
+        },
       ];
+      // To the events lead; copy the team and whoever sent the packet.
+      const emails = (list: unknown[]) =>
+        list
+          .filter((a): a is string => typeof a === 'string' && a.includes('@'))
+          .map((a) => a.toLowerCase());
+      const staffTo = [...new Set(emails(staffRecipients()))];
+      const staffCopy = [...new Set(emails([...staffCc(), data.by]))].filter(
+        (a) => !staffTo.includes(a)
+      );
       const clientMessage = signedPacketClientEmail(emailContext);
       const staffMessage = signedPacketStaffEmail(emailContext);
       const results = await sendEmails([
-        { to: data.email, ...clientMessage, attachment },
-        ...(staff.length ? [{ to: staff, ...staffMessage, attachment }] : []),
+        { to: data.email, ...clientMessage, attachments },
+        ...(staffTo.length
+          ? [{ to: staffTo, cc: staffCopy, ...staffMessage, attachments }]
+          : []),
       ]);
       const failed = results.filter((r) => !r.success);
       if (failed.length) console.error('Packet email failures:', failed);

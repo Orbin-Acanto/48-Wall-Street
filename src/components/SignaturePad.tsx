@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 interface SignaturePadProps {
   onSignatureChange: (signature: string | null) => void;
@@ -14,8 +14,10 @@ export default function SignaturePad({
   height = 200,
 }: SignaturePadProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [hasSignature, setHasSignature] = useState(false);
+  // Refs, not state: a quick stroke can end before React re-renders, and a
+  // stale `false` here silently dropped the signature.
+  const isDrawing = useRef(false);
+  const hasSignature = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -67,7 +69,7 @@ export default function SignaturePad({
     const ctx = canvas?.getContext('2d');
     if (!ctx) return;
 
-    setIsDrawing(true);
+    isDrawing.current = true;
     const { x, y } = getCoordinates(e);
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -77,7 +79,7 @@ export default function SignaturePad({
     e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>
   ) => {
     e.preventDefault();
-    if (!isDrawing) return;
+    if (!isDrawing.current) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
@@ -86,12 +88,13 @@ export default function SignaturePad({
     const { x, y } = getCoordinates(e);
     ctx.lineTo(x, y);
     ctx.stroke();
-    setHasSignature(true);
+    hasSignature.current = true;
   };
 
   const stopDrawing = () => {
-    setIsDrawing(false);
-    if (hasSignature) {
+    if (!isDrawing.current) return;
+    isDrawing.current = false;
+    if (hasSignature.current) {
       const canvas = canvasRef.current;
       if (canvas) {
         onSignatureChange(canvas.toDataURL('image/png'));
@@ -113,7 +116,7 @@ export default function SignaturePad({
     ctx.stroke();
     ctx.strokeStyle = '#000000';
 
-    setHasSignature(false);
+    hasSignature.current = false;
     onSignatureChange(null);
   };
 

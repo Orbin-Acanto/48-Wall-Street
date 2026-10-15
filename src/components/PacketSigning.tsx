@@ -13,6 +13,7 @@ import {
   FileText,
   Loader2,
   PenLine,
+  Send,
   ShieldCheck,
 } from 'lucide-react';
 import SignaturePad from '@/components/SignaturePad';
@@ -54,6 +55,13 @@ interface FormState {
   missing: string[];
 }
 
+/** The signature and initials the client adopted, reused on every document. */
+interface Adopted {
+  typedName: string;
+  initials: string;
+  signature: string;
+}
+
 const REVIEW_CONTENT: Record<string, { intro: string; sections: Section[] }> = {
   client_guidelines: {
     intro: documentIntro,
@@ -67,6 +75,13 @@ const REVIEW_CONTENT: Record<string, { intro: string; sections: Section[] }> = {
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function shortTime(iso: string): string {
+  return new Date(iso).toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+  });
 }
 
 /** Render a typed name in the script face as a transparent PNG. */
@@ -128,7 +143,14 @@ function StatusScreen({
   );
 }
 
-function ReviewDocument({ doc }: { doc: PacketDocument }) {
+function ReviewDocument({
+  doc,
+  initials,
+}: {
+  doc: PacketDocument;
+  /** Shown in every initials box once this document is signed. */
+  initials?: string;
+}) {
   const content = REVIEW_CONTENT[doc.type];
   return (
     <div>
@@ -155,9 +177,17 @@ function ReviewDocument({ doc }: { doc: PacketDocument }) {
             {section.requiresInitials && (
               <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-gray-100 pt-3 md:pl-10">
                 <span className="text-xs text-gray-500">Initials</span>
-                <span className="border-primary/50 text-primary border border-dashed px-2.5 py-1 text-xs">
-                  Applied when you sign
-                </span>
+                {initials ? (
+                  <span
+                    className={`${script.className} border border-green-200 bg-green-50 px-3 text-2xl text-gray-900`}
+                  >
+                    {initials}
+                  </span>
+                ) : (
+                  <span className="border-primary/50 text-primary border border-dashed px-2.5 py-1 text-xs">
+                    Added when you sign below
+                  </span>
+                )}
               </div>
             )}
           </section>
@@ -169,45 +199,38 @@ function ReviewDocument({ doc }: { doc: PacketDocument }) {
 
 /* ------------------------------------------------------------------ */
 
-function SignStep({
-  packet,
-  docs,
-  forms,
-  token,
-  viewTime,
-  location,
-  onEdit,
-  onBack,
-  onSigned,
-  onAlreadySigned,
+/** Draw (or type) a signature and pick initials. Nothing is sent from here. */
+function AdoptSignature({
+  defaultName,
+  current,
+  firstTime,
+  onAdopt,
+  onCancel,
+  actionLabel,
+  extraConfirm,
 }: {
-  packet: PacketData;
-  docs: PacketDocument[];
-  forms: Record<string, FormState>;
-  token: string;
-  viewTime: string;
-  location: { label: string; ip: string } | null;
-  onEdit: (index: number) => void;
-  onBack: () => void;
-  onSigned: (result: { signedDate: string; reference: string }) => void;
-  onAlreadySigned: (message: string) => void;
+  defaultName: string;
+  current: Adopted | null;
+  firstTime: boolean;
+  onAdopt: (adopted: Adopted) => void;
+  onCancel?: () => void;
+  actionLabel: string;
+  extraConfirm?: {
+    label: string;
+    checked: boolean;
+    onChange: (v: boolean) => void;
+  };
 }) {
-  const [typedName, setTypedName] = useState(packet.name);
-  const [initials, setInitials] = useState(initialsFromName(packet.name));
-  const [initialsEdited, setInitialsEdited] = useState(false);
-  const [mode, setMode] = useState<'type' | 'draw'>('type');
-  const [drawn, setDrawn] = useState<string | null>(null);
-  const [consent, setConsent] = useState(false);
-  const [cardholder, setCardholder] = useState(false);
-  const [showErrors, setShowErrors] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const hasCard = docs.some((d) => d.type === 'credit_card_auth');
-  const placementCount = docs.reduce(
-    (sum, d) => sum + initialPlacements(d.type).length,
-    0
+  const [typedName, setTypedName] = useState(current?.typedName ?? defaultName);
+  const [initials, setInitials] = useState(
+    current?.initials ?? initialsFromName(defaultName)
   );
+  const [initialsEdited, setInitialsEdited] = useState(!!current);
+  const [mode, setMode] = useState<'draw' | 'type'>('draw');
+  const [drawn, setDrawn] = useState<string | null>(null);
+  const [consent, setConsent] = useState(!firstTime);
+  const [showErrors, setShowErrors] = useState(false);
+  const [busy, setBusy] = useState(false);
 
   const nameValid = typedName.trim().length >= 2;
   const initialsValid = /^[A-Za-z]{1,4}$/.test(initials.trim());
@@ -217,212 +240,134 @@ function SignStep({
     initialsValid &&
     signatureValid &&
     consent &&
-    (!hasCard || cardholder);
+    (!extraConfirm || extraConfirm.checked);
 
-  const handleNameChange = (value: string) => {
-    setTypedName(value);
-    if (!initialsEdited) setInitials(initialsFromName(value));
-  };
-
-  const handleSubmit = async () => {
-    if (!ready) {
-      setShowErrors(true);
-      return;
-    }
-    setSubmitting(true);
-    setError(null);
-    try {
-      const signature =
-        mode === 'type' ? await typedSignatureImage(typedName.trim()) : drawn;
-
-      const response = await fetch('/api/sign/packet', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          token,
-          typedName: typedName.trim(),
-          initials: initials.trim().toUpperCase(),
-          signature,
-          viewTime,
-          location: location?.label ?? 'Unknown',
-          ipAddress: location?.ip ?? 'Unknown',
-          formData: Object.fromEntries(
-            Object.entries(forms).map(([type, state]) => [type, state.data])
-          ),
-        }),
-      });
-      const body = await response.json().catch(() => ({}));
-      if (response.status === 409) {
-        onAlreadySigned(body.message);
-        return;
-      }
-      if (!response.ok) {
-        throw new Error(
-          body.error || 'Something went wrong. Please try again in a moment.'
-        );
-      }
-      onSigned(body);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong.');
-      setSubmitting(false);
-    }
-  };
-
-  const fieldError = (show: boolean, message: string) =>
+  const error = (show: boolean, message: string) =>
     showErrors && show ? (
       <p className="mt-1.5 text-xs font-medium text-red-600">{message}</p>
     ) : null;
 
+  const adopt = async () => {
+    if (!ready) {
+      setShowErrors(true);
+      return;
+    }
+    setBusy(true);
+    const signature =
+      mode === 'type' ? await typedSignatureImage(typedName.trim()) : drawn!;
+    onAdopt({
+      typedName: typedName.trim(),
+      initials: initials.trim().toUpperCase(),
+      signature,
+    });
+  };
+
   return (
-    <div className="space-y-6">
-      {/* Checklist */}
-      <div className="border border-gray-200 bg-white p-5 md:p-7">
-        <h3 className="mb-4 text-xs tracking-[0.2em] text-gray-500 uppercase">
-          You&apos;re signing
-        </h3>
-        <ul className="divide-y divide-gray-100">
-          {docs.map((doc, index) => (
-            <li
-              key={doc.type}
-              className="flex items-center justify-between gap-3 py-3"
-            >
-              <span className="flex items-center gap-3">
-                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-50">
-                  <Check className="h-3.5 w-3.5 text-green-600" />
-                </span>
-                <span className="text-gray-900">{doc.label}</span>
-              </span>
-              <button
-                type="button"
-                onClick={() => onEdit(index)}
-                className="text-primary flex-shrink-0 text-sm underline-offset-2 hover:underline"
-              >
-                Review
-              </button>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 flex items-start gap-2 bg-[#faf7f0] p-3 text-sm text-gray-700">
-          <PenLine className="text-primary mt-0.5 h-4 w-4 flex-shrink-0" />
-          {placementCount > 0
-            ? `Your initials will be placed in all ${placementCount} required spots and your signature on ${docs.length === 1 ? 'the document' : `all ${docs.length} documents`} automatically.`
-            : `Your signature will be placed on ${docs.length === 1 ? 'the document' : `all ${docs.length} documents`} automatically.`}
-        </p>
+    <div>
+      <div className="grid gap-5 sm:grid-cols-[1fr_8rem]">
+        <div>
+          <label
+            htmlFor="typedName"
+            className="mb-1.5 block text-sm font-medium text-gray-700"
+          >
+            Full legal name
+          </label>
+          <input
+            id="typedName"
+            type="text"
+            autoComplete="name"
+            value={typedName}
+            onChange={(e) => {
+              setTypedName(e.target.value);
+              if (!initialsEdited)
+                setInitials(initialsFromName(e.target.value));
+            }}
+            className={`focus:border-primary focus:ring-primary/30 w-full border px-3 py-3 text-base text-gray-900 focus:ring-2 focus:outline-none ${
+              showErrors && !nameValid
+                ? 'border-red-400 bg-red-50'
+                : 'border-gray-300'
+            }`}
+          />
+          {error(!nameValid, 'Type your full legal name.')}
+        </div>
+        <div>
+          <label
+            htmlFor="initials"
+            className="mb-1.5 block text-sm font-medium text-gray-700"
+          >
+            Initials
+          </label>
+          <input
+            id="initials"
+            type="text"
+            maxLength={4}
+            autoCapitalize="characters"
+            value={initials}
+            onChange={(e) => {
+              setInitialsEdited(true);
+              setInitials(e.target.value.replace(/[^a-z]/gi, ''));
+            }}
+            className={`focus:border-primary focus:ring-primary/30 w-full border px-3 py-3 text-center text-base tracking-widest text-gray-900 uppercase focus:ring-2 focus:outline-none ${
+              showErrors && !initialsValid
+                ? 'border-red-400 bg-red-50'
+                : 'border-gray-300'
+            }`}
+          />
+          {error(!initialsValid, '1–4 letters.')}
+        </div>
       </div>
 
-      {/* Adopt */}
-      <div className="border-primary/40 border-2 bg-white p-5 md:p-7">
-        <h3 className="mb-1 text-xl text-gray-900">
-          Adopt your initials &amp; signature
-        </h3>
-        <p className="mb-6 text-sm text-gray-500">You only do this once.</p>
-
-        <div className="grid gap-5 sm:grid-cols-[1fr_8rem]">
-          <div>
-            <label
-              htmlFor="typedName"
-              className="mb-1.5 block text-sm font-medium text-gray-700"
-            >
-              Full legal name
-            </label>
-            <input
-              id="typedName"
-              type="text"
-              autoComplete="name"
-              value={typedName}
-              onChange={(e) => handleNameChange(e.target.value)}
-              className={`focus:border-primary focus:ring-primary/30 w-full border px-3 py-3 text-base text-gray-900 focus:ring-2 focus:outline-none ${
-                showErrors && !nameValid
-                  ? 'border-red-400 bg-red-50'
-                  : 'border-gray-300'
-              }`}
-            />
-            {fieldError(!nameValid, 'Type your full legal name.')}
-          </div>
-          <div>
-            <label
-              htmlFor="initials"
-              className="mb-1.5 block text-sm font-medium text-gray-700"
-            >
-              Initials
-            </label>
-            <input
-              id="initials"
-              type="text"
-              maxLength={4}
-              autoCapitalize="characters"
-              value={initials}
-              onChange={(e) => {
-                setInitialsEdited(true);
-                setInitials(e.target.value.replace(/[^a-z]/gi, ''));
-              }}
-              className={`focus:border-primary focus:ring-primary/30 w-full border px-3 py-3 text-center text-base tracking-widest text-gray-900 uppercase focus:ring-2 focus:outline-none ${
-                showErrors && !initialsValid
-                  ? 'border-red-400 bg-red-50'
-                  : 'border-gray-300'
-              }`}
-            />
-            {fieldError(!initialsValid, '1–4 letters.')}
-          </div>
-        </div>
-
-        <div className="mt-6">
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <span className="text-sm font-medium text-gray-700">Signature</span>
-            <div
-              role="tablist"
-              className="flex border border-gray-300 text-sm"
-              aria-label="Signature style"
-            >
-              {(['type', 'draw'] as const).map((option) => (
-                <button
-                  key={option}
-                  type="button"
-                  role="tab"
-                  aria-selected={mode === option}
-                  onClick={() => setMode(option)}
-                  className={`px-4 py-1.5 ${
-                    mode === option
-                      ? 'bg-gray-900 text-white'
-                      : 'bg-white text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  {option === 'type' ? 'Type' : 'Draw'}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {mode === 'type' ? (
-            <div className="flex min-h-[9rem] items-center justify-center border-2 border-dashed border-gray-300 bg-white px-4">
-              <span
-                className={`${script.className} text-center text-5xl break-all text-gray-900 sm:text-6xl`}
+      <div className="mt-6">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <span className="text-sm font-medium text-gray-700">
+            {mode === 'draw' ? 'Draw your signature' : 'Your signature'}
+          </span>
+          <div
+            role="tablist"
+            className="flex border border-gray-300 text-sm"
+            aria-label="Signature style"
+          >
+            {(['draw', 'type'] as const).map((option) => (
+              <button
+                key={option}
+                type="button"
+                role="tab"
+                aria-selected={mode === option}
+                onClick={() => setMode(option)}
+                className={`px-4 py-1.5 ${
+                  mode === option
+                    ? 'bg-gray-900 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
               >
-                {typedName.trim() || 'Your name'}
-              </span>
-            </div>
-          ) : (
-            <div className={showErrors && !drawn ? 'ring-2 ring-red-300' : ''}>
-              <SignaturePad
-                onSignatureChange={setDrawn}
-                width={500}
-                height={200}
-              />
-            </div>
-          )}
-          {fieldError(!signatureValid, 'Add your signature.')}
-
-          <div className="mt-4 flex items-center gap-4 border border-gray-100 bg-gray-50 px-4 py-3">
-            <span className="text-xs tracking-widest text-gray-500 uppercase">
-              Initials preview
-            </span>
-            <span className={`${script.className} text-3xl text-gray-900`}>
-              {initials.toUpperCase() || '—'}
-            </span>
+                {option === 'draw' ? 'Draw' : 'Type'}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="mt-6 space-y-3">
+        {mode === 'draw' ? (
+          <div className={showErrors && !drawn ? 'ring-2 ring-red-300' : ''}>
+            <SignaturePad
+              onSignatureChange={setDrawn}
+              width={500}
+              height={200}
+            />
+          </div>
+        ) : (
+          <div className="flex min-h-[9rem] items-center justify-center border-2 border-dashed border-gray-300 bg-white px-4">
+            <span
+              className={`${script.className} text-center text-5xl break-all text-gray-900 sm:text-6xl`}
+            >
+              {typedName.trim() || 'Your name'}
+            </span>
+          </div>
+        )}
+        {error(!signatureValid, 'Draw your signature in the box above.')}
+      </div>
+
+      <div className="mt-5 space-y-3">
+        {firstTime && (
           <label
             className={`flex cursor-pointer items-start gap-3 p-3 text-sm text-gray-700 ${
               showErrors && !consent ? 'border border-red-300 bg-red-50' : ''
@@ -435,19 +380,183 @@ function SignStep({
               className="accent-primary mt-0.5 h-5 w-5 flex-shrink-0"
             />
             <span>
-              I have reviewed{' '}
-              {docs.length === 1
-                ? 'this document'
-                : `all ${docs.length} documents`}{' '}
-              and agree to {docs.length === 1 ? 'its' : 'their'} terms. I agree
-              to sign electronically and that my initials and signature above
-              will be applied wherever required, with the same effect as signing
-              by hand.
+              I agree to sign electronically. My initials and signature above
+              will be used on the documents I sign here, with the same effect as
+              signing by hand.
             </span>
           </label>
-          {hasCard && (
+        )}
+        {extraConfirm && (
+          <label
+            className={`flex cursor-pointer items-start gap-3 p-3 text-sm text-gray-700 ${
+              showErrors && !extraConfirm.checked
+                ? 'border border-red-300 bg-red-50'
+                : ''
+            }`}
+          >
+            <input
+              type="checkbox"
+              checked={extraConfirm.checked}
+              onChange={(e) => extraConfirm.onChange(e.target.checked)}
+              className="accent-primary mt-0.5 h-5 w-5 flex-shrink-0"
+            />
+            <span>{extraConfirm.label}</span>
+          </label>
+        )}
+      </div>
+
+      <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+        {onCancel && (
+          <button
+            type="button"
+            onClick={onCancel}
+            className="border border-gray-300 px-5 py-3 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            Cancel
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={adopt}
+          disabled={busy}
+          className="bg-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium tracking-widest text-white uppercase transition-opacity hover:opacity-90 disabled:opacity-60"
+        >
+          <PenLine className="h-4 w-4" /> {actionLabel}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/** Shows the adopted signature and initials side by side. */
+function AdoptedPreview({ adopted }: { adopted: Adopted }) {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      <div className="flex h-20 w-56 items-center justify-center border border-gray-200 bg-white">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={adopted.signature}
+          alt="Your signature"
+          className="max-h-16 max-w-[13rem]"
+        />
+      </div>
+      <div className="flex h-20 w-24 flex-col items-center justify-center border border-gray-200 bg-white">
+        <span className="text-[10px] tracking-widest text-gray-400 uppercase">
+          Initials
+        </span>
+        <span className={`${script.className} text-3xl text-gray-900`}>
+          {adopted.initials}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The signing block at the end of every document. Signing here only marks
+ * the document signed on this device; nothing is sent until Submit.
+ */
+function DocumentSignPanel({
+  doc,
+  packetName,
+  adopted,
+  signedAt,
+  onAdopt,
+  isReady,
+  onSign,
+  onContinue,
+  isLast,
+}: {
+  doc: PacketDocument;
+  packetName: string;
+  adopted: Adopted | null;
+  signedAt?: string;
+  onAdopt: (adopted: Adopted) => void;
+  /** False (and shows what is missing) when the form is incomplete. */
+  isReady: () => boolean;
+  /** Returns false when the document is not ready to sign yet. */
+  onSign: () => boolean;
+  onContinue: () => void;
+  isLast: boolean;
+}) {
+  const [changing, setChanging] = useState(false);
+  const [cardholder, setCardholder] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
+  const isCard = doc.type === 'credit_card_auth';
+  const placements = initialPlacements(doc.type).length;
+  const cardConfirm = isCard
+    ? {
+        label:
+          'I confirm I am the cardholder for the card provided, and I understand this authorization is valid for two years from the date of signing.',
+        checked: cardholder,
+        onChange: setCardholder,
+      }
+    : undefined;
+
+  const what =
+    placements > 0
+      ? `Your initials will be added to ${placements === 1 ? 'the marked section' : `all ${placements} marked sections`} and your signature to this document.`
+      : 'Your signature will be added to this document.';
+
+  if (signedAt && !changing) {
+    return (
+      <div className="border-2 border-green-200 bg-white p-5 md:p-7">
+        <p className="mb-4 flex items-center gap-2 text-lg text-green-800">
+          <Check className="h-5 w-5" /> Signed &amp; initialed at{' '}
+          {shortTime(signedAt)}
+        </p>
+        {adopted && <AdoptedPreview adopted={adopted} />}
+        <div className="mt-6 flex justify-end">
+          <button
+            type="button"
+            onClick={onContinue}
+            className="inline-flex items-center justify-center gap-2 bg-gray-900 px-6 py-3.5 text-sm tracking-wide text-white hover:bg-black"
+          >
+            {isLast ? 'Review & submit' : 'Next document'}
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="border-primary/40 border-2 bg-white p-5 md:p-7">
+      <h3 className="mb-1 text-xl text-gray-900">
+        Sign {doc.kind === 'form' ? 'this form' : 'this document'}
+      </h3>
+      <p className="mb-3 text-sm text-gray-500">{what}</p>
+      <p className="mb-6 border-l-4 border-gray-900 bg-gray-50 px-3 py-2 text-sm font-bold text-gray-900">
+        Please make sure you are authorized to sign this document.
+      </p>
+
+      {!adopted || changing ? (
+        <AdoptSignature
+          defaultName={packetName}
+          current={adopted}
+          firstTime={!adopted}
+          actionLabel={changing ? 'Update & sign' : 'Adopt & sign'}
+          extraConfirm={cardConfirm}
+          onCancel={changing ? () => setChanging(false) : undefined}
+          onAdopt={(next) => {
+            onAdopt(next);
+            setChanging(false);
+            onSign();
+          }}
+        />
+      ) : (
+        <div>
+          <AdoptedPreview adopted={adopted} />
+          <button
+            type="button"
+            onClick={() => setChanging(true)}
+            className="text-primary mt-2 text-sm underline-offset-2 hover:underline"
+          >
+            Use a different signature
+          </button>
+          {cardConfirm && (
             <label
-              className={`flex cursor-pointer items-start gap-3 p-3 text-sm text-gray-700 ${
+              className={`mt-4 flex cursor-pointer items-start gap-3 p-3 text-sm text-gray-700 ${
                 showErrors && !cardholder
                   ? 'border border-red-300 bg-red-50'
                   : ''
@@ -459,55 +568,28 @@ function SignStep({
                 onChange={(e) => setCardholder(e.target.checked)}
                 className="accent-primary mt-0.5 h-5 w-5 flex-shrink-0"
               />
-              <span>
-                I confirm I am the cardholder for the card provided, and I
-                understand the credit card authorization is valid for two years
-                from the date of signing.
-              </span>
+              <span>{cardConfirm.label}</span>
             </label>
           )}
+          <div className="mt-6 flex justify-end">
+            <button
+              type="button"
+              onClick={() => {
+                // Missing form fields first: they are the bigger problem.
+                if (!isReady()) return;
+                if (cardConfirm && !cardholder) {
+                  setShowErrors(true);
+                  return;
+                }
+                onSign();
+              }}
+              className="bg-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium tracking-widest text-white uppercase transition-opacity hover:opacity-90"
+            >
+              <PenLine className="h-4 w-4" /> Sign &amp; initial
+            </button>
+          </div>
         </div>
-
-        {error && (
-          <p
-            role="alert"
-            className="mt-5 border border-red-200 bg-red-50 p-3 text-sm text-red-700"
-          >
-            {error}
-          </p>
-        )}
-
-        <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
-          <button
-            type="button"
-            onClick={onBack}
-            disabled={submitting}
-            className="inline-flex items-center justify-center gap-2 border border-gray-300 px-5 py-3 text-sm text-gray-700 hover:bg-gray-50"
-          >
-            <ArrowLeft className="h-4 w-4" /> Back
-          </button>
-          <button
-            type="button"
-            onClick={handleSubmit}
-            disabled={submitting}
-            className="bg-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium tracking-widest text-white uppercase transition-opacity hover:opacity-90 disabled:opacity-60"
-          >
-            {submitting ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" /> Signing…
-              </>
-            ) : (
-              <>
-                <ShieldCheck className="h-4 w-4" />
-                Sign{' '}
-                {docs.length === 1
-                  ? 'document'
-                  : `all ${docs.length} documents`}
-              </>
-            )}
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -531,7 +613,16 @@ export default function PacketSigning() {
     label: string;
     ip: string;
   } | null>(null);
-  const [signed, setSigned] = useState<{
+
+  const [adopted, setAdopted] = useState<Adopted | null>(null);
+  const [consentAt, setConsentAt] = useState<string | null>(null);
+  // When each document was signed, and the form data it was signed with.
+  const [signedAt, setSignedAt] = useState<Record<string, string>>({});
+  const [signedWith, setSignedWith] = useState<Record<string, string>>({});
+
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState<{
     signedDate: string;
     reference: string;
   } | null>(null);
@@ -623,17 +714,90 @@ export default function PacketSigning() {
     [docs]
   );
 
-  // Warn before leaving mid-way; typed form details live only in memory.
+  // Warn before leaving mid-way; nothing is saved until Submit.
   useEffect(() => {
-    if (!packet || signed || step === 0) return;
+    if (!packet || submitted || step === 0) return;
     const warn = (e: BeforeUnloadEvent) => e.preventDefault();
     window.addEventListener('beforeunload', warn);
     return () => window.removeEventListener('beforeunload', warn);
-  }, [packet, signed, step]);
+  }, [packet, submitted, step]);
 
   const goTo = (next: number) => {
     setStep(next);
     scrollToTop();
+  };
+
+  /** Signed, and (for forms) not edited since. */
+  const isSigned = (doc: PacketDocument) =>
+    !!signedAt[doc.type] &&
+    (doc.kind === 'review' ||
+      signedWith[doc.type] === JSON.stringify(forms[doc.type]?.data ?? {}));
+
+  const formReady = (doc: PacketDocument) => {
+    const missing = doc.kind === 'form' ? (forms[doc.type]?.missing ?? []) : [];
+    if (missing.length > 0) {
+      setFormErrors((prev) => ({ ...prev, [doc.type]: true }));
+      scrollToTop();
+      return false;
+    }
+    return true;
+  };
+
+  const signDocument = (doc: PacketDocument) => {
+    if (!formReady(doc)) return false;
+    setSignedAt((prev) => ({ ...prev, [doc.type]: new Date().toISOString() }));
+    setSignedWith((prev) => ({
+      ...prev,
+      [doc.type]: JSON.stringify(forms[doc.type]?.data ?? {}),
+    }));
+    return true;
+  };
+
+  const handleSubmit = async () => {
+    if (!adopted || docs.some((doc) => !isSigned(doc))) return;
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const response = await fetch('/api/sign/packet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token,
+          typedName: adopted.typedName,
+          initials: adopted.initials,
+          signature: adopted.signature,
+          viewTime,
+          consentAt,
+          documentSignedAt: signedAt,
+          location: location?.label ?? 'Unknown',
+          ipAddress: location?.ip ?? 'Unknown',
+          formData: Object.fromEntries(
+            Object.entries(forms).map(([type, state]) => [type, state.data])
+          ),
+        }),
+      });
+      const body = await response.json().catch(() => ({}));
+      if (response.status === 409) {
+        setStatus({
+          tone: 'success',
+          title: 'Already signed',
+          message: body.message || 'These documents have already been signed.',
+        });
+        return;
+      }
+      if (!response.ok) {
+        throw new Error(
+          body.error || 'Something went wrong. Please try again in a moment.'
+        );
+      }
+      setSubmitted(body);
+      scrollToTop();
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : 'Something went wrong.'
+      );
+      setSubmitting(false);
+    }
   };
 
   if (status) return <StatusScreen {...status} />;
@@ -651,10 +815,11 @@ export default function PacketSigning() {
 
   const firstName = packet.name.split(' ')[0] || packet.name;
   const deadline = formatLongDate(packet.deadline);
-  const signStep = docs.length + 1;
+  const submitStep = docs.length + 1;
   const totalMinutes = docs.reduce((sum, d) => sum + d.minutes, 0);
+  const unsigned = docs.filter((doc) => !isSigned(doc));
 
-  if (signed) {
+  if (submitted) {
     return (
       <div className="min-h-screen bg-[#f6f4ef] px-4 pt-28 pb-16">
         <div className="mx-auto max-w-xl border border-gray-200 bg-white text-center shadow-sm">
@@ -664,7 +829,7 @@ export default function PacketSigning() {
             </div>
             <h1 className="text-3xl text-white">Thank you, {firstName}</h1>
             <p className="mt-2 text-sm tracking-widest text-white/60 uppercase">
-              All documents signed
+              All documents submitted
             </p>
           </div>
           <div className="p-6 md:p-8">
@@ -680,13 +845,13 @@ export default function PacketSigning() {
               ))}
             </ul>
             <p className="text-gray-600">
-              A signed copy has been emailed to{' '}
+              Your signed documents have been emailed to{' '}
               <strong className="text-gray-900">{packet.email}</strong>. Our
               Event Services team will be in touch with next steps.
             </p>
             <div className="mt-6 bg-gray-50 p-4 text-sm text-gray-500">
-              <p>Signed {signed.signedDate}</p>
-              {signed.reference && <p>Reference {signed.reference}</p>}
+              <p>Submitted {submitted.signedDate}</p>
+              {submitted.reference && <p>Reference {submitted.reference}</p>}
             </div>
           </div>
         </div>
@@ -704,18 +869,22 @@ export default function PacketSigning() {
           <div className="mx-auto max-w-4xl px-4 py-3">
             <div className="mb-2 flex items-center justify-between gap-3 text-sm">
               <span className="truncate text-gray-900">
-                {step === signStep ? 'Sign & finish' : docs[step - 1].label}
+                {step === submitStep ? 'Review & submit' : docs[step - 1].label}
               </span>
               <span className="flex-shrink-0 text-gray-500">
-                Step {step} of {signStep}
+                {docs.length - unsigned.length} of {docs.length} signed
               </span>
             </div>
             <div className="flex gap-1.5" aria-hidden="true">
-              {Array.from({ length: signStep }, (_, i) => (
+              {docs.map((doc, i) => (
                 <div
-                  key={i}
+                  key={doc.type}
                   className={`h-1 flex-1 rounded-full transition-colors ${
-                    i < step ? 'bg-primary' : 'bg-gray-200'
+                    isSigned(doc)
+                      ? 'bg-green-500'
+                      : i + 1 === step
+                        ? 'bg-primary'
+                        : 'bg-gray-200'
                   }`}
                 />
               ))}
@@ -767,18 +936,20 @@ export default function PacketSigning() {
             <div className="relative border border-gray-200 bg-white p-5 shadow-lg md:p-8">
               <div className="mb-6 grid gap-4 text-center sm:grid-cols-3">
                 {[
-                  ['1', 'Review', 'Read each document at your own pace.'],
+                  [
+                    '1',
+                    'Review',
+                    'Read each document and fill in any details.',
+                  ],
                   [
                     '2',
-                    'Complete',
-                    docs.some((d) => d.kind === 'form')
-                      ? 'Fill in the few details we need.'
-                      : 'Confirm you have read everything.',
+                    'Sign each',
+                    'Draw your signature once, then sign each document with a tap.',
                   ],
                   [
                     '3',
-                    'Sign once',
-                    'Your initials and signature go everywhere for you.',
+                    'Submit',
+                    'Check everything, then send it to us. Nothing is sent before.',
                   ],
                 ].map(([n, title, text]) => (
                   <div key={n} className="px-2">
@@ -812,6 +983,11 @@ export default function PacketSigning() {
                 ))}
               </ul>
 
+              <p className="mt-5 border-l-4 border-gray-900 bg-gray-50 px-3 py-2 text-sm font-bold text-gray-900">
+                Please make sure you are authorized to sign{' '}
+                {docs.length === 1 ? 'this document' : 'these documents'}.
+              </p>
+
               <div className="mt-5 flex flex-wrap items-center justify-between gap-2 text-sm text-gray-500">
                 <span>About {totalMinutes} minutes in total</span>
                 {deadline && (
@@ -827,7 +1003,7 @@ export default function PacketSigning() {
                 onClick={() => goTo(1)}
                 className="bg-primary mt-6 inline-flex w-full items-center justify-center gap-2 px-6 py-4 text-sm font-medium tracking-widest text-white uppercase transition-opacity hover:opacity-90"
               >
-                Begin review <ArrowRight className="h-4 w-4" />
+                Begin <ArrowRight className="h-4 w-4" />
               </button>
               <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-gray-400">
                 <ShieldCheck className="h-3.5 w-3.5" /> Secure, private link for{' '}
@@ -840,18 +1016,11 @@ export default function PacketSigning() {
 
       {/* Documents — all stay mounted so form entries survive Back/Next. */}
       {docs.map((doc, index) => {
-        const form = forms[doc.type];
-        const missing = doc.kind === 'form' ? (form?.missing ?? []) : [];
+        const missing =
+          doc.kind === 'form' ? (forms[doc.type]?.missing ?? []) : [];
         const blocked = !!formErrors[doc.type] && missing.length > 0;
-
-        const next = () => {
-          if (missing.length > 0) {
-            setFormErrors((prev) => ({ ...prev, [doc.type]: true }));
-            scrollToTop();
-            return;
-          }
-          goTo(index + 2);
-        };
+        const signed = isSigned(doc);
+        const editedAfterSigning = !!signedAt[doc.type] && !signed;
 
         return (
           <div
@@ -877,7 +1046,7 @@ export default function PacketSigning() {
                 className="mb-6 border border-red-200 bg-red-50 p-4 text-sm text-red-700"
               >
                 <p className="mb-1 font-semibold">
-                  A few details still need attention:
+                  Please complete these before signing:
                 </p>
                 <ul className="list-inside list-disc space-y-0.5">
                   {missing.map((m) => (
@@ -885,6 +1054,16 @@ export default function PacketSigning() {
                   ))}
                 </ul>
               </div>
+            )}
+
+            {editedAfterSigning && (
+              <p
+                role="alert"
+                className="mb-6 border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900"
+              >
+                You changed this form after signing it. Please sign it again
+                below.
+              </p>
             )}
 
             {doc.type === 'credit_card_auth' && (
@@ -896,7 +1075,10 @@ export default function PacketSigning() {
             )}
 
             {doc.kind === 'review' ? (
-              <ReviewDocument doc={doc} />
+              <ReviewDocument
+                doc={doc}
+                initials={signed ? adopted?.initials : undefined}
+              />
             ) : doc.type === 'credit_card_auth' ? (
               <CreditCardAuthForm
                 embedded={{
@@ -919,7 +1101,24 @@ export default function PacketSigning() {
               />
             )}
 
-            <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
+            <div className="mt-8">
+              <DocumentSignPanel
+                doc={doc}
+                packetName={packet.name}
+                adopted={adopted}
+                signedAt={signed ? signedAt[doc.type] : undefined}
+                isLast={index === docs.length - 1}
+                onAdopt={(next) => {
+                  setAdopted(next);
+                  setConsentAt((prev) => prev ?? new Date().toISOString());
+                }}
+                isReady={() => formReady(doc)}
+                onSign={() => signDocument(doc)}
+                onContinue={() => goTo(index + 2)}
+              />
+            </div>
+
+            <div className="mt-4">
               <button
                 type="button"
                 onClick={() => goTo(index)}
@@ -927,53 +1126,136 @@ export default function PacketSigning() {
               >
                 <ArrowLeft className="h-4 w-4" /> Back
               </button>
-              <button
-                type="button"
-                onClick={next}
-                className="inline-flex items-center justify-center gap-2 bg-gray-900 px-6 py-3.5 text-sm tracking-wide text-white hover:bg-black"
-              >
-                {doc.kind === 'review'
-                  ? "I've reviewed this"
-                  : 'Save & continue'}
-                <ArrowRight className="h-4 w-4" />
-              </button>
             </div>
           </div>
         );
       })}
 
-      {/* Sign once */}
-      {step === signStep && (
+      {/* Review & submit — the only place anything is sent. */}
+      {step === submitStep && (
         <div className="mx-auto max-w-3xl px-4 pt-8">
           <div className="mb-6">
             <p className="text-xs tracking-[0.2em] text-gray-500 uppercase">
-              Final step
+              Last step
             </p>
             <h2 className="text-2xl text-gray-900 md:text-3xl">
-              Sign &amp; finish
+              Review &amp; submit
             </h2>
           </div>
-          <SignStep
-            packet={packet}
-            docs={docs}
-            forms={forms}
-            token={token}
-            viewTime={viewTime}
-            location={location}
-            onEdit={(index) => goTo(index + 1)}
-            onBack={() => goTo(docs.length)}
-            onSigned={(result) => {
-              setSigned(result);
-              scrollToTop();
-            }}
-            onAlreadySigned={(message) =>
-              setStatus({
-                tone: 'success',
-                title: 'Already signed',
-                message: message || 'These documents have already been signed.',
-              })
-            }
-          />
+
+          <div className="space-y-6">
+            <div className="border border-gray-200 bg-white p-5 md:p-7">
+              <ul className="divide-y divide-gray-100">
+                {docs.map((doc, index) => {
+                  const signed = isSigned(doc);
+                  return (
+                    <li
+                      key={doc.type}
+                      className="flex items-center justify-between gap-3 py-3"
+                    >
+                      <span className="flex items-center gap-3">
+                        <span
+                          className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full ${
+                            signed ? 'bg-green-50' : 'bg-amber-50'
+                          }`}
+                        >
+                          {signed ? (
+                            <Check className="h-3.5 w-3.5 text-green-600" />
+                          ) : (
+                            <AlertCircle className="h-3.5 w-3.5 text-amber-600" />
+                          )}
+                        </span>
+                        <span>
+                          <span className="block text-gray-900">
+                            {doc.label}
+                          </span>
+                          <span className="block text-xs text-gray-500">
+                            {signed
+                              ? `Signed at ${shortTime(signedAt[doc.type])}`
+                              : 'Not signed yet'}
+                          </span>
+                        </span>
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => goTo(index + 1)}
+                        className="text-primary flex-shrink-0 text-sm underline-offset-2 hover:underline"
+                      >
+                        {signed ? 'View' : 'Sign'}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              {adopted && (
+                <div className="mt-4 border-t border-gray-100 pt-4">
+                  <p className="mb-2 text-xs tracking-widest text-gray-500 uppercase">
+                    Your signature &amp; initials
+                  </p>
+                  <AdoptedPreview adopted={adopted} />
+                </div>
+              )}
+            </div>
+
+            <div className="border-primary/40 border-2 bg-white p-5 md:p-7">
+              <p className="mb-5 flex items-start gap-2 text-sm text-gray-700">
+                <ShieldCheck className="text-primary mt-0.5 h-4 w-4 flex-shrink-0" />
+                Nothing has been sent yet. When you press Submit, your signed
+                documents are sealed, sent to 48 Wall Street and emailed to{' '}
+                {packet.email}.
+              </p>
+
+              {unsigned.length > 0 && (
+                <p
+                  role="alert"
+                  className="mb-5 border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900"
+                >
+                  Please sign {unsigned.map((d) => d.label).join(', ')} before
+                  submitting.
+                </p>
+              )}
+
+              {submitError && (
+                <p
+                  role="alert"
+                  className="mb-5 border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+                >
+                  {submitError}
+                </p>
+              )}
+
+              <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
+                <button
+                  type="button"
+                  onClick={() => goTo(docs.length)}
+                  disabled={submitting}
+                  className="inline-flex items-center justify-center gap-2 border border-gray-300 px-5 py-3 text-sm text-gray-700 hover:bg-gray-50"
+                >
+                  <ArrowLeft className="h-4 w-4" /> Back
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={submitting || unsigned.length > 0}
+                  className="bg-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium tracking-widest text-white uppercase transition-opacity hover:opacity-90 disabled:opacity-50"
+                >
+                  {submitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Submitting…
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" />
+                      Submit{' '}
+                      {docs.length === 1
+                        ? 'signed document'
+                        : `${docs.length} signed documents`}
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

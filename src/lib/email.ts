@@ -19,6 +19,14 @@ export function staffRecipients(): string[] {
     .filter(Boolean);
 }
 
+/** Copied on "client signed" notifications (STAFF_NOTIFICATION_CC). */
+export function staffCc(): string[] {
+  return (process.env.STAFF_NOTIFICATION_CC ?? '')
+    .split(',')
+    .map((address) => address.trim())
+    .filter(Boolean);
+}
+
 export interface EmailAttachment {
   /**
    * File content as base64. A full `data:` URI is also accepted — jsPDF's
@@ -42,9 +50,12 @@ function toBareBase64(data: string): string {
 
 export interface EmailMessage {
   to: string | string[];
+  cc?: string[];
   subject: string;
   html: string;
   attachment?: EmailAttachment | null;
+  /** Several files on one email (the n8n flow sends each as its own PDF). */
+  attachments?: EmailAttachment[];
 }
 
 /**
@@ -68,11 +79,21 @@ export async function sendEmail(
     html: message.html,
   };
 
+  if (message.cc?.length) payload.cc = message.cc.join(', ');
+
   if (message.attachment) {
     // n8n reads the file from `data`, matching the existing submit webhook.
     payload.data = toBareBase64(message.attachment.data);
     payload.filename = message.attachment.filename;
     payload.contentType = message.attachment.contentType ?? 'application/pdf';
+  }
+
+  if (message.attachments?.length) {
+    payload.attachments = message.attachments.map((file) => ({
+      data: toBareBase64(file.data),
+      filename: file.filename,
+      contentType: file.contentType ?? 'application/pdf',
+    }));
   }
 
   try {

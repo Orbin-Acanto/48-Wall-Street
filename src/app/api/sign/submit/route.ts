@@ -12,7 +12,7 @@ import {
   sealingConfigured,
   sha256Hex,
 } from '@/lib/documents/seal';
-import { sendEmails, staffRecipients } from '@/lib/email';
+import { sendEmails, staffCc, staffRecipients } from '@/lib/email';
 import {
   signedClientEmail,
   signedStaffEmail,
@@ -116,6 +116,7 @@ export async function POST(request: NextRequest) {
         ? [
             {
               to: staff,
+              cc: staffCc().filter((a) => !staff.includes(a)),
               subject: staffMessage.subject,
               html: staffMessage.html,
               attachment,

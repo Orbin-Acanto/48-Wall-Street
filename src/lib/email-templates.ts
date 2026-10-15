@@ -387,9 +387,10 @@ export function packetInvitationEmail(ctx: PacketInvitationContext) {
       <tr><td colspan="2" style="padding:18px 20px 6px;font-family:${SANS};font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:${GOLD};">${count} ${noun} ready for you</td></tr>
       ${documentRows}
       ${deadlineRow}
-      <tr><td colspan="2" class="btn" align="center" style="padding:22px 20px 10px;">${button(count === 1 ? 'Review & Sign Document' : 'Review & Sign Documents', ctx.signingUrl, true)}</td></tr>
+      <tr><td colspan="2" align="center" style="padding:18px 20px 0;font-family:${SANS};font-size:14px;line-height:1.5;color:${INK};"><strong>Please make sure you are authorized to sign ${count === 1 ? 'this document' : 'these documents'}.</strong></td></tr>
+      <tr><td colspan="2" class="btn" align="center" style="padding:16px 20px 10px;">${button(count === 1 ? 'Review & Sign Document' : 'Review & Sign Documents', ctx.signingUrl, true)}</td></tr>
       <tr><td colspan="2" align="center" style="padding:6px 24px 22px;font-family:${SANS};font-size:12px;line-height:1.6;color:${MUTED};">
-        Read at your own pace, then sign just once at the end &mdash; your initials and signature are applied to every page for you. Works on phone, tablet or computer.
+        Read each document and sign as you go &mdash; draw your signature once, then reuse it with a single tap. Nothing is sent until you press Submit. Works on phone, tablet or computer.
       </td></tr>
     </table>
   </td></tr>
@@ -437,11 +438,9 @@ export interface SignedPacketContext {
   ipAddress?: string;
   reference: string;
   sentByName?: string;
-  /** SHA-256 of the sealed PDF attached to the email. */
-  fingerprint?: string;
 }
 
-const VERIFY_NOTE = `The attached PDF is digitally sealed with a SHA-256 signature and trusted timestamp. Any change to it is detectable &mdash; you can confirm it is authentic at <a href="${SITE_URL}/verify" style="color:${GOLD};">48wallnyc.com/verify</a>.`;
+const VERIFY_NOTE = `Each signed document is attached as its own PDF, together with a Certificate of Completion. Every file is digitally sealed with a SHA-256 signature and trusted timestamp, so any change to it is detectable &mdash; you can confirm a file is authentic at <a href="${SITE_URL}/verify" style="color:${GOLD};">48wallnyc.com/verify</a>.`;
 
 /** Confirmation sent to the client after signing a packet. */
 export function signedPacketClientEmail(ctx: SignedPacketContext) {
@@ -450,7 +449,7 @@ export function signedPacketClientEmail(ctx: SignedPacketContext) {
     subject: 'Your signed documents — 48 Wall Street Events',
     html: baseLayout({
       eyebrow: 'Documents signed successfully',
-      intro: `Dear ${esc(firstName)}, thank you &mdash; we have received your signed documents. A combined copy is attached to this email for your records.`,
+      intro: `Dear ${esc(firstName)}, thank you &mdash; we have received your signed documents. A copy of each is attached to this email for your records.`,
       rows: [
         ...ctx.documents.map((label, i) => ({
           label: `Document ${i + 1}`,
@@ -459,7 +458,6 @@ export function signedPacketClientEmail(ctx: SignedPacketContext) {
         { label: 'Signed by', value: ctx.clientName },
         { label: 'Date signed', value: ctx.signedDate },
         { label: 'Reference', value: ctx.reference },
-        { label: 'SHA-256', value: ctx.fingerprint ?? '' },
       ],
       note: `${VERIFY_NOTE}<br><br>Our Event Services team will follow up shortly with next steps. If anything looks incorrect, reply to this email and we will take care of it.`,
     }),
@@ -473,7 +471,7 @@ export function signedPacketStaffEmail(ctx: SignedPacketContext) {
     subject: `Signed: ${count} document${count === 1 ? '' : 's'} — ${ctx.clientName}`,
     html: baseLayout({
       eyebrow: 'Document packet signed',
-      intro: `<strong>${esc(ctx.clientName)}</strong> has signed every document in their packet. The executed PDFs are attached as one file.`,
+      intro: `<strong>${esc(ctx.clientName)}</strong> has signed every document in their packet. Each executed PDF is attached separately, with the Certificate of Completion.`,
       rows: [
         { label: 'Client', value: ctx.clientName },
         { label: 'Email', value: ctx.clientEmail },
@@ -483,9 +481,8 @@ export function signedPacketStaffEmail(ctx: SignedPacketContext) {
         { label: 'IP address', value: ctx.ipAddress ?? '' },
         { label: 'Sent by', value: ctx.sentByName ?? '' },
         { label: 'Reference', value: ctx.reference },
-        { label: 'SHA-256', value: ctx.fingerprint ?? '' },
       ],
-      note: `${VERIFY_NOTE} The last page is the audit certificate. Card details are never included in the email body &mdash; only inside the attached PDF.`,
+      note: `${VERIFY_NOTE} Card details are never included in the email body &mdash; only inside the attached PDF.`,
     }),
   };
 }
