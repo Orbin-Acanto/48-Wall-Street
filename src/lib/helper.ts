@@ -340,6 +340,8 @@ export function generateRefNumber(): string {
 
 export function formatDateTime(isoString: string): string {
   const date = new Date(isoString);
+  // A missing time prints blank rather than "NaN undefined NaN".
+  if (Number.isNaN(date.getTime())) return '';
   const day = String(date.getUTCDate()).padStart(2, '0');
   const months = [
     'JAN',
