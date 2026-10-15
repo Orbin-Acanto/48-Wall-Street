@@ -7,6 +7,7 @@ import SignaturePad from '@/components/SignaturePad';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import * as RadioPrimitive from '@radix-ui/react-radio-group';
 import { Check } from 'lucide-react';
+import { AV_FILE_FORMATS, AV_TEAM_EMAIL } from '@/lib/av-file-formats';
 import {
   AVProductionFormData,
   EmbeddedFormProps,
@@ -612,6 +613,41 @@ export default function AVProductionForm({
             </div>
           </div>
         )}
+
+        {/* Media file requirements */}
+        <div className="border-primary/40 mb-6 rounded-lg border-2 bg-[#faf7f0] p-6 md:p-8">
+          <h2 className="mb-1 text-xl font-semibold text-gray-900">
+            Media File Requirements
+          </h2>
+          <p className="mb-5 text-sm text-gray-600">
+            If you are supplying any images, videos, presentations or audio,
+            please provide them in these formats and send them to our AV team at{' '}
+            <a
+              href={`mailto:${AV_TEAM_EMAIL}`}
+              className="text-primary font-medium underline"
+            >
+              {AV_TEAM_EMAIL}
+            </a>
+            .
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {AV_FILE_FORMATS.map((format) => (
+              <div
+                key={format.label}
+                className="rounded-md border border-gray-200 bg-white p-4"
+              >
+                <p className="mb-1 text-xs font-bold tracking-widest text-gray-900 uppercase">
+                  {format.label}
+                </p>
+                {format.specs.map((spec) => (
+                  <p key={spec} className="text-sm text-gray-700">
+                    {spec}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Page 1: Client Details & Audio Requirements */}
         <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:p-8">

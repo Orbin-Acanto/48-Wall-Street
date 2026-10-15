@@ -753,8 +753,7 @@ export default function CreditCardAuthForm({
             <p className="text-center text-sm font-semibold text-red-700">
               **Please note, all sales are FINAL and that your credit card
               billing statement will reflect the above amount, plus the
-              additional 5.85% processing fee for Visa, Discover, Mastercard or
-              a 6.75% processing fee for American Express.**
+              additional 3.5% processing fee.**
             </p>
           </div>
         </div>

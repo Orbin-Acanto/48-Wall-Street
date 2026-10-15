@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Fi Di Hospitality Group',
+  title: 'Privacy Policy | 48 Wall Street Events',
   description: 'Read our privacy policy.',
   robots: {
     index: false,

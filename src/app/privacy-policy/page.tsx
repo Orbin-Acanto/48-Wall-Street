@@ -18,7 +18,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="mb-2 text-sm text-gray-600 md:text-base">
-            Fi Di Hospitality Group Inc.
+            48 Wall Street Events Inc.
           </p>
           <p className="text-sm text-gray-600 md:text-base">
             Last Updated: October 2025
@@ -35,8 +35,8 @@ export default function PrivacyPolicyPage() {
           {/* Introduction */}
           <div className="mb-10">
             <p className="leading-relaxed text-gray-700">
-              Your privacy is very important to Fi Di Hospitality Group Inc.
-              (&quot;FiDi&quot;, &quot;our&quot;, &quot;we&quot; or
+              Your privacy is very important to 48 Wall Street Events Inc.
+              (&quot;48 Wall Street&quot;, &quot;our&quot;, &quot;we&quot; or
               &quot;us&quot;). This Privacy Policy describes the types of
               information that we collect from and about you when you visit our
               website (the &quot;Website&quot;), and explains how we may use,
@@ -81,10 +81,10 @@ export default function PrivacyPolicyPage() {
               Collection of Information; Cookies
             </h2>
             <p className="mb-4 leading-relaxed text-gray-700">
-              FIDI collects information from you when you use or visit the
-              Website, create an account on the Website, purchase goods on the
-              Website, request information from us, sign up for newsletters or
-              other online services, complete online forms, participate in
+              48 Wall Street collects information from you when you use or visit
+              the Website, create an account on the Website, purchase goods on
+              the Website, request information from us, sign up for newsletters
+              or other online services, complete online forms, participate in
               contests or surveys, or otherwise contact us. The information we
               collect from you may include your name, address, zip code, e-mail
               address, mobile number, username(s) and password(s), geolocation
@@ -169,15 +169,16 @@ export default function PrivacyPolicyPage() {
               Sharing of Information Collected
             </h2>
             <p className="mb-4 leading-relaxed text-gray-700">
-              FIDI is not in the business of selling personal information.
-              However, there are certain instances in which the information
-              collected from you or about you may be shared with third parties.
-              For example, we may share information collected from you or about
-              you, or both with our affiliates for marketing or analytical
-              purposes. We may also hire other companies and individuals to
-              perform services on our behalf, such as, for example, express
-              couriers and online payment service providers, and we may send
-              offers to our customers on behalf of other businesses.
+              48 Wall Street is not in the business of selling personal
+              information. However, there are certain instances in which the
+              information collected from you or about you may be shared with
+              third parties. For example, we may share information collected
+              from you or about you, or both with our affiliates for marketing
+              or analytical purposes. We may also hire other companies and
+              individuals to perform services on our behalf, such as, for
+              example, express couriers and online payment service providers,
+              and we may send offers to our customers on behalf of other
+              businesses.
             </p>
             <p className="mb-4 leading-relaxed text-gray-700">
               We may release personal information to law enforcement,
@@ -221,17 +222,18 @@ export default function PrivacyPolicyPage() {
             </h3>
             <p className="mb-4 leading-relaxed text-gray-700">
               Residents of the State of California can request a list of all
-              third parties to which FIDI has disclosed certain personal
-              information (as defined by California law) during the preceding
-              year for those third parties&apos; direct marketing purposes. If
-              you are a California resident and want such a list, please contact
-              us at info@48WallNYC.com. For all requests, please ensure you put
-              the statement &quot;Your California Privacy Rights&quot; in the
-              body of your request, as well as your name, street address, city,
-              state, and zip code. In the body of your request, please provide
-              enough information for us to determine if this applies to you. You
-              need to attest to the fact that you are a California resident and
-              provide a current California address for our response.
+              third parties to which 48 Wall Street has disclosed certain
+              personal information (as defined by California law) during the
+              preceding year for those third parties&apos; direct marketing
+              purposes. If you are a California resident and want such a list,
+              please contact us at info@48WallNYC.com. For all requests, please
+              ensure you put the statement &quot;Your California Privacy
+              Rights&quot; in the body of your request, as well as your name,
+              street address, city, state, and zip code. In the body of your
+              request, please provide enough information for us to determine if
+              this applies to you. You need to attest to the fact that you are a
+              California resident and provide a current California address for
+              our response.
             </p>
             <p className="mb-6 leading-relaxed text-gray-700">
               Please note that we will not accept requests via fax, mail, or by
@@ -260,7 +262,7 @@ export default function PrivacyPolicyPage() {
             <p className="leading-relaxed text-gray-700">
               Additionally, please review the section entitled &quot;CUSTOMER
               DATA PROTECTION RIGHTS&quot; and review the protections afforded
-              to FiDi customers who are covered under the General Data
+              to 48 Wall Street customers who are covered under the General Data
               Protection Regulation (GDPR).
             </p>
           </div>
@@ -271,12 +273,12 @@ export default function PrivacyPolicyPage() {
               GDPR Compliance Statement
             </h2>
             <p className="mb-4 leading-relaxed text-gray-700">
-              FiDi is committed to adhering to the principles and requirements
-              of the General Data Protection Regulation (GDPR) to protect the
-              personal data of individuals in the European Economic Area (EEA).
-              We ensure that all data collection, processing, and storage
-              activities comply with GDPR requirements, including but not
-              limited to the following:
+              48 Wall Street is committed to adhering to the principles and
+              requirements of the General Data Protection Regulation (GDPR) to
+              protect the personal data of individuals in the European Economic
+              Area (EEA). We ensure that all data collection, processing, and
+              storage activities comply with GDPR requirements, including but
+              not limited to the following:
             </p>
             <ul className="ml-6 list-disc space-y-3 text-gray-700">
               <li>
@@ -304,8 +306,9 @@ export default function PrivacyPolicyPage() {
               <li>
                 <strong>Monitoring and Compliance:</strong> We regularly review
                 our data practices and update them to align with evolving GDPR
-                regulations. FiDi also ensures third-party service providers
-                handling personal data on our behalf are fully GDPR-compliant.
+                regulations. 48 Wall Street also ensures third-party service
+                providers handling personal data on our behalf are fully
+                GDPR-compliant.
               </li>
             </ul>
             <p className="mt-4 leading-relaxed text-gray-700">
@@ -320,11 +323,11 @@ export default function PrivacyPolicyPage() {
               CCPA Compliance Statement
             </h2>
             <p className="mb-4 leading-relaxed text-gray-700">
-              In accordance with the California Consumer Privacy Act (CCPA),
-              FiDi provides California residents with specific rights regarding
-              their personal information and ensures that we process personal
-              data in compliance with the law. Key highlights of our CCPA
-              compliance include:
+              In accordance with the California Consumer Privacy Act (CCPA), 48
+              Wall Street provides California residents with specific rights
+              regarding their personal information and ensures that we process
+              personal data in compliance with the law. Key highlights of our
+              CCPA compliance include:
             </p>
             <ul className="ml-6 list-disc space-y-3 text-gray-700">
               <li>
@@ -344,8 +347,8 @@ export default function PrivacyPolicyPage() {
                 their personal information, if applicable.
               </li>
               <li>
-                <strong>Non-Discrimination:</strong> FiDi does not discriminate
-                against users who exercise their CCPA rights.
+                <strong>Non-Discrimination:</strong> 48 Wall Street does not
+                discriminate against users who exercise their CCPA rights.
               </li>
               <li>
                 <strong>Data Security and Monitoring:</strong> We maintain

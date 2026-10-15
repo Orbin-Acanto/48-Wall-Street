@@ -1,12 +1,11 @@
 'use client';
 
 /**
- * FiDi Hospitality event credit card authorization.
+ * 48 Wall Street event credit card authorization.
  *
- * Purpose built for the Santa and private dinner bookings. Deliberately
- * separate from the 48 Wall Street form at /sign/credit-card-auth, which is
- * untouched: different entity, different address, and an itemised event charge
- * pulled live from the booking API.
+ * Purpose built for the Santa and private dinner bookings. Separate from the
+ * general form at /sign/credit-card-auth because it carries an itemised event
+ * charge pulled live from the booking API.
  *
  * Reached from the confirmation email as
  * /sign/event-authorization?ref=WS-SANTA-XXXXXX. Signing reports back to the
@@ -26,12 +25,12 @@ import {
 import SignaturePad from '@/components/SignaturePad';
 
 const COMPANY = {
-  name: 'FiDi Hospitality',
-  legal: 'FiDi Hospitality LLC',
-  address: '400 Broadhollow Rd Suite 3, Farmingdale, NY 11735',
-  phone: '1.877.885.0705',
-  phoneHref: '+18778850705',
-  email: 'info@fidihospitality.com',
+  name: '48 Wall Street Events',
+  legal: '48 Wall Street Events Inc.',
+  address: '140 Florida St, Farmingdale, NY 11735',
+  phone: '212.971.5353',
+  phoneHref: '+12129715353',
+  email: 'info@48wallnyc.com',
 };
 
 const EXPERIENCE_NAMES: Record<string, string> = {
@@ -807,7 +806,7 @@ function Shell({ children }: { children: React.ReactNode }) {
           {/* Letterhead */}
           <div className="border-b border-gray-200 px-6 py-8 text-center sm:px-10 sm:py-10">
             <Image
-              src="/shared/logo/fidi-hospitality.png"
+              src="/shared/logo/48-wall-logo.png"
               alt={COMPANY.name}
               width={160}
               height={64}

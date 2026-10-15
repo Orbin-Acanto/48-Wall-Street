@@ -9,6 +9,7 @@ import {
   rulesRegulationsContent,
   rulesRegulationsDocumentTitle,
 } from './rules-regulations-content';
+import { AV_FILE_FORMATS, AV_TEAM_EMAIL } from './av-file-formats';
 
 // ---------------------------------------------------------------------------
 // Shared branding — logo header used across ALL signed PDFs.
@@ -29,32 +30,6 @@ async function getLogoDataUrl(): Promise<string | null> {
     );
     logoDataUrlCache = `data:image/png;base64,${buf.toString('base64')}`;
     return logoDataUrlCache;
-  } catch {
-    return null;
-  }
-}
-
-// FiDi Hospitality branding — used by the credit card authorization form,
-// which is issued by Fi Di Hospitality Group Inc. rather than the venue brand.
-const FIDI_LOGO_ASPECT = 593 / 431; // width / height of fidi-hospitality.png
-let fidiLogoDataUrlCache: string | null = null;
-
-async function getFidiLogoDataUrl(): Promise<string | null> {
-  if (fidiLogoDataUrlCache) return fidiLogoDataUrlCache;
-  try {
-    const fs = await import('fs/promises');
-    const path = await import('path');
-    const buf = await fs.readFile(
-      path.join(
-        process.cwd(),
-        'public',
-        'shared',
-        'logo',
-        'fidi-hospitality.png'
-      )
-    );
-    fidiLogoDataUrlCache = `data:image/png;base64,${buf.toString('base64')}`;
-    return fidiLogoDataUrlCache;
   } catch {
     return null;
   }
@@ -824,6 +799,30 @@ export async function generateAVProductionPDF(
   );
   addYPos(12);
 
+  // Media file requirements, so the client's copy says what to send us.
+  addSectionTitle('Media File Requirements');
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(60, 60, 60);
+  const mediaIntro = doc.splitTextToSize(
+    `If you are supplying any images, videos, presentations or audio, please provide them in these formats and send them to our AV team at ${AV_TEAM_EMAIL}.`,
+    contentWidth
+  );
+  doc.text(mediaIntro, margin, getYPos());
+  addYPos(mediaIntro.length * 4 + 3);
+  for (const format of AV_FILE_FORMATS) {
+    checkPageBreak(6 + format.specs.length * 4);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(30, 30, 30);
+    doc.text(format.label.toUpperCase(), margin, getYPos());
+    doc.setFont('helvetica', 'normal');
+    format.specs.forEach((spec, i) => {
+      doc.text(spec, margin + 40, getYPos() + i * 4);
+    });
+    addYPos(format.specs.length * 4 + 2);
+  }
+  addYPos(6);
+
   // Page 1: Client Details & Audio Requirements
   addSectionTitle('Client Details');
   addField('Name/Company:', formData.nameCompany);
@@ -1108,7 +1107,6 @@ export async function generateCreditCardAuthPDF(
   });
 
   const logoDataUrl = await getLogoDataUrl();
-  const fidiLogoDataUrl = await getFidiLogoDataUrl();
   const helpers = createPDFHelpers(doc, data, logoDataUrl);
   const {
     margin,
@@ -1124,12 +1122,18 @@ export async function generateCreditCardAuthPDF(
 
   // Header for Credit Card Aut=
   const addCreditCardHeader = () => {
-    // Logo area (left side) — FiDi Hospitality issues this form.
-    if (fidiLogoDataUrl) {
+    // Logo area (left side)
+    if (logoDataUrl) {
       const logoHeight = 16;
-      const logoWidth = logoHeight * FIDI_LOGO_ASPECT;
       try {
-        doc.addImage(fidiLogoDataUrl, 'PNG', margin, 8, logoWidth, logoHeight);
+        doc.addImage(
+          logoDataUrl,
+          'PNG',
+          margin,
+          8,
+          logoHeight * LOGO_ASPECT,
+          logoHeight
+        );
       } catch {
         // Fall through to the wordmark below.
       }
@@ -1137,11 +1141,11 @@ export async function generateCreditCardAuthPDF(
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(30, 30, 30);
-      doc.text('FiDi', margin, 16);
+      doc.text('48 WALL STREET', margin, 16);
       doc.setFontSize(8);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(...goldColor);
-      doc.text('HOSPITALITY GROUP', margin, 21);
+      doc.text('HISTORIC VENUE LOCATION', margin, 21);
     }
 
     // Title (right side)
@@ -1157,7 +1161,7 @@ export async function generateCreditCardAuthPDF(
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(60, 60, 60);
     doc.text(
-      'Fi Di Hospitality Group Inc. • LI: 631.777.2244 • NYC: 212.971.5353 • Fax: 631.980.0271',
+      '48 Wall St • New York, NY 10005 • LI: 631.777.2244 • NYC: 212.971.5353 • Fax: 631.980.0271',
       pageWidth / 2,
       32,
       { align: 'center' }
@@ -1193,16 +1197,26 @@ export async function generateCreditCardAuthPDF(
     margin + 3,
     formInfoY
   );
+  const instructionWidth = doc.getTextWidth(
+    '1. Fill in all blank spaces. Specify charges to be paid with this card.'
+  );
   doc.setFont('helvetica', 'bold');
-  doc.text('ONLY THE CARDHOLDER CAN SIGN THIS FORM.', margin + 85, formInfoY);
+  doc.text(
+    'ONLY THE CARDHOLDER CAN SIGN THIS FORM.',
+    margin + 3 + instructionWidth + 2,
+    formInfoY
+  );
 
   doc.setFont('helvetica', 'normal');
   doc.text('2. Please send back to:', margin + 3, formInfoY + 5);
 
+  // Return address in red, as on the printed form.
   doc.setFont('helvetica', 'bold');
-  doc.text('FI DI HOSPITALITY GROUP INC.', margin + 8, formInfoY + 10);
+  doc.setTextColor(200, 30, 45);
+  doc.text('48 WALL STREET EVENTS INC.', margin + 8, formInfoY + 10);
   doc.text('140 Florida St', margin + 8, formInfoY + 14);
   doc.text('Farmingdale, NY 11735', margin + 8, formInfoY + 18);
+  doc.setTextColor(50, 50, 50);
   doc.setFont('helvetica', 'normal');
   doc.text('LI:    631.777.2244', margin + 8, formInfoY + 22);
   doc.text('NYC: 212.971.5353', margin + 8, formInfoY + 26);
@@ -1215,19 +1229,19 @@ export async function generateCreditCardAuthPDF(
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(30, 30, 30);
 
-  const authText1 = `I, ${formData.cardholderName || '_________________'}, hereby authorize Fi Di Hospitality Group Inc. to charge the credit card listed below in the amount of $${formData.authorizedAmount || '_______'} ("the charge").`;
+  const authText1 = `I, ${formData.cardholderName || '_________________'}, hereby authorize 48 Wall Street Events Inc. to charge the credit card listed below in the amount of $${formData.authorizedAmount || '_______'} ("the charge").`;
   const authLines1 = doc.splitTextToSize(authText1, contentWidth);
   doc.text(authLines1, margin, yPos);
   yPos += authLines1.length * 4 + 4;
 
   const authText2 =
-    'I further authorize Fi Di Hospitality Group Inc. to apply my signature to any and all documents required to complete this charge and future charges between myself and Fi Di Hospitality Group Inc. and indemnify and hold harmless Fi Di Hospitality Group Inc. for any liability arising herefrom or therefrom. I understand and agree that for a period of two years from the date of signing, I am authorizing Fi Di Hospitality Group Inc. to charge this credit card for any amounts owed to Fi Di Hospitality Group Inc., including, among other things, retainer payments, final payments or remaining payments to satisfy a contract balance, debts arising from having additional guests at an event beyond a contracted amount, charges arising from damage to the venue, equipment, or persons at an event, an event lasting beyond its scheduled end time, additional labor required to put on an event, and any additional goods or services requested at an event.';
+    'I further authorize 48 Wall Street Events Inc. to apply my signature to any and all documents required to complete this charge and future charges between myself and 48 Wall Street Events Inc. and indemnify and hold harmless 48 Wall Street Events Inc. for any liability arising herefrom or therefrom. I understand and agree that for a period of two years from the date of signing, I am authorizing 48 Wall Street Events Inc. to charge this credit card for any amounts owed to 48 Wall Street Events Inc., including, among other things, retainer payments, final payments or remaining payments to satisfy a contract balance, debts arising from having additional guests at an event beyond a contracted amount, charges arising from damage to the venue, equipment, or persons at an event, an event lasting beyond its scheduled end time, additional labor required to put on an event, and any additional goods or services requested at an event.';
   const authLines2 = doc.splitTextToSize(authText2, contentWidth);
   doc.text(authLines2, margin, yPos);
   yPos += authLines2.length * 4 + 4;
 
   const authText3 =
-    'Nothing in this Credit Card Authorization shall cause Fi Di Hospitality Group Inc. to waive its rights to charge the credit card for any of the amounts owed to Fi Di Hospitality Group Inc. under any other agreement.';
+    'Nothing in this Credit Card Authorization shall cause 48 Wall Street Events Inc. to waive its rights to charge the credit card for any of the amounts owed to 48 Wall Street Events Inc. under any other agreement.';
   const authLines3 = doc.splitTextToSize(authText3, contentWidth);
   doc.text(authLines3, margin, yPos);
   yPos += authLines3.length * 4 + 4;
@@ -1242,7 +1256,7 @@ export async function generateCreditCardAuthPDF(
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(180, 0, 0);
   const warningText =
-    '**Please note, all sales are FINAL and that your credit card billing statement will reflect the above amount, plus the additional 5.85% processing fee for Visa, Discover, Mastercard or a 6.75% processing fee for American Express.**';
+    '**Please note, all sales are FINAL and that your credit card billing statement will reflect the above amount, plus the additional 3.5% processing fee.**';
   const warningLines = doc.splitTextToSize(warningText, contentWidth - 6);
   doc.text(warningLines, pageWidth / 2, yPos + 4, { align: 'center' });
   yPos += 16;
@@ -1359,7 +1373,6 @@ export async function generateCreditCardAuthPDF(
   doc.setFontSize(7);
   doc.setTextColor(100, 100, 100);
   doc.text('CARDHOLDER SIGNATURE', margin + 2, yPos + 4);
-  doc.text('FIDI REPRESENTATIVE SIGNATURE', margin + sigColWidth + 2, yPos + 4);
 
   // Add signature image
   if (data.signature) {
@@ -1524,10 +1537,10 @@ export async function generateCreditCardAuthPDF(
   doc.setTextColor(30, 30, 30);
   doc.text(data.ipAddress, margin + 22, yPos);
 
-  const fidiFooter =
-    'Fi Di Hospitality Group Inc. • 140 Florida St, Farmingdale, NY 11735 • 631.777.2244';
-  addFooter(fidiFooter);
-  addCertificatePage(fidiFooter);
+  const cardFooter =
+    '48 Wall Street Events Inc. • 140 Florida St, Farmingdale, NY 11735 • 631.777.2244';
+  addFooter(cardFooter);
+  addCertificatePage(cardFooter);
 
   return doc.output('datauristring');
 }

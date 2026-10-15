@@ -32,21 +32,22 @@ export default function TermsConditionPage() {
           {/* Introduction */}
           <div className="mb-10">
             <p className="leading-relaxed text-gray-700">
-              This website is owned, operated, licensed, or controlled by Fi Di
-              Hospitality Group Inc. (&quot;FiDi&quot;) or affiliate(s) thereof
-              (referred to either as &quot;Owner&quot; or &quot;we&quot; or
-              &quot;us&quot; or &quot;our&quot;), and provides the content,
-              materials, and information contained on this website or any of the
-              pages contained therein (&quot;Website&quot;) to users or visitors
-              (referred to either as &quot;you&quot; or &quot;your&quot;) for
-              your convenience, ease of reference, and personal use only.
+              This website is owned, operated, licensed, or controlled by 48
+              Wall Street Events Inc. (&quot;48 Wall Street&quot;) or
+              affiliate(s) thereof (referred to either as &quot;Owner&quot; or
+              &quot;we&quot; or &quot;us&quot; or &quot;our&quot;), and provides
+              the content, materials, and information contained on this website
+              or any of the pages contained therein (&quot;Website&quot;) to
+              users or visitors (referred to either as &quot;you&quot; or
+              &quot;your&quot;) for your convenience, ease of reference, and
+              personal use only.
             </p>
             <p className="mt-4 leading-relaxed text-gray-700">
               Your use of this Website is subject to the terms and conditions
               set forth herein, in Owner&apos;s privacy policy and cookies
               policy applicable to this Website (hereinafter collectively
-              referred to as &quot;TOUs&quot;). FIDI reserves the right to
-              update these TOUs at any time without notice to you.
+              referred to as &quot;TOUs&quot;). 48 Wall Street reserves the
+              right to update these TOUs at any time without notice to you.
             </p>
             <p className="mt-4 leading-relaxed text-gray-700">
               You are not authorized to use this Website unless you agree to
@@ -87,8 +88,8 @@ export default function TermsConditionPage() {
               of trade, and similar (&quot;Website Materials&quot;) is the
               exclusive property of Owner, its successors and assigns or its
               licensors. The compilation of all content included in or made
-              available through this Website is the exclusive property of FIDI
-              and protected by U.S. or international laws or both.
+              available through this Website is the exclusive property of 48
+              Wall Street and protected by U.S. or international laws or both.
             </p>
             <p className="mt-4 leading-relaxed text-gray-700">
               The trademarks, names, brand names, logos, and service marks
