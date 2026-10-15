@@ -18,7 +18,7 @@ const CONSUMED_TTL_SECONDS = 60 * 60 * 24 * 180; // 180 days
 
 let redis: Redis | null = null;
 
-function getRedis(): Redis | null {
+export function getRedis(): Redis | null {
   if (redis) return redis;
   try {
     redis = Redis.fromEnv();
@@ -81,4 +81,98 @@ export async function releaseToken(token: string): Promise<void> {
   } catch (error) {
     console.error('signing-token release failed:', error);
   }
+}
+
+/** `payload.signature`: base64 JSON, HMAC'd with SIGNING_SECRET. */
+export function signToken(data: Record<string, unknown>): string {
+  const payload = Buffer.from(JSON.stringify(data)).toString('base64');
+  const signature = crypto
+    .createHmac('sha256', process.env.SIGNING_SECRET!)
+    .update(payload)
+    .digest('hex');
+  return `${payload}.${signature}`;
+}
+
+export type VerifiedToken =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  | { ok: true; data: Record<string, any> }
+  | { ok: false; status: number; error: string; message: string };
+
+/**
+ * Check signature, deadline and one-time use. The token is the only thing a
+ * client holds, so everything about who they are comes from here — never from
+ * the request body.
+ */
+export async function verifySigningToken(
+  token: string
+): Promise<VerifiedToken> {
+  const [payload, signature] = String(token ?? '').split('.');
+  if (!payload || !signature) {
+    return {
+      ok: false,
+      status: 400,
+      error: 'invalid',
+      message: 'Invalid signing link.',
+    };
+  }
+
+  const expected = Buffer.from(
+    crypto
+      .createHmac('sha256', process.env.SIGNING_SECRET!)
+      .update(payload)
+      .digest('hex')
+  );
+  const provided = Buffer.from(signature);
+  if (
+    provided.length !== expected.length ||
+    !crypto.timingSafeEqual(provided, expected)
+  ) {
+    return {
+      ok: false,
+      status: 401,
+      error: 'invalid',
+      message: 'Invalid signature',
+    };
+  }
+
+  let data;
+  try {
+    data = JSON.parse(Buffer.from(payload, 'base64').toString());
+  } catch {
+    return {
+      ok: false,
+      status: 400,
+      error: 'invalid',
+      message: 'Invalid signing link.',
+    };
+  }
+
+  if (data.exp) {
+    const expiresAt = new Date(data.exp);
+    if (!Number.isNaN(expiresAt.getTime())) {
+      // A date-only deadline stays usable through the whole final day.
+      if (/^\d{4}-\d{2}-\d{2}$/.test(String(data.exp))) {
+        expiresAt.setHours(23, 59, 59, 999);
+      }
+      if (expiresAt.getTime() < Date.now()) {
+        return {
+          ok: false,
+          status: 410,
+          error: 'expired',
+          message: 'This signing link has expired.',
+        };
+      }
+    }
+  }
+
+  if ((await getTokenState(token)) === 'consumed') {
+    return {
+      ok: false,
+      status: 409,
+      error: 'already_signed',
+      message: 'This document has already been signed and submitted.',
+    };
+  }
+
+  return { ok: true, data };
 }

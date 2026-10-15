@@ -89,7 +89,7 @@ export function baseLayout(options: LayoutOptions): string {
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f4f4f4;">
   <tr>
     <td align="center" style="padding:24px 12px;">
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px;max-width:100%;background:#ffffff;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="width:100%;max-width:600px;background:#ffffff;">
 
         <!-- Header: white background keeps the dark logo legible -->
         <tr>
@@ -139,6 +139,7 @@ const DOCUMENT_LABELS: Record<string, string> = {
   client_guidelines: 'Client Guidelines',
   rules_regulations: 'Rules & Regulations',
   floor_plan: 'Floor Plan Approval',
+  packet: 'Event Document Packet',
 };
 
 export function documentLabel(documentType: string): string {
@@ -253,6 +254,232 @@ export function cancellationEmail(ctx: CancellationContext) {
         },
       ],
       note: 'If this was unexpected, please contact our events team and we will send a new link.',
+    }),
+  };
+}
+
+export const DEFAULT_EVENT_PACKET_URL =
+  process.env.NEXT_PUBLIC_EVENT_PACKET_URL ||
+  `${SITE_URL}/about/digital-brochure`;
+
+export interface PacketInvitationContext {
+  clientName: string;
+  documents: { label: string; description: string }[];
+  deadline?: string;
+  signingUrl: string;
+  packetUrl?: string;
+  note?: string;
+  senderName?: string;
+}
+
+/** "2026-11-02" → "Monday, November 2, 2026". */
+export function formatLongDate(value?: string): string {
+  if (!value) return '';
+  // Date-only strings are calendar days; don't let UTC shift them a day back.
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(value)
+    ? new Date(`${value}T12:00:00`)
+    : new Date(value);
+  return Number.isNaN(date.getTime())
+    ? value
+    : date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      });
+}
+
+const SERIF = "Georgia,'Times New Roman',serif";
+const SANS = 'Arial,Helvetica,sans-serif';
+
+function paragraph(html: string): string {
+  return `<tr><td class="px" style="padding:0 48px 18px;font-family:${SERIF};font-size:16px;line-height:1.75;color:${INK};">${html}</td></tr>`;
+}
+
+function button(label: string, url: string, filled: boolean): string {
+  const style = filled
+    ? `background:${GOLD};color:#ffffff;border:1px solid ${GOLD};`
+    : `background:#ffffff;color:${INK};border:1px solid ${INK};`;
+  return `<a href="${esc(url)}" style="${style}display:inline-block;text-decoration:none;padding:16px 34px;font-family:${SANS};font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;">${esc(label)}</a>`;
+}
+
+/**
+ * The client's welcome email: the 48 Wall Street letter, the event packet and
+ * one button that opens every document they need to sign.
+ */
+export function packetInvitationEmail(ctx: PacketInvitationContext) {
+  const packetUrl = ctx.packetUrl || DEFAULT_EVENT_PACKET_URL;
+  const deadline = formatLongDate(ctx.deadline);
+  const count = ctx.documents.length;
+  const noun = count === 1 ? 'document' : 'documents';
+
+  const documentRows = ctx.documents
+    .map((doc, i) => {
+      const rule = i ? `border-top:1px solid ${BORDER};` : '';
+      return `
+      <tr>
+        <td width="44" valign="top" style="padding:16px 0 16px 20px;${rule}">
+          <div style="width:28px;height:28px;line-height:28px;border-radius:14px;background:${INK};color:${GOLD};text-align:center;font-family:${SERIF};font-size:14px;">${i + 1}</div>
+        </td>
+        <td valign="top" style="padding:16px 20px 16px 8px;${rule}">
+          <div style="font-family:${SERIF};font-size:16px;color:${INK};">${esc(doc.label)}</div>
+          <div style="font-family:${SANS};font-size:13px;line-height:1.5;color:${MUTED};padding-top:3px;">${esc(doc.description)}</div>
+        </td>
+      </tr>`;
+    })
+    .join('');
+
+  const note = ctx.note?.trim();
+  const noteBlock = note
+    ? `<tr><td class="px" style="padding:6px 48px 26px;">
+         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
+           <td style="border-left:3px solid ${GOLD};background:#faf7f0;padding:16px 20px;font-family:${SERIF};font-size:15px;line-height:1.7;color:${INK};font-style:italic;">
+             ${esc(note).replace(/\n/g, '<br>')}
+             ${ctx.senderName ? `<div style="font-style:normal;font-family:${SANS};font-size:12px;letter-spacing:1px;color:${MUTED};padding-top:10px;">&mdash; ${esc(ctx.senderName)}, Event Services</div>` : ''}
+           </td>
+         </tr></table>
+       </td></tr>`
+    : '';
+
+  const deadlineRow = deadline
+    ? `<tr><td colspan="2" style="padding:14px 20px;border-top:1px solid ${BORDER};font-family:${SANS};font-size:13px;color:${MUTED};">Please complete by <strong style="color:${INK};">${esc(deadline)}</strong></td></tr>`
+    : '';
+
+  const html = `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only">
+<title>Welcome to 48 Wall Street</title>
+<style>
+  @media only screen and (max-width:620px){
+    .px{padding-left:22px!important;padding-right:22px!important;}
+    .btn a{display:block!important;}
+    .h1{font-size:26px!important;}
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#efece6;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Your 48 Wall Street event packet and ${count} ${noun} to review and sign.</div>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#efece6;">
+<tr><td align="center" style="padding:24px 10px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="width:100%;max-width:600px;background:#ffffff;">
+
+  <tr><td style="background:#0a0a0a;">
+    <img src="${SITE_URL}/shared/email/packet-hero.jpg" width="600" alt="48 Wall Street Events — your event documents" style="display:block;width:100%;max-width:600px;height:auto;border:0;">
+  </td></tr>
+  <tr><td style="font-size:0;line-height:0;height:4px;background:${GOLD};">&nbsp;</td></tr>
+
+  <tr><td class="px" style="padding:44px 48px 6px;font-family:${SANS};font-size:11px;letter-spacing:3px;text-transform:uppercase;color:${GOLD};">Welcome to 48 Wall Street</td></tr>
+  <tr><td class="px h1" style="padding:0 48px 26px;font-family:${SERIF};font-size:30px;line-height:1.25;color:${INK};">Dear ${esc(ctx.clientName)},</td></tr>
+
+  ${paragraph('Thank you for choosing 48 Wall Street for your upcoming event. It is our pleasure to welcome you and your guests to a distinguished piece of Old New York glamour, nestled along one of the world&rsquo;s most iconic streets in the heart of Lower Manhattan.')}
+  ${paragraph('With its grand architecture, timeless elegance, and rich history, 48 Wall Street offers an extraordinary setting for a memorable occasion. Our family and dedicated Event Services team look forward to bringing your vision to life with thoughtful planning and attentive service.')}
+  ${paragraph('To begin your planning experience, please review our <strong>48 Wall Street Event Packet</strong>, which includes essential venue information, planning requirements, and event guidelines:')}
+
+  <tr><td class="px btn" align="left" style="padding:4px 48px 30px;">${button('View the Event Packet', packetUrl, false)}</td></tr>
+
+  ${paragraph('Please ensure that all required documents and guideline acknowledgments are completed, signed, and submitted before your event begins. Sharing these materials with your planning team and 48 Wall Street&rsquo;s exclusive in-house vendors will help ensure a seamless experience.')}
+
+  <tr><td class="px" style="padding:8px 48px 30px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid ${BORDER};background:#fcfbf8;">
+      <tr><td colspan="2" style="padding:18px 20px 6px;font-family:${SANS};font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:${GOLD};">${count} ${noun} ready for you</td></tr>
+      ${documentRows}
+      ${deadlineRow}
+      <tr><td colspan="2" class="btn" align="center" style="padding:22px 20px 10px;">${button(count === 1 ? 'Review & Sign Document' : 'Review & Sign Documents', ctx.signingUrl, true)}</td></tr>
+      <tr><td colspan="2" align="center" style="padding:6px 24px 22px;font-family:${SANS};font-size:12px;line-height:1.6;color:${MUTED};">
+        Read at your own pace, then sign just once at the end &mdash; your initials and signature are applied to every page for you. Works on phone, tablet or computer.
+      </td></tr>
+    </table>
+  </td></tr>
+
+  ${noteBlock}
+
+  ${paragraph('Should you have any questions or need assistance, please do not hesitate to contact our Event Services team. We will be delighted to assist you.')}
+  ${paragraph('On behalf of the 48 Wall Street family, thank you for your cooperation in helping us preserve the architectural beauty and historic character of this exceptional New York City landmark. We are honored to be part of your celebration or event.')}
+
+  <tr><td class="px" style="padding:10px 48px 44px;font-family:${SERIF};font-size:16px;line-height:1.7;color:${INK};">
+    Warmest regards,<br>
+    <span style="font-size:20px;font-style:italic;">The 48 Wall Street Family</span><br>
+    <span style="font-family:${SANS};font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:${MUTED};">Event Services Team &middot; 48 Wall Street | New York, NY</span>
+  </td></tr>
+
+  <tr><td align="center" style="background:#0a0a0a;padding:34px 24px 30px;">
+    <img src="${SITE_URL}/shared/logo/48-wall-logo-white.png" width="150" alt="48 Wall Street Events" style="display:block;width:150px;height:auto;border:0;margin:0 auto 16px;">
+    <div style="width:40px;height:1px;background:${GOLD};margin:0 auto 16px;font-size:0;line-height:0;">&nbsp;</div>
+    <div style="font-family:${SANS};font-size:12px;line-height:1.9;color:#bdbdbd;">
+      48 Wall Street, New York, NY 10005<br>
+      NYC <a href="tel:2129715353" style="color:#bdbdbd;text-decoration:none;">212.971.5353</a> &nbsp;&middot;&nbsp; LI <a href="tel:6317772244" style="color:#bdbdbd;text-decoration:none;">631.777.2244</a><br>
+      <a href="${SITE_URL}" style="color:${GOLD};text-decoration:none;">48wallnyc.com</a>
+    </div>
+  </td></tr>
+
+</table>
+<div style="font-family:${SANS};font-size:11px;color:#9a948a;padding:16px 10px;">This link is personal to you &mdash; please don&rsquo;t forward it.</div>
+</td></tr>
+</table>
+</body>
+</html>`;
+
+  return {
+    subject: `Welcome to 48 Wall Street — your event ${noun}`,
+    html,
+  };
+}
+
+export interface SignedPacketContext {
+  clientName: string;
+  clientEmail: string;
+  documents: string[];
+  signedDate: string;
+  location?: string;
+  ipAddress?: string;
+  reference: string;
+  sentByName?: string;
+}
+
+/** Confirmation sent to the client after signing a packet. */
+export function signedPacketClientEmail(ctx: SignedPacketContext) {
+  const firstName = ctx.clientName.split(' ')[0] || ctx.clientName;
+  return {
+    subject: 'Your signed documents — 48 Wall Street Events',
+    html: baseLayout({
+      eyebrow: 'Documents signed successfully',
+      intro: `Dear ${esc(firstName)}, thank you &mdash; we have received your signed documents. A combined copy is attached to this email for your records.`,
+      rows: [
+        ...ctx.documents.map((label, i) => ({
+          label: `Document ${i + 1}`,
+          value: label,
+        })),
+        { label: 'Signed by', value: ctx.clientName },
+        { label: 'Date signed', value: ctx.signedDate },
+        { label: 'Reference', value: ctx.reference },
+      ],
+      note: 'Our Event Services team will follow up shortly with next steps. If anything looks incorrect, reply to this email and we will take care of it.',
+    }),
+  };
+}
+
+/** Internal copy for the events team (and whoever sent the packet). */
+export function signedPacketStaffEmail(ctx: SignedPacketContext) {
+  const count = ctx.documents.length;
+  return {
+    subject: `Signed: ${count} document${count === 1 ? '' : 's'} — ${ctx.clientName}`,
+    html: baseLayout({
+      eyebrow: 'Document packet signed',
+      intro: `<strong>${esc(ctx.clientName)}</strong> has signed every document in their packet. The executed PDFs are attached as one file.`,
+      rows: [
+        { label: 'Client', value: ctx.clientName },
+        { label: 'Email', value: ctx.clientEmail },
+        { label: 'Documents', value: ctx.documents.join(', ') },
+        { label: 'Date signed', value: ctx.signedDate },
+        { label: 'Location', value: ctx.location ?? '' },
+        { label: 'IP address', value: ctx.ipAddress ?? '' },
+        { label: 'Sent by', value: ctx.sentByName ?? '' },
+        { label: 'Reference', value: ctx.reference },
+      ],
+      note: 'Generated automatically on submission. Card details are never included in email — they appear only inside the attached PDF.',
     }),
   };
 }

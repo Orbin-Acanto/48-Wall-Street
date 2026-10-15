@@ -362,3 +362,14 @@ export interface SubmitRequestBody {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formData?: Record<string, any>;
 }
+
+/** Props for a form document hosted inside a multi-document signing packet. */
+export interface EmbeddedFormProps {
+  clientName: string;
+  clientEmail: string;
+  eventDate?: string;
+  /** Turn on field-level error highlights (the client tried to continue). */
+  showErrors: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange: (formData: Record<string, any>, missing: string[]) => void;
+}

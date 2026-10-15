@@ -1,0 +1,1173 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
+import SignaturePad from '@/components/SignaturePad';
+import {
+  CreditCardAuthFormData,
+  EmbeddedFormProps,
+  LocationData,
+} from '@/types';
+
+/**
+ * Credit card authorization. Stand-alone it verifies its own link and collects
+ * a signature; `embedded` (inside a signing packet) it is just the form, and
+ * reports its values up so the packet can sign everything at once.
+ */
+export default function CreditCardAuthForm({
+  embedded,
+}: {
+  embedded?: EmbeddedFormProps;
+}) {
+  const searchParams = useSearchParams();
+  const token = searchParams.get('token') || '';
+
+  const [clientName, setClientName] = useState('');
+  const [clientEmail, setClientEmail] = useState('');
+  const [deadline, setDeadline] = useState('');
+  const [docId, setDocId] = useState('');
+  const [isLoading, setIsLoading] = useState(!embedded);
+
+  const [viewTime] = useState<string>(new Date().toISOString());
+  const [signature, setSignature] = useState<string | null>(null);
+  const [signedDate, setSignedDate] = useState<string>('');
+  const [typedName, setTypedName] = useState<string>('');
+  const [location, setLocation] = useState<LocationData | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
+  const [alreadySigned, setAlreadySigned] = useState(false);
+  const [booking, setBooking] = useState({
+    bookingReference: '',
+    experienceName: '',
+    slotTime: '',
+    partySize: '' as string | number,
+  });
+
+  const [formValues, setFormValues] = useState<CreditCardAuthFormData>({
+    cardType: '',
+    creditCardNumber: '',
+    expirationDate: '',
+    cvvCode: '',
+    cardholderName: '',
+    billingAddress: '',
+    homePhone: '',
+    workPhone: '',
+    cellPhone: '',
+    eventDate: '',
+    typeOfEvent: '',
+    eventLocation: '',
+    authorizedAmount: '',
+  });
+
+  const signatureSectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (embedded) {
+      setClientName(embedded.clientName);
+      setClientEmail(embedded.clientEmail);
+      setFormValues((prev) => ({
+        ...prev,
+        cardholderName: embedded.clientName,
+        eventDate: embedded.eventDate || prev.eventDate,
+        eventLocation: prev.eventLocation || '48 Wall Street',
+      }));
+      return;
+    }
+
+    const verifyToken = async () => {
+      if (!token) {
+        setError('Invalid or missing signing link.');
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const [payload, sig] = token.split('.');
+
+        const response = await fetch('/api/documents/verify-token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ payload, signature: sig }),
+        });
+
+        if (!response.ok) {
+          const body = await response.json().catch(() => ({}));
+          if (response.status === 409) {
+            setAlreadySigned(true);
+            setError(
+              body.message ??
+                'This document has already been signed and submitted.'
+            );
+          } else if (response.status === 410) {
+            setError(body.message ?? 'This signing link has expired.');
+          } else {
+            setError('Invalid or tampered signing link.');
+          }
+          setIsLoading(false);
+          return;
+        }
+
+        const { data } = await response.json();
+        setClientName(data.name || '');
+        setClientEmail(data.email || '');
+        setDeadline(data.deadline || '');
+        setDocId(data.docId || '');
+        setBooking({
+          bookingReference: data.bookingReference || '',
+          experienceName: data.experienceName || '',
+          slotTime: data.slotTime || '',
+          partySize: data.partySize || '',
+        });
+        setFormValues((prev) => ({
+          ...prev,
+          cardholderName: data.name || '',
+          // Prefill event details from the booking so the client is not
+          // retyping what we already know. Still editable.
+          eventDate: data.eventDate || prev.eventDate,
+          typeOfEvent: data.experienceName || prev.typeOfEvent,
+          eventLocation: data.eventLocation || prev.eventLocation,
+        }));
+        setIsLoading(false);
+      } catch (err) {
+        setError('Invalid or corrupted signing link.');
+        setIsLoading(false);
+      }
+    };
+
+    verifyToken();
+  }, [token]);
+
+  useEffect(() => {
+    if (embedded) return;
+    const fetchLocation = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        setLocation({
+          city: data.city || 'Unknown',
+          region: data.region || 'Unknown',
+          country: data.country_name || 'Unknown',
+          ip: data.ip || 'Unknown',
+        });
+      } catch (err) {
+        console.error('Failed to get location:', err);
+        setLocation({
+          city: 'Unknown',
+          region: 'Unknown',
+          country: 'Unknown',
+          ip: 'Unknown',
+        });
+      }
+    };
+    fetchLocation();
+  }, []);
+
+  const handleDateClick = () => {
+    if (!signedDate) {
+      const now = new Date();
+      const formatted = now.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZoneName: 'short',
+      });
+      setSignedDate(formatted);
+    }
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => {
+      const next = { ...prev, [name]: value };
+      if (name === 'cardType') {
+        // Re-mask the number against the new brand's length/grouping.
+        const limit = value === 'amex' ? 15 : 16;
+        const digits = prev.creditCardNumber
+          .replace(/\D/g, '')
+          .substring(0, limit);
+        next.creditCardNumber =
+          value === 'amex'
+            ? [
+                digits.substring(0, 4),
+                digits.substring(4, 10),
+                digits.substring(10, 15),
+              ]
+                .filter(Boolean)
+                .join(' ')
+            : (digits.match(/.{1,4}/g)?.join(' ') ?? digits);
+      }
+      return next;
+    });
+  };
+
+  // Amex runs 15 digits grouped 4-6-5; every other brand we accept is 16 as
+  // four groups of four. Grouping follows the selected card type so the mask
+  // matches what the client is actually holding.
+  const cardDigitLimit = formValues.cardType === 'amex' ? 15 : 16;
+
+  const groupCardDigits = (digits: string) => {
+    if (formValues.cardType === 'amex') {
+      return [
+        digits.substring(0, 4),
+        digits.substring(4, 10),
+        digits.substring(10, 15),
+      ]
+        .filter(Boolean)
+        .join(' ');
+    }
+    return digits.match(/.{1,4}/g)?.join(' ') ?? digits;
+  };
+
+  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digits = e.target.value
+      .replace(/\D/g, '')
+      .substring(0, cardDigitLimit);
+    setFormValues((prev) => ({
+      ...prev,
+      creditCardNumber: groupCardDigits(digits),
+    }));
+  };
+
+  const handleExpDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digits = e.target.value.replace(/\D/g, '').substring(0, 4);
+    // Auto-insert "/" once the month is complete, but only while the user is
+    // adding digits — otherwise backspacing over the slash re-adds it and the
+    // month can never be edited.
+    const isDeleting = e.target.value.length < formValues.expirationDate.length;
+    const formatted =
+      digits.length > 2 || (digits.length === 2 && !isDeleting)
+        ? `${digits.substring(0, 2)}/${digits.substring(2)}`
+        : digits;
+    setFormValues((prev) => ({ ...prev, expirationDate: formatted }));
+  };
+
+  const cvvLength = formValues.cardType === 'amex' ? 4 : 3;
+
+  const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').substring(0, cvvLength);
+    setFormValues((prev) => ({ ...prev, cvvCode: value }));
+  };
+
+  /** Digits only, masked as (XXX) XXX-XXXX. Non-digits are dropped outright. */
+  const formatPhone = (raw: string) => {
+    let digits = raw.replace(/\D/g, '');
+    // A pasted "+1 212..." would otherwise shift every digit left and silently
+    // corrupt the number, so drop a leading US country code.
+    if (digits.length === 11 && digits.startsWith('1')) {
+      digits = digits.slice(1);
+    }
+    digits = digits.substring(0, 10);
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({ ...prev, [name]: formatPhone(value) }));
+  };
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/[^0-9.]/g, '');
+
+    // Collapse any extra decimal points into the first one.
+    const parts = value.split('.');
+    if (parts.length > 2) {
+      value = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // Currency: at most two decimal places, and keep the whole part sane.
+    const [whole, decimals] = value.split('.');
+    const cappedWhole = whole.substring(0, 9);
+    value =
+      decimals === undefined
+        ? cappedWhole
+        : `${cappedWhole}.${decimals.substring(0, 2)}`;
+
+    setFormValues((prev) => ({ ...prev, authorizedAmount: value }));
+  };
+
+  /** Reject a card number that fails the Luhn checksum (catches typos). */
+  const passesLuhn = (digits: string) => {
+    let sum = 0;
+    let double = false;
+    for (let i = digits.length - 1; i >= 0; i -= 1) {
+      let d = Number(digits[i]);
+      if (double) {
+        d *= 2;
+        if (d > 9) d -= 9;
+      }
+      sum += d;
+      double = !double;
+    }
+    return sum % 10 === 0;
+  };
+
+  const cardDigits = formValues.creditCardNumber.replace(/\D/g, '');
+  const cardNumberValid =
+    cardDigits.length === cardDigitLimit && passesLuhn(cardDigits);
+
+  /** Expiry must be a real month and not already past. */
+  const expiryValid = (() => {
+    const match = /^(\d{2})\/(\d{2})$/.exec(formValues.expirationDate);
+    if (!match) return false;
+    const month = Number(match[1]);
+    const year = 2000 + Number(match[2]);
+    if (month < 1 || month > 12) return false;
+    const now = new Date();
+    // Card is valid through the last day of its expiry month.
+    const expiryEnd = new Date(year, month, 1);
+    return expiryEnd > now;
+  })();
+
+  const phoneDigits = (value: string) => value.replace(/\D/g, '').length;
+  const cellPhoneValid = phoneDigits(formValues.cellPhone) === 10;
+  const homePhoneValid =
+    !formValues.homePhone || phoneDigits(formValues.homePhone) === 10;
+  const workPhoneValid =
+    !formValues.workPhone || phoneDigits(formValues.workPhone) === 10;
+
+  const amountValue = Number(formValues.authorizedAmount);
+  const amountValid =
+    formValues.authorizedAmount.trim() !== '' &&
+    Number.isFinite(amountValue) &&
+    amountValue > 0;
+
+  const isFormComplete =
+    formValues.cardType &&
+    cardNumberValid &&
+    expiryValid &&
+    formValues.cvvCode.length === cvvLength &&
+    formValues.cardholderName.trim().length > 1 &&
+    formValues.billingAddress.trim().length > 4 &&
+    cellPhoneValid &&
+    homePhoneValid &&
+    workPhoneValid &&
+    formValues.eventDate &&
+    formValues.typeOfEvent.trim() &&
+    formValues.eventLocation.trim() &&
+    amountValid;
+
+  const isReadyToSubmit =
+    isFormComplete &&
+    signature &&
+    signedDate &&
+    typedName.trim().length > 0 &&
+    agreedToTerms;
+
+  // Field-level messages say what is wrong, not merely that something is.
+  const fieldErrors: Record<string, string> = {};
+  if (!formValues.cardType) fieldErrors.cardType = 'Select a card type';
+
+  if (cardDigits.length === 0) {
+    fieldErrors.creditCardNumber = 'Enter the card number';
+  } else if (cardDigits.length !== cardDigitLimit) {
+    fieldErrors.creditCardNumber = `Card number must be ${cardDigitLimit} digits`;
+  } else if (!passesLuhn(cardDigits)) {
+    fieldErrors.creditCardNumber = 'Check the card number — it looks incorrect';
+  }
+
+  if (!formValues.expirationDate) {
+    fieldErrors.expirationDate = 'Enter the expiry';
+  } else if (!expiryValid) {
+    fieldErrors.expirationDate = 'Enter a valid, unexpired date (MM/YY)';
+  }
+
+  if (formValues.cvvCode.length !== cvvLength) {
+    fieldErrors.cvvCode = `${cvvLength}-digit security code`;
+  }
+
+  if (formValues.cardholderName.trim().length <= 1) {
+    fieldErrors.cardholderName = "Enter the cardholder's full name";
+  }
+  if (formValues.billingAddress.trim().length <= 4) {
+    fieldErrors.billingAddress = 'Enter the billing address';
+  }
+  if (!cellPhoneValid) {
+    fieldErrors.cellPhone = 'Enter a 10-digit phone number';
+  }
+  if (!homePhoneValid) {
+    fieldErrors.homePhone = 'Enter a 10-digit phone number';
+  }
+  if (!workPhoneValid) {
+    fieldErrors.workPhone = 'Enter a 10-digit phone number';
+  }
+  if (!formValues.eventDate) fieldErrors.eventDate = 'Select the event date';
+  if (!formValues.typeOfEvent.trim()) {
+    fieldErrors.typeOfEvent = 'Enter the type of event';
+  }
+  if (!formValues.eventLocation.trim()) {
+    fieldErrors.eventLocation = 'Enter the event location';
+  }
+  if (!amountValid) {
+    fieldErrors.authorizedAmount = 'Enter an amount greater than zero';
+  }
+
+  const missingFormFields: string[] = Object.values(fieldErrors);
+
+  /** Red ring on an invalid field once the user has attempted to submit. */
+  const fieldClass = (field: string, base: string) =>
+    `${base} ${
+      showErrors && fieldErrors[field]
+        ? 'border-red-400 bg-red-50'
+        : 'border-gray-300'
+    }`;
+
+  const FieldError = ({ field }: { field: string }) =>
+    showErrors && fieldErrors[field] ? (
+      <p className="mt-1 text-xs font-medium text-red-600">
+        {fieldErrors[field]}
+      </p>
+    ) : null;
+
+  const handleSubmit = async () => {
+    if (!isReadyToSubmit) {
+      setShowErrors(true);
+      signatureSectionRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const signTime = new Date().toISOString();
+
+      const response = await fetch('/api/sign/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clientName,
+          clientEmail,
+          documentType: 'credit_card_auth',
+          viewTime,
+          signTime,
+          location: location
+            ? `${location.city}, ${location.region}, ${location.country}`
+            : 'Unknown',
+          ipAddress: location?.ip || 'Unknown',
+          initials: {},
+          signature,
+          signedDate,
+          typedName,
+          deadline,
+          docId,
+          token,
+          formData: { ...formValues, ...booking },
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        if (response.status === 409) {
+          setAlreadySigned(true);
+          setError(
+            errorData.message ??
+              'This document has already been signed and submitted.'
+          );
+          setIsSubmitting(false);
+          return;
+        }
+        throw new Error(errorData.error || 'Failed to submit document');
+      }
+
+      setIsSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!embedded && isReadyToSubmit && !isSubmitting && !isSubmitted) {
+      handleSubmit();
+    }
+  }, [isReadyToSubmit, signature, signedDate, typedName, agreedToTerms]);
+
+  useEffect(() => {
+    if (embedded?.showErrors) setShowErrors(true);
+  }, [embedded?.showErrors]);
+
+  // Report every change up to the packet; it signs on the client's behalf.
+  useEffect(() => {
+    embedded?.onChange({ ...formValues, ...booking }, missingFormFields);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formValues, booking]);
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="border-primary mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-b-2"></div>
+          <p className="text-gray-600">Loading your document...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // A consumed or expired link must never fall through to the form, even if
+  // the client's name was already populated.
+  if (alreadySigned) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
+        <div className="w-full max-w-md rounded-lg border border-gray-200 bg-white p-8 text-center shadow-sm">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+            <svg
+              className="h-6 w-6 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <h1 className="mb-2 text-xl font-semibold text-gray-900">
+            Already Signed
+          </h1>
+          <p className="text-gray-600">
+            {error ?? 'This document has already been signed and submitted.'}
+          </p>
+          <p className="mt-4 text-sm text-gray-500">
+            A copy was emailed to you. If you need to make a change, please
+            contact our events team.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error && !clientName) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
+        <div className="w-full max-w-md rounded-lg border border-red-200 bg-white p-8 text-center shadow-sm">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+            <svg
+              className="h-6 w-6 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+          <h1 className="mb-2 text-xl font-semibold text-gray-900">
+            Invalid Link
+          </h1>
+          <p className="text-gray-600">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isSubmitted) {
+    return (
+      <div className="mt-18 min-h-screen bg-gray-50">
+        <div className="mx-auto max-w-3xl px-4 py-16">
+          <div className="rounded-lg border border-gray-200 bg-white p-8 text-center shadow-sm">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+              <svg
+                className="h-8 w-8 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <h1 className="mb-2 text-2xl font-semibold text-gray-900">
+              Authorization Submitted Successfully
+            </h1>
+            <p className="mb-6 text-gray-600">
+              Thank you, {clientName}. Your Credit Card Authorization Form has
+              been submitted securely and a copy will be sent to {clientEmail}.
+            </p>
+            <div className="rounded-lg bg-gray-50 p-4 text-sm text-gray-500">
+              <p>Signed on: {signedDate}</p>
+              <p>
+                Location: {location?.city}, {location?.region},{' '}
+                {location?.country}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={embedded ? '' : 'mt-16 min-h-screen bg-gray-50'}>
+      <div className={embedded ? '' : 'mx-auto max-w-4xl px-4 py-8'}>
+        {/* Header */}
+        {!embedded && (
+          <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:p-8">
+            <div className="mb-4 border-b border-gray-200 pb-4">
+              <h1 className="text-center text-2xl font-bold text-gray-900 md:text-3xl">
+                CREDIT CARD AUTHORIZATION FORM
+              </h1>
+              <p className="mt-2 text-center text-sm text-gray-600">
+                48 Wall St • New York, NY 10005 • LI: 631.777.2244 • NYC:
+                212.971.5353 • Fax: 631.980.0271
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-3">
+              <div>
+                <span className="block text-gray-500">Client Name</span>
+                <span className="font-medium text-gray-900">{clientName}</span>
+              </div>
+              <div>
+                <span className="block text-gray-500">Email</span>
+                <span className="font-medium text-gray-900">{clientEmail}</span>
+              </div>
+              <div>
+                <span className="block text-gray-500">Deadline</span>
+                <span className="font-medium text-gray-900">
+                  {deadline
+                    ? new Date(deadline).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })
+                    : 'N/A'}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Form Information Box */}
+        {!embedded && (
+          <div className="mb-6 rounded-lg border-2 border-yellow-500 bg-yellow-50 p-6 shadow-sm">
+            <h2 className="mb-4 text-lg font-semibold text-gray-900">
+              FORM INFORMATION
+            </h2>
+            <ol className="list-inside list-decimal space-y-2 text-sm text-gray-700">
+              <li>
+                Fill in all blank spaces. Specify charges to be paid with this
+                card. <strong>ONLY THE CARDHOLDER CAN SIGN THIS FORM.</strong>
+              </li>
+              <li>
+                Please send back to:
+                <div className="mt-2 ml-6">
+                  <p className="font-semibold">48 WALL STREET EVENTS INC.</p>
+                  <p>140 Florida St</p>
+                  <p>Farmingdale, NY 11735</p>
+                  <p>LI: 631.777.2244</p>
+                  <p>NYC: 212.971.5353</p>
+                  <p>FAX: 631.980.0271</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        )}
+
+        {/* Authorization Text */}
+        <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:p-8">
+          <div className="mb-6">
+            <p className="leading-relaxed text-gray-700">
+              I,{' '}
+              <input
+                type="text"
+                name="cardholderName"
+                value={formValues.cardholderName}
+                onChange={handleInputChange}
+                className="focus:ring-primary mx-1 w-48 border-b border-gray-400 bg-transparent px-2 py-1 text-gray-900 focus:border-transparent focus:ring-1 focus:outline-none"
+                placeholder="[Cardholder Name]"
+              />{' '}
+              hereby authorize 48 Wall Street Events Inc. to charge the credit
+              card listed below in the amount of $
+              <input
+                type="text"
+                inputMode="decimal"
+                maxLength={12}
+                name="authorizedAmount"
+                value={formValues.authorizedAmount}
+                onChange={handleAmountChange}
+                className={`focus:ring-primary mx-1 w-32 border-b bg-transparent px-2 py-1 text-gray-900 focus:border-transparent focus:ring-1 focus:outline-none ${
+                  showErrors && fieldErrors.authorizedAmount
+                    ? 'border-red-400 bg-red-50'
+                    : 'border-gray-400'
+                }`}
+                placeholder="0.00"
+              />{' '}
+              (&quot;the charge&quot;).
+            </p>
+          </div>
+
+          <div className="space-y-4 text-sm leading-relaxed text-gray-700">
+            <p>
+              I further authorize 48 Wall Street Events Inc. to apply my
+              signature to any and all documents required to complete this
+              charge and future charges between myself and 48 Wall Street Events
+              Inc. and indemnify and hold harmless 48 Wall Street Events Inc.
+              for any liability arising herefrom or therefrom. I understand and
+              agree that for a period of two years from the date of signing, I
+              am authorizing 48 Wall Street Events Inc. to charge this credit
+              card for any amounts owed to 48 Wall Street Events Inc.,
+              including, among other things, retainer payments, final payments
+              or remaining payments to satisfy a contract balance, debts arising
+              from having additional guests at an event beyond a contracted
+              amount, charges arising from damage to the venue, equipment, or
+              persons at an event, an event lasting beyond its scheduled end
+              time, additional labor required to put on an event, and any
+              additional goods or services requested at an event.
+            </p>
+            <p>
+              Nothing in this Credit Card Authorization shall cause 48 Wall
+              Street Events Inc. to waive its rights to charge the credit card
+              for any of the amounts owed to 48 Wall Street Events Inc. under
+              any other agreement.
+            </p>
+          </div>
+
+          <div className="mt-6 rounded-lg border-2 border-red-400 bg-red-50 p-4">
+            <p className="text-center text-sm font-semibold text-red-700">
+              **Please note, all sales are FINAL and that your credit card
+              billing statement will reflect the above amount, plus the
+              additional 5.85% processing fee for Visa, Discover, Mastercard or
+              a 6.75% processing fee for American Express.**
+            </p>
+          </div>
+        </div>
+
+        {/* Cardholder's Information */}
+        <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:p-8">
+          <h2 className="mb-6 border-b pb-2 text-lg font-semibold text-gray-900">
+            CARDHOLDER&apos;S INFORMATION
+          </h2>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Type of Card *
+              </label>
+              <select
+                name="cardType"
+                value={formValues.cardType}
+                onChange={handleInputChange}
+                required
+                className={fieldClass(
+                  'cardType',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              >
+                <option value="">Select Card</option>
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="amex">American Express</option>
+                <option value="discover">Discover</option>
+              </select>
+              <FieldError field="cardType" />
+            </div>
+            <div className="md:col-span-2">
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Credit Card Number *
+              </label>
+              <input
+                type="text"
+                inputMode="numeric"
+                autoComplete="cc-number"
+                maxLength={cardDigitLimit === 15 ? 17 : 19}
+                value={formValues.creditCardNumber}
+                onChange={handleCardNumberChange}
+                placeholder="1234 5678 9012 3456"
+                className={fieldClass(
+                  'creditCardNumber',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              />
+              <FieldError field="creditCardNumber" />
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  Exp Date *
+                </label>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="cc-exp"
+                  maxLength={5}
+                  value={formValues.expirationDate}
+                  onChange={handleExpDateChange}
+                  placeholder="MM/YY"
+                  className={fieldClass(
+                    'expirationDate',
+                    'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                  )}
+                />
+                <FieldError field="expirationDate" />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  CVV *
+                </label>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="cc-csc"
+                  maxLength={cvvLength}
+                  value={formValues.cvvCode}
+                  onChange={handleCvvChange}
+                  placeholder={cvvLength === 4 ? '1234' : '123'}
+                  className={fieldClass(
+                    'cvvCode',
+                    'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                  )}
+                />
+                <FieldError field="cvvCode" />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Cardholder&apos;s Name *
+              </label>
+              <input
+                type="text"
+                name="cardholderName"
+                value={formValues.cardholderName}
+                onChange={handleInputChange}
+                className={fieldClass(
+                  'cardholderName',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              />
+              <FieldError field="cardholderName" />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Billing Address *
+              </label>
+              <input
+                type="text"
+                name="billingAddress"
+                value={formValues.billingAddress}
+                onChange={handleInputChange}
+                className={fieldClass(
+                  'billingAddress',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              />
+              <FieldError field="billingAddress" />
+            </div>
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Home Phone
+              </label>
+              <input
+                type="tel"
+                inputMode="numeric"
+                autoComplete="tel"
+                maxLength={14}
+                name="homePhone"
+                value={formValues.homePhone}
+                onChange={handlePhoneChange}
+                className={fieldClass(
+                  'homePhone',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              />
+              <FieldError field="homePhone" />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Work Phone
+              </label>
+              <input
+                type="tel"
+                inputMode="numeric"
+                autoComplete="tel"
+                maxLength={14}
+                name="workPhone"
+                value={formValues.workPhone}
+                onChange={handlePhoneChange}
+                className={fieldClass(
+                  'workPhone',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              />
+              <FieldError field="workPhone" />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Cell Phone *
+              </label>
+              <input
+                type="tel"
+                inputMode="numeric"
+                autoComplete="tel"
+                maxLength={14}
+                name="cellPhone"
+                value={formValues.cellPhone}
+                onChange={handlePhoneChange}
+                className={fieldClass(
+                  'cellPhone',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              />
+              <FieldError field="cellPhone" />
+            </div>
+          </div>
+        </div>
+
+        {/* Event Information */}
+        <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:p-8">
+          <h2 className="mb-6 border-b pb-2 text-lg font-semibold text-gray-900">
+            EVENT INFORMATION
+          </h2>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Event Date *
+              </label>
+              <input
+                type="date"
+                name="eventDate"
+                value={formValues.eventDate}
+                onChange={handleInputChange}
+                className={fieldClass(
+                  'eventDate',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              />
+              <FieldError field="eventDate" />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Type of Event *
+              </label>
+              <input
+                type="text"
+                name="typeOfEvent"
+                value={formValues.typeOfEvent}
+                onChange={handleInputChange}
+                placeholder="e.g., Wedding, Corporate Event"
+                className={fieldClass(
+                  'typeOfEvent',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              />
+              <FieldError field="typeOfEvent" />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Event Location *
+              </label>
+              <input
+                type="text"
+                name="eventLocation"
+                value={formValues.eventLocation}
+                onChange={handleInputChange}
+                placeholder="e.g., 48 Wall Street"
+                className={fieldClass(
+                  'eventLocation',
+                  'focus:ring-primary w-full rounded-md border px-3 py-2 text-gray-900 focus:border-transparent focus:ring-1'
+                )}
+              />
+              <FieldError field="eventLocation" />
+            </div>
+          </div>
+        </div>
+
+        {/* Signature Section */}
+        {!embedded && (
+          <div
+            ref={signatureSectionRef}
+            className="border-primary/30 mb-6 rounded-lg border-2 bg-white p-6 shadow-sm md:p-8"
+          >
+            <h2 className="mb-6 border-b pb-2 text-lg font-semibold text-gray-900">
+              CARDHOLDER SIGNATURE
+            </h2>
+
+            <div
+              className={`mb-6 rounded-lg ${
+                showErrors && !agreedToTerms
+                  ? 'border border-red-300 bg-red-50 p-3'
+                  : ''
+              }`}
+            >
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  className="text-primary focus:ring-primary mt-1 h-5 w-5 rounded border-gray-300"
+                />
+                <span className="text-sm text-gray-700">
+                  I confirm that I am the cardholder and I have read,
+                  understood, and agree to all terms and conditions stated in
+                  this Credit Card Authorization Form. I understand that this
+                  authorization is valid for a period of two years from the date
+                  of signing.
+                </span>
+              </label>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <label className="mb-2 block text-sm font-medium text-gray-700">
+                  Full Legal Name (as it appears on card) *
+                </label>
+                <input
+                  type="text"
+                  value={typedName}
+                  onChange={(e) => setTypedName(e.target.value)}
+                  placeholder="Enter your full name"
+                  className={`focus:ring-primary w-full rounded-lg border px-4 py-3 text-black focus:border-transparent focus:ring-2 focus:outline-none ${
+                    showErrors && !typedName.trim()
+                      ? 'border-red-400 bg-red-50'
+                      : 'border-gray-300'
+                  }`}
+                />
+                {showErrors && !typedName.trim() && (
+                  <p className="mt-1 text-xs font-medium text-red-600">
+                    Please type your full legal name.
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium text-gray-700">
+                  Cardholder Signature *
+                </label>
+                <div
+                  className={
+                    showErrors && !signature
+                      ? 'rounded-lg ring-2 ring-red-300'
+                      : ''
+                  }
+                >
+                  <SignaturePad
+                    onSignatureChange={setSignature}
+                    width={500}
+                    height={200}
+                  />
+                </div>
+                {showErrors && !signature && (
+                  <p className="mt-1 text-xs font-medium text-red-600">
+                    Please draw your signature.
+                  </p>
+                )}
+              </div>
+
+              {signature && (
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                    Date *
+                  </label>
+                  <div
+                    onClick={handleDateClick}
+                    className={`w-full cursor-pointer rounded-lg border px-4 py-3 transition-colors ${
+                      signedDate
+                        ? 'border-gray-300 bg-gray-50 text-gray-900'
+                        : showErrors
+                          ? 'border-red-400 bg-red-50 text-red-600'
+                          : 'hover:border-primary hover:text-primary border-dashed border-gray-300 bg-white text-gray-400'
+                    }`}
+                  >
+                    {signedDate || "Click to add today's date and timestamp"}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {error && (
+              <div className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4">
+                <p className="text-sm text-red-600">{error}</p>
+              </div>
+            )}
+
+            <button
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+              className="bg-primary hover:bg-primary/90 focus:ring-primary mt-6 w-full rounded-lg px-4 py-3 font-medium text-white transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isSubmitting
+                ? 'Submitting...'
+                : isReadyToSubmit
+                  ? 'Submit Authorization'
+                  : 'Review Required Fields'}
+            </button>
+
+            {isSubmitting && (
+              <div className="mt-6 flex items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 p-4">
+                <div className="border-primary h-5 w-5 animate-spin rounded-full border-b-2"></div>
+                <p className="text-sm text-blue-600">
+                  Submitting your authorization...
+                </p>
+              </div>
+            )}
+
+            {!isReadyToSubmit && !isSubmitting && (
+              <div className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4">
+                <p className="mb-2 flex items-center gap-2 text-sm font-semibold text-red-700">
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"
+                    />
+                  </svg>
+                  Complete these to submit:
+                </p>
+                <ul className="space-y-1 text-sm text-red-600">
+                  {missingFormFields.map((field) => (
+                    <li key={field}>• {field}</li>
+                  ))}
+                  {!agreedToTerms && (
+                    <li>• Agree to the terms and conditions</li>
+                  )}
+                  {!typedName.trim() && <li>• Type your full legal name</li>}
+                  {!signature && <li>• Add your signature</li>}
+                  {!signedDate && signature && <li>• Click to add the date</li>}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

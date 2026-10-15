@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email';
 import { reminderEmail } from '@/lib/email-templates';
 import { getTokenState } from '@/lib/documents/signing-tokens';
+import { updatePacket } from '@/lib/documents/packets';
 
 /**
  * Send a "still awaiting signature" reminder for a pending document.
@@ -12,7 +13,8 @@ import { getTokenState } from '@/lib/documents/signing-tokens';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { clientName, clientEmail, documentType, deadline, token } = body;
+    const { clientName, clientEmail, documentType, deadline, token, packetId } =
+      body;
 
     if (!clientEmail || !clientName || !documentType || !token) {
       return NextResponse.json(
@@ -36,11 +38,13 @@ export async function POST(request: NextRequest) {
       process.env.NEXT_PUBLIC_SITE_URL || 'https://www.48wallnyc.com';
 
     const signingPath =
-      documentType === 'credit_card_auth'
-        ? '/sign/credit-card-auth'
-        : documentType === 'av_production'
-          ? '/sign/av-form'
-          : '/sign';
+      documentType === 'packet'
+        ? '/sign/packet'
+        : documentType === 'credit_card_auth'
+          ? '/sign/credit-card-auth'
+          : documentType === 'av_production'
+            ? '/sign/av-form'
+            : '/sign';
 
     const message = reminderEmail({
       clientName,
@@ -61,6 +65,8 @@ export async function POST(request: NextRequest) {
         { status: 502 }
       );
     }
+
+    await updatePacket(packetId, { lastReminderAt: new Date().toISOString() });
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {

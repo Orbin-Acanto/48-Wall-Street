@@ -228,6 +228,9 @@ const ContactUsSlider: React.FC = () => {
     return null;
   // Keep shared brochure links (/b/[slug]) minimal: brochure + navbar + footer.
   if (pathname?.startsWith('/b/')) return null;
+  // Staff tools and client signing stay distraction-free.
+  if (pathname?.startsWith('/admin') || pathname?.startsWith('/sign'))
+    return null;
 
   return (
     <>

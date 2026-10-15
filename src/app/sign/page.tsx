@@ -32,11 +32,17 @@ function SignContent() {
         });
 
         if (!verifyResponse.ok) {
-          setError('Invalid or tampered signing link.');
+          const body = await verifyResponse.json().catch(() => ({}));
+          setError(body.message || 'Invalid or tampered signing link.');
           return;
         }
 
         const { data } = await verifyResponse.json();
+
+        if (Array.isArray(data.docs)) {
+          router.replace(`/sign/packet?token=${encodeURIComponent(token)}`);
+          return;
+        }
 
         if (!data.name || !data.email || !data.type) {
           setError('Invalid signing link. Missing required information.');

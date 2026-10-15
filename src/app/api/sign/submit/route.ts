@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SubmitRequestBody } from '@/types';
 import {
-  generateSignedPDF,
-  generateAVProductionPDF,
-  generateCreditCardAuthPDF,
-  generateRulesRegulationsPDF,
-} from '@/lib/helper';
+  generateDocumentPDF,
+  postSignedDocument,
+} from '@/lib/documents/delivery';
 import { consumeToken, releaseToken } from '@/lib/documents/signing-tokens';
 import { sendEmails, staffRecipients } from '@/lib/email';
 import {
@@ -13,21 +11,6 @@ import {
   signedStaffEmail,
   documentLabel,
 } from '@/lib/email-templates';
-
-interface N8NWebhookPayload {
-  clientName: string;
-  clientEmail: string;
-  documentType: string;
-  viewTime: string;
-  signTime: string;
-  location: string;
-  ipAddress: string;
-  signedDate: string;
-  docId?: string | null;
-  data: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  formData?: Record<string, any> | null;
-}
 
 export async function POST(request: NextRequest) {
   let claimedToken: string | null = null;
@@ -43,6 +26,13 @@ export async function POST(request: NextRequest) {
     ) {
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    if (body.documentType === 'av_production' && !body.formData) {
+      return NextResponse.json(
+        { success: false, error: 'Missing form data for AV Production' },
         { status: 400 }
       );
     }
@@ -70,75 +60,8 @@ export async function POST(request: NextRequest) {
       claimedToken = token;
     }
 
-    let pdfBase64: string;
-
-    switch (body.documentType) {
-      case 'client_guidelines':
-        pdfBase64 = await generateSignedPDF(body);
-        break;
-      case 'rules_regulations':
-        pdfBase64 = await generateRulesRegulationsPDF(body);
-        break;
-      case 'av_production':
-        if (!body.formData) {
-          return NextResponse.json(
-            { success: false, error: 'Missing form data for AV Production' },
-            { status: 400 }
-          );
-        }
-        pdfBase64 = await generateAVProductionPDF(body);
-        break;
-      case 'floor_plan':
-        pdfBase64 = await generateSignedPDF(body);
-        break;
-      case 'credit_card_auth':
-        pdfBase64 = await generateCreditCardAuthPDF(body);
-        break;
-      default:
-        pdfBase64 = await generateSignedPDF(body);
-    }
-
-    const WEBHOOK_URL = process.env.N8N_DOCUSIGN_SUBMIT_API!;
-    const username = process.env.N8N_USERNAME!;
-    const password = process.env.N8N_PASSWORD!;
-    const credentials = Buffer.from(`${username}:${password}`).toString(
-      'base64'
-    );
-
-    const payload: N8NWebhookPayload = {
-      clientName: body.clientName,
-      clientEmail: body.clientEmail,
-      documentType: body.documentType,
-      viewTime: body.viewTime,
-      signTime: body.signTime,
-      location: body.location,
-      ipAddress: body.ipAddress,
-      signedDate: body.signedDate,
-
-      data: pdfBase64,
-    };
-
-    if (body.docId) {
-      payload.docId = body.docId || null;
-    }
-
-    if (body.documentType !== 'credit_card_auth') {
-      payload.formData = body.formData || null;
-    }
-
-    const n8nResponse = await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Basic ${credentials}`,
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!n8nResponse.ok) {
-      console.error('n8n webhook error:', await n8nResponse.text());
-      throw new Error('Failed to submit signed document');
-    }
+    const pdfBase64 = await generateDocumentPDF(body);
+    await postSignedDocument(body, pdfBase64);
 
     // Confirmation to the client and a copy to the events team, both with the
     // executed PDF attached. Email failures are logged but never fail the

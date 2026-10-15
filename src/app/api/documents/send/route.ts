@@ -1,117 +1,136 @@
 import { NextRequest, NextResponse } from 'next/server';
-import crypto from 'crypto';
+import { sendEmail } from '@/lib/email';
+import { packetInvitationEmail } from '@/lib/email-templates';
+import { signToken } from '@/lib/documents/signing-tokens';
+import { normalizePacketTypes, packetDocument } from '@/lib/documents/catalog';
+import { savePacket } from '@/lib/documents/packets';
 
-interface DocumentRequestBody {
-  clientName: string;
-  clientEmail: string;
-  documentType: string;
-  deadline: string;
-  docId: string;
+interface SendPacketBody {
+  clientName?: string;
+  clientEmail?: string;
+  documentTypes?: string[];
+  /** Legacy single-document callers. */
+  documentType?: string;
+  deadline?: string;
+  eventDate?: string;
+  packetUrl?: string;
+  note?: string;
 }
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Send a client one email covering every selected document. The link opens a
+ * single signing session where they review everything and sign once.
+ */
 export async function POST(request: NextRequest) {
-  try {
-    const missingVars = [];
-    if (!process.env.SIGNING_SECRET) missingVars.push('SIGNING_SECRET');
-    if (!process.env.N8N_DOCUSIGN_API) missingVars.push('N8N_DOCUSIGN_API');
-    if (!process.env.N8N_USERNAME) missingVars.push('N8N_USERNAME');
-    if (!process.env.N8N_PASSWORD) missingVars.push('N8N_PASSWORD');
-
-    if (missingVars.length > 0) {
-      console.error('Missing environment variables:', missingVars);
-      return NextResponse.json(
-        {
-          success: false,
-          error: `Missing env vars: ${missingVars.join(', ')}`,
-        },
-        { status: 500 }
-      );
-    }
-
-    const body: DocumentRequestBody = await request.json();
-
-    if (
-      !body.clientName ||
-      !body.clientEmail ||
-      !body.documentType ||
-      !body.deadline ||
-      !body.docId
-    ) {
-      return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
-        { status: 400 }
-      );
-    }
-
-    const protocol = request.headers.get('x-forwarded-proto') || 'https';
-    const host = request.headers.get('host') || 'localhost:3000';
-    const baseUrl = `${protocol}://${host}`;
-
-    const payload = Buffer.from(
-      JSON.stringify({
-        name: body.clientName,
-        email: body.clientEmail,
-        type: body.documentType,
-        deadline: body.deadline,
-        docId: body.docId,
-      })
-    ).toString('base64');
-
-    const signature = crypto
-      .createHmac('sha256', process.env.SIGNING_SECRET!)
-      .update(payload)
-      .digest('hex');
-
-    const token = `${payload}.${signature}`;
-    const docsURL = `${baseUrl}/sign?token=${token}`;
-
-    const WEBHOOK_URL = process.env.N8N_DOCUSIGN_API!;
-    const username = process.env.N8N_USERNAME!;
-    const password = process.env.N8N_PASSWORD!;
-    const credentials = Buffer.from(`${username}:${password}`).toString(
-      'base64'
-    );
-
-    const n8nResponse = await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Basic ${credentials}`,
-      },
-      body: JSON.stringify({
-        clientName: body.clientName,
-        clientEmail: body.clientEmail,
-        deadline: body.deadline,
-        documentType: body.documentType,
-        docsURL: docsURL,
-        docId: body.docId,
-      }),
-    });
-
-    if (!n8nResponse.ok) {
-      console.error('n8n webhook error:', await n8nResponse.text());
-      throw new Error('Failed to send document request');
-    }
-
+  if (!process.env.SIGNING_SECRET) {
     return NextResponse.json(
-      {
-        success: true,
-        docsURL: docsURL,
-      },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error('Error sending document request:', error);
-
-    return NextResponse.json(
-      {
-        success: false,
-        error:
-          error instanceof Error
-            ? error.message
-            : 'Failed to send document request',
-      },
+      { success: false, error: 'Missing env vars: SIGNING_SECRET' },
       { status: 500 }
     );
   }
+
+  const body: SendPacketBody = await request.json().catch(() => ({}));
+  const clientName = body.clientName?.trim() ?? '';
+  const clientEmail = body.clientEmail?.trim().toLowerCase() ?? '';
+  const documents = normalizePacketTypes(
+    body.documentTypes ?? (body.documentType ? [body.documentType] : [])
+  );
+  const deadline = body.deadline ?? '';
+  const packetUrl = body.packetUrl?.trim() ?? '';
+
+  const problem =
+    clientName.length < 2
+      ? 'Enter the client’s full name'
+      : !EMAIL_PATTERN.test(clientEmail)
+        ? 'Enter a valid client email'
+        : documents.length === 0
+          ? 'Select at least one document'
+          : !/^\d{4}-\d{2}-\d{2}$/.test(deadline)
+            ? 'Choose a signature deadline'
+            : packetUrl && !/^https?:\/\//i.test(packetUrl)
+              ? 'The event packet link must start with https://'
+              : null;
+  if (problem) {
+    return NextResponse.json(
+      { success: false, error: problem },
+      { status: 400 }
+    );
+  }
+
+  const sentBy = {
+    email: request.headers.get('x-staff-email') ?? 'unknown',
+    name:
+      decodeURIComponent(request.headers.get('x-staff-name') ?? '') ||
+      'Events Team',
+  };
+
+  const packetId =
+    'PKT-' +
+    new Date().toISOString().slice(0, 10).replace(/-/g, '') +
+    '-' +
+    crypto.randomUUID().slice(0, 6).toUpperCase();
+
+  const token = signToken({
+    name: clientName,
+    email: clientEmail,
+    docs: documents,
+    deadline,
+    exp: deadline,
+    eventDate: body.eventDate || undefined,
+    docId: packetId,
+    by: sentBy.email,
+    byName: sentBy.name,
+  });
+
+  const protocol = request.headers.get('x-forwarded-proto') || 'https';
+  const host = request.headers.get('host') || 'localhost:3000';
+  const signingUrl = `${protocol}://${host}/sign/packet?token=${encodeURIComponent(token)}`;
+
+  const message = packetInvitationEmail({
+    clientName,
+    documents: documents.map((type) => packetDocument(type)!),
+    deadline,
+    signingUrl,
+    packetUrl: packetUrl || undefined,
+    note: body.note?.slice(0, 1500),
+    senderName: sentBy.name,
+  });
+
+  const result = await sendEmail({
+    to: clientEmail,
+    subject: message.subject,
+    html: message.html,
+  });
+
+  await savePacket({
+    id: packetId,
+    clientName,
+    clientEmail,
+    documents,
+    deadline,
+    eventDate: body.eventDate || undefined,
+    sentBy,
+    sentAt: new Date().toISOString(),
+    status: 'sent',
+    signingUrl,
+    token,
+  });
+
+  if (!result.success) {
+    // The link is still valid; staff can copy it and send it themselves.
+    return NextResponse.json(
+      {
+        success: false,
+        emailFailed: true,
+        error: `The email could not be sent (${result.error}). You can copy the link below and send it manually.`,
+        signingUrl,
+        packetId,
+      },
+      { status: 502 }
+    );
+  }
+
+  return NextResponse.json({ success: true, signingUrl, packetId });
 }

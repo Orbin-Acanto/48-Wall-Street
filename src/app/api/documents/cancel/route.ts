@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail, staffRecipients } from '@/lib/email';
 import { cancellationEmail, documentLabel } from '@/lib/email-templates';
 import { consumeToken } from '@/lib/documents/signing-tokens';
+import { updatePacket } from '@/lib/documents/packets';
 
 /**
  * Cancel a pending signing request.
@@ -12,7 +13,8 @@ import { consumeToken } from '@/lib/documents/signing-tokens';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { clientName, clientEmail, documentType, reason, token } = body;
+    const { clientName, clientEmail, documentType, reason, token, packetId } =
+      body;
 
     if (!clientEmail || !clientName || !documentType) {
       return NextResponse.json(
@@ -33,6 +35,11 @@ export async function POST(request: NextRequest) {
         clientEmail,
       });
     }
+
+    await updatePacket(packetId, {
+      status: 'cancelled',
+      cancelledAt: new Date().toISOString(),
+    });
 
     const message = cancellationEmail({ clientName, documentType, reason });
 
