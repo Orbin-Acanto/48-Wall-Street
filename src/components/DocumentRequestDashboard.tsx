@@ -15,11 +15,13 @@ import {
   RefreshCw,
   ScrollText,
   Send,
+  ShieldCheck,
   X,
 } from 'lucide-react';
 import {
-  PACKET_DOCUMENTS,
   PacketDocumentType,
+  SELECTABLE_DOCUMENTS,
+  normalizePacketTypes,
   packetDocument,
 } from '@/lib/documents/catalog';
 import {
@@ -34,6 +36,7 @@ const ICONS: Record<PacketDocumentType, typeof FileText> = {
   rules_regulations: FileText,
   av_production: ClipboardList,
   credit_card_auth: CreditCard,
+  event_packet_ack: ShieldCheck,
 };
 
 const PACKET_URL_KEY = 'doc-center:packet-url';
@@ -336,13 +339,15 @@ export default function DocumentRequestDashboard({
       prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
     );
 
-  const allSelected = selected.length === PACKET_DOCUMENTS.length;
+  const allSelected = selected.length === SELECTABLE_DOCUMENTS.length;
 
   const previewHtml = useMemo(() => {
-    const docs = PACKET_DOCUMENTS.filter((d) => selected.includes(d.type));
+    const types = normalizePacketTypes(
+      selected.length ? selected : [SELECTABLE_DOCUMENTS[0].type]
+    );
     return packetInvitationEmail({
       clientName: clientName.trim() || 'Client Name',
-      documents: docs.length ? docs : [PACKET_DOCUMENTS[0]],
+      documents: types.map((type) => packetDocument(type)!),
       deadline,
       signingUrl: '#',
       packetUrl,
@@ -522,7 +527,7 @@ export default function DocumentRequestDashboard({
                   type="button"
                   onClick={() =>
                     setSelected(
-                      allSelected ? [] : PACKET_DOCUMENTS.map((d) => d.type)
+                      allSelected ? [] : SELECTABLE_DOCUMENTS.map((d) => d.type)
                     )
                   }
                   className="text-primary text-sm hover:underline"
@@ -531,7 +536,7 @@ export default function DocumentRequestDashboard({
                 </button>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
-                {PACKET_DOCUMENTS.map((doc) => {
+                {SELECTABLE_DOCUMENTS.map((doc) => {
                   const Icon = ICONS[doc.type];
                   const active = selected.includes(doc.type);
                   return (
@@ -571,6 +576,11 @@ export default function DocumentRequestDashboard({
                   );
                 })}
               </div>
+              <p className="mt-3 flex items-center gap-2 text-xs text-gray-500">
+                <ShieldCheck className="text-primary h-4 w-4 flex-shrink-0" />
+                The Event Packet Acknowledgment is added to every request
+                automatically.
+              </p>
             </div>
 
             <div className="border border-gray-200 bg-white p-5 sm:p-6">

@@ -4,6 +4,7 @@ import {
   generateAVProductionPDF,
   generateCreditCardAuthPDF,
   generateRulesRegulationsPDF,
+  generateEventPacketAckPDF,
 } from '@/lib/helper';
 
 /** Render the executed PDF for one document. Returns a data: URI. */
@@ -17,6 +18,8 @@ export async function generateDocumentPDF(
       return generateAVProductionPDF(body);
     case 'credit_card_auth':
       return generateCreditCardAuthPDF(body);
+    case 'event_packet_ack':
+      return generateEventPacketAckPDF(body);
     default:
       return generateSignedPDF(body);
   }

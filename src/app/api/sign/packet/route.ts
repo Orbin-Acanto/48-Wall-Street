@@ -25,6 +25,8 @@ import {
 import { appendCompletionCertificate } from '@/lib/documents/certificate';
 import { sendEmails, staffCc, staffRecipients } from '@/lib/email';
 import {
+  DEFAULT_EVENT_PACKET_URL,
+  formatLongDate,
   signedPacketClientEmail,
   signedPacketStaffEmail,
 } from '@/lib/email-templates';
@@ -50,6 +52,17 @@ interface PacketSubmitBody {
 const MAX_SIGNATURE_BYTES = 600_000;
 
 /** Server-side check of the card form; the browser checks are a courtesy. */
+/** The acknowledgment must be ticked and its fields completed. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function ackFormProblem(form: Record<string, any> | undefined): string | null {
+  if (form?.agreed !== true)
+    return 'Please tick the Event Packet acknowledgment';
+  const required = ['legalEntity', 'eventDate', 'signerTitle'];
+  return required.some((key) => !String(form[key] ?? '').trim())
+    ? 'Please complete the Event Packet acknowledgment'
+    : null;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function cardFormProblem(form: Record<string, any> | undefined): string | null {
   if (!form) return 'Credit card details are missing';
@@ -130,9 +143,11 @@ export async function POST(request: NextRequest) {
             ? 'Add your signature'
             : Object.values(docSignedAt).some((t) => !t)
               ? 'Please sign each document before submitting'
-              : documents.includes('credit_card_auth')
-                ? cardFormProblem(body.formData?.credit_card_auth)
-                : null;
+              : (documents.includes('credit_card_auth') &&
+                  cardFormProblem(body.formData?.credit_card_auth)) ||
+                (documents.includes('event_packet_ack') &&
+                  ackFormProblem(body.formData?.event_packet_ack)) ||
+                null;
   if (problem) {
     return NextResponse.json(
       { success: false, error: problem },
@@ -208,7 +223,18 @@ export async function POST(request: NextRequest) {
         typedName,
         deadline: data.deadline ?? '',
         docId: reference ? `${reference}-${index + 1}` : undefined,
-        formData: body.formData?.[documentType] ?? {},
+        formData:
+          documentType === 'event_packet_ack'
+            ? {
+                ...body.formData?.event_packet_ack,
+                // What the client acknowledged comes from the signed link.
+                packetUrl: data.packetUrl || DEFAULT_EVENT_PACKET_URL,
+                packetVersion: `Issued ${formatLongDate(data.iat) || signedDate}`,
+                documents: documents
+                  .filter((type) => !packetDocument(type)!.always)
+                  .map((type) => packetDocument(type)!.label),
+              }
+            : (body.formData?.[documentType] ?? {}),
       };
 
       // Each document is sealed on its own: for the records (n8n / S3) and

@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email';
-import { packetInvitationEmail } from '@/lib/email-templates';
+import {
+  DEFAULT_EVENT_PACKET_URL,
+  packetInvitationEmail,
+} from '@/lib/email-templates';
 import { signToken } from '@/lib/documents/signing-tokens';
 import { normalizePacketTypes, packetDocument } from '@/lib/documents/catalog';
 import { savePacket } from '@/lib/documents/packets';
@@ -82,6 +85,7 @@ export async function POST(request: NextRequest) {
     eventDate: body.eventDate || undefined,
     docId: packetId,
     iat: new Date().toISOString(),
+    packetUrl: packetUrl || DEFAULT_EVENT_PACKET_URL,
     by: sentBy.email,
     byName: sentBy.name,
   });

@@ -10,6 +10,12 @@ import {
   rulesRegulationsDocumentTitle,
 } from './rules-regulations-content';
 import { AV_FILE_FORMATS, AV_TEAM_EMAIL } from './av-file-formats';
+import {
+  eventPacketAckCheckbox,
+  eventPacketAckText,
+  eventPacketAckTitle,
+} from './event-packet-ack-content';
+import { formatLongDate } from './email-templates';
 
 // ---------------------------------------------------------------------------
 // Shared branding — logo header used across ALL signed PDFs.
@@ -1558,4 +1564,132 @@ export async function generateRulesRegulationsPDF(
     rulesRegulationsContent,
     rulesRegulationsDocumentTitle
   );
+}
+
+// ---------------------------------------------------------------------------
+// Event Packet Acknowledgment — acceptance of the Event Packet and the
+// signer's authority to bind the client.
+// ---------------------------------------------------------------------------
+export async function generateEventPacketAckPDF(
+  data: SubmitRequestBody
+): Promise<string> {
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const helpers = createPDFHelpers(doc, data, await getLogoDataUrl());
+  const {
+    margin,
+    contentWidth,
+    goldColor,
+    addHeader,
+    addFooter,
+    checkPageBreak,
+    getYPos,
+    addYPos,
+    addCertificatePage,
+    pageWidth,
+  } = helpers;
+  const formData = data.formData || {};
+
+  const paragraph = (text: string, size = 9.5, bold = false) => {
+    doc.setFontSize(size);
+    doc.setFont('helvetica', bold ? 'bold' : 'normal');
+    doc.setTextColor(30, 30, 30);
+    const lines = doc.splitTextToSize(text, contentWidth);
+    checkPageBreak(lines.length * 4.5);
+    doc.text(lines, margin, getYPos());
+    addYPos(lines.length * 4.5 + 3);
+  };
+
+  addHeader();
+  doc.setFontSize(15);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(30, 30, 30);
+  doc.text(eventPacketAckTitle, pageWidth / 2, getYPos(), { align: 'center' });
+  addYPos(10);
+
+  paragraph(eventPacketAckText);
+
+  // What the Event Packet comprises, as identified to the signer.
+  paragraph('The Event Packet', 10, true);
+  const items = [
+    `48 Wall Street Event Packet: ${formData.packetUrl || ''}`,
+    ...((formData.documents as string[] | undefined) ?? []),
+  ];
+  for (const item of items) paragraph(`•  ${item}`, 9);
+  addYPos(2);
+
+  // The acknowledgment box, ticked.
+  checkPageBreak(14);
+  const boxY = getYPos() - 3.5;
+  doc.setDrawColor(30, 30, 30);
+  doc.setLineWidth(0.4);
+  doc.rect(margin, boxY, 4, 4);
+  if (formData.agreed) {
+    doc.setLineWidth(0.6);
+    doc.line(margin + 0.8, boxY + 2.1, margin + 1.7, boxY + 3.2);
+    doc.line(margin + 1.7, boxY + 3.2, margin + 3.4, boxY + 0.8);
+  }
+  doc.setFontSize(9.5);
+  doc.setFont('helvetica', 'bold');
+  const checkLines = doc.splitTextToSize(
+    eventPacketAckCheckbox,
+    contentWidth - 8
+  );
+  doc.text(checkLines, margin + 7, getYPos());
+  addYPos(checkLines.length * 4.5 + 6);
+
+  const row = (label: string, value: string) => {
+    checkPageBreak(9);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text(label.toUpperCase(), margin, getYPos());
+    doc.setFontSize(10);
+    doc.setTextColor(30, 30, 30);
+    doc.text(
+      doc.splitTextToSize(value || '', contentWidth - 62)[0] || '',
+      margin + 62,
+      getYPos()
+    );
+    doc.setDrawColor(...goldColor);
+    doc.setLineWidth(0.2);
+    doc.line(margin + 60, getYPos() + 1.5, pageWidth - margin, getYPos() + 1.5);
+    addYPos(9);
+  };
+
+  row('Client / Legal Entity', String(formData.legalEntity ?? ''));
+  row('Event Date', formatLongDate(String(formData.eventDate ?? '')));
+  row("Authorized Signer's Full Name", data.typedName);
+  row('Title / Capacity', String(formData.signerTitle ?? ''));
+
+  checkPageBreak(26);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+  doc.text('ELECTRONIC SIGNATURE', margin, getYPos());
+  if (data.signature) {
+    try {
+      doc.addImage(data.signature, 'PNG', margin + 62, getYPos() - 8, 50, 20);
+    } catch (e) {
+      console.error('Failed to add signature image:', e);
+    }
+  }
+  addYPos(14);
+  doc.setDrawColor(...goldColor);
+  doc.line(margin + 60, getYPos() - 2, pageWidth - margin, getYPos() - 2);
+  addYPos(5);
+
+  row('Date', data.signedDate);
+  row('Event Packet Version / Date', String(formData.packetVersion ?? ''));
+
+  doc.setFontSize(8);
+  doc.setTextColor(100, 100, 100);
+  doc.text(
+    `Location: ${data.location}  •  IP Address: ${data.ipAddress}`,
+    margin,
+    getYPos() + 2
+  );
+
+  addFooter();
+  addCertificatePage();
+  return doc.output('datauristring');
 }

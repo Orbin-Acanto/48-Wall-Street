@@ -19,6 +19,7 @@ import {
 import SignaturePad from '@/components/SignaturePad';
 import CreditCardAuthForm from '@/components/CreditCardAuthForm';
 import AVProductionForm from '@/components/AVProductionForm';
+import EventPacketAckForm from '@/components/EventPacketAckForm';
 import {
   PacketDocument,
   initialPlacements,
@@ -35,7 +36,10 @@ import {
   rulesRegulationsContent,
   rulesRegulationsDocumentIntro,
 } from '@/lib/rules-regulations-content';
-import { formatLongDate } from '@/lib/email-templates';
+import {
+  DEFAULT_EVENT_PACKET_URL,
+  formatLongDate,
+} from '@/lib/email-templates';
 
 const script = Great_Vibes({ weight: '400', subsets: ['latin'] });
 
@@ -47,6 +51,9 @@ interface PacketData {
   eventDate?: string;
   docId?: string;
   byName?: string;
+  /** Event Packet link and send time, recorded in the acknowledgment. */
+  packetUrl?: string;
+  iat?: string;
 }
 
 interface FormState {
@@ -1078,6 +1085,16 @@ export default function PacketSigning() {
               <ReviewDocument
                 doc={doc}
                 initials={signed ? adopted?.initials : undefined}
+              />
+            ) : doc.type === 'event_packet_ack' ? (
+              <EventPacketAckForm
+                clientName={packet.name}
+                eventDate={packet.eventDate}
+                packetUrl={packet.packetUrl || DEFAULT_EVENT_PACKET_URL}
+                packetVersion={`Issued ${formatLongDate(packet.iat) || 'with this request'}`}
+                documents={docs.filter((d) => !d.always).map((d) => d.label)}
+                showErrors={!!formErrors[doc.type]}
+                onChange={formHandlers[doc.type]}
               />
             ) : doc.type === 'credit_card_auth' ? (
               <CreditCardAuthForm

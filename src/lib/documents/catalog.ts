@@ -6,14 +6,15 @@ import { rulesRegulationsContent } from '@/lib/rules-regulations-content';
  * page, the invitation email, the client signing page and the submit API.
  *
  * `review` documents are read-only text; `form` documents need the client to
- * fill in details. Either way the client signs once, at the end.
+ * fill in details. Either way the client signs each one as they go.
  */
 
 export type PacketDocumentType =
   | 'client_guidelines'
   | 'rules_regulations'
   | 'av_production'
-  | 'credit_card_auth';
+  | 'credit_card_auth'
+  | 'event_packet_ack';
 
 export interface PacketDocument {
   type: PacketDocumentType;
@@ -21,6 +22,8 @@ export interface PacketDocument {
   description: string;
   kind: 'review' | 'form';
   minutes: number;
+  /** Added to every packet; not offered as a choice to staff. */
+  always?: boolean;
 }
 
 export const PACKET_DOCUMENTS: PacketDocument[] = [
@@ -52,18 +55,36 @@ export const PACKET_DOCUMENTS: PacketDocument[] = [
     kind: 'form',
     minutes: 3,
   },
+  {
+    type: 'event_packet_ack',
+    label: 'Event Packet Acknowledgment',
+    description: 'Acceptance of the Event Packet and authority to sign.',
+    kind: 'form',
+    minutes: 2,
+    always: true,
+  },
 ];
+
+/** The documents staff choose from; `always` ones are added automatically. */
+export const SELECTABLE_DOCUMENTS = PACKET_DOCUMENTS.filter((d) => !d.always);
 
 export function packetDocument(type: string): PacketDocument | undefined {
   return PACKET_DOCUMENTS.find((doc) => doc.type === type);
 }
 
-/** Keep only known types, de-duplicated, in catalog order. */
+/**
+ * Keep only known types, de-duplicated, in catalog order, plus the documents
+ * every packet carries. An empty selection stays empty.
+ */
 export function normalizePacketTypes(types: unknown): PacketDocumentType[] {
   const wanted = new Set(Array.isArray(types) ? types.map(String) : []);
-  return PACKET_DOCUMENTS.filter((doc) => wanted.has(doc.type)).map(
-    (doc) => doc.type
+  const chosen = PACKET_DOCUMENTS.filter(
+    (doc) => !doc.always && wanted.has(doc.type)
   );
+  if (!chosen.length) return [];
+  return PACKET_DOCUMENTS.filter(
+    (doc) => doc.always || chosen.includes(doc)
+  ).map((doc) => doc.type);
 }
 
 /** Every place a document asks for initials — where adopted initials land. */

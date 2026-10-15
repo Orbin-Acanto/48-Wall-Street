@@ -140,6 +140,7 @@ const DOCUMENT_LABELS: Record<string, string> = {
   rules_regulations: 'Rules & Regulations',
   floor_plan: 'Floor Plan Approval',
   packet: 'Event Document Packet',
+  event_packet_ack: 'Event Packet Acknowledgment',
 };
 
 export function documentLabel(documentType: string): string {
