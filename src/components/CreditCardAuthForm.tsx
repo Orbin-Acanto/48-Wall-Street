@@ -337,11 +337,11 @@ export default function CreditCardAuthForm({
   const workPhoneValid =
     !formValues.workPhone || phoneDigits(formValues.workPhone) === 10;
 
+  // Optional: blank is fine, but a filled-in amount must be positive.
   const amountValue = Number(formValues.authorizedAmount);
   const amountValid =
-    formValues.authorizedAmount.trim() !== '' &&
-    Number.isFinite(amountValue) &&
-    amountValue > 0;
+    formValues.authorizedAmount.trim() === '' ||
+    (Number.isFinite(amountValue) && amountValue > 0);
 
   const isFormComplete =
     formValues.cardType &&

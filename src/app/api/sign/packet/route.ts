@@ -82,7 +82,8 @@ function cardFormProblem(form: Record<string, any> | undefined): string | null {
   if (required.some((key) => !String(form[key] ?? '').trim())) {
     return 'Credit card form is incomplete';
   }
-  if (!(Number(form.authorizedAmount) > 0))
+  const amount = String(form.authorizedAmount ?? '').trim();
+  if (amount && !(Number(amount) > 0))
     return 'Authorized amount is invalid';
   return null;
 }
