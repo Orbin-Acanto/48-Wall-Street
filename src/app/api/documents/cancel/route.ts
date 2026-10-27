@@ -3,6 +3,7 @@ import { sendEmail, staffRecipients } from '@/lib/email';
 import { cancellationEmail, documentLabel } from '@/lib/email-templates';
 import { consumeToken } from '@/lib/documents/signing-tokens';
 import { updatePacket } from '@/lib/documents/packets';
+import { dropHeld } from '@/lib/documents/held';
 
 /**
  * Cancel a pending signing request.
@@ -40,6 +41,15 @@ export async function POST(request: NextRequest) {
       status: 'cancelled',
       cancelledAt: new Date().toISOString(),
     });
+
+    // A held request never reached the client: drop it from the queue and
+    // don't tell them about something they never received.
+    if (await dropHeld(packetId)) {
+      return NextResponse.json(
+        { success: true, cancelled: true },
+        { status: 200 }
+      );
+    }
 
     const message = cancellationEmail({ clientName, documentType, reason });
 

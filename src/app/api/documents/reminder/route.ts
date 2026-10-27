@@ -3,6 +3,7 @@ import { sendEmail } from '@/lib/email';
 import { reminderEmail } from '@/lib/email-templates';
 import { getTokenState } from '@/lib/documents/signing-tokens';
 import { updatePacket } from '@/lib/documents/packets';
+import { isHeld } from '@/lib/documents/held';
 
 /**
  * Send a "still awaiting signature" reminder for a pending document.
@@ -32,6 +33,11 @@ export async function POST(request: NextRequest) {
         { success: false, skipped: 'already_signed' },
         { status: 409 }
       );
+    }
+
+    // A held request has not gone out yet; its invitation will on release.
+    if (await isHeld(packetId)) {
+      return NextResponse.json({ success: true }, { status: 200 });
     }
 
     const siteUrl =
