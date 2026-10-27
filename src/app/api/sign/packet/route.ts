@@ -23,6 +23,7 @@ import {
   sha256Hex,
 } from '@/lib/documents/seal';
 import { appendCompletionCertificate } from '@/lib/documents/certificate';
+import { achFormMissing } from '@/lib/ach-auth';
 import { sendEmails, staffCc, staffRecipients } from '@/lib/email';
 import {
   DEFAULT_EVENT_PACKET_URL,
@@ -83,8 +84,7 @@ function cardFormProblem(form: Record<string, any> | undefined): string | null {
     return 'Credit card form is incomplete';
   }
   const amount = String(form.authorizedAmount ?? '').trim();
-  if (amount && !(Number(amount) > 0))
-    return 'Authorized amount is invalid';
+  if (amount && !(Number(amount) > 0)) return 'Authorized amount is invalid';
   return null;
 }
 
@@ -146,6 +146,8 @@ export async function POST(request: NextRequest) {
               ? 'Please sign each document before submitting'
               : (documents.includes('credit_card_auth') &&
                   cardFormProblem(body.formData?.credit_card_auth)) ||
+                (documents.includes('ach_auth') &&
+                  achFormMissing(body.formData?.ach_auth)[0]) ||
                 (documents.includes('event_packet_ack') &&
                   ackFormProblem(body.formData?.event_packet_ack)) ||
                 null;

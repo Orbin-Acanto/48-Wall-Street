@@ -141,6 +141,7 @@ const DOCUMENT_LABELS: Record<string, string> = {
   floor_plan: 'Floor Plan Approval',
   packet: 'Event Document Packet',
   event_packet_ack: 'Event Packet Acknowledgment',
+  ach_auth: 'ACH Authorization',
 };
 
 export function documentLabel(documentType: string): string {

@@ -10,6 +10,7 @@ import {
   CreditCard,
   Eye,
   FileText,
+  Landmark,
   Loader2,
   LogOut,
   RefreshCw,
@@ -30,12 +31,14 @@ import {
   packetInvitationEmail,
 } from '@/lib/email-templates';
 import type { PacketRecord } from '@/lib/documents/packets';
+import SignedDocuments from '@/components/SignedDocuments';
 
 const ICONS: Record<PacketDocumentType, typeof FileText> = {
   client_guidelines: ScrollText,
   rules_regulations: FileText,
   av_production: ClipboardList,
   credit_card_auth: CreditCard,
+  ach_auth: Landmark,
   event_packet_ack: ShieldCheck,
 };
 
@@ -201,7 +204,8 @@ function RecentRequests({ refreshKey }: { refreshKey: number }) {
       ) : (
         <ul className="divide-y divide-gray-100 border border-gray-200 bg-white">
           {packets.map((packet) => {
-            const expired =
+            // Links never expire; past the deadline is only a nudge to remind.
+            const overdue =
               packet.status === 'sent' &&
               packet.deadline &&
               new Date(`${packet.deadline}T23:59:59`) < new Date();
@@ -215,13 +219,13 @@ function RecentRequests({ refreshKey }: { refreshKey: number }) {
                       </span>
                       <span
                         className={`border px-2 py-0.5 text-[11px] tracking-wide uppercase ${
-                          expired
+                          overdue
                             ? 'border-red-200 bg-red-50 text-red-700'
                             : pill(packet.status)
                         }`}
                       >
-                        {expired
-                          ? 'expired'
+                        {overdue
+                          ? 'overdue'
                           : packet.status === 'sent'
                             ? 'awaiting signature'
                             : packet.status}
@@ -248,7 +252,7 @@ function RecentRequests({ refreshKey }: { refreshKey: number }) {
                     </p>
                   </div>
 
-                  {packet.status === 'sent' && !expired && (
+                  {packet.status === 'sent' && (
                     <div className="flex flex-shrink-0 flex-wrap gap-2">
                       <button
                         type="button"
@@ -668,6 +672,7 @@ export default function DocumentRequestDashboard({
         </div>
 
         <RecentRequests refreshKey={refreshKey} />
+        <SignedDocuments refreshKey={refreshKey} />
       </div>
 
       {/* Mobile preview */}

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sendEmail } from '@/lib/email';
+import { sendEmail, staffCc, staffRecipients } from '@/lib/email';
 import {
   DEFAULT_EVENT_PACKET_URL,
   packetInvitationEmail,
@@ -81,7 +81,6 @@ export async function POST(request: NextRequest) {
     email: clientEmail,
     docs: documents,
     deadline,
-    exp: deadline,
     eventDate: body.eventDate || undefined,
     docId: packetId,
     iat: new Date().toISOString(),
@@ -106,6 +105,10 @@ export async function POST(request: NextRequest) {
 
   const result = await sendEmail({
     to: clientEmail,
+    // The team sees every request that goes out.
+    cc: [...new Set([...staffRecipients(), ...staffCc()])].filter(
+      (address) => address.toLowerCase() !== clientEmail.toLowerCase()
+    ),
     subject: message.subject,
     html: message.html,
   });

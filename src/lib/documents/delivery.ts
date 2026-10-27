@@ -5,7 +5,9 @@ import {
   generateCreditCardAuthPDF,
   generateRulesRegulationsPDF,
   generateEventPacketAckPDF,
+  generateAchAuthPDF,
 } from '@/lib/helper';
+import { maskAccount } from '@/lib/ach-auth';
 
 /** Render the executed PDF for one document. Returns a data: URI. */
 export async function generateDocumentPDF(
@@ -20,12 +22,14 @@ export async function generateDocumentPDF(
       return generateCreditCardAuthPDF(body);
     case 'event_packet_ack':
       return generateEventPacketAckPDF(body);
+    case 'ach_auth':
+      return generateAchAuthPDF(body);
     default:
       return generateSignedPDF(body);
   }
 }
 
-function n8nAuthHeader(): string {
+export function n8nAuthHeader(): string {
   return `Basic ${Buffer.from(
     `${process.env.N8N_USERNAME}:${process.env.N8N_PASSWORD}`
   ).toString('base64')}`;
@@ -92,8 +96,15 @@ export async function postSignedDocument(
 
   if (body.docId) payload.docId = body.docId;
 
-  // Card details only ever travel inside the PDF.
-  if (body.documentType !== 'credit_card_auth') {
+  // Card details only ever travel inside the PDF; the n8n table gets only the
+  // last four digits of a bank account.
+  if (body.documentType === 'ach_auth') {
+    payload.formData = {
+      ...body.formData,
+      accountNumber: maskAccount(body.formData?.accountNumber),
+      accountNumberConfirm: undefined,
+    };
+  } else if (body.documentType !== 'credit_card_auth') {
     payload.formData = body.formData || null;
   }
 

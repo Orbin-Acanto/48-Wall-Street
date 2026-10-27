@@ -131,5 +131,6 @@ export const config = {
     '/api/documents/reminder',
     '/api/documents/cancel',
     '/api/documents/packets',
+    '/api/documents/files',
   ],
 };

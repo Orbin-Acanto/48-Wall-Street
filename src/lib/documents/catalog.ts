@@ -14,6 +14,7 @@ export type PacketDocumentType =
   | 'rules_regulations'
   | 'av_production'
   | 'credit_card_auth'
+  | 'ach_auth'
   | 'event_packet_ack';
 
 export interface PacketDocument {
@@ -54,6 +55,13 @@ export const PACKET_DOCUMENTS: PacketDocument[] = [
     description: 'Card on file for event charges, completed securely.',
     kind: 'form',
     minutes: 3,
+  },
+  {
+    type: 'ach_auth',
+    label: 'ACH Authorization',
+    description: 'Bank account debit authorization for event payments.',
+    kind: 'form',
+    minutes: 4,
   },
   {
     type: 'event_packet_ack',
