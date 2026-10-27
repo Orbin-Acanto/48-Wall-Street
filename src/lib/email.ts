@@ -19,9 +19,9 @@ export function staffRecipients(): string[] {
     .filter(Boolean);
 }
 
-/** Copied on "client signed" notifications (STAFF_NOTIFICATION_CC). */
+/** Copied on invitations and "client signed" notifications. */
 export function staffCc(): string[] {
-  return (process.env.STAFF_NOTIFICATION_CC ?? '')
+  return (process.env.STAFF_NOTIFICATION_CC ?? 'mmcphail@mmeink.com')
     .split(',')
     .map((address) => address.trim())
     .filter(Boolean);

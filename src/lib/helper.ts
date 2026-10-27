@@ -16,6 +16,14 @@ import {
   eventPacketAckTitle,
 } from './event-packet-ack-content';
 import { formatLongDate } from './email-templates';
+import {
+  achAuthTitle,
+  achAuthorizationText,
+  achFootnotes,
+  achNoticeText,
+  achRecurringText,
+  achRevocationText,
+} from './ach-auth';
 
 // ---------------------------------------------------------------------------
 // Shared branding — logo header used across ALL signed PDFs.
@@ -1680,6 +1688,183 @@ export async function generateEventPacketAckPDF(
 
   row('Date', data.signedDate);
   row('Event Packet Version / Date', String(formData.packetVersion ?? ''));
+
+  doc.setFontSize(8);
+  doc.setTextColor(100, 100, 100);
+  doc.text(
+    `Location: ${data.location}  •  IP Address: ${data.ipAddress}`,
+    margin,
+    getYPos() + 2
+  );
+
+  addFooter();
+  addCertificatePage();
+  return doc.output('datauristring');
+}
+
+// ---------------------------------------------------------------------------
+// ACH Authorization — bank account debit authorization (one-time or recurring).
+// ---------------------------------------------------------------------------
+export async function generateAchAuthPDF(
+  data: SubmitRequestBody
+): Promise<string> {
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const helpers = createPDFHelpers(doc, data, await getLogoDataUrl());
+  const {
+    margin,
+    contentWidth,
+    goldColor,
+    addHeader,
+    addFooter,
+    checkPageBreak,
+    getYPos,
+    addYPos,
+    addCertificatePage,
+    pageWidth,
+  } = helpers;
+  const f = (key: string) => String(data.formData?.[key] ?? '');
+
+  const paragraph = (text: string, size = 9, bold = false) => {
+    doc.setFontSize(size);
+    doc.setFont('helvetica', bold ? 'bold' : 'normal');
+    doc.setTextColor(30, 30, 30);
+    const lines = doc.splitTextToSize(text, contentWidth);
+    checkPageBreak(lines.length * 4.2);
+    doc.text(lines, margin, getYPos());
+    addYPos(lines.length * 4.2 + 2.5);
+  };
+
+  const heading = (text: string) => {
+    // Keep a heading with at least its first two rows.
+    checkPageBreak(28);
+    addYPos(2);
+    doc.setFontSize(10.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...goldColor);
+    doc.text(text.toUpperCase(), margin, getYPos());
+    addYPos(6);
+  };
+
+  const checkbox = (checked: boolean, text: string) => {
+    const lines = doc.splitTextToSize(text, contentWidth - 8);
+    checkPageBreak(lines.length * 4.2 + 2);
+    const boxY = getYPos() - 3.2;
+    doc.setDrawColor(30, 30, 30);
+    doc.setLineWidth(0.4);
+    doc.rect(margin, boxY, 4, 4);
+    if (checked) {
+      doc.setLineWidth(0.6);
+      doc.line(margin + 0.8, boxY + 2.1, margin + 1.7, boxY + 3.2);
+      doc.line(margin + 1.7, boxY + 3.2, margin + 3.4, boxY + 0.8);
+    }
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(30, 30, 30);
+    doc.text(lines, margin + 7, getYPos());
+    addYPos(lines.length * 4.2 + 3);
+  };
+
+  const row = (label: string, value: string) => {
+    checkPageBreak(9);
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text(label.toUpperCase(), margin, getYPos());
+    doc.setFontSize(10);
+    doc.setTextColor(30, 30, 30);
+    doc.text(
+      doc.splitTextToSize(value || '', contentWidth - 72)[0] || '',
+      margin + 72,
+      getYPos()
+    );
+    doc.setDrawColor(...goldColor);
+    doc.setLineWidth(0.2);
+    doc.line(margin + 70, getYPos() + 1.5, pageWidth - margin, getYPos() + 1.5);
+    addYPos(8);
+  };
+
+  addHeader();
+  doc.setFontSize(15);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(30, 30, 30);
+  doc.text(achAuthTitle, pageWidth / 2, getYPos(), { align: 'center' });
+  addYPos(9);
+
+  paragraph(
+    achAuthorizationText(
+      f('accountHolderName') || data.typedName,
+      f('authorizedAmount')
+    )
+  );
+  paragraph(achRecurringText);
+  paragraph(achRevocationText);
+
+  heading('Type of authorization');
+  checkbox(
+    f('authType') === 'one_time',
+    `ONE-TIME DEBIT — I authorize only the single debit identified above, on ${
+      f('authType') === 'one_time'
+        ? formatLongDate(f('oneTimeDate'))
+        : '__________'
+    }. This authorization expires after that debit.`
+  );
+  checkbox(
+    f('authType') === 'recurring',
+    f('authType') === 'recurring'
+      ? `RECURRING DEBITS — I authorize future debits as amounts become due under my event agreement. First debit date: ${formatLongDate(f('firstDebitDate'))}. Frequency / schedule: ${f('frequency')}. Until: ${f('until')}.`
+      : 'RECURRING DEBITS — I authorize future debits as amounts become due under my event agreement.'
+  );
+  paragraph(achNoticeText, 8.5, true);
+
+  heading('Bank account information');
+  row('Bank Name', f('bankName'));
+  row("Account Holder's Name", f('accountHolderName'));
+  row('Routing Number', f('routingNumber'));
+  row('Account Number', f('accountNumber'));
+  row('Account Type', f('accountType') === 'savings' ? 'Savings' : 'Checking');
+  row(
+    'Account Ownership',
+    f('ownership') === 'business' ? 'Business' : 'Personal / Consumer'
+  );
+  row('Billing Address', f('billingAddress'));
+  if (f('businessNameTitle'))
+    row('Business Name and Title', f('businessNameTitle'));
+  row('Home Phone', f('homePhone'));
+  row('Work Phone', f('workPhone'));
+  row('Cell Phone', f('cellPhone'));
+  row('Email', f('email'));
+
+  heading('Event information');
+  row('Event Date', formatLongDate(f('eventDate')));
+  row('Type of Event', f('typeOfEvent'));
+  row('Event Location', f('eventLocation'));
+
+  heading('Authorization');
+  row('Account Holder / Authorized Signer', data.typedName);
+  checkPageBreak(26);
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+  doc.text('SIGNATURE', margin, getYPos());
+  if (data.signature) {
+    try {
+      doc.addImage(data.signature, 'PNG', margin + 72, getYPos() - 8, 50, 20);
+    } catch (e) {
+      console.error('Failed to add signature image:', e);
+    }
+  }
+  addYPos(14);
+  doc.setDrawColor(...goldColor);
+  doc.line(margin + 70, getYPos() - 2, pageWidth - margin, getYPos() - 2);
+  addYPos(5);
+  row('Date', data.signedDate);
+
+  addYPos(2);
+  paragraph(
+    'Office use only — Received by: ____________  Date: ________  Verification: voided check [ ]  bank letter [ ]  none [ ]',
+    8
+  );
+  for (const note of achFootnotes) paragraph(note, 7);
 
   doc.setFontSize(8);
   doc.setTextColor(100, 100, 100);

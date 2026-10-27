@@ -20,6 +20,8 @@ import SignaturePad from '@/components/SignaturePad';
 import CreditCardAuthForm from '@/components/CreditCardAuthForm';
 import AVProductionForm from '@/components/AVProductionForm';
 import EventPacketAckForm from '@/components/EventPacketAckForm';
+import AchAuthForm from '@/components/AchAuthForm';
+import { achSignerConfirm } from '@/lib/ach-auth';
 import {
   PacketDocument,
   initialPlacements,
@@ -489,15 +491,15 @@ function DocumentSignPanel({
   const [changing, setChanging] = useState(false);
   const [cardholder, setCardholder] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
-  const isCard = doc.type === 'credit_card_auth';
   const placements = initialPlacements(doc.type).length;
-  const cardConfirm = isCard
-    ? {
-        label:
-          'I confirm I am the cardholder for the card provided, and I understand this authorization is valid for two years from the date of signing.',
-        checked: cardholder,
-        onChange: setCardholder,
-      }
+  const confirmLabel =
+    doc.type === 'credit_card_auth'
+      ? 'I confirm I am the cardholder for the card provided, and I understand this authorization is valid for two years from the date of signing.'
+      : doc.type === 'ach_auth'
+        ? achSignerConfirm
+        : null;
+  const cardConfirm = confirmLabel
+    ? { label: confirmLabel, checked: cardholder, onChange: setCardholder }
     : undefined;
 
   const what =
@@ -659,15 +661,6 @@ export default function PacketSigning() {
             title: 'Already signed',
             message:
               'These documents have already been signed and submitted. Thank you!',
-          });
-          return;
-        }
-        if (response.status === 410) {
-          setStatus({
-            tone: 'error',
-            title: 'Link expired',
-            message:
-              'The deadline for this signing link has passed. Please contact us and we will send you a new one.',
           });
           return;
         }
@@ -1081,6 +1074,14 @@ export default function PacketSigning() {
               </p>
             )}
 
+            {doc.type === 'ach_auth' && (
+              <p className="mb-6 flex items-start gap-2 border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+                <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                Only the account holder or an authorized signer on the account
+                may complete and sign this form.
+              </p>
+            )}
+
             {doc.kind === 'review' ? (
               <ReviewDocument
                 doc={doc}
@@ -1093,6 +1094,14 @@ export default function PacketSigning() {
                 packetUrl={packet.packetUrl || DEFAULT_EVENT_PACKET_URL}
                 packetVersion={`Issued ${formatLongDate(packet.iat) || 'with this request'}`}
                 documents={docs.filter((d) => !d.always).map((d) => d.label)}
+                showErrors={!!formErrors[doc.type]}
+                onChange={formHandlers[doc.type]}
+              />
+            ) : doc.type === 'ach_auth' ? (
+              <AchAuthForm
+                clientName={packet.name}
+                clientEmail={packet.email}
+                eventDate={packet.eventDate}
                 showErrors={!!formErrors[doc.type]}
                 onChange={formHandlers[doc.type]}
               />

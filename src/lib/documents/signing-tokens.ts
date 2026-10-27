@@ -4,17 +4,13 @@ import { Redis } from '@upstash/redis';
 /**
  * One-time-use tracking for document signing links.
  *
- * The signing token itself is a stateless HMAC, so a signature check alone
- * cannot tell a fresh link from one that was already used — the same URL stays
- * valid forever. We therefore record consumed tokens in Redis and refuse them
- * on any later visit or submit.
+ * The signing token itself is a stateless HMAC and links never expire, so a
+ * signature check alone cannot tell a fresh link from one that was already
+ * used or cancelled. We therefore record consumed tokens in Redis, with no
+ * TTL, and refuse them on any later visit or submit.
  */
 
 const CONSUMED_PREFIX = 'signing-token:consumed:';
-
-// Keep the record well past the link's own deadline so a used link can never
-// outlive its marker and become valid again.
-const CONSUMED_TTL_SECONDS = 60 * 60 * 24 * 180; // 180 days
 
 let redis: Redis | null = null;
 
@@ -63,7 +59,8 @@ export async function consumeToken(
     const result = await client.set(
       `${CONSUMED_PREFIX}${tokenId(token)}`,
       JSON.stringify({ consumedAt: new Date().toISOString(), ...meta }),
-      { nx: true, ex: CONSUMED_TTL_SECONDS }
+      // No expiry: links never expire, so neither may the marker.
+      { nx: true }
     );
     return result === 'OK';
   } catch (error) {
@@ -99,7 +96,7 @@ export type VerifiedToken =
   | { ok: false; status: number; error: string; message: string };
 
 /**
- * Check signature, deadline and one-time use. The token is the only thing a
+ * Check signature and one-time use. The token is the only thing a
  * client holds, so everything about who they are comes from here — never from
  * the request body.
  */
@@ -147,24 +144,8 @@ export async function verifySigningToken(
     };
   }
 
-  if (data.exp) {
-    const expiresAt = new Date(data.exp);
-    if (!Number.isNaN(expiresAt.getTime())) {
-      // A date-only deadline stays usable through the whole final day.
-      if (/^\d{4}-\d{2}-\d{2}$/.test(String(data.exp))) {
-        expiresAt.setHours(23, 59, 59, 999);
-      }
-      if (expiresAt.getTime() < Date.now()) {
-        return {
-          ok: false,
-          status: 410,
-          error: 'expired',
-          message: 'This signing link has expired.',
-        };
-      }
-    }
-  }
-
+  // No expiry check: a link stays valid until it is signed or cancelled. Any
+  // `exp`/`deadline` in older tokens is only a "please complete by" date.
   if ((await getTokenState(token)) === 'consumed') {
     return {
       ok: false,
