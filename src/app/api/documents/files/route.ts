@@ -1,12 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { AwsClient } from 'aws4fetch';
 import { n8nAuthHeader } from '@/lib/documents/delivery';
 
 export const dynamic = 'force-dynamic';
 
 // Where n8n's DocuSign workflow uploads signed PDFs (Railway "Minio Storage").
-// The fileURL stored in the n8n table points at an old host, so only the file
-// name is trusted from it.
+// The bucket is private; we read it with a get-only key. The fileURL stored in
+// the n8n table points at an old host, so only the file name is trusted.
 const BUCKET = 'https://bucket-apde-production.up.railway.app/documents-signed';
+
+function bucketClient(): AwsClient | null {
+  const accessKeyId = process.env.SIGNED_DOCS_ACCESS_KEY;
+  const secretAccessKey = process.env.SIGNED_DOCS_SECRET_KEY;
+  if (!accessKeyId || !secretAccessKey) return null;
+  return new AwsClient({
+    accessKeyId,
+    secretAccessKey,
+    service: 's3',
+    region: 'us-east-1',
+  });
+}
 
 export interface SignedDocumentRow {
   id: string;
@@ -53,7 +66,16 @@ export async function GET(request: NextRequest) {
     if (!/^[\w.-]+\.pdf$/.test(file)) {
       return NextResponse.json({ error: 'Invalid file' }, { status: 400 });
     }
-    const response = await fetch(`${BUCKET}/${file}`, { cache: 'no-store' });
+    const bucket = bucketClient();
+    if (!bucket) {
+      return NextResponse.json(
+        { error: 'SIGNED_DOCS_ACCESS_KEY is not configured' },
+        { status: 503 }
+      );
+    }
+    const response = await bucket.fetch(`${BUCKET}/${file}`, {
+      cache: 'no-store',
+    });
     if (!response.ok || !response.body) {
       return NextResponse.json({ error: 'File not found' }, { status: 404 });
     }
