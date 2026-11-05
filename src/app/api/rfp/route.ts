@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { deliverToN8n } from '@/lib/n8n-queue';
 
 /**
  * Event RFP wizard submissions.
@@ -6,9 +7,6 @@ import { NextRequest, NextResponse } from 'next/server';
  * Proxies to n8n server-side so the webhook URL and credentials stay out of the
  * browser bundle, matching how the contact and rental forms already work.
  */
-
-const FALLBACK_WEBHOOK_URL =
-  'https://primary-production-f807.up.railway.app/webhook/35339c3d-5ccf-4015-b6c6-458109f44a89';
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,34 +23,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const webhookUrl = process.env.N8N_RFP_WEBHOOK_URL || FALLBACK_WEBHOOK_URL;
-
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    };
-
-    const username = process.env.N8N_USERNAME;
-    const password = process.env.N8N_PASSWORD;
-    if (username && password) {
-      headers.Authorization = `Basic ${Buffer.from(
-        `${username}:${password}`
-      ).toString('base64')}`;
-    }
-
-    const n8nResponse = await fetch(webhookUrl, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        ...body,
-        submittedAt: new Date().toISOString(),
-      }),
+    await deliverToN8n({
+      target: 'N8N_RFP_WEBHOOK_URL',
+      kind: 'json',
+      body: { ...body, submittedAt: new Date().toISOString() },
     });
-
-    if (!n8nResponse.ok) {
-      const errorText = await n8nResponse.text();
-      console.error('n8n RFP webhook error:', errorText);
-      throw new Error('Failed to send data to n8n');
-    }
 
     return NextResponse.json(
       { success: true, message: 'RFP submitted successfully!' },
