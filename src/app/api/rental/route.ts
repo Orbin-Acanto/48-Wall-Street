@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { deliverToN8n } from '@/lib/n8n-queue';
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,28 +10,11 @@ export async function POST(request: NextRequest) {
       submittedAt: new Date().toISOString(),
     };
 
-    const username = process.env.N8N_USERNAME!;
-    const password = process.env.N8N_PASSWORD!;
-    const credentials = Buffer.from(`${username}:${password}`).toString(
-      'base64'
-    );
-
-    const n8nResponse = await fetch(process.env.N8N_RENTAL_WEBHOOK_URL!, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Basic ${credentials}`,
-      },
-      body: JSON.stringify(submissionData),
+    const n8nData = await deliverToN8n({
+      target: 'N8N_RENTAL_WEBHOOK_URL',
+      kind: 'json',
+      body: submissionData,
     });
-
-    if (!n8nResponse.ok) {
-      const errorText = await n8nResponse.text();
-      console.error('n8n webhook error:', errorText);
-      throw new Error('Failed to send data to n8n');
-    }
-
-    const n8nData = await n8nResponse.json();
 
     return NextResponse.json(
       {
