@@ -2,7 +2,6 @@ import { randomUUID } from 'crypto';
 import { getRedis } from '@/lib/documents/signing-tokens';
 import type { FloorKey, FloorPlanData } from '@/types/floorplan.types';
 import emptyTemplate from '@/data/floor-plan-templates/empty-template.json';
-import ilfaTemplate from '@/data/floor-plan-templates/ilfa.json';
 
 /**
  * Staff floor-plan template library.
@@ -28,7 +27,6 @@ const MAX_PLAN_BYTES = 900_000; // stays under Upstash's 1 MB request limit
 
 const STARTERS: FloorPlanTemplate[] = [
   ['starter-empty', 'Empty Template', emptyTemplate],
-  ['starter-ilfa', 'ILFA', ilfaTemplate],
 ].map(([id, name, plan]) => ({
   id: id as string,
   name: name as string,
