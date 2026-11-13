@@ -35,6 +35,7 @@ import {
   ModalType,
   FloorKey,
   LegendItemWithCount,
+  FloorPlanData,
 } from '@/types/floorplan.types';
 import { v4 as uuidv4 } from 'uuid';
 import { DoorWindow } from '@/types/floorplan.types';
@@ -106,7 +107,19 @@ export const FLOOR_UNDERLAYS: Record<
   },
 };
 
-export const FloorPlanEditor: React.FC = () => {
+interface FloorPlanEditorProps {
+  /** Start from this plan instead of the auto-saved draft. */
+  initialPlan?: FloorPlanData;
+  initialFloor?: FloorKey;
+  /** Extra UI drawn over the editor, given the current design (staff library). */
+  renderOverlay?: (plan: FloorPlanData, floor: FloorKey) => React.ReactNode;
+}
+
+export const FloorPlanEditor: React.FC<FloorPlanEditorProps> = ({
+  initialPlan,
+  initialFloor,
+  renderOverlay,
+}) => {
   const [isMobile, setIsMobile] = useState(false);
 
   const {
@@ -136,7 +149,7 @@ export const FloorPlanEditor: React.FC = () => {
     toggleLock,
     loadFloorPlan,
     resetFloorPlan,
-  } = useFloorPlanState();
+  } = useFloorPlanState(initialPlan);
 
   const [selectedTool, setSelectedTool] = useState<Tool>('pan');
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
@@ -168,8 +181,9 @@ export const FloorPlanEditor: React.FC = () => {
   const pasteBumpRef = useRef(0);
 
   // ---Underlay UI state ---
-  const [selectedFloor, setSelectedFloor] =
-    useState<FloorKey>('grand-mezzanine');
+  const [selectedFloor, setSelectedFloor] = useState<FloorKey>(
+    initialFloor ?? 'grand-mezzanine'
+  );
   const underlayDef = FLOOR_UNDERLAYS[selectedFloor];
   const underlayScale: number = underlayDef.scale;
   const underlayOpacity: number = underlayDef.opacity ?? 1;
@@ -1183,6 +1197,8 @@ export const FloorPlanEditor: React.FC = () => {
           </div>
         </div>
       )}
+
+      {renderOverlay?.(floorPlan, selectedFloor)}
 
       {!showPropertiesPanel && (
         <button

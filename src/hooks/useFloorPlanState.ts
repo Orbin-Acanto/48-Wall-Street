@@ -47,10 +47,11 @@ const createInitialFloorPlan = (): FloorPlanData => ({
 // editing session cannot grow memory without bound.
 const MAX_HISTORY = 50;
 
-export const useFloorPlanState = () => {
+/** `initial` (e.g. a template) replaces the auto-saved draft on mount. */
+export const useFloorPlanState = (initial?: FloorPlanData) => {
   const [history, setHistory] = useState<HistoryState>({
     past: [],
-    present: createInitialFloorPlan(),
+    present: initial ?? createInitialFloorPlan(),
     future: [],
   });
 
@@ -71,11 +72,12 @@ export const useFloorPlanState = () => {
     // Runs once on the client only (never during SSR) to avoid a hydration
     // mismatch — the first client render still matches the server's empty
     // initial plan, then this swaps in the saved one.
-    const saved = loadSavedFloorPlan();
+    const saved = initial ? null : loadSavedFloorPlan();
     if (saved) {
       setHistory({ past: [], present: saved, future: [] });
     }
     setSaveEnabled(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mount only
   }, []);
 
   // Debounced auto-save whenever the present design changes.

@@ -126,6 +126,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     '/admin/:path*',
+    '/api/admin/floor-plan-templates/:path*',
     '/api/documents/generate-token',
     '/api/documents/send',
     '/api/documents/reminder',

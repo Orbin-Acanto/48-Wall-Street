@@ -1,0 +1,1264 @@
+{
+  "id": "fdabe801-27de-4de0-870c-ebf383a6485a",
+  "name": "ILFA",
+  "version": "1.0.0",
+  "createdAt": "2026-11-13T00:00:00.000Z",
+  "updatedAt": "2026-11-13T00:00:00.000Z",
+  "walls": [],
+  "rooms": [
+    {
+      "id": "9d593892-58e2-40e0-9031-aa697c0d1a7b",
+      "name": "Registration",
+      "walls": [],
+      "x": 2049.3,
+      "y": 1164.7,
+      "width": 252,
+      "height": 48,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 30
+    },
+    {
+      "id": "625d39fc-eccd-4a07-aec0-5533ab27fb21",
+      "name": "Prosecco Wall",
+      "walls": [],
+      "x": 2325.9,
+      "y": 653.3,
+      "width": 273,
+      "height": 48,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 30
+    },
+    {
+      "id": "0013dfb1-7f19-4ae3-89b3-b150374065d8",
+      "name": "BAR",
+      "walls": [],
+      "x": 2683.5,
+      "y": 1133.6,
+      "width": 220,
+      "height": 48,
+      "area": 22,
+      "color": "#FFFFFF",
+      "rotation": 90,
+      "fontSize": 30
+    },
+    {
+      "id": "bdcd366c-bbdb-48d8-87a8-0628170aaf73",
+      "name": "STAGE 8'x24'",
+      "walls": [],
+      "x": 617.7,
+      "y": 1146.9,
+      "width": 252,
+      "height": 48,
+      "area": 22,
+      "color": "#FFFFFF",
+      "rotation": -90,
+      "fontSize": 30
+    },
+    {
+      "id": "5b7a61c1-cc40-4d82-9be7-7b544f7a812e",
+      "name": "BACK OF HOUSE",
+      "walls": [],
+      "x": 1029.2,
+      "y": 378.1,
+      "width": 328,
+      "height": 58,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 36
+    },
+    {
+      "id": "4102fb2a-68aa-45aa-8c7a-4f564caae13a",
+      "name": "LOUNGE",
+      "walls": [],
+      "x": 1191.6,
+      "y": 2040.6,
+      "width": 220,
+      "height": 58,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 36
+    },
+    {
+      "id": "28585dfb-6f3b-4adb-aa7a-e784b0db7d7b",
+      "name": "LOUNGE",
+      "walls": [],
+      "x": 1545.4,
+      "y": 2040.6,
+      "width": 220,
+      "height": 58,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 36
+    },
+    {
+      "id": "b58c3e62-33e7-45e0-9a21-2af810ca5656",
+      "name": "LOUNGE",
+      "walls": [],
+      "x": 1913.7,
+      "y": 2040.6,
+      "width": 220,
+      "height": 58,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 36
+    },
+    {
+      "id": "f63af5b2-9eb3-4da7-b906-e10d04cdf97f",
+      "name": "LOUNGE",
+      "walls": [],
+      "x": 2257.9,
+      "y": 2040.6,
+      "width": 220,
+      "height": 58,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 36
+    },
+    {
+      "id": "e123f750-fc6b-481e-abd3-1ece204398ab",
+      "name": "LCD Screen",
+      "walls": [],
+      "x": 652.4,
+      "y": 652.1,
+      "width": 220,
+      "height": 42,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 26
+    },
+    {
+      "id": "2841fe48-eed8-49c9-a109-f2314e7bdb29",
+      "name": "LCD Screen",
+      "walls": [],
+      "x": 652.4,
+      "y": 1627.8,
+      "width": 220,
+      "height": 42,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 26
+    },
+    {
+      "id": "22496e8a-0904-450c-85c9-30fce5eefc48",
+      "name": "LCD Screen",
+      "walls": [],
+      "x": 1155.1,
+      "y": 1738.9,
+      "width": 220,
+      "height": 42,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 26
+    },
+    {
+      "id": "e637a480-604b-4fc6-9982-3c1b2a0f3f93",
+      "name": "LCD Screen",
+      "walls": [],
+      "x": 1099.5,
+      "y": 616.7,
+      "width": 220,
+      "height": 42,
+      "area": 22,
+      "color": "#000000",
+      "rotation": 0,
+      "fontSize": 26
+    }
+  ],
+  "furniture": [
+    {
+      "id": "a2061550-ca66-45cf-bc04-2a4512a12bf0",
+      "type": "av",
+      "category": "Video",
+      "name": "LCD Screen",
+      "position": {
+        "x": 840.4,
+        "y": 703.3
+      },
+      "rotation": 295,
+      "dimensions": {
+        "width": 75,
+        "height": 6,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 48,
+        "height": 6,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-24\" y=\"-3\" width=\"48\" height=\"6\" fill=\"#1C1C1C\" stroke=\"#000\" stroke-width=\"1.5\"/>\n              <rect x=\"-23\" y=\"-2\" width=\"46\" height=\"4\" fill=\"#0A0A0A\" stroke=\"#333\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "color": "#595959"
+    },
+    {
+      "id": "cfed0850-ad37-4d46-9e6f-40f465b24ef6",
+      "type": "av",
+      "category": "Video",
+      "name": "LCD Screen",
+      "position": {
+        "x": 840.4,
+        "y": 1669.8
+      },
+      "rotation": 264,
+      "dimensions": {
+        "width": 75,
+        "height": 6,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 48,
+        "height": 6,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-24\" y=\"-3\" width=\"48\" height=\"6\" fill=\"#1C1C1C\" stroke=\"#000\" stroke-width=\"1.5\"/>\n              <rect x=\"-23\" y=\"-2\" width=\"46\" height=\"4\" fill=\"#0A0A0A\" stroke=\"#333\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "color": "#595959"
+    },
+    {
+      "id": "ad14d897-32c4-4909-ac02-75438083fde0",
+      "type": "av",
+      "category": "Video",
+      "name": "LCD Screen",
+      "position": {
+        "x": 1334.6,
+        "y": 1750.1
+      },
+      "rotation": 264,
+      "dimensions": {
+        "width": 75,
+        "height": 6,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 48,
+        "height": 6,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-24\" y=\"-3\" width=\"48\" height=\"6\" fill=\"#1C1C1C\" stroke=\"#000\" stroke-width=\"1.5\"/>\n              <rect x=\"-23\" y=\"-2\" width=\"46\" height=\"4\" fill=\"#0A0A0A\" stroke=\"#333\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "color": "#595959"
+    },
+    {
+      "id": "40942eb4-330c-42b1-b54a-65207d03c9e6",
+      "type": "av",
+      "category": "Video",
+      "name": "LCD Screen",
+      "position": {
+        "x": 1309.5,
+        "y": 637.2
+      },
+      "rotation": 295,
+      "dimensions": {
+        "width": 75,
+        "height": 6,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 48,
+        "height": 6,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-24\" y=\"-3\" width=\"48\" height=\"6\" fill=\"#1C1C1C\" stroke=\"#000\" stroke-width=\"1.5\"/>\n              <rect x=\"-23\" y=\"-2\" width=\"46\" height=\"4\" fill=\"#0A0A0A\" stroke=\"#333\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "color": "#595959"
+    },
+    {
+      "id": "7757b4da-2d95-415d-87fc-b36da507d8b6",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1157.8,
+        "y": 1585.5
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "235e584b-c8c2-466a-a090-fb718b14a6d3",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1157.8,
+        "y": 1378.2
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "a1f290eb-0c0c-42e9-b26e-d75dd970979c",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1157.8,
+        "y": 1170.9
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "42005b14-b0ac-4267-bd54-11be1293fc95",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1157.8,
+        "y": 963.6
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "0ad2bc49-39b1-4626-84d0-9897c34bbd06",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1157.8,
+        "y": 756.3
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "ed34e7bf-a374-4fb0-8da5-078454bc8bb8",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1324.9,
+        "y": 1585.5
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "e9130dbb-e470-4d9a-8cce-c3add3e8a3fe",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1324.9,
+        "y": 1378.2
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "44b2cf20-cfd2-4ffa-8802-ef29e8b6bb43",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1324.9,
+        "y": 1170.9
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "13d8ec02-35c9-44b9-ad4b-a9827ebc3fdf",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1324.9,
+        "y": 963.6
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "58ea62ab-1ea2-44a3-a890-9627b6ca9546",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1324.9,
+        "y": 756.3
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "3e60af6b-a9f2-4c88-9531-ed1721e101fe",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1492.0,
+        "y": 1585.5
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "5b3d6686-c39b-4d89-918e-6c01d185f414",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1492.0,
+        "y": 1378.2
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "b33a2ceb-1fd1-4b50-9344-ae19f5578be3",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1492.0,
+        "y": 1170.9
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "2ca0c25c-1e18-4511-8d50-fbd7f11b0480",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1492.0,
+        "y": 963.6
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "32d3c4d4-a59d-485c-8e48-0cbcf5d9ec5c",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 1492.0,
+        "y": 756.3
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "bbce3ecb-79c9-4509-a88f-5b416f3aff0b",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 992.8,
+        "y": 1585.5
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "816666db-e5bd-41f7-9372-9edc689e640f",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 992.8,
+        "y": 1378.2
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "961ca418-4200-4d00-979c-6f40a91fe5b0",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 992.8,
+        "y": 1170.9
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "aabdb7a6-a19f-46b8-81de-561245e3dc38",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 992.8,
+        "y": 963.6
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "c1156df1-ad4a-4118-ba74-f8d62b43cf0b",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Round Table",
+      "position": {
+        "x": 992.8,
+        "y": 756.3
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 60,
+        "height": 60,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"30\" fill=\"#2BACE2\" stroke=\"#000\" stroke-width=\"1\"/>\n              <circle cx=\"0\" cy=\"0\" r=\"26\" fill=\"none\" stroke=\"#000\" stroke-width=\"0.5\" stroke-dasharray=\"2,2\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "60\" Round Tables"
+    },
+    {
+      "id": "58b61302-5af2-479f-8677-6f76310546c6",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 2265.5,
+        "y": 851.7
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "19318a50-34ce-4b74-8b87-8f5a3e23221a",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 2368.4,
+        "y": 898.1
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "1aa665df-af48-4ac7-9282-ed78e197d3f7",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 2447.6,
+        "y": 969.5
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "0dc0fadb-460a-4c5c-9fc5-ff3236ab8467",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 2453.3,
+        "y": 1407.2
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "eb6e3f60-a46d-4cec-9b0b-bab142cf5388",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 2367.7,
+        "y": 1480.8
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "65cbacff-a38a-4cfe-b065-6d7cedb8958f",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 2269.6,
+        "y": 1522.5
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "e974fdee-c005-44aa-a486-8837097352a1",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 1500.7,
+        "y": 1954.9
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "215e5388-c4e8-406b-abf7-24bbb6ba9acf",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 1135.9,
+        "y": 1954.9
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "b4652c84-16c1-4962-859a-a4976b5a1920",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 1842.4,
+        "y": 1954.9
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "fdb3d176-984e-47d7-90ee-fcc79fd5006d",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "High Boys",
+      "position": {
+        "x": 2201.2,
+        "y": 1954.9
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 30,
+        "height": 30,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 24,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<circle cx=\"0\" cy=\"0\" r=\"12\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"0.5\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Black Highboys"
+    },
+    {
+      "id": "8c36929f-6f8c-40ad-9a08-adc56843456a",
+      "type": "furniture",
+      "category": "Bars",
+      "name": "Straight Bar (6ft)",
+      "position": {
+        "x": 2794.1,
+        "y": 1337.8
+      },
+      "rotation": 90,
+      "dimensions": {
+        "width": 8.5,
+        "height": 3,
+        "unit": "ft"
+      },
+      "baseDimensions": {
+        "width": 72,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-36\" y=\"-12\" width=\"72\" height=\"24\" fill=\"#4B77BE\" />",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "6' Bar",
+      "color": "#D91C5C"
+    },
+    {
+      "id": "4640b9af-f640-484e-b6e8-8943a58de79a",
+      "type": "furniture",
+      "category": "Bars",
+      "name": "Straight Bar (6ft)",
+      "position": {
+        "x": 2794.1,
+        "y": 1157.7
+      },
+      "rotation": 90,
+      "dimensions": {
+        "width": 8.5,
+        "height": 3,
+        "unit": "ft"
+      },
+      "baseDimensions": {
+        "width": 72,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-36\" y=\"-12\" width=\"72\" height=\"24\" fill=\"#4B77BE\" />",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "6' Bar",
+      "color": "#D91C5C"
+    },
+    {
+      "id": "f7ef2611-dae6-401f-a76a-b437ae21b439",
+      "type": "furniture",
+      "category": "Bars",
+      "name": "Straight Bar (6ft)",
+      "position": {
+        "x": 2794.1,
+        "y": 977.5
+      },
+      "rotation": 90,
+      "dimensions": {
+        "width": 8.5,
+        "height": 3,
+        "unit": "ft"
+      },
+      "baseDimensions": {
+        "width": 72,
+        "height": 24,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-36\" y=\"-12\" width=\"72\" height=\"24\" fill=\"#4B77BE\" />",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "6' Bar",
+      "color": "#D91C5C"
+    },
+    {
+      "id": "8ad2fedd-1404-44ac-84c9-3d9d41ded658",
+      "type": "furniture",
+      "category": "Staging",
+      "name": "Stage (8x24)",
+      "position": {
+        "x": 740.0,
+        "y": 1170.9
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 96,
+        "height": 288,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 96,
+        "height": 288,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-48\" y=\"-144\" width=\"96\" height=\"288\" fill=\"#00A651\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Staging-3",
+      "color": "#8C2B8F"
+    },
+    {
+      "id": "f318bd8c-2736-4814-b170-25157693a2e5",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Registration Table",
+      "position": {
+        "x": 2174.4,
+        "y": 1108.3
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 9.5,
+        "height": 1.5,
+        "unit": "ft"
+      },
+      "baseDimensions": {
+        "width": 36,
+        "height": 36,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-18\" y=\"-18\" width=\"36\" height=\"36\" fill=\"#662D91\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Registration",
+      "color": "#43AD4A"
+    },
+    {
+      "id": "26c40b86-4820-448c-8c8d-2057a9c0ba7e",
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Registration Table",
+      "position": {
+        "x": 2174.4,
+        "y": 1267.5
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 9.5,
+        "height": 1.5,
+        "unit": "ft"
+      },
+      "baseDimensions": {
+        "width": 36,
+        "height": 36,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-18\" y=\"-18\" width=\"36\" height=\"36\" fill=\"#662D91\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Registration",
+      "color": "#43AD4A"
+    },
+    {
+      "id": "2b1cd93a-edb8-4479-a664-9dd671d7129f",
+      "type": "decor",
+      "category": "Branding",
+      "name": "Prosecco Wall",
+      "position": {
+        "x": 2465.6,
+        "y": 625.0
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 204,
+        "height": 12,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 204,
+        "height": 12,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-102\" y=\"-6\" width=\"204\" height=\"12\" fill=\"#213F99\"/>",
+      "locked": false,
+      "zIndex": 1
+    }
+  ],
+  "eventDetails": {
+    "eventType": "Corporate Event",
+    "guestCount": 0,
+    "services": [],
+    "clientName": "",
+    "clientEmail": "",
+    "eventName": "ILFA",
+    "eventDate": "2026-11-04",
+    "foodType": "",
+    "cateringStyle": "",
+    "layoutStyle": "",
+    "decorStyle": "",
+    "colorPalette": "",
+    "hasDanceFloor": false,
+    "danceFloorSize": "",
+    "danceFloorType": "",
+    "danceFloorColor": "",
+    "danceFloorLocation": "",
+    "danceFloorNotes": "",
+    "hasStage": true,
+    "stageSize": "8'x24'",
+    "stageSkirtingType": "",
+    "stageBackdropStyle": "",
+    "hasPodium": false,
+    "podiumBranding": "",
+    "podiumNotes": "",
+    "barsCount": 3,
+    "barStylePreference": "",
+    "barFinishPreference": "",
+    "barServiceType": "",
+    "avNeeds": [],
+    "avNotes": "",
+    "powerPlan": "",
+    "powerNotes": "",
+    "entertainmentOptions": [],
+    "entertainmentNotes": "",
+    "loadInTime": "",
+    "loadOutTime": "",
+    "eventScheduleNotes": "",
+    "specialNotes": "",
+    "floor": "ground"
+  },
+  "canvasSettings": {
+    "width": 3200,
+    "height": 2400,
+    "scale": 20,
+    "gridSize": 20,
+    "showGrid": true,
+    "showDimensions": false,
+    "snapToGrid": true,
+    "backgroundColor": "#FFFFFF"
+  },
+  "isLocked": false
+}

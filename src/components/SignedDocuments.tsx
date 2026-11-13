@@ -4,12 +4,15 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Eye, Loader2, RefreshCw, Search } from 'lucide-react';
 import { PacketDocumentType, packetDocument } from '@/lib/documents/catalog';
 import type { SignedDocumentRow } from '@/app/api/documents/files/route';
+import { ClientLink, type ClientRef } from '@/components/DocumentClientPanel';
 
 /** Every signed document on record (n8n table), with its stored PDF. */
 export default function SignedDocuments({
   refreshKey,
+  onOpenClient,
 }: {
   refreshKey: number;
+  onOpenClient: (client: ClientRef) => void;
 }) {
   const [rows, setRows] = useState<SignedDocumentRow[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -46,10 +49,19 @@ export default function SignedDocuments({
     );
   }, [rows, query]);
 
+  // One card per client; rows arrive newest first, so each card is too.
+  const groups = useMemo(() => {
+    const byClient = new Map<string, SignedDocumentRow[]>();
+    for (const row of signed) {
+      const key = row.clientEmail.trim().toLowerCase();
+      byClient.set(key, [...(byClient.get(key) ?? []), row]);
+    }
+    return [...byClient];
+  }, [signed]);
+
   return (
-    <section className="mt-10">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-xl text-gray-900">Signed documents</h2>
+    <section>
+      <div className="mb-4 flex flex-wrap items-center justify-end gap-3">
         <div className="flex items-center gap-3">
           <label className="relative">
             <span className="sr-only">Search signed documents</span>
@@ -89,44 +101,68 @@ export default function SignedDocuments({
             : 'Signed documents will appear here.'}
         </p>
       ) : (
-        <ul className="divide-y divide-gray-100 border border-gray-200 bg-white">
-          {signed.map((row) => (
-            <li
-              key={row.id}
-              className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5"
-            >
-              <div className="min-w-0">
-                <p className="font-medium text-gray-900">
-                  {row.clientName}
-                  <span className="ml-2 text-sm font-normal text-gray-500">
-                    {row.clientEmail}
+        <ul className="space-y-4">
+          {groups.map(([email, docs]) => (
+            <li key={email} className="border border-gray-200 bg-white">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-gray-100 px-4 py-3 sm:px-5">
+                <p className="min-w-0">
+                  <ClientLink
+                    client={{
+                      name: docs[0].clientName,
+                      email: docs[0].clientEmail,
+                    }}
+                    onOpen={onOpenClient}
+                  />
+                  <span className="ml-2 text-sm text-gray-500">
+                    {docs[0].clientEmail}
                   </span>
                 </p>
-                <p className="mt-1 text-sm text-gray-700">
-                  {packetDocument(row.documentType as PacketDocumentType)
-                    ?.label ?? row.documentType}
-                </p>
-                <p className="mt-1 text-xs text-gray-400">
-                  Signed {row.signTime}
-                  {row.docId && ` · Ref ${row.docId}`}
-                </p>
-              </div>
-              {row.fileName ? (
-                <a
-                  href={`/api/documents/files?file=${encodeURIComponent(row.fileName)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex flex-shrink-0 items-center gap-1.5 self-start border border-gray-300 px-3 py-1.5 text-xs text-gray-700 hover:bg-gray-50 sm:self-auto"
-                >
-                  <Eye className="h-3.5 w-3.5" /> View PDF
-                </a>
-              ) : (
-                <span className="flex-shrink-0 text-xs text-gray-400">
-                  {row.documentType === 'credit_card_auth'
-                    ? 'Emailed only (card details are not stored)'
-                    : 'No file on record'}
+                <span className="text-xs text-gray-400">
+                  {docs.length} {docs.length === 1 ? 'document' : 'documents'} ·
+                  last signed {docs[0].signTime.split(' at ')[0]}
                 </span>
-              )}
+              </div>
+              <ul className="divide-y divide-gray-50">
+                {docs.map((row) => (
+                  <li
+                    key={row.id}
+                    className="flex items-center justify-between gap-3 px-4 py-2.5 sm:px-5"
+                  >
+                    <span className="min-w-0 text-sm text-gray-700">
+                      {packetDocument(row.documentType as PacketDocumentType)
+                        ?.label ?? row.documentType}
+                      {row.docId && (
+                        <span className="ml-2 hidden text-xs text-gray-400 sm:inline">
+                          {row.docId}
+                        </span>
+                      )}
+                    </span>
+                    {row.fileName ? (
+                      <a
+                        href={`/api/documents/files?file=${encodeURIComponent(row.fileName)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-primary inline-flex flex-shrink-0 items-center gap-1.5 text-xs text-gray-600"
+                      >
+                        <Eye className="h-3.5 w-3.5" /> View PDF
+                      </a>
+                    ) : (
+                      <span
+                        className="flex-shrink-0 text-xs text-gray-400"
+                        title={
+                          row.documentType === 'credit_card_auth'
+                            ? 'Card details are never stored'
+                            : undefined
+                        }
+                      >
+                        {row.documentType === 'credit_card_auth'
+                          ? 'Emailed only'
+                          : 'No file'}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>

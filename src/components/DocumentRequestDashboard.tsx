@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import Image from 'next/image';
+import { StaffHeader } from '@/components/FloorPlanTemplates/StaffHeader';
 import {
   Bell,
   Check,
@@ -12,8 +12,8 @@ import {
   FileText,
   Landmark,
   Loader2,
-  LogOut,
   RefreshCw,
+  Search,
   ScrollText,
   Send,
   ShieldCheck,
@@ -32,6 +32,38 @@ import {
 } from '@/lib/email-templates';
 import type { PacketRecord } from '@/lib/documents/packets';
 import SignedDocuments from '@/components/SignedDocuments';
+import {
+  ClientLink,
+  ClientPanel,
+  StatusPill,
+  isOverdue,
+  timeAgo,
+  type ClientRef,
+} from '@/components/DocumentClientPanel';
+
+type Tab = 'new' | 'requests' | 'signed';
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'new', label: 'New request' },
+  { id: 'requests', label: 'Requests' },
+  { id: 'signed', label: 'Signed documents' },
+];
+
+type StatusFilter = 'all' | 'awaiting' | 'overdue' | 'signed' | 'cancelled';
+const FILTERS: { id: StatusFilter; label: string }[] = [
+  { id: 'all', label: 'All' },
+  { id: 'awaiting', label: 'Awaiting' },
+  { id: 'overdue', label: 'Overdue' },
+  { id: 'signed', label: 'Signed' },
+  { id: 'cancelled', label: 'Cancelled' },
+];
+
+const matchesFilter = (packet: PacketRecord, filter: StatusFilter) =>
+  filter === 'all' ||
+  (filter === 'overdue'
+    ? isOverdue(packet)
+    : filter === 'awaiting'
+      ? packet.status === 'sent' && !isOverdue(packet)
+      : packet.status === filter);
 
 const ICONS: Record<PacketDocumentType, typeof FileText> = {
   client_guidelines: ScrollText,
@@ -76,23 +108,20 @@ function inDays(days: number): string {
   return date.toISOString().split('T')[0];
 }
 
-function timeAgo(iso?: string): string {
-  if (!iso) return '';
-  const minutes = Math.round((Date.now() - Date.parse(iso)) / 60000);
-  if (minutes < 1) return 'just now';
-  if (minutes < 60) return `${minutes}m ago`;
-  const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  return new Date(iso).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-  });
-}
-
 /* ------------------------------------------------------------------ */
 
-function RecentRequests({ refreshKey }: { refreshKey: number }) {
+function RecentRequests({
+  refreshKey,
+  onOpenClient,
+  onCount,
+}: {
+  refreshKey: number;
+  onOpenClient: (client: ClientRef) => void;
+  onCount: (awaiting: number) => void;
+}) {
   const [packets, setPackets] = useState<PacketRecord[] | null>(null);
+  const [filter, setFilter] = useState<StatusFilter>('all');
+  const [query, setQuery] = useState('');
   const [busy, setBusy] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
@@ -103,15 +132,25 @@ function RecentRequests({ refreshKey }: { refreshKey: number }) {
         cache: 'no-store',
       });
       const body = await response.json();
-      setPackets(body.packets ?? []);
+      const list: PacketRecord[] = body.packets ?? [];
+      setPackets(list);
+      onCount(list.filter((p) => p.status === 'sent').length);
     } catch {
       setPackets([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- onCount is a state setter
   }, []);
 
   useEffect(() => {
     load();
   }, [load, refreshKey]);
+
+  const q = query.trim().toLowerCase();
+  const shown = (packets ?? []).filter(
+    (p) =>
+      matchesFilter(p, filter) &&
+      `${p.clientName} ${p.clientEmail}`.toLowerCase().includes(q)
+  );
 
   const act = async (packet: PacketRecord, action: 'reminder' | 'cancel') => {
     if (
@@ -167,24 +206,55 @@ function RecentRequests({ refreshKey }: { refreshKey: number }) {
     setTimeout(() => setCopied(null), 2000);
   };
 
-  const pill = (status: PacketRecord['status']) =>
-    ({
-      sent: 'bg-amber-50 text-amber-800 border-amber-200',
-      signed: 'bg-green-50 text-green-800 border-green-200',
-      cancelled: 'bg-gray-100 text-gray-600 border-gray-200',
-    })[status];
-
   return (
-    <section className="mt-10">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-xl text-gray-900">Recent requests</h2>
-        <button
-          type="button"
-          onClick={load}
-          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900"
+    <section>
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div
+          className="flex flex-wrap gap-1.5"
+          role="group"
+          aria-label="Filter by status"
         >
-          <RefreshCw className="h-4 w-4" /> Refresh
-        </button>
+          {FILTERS.map((f) => (
+            <button
+              key={f.id}
+              type="button"
+              aria-pressed={filter === f.id}
+              onClick={() => setFilter(f.id)}
+              className={`border px-3 py-1.5 text-xs tracking-wide ${
+                filter === f.id
+                  ? 'border-gray-900 bg-gray-900 text-white'
+                  : 'border-gray-300 bg-white text-gray-600 hover:border-gray-400'
+              }`}
+            >
+              {f.label}
+              {packets && (
+                <span className="ml-1.5 opacity-60">
+                  {packets.filter((p) => matchesFilter(p, f.id)).length}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-3">
+          <label className="relative">
+            <span className="sr-only">Search requests</span>
+            <Search className="pointer-events-none absolute top-1/2 left-2.5 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Client or email"
+              className="focus:border-primary focus:ring-primary/30 w-52 border border-gray-300 bg-white py-1.5 pr-3 pl-8 text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:outline-none"
+            />
+          </label>
+          <button
+            type="button"
+            onClick={load}
+            className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900"
+          >
+            <RefreshCw className="h-4 w-4" /> Refresh
+          </button>
+        </div>
       </div>
 
       {notice && (
@@ -197,39 +267,28 @@ function RecentRequests({ refreshKey }: { refreshKey: number }) {
         <div className="flex justify-center border border-gray-200 bg-white p-10">
           <Loader2 className="h-5 w-5 animate-spin text-gray-400" />
         </div>
-      ) : packets.length === 0 ? (
+      ) : shown.length === 0 ? (
         <p className="border border-dashed border-gray-300 bg-white p-8 text-center text-sm text-gray-500">
-          Requests you and your team send will appear here.
+          {packets.length === 0
+            ? 'Requests you and your team send will appear here.'
+            : 'No requests match.'}
         </p>
       ) : (
         <ul className="divide-y divide-gray-100 border border-gray-200 bg-white">
-          {packets.map((packet) => {
-            // Links never expire; past the deadline is only a nudge to remind.
-            const overdue =
-              packet.status === 'sent' &&
-              packet.deadline &&
-              new Date(`${packet.deadline}T23:59:59`) < new Date();
+          {shown.map((packet) => {
             return (
               <li key={packet.id} className="p-4 sm:p-5">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-medium text-gray-900">
-                        {packet.clientName}
-                      </span>
-                      <span
-                        className={`border px-2 py-0.5 text-[11px] tracking-wide uppercase ${
-                          overdue
-                            ? 'border-red-200 bg-red-50 text-red-700'
-                            : pill(packet.status)
-                        }`}
-                      >
-                        {overdue
-                          ? 'overdue'
-                          : packet.status === 'sent'
-                            ? 'awaiting signature'
-                            : packet.status}
-                      </span>
+                      <ClientLink
+                        client={{
+                          name: packet.clientName,
+                          email: packet.clientEmail,
+                        }}
+                        onOpen={onOpenClient}
+                      />
+                      <StatusPill packet={packet} />
                     </div>
                     <p className="truncate text-sm text-gray-500">
                       {packet.clientEmail}
@@ -328,6 +387,31 @@ export default function DocumentRequestDashboard({
   const [copied, setCopied] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [tab, setTab] = useState<Tab>('new');
+  const [client, setClient] = useState<ClientRef | null>(null);
+  const [awaiting, setAwaiting] = useState<number | null>(null);
+
+  // The tab lives in the URL so a refresh or a shared link lands on it.
+  useEffect(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get('tab');
+    if (TABS.some((t) => t.id === fromUrl)) setTab(fromUrl as Tab);
+  }, []);
+
+  const openTab = (next: Tab) => {
+    setTab(next);
+    const url = new URL(window.location.href);
+    if (next === 'new') url.searchParams.delete('tab');
+    else url.searchParams.set('tab', next);
+    window.history.replaceState(null, '', url);
+  };
+
+  const startRequestFor = (who: ClientRef) => {
+    setClientName(who.name);
+    setClientEmail(who.email);
+    setClient(null);
+    openTab('new');
+    window.scrollTo({ top: 0 });
+  };
 
   useEffect(() => {
     try {
@@ -420,50 +504,50 @@ export default function DocumentRequestDashboard({
     setDeadline(inDays(7));
   };
 
-  const signOut = async () => {
-    await fetch('/api/admin/login', { method: 'DELETE' });
-    window.location.assign('/admin/login');
-  };
-
   return (
     <div className="min-h-screen bg-[#f6f4ef] pt-22 pb-20">
-      {/* Header */}
-      <div className="bg-[#0a0a0a]">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-6">
-          <div className="flex items-center gap-4">
-            <Image
-              src="/shared/logo/48-wall-logo-white.png"
-              alt="48 Wall Street Events"
-              width={110}
-              height={52}
-            />
-            <div className="hidden h-10 w-px bg-white/20 sm:block" />
-            <div>
-              <p className="text-xs tracking-[0.25em] text-[#d2b371] uppercase">
-                Staff Portal
-              </p>
-              <h1 className="text-xl text-white sm:text-2xl">
-                Document Center
-              </h1>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 text-sm text-white/70">
-            <span className="hidden sm:inline">
-              Signed in as <span className="text-white">{staff.name}</span>
-            </span>
+      <StaffHeader
+        title="Document Center"
+        staffName={staff.name}
+        active="/admin/document-request"
+      />
+
+      <div className="sticky top-22 z-30 border-b border-gray-200 bg-white">
+        <nav
+          className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4"
+          aria-label="Document Center sections"
+        >
+          {TABS.map((t) => (
             <button
+              key={t.id}
               type="button"
-              onClick={signOut}
-              className="inline-flex items-center gap-1.5 border border-white/20 px-3 py-1.5 text-white/80 hover:bg-white/10"
+              onClick={() => openTab(t.id)}
+              aria-current={tab === t.id ? 'page' : undefined}
+              className={`-mb-px inline-flex items-center gap-2 border-b-2 px-4 py-4 text-sm whitespace-nowrap transition-colors ${
+                tab === t.id
+                  ? 'border-primary text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-900'
+              }`}
             >
-              <LogOut className="h-4 w-4" /> Sign out
+              {t.label}
+              {t.id === 'requests' && !!awaiting && (
+                <span
+                  className="bg-primary min-w-5 rounded-full px-1.5 py-0.5 text-center text-[11px] leading-none text-white"
+                  title={`${awaiting} awaiting signature`}
+                >
+                  {awaiting}
+                </span>
+              )}
             </button>
-          </div>
-        </div>
+          ))}
+        </nav>
       </div>
 
       <div className="mx-auto max-w-6xl px-4 pt-8">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <div
+          hidden={tab !== 'new'}
+          className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
+        >
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="border border-gray-200 bg-white p-5 sm:p-6">
@@ -671,9 +755,27 @@ export default function DocumentRequestDashboard({
           </div>
         </div>
 
-        <RecentRequests refreshKey={refreshKey} />
-        <SignedDocuments refreshKey={refreshKey} />
+        {/* Kept mounted (just hidden) so filters survive tab switches and
+            the Requests badge stays current. */}
+        <div hidden={tab !== 'requests'}>
+          <RecentRequests
+            refreshKey={refreshKey}
+            onOpenClient={setClient}
+            onCount={setAwaiting}
+          />
+        </div>
+        <div hidden={tab !== 'signed'}>
+          <SignedDocuments refreshKey={refreshKey} onOpenClient={setClient} />
+        </div>
       </div>
+
+      {client && (
+        <ClientPanel
+          client={client}
+          onClose={() => setClient(null)}
+          onNewRequest={startRequestFor}
+        />
+      )}
 
       {/* Mobile preview */}
       {showPreview && (

@@ -1,0 +1,175 @@
+{
+  "id": "1bc20b38-0817-4b2d-ae5b-a93d6b5859e3",
+  "name": "Empty Template",
+  "version": "1.0.0",
+  "createdAt": "2026-07-03T05:05:16.457Z",
+  "updatedAt": "2026-11-13T20:04:16.643Z",
+  "walls": [],
+  "rooms": [
+    {
+      "name": "KARAOKE",
+      "walls": [],
+      "x": 1960,
+      "y": 600,
+      "width": 120,
+      "height": 40,
+      "area": 12,
+      "color": "#000000",
+      "id": "cdcec0fc-ba68-49c4-b2d3-458394d85d99"
+    }
+  ],
+  "furniture": [
+    {
+      "type": "decor",
+      "category": "Carpet",
+      "name": "Carpet Runner – Red",
+      "position": {
+        "x": 2270,
+        "y": 1190
+      },
+      "rotation": 90,
+      "dimensions": {
+        "width": 4,
+        "height": 17,
+        "unit": "ft"
+      },
+      "baseDimensions": {
+        "width": 48,
+        "height": 240,
+        "unit": "in"
+      },
+      "svgPath": "<rect x='-24' y='-120' width='48' height='240' fill='#B22222' stroke='#700000' stroke-width='2'/><rect x='-21' y='-117' width='42' height='234' fill='none' stroke='#F2C06B' stroke-width='1.5'/>",
+      "locked": false,
+      "zIndex": 1,
+      "id": "7c547123-fc0c-4d24-b959-12dfd6e232a0"
+    },
+    {
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Registration Table",
+      "position": {
+        "x": 2170,
+        "y": 1100
+      },
+      "rotation": 330,
+      "dimensions": {
+        "width": 5,
+        "height": 2,
+        "unit": "ft"
+      },
+      "baseDimensions": {
+        "width": 36,
+        "height": 36,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-18\" y=\"-18\" width=\"36\" height=\"36\" fill=\"#662D91\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Registration",
+      "id": "d75e3936-e7ba-41ea-8495-a527c6fbdf1b"
+    },
+    {
+      "type": "furniture",
+      "category": "Tables",
+      "name": "Registration Table",
+      "position": {
+        "x": 2170,
+        "y": 1280
+      },
+      "rotation": 30,
+      "dimensions": {
+        "width": 5,
+        "height": 2,
+        "unit": "ft"
+      },
+      "baseDimensions": {
+        "width": 36,
+        "height": 36,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-18\" y=\"-18\" width=\"36\" height=\"36\" fill=\"#662D91\"/>",
+      "locked": false,
+      "zIndex": 2,
+      "groupBy": "Registration",
+      "id": "c3739e34-717c-4218-b09a-fcb9f3ec3e80"
+    },
+    {
+      "type": "furniture",
+      "category": "Staging",
+      "name": "Stage (8x16)",
+      "position": {
+        "x": 765,
+        "y": 1175
+      },
+      "rotation": 0,
+      "dimensions": {
+        "width": 96,
+        "height": 192,
+        "unit": "in"
+      },
+      "baseDimensions": {
+        "width": 96,
+        "height": 192,
+        "unit": "in"
+      },
+      "svgPath": "<rect x=\"-48\" y=\"-96\" width=\"96\" height=\"192\" fill=\"#00A651\"/>",
+      "locked": false,
+      "zIndex": 1,
+      "groupBy": "Staging-2",
+      "id": "f348fc48-ee3d-4f0f-a76f-69af3d354b64"
+    }
+  ],
+  "eventDetails": {
+    "eventType": "Corporate Event",
+    "guestCount": 0,
+    "services": [],
+    "clientName": "",
+    "clientEmail": "",
+    "eventName": "",
+    "eventDate": "",
+    "foodType": "",
+    "cateringStyle": "",
+    "layoutStyle": "",
+    "decorStyle": "",
+    "colorPalette": "",
+    "hasDanceFloor": false,
+    "danceFloorSize": "",
+    "danceFloorType": "",
+    "danceFloorColor": "",
+    "danceFloorLocation": "",
+    "danceFloorNotes": "",
+    "hasStage": false,
+    "stageSize": "",
+    "stageSkirtingType": "",
+    "stageBackdropStyle": "",
+    "hasPodium": false,
+    "podiumBranding": "",
+    "podiumNotes": "",
+    "barsCount": 1,
+    "barStylePreference": "",
+    "barFinishPreference": "",
+    "barServiceType": "",
+    "avNeeds": [],
+    "avNotes": "",
+    "powerPlan": "",
+    "powerNotes": "",
+    "entertainmentOptions": [],
+    "entertainmentNotes": "",
+    "loadInTime": "",
+    "loadOutTime": "",
+    "eventScheduleNotes": "",
+    "specialNotes": "",
+    "floor": "ground"
+  },
+  "canvasSettings": {
+    "width": 3200,
+    "height": 2400,
+    "scale": 20,
+    "gridSize": 20,
+    "showGrid": true,
+    "showDimensions": false,
+    "snapToGrid": true,
+    "backgroundColor": "#FFFFFF"
+  },
+  "isLocked": false
+}
