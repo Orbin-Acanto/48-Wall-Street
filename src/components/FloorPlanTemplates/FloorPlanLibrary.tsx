@@ -175,23 +175,9 @@ export default function FloorPlanLibrary({ staffName }: { staffName: string }) {
                 )}
               </button>
               <div className="flex flex-1 flex-col p-4">
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="text-lg leading-tight text-gray-900">
-                    {t.name}
-                  </h3>
-                  {!t.builtIn && (
-                    <button
-                      type="button"
-                      onClick={() => remove(t)}
-                      disabled={deleting === t.id}
-                      className="p-1 text-gray-400 hover:text-red-600 disabled:opacity-50"
-                      title="Delete template"
-                      aria-label={`Delete ${t.name}`}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  )}
-                </div>
+                <h3 className="text-lg leading-tight text-gray-900">
+                  {t.name}
+                </h3>
                 <p className="mt-1 text-xs tracking-widest text-[#a88a4a] uppercase">
                   {FLOOR_UNDERLAYS[t.floor]?.label ?? t.floor}
                 </p>
@@ -203,12 +189,28 @@ export default function FloorPlanLibrary({ staffName }: { staffName: string }) {
                         .map(([name, n]) => `${n} × ${name}`)
                         .join(' · ')}
                 </p>
-                <div className="mt-auto flex items-center justify-between gap-2 pt-4">
-                  <span className="text-xs text-gray-500">
-                    {t.builtIn
-                      ? 'Starter template'
-                      : `${t.updatedBy} · ${formatDate(t.updatedAt)}`}
-                  </span>
+                <p className="mt-auto pt-4 text-xs text-gray-500">
+                  {t.builtIn
+                    ? 'Starter template'
+                    : `${t.updatedBy} · ${formatDate(t.updatedAt)}`}
+                </p>
+                <div className="mt-3 flex items-center justify-end gap-2">
+                  {!t.builtIn && (
+                    <button
+                      type="button"
+                      onClick={() => remove(t)}
+                      disabled={deleting === t.id}
+                      aria-label={`Delete ${t.name}`}
+                      className="inline-flex items-center gap-1.5 border border-red-200 px-3 py-1.5 text-xs font-medium tracking-wider text-red-600 uppercase hover:border-red-600 hover:bg-red-600 hover:text-white disabled:opacity-50"
+                    >
+                      {deleting === t.id ? (
+                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      ) : (
+                        <Trash2 className="h-3.5 w-3.5" />
+                      )}
+                      Delete
+                    </button>
+                  )}
                   <Link
                     href={editorUrl(t.id)}
                     className="border-primary text-primary hover:bg-primary border px-3 py-1.5 text-xs font-medium tracking-wider uppercase hover:text-white"
@@ -287,8 +289,10 @@ export default function FloorPlanLibrary({ staffName }: { staffName: string }) {
                   <button
                     type="button"
                     onClick={() => remove(previewing)}
-                    className="mt-3 w-full text-center text-xs text-gray-500 hover:text-red-600"
+                    disabled={deleting === previewing.id}
+                    className="mt-3 inline-flex w-full items-center justify-center gap-2 border border-red-200 px-4 py-2.5 text-xs font-medium tracking-widest text-red-600 uppercase hover:border-red-600 hover:bg-red-600 hover:text-white disabled:opacity-50"
                   >
+                    <Trash2 className="h-4 w-4" />
                     Delete template
                   </button>
                 )}
