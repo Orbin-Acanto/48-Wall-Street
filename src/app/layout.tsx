@@ -184,6 +184,7 @@ export default function RootLayout({
               sameAs: [
                 'https://www.facebook.com/48wallst/',
                 'https://www.instagram.com/48wallst/',
+                'https://www.google.com/search?kgmid=/g/11vyrhqqjc',
               ],
               amenityFeature: [
                 {
@@ -270,6 +271,7 @@ export default function RootLayout({
               },
               sameAs: [
                 'https://www.instagram.com/48wallst/',
+                'https://www.google.com/search?kgmid=/g/11vyrhqqjc',
                 'https://www.facebook.com/48wallst/',
               ],
             }),

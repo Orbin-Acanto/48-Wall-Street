@@ -118,6 +118,7 @@ export default function AboutLayout({
               ],
               sameAs: [
                 'https://www.instagram.com/48wallst/',
+                'https://www.google.com/search?kgmid=/g/11vyrhqqjc',
                 'https://www.facebook.com/48wallst/',
               ],
             },
