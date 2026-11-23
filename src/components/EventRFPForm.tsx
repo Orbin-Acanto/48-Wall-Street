@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { track } from '@vercel/analytics';
 import {
   ChevronDown,
   Volume2,
@@ -559,6 +560,7 @@ export default function EventRFPForm() {
         throw new Error(result?.message || 'Failed to submit RFP');
       }
 
+      track('lead_submitted', { form: 'rfp' });
       setShowModal(true);
       resetForm();
     } catch (error) {

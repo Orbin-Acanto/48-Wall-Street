@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { track } from '@vercel/analytics';
 import {
   X,
   ShoppingCart,
@@ -108,6 +109,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
+      track('lead_submitted', { form: 'rental' });
       alert(
         'Proposal submitted successfully! Our team will contact you shortly.'
       );

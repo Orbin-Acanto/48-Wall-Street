@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { track } from '@vercel/analytics';
 
 const ContactUsSlider: React.FC = () => {
   const pathname = usePathname();
@@ -150,6 +151,7 @@ const ContactUsSlider: React.FC = () => {
       const result = await response.json();
 
       if (result.success && result.data) {
+        track('lead_submitted', { form: 'contact_slider', page: pathname });
         setSubmitStatus({
           type: 'success',
           message:

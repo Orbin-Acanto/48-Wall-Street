@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { track } from '@vercel/analytics';
 import {
   type Availability,
   type PriceTier,
@@ -318,6 +319,7 @@ export default function BookingModal({
         children_count: theme.asksChildren ? children : null,
         special_requests: requests.trim() || null,
       });
+      track('booking_created', { experience });
       setReference(result.reference);
       setStep('done');
     } catch (err) {

@@ -6,6 +6,7 @@ import CustomButton from './CustomButton';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { track } from '@vercel/analytics';
 
 const ContactUs: React.FC = () => {
   const pathname = usePathname();
@@ -156,6 +157,7 @@ const ContactUs: React.FC = () => {
       const result = await response.json();
 
       if (result.success && result.data) {
+        track('lead_submitted', { form: 'contact', page: pathname });
         setSubmitStatus({
           type: 'success',
           message:

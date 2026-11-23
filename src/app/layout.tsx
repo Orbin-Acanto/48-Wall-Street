@@ -12,6 +12,7 @@ import ContactUsSlider from '@/components/ContactUsSlider';
 import Script from 'next/script';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
+import ClickTracking from '@/components/ClickTracking';
 
 // Self-hosted by next/font, so no request to Google Fonts at runtime
 const gilda = Gilda_Display({
@@ -662,6 +663,7 @@ export default function RootLayout({
         {children}
         <SpeedInsights />
         <Analytics />
+        <ClickTracking />
         <Footer />
       </body>
     </html>

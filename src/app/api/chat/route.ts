@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { checkBotId } from 'botid/server';
 
 export const runtime = 'edge';
 
@@ -12,6 +13,11 @@ export async function OPTIONS() {
 }
 
 export async function POST(req: NextRequest) {
+  const verification = await checkBotId();
+  if (verification.isBot) {
+    return Response.json({ error: 'Access denied' }, { status: 403 });
+  }
+
   try {
     const body = await req.text();
 

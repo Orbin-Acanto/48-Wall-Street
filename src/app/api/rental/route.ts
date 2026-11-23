@@ -1,7 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkBotId } from 'botid/server';
 import { deliverToN8n } from '@/lib/n8n-queue';
 
 export async function POST(request: NextRequest) {
+  const verification = await checkBotId();
+  if (verification.isBot) {
+    return NextResponse.json(
+      { success: false, message: 'Access denied' },
+      { status: 403 }
+    );
+  }
+
   try {
     const body = await request.json();
 
