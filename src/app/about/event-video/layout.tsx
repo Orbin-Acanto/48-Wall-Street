@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Event Videos & Reels | 48 Wall Street NYC - Corporate, Wedding & Social Events',
+  title: 'Event Videos & Reels | 48 Wall Street NYC',
   description:
-    'Watch event videos and reels from 48 Wall Street NYC. Explore our historic Financial District venue hosting corporate events, weddings, Bar/Bat Mitzvahs, non-profit galas, and social celebrations. See our Grand Mezzanine, 30-foot ceilings, and stunning 1920s architecture in action.',
+    'Watch videos of corporate events, weddings, Bar and Bat Mitzvahs and galas at 48 Wall Street, with its Grand Mezzanine and 30-foot ceilings.',
   keywords:
     '48 Wall Street videos, NYC event venue videos, corporate event videos, wedding venue videos NYC, event reels Manhattan, Bar Mitzvah videos, non-profit gala videos, Financial District venue videos, Grand Mezzanine videos, historic venue events NYC, Manhattan event space videos, 48 Wall Street portfolio',
   openGraph: {

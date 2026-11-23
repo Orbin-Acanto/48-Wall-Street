@@ -123,7 +123,7 @@ export default function CinematicServicesShowcase({
             autoPlay
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             loop={false}
             onEnded={(e) => {
               const vid = e.currentTarget;

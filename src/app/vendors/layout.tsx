@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Exclusive Event Partners | 48 Wall Street NYC',
+  title: 'Exclusive Event Partners',
   description:
-    "48 Wall Street's exclusive collection of hospitality, culinary, entertainment, and production partners: Tardi's Catering, FiDi Hospitality, MME Worldwide, and Mikey Mike Entertainment. One venue, one team, endless possibilities.",
+    "48 Wall Street's hospitality, catering, entertainment and production partners: Tardi's Catering, FiDi Hospitality, MME Worldwide and Mikey Mike Entertainment.",
   keywords:
     "48 Wall Street vendors, preferred event partners NYC, Tardi's Catering, FiDi Hospitality, MME Worldwide, Mikey Mike Entertainment, event production NYC, luxury catering Manhattan, event entertainment NYC, hospitality management",
   openGraph: {

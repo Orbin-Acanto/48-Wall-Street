@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Film Shoot Location NYC | Historic Venue & Holding Space Lower Manhattan',
+  title: 'Film Shoot Location NYC',
   description:
-    'Secure 48 Wall Street for your next production. A historic NYC venue in Lower Manhattan offering grand architecture for film shoots, ample holding space, and entertainment events.',
+    'Book 48 Wall Street for your next production: a historic Lower Manhattan location with grand architecture and ample holding space for film shoots.',
   keywords:
     'NYC film location, Manhattan filming location, historic film set NYC, TV production venue, film shoot location Manhattan, Financial District filming, commercial shoot location NYC, photo shoot venue Manhattan, period film location, bank building film set, 1920s architecture filming, Wall Street film location, production venue NYC, movie location Manhattan, TV series location, historic building filming NYC, film location rental NYC, photo shoot location NYC, film location near me, period film location Manhattan, bank interior film location NYC, commercial shoot location NYC, production holding space Manhattan, historic film location Lower Manhattan',
   openGraph: {

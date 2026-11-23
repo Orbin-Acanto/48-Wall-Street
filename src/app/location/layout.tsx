@@ -3,10 +3,9 @@ import type { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title:
-    'Location & Directions | Financial District Event Venue | 48 Wall Street',
+  title: 'Location & Directions',
   description:
-    'Visit 48 Wall Street, a premier historic downtown venue located in the heart of the Financial District. Easily accessible by subway and steps from major Lower Manhattan landmarks.',
+    'Find 48 Wall Street in the heart of the Financial District. The venue is easy to reach by subway and steps from Lower Manhattan landmarks.',
   keywords: [
     '48 Wall Street location',
     'NYC event venue location',

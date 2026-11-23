@@ -2,9 +2,9 @@ import SpaceDetails from '@/components/SpaceDetails';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Banking Hall | Historic Event Venue NYC | 48 Wall Street',
+  title: 'Banking Hall | Historic Event Venue NYC',
   description:
-    'The Banking Hall at 48 Wall Street features original 1920s architecture with soaring ceilings and grand design elements, offering a prestigious setting for large-scale events in the Financial District.',
+    'The Banking Hall at 48 Wall Street has original 1920s architecture and soaring ceilings, a grand setting for large events in the Financial District.',
   alternates: {
     canonical: 'https://www.48wallnyc.com/spaces/banking-hall',
   },

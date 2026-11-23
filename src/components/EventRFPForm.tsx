@@ -580,9 +580,9 @@ export default function EventRFPForm() {
           <p className="font-secondary text-primary mb-4 text-center text-sm tracking-[0.3em] uppercase">
             Plan Every Detail
           </p>
-          <h2 className="heading-hero text-center">
+          <h1 className="heading-hero text-center">
             Build Your Event Proposal
-          </h2>
+          </h1>
           <p className="text-lead mb-16 text-center">
             Design your event in just a few minutes. Our AI-powered Request for
             Proposal (RFP) Builder allows you to customize every aspect of your

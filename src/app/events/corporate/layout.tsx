@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Corporate Event Venue Wall Street | Conference Space Financial District NYC ',
+  title: 'Corporate Event Venue Wall Street',
   description:
-    'Host your next business gathering at 48 Wall Street. We are a premier Lower Manhattan corporate event space and historic venue perfect for conferences, meetings, and executive events.',
+    'Host your next business event at 48 Wall Street, a historic Lower Manhattan corporate event venue for conferences, meetings and executive events.',
   keywords:
     'corporate event venue NYC, Manhattan conference space, Financial District meeting venue, corporate meeting space NYC, business event venue Manhattan, product launch venue NYC, company event space, corporate holiday party venue, business conference NYC, Wall Street meeting space, executive event venue, corporate gathering space NYC, team building venue Manhattan, sales kickoff venue, board meeting space NYC, company town hall venue, corporate event space NYC, corporate venue rental NYC, company event venue Manhattan, corporate event venues near me, business event space NYC, corporate offsite venue NYC, town hall venue NYC, sales kickoff venue NYC, investor day venue NYC, client reception venue Manhattan, corporate event venue 500 guests NYC, where to host a corporate event in NYC, FiDi corporate event space',
   openGraph: {

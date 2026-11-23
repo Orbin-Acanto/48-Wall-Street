@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC',
+  title: 'Non-Profit Event & Gala Venue NYC',
   description:
-    'Host impactful charity galas and fundraisers at 48 Wall Street. A historic downtown venue in the Financial District perfect for non-profit events that inspire generosity.',
+    'Host charity galas and fundraisers at 48 Wall Street, a historic downtown venue in the Financial District that suits non-profit events.',
   keywords:
     'non-profit event venue NYC, fundraising gala venue Manhattan, charity event venue Financial District, nonprofit gala space NYC, fundraiser venue Lower Manhattan, charity gala venue Wall Street, nonprofit event space Manhattan, benefit gala venue NYC, foundation fundraiser venue NYC, advocacy event space NYC, non-profit banquet hall NYC, charity auction venue Manhattan, nonprofit dinner gala NYC, philanthropic event venue, cause-based event space Financial District',
   openGraph: {

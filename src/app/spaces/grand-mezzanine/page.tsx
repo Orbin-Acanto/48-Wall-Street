@@ -2,10 +2,9 @@ import SpaceDetails from '@/components/SpaceDetails';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Grand Mezzanine Banking Hall | Historic Event Space NYC | 48 Wall Street',
+  title: 'Grand Mezzanine Banking Hall',
   description:
-    'The Grand Mezzanine Banking Hall at 48 Wall Street offers 9,000 sq ft of original 1927 architecture with 30-foot ceilings, a grand marble staircase, and crystal chandeliers. Up to 500 guests in the Financial District.',
+    'The Grand Mezzanine at 48 Wall Street offers 9,000 sq ft of 1927 architecture, 30-foot ceilings, a marble staircase and room for 500 guests.',
   alternates: {
     canonical: 'https://www.48wallnyc.com/spaces/grand-mezzanine',
   },

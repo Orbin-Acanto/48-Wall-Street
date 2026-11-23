@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | 48 Wall Street Events',
+  title: 'Privacy Policy',
+  alternates: { canonical: '/privacy-policy' },
   description: 'Read our privacy policy.',
   robots: {
     index: false,

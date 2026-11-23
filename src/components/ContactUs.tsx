@@ -219,7 +219,7 @@ const ContactUs: React.FC = () => {
 
   return (
     <div className="bg-whitesmoke min-h-screen px-6 py-20">
-      <h1 className="text-primary heading-hero text-center">Enquire</h1>
+      <h2 className="text-primary heading-hero text-center">Enquire</h2>
       <p className="text-lead mb-8 text-center">
         To begin planning your next exceptional event at 48 Wall Street,
         complete the contact form, email{' '}

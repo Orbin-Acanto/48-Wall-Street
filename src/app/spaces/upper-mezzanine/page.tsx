@@ -2,9 +2,9 @@ import SpaceDetails from '@/components/SpaceDetails';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Upper Mezzanine | Historic Event Space NYC | 48 Wall Street',
+  title: 'Upper Mezzanine | Historic Event Space',
   description:
-    'The Upper Mezzanine at 48 Wall Street is an elevated, intimate event space overlooking the Grand Banking Hall, ideal for VIP receptions and cocktail gatherings in the Financial District of Lower Manhattan.',
+    'The Upper Mezzanine at 48 Wall Street overlooks the Grand Banking Hall, an intimate space for VIP receptions and cocktail gatherings.',
   alternates: {
     canonical: 'https://www.48wallnyc.com/spaces/upper-mezzanine',
   },

@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Virtual Tour | 48 Wall Street NYC - 3D Interactive Venue Tour Manhattan',
+  title: '3D Virtual Tour | 48 Wall Street NYC',
   description:
-    "Take a 3D virtual tour of 48 Wall Street NYC event venue. Explore our historic Grand Mezzanine with 30-foot ceilings and Concourse Level in immersive 3D. Walk through Manhattan's premier Financial District venue featuring original 1920s architecture, Palladian windows, and grand marble staircase from anywhere.",
+    'Take a 3D virtual tour of 48 Wall Street. Walk through the Grand Mezzanine and Concourse Level, with original 1920s architecture and a marble staircase.',
   keywords:
     '48 Wall Street virtual tour, 3D venue tour NYC, virtual venue walkthrough, Manhattan venue 3D tour, interactive venue tour, Grand Mezzanine virtual tour, 360 venue tour NYC, Financial District venue tour, virtual event space tour, 3D venue viewing, NYC venue virtual reality, online venue tour',
   openGraph: {

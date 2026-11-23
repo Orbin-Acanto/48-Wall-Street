@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Customize Event Plan | 48 Wall Street NYC - Interactive Floor Plan Designer',
+  title: 'Customize Your Event Floor Plan | 48 Wall Street NYC',
   description:
-    'Design your perfect event at 48 Wall Street NYC with our interactive floor plan customization tool. Arrange seating, plan layouts, visualize your setup for the Grand Mezzanine and Concourse Level, and export your custom event plan as PDF. Free event planning tool for Manhattan corporate events, weddings, and celebrations.',
+    'Plan your event layout at 48 Wall Street with our interactive floor plan tool. Arrange seating for the Grand Mezzanine and Concourse Level and export a PDF.',
   keywords:
     '48 Wall Street event planner, customize floor plan NYC, interactive event planner, venue layout tool, event design tool, floor plan designer, PDF floor plan export, seating arrangement tool, event planning NYC, customize venue layout, Manhattan event planner tool, venue visualization tool',
   openGraph: {

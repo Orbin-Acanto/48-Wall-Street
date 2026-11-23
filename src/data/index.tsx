@@ -97,7 +97,7 @@ export const photos: Photo[] = [
   { src: '/gallery/gallery-04.jpg', alt: 'Wedding celebration', span: 'small' },
   { src: '/gallery/gallery-03.jpg', alt: 'Wedding celebration', span: 'tall' },
   { src: '/gallery/gallery-02.jpg', alt: 'Wedding celebration', span: 'large' },
-  { src: '/gallery/gallery-05.png', alt: 'Wedding celebration', span: 'tall' },
+  { src: '/gallery/gallery-05.webp', alt: 'Wedding celebration', span: 'tall' },
   { src: '/gallery/gallery-06.jpg', alt: 'Wedding celebration', span: 'wide' },
   {
     src: '/gallery/corporate/corporate-03.jpg',
@@ -351,12 +351,12 @@ export const teamMembers: TeamMember[] = [
   {
     name: 'Lauren Leuci',
     title: 'Director of Sales',
-    image: '/about/team/lauren.png',
+    image: '/about/team/lauren.webp',
   },
   {
     name: 'Andrew Heaton',
     title: 'Director of Operations',
-    image: '/about/team/andy.png',
+    image: '/about/team/andy.webp',
   },
 ];
 
@@ -2736,7 +2736,7 @@ export const eventProductionData = {
         '/services/production/av/gallery-02.jpg',
         '/services/production/av/gallery-03.jpg',
         '/services/production/av/gallery-04.jpg',
-        '/services/production/av/gallery-05.png',
+        '/services/production/av/gallery-05.webp',
       ],
       imageAlts: [
         'Audio visual production and LED screen setup at 48 Wall Street, NYC',
@@ -2812,7 +2812,7 @@ export const eventProductionData = {
       images: [
         '/services/production/entertainment/gallery-01.jpg',
         '/services/production/entertainment/gallery-02.png',
-        '/services/production/entertainment/gallery-03.png',
+        '/services/production/entertainment/gallery-03.webp',
       ],
       imageAlts: [
         'Live band performance at an event in 48 Wall Street, Financial District NYC',
@@ -3696,10 +3696,10 @@ export const sidebarSocialLinks = [
 export const vendorsData = {
   hero: {
     images: [
-      '/vendors/hero-01.png',
+      '/vendors/hero-01.webp',
       '/vendors/hero-02.png',
-      '/vendors/hero-03.png',
-      '/vendors/hero-04.png',
+      '/vendors/hero-03.webp',
+      '/vendors/hero-04.webp',
     ],
     eyebrow: '48 Wall Street',
     title: 'Exclusive Event Partners',

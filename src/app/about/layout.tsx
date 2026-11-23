@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Historic NYC Event Venue | About 48 Wall Street | Lower Manhattan Event Space',
+  title: { absolute: 'About 48 Wall Street | Historic Lower Manhattan Venue' },
   description:
-    "Discover 48 Wall Street, a historic downtown venue in the Financial District. Built in 1927 as the Bank of New York, this unique event space blends Alexander Hamilton’s legacy with modern elegance.",
+    "Built in 1927 as the Bank of New York, 48 Wall Street is a historic event venue in the Financial District with ties to Alexander Hamilton's legacy.",
   keywords:
     '48 Wall Street history, Bank of New York building, 1927 historic venue, Alexander Hamilton, Financial District landmark, Grand Mezzanine NYC, historic bank venue, National Register Historic Places, 1920s architecture Manhattan, Palladian windows, marble staircase venue, event venue team NYC, 48 Wall Street testimonials, Lower Manhattan historic building',
   openGraph: {

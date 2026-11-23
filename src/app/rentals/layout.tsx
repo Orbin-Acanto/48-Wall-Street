@@ -2,10 +2,9 @@ import { CartProvider } from '@/contexts/CartContext';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Browse Event Rentals NYC | Furniture & Decor Catalog | 48 Wall Street Rental Inventory',
+  title: 'Event Rental Catalog',
   description:
-    "Browse MMEink's complete event rental catalog. View thousands of furniture, decor, props, staging, and catering rental items available for NYC events. Add items to cart and request a custom proposal for your Manhattan event. Explore lounge furniture, tables, chairs, linens, props, and specialty items. Get instant quotes for event rentals at 48 Wall Street and throughout NYC.",
+    "Browse MMEink's event rental catalog of furniture, decor, props, staging and catering items for NYC events. Add items to a cart and request a proposal.",
   keywords:
     'browse event rentals NYC, rental catalog Manhattan, event furniture catalog, rental inventory NYC, event decor catalog, prop rental browse, furniture rental catalog, event equipment browse, rental quote NYC, event rental cart, Manhattan rental items, 48 Wall Street rentals, MMEink catalog, party rental inventory, wedding rental catalog NYC, corporate event rentals browse',
   openGraph: {

@@ -4,7 +4,7 @@ import Script from 'next/script';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.48wallnyc.com';
 
 export const metadata: Metadata = {
-  title: 'Thank You | 48 Wall Street NYC Event Venue',
+  title: 'Thank You',
   description:
     'Thank you for contacting 48 Wall Street. Our team will reach out shortly regarding your event inquiry.',
   keywords: [

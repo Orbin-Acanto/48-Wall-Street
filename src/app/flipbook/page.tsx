@@ -1,5 +1,13 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getFlipbooks, slugify } from '@/lib/flipbooks';
+
+export const metadata: Metadata = {
+  title: 'Flipbooks Library',
+  description:
+    "Browse brochures, branding books and visual collections from 48 Wall Street, a historic 1927 event venue in New York's Financial District.",
+  alternates: { canonical: '/flipbook' },
+};
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 14400;

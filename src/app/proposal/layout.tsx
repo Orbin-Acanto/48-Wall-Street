@@ -3,9 +3,9 @@ import type { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Build Your Event Proposal | 48 Wall Street NYC',
+  title: 'Build Your Event Proposal',
   description:
-    'Design your event in minutes with the 48 Wall Street AI-powered RFP Builder. Customize services, spaces, and details to receive a tailored proposal, budget, floor plan, and event timeline.',
+    'Use the 48 Wall Street RFP Builder to choose spaces and services and receive a tailored proposal, budget, floor plan and event timeline.',
   keywords: [
     'event proposal builder',
     'RFP builder NYC',

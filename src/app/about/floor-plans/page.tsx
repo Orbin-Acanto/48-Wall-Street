@@ -87,7 +87,7 @@ export default function FloorPlansPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl"
           >
-            <h2 className="heading-hero text-white">FLOOR PLANS</h2>
+            <h1 className="heading-hero text-white">FLOOR PLANS</h1>
             <div className="bg-primary mx-auto mb-6 h-[2px] w-32" />
             <p className="text-lead max-w-3xl text-gray-200">
               Explore our versatile event spaces and visualize your perfect

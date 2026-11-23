@@ -17,8 +17,9 @@ export async function generateMetadata({ params }: PageProps) {
   if (!book) return {};
 
   return {
-    title: `${book.title} | 48 Wall Street NYC`,
-    description: `${book.title} flipbook brochure`,
+    title: book.title,
+    description: `${book.title}: a brochure from 48 Wall Street, a historic 1927 event venue in the Financial District.`,
+    alternates: { canonical: `/flipbook/${slug}` },
   };
 }
 
@@ -37,7 +38,12 @@ export default async function FlipbookPage({ params }: PageProps) {
 
   return (
     <section id="book" className="mt-14">
-      <BookReader pages={pages} title={book.title} downloadUrl={book.pdfUrl} />
+      <BookReader
+        pages={pages}
+        title={book.title}
+        downloadUrl={book.pdfUrl}
+        standalone
+      />
     </section>
   );
 }

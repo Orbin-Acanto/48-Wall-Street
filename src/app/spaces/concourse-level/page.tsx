@@ -6,10 +6,9 @@ import { vaultBrochure } from '@/data';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'The Concourse Vault Level | Breakout Rooms and Meeting Space NYC | 48 Wall Street',
+  title: 'Concourse Vault Level | Meeting Space',
   description:
-    'The Concourse Level at 48 Wall Street offers 3,000 sq ft of flexible meeting and event space with 6 breakout rooms. Ideal for conferences, workshops, and pre-function receptions in the Financial District.',
+    'The Concourse Level at 48 Wall Street offers 3,000 sq ft of meeting and event space with 6 breakout rooms for conferences, workshops and receptions.',
   alternates: {
     canonical: 'https://www.48wallnyc.com/spaces/concourse-level',
   },
@@ -49,16 +48,16 @@ export default function ConcourseLevelPage() {
         subtitle=""
         description="The Concourse Level sits directly below the Grand Mezzanine Banking Hall and gives 48 Wall Street a versatility that most single-floor venues cannot match. At 3,000 square feet with 14-foot ceilings, it accommodates up to 200 guests for a seated event or reception and divides into six separate breakout rooms for concurrent sessions and workshops. For full-day conferences, the Concourse handles parallel programming while the Grand Mezzanine serves the main stage. For weddings and galas, it works as a pre-function cocktail space or a private dining room. The two levels connect via the grand marble staircase, creating a natural and elegant flow for guests moving between them."
         heroImages={[
-          '/spaces/concourse-level/featured.png',
+          '/spaces/concourse-level/featured.webp',
           '/spaces/concourse-level/hero-01.jpg',
           '/spaces/concourse-level/hero-02.jpg',
           '/spaces/concourse-level/hero-03.jpg',
         ]}
         images={[
-          '/spaces/concourse-level/featured.png',
-          '/spaces/concourse-level/gallery-02.png',
+          '/spaces/concourse-level/featured.webp',
+          '/spaces/concourse-level/gallery-02.webp',
           '/spaces/concourse-level/gallery-03.jpg',
-          '/spaces/concourse-level/gallery-04.png',
+          '/spaces/concourse-level/gallery-04.webp',
           '/spaces/concourse-level/gallery-05.jpg',
           '/spaces/concourse-level/gallery-06.jpg',
         ]}

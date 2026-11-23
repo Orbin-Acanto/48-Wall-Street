@@ -49,7 +49,7 @@ export default function AboutHero() {
           <div className="flex items-center justify-center">
             <div className="relative h-[700px] w-full overflow-hidden rounded-sm shadow-2xl">
               <Image
-                src="/about/hero-01.png"
+                src="/about/hero-01.webp"
                 alt="Green architectural detail of Manhattan building"
                 fill
                 className="object-cover"

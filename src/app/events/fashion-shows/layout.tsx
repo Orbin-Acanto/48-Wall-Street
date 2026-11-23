@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Top Fashion Show Venues in NYC | Where Style Meets Glamour',
+  title: 'Fashion Show Venue NYC',
   description:
-    'Showcase your collection at 48 Wall Street, a premier NYC fashion show event space. Our historic Lower Manhattan venue offers the perfect dramatic backdrop for New York Fashion Week run of shows.',
+    'Show your collection at 48 Wall Street, a historic Lower Manhattan fashion show venue with a dramatic backdrop for New York Fashion Week shows.',
   keywords:
     'fashion show venue NYC, runway venue Manhattan, fashion event space NYC, designer showcase venue, fashion week venue NYC, runway event space, Manhattan fashion show location, Financial District fashion venue, fashion presentation space, trunk show venue NYC, brand launch venue, fashion industry events NYC, designer runway NYC, fashion show space Manhattan, New York fashion venue, historic fashion venue, fashion show venue rental NYC, runway venue NYC, NYFW venue rental, fashion presentation space Manhattan, designer showcase venue NYC, fashion venue with runway NYC, downtown fashion show space',
   openGraph: {

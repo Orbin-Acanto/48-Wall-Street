@@ -96,6 +96,7 @@ export default function PhotoGallery({ galleryPhotos }: PhotoGalleryProps) {
                 src={photo.src}
                 alt={photo.alt}
                 fill
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 style={{
                   imageRendering: '-webkit-optimize-contrast',

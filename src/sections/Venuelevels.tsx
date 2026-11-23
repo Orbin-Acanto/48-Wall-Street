@@ -23,7 +23,7 @@ const levels = [
     description:
       'Situated on the lower level, the concourse is designed to hold meetings, breakouts, classes, and events.',
     href: '/spaces/concourse-level',
-    image: '/spaces/concourse-level/featured.png',
+    image: '/spaces/concourse-level/featured.webp',
     cta: 'Explore Space',
   },
 ];
@@ -48,6 +48,8 @@ export default function VenueLevels() {
               style={{ aspectRatio: '4 / 4' }}
             >
               <img
+                loading="lazy"
+                decoding="async"
                 src={level.image}
                 alt={`${level.title} ${level.subtitle}`}
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

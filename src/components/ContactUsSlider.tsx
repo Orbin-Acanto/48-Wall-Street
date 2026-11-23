@@ -275,9 +275,9 @@ const ContactUsSlider: React.FC = () => {
         </button>
 
         <div className="min-h-full px-6 py-16 md:px-12 lg:px-16">
-          <h1 className="text-primary mb-4 text-center font-['Gilda_Display'] text-4xl tracking-wide uppercase md:text-5xl lg:text-6xl">
+          <h2 className="text-primary font-primary mb-4 text-center text-4xl tracking-wide uppercase md:text-5xl lg:text-6xl">
             Enquire
-          </h1>
+          </h2>
           <p className="font-secondary mb-12 text-center text-sm text-gray-600 md:text-base lg:mb-16">
             Please fill out the contact form, email info@48WallNYC.com or call
             212-971-5353 to schedule a visit.

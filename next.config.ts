@@ -61,17 +61,6 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        // Preconnect hint for Google services — helps font and analytics load faster
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Link',
-            value:
-              '<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin',
-          },
-        ],
-      },
       ...['/sign/:path*', '/sign', '/admin/:path*', '/verify'].map(
         (source) => ({
           // Signing links carry a token in the URL: never cache, index, frame

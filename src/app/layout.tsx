@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Gilda_Display, Montserrat } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 // Social media sidebar temporarily disabled: the holiday banner now occupies
@@ -11,6 +12,21 @@ import ContactUsSlider from '@/components/ContactUsSlider';
 import Script from 'next/script';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
+
+// Self-hosted by next/font, so no request to Google Fonts at runtime
+const gilda = Gilda_Display({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-gilda',
+});
+
+const montserrat = Montserrat({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.48wallnyc.com';
 
@@ -25,7 +41,7 @@ export const metadata: Metadata = {
     template: '%s | 48 Wall Street NYC',
   },
   description:
-    '48 Wall Street is a premier historic event venue in the Financial District of Lower Manhattan. The 1927 Banking Hall offers 12,500 sq ft for corporate events, conferences, weddings, galas, and private celebrations. Up to 500 guests.',
+    "A historic 1927 event venue in Lower Manhattan's Financial District for corporate events, conferences, weddings and galas of up to 500 guests.",
   keywords:
     '48 Wall Street, NYC event venue, Manhattan event space, Financial District venue, historic venue NYC, corporate event space Manhattan, wedding venue NYC, Bar Mitzvah venue, Bat Mitzvah venue, Grand Mezzanine, Wall Street events, Lower Manhattan venue, historic bank building venue, event venue with catering, Financial District wedding, corporate meeting space NYC, Bank of New York building, 1920s architecture venue, Manhattan private events, New York event venue, event space NYC, event space rental NYC, venue rental NYC, event venues near me, banquet hall NYC, private event space Manhattan, gala venue NYC, landmark venue NYC, event venue with 500 capacity NYC, downtown Manhattan event space, FiDi event venue, product launch venue NYC, brand activation venue NYC, conference venue Financial District, large event venue NYC',
   authors: [{ name: '48 Wall Street Events' }],
@@ -49,7 +65,7 @@ export const metadata: Metadata = {
         url: '/shared/og/og-home.jpg',
         width: 1200,
         height: 630,
-        alt: '48 Wall Street Grand Mezzanine - Historic NYC Event Venue with 30-foot ceilings',
+        alt: '48 Wall Street Grand Mezzanine, a historic NYC event venue with 30-foot ceilings',
         type: 'image/jpeg',
       },
     ],
@@ -99,21 +115,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${gilda.variable} ${montserrat.variable}`}>
       <head>
-        {/* Preconnect to Google Fonts to eliminate render-blocking latency */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* Non-render-blocking font load with font-display:swap built in */}
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

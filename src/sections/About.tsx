@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const aboutImages = [
-  { src: '/about/hero-01.png', alt: '48 Wall Street Venue' },
+  { src: '/about/hero-01.webp', alt: '48 Wall Street Venue' },
   { src: '/about/gallery-01.jpg', alt: 'Lounge Area' },
   { src: '/about/gallery-04.jpg', alt: 'Concourse Level' },
 
@@ -15,8 +15,8 @@ const aboutImages = [
     src: '/gallery/corporate/corporate-12.jpg',
     alt: '48 Wall Street Building Exterior',
   },
-  { src: '/about/gallery-02.png', alt: 'Concourse Level' },
-  { src: '/about/gallery-03.png', alt: 'Concourse Level' },
+  { src: '/about/gallery-02.webp', alt: 'Concourse Level' },
+  { src: '/about/gallery-03.webp', alt: 'Concourse Level' },
 ];
 
 export default function About() {
@@ -62,9 +62,9 @@ export default function About() {
               Welcome to 48 Wall Street
             </p>
             <div className="bg-primary mx-auto mb-8 h-px w-16"></div>
-            <h1 className="heading-hero">
+            <h2 className="heading-hero">
               Historic Event Venue in Lower Manhattan
-            </h1>
+            </h2>
             <p className="text-lead">
               Built in 1927 as the Bank of New York and Trust Company, 48 Wall
               Street has been at the center of New York City history for nearly
@@ -91,9 +91,10 @@ export default function About() {
                 }}
               >
                 <Image
-                  src="/about/hero-01.png"
+                  src="/about/hero-01.webp"
                   alt="48 Wall Street Venue"
                   fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
                   quality={100}
                   priority
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -117,6 +118,7 @@ export default function About() {
                     src="/about/gallery-01.jpg"
                     alt="Lounge Area"
                     fill
+                    sizes="(min-width: 768px) 25vw, 50vw"
                     quality={100}
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     style={{
@@ -136,6 +138,7 @@ export default function About() {
                     src="/about/gallery-04.jpg"
                     alt="Concourse Level"
                     fill
+                    sizes="(min-width: 768px) 25vw, 50vw"
                     quality={100}
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     style={{
@@ -160,6 +163,7 @@ export default function About() {
                   src="/gallery/corporate/corporate-12.jpg"
                   alt="48 Wall Street Building Exterior"
                   fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
                   quality={100}
                   className="object-cover transition-transform duration-500 group-hover:scale-115"
                   style={{
@@ -177,9 +181,10 @@ export default function About() {
                   }}
                 >
                   <Image
-                    src="/about/gallery-02.png"
+                    src="/about/gallery-02.webp"
                     alt="Concourse Level"
                     fill
+                    sizes="(min-width: 768px) 25vw, 50vw"
                     quality={100}
                     className="object-cover transition-transform duration-500 group-hover:scale-115"
                     style={{
@@ -196,9 +201,10 @@ export default function About() {
                   }}
                 >
                   <Image
-                    src="/about/gallery-03.png"
+                    src="/about/gallery-03.webp"
                     alt="Concourse Level"
                     fill
+                    sizes="(min-width: 768px) 25vw, 50vw"
                     quality={100}
                     className="object-cover transition-transform duration-500 group-hover:scale-115"
                     style={{

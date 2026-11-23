@@ -22,6 +22,8 @@ interface BookReaderProps {
    * a client can be given. Omit for non-shareable content (menus, etc.).
    */
   shareSlug?: string;
+  // True when the brochure is the whole page, so its title is the page h1
+  standalone?: boolean;
 }
 
 interface PageProps {
@@ -74,7 +76,9 @@ export default function BookReader({
   className = '',
   pageColor = 'text-white',
   shareSlug,
+  standalone = false,
 }: BookReaderProps) {
+  const Heading = standalone ? 'h1' : 'h2';
   const bookRef = useRef<FlipBookRef | null>(null);
   const fullscreenBookRef = useRef<FlipBookRef | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -207,9 +211,9 @@ export default function BookReader({
           animate={{ opacity: 1, y: 0 }}
           className="mb-8 text-center"
         >
-          <h1 className="font-primary mb-2 text-3xl text-gray-900 uppercase md:text-4xl lg:text-5xl">
+          <Heading className="font-primary mb-2 text-3xl text-gray-900 uppercase md:text-4xl lg:text-5xl">
             {title}
-          </h1>
+          </Heading>
           {subtitle && (
             <p className="text-primary font-secondary text-base md:text-lg">
               {subtitle}

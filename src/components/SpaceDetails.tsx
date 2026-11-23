@@ -142,6 +142,7 @@ export default function SpaceDetails({
             key={currentSlide}
             src={slides[currentSlide]}
             alt={`${title} ${subtitle}`}
+            fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover"
             initial={{ opacity: 0, scale: 1.08 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -233,6 +234,8 @@ export default function SpaceDetails({
                     }}
                   >
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={galleryImages[i]}
                       alt={`${title} view ${i + 1}`}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -251,6 +254,8 @@ export default function SpaceDetails({
                   }}
                 >
                   <img
+                    loading="lazy"
+                    decoding="async"
                     src={galleryImages[2]}
                     alt={`${title} wide view`}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -270,6 +275,8 @@ export default function SpaceDetails({
                     }}
                   >
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={galleryImages[i]}
                       alt={`${title} view ${i + 1}`}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -312,6 +319,8 @@ export default function SpaceDetails({
                     <figure key={frame.label} className="group relative">
                       <div className="relative aspect-[16/10] overflow-hidden bg-black">
                         <img
+                          loading="lazy"
+                          decoding="async"
                           src={frame.src}
                           alt={
                             frame.alt ||
@@ -439,6 +448,8 @@ export default function SpaceDetails({
                 </div>
                 <div className="overflow-hidden border border-black/10 bg-white p-4 shadow-sm">
                   <img
+                    loading="lazy"
+                    decoding="async"
                     src={floorPlanImage}
                     alt={`${title} ${subtitle} floor plan`}
                     className="h-auto w-full object-contain"

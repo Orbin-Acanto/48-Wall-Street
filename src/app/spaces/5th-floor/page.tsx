@@ -2,10 +2,9 @@ import SpaceDetails from '@/components/SpaceDetails';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'The Alexander Hamilton Ballroom | 5th Floor Event Space NYC | 48 Wall Street',
+  title: 'Alexander Hamilton Ballroom, 5th Floor',
   description:
-    'The Alexander Hamilton Ballroom on the 5th floor of 48 Wall Street offers 14,444 sq ft of historic luxury event space. Expansive natural light, open floor plan, and white-glove hospitality in the Financial District.',
+    'The Alexander Hamilton Ballroom on the 5th floor of 48 Wall Street offers 14,444 sq ft of event space with natural light and an open floor plan.',
   alternates: {
     canonical: 'https://www.48wallnyc.com/spaces/5th-floor',
   },

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { shareableBrochures } from '@/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.48wallnyc.com';
@@ -202,5 +203,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.4,
     },
+
+    // Brochures
+    {
+      url: `${baseUrl}/flipbook`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    ...Object.keys(shareableBrochures).map((slug) => ({
+      url: `${baseUrl}/b/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
   ];
 }

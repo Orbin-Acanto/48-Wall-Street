@@ -3,10 +3,9 @@ import PrivateDinnerBanner from '@/components/PrivateDinnerBanner';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'The Alexander Hamilton Office | Private Executive Salon NYC | 48 Wall Street',
+  title: 'Alexander Hamilton Office',
   description:
-    "The Alexander Hamilton Office at 48 Wall Street is a private executive salon inspired by America's financial legacy, ideal for executive meetings, VIP receptions, board discussions, and private dining in the Financial District.",
+    'The Alexander Hamilton Office at 48 Wall Street is a private executive salon for board meetings, VIP receptions and private dining.',
   alternates: {
     canonical: 'https://www.48wallnyc.com/spaces/hamilton-room',
   },

@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Digital Brochure | 48 Wall Street NYC - Venue Information & Event Guide',
+  title: 'Digital Brochure | 48 Wall Street NYC',
   description:
-    'Download the 48 Wall Street digital brochure. Explore our historic 1927 Financial District venue, view event spaces, catering options, floor plans, and detailed information about hosting corporate events, weddings, and celebrations in Manhattan. Complete venue guide with photos and pricing information.',
+    'Download the 48 Wall Street digital brochure with event spaces, catering options, floor plans and photos of our historic 1927 Financial District venue.',
   keywords:
     '48 Wall Street brochure, NYC venue brochure, event venue PDF, Manhattan venue information, Financial District venue guide, 48 Wall Street PDF, venue brochure download, event space information NYC, catering brochure, venue floor plans PDF, corporate event venue brochure',
   openGraph: {

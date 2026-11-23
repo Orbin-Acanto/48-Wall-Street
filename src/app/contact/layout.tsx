@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Contact 48 Wall Street | Inquire About Our Historic NYC Venue',
+  title: { absolute: 'Contact 48 Wall Street | Plan Your NYC Event' },
   description:
     'Start planning your event at 48 Wall Street. Contact us today to tour our historic downtown venue and unique event space in the heart of the Financial District.',
   keywords: [

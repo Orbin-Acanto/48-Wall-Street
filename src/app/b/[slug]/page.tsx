@@ -19,13 +19,15 @@ export async function generateMetadata({
   const brochure = shareableBrochures[slug as keyof typeof shareableBrochures];
   if (!brochure) return {};
 
+  const description = `${brochure.title}: a brochure from 48 Wall Street, a historic 1927 event venue in the Financial District.`;
+
   return {
-    title: `${brochure.title} | 48 Wall Street NYC`,
-    description: brochure.subtitle || `${brochure.title}, 48 Wall Street`,
+    title: brochure.title,
+    description,
     alternates: { canonical: `/b/${slug}` },
     openGraph: {
       title: `${brochure.title} | 48 Wall Street NYC`,
-      description: brochure.subtitle || `${brochure.title}, 48 Wall Street`,
+      description,
       url: `/b/${slug}`,
       images: brochure.pages[0]?.image ? [brochure.pages[0].image] : undefined,
     },
@@ -46,6 +48,7 @@ export default async function SharedBrochurePage({ params }: PageProps) {
         subtitle={brochure.subtitle}
         downloadUrl={brochure.downloadUrl}
         shareSlug={brochure.shareSlug}
+        standalone
       />
     </main>
   );

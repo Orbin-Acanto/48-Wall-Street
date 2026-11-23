@@ -65,7 +65,7 @@ export default function ParallaxSection({
         <div className="relative z-10 flex h-full items-center justify-center">
           <div className="px-6 text-center text-white">
             {title && (
-              <h1 className="heading-hero max-w-5xl text-white">{title}</h1>
+              <h2 className="heading-hero max-w-5xl text-white">{title}</h2>
             )}
             {subtitle && (
               <p className="font-secondary text-background text-lg font-semibold tracking-wider uppercase md:text-xl lg:text-2xl">

@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Rules & Regulations | 48 Wall Street NYC - Venue Policies & Event Guidelines',
+  title: 'Rules & Regulations | 48 Wall Street NYC',
   description:
-    'Review venue rules, regulations, and event policies for 48 Wall Street NYC. Learn about event guidelines, insurance requirements, vendor policies, setup procedures, and venue restrictions for hosting corporate events, weddings, and celebrations in our historic Manhattan Financial District venue.',
+    'Venue rules and event policies for 48 Wall Street, including insurance requirements, vendor policies, setup procedures and restrictions.',
   keywords:
     '48 Wall Street rules, NYC venue policies, event venue regulations, venue guidelines Manhattan, event policies NYC, venue restrictions, insurance requirements, vendor policies, event setup rules, Financial District venue policies, 48 Wall Street regulations, venue event guidelines',
   openGraph: {

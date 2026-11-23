@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Event Gallery NYC | 48 Wall Street Photos | Manhattan Venue Portfolio',
+  title: 'Event Photo Gallery',
   description:
-    "View our event gallery showcasing stunning corporate events, weddings, fashion shows, Bar/Bat Mitzvahs, and holiday parties at 48 Wall Street NYC. Explore photos of our historic 1927 venue featuring the Grand Mezzanine, grand marble staircase, and past events in Manhattan's Financial District. Get inspired for your next event with our portfolio of successful celebrations.",
+    'Photos of corporate events, weddings, fashion shows, Bar and Bat Mitzvahs and holiday parties at 48 Wall Street, a historic 1927 Financial District venue.',
   keywords:
     'event gallery NYC, 48 Wall Street photos, venue gallery Manhattan, corporate event photos, wedding venue gallery, fashion show photos NYC, Bar Mitzvah gallery, holiday party photos, event venue portfolio, Manhattan venue photos, Financial District event gallery, 48 Wall Street portfolio, event inspiration NYC, venue photos Manhattan, event space gallery',
   openGraph: {

@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | 48 Wall Street Events',
+  title: 'Terms & Conditions',
+  alternates: { canonical: '/terms-of-service' },
   description: 'Read our terms and conditions.',
   robots: {
     index: false,

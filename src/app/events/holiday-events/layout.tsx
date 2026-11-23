@@ -4,9 +4,9 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   // A root layout template appends "| 48 Wall Street NYC", so keep this short
   // enough that the combined title survives Google's ~60 character truncation.
-  title: 'Santa Visits, Private Dinners & Holiday Speakeasy',
+  title: 'Holiday Events, Santa & Speakeasy',
   description:
-    'Book Sit Down With Santa from $125 per person, a private dinner from $500 per person, or the Hidden Holiday Speakeasy at 48 Wall Street. Reserve a time online in the landmark 1927 Financial District venue.',
+    'Book Sit Down With Santa from $125 per person, a private dinner from $500 per person, or the Hidden Holiday Speakeasy at 48 Wall Street.',
   keywords:
     'sit down with santa NYC, santa photos NYC, visit santa Financial District, santa experience Manhattan, book santa NYC, holiday speakeasy NYC, private speakeasy event NYC, winter wonderland event space NYC, private dinner Wall Street, intimate private dining NYC, holiday party venue NYC, corporate holiday party Manhattan, company holiday event venue, Christmas party venue NYC, holiday gala venue, end of year party venue NYC, corporate holiday celebration, holiday party space Manhattan, Financial District holiday venue, office holiday party NYC, seasonal event venue, holiday networking event, company Christmas party venue, holiday party with catering NYC, Manhattan holiday venue, holiday party venue rental NYC, corporate christmas party venue Manhattan, holiday party venues near me, company holiday party space NYC, winter party venue NYC, holiday party venue 500 guests NYC, December event venue NYC, festive event space Manhattan',
   openGraph: {

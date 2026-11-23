@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title:
-    'Floor Plans | 48 Wall Street NYC - Grand Mezzanine & Concourse Level Layouts',
+  title: 'Floor Plans: Grand Mezzanine & Concourse | 48 Wall Street',
   description:
-    "View detailed floor plans of 48 Wall Street NYC event venue. Explore our Grand Mezzanine with 30-foot ceilings (350 seated, 500 reception) and Concourse Level layouts. See venue amenities, capacity information, and room configurations for corporate events, weddings, and celebrations in Manhattan's Financial District.",
+    'Floor plans for the Grand Mezzanine (350 seated, 500 reception) and Concourse Level at 48 Wall Street, with capacity and room setup details.',
   keywords:
     '48 Wall Street floor plans, NYC venue floor plans, Grand Mezzanine layout, Concourse Level floor plan, event venue layouts NYC, Manhattan venue capacity, Financial District venue floor plans, venue amenities NYC, event space configurations, 48 Wall Street seating capacity, venue layout Manhattan',
   openGraph: {
