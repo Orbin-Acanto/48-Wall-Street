@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
+import { weddingData } from '@/data';
 
 export const metadata: Metadata = {
   title: 'Historic Wedding Venue NYC',
   description:
-    'Celebrate your wedding at 48 Wall Street, a historic downtown venue on Wall Street with timeless elegance for ceremonies and receptions.',
+    'A historic wedding venue in NYC on Wall Street. Ceremonies and receptions for 50 to 500 guests, with planning, catering and production in house.',
   keywords:
     'wedding venue NYC, Manhattan wedding venue, historic wedding venue NYC, Financial District wedding, elegant wedding space Manhattan, grand wedding venue NYC, wedding venue with history, Lower Manhattan wedding, Wall Street wedding venue, wedding venue with marble staircase, 1920s wedding venue, wedding reception venue NYC, Manhattan wedding ceremony, wedding venue with catering NYC, unique wedding venue Manhattan, rent venue for wedding NYC, ballrooms for weddings NYC, wedding banquet hall Manhattan, wedding venue rental NYC, wedding venues near me, historic wedding venue Manhattan, wedding reception space NYC, NYC wedding venue 300 guests, downtown wedding venue NYC, landmark wedding venue NYC, wedding venue with marble staircase NYC, FiDi wedding venue, best historic wedding venues in NYC',
   openGraph: {
@@ -63,8 +64,8 @@ export default function EventsLayout({
             telephone: '212.971.5353',
             geo: {
               '@type': 'GeoCoordinates',
-              latitude: 40.7074,
-              longitude: -74.0089,
+              latitude: 40.707421,
+              longitude: -74.009224,
             },
             url: 'https://www.48wallnyc.com',
             eventType: [
@@ -89,7 +90,7 @@ export default function EventsLayout({
               {
                 '@type': 'LocationFeatureSpecification',
                 name: 'Concourse Level',
-                value: '3500 square feet with breakout rooms',
+                value: '3,000 square feet with six breakout rooms',
               },
               {
                 '@type': 'LocationFeatureSpecification',
@@ -126,6 +127,20 @@ export default function EventsLayout({
                 item: 'https://www.48wallnyc.com/events/weddings',
               },
             ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: weddingData.info.map((item) => ({
+              '@type': 'Question',
+              name: item.heading,
+              acceptedAnswer: { '@type': 'Answer', text: item.body },
+            })),
           }),
         }}
       />

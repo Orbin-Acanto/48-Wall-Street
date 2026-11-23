@@ -75,7 +75,7 @@ export default function LocationLayout({
     {
       '@context': 'https://schema.org',
       '@type': 'EventVenue',
-      '@id': 'https://www.48wallnyc.com#eventvenue',
+      '@id': 'https://www.48wallnyc.com/#eventvenue',
       name: '48 Wall Street',
       description:
         'Historic corporate and private event venue located in Manhattan’s Financial District, featuring multiple floors for corporate events, weddings, social celebrations, and fashion shows.',
@@ -113,7 +113,7 @@ export default function LocationLayout({
         url: 'https://www.48wallnyc.com',
       },
       about: {
-        '@id': 'https://www.48wallnyc.com#eventvenue',
+        '@id': 'https://www.48wallnyc.com/#eventvenue',
       },
       mainEntity: {
         '@type': 'ItemList',

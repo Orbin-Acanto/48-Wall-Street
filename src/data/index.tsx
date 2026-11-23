@@ -211,6 +211,7 @@ export const navItems: NavItem[] = [
       { name: 'Floor Plans', href: '/about/floor-plans' },
       { name: 'Create Your Floor Plan', href: '/about/customize-plan' },
       { name: 'Rules & Regulations', href: '/about/rules-regulations' },
+      { name: 'FAQ', href: '/faq' },
     ],
   },
   {
@@ -306,6 +307,7 @@ export const footerLinks = {
     { name: 'Floor Plans', href: '/about/floor-plans' },
     { name: 'Create Your Floor Plan', href: '/about/customize-plan' },
     { name: 'Rules & Regulations', href: '/about/rules-regulations' },
+    { name: 'FAQ', href: '/faq' },
   ],
   events: [
     { name: 'Corporate Events', href: '/events/corporate' },

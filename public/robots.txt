@@ -17,80 +17,46 @@ Disallow: /api/
 # AI assistants and answer engines
 # Explicitly allowed so 48 Wall Street can be cited in AI-generated answers
 # about NYC event venues. Structured summary for these agents: /llms.txt
+# Listed as one group so they also skip the private paths above.
+#
+# OpenAI: GPTBot, OAI-SearchBot, ChatGPT-User
+# Anthropic: ClaudeBot, Claude-User, Claude-SearchBot, anthropic-ai
+# Perplexity: PerplexityBot, Perplexity-User
+# Google AI (Gemini, AI Overviews, AI Mode): Google-Extended
+# Microsoft Copilot and Bing: Bingbot
+# Apple Intelligence and Siri: Applebot, Applebot-Extended
+# Meta AI: meta-externalagent
+# Common Crawl, feeds many AI training corpora: CCBot
+# Amazon: Amazonbot / You.com: YouBot / Mistral: MistralAI-User
+# Cohere: cohere-ai / Diffbot: Diffbot
 # ---------------------------------------------------------------------------
-
-# OpenAI (ChatGPT browsing, ChatGPT search, and training)
 User-agent: GPTBot
-Allow: /
-
 User-agent: OAI-SearchBot
-Allow: /
-
 User-agent: ChatGPT-User
-Allow: /
-
-# Anthropic (Claude)
 User-agent: ClaudeBot
-Allow: /
-
 User-agent: Claude-User
-Allow: /
-
 User-agent: Claude-SearchBot
-Allow: /
-
 User-agent: anthropic-ai
-Allow: /
-
-# Perplexity
 User-agent: PerplexityBot
-Allow: /
-
 User-agent: Perplexity-User
-Allow: /
-
-# Google AI (Gemini, AI Overviews, AI Mode)
 User-agent: Google-Extended
-Allow: /
-
-# Microsoft Copilot / Bing
-User-agent: bingbot
-Allow: /
-
-# Apple Intelligence / Siri
+User-agent: Bingbot
 User-agent: Applebot
-Allow: /
-
 User-agent: Applebot-Extended
-Allow: /
-
-# Meta AI
 User-agent: meta-externalagent
-Allow: /
-
-# Common Crawl, feeds many AI training corpora
 User-agent: CCBot
-Allow: /
-
-# Amazon
 User-agent: Amazonbot
-Allow: /
-
-# You.com
 User-agent: YouBot
-Allow: /
-
-# Mistral
 User-agent: MistralAI-User
-Allow: /
-
-# Cohere
 User-agent: cohere-ai
-Allow: /
-
-# Diffbot
 User-agent: Diffbot
 Allow: /
+Disallow: /privacy-policy
+Disallow: /terms-of-service
+Disallow: /admin/
+Disallow: /sign/
+Disallow: /thank-you
+Disallow: /api/
 
 Sitemap: https://www.48wallnyc.com/sitemap.xml
 Sitemap: https://www.48wallnyc.com/sitemap-images.xml

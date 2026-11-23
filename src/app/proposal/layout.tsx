@@ -1,5 +1,6 @@
 // app/proposal/layout.tsx
 import type { Metadata } from 'next';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -61,5 +62,12 @@ export default function ProposalLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[{ name: 'Build a Proposal', path: '/proposal' }]}
+      />
+      {children}
+    </>
+  );
 }

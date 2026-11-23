@@ -1,4 +1,5 @@
 import SpaceDetails from '@/components/SpaceDetails';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import HolidayThemes from '@/components/HolidayThemes';
 import VaultDiscoverBanner from '@/components/VaultDiscoverBanner';
 // import SpeakeasyPromoBanner from '@/components/SpeakeasyPromoBanner';
@@ -42,6 +43,11 @@ export const metadata: Metadata = {
 export default function ConcourseLevelPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Concourse Vault Level', path: '/spaces/concourse-level' },
+        ]}
+      />
       <SpaceDetails
         levelLabel="02"
         title={'The CONCOURSE\nVAULT LEVEL'}

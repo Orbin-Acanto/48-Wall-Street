@@ -1,4 +1,5 @@
 import SpaceDetails from '@/components/SpaceDetails';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -36,40 +37,45 @@ export const metadata: Metadata = {
 
 export default function BankingHallPage() {
   return (
-    <SpaceDetails
-      levelLabel="04"
-      title={'Banking\nHall'}
-      subtitle=""
-      description="The Banking Hall at 48 Wall Street preserves the grandeur of the original 1920s financial institution that once occupied this landmark building. With soaring ceilings, stately columns, and restored period details, the Banking Hall provides a prestigious backdrop for large-scale corporate events, galas, and celebrations. This space captures the architectural significance of Wall Street's golden age while offering modern amenities and flexible configurations for today's events."
-      heroImages={[
-        '/spaces/banking-hall/hero-01.jpg',
-        '/spaces/banking-hall/hero-02.jpg',
-        '/spaces/banking-hall/hero-03.jpg',
-      ]}
-      images={[
-        '/gallery/fashion/fashion-01.jpg',
-        '/spaces/banking-hall/gallery-02.jpg',
-        '/spaces/banking-hall/gallery-03.jpg',
-        '/spaces/banking-hall/gallery-04.jpg',
-        '/spaces/banking-hall/hero-01.jpg',
-      ]}
-      videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
-      floorPlanImage="/floor-plans/banking-hall.svg"
-      features={[
-        'Original 1920s architecture',
-        'Soaring ceilings',
-        'Stately period columns',
-        'Restored historic details',
-        'Flexible event configurations',
-        'Modern AV amenities',
-        'Large-scale event capacity',
-        'Prestigious Wall Street setting',
-      ]}
-      stats={{
-        capacity: 'Large-scale events | Flexible seated & reception layouts',
-        sqft: 'Grand historic event floor',
-      }}
-      enquireHref="/contact"
-    />
+    <>
+      <BreadcrumbJsonLd
+        items={[{ name: 'Banking Hall', path: '/spaces/banking-hall' }]}
+      />
+      <SpaceDetails
+        levelLabel="04"
+        title={'Banking\nHall'}
+        subtitle=""
+        description="The Banking Hall at 48 Wall Street preserves the grandeur of the original 1920s financial institution that once occupied this landmark building. With soaring ceilings, stately columns, and restored period details, the Banking Hall provides a prestigious backdrop for large-scale corporate events, galas, and celebrations. This space captures the architectural significance of Wall Street's golden age while offering modern amenities and flexible configurations for today's events."
+        heroImages={[
+          '/spaces/banking-hall/hero-01.jpg',
+          '/spaces/banking-hall/hero-02.jpg',
+          '/spaces/banking-hall/hero-03.jpg',
+        ]}
+        images={[
+          '/gallery/fashion/fashion-01.jpg',
+          '/spaces/banking-hall/gallery-02.jpg',
+          '/spaces/banking-hall/gallery-03.jpg',
+          '/spaces/banking-hall/gallery-04.jpg',
+          '/spaces/banking-hall/hero-01.jpg',
+        ]}
+        videoUrl="https://player.vimeo.com/video/192677114?h=ec582da06e"
+        floorPlanImage="/floor-plans/banking-hall.svg"
+        features={[
+          'Original 1920s architecture',
+          'Soaring ceilings',
+          'Stately period columns',
+          'Restored historic details',
+          'Flexible event configurations',
+          'Modern AV amenities',
+          'Large-scale event capacity',
+          'Prestigious Wall Street setting',
+        ]}
+        stats={{
+          capacity: 'Large-scale events | Flexible seated & reception layouts',
+          sqft: 'Grand historic event floor',
+        }}
+        enquireHref="/contact"
+      />
+    </>
   );
 }

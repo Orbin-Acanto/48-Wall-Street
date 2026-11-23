@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import BreadcrumbJsonLd from '@/components/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Exclusive Event Partners',
@@ -38,5 +39,12 @@ export const metadata: Metadata = {
 export default function VendorsLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return <>{children}</>;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[{ name: 'Event Partners', path: '/vendors' }]}
+      />
+      {children}
+    </>
+  );
 }

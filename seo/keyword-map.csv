@@ -19,25 +19,25 @@ Keyword,Avg Monthly Searches,Group,Search Intent,Page Type,Target URL,Title Idea
 "christmas party venue nyc","N/A",Supporting - Holiday,Transactional,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,Seasonal — boost Oct-Dec
 "end of year party venue nyc","N/A",Supporting - Holiday,Transactional,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,
 "holiday gala venue","N/A",Question - Holiday,Informational,Event Type Page,/events/holiday-events,"Holiday Party Venue on Wall Street | Corporate Holiday Event Space NYC",Active,
-"non-profit event venue nyc","N/A",Main - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,Keywords currently set to wedding keywords — MUST FIX
-"fundraising gala venue nyc","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,Fix keywords in layout.tsx
-"charity event venue manhattan","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,
-"nonprofit gala space nyc","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,
-"fundraiser venue financial district","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active — BUG,
+"non-profit event venue nyc","N/A",Main - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active,Fixed: metadata and h1 match the main keyword
+"fundraising gala venue nyc","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active,Fixed: metadata and h1 match the main keyword
+"charity event venue manhattan","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active,
+"nonprofit gala space nyc","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active,
+"fundraiser venue financial district","N/A",Supporting - Non-Profit,Transactional,Event Type Page,/events/non-profit,"Non-Profit Event Venue Lower Manhattan | Fundraising Gala Space NYC",Active,
 "bar mitzvah venue nyc","N/A",Main - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
 "bat mitzvah venue manhattan","N/A",Supporting - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
 "bar mitzvah venue financial district","N/A",Supporting - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
 "jewish celebration venue nyc","N/A",Supporting - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
 "bar mitzvah venue with catering nyc","N/A",Supporting - Bar/Bat Mitzvah,Transactional,Event Type Page,/events/bar-bat-mitzvahs,"Bar & Bat Mitzvah Venue NYC | Historic Event Space Wall Street",Active,
-"wedding venue nyc","9,900",Main - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,Keywords currently generic/mixed — MUST FIX
-"wedding venue new york","9,900",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
-"venues wedding","450,000",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,Highest volume keyword in list — reinforce
-"wedding nyc","1,600",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
-"wedding banquet hall","2,900",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
-"ballrooms for weddings","1,300",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
-"rent venue for wedding","9,900",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
-"book a venue for wedding","2,400",Transactional - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
-"wedding venue booking","2,400",Transactional - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active — BUG,
+"wedding venue nyc","9,900",Main - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active,Fixed: metadata and h1 match the main keyword
+"wedding venue new york","9,900",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active,
+"venues wedding","450,000",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active,Highest volume keyword in list — reinforce
+"wedding nyc","1,600",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active,
+"wedding banquet hall","2,900",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active,
+"ballrooms for weddings","1,300",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active,
+"rent venue for wedding","9,900",Supporting - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active,
+"book a venue for wedding","2,400",Transactional - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active,
+"wedding venue booking","2,400",Transactional - Weddings,Transactional,Event Type Page,/events/weddings,"Historic Wedding Venue NYC | Wall Street Wedding Space Lower Manhattan",Active,
 "fashion show venue nyc","N/A",Main - Fashion,Transactional,Event Type Page,/events/fashion-shows,"NYC Fashion Show Event Space | New York Fashion Week Venue Wall Street",Active,
 "runway venue manhattan","N/A",Supporting - Fashion,Transactional,Event Type Page,/events/fashion-shows,"NYC Fashion Show Event Space | New York Fashion Week Venue Wall Street",Active,
 "fashion week venue nyc","N/A",Supporting - Fashion,Transactional,Event Type Page,/events/fashion-shows,"NYC Fashion Show Event Space | New York Fashion Week Venue Wall Street",Active,
@@ -88,9 +88,9 @@ Keyword,Avg Monthly Searches,Group,Search Intent,Page Type,Target URL,Title Idea
 "48wallnyc","N/A",Brand,Navigational,Homepage,/,"48 Wall Street NYC | Historic Event Venue Financial District",Active,
 "48 wall street venue","N/A",Brand,Navigational,Homepage,/,"48 Wall Street NYC | Historic Event Venue Financial District",Active,
 "48 wall street financial district","N/A",Brand,Navigational,Location Page,/location,"48 Wall Street | Financial District NYC Location & Directions",Active,
-"how much does an event venue cost in nyc","N/A",Question,Informational,FAQ Page,/faq,"How Much Does an Event Venue Cost in NYC? | 48 Wall Street FAQ",Needs Page,No FAQ page exists — use existing FAQ schema or add page
-"how to choose a wedding venue in nyc","N/A",Question,Informational,FAQ Page,/faq,"How to Choose a Wedding Venue in NYC | 48 Wall Street",Needs Page,
-"what to look for in a corporate event venue","N/A",Question,Informational,FAQ Page,/faq,"What to Look for in a Corporate Event Venue NYC | 48 Wall Street",Needs Page,
-"how many guests can 48 wall street hold","N/A",Question,Informational,FAQ Page,/faq,"Venue Capacity & FAQ | 48 Wall Street NYC",Needs Page,
-"does 48 wall street have catering","N/A",Question,Informational,FAQ Page,/faq,"Catering & Services FAQ | 48 Wall Street NYC",Needs Page,
-"best event venues in financial district","N/A",Question,Informational,FAQ Page,/faq,"Best Event Venues in the Financial District NYC",Needs Page,Could be a blog post
+"how much does an event venue cost in nyc","N/A",Question,Informational,FAQ Page,/faq,"How Much Does an Event Venue Cost in NYC? | 48 Wall Street FAQ",Active,Answered on the /faq page
+"how to choose a wedding venue in nyc","N/A",Question,Informational,FAQ Page,/faq,"How to Choose a Wedding Venue in NYC | 48 Wall Street",Active,
+"what to look for in a corporate event venue","N/A",Question,Informational,FAQ Page,/faq,"What to Look for in a Corporate Event Venue NYC | 48 Wall Street",Active,
+"how many guests can 48 wall street hold","N/A",Question,Informational,FAQ Page,/faq,"Venue Capacity & FAQ | 48 Wall Street NYC",Active,
+"does 48 wall street have catering","N/A",Question,Informational,FAQ Page,/faq,"Catering & Services FAQ | 48 Wall Street NYC",Active,
+"best event venues in financial district","N/A",Question,Informational,FAQ Page,/faq,"Best Event Venues in the Financial District NYC",Active,Could be a blog post

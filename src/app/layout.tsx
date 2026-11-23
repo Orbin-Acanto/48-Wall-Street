@@ -123,7 +123,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'EventVenue',
+              '@type': ['EventVenue', 'LocalBusiness'],
               '@id': `${siteUrl}/#eventvenue`,
               name: '48 Wall Street',
               alternateName: '48 Wall Street Events',
@@ -227,59 +227,10 @@ export default function RootLayout({
                   value: 'Original 1920s architectural details preserved',
                 },
               ],
-              aggregateRating: {
-                '@type': 'AggregateRating',
-                ratingValue: '4.8',
-                reviewCount: '150',
-                bestRating: '5',
-                worstRating: '1',
-              },
-              review: [
-                {
-                  '@type': 'Review',
-                  reviewRating: {
-                    '@type': 'Rating',
-                    ratingValue: '5',
-                    bestRating: '5',
-                  },
-                  author: {
-                    '@type': 'Person',
-                    name: 'Sarah M.',
-                  },
-                  reviewBody:
-                    'We held our annual conference at 48 Wall Street and it was flawless. The Banking Hall is stunning and our attendees kept commenting on the architecture. The AV team handled everything without a single issue.',
-                },
-                {
-                  '@type': 'Review',
-                  reviewRating: {
-                    '@type': 'Rating',
-                    ratingValue: '5',
-                    bestRating: '5',
-                  },
-                  author: {
-                    '@type': 'Person',
-                    name: 'James T.',
-                  },
-                  reviewBody:
-                    'Hosted our product launch here and the venue delivered exactly what we needed. The grand marble staircase made for incredible photos and the catering was excellent. Will absolutely be back.',
-                },
-                {
-                  '@type': 'Review',
-                  reviewRating: {
-                    '@type': 'Rating',
-                    ratingValue: '5',
-                    bestRating: '5',
-                  },
-                  author: {
-                    '@type': 'Person',
-                    name: 'Rachel K.',
-                  },
-                  reviewBody:
-                    'Our wedding at 48 Wall Street was everything we dreamed of. The 30-foot ceilings and chandeliers created a magical atmosphere. The planning team was attentive from the first call all the way through the reception.',
-                },
-              ],
               hasMap:
                 'https://maps.google.com/?q=48+Wall+Street+New+York+NY+10005',
+              parentOrganization: { '@id': `${siteUrl}/#organization` },
+              containedInPlace: { '@id': `${siteUrl}/#building` },
             }),
           }}
         />
@@ -317,54 +268,6 @@ export default function RootLayout({
                 postalCode: '10005',
                 addressCountry: 'US',
               },
-              sameAs: [
-                'https://www.instagram.com/48wallst/',
-                'https://www.facebook.com/48wallst/',
-              ],
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
-              '@id': `${siteUrl}/#localbusiness`,
-              name: '48 Wall Street',
-              image: `${siteUrl}/spaces/banking-hall/hero-01.jpg`,
-              url: siteUrl,
-              telephone: '212.971.5353',
-              priceRange: '$$$',
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: '48 Wall Street, Lobby 1',
-                addressLocality: 'New York',
-                addressRegion: 'NY',
-                postalCode: '10005',
-                addressCountry: 'US',
-              },
-              geo: {
-                '@type': 'GeoCoordinates',
-                latitude: 40.707421,
-                longitude: -74.009224,
-              },
-              openingHoursSpecification: [
-                {
-                  '@type': 'OpeningHoursSpecification',
-                  dayOfWeek: [
-                    'Monday',
-                    'Tuesday',
-                    'Wednesday',
-                    'Thursday',
-                    'Friday',
-                    'Saturday',
-                    'Sunday',
-                  ],
-                  opens: '09:00',
-                  closes: '23:00',
-                },
-              ],
               sameAs: [
                 'https://www.instagram.com/48wallst/',
                 'https://www.facebook.com/48wallst/',
@@ -480,113 +383,6 @@ export default function RootLayout({
               publisher: {
                 '@id': `${siteUrl}/#organization`,
               },
-              potentialAction: {
-                '@type': 'SearchAction',
-                target: {
-                  '@type': 'EntryPoint',
-                  urlTemplate: `${siteUrl}/search?q={search_term_string}`,
-                },
-                'query-input': 'required name=search_term_string',
-              },
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'FAQPage',
-              mainEntity: [
-                {
-                  '@type': 'Question',
-                  name: 'What is the capacity of 48 Wall Street?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: '48 Wall Street can accommodate 350 guests for seated dinners and up to 500 guests for cocktail-style receptions. The venue features flexible spaces that can be configured for various event sizes.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'What types of events can be held at 48 Wall Street?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: '48 Wall Street hosts a wide variety of events including corporate meetings, conferences, product launches, weddings, Bar/Bat Mitzvahs, fashion shows, film productions, holiday parties, and private celebrations.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'Where is 48 Wall Street located?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: "48 Wall Street is located in the heart of Manhattan's Financial District at 48 Wall Street, Lobby 1, New York, NY 10005. The venue is easily accessible by subway and is near major Wall Street landmarks.",
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'What makes 48 Wall Street unique?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: '48 Wall Street is a historic 1927 former Bank of New York building featuring original architecture, 30-foot ceilings, Palladian windows, a grand marble staircase, and stunning chandeliers. The venue maintains much of its 1920s architectural detail and was added to the National Register of Historic Places in 2003.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'Does 48 Wall Street provide catering and event services?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Yes, 48 Wall Street offers comprehensive event services through exclusive vendors including full-service catering, audiovisual equipment, event planning, decor, floral design, and event rentals.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'How much does it cost to rent 48 Wall Street?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Pricing depends on the event date, event type, guest count, day of the week, and services required such as catering, audio visual, and production. There is no fixed published rate because every event is quoted individually. For a quote, contact 48 Wall Street at 212.971.5353 or info@48WallNYC.com with your event details.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'How far in advance should I book 48 Wall Street?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'For corporate events, 3 to 6 months is typical, though shorter timelines can often be accommodated. For weddings and Bar or Bat Mitzvahs, 12 to 18 months is recommended because popular spring and fall dates fill quickly. For December holiday parties, planning should begin in spring or early summer.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'What subway lines are near 48 Wall Street?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Wall Street station on the 2 and 3 trains is steps away. Broad Street station on the J and Z trains is a short walk, and Rector Street station on the 1 train is nearby. The venue is also reachable from New Jersey via the PATH train at Fulton Street or World Trade Center.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'Is 48 Wall Street available for weddings?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Yes. 48 Wall Street hosts wedding ceremonies and receptions for 50 to 500 guests. The grand dual marble staircase and 30-foot ceilings provide a historic backdrop, and the team handles planning, coordination, catering, and production. Spring and fall weekends book quickly, so 12 to 18 months of lead time is recommended.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'Does 48 Wall Street have parking or valet?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'There are several public parking garages within a short walk of 48 Wall Street in the Financial District, and valet service can be arranged for private events. Because the venue sits directly on top of the Wall Street subway station, most guests arrive by subway or car service.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'Can 48 Wall Street host brand activations and product launches?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Yes. 48 Wall Street hosts product launches, brand activations, press events, and experiential marketing events. The 12,500 square feet of landmark space, 30-foot ceilings, and on-site production team supporting AV, lighting, staging, and custom fabrication make it well suited to large-scale branded environments.',
-                  },
-                },
-              ],
             }),
           }}
         />
@@ -596,7 +392,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Place',
+              '@id': `${siteUrl}/#building`,
               name: '48 Wall Street',
+              alternateName: 'Bank of New York & Trust Company Building',
+              sameAs: ['https://en.wikipedia.org/wiki/48_Wall_Street'],
               description:
                 'Historic 1927 Bank of New York & Trust Company building at the corner of Wall and William Streets in Lower Manhattan',
               hasMap:
