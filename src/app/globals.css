@@ -98,3 +98,8 @@ html {
     display: none;
   }
 }
+
+/* Soft grey basemap so venue markers stand out */
+.map-tiles-light {
+  filter: grayscale(1) brightness(1.08) contrast(0.88);
+}
