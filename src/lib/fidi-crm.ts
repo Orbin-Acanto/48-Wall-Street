@@ -25,11 +25,10 @@ export async function sendToCrm(
           request.headers.get('x-real-ip') ??
           request.headers.get('x-forwarded-for') ??
           '',
+        // The CRM counts URLs in fields as spam, so the page goes in the Referer header.
+        Referer: request.headers.get('referer') ?? '',
       },
-      body: JSON.stringify({
-        ...payload,
-        page_url: request.headers.get('referer') ?? '',
-      }),
+      body: JSON.stringify(payload),
       signal: AbortSignal.timeout(8000),
     });
     if (response.status === 201) return true;
