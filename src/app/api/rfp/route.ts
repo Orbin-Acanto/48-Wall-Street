@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkBotId } from 'botid/server';
 import { deliverToN8n } from '@/lib/n8n-queue';
+import { n8nLeadsEnabled, sendToCrm } from '@/lib/fidi-crm';
 
 /**
  * Event RFP wizard submissions.
@@ -32,11 +33,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    await deliverToN8n({
-      target: 'N8N_RFP_WEBHOOK_URL',
-      kind: 'json',
-      body: { ...body, submittedAt: new Date().toISOString() },
-    });
+    const submission = { ...body, submittedAt: new Date().toISOString() };
+    const crm = sendToCrm('FIDI_CRM_RFP_KEY', submission, request);
+    // n8n also runs as the fallback when it is switched off and the CRM failed.
+    if (n8nLeadsEnabled() || !(await crm)) {
+      await deliverToN8n({
+        target: 'N8N_RFP_WEBHOOK_URL',
+        kind: 'json',
+        body: submission,
+      });
+    }
+    await crm;
 
     return NextResponse.json(
       { success: true, message: 'RFP submitted successfully!' },

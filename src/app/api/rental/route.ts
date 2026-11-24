@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkBotId } from 'botid/server';
 import { deliverToN8n } from '@/lib/n8n-queue';
+import { n8nLeadsEnabled, sendToCrm } from '@/lib/fidi-crm';
 
 export async function POST(request: NextRequest) {
   const verification = await checkBotId();
@@ -19,11 +20,17 @@ export async function POST(request: NextRequest) {
       submittedAt: new Date().toISOString(),
     };
 
-    const n8nData = await deliverToN8n({
-      target: 'N8N_RENTAL_WEBHOOK_URL',
-      kind: 'json',
-      body: submissionData,
-    });
+    const crm = sendToCrm('FIDI_CRM_RENTAL_KEY', submissionData, request);
+    // n8n also runs as the fallback when it is switched off and the CRM failed.
+    const n8nData =
+      n8nLeadsEnabled() || !(await crm)
+        ? await deliverToN8n({
+            target: 'N8N_RENTAL_WEBHOOK_URL',
+            kind: 'json',
+            body: submissionData,
+          })
+        : {};
+    await crm;
 
     return NextResponse.json(
       {
